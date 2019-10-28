@@ -24,7 +24,7 @@ return  array(
 
     /* Cookie设置 */
     'COOKIE_EXPIRE'         => 0,    // Coodie有效期
-    'COOKIE_DOMAIN'         => 'www.baoqiniu.com',      // Cookie有效域名按照这个格式修改，修改为你的域名
+    'COOKIE_DOMAIN'         => 'www.baocms.com',      // Cookie有效域名按照这个格式修改，修改为你的域名
     'COOKIE_PATH'           => '/',     // Cookie路径
     'COOKIE_PREFIX'         => '',      // Cookie前缀 避免冲突
 
