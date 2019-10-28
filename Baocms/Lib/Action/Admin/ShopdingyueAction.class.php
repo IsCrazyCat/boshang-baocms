@@ -54,7 +54,7 @@ class ShopdingyueAction extends CommonAction {
     }
     public  function  shoplist(){
     	$shopdingyue=M('shop_dingyue');
-    	import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+    	import('ORG.Util.Page'); // 导入分页类
     	$map = array();	
     	if($audit = $this->_param('audit')){
     		$map['audit'] = $audit;

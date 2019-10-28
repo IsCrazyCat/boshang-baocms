@@ -24,7 +24,7 @@ class RunningAction extends CommonAction {
         }
         $cid = $this->delivery_id; //获取配送员ID
         $running = D('Running');
-		import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+		import('ORG.Util.Page'); // 导入分页类
         $map = array();
         if (isset($_GET['aready']) || isset($_POST['aready'])) {
 			$aready = (int) $this->_param('aready');

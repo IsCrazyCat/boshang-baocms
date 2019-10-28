@@ -78,7 +78,7 @@ class OrdergoodsModel extends CommonModel {
 	}
 	
 	
-   //商城合并付款新运费，跟单个商品付款不重复，二开：120,585,022
+   //商城合并付款新运费，跟单个商品付款不重复
    public function merge_update_express_price($uid,$type,$log_id,$address_id) {
 	    $log_id = (int)$log_id;
 		$Paymentlogs = D('Paymentlogs')->where(array('log_id'=>$log_id))->find();

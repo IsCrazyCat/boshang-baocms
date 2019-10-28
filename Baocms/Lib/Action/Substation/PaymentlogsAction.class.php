@@ -5,7 +5,7 @@ class PaymentlogsAction extends CommonAction
     {
         $Paymentlogs = D('Paymentlogs');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);

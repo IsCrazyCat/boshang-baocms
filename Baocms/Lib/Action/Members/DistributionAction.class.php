@@ -43,7 +43,7 @@ class DistributionAction extends CommonAction
         }
         $model = D('Userprofitlogs');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         //初始数据
         $map = array('user_id' => $this->uid, 'is_separate' => $status);
         $count = $model->where($map)->count();
@@ -71,7 +71,7 @@ class DistributionAction extends CommonAction
         }
         $user = D('Users');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         //初始数据
         $map = array('closed' => 0, 'fuid' . $level => $this->uid);
         $count = $user->where($map)->count();

@@ -463,7 +463,7 @@ class TuanAction extends CommonAction
             $this->baoError('抢购价格不能为空');
         }
         $data['settlement_price'] = (int) ($data['tuan_price'] - $data['tuan_price'] * $this->tuancates[$data['cate_id']]['rate'] / 1000);
-		//蜂蜜源码二开
+		//浡莱克源码二开
         $data['use_integral'] = (int) $data['use_integral'];
 		//抢购检测积分合法性开始
 		if (D('Tuan')->check_add_use_integral($data['use_integral'],$data['settlement_price'])) {//传2参数
@@ -472,7 +472,7 @@ class TuanAction extends CommonAction
 			$this->baoError(D('Tuan')->getError(), 3000, true);	  
 		}
 		//抢购检测积分合法性结束
-		//蜂蜜源码二开结束
+		//浡莱克源码二开结束
         $data['num'] = (int) $data['num'];
         if (empty($data['num'])) {
             $this->baoError('库存不能为空');

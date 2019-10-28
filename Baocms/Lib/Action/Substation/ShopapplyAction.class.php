@@ -6,7 +6,7 @@ class ShopapplyAction extends CommonAction
     {
         $Shopapply = D('Shopapply');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('city_id' => $this->city_id);
         if ($name = $this->_param('name', 'htmlspecialchars')) {
             $map['name'] = array('LIKE', '%' . $name . '%');

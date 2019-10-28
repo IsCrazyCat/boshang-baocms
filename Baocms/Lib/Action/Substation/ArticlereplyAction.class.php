@@ -7,7 +7,7 @@ class ArticlereplyAction extends CommonAction
     {
         $Articlecomment = D('Articlecomment');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         //搜索帖子ID
         //用户名搜索

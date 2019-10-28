@@ -6,7 +6,7 @@ class CommunitypostsreplyAction extends CommonAction{
     
      public  function index(){
        $Postreply = D('Communityreplys');
-       import('ORG.Util.Page');// 导入分页类 二开qq 120--585--022   www.hatudou.com
+       import('ORG.Util.Page');// 导入分页类
 		   
 	    $map_community = array('city_id' => $this->city_id);
 		$community_ids = D('Community')->where($map_community)->select();

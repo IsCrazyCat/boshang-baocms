@@ -11,7 +11,7 @@ class BillboardAction extends CommonAction
     {
         $Billboard = D('Billboard');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

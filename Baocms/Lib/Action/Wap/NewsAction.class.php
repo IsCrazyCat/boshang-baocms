@@ -36,7 +36,7 @@ class NewsAction extends CommonAction {
     }
 	 public function load() {
 		$Article = D('Article');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('city_id' => $this->city_id,'closed' => 0,'audit' => 1);
 		
 		$cat = (int) $this->_param('cat');

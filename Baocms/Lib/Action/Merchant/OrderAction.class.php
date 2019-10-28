@@ -78,7 +78,7 @@ class OrderAction extends CommonAction {
     }
 	//剩下的控制器
 	public function showdata() {
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0, 'status' => $this->status , 'is_daofu' => $this->is_daofu ,'shop_id'=> $this->shop_id );
          if (($bg_date = $this->_param('bg_date', 'htmlspecialchars') ) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -228,7 +228,7 @@ class OrderAction extends CommonAction {
         $orderids = explode(',', $pick['order_ids']);
 
         $Order = D('Order');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('order_id' => array('IN', $orderids));
         $list = $Order->where($map)->order(array('order_id' => 'asc'))->select();
         $user_ids = $order_ids = $addr_ids = array();
@@ -323,7 +323,7 @@ class OrderAction extends CommonAction {
         if(empty($this->shop['is_pei'])){
         }
         $Orderpick = D('Orderpick');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('shop_id'=>  $this->shop_id);
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars') ) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -371,7 +371,7 @@ class OrderAction extends CommonAction {
             $this->error('请不要恶意操作其他人的订单！');
         }
         $Order = D('Order');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('order_id' => array('IN', $orderids));
 
         $list = $Order->where($map)->order(array('order_id' => 'asc'))->select();

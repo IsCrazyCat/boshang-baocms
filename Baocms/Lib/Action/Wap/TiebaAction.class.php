@@ -61,7 +61,7 @@ class TiebaAction extends CommonAction{
     }
     public function loaddata(){
         $Post = D('Post');//必须审核
-        import('ORG.Util.Page');// 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
         $parent_id = 0;
         $cat = (int) $this->_param('cat');

@@ -7,7 +7,7 @@ class PostreplyAction extends CommonAction
     {
         $Postreply = D('Postreply');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         if ($post_id = (int) $this->_param('post_id')) {
             $map['post_id'] = $post_id;

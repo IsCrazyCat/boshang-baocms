@@ -13,7 +13,7 @@ class  HouseworkAction extends CommonAction{
     public function index(){
         
         $Housework = D('Housework');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array();
         if ($cate_id = (int) $this->_param('cate_id')) {
             $map['cate_id'] = $cate_id;

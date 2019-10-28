@@ -7,7 +7,7 @@ class  HouseworkAction extends CommonAction{
     
     public function index(){
         $Housework = D('Housework');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -39,7 +39,7 @@ class  HouseworkAction extends CommonAction{
     // 家政的项目配置
     public function setting(){
         $houseworksetting = D('Houseworksetting');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
 		

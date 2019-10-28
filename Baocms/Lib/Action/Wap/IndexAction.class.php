@@ -20,14 +20,14 @@ class IndexAction extends CommonAction {
             $lng = $this->_CONFIG['site']['lng'];
         }
         $orderby = " (ABS(lng - '{$lng}') +  ABS(lat - '{$lat}') ) asc ";
-        $shoplist = D('Shop')->where(array('city_id'=>$this->city_id, 'closed' => 0, 'audit' => 1))->order($orderby)->limit(0, 5)->select();
+        $shoplist = D('Shop')->where(array('closed' => 0, 'audit' => 1))->order($orderby)->limit(0, 5)->select();
 		foreach ($shoplist as $k => $val) {
             $shoplist[$k]['d'] = getDistance($lat, $lng, $val['lat'], $val['lng']);
         }
 		
 		
-        $news = D('Article')->where(array('city_id'=>$this->city_id, 'closed' => 0, 'audit' => 1))->order(array('create_time' => 'desc'))->limit(0, 5)->select();
-		$community = D('Community')->where(array('city_id'=>$this->city_id, 'closed' => 0, 'audit' => 1,))->order($orderby)->limit(0, 5)->select();
+        $news = D('Article')->where(array('closed' => 0, 'audit' => 1))->order(array('create_time' => 'desc'))->limit(0, 5)->select();
+		$community = D('Community')->where(array('closed' => 0, 'audit' => 1,))->order($orderby)->limit(0, 5)->select();
 		foreach ($community as $k => $val) {
             $community[$k]['d'] = getDistance($lat, $lng, $val['lat'], $val['lng']);
         }

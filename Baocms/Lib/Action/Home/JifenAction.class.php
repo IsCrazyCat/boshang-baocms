@@ -71,7 +71,7 @@ class JifenAction extends CommonAction{
         $rsd = $sd->where(array('shop_id' => $detail['shop_id']))->find();
         $this->assign('rsd', $rsd);
         $this->assign('detail', $detail);
-        //二开
+
         $this->seodatas['title'] = $detail['title'];
         $this->seodatas['price'] = $detail['price'];
         $this->seodatas['num'] = $detail['num'];

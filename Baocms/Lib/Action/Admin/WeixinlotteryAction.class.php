@@ -6,7 +6,7 @@ class WeixinlotteryAction extends CommonAction
     {
         $obj = M('weixin_lottery');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         $count = $obj->where($map)->count();
         $Page = new Page($count, 15);

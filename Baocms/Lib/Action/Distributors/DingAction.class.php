@@ -32,7 +32,7 @@ class DingAction extends CommonAction {
 
         $dingorder = D('Shopdingorder');
 
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
 
         $map = array('closed' => 0);
 
@@ -334,7 +334,7 @@ class DingAction extends CommonAction {
 
         $obj = D('Shopdingroom');
 
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
 
         $map = array('shop_id'=>  $this->shop_id);
 

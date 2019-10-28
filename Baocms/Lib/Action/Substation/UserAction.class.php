@@ -8,7 +8,7 @@ class UserAction extends CommonAction
     {
         $EX = D('Usersex');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('frozen_money' => array('GT', 0));
         if ($is_no_frozen = (int) $this->_param('is_no_frozen')) {
             if ($is_no_frozen == 1) {
@@ -144,7 +144,7 @@ class UserAction extends CommonAction
     {
         $User = D('Users');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');
@@ -186,7 +186,7 @@ class UserAction extends CommonAction
     {
         $User = D('Users');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');
@@ -218,7 +218,7 @@ class UserAction extends CommonAction
     {
         $User = D('Users');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');

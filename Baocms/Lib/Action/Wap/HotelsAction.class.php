@@ -50,7 +50,7 @@ class HotelsAction extends CommonAction {
     
     public function loaddata() {
         $hotel = D('Hotel');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id);
         $linkArr = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {

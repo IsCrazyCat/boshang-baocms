@@ -7,7 +7,7 @@ class PshopAction extends CommonAction {
 
     public function index() {
         $Shop = D('Pshop');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name|tel'] = array('LIKE', '%' . $keyword . '%');
             $this->assign('keyword', $keyword);
@@ -156,7 +156,7 @@ class PshopAction extends CommonAction {
     }
     public function select() {
         $Shop = D('Pshop');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name|tel'] = array('LIKE', '%' . $keyword . '%');
             $this->assign('keyword', $keyword);

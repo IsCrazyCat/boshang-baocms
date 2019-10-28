@@ -171,7 +171,7 @@ class DeliveryAction extends CommonAction{
 	// 新增选择配送员
 	public function select(){
         $Delivery = D('Delivery');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array();
         if($name = $this->_param('name','htmlspecialchars')){
             $map['name'] = array('LIKE','%'.$name.'%');

@@ -17,7 +17,7 @@ class EleproductAction extends CommonAction
         //取得当前商家ID，给下面的maps查询
         $Eleproduct = D('Eleproduct');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $maps['product_name'] = array('LIKE', '%' . $keyword . '%');

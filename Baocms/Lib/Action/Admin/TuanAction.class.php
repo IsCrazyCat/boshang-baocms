@@ -14,7 +14,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
 
     public function index() {
         $Tuan = D('Tuan');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

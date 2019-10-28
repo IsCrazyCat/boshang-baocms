@@ -15,7 +15,7 @@ class ThreadAction extends CommonAction {
 
     public function index(){
         $Threadpost = D('Threadpost');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('audit' => 1, 'closed' => 0);
         if($thread_id = (int)$this->_param('thread_id')){
             $map['thread_id'] = $thread_id;

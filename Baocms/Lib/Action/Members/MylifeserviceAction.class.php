@@ -7,7 +7,7 @@ class MylifeserviceAction extends CommonAction {
     public function index() {
         $Houseworksetting = D('Houseworksetting');//类目表
         $Housework = D('Housework');//报名表
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('user_id' => $this->uid);
         $count = $Housework->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数

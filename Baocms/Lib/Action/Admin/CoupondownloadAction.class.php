@@ -5,7 +5,7 @@ class CoupondownloadAction extends CommonAction
     {
         $Coupondownload = D('Coupondownload');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['mobile'] = array('LIKE', '%' . $keyword . '%');

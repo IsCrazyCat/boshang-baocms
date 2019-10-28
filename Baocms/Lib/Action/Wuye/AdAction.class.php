@@ -5,7 +5,7 @@ class AdAction extends CommonAction
     {
         $ad = D('Communityad');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('community_id' => $this->community_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

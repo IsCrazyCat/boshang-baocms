@@ -7,7 +7,7 @@ class PostreplyAction extends CommonAction
     {
         $Postreply = D('Postreply');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         //调用数据开始
         $map_post = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID

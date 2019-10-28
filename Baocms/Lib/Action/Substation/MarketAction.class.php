@@ -7,7 +7,7 @@ class MarketAction extends CommonAction
     {
         $market = D('Market');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['market_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -254,7 +254,7 @@ class MarketAction extends CommonAction
     {
         $market = D('Market');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -480,7 +480,7 @@ class MarketAction extends CommonAction
     {
         $marketenter = D('Marketenter');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0);
         if ($market_id = (int) $this->_param('market_id', false)) {
             if (!($detail = D('Market')->find($market_id))) {

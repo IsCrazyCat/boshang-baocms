@@ -23,7 +23,7 @@ class BizAction extends CommonAction {
 	
 	 public function loaddata() {
         $Biz = D('Biz');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
 		$map = array('city_id'=>$this->city_id);
 		$keyword = $this->_param('keyword');
 		$type = (int) $this->_param('type');

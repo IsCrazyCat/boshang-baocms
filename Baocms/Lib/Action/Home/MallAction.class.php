@@ -1212,7 +1212,7 @@ class MallAction extends CommonAction{
                 $logs['code'] = $code;
                 D('Paymentlogs')->save($logs);
             }
-            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，跟日志同步，蜂蜜独创
+            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，跟日志同步，浡莱克独创
             D('Weixintmpl')->weixin_notice_goods_user($order_id,$this->uid,1);//商城微信通知
             $this->baoJump(U('payment/payment', array('log_id' => $logs['log_id'])));
         }

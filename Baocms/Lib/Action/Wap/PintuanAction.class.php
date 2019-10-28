@@ -61,7 +61,7 @@ class PintuanAction extends CommonAction {
 	public function loaddata() {
 		$pintuan = D('Pgoods');
 		import('ORG.Util.Page');
-		// 导入分页类 二开qq 120--585--022   www.hatudou.com
+		// 导入分页类
 		//初始数据
 		$map = array('is_show' => 1);
 		$cate = (int)$this -> _param('id');

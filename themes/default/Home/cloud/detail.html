@@ -254,7 +254,7 @@
             <div class="cloudBuy_record">
                 <h3>看了又看</h3>
                 <ul>
-                    <calldata mdl="Cloudgoods" where="audit =1 AND closed=0 AND city_id = $city_id AND goods_id != '{$detail['goods_id']}' " order="goods_id desc" limit="0,5">
+                    <calldata mdl="Cloudgoods" where="audit =1 AND closed=0 AND goods_id != '{$detail['goods_id']}' " order="goods_id desc" limit="0,5">
                         <li class="list"> <a href="<{:U('cloud/detail',array('goods_id'=>$item['goods_id']))}>">
                          <img src=" <{:config_img($item['photo'])}>" />
                                 <p class="bt"><{$item.title}> </p>

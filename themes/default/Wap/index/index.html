@@ -32,7 +32,7 @@
 			<!--下面的limit="0,2"是幻灯的个数，2代表2张图，以此类推，site_id=57是你广告位的ID-->
 			<div class="bd">
 				<ul>
-					<calldata mdl="Ad" where=" closed=0 AND site_id=57 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="7200" order="orderby asc">
+					<calldata mdl="Ad" where=" closed=0 AND site_id=57 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="7200" order="orderby asc">
 						<li>
 							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a>
 						</li>
@@ -155,7 +155,7 @@
             <div class="goods_limit_buy mb10">
             	<div class="locatLabel_switch swiper-container5">
                     <div class="swiper-wrapper">
-						<calldata mdl="Goods" where="audit =1 AND closed=0 AND city_id = $city_id AND end_date EGT '{$today}'" order="orderby asc,sold_num desc" limit="0,10" cache="600">                        
+						<calldata mdl="Goods" where="audit =1 AND closed=0 AND end_date EGT '{$today}'" order="orderby asc,sold_num desc" limit="0,10" cache="600">
                         <div class="box swiper-slide">
                             <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><img src="<{:config_img($item['photo'])}>" width="" height="">
                             <p class="txt_center overflow_clear"><{:bao_msubstr($item['title'],0,4,false)}></p>
@@ -177,34 +177,34 @@
                 </script>
             </div>
             <!--首页限时抢购结束-->
-			<div class="index-ads">
-				<div class="line border-bottom border-top">
-					<div class="x5 ad-1">
-						<calldata mdl="Ad" where=" closed=0 AND site_id=62 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">
-							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>
-						</calldata>
-					</div>
-					<div class="x7 border-left">
-						<div class="line">
-							<div class="x12 border-bottom ad-2">
-								<calldata mdl="Ad" where=" closed=0 AND site_id=63 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">
-									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>
-								</calldata>
-							</div>
-							<div class="x6 border-right ad-3">
-								<calldata mdl="Ad" where=" closed=0 AND site_id=64 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">
-									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>
-								</calldata>
-							</div>
-							<div class="x6 ad-3">
-								<calldata mdl="Ad" where=" closed=0 AND site_id=65 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">
-									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>
-								</calldata>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!--			<div class="index-ads">-->
+<!--				<div class="line border-bottom border-top">-->
+<!--					<div class="x5 ad-1">-->
+<!--						<calldata mdl="Ad" where=" closed=0 AND site_id=62 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
+<!--							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
+<!--						</calldata>-->
+<!--					</div>-->
+<!--					<div class="x7 border-left">-->
+<!--						<div class="line">-->
+<!--							<div class="x12 border-bottom ad-2">-->
+<!--								<calldata mdl="Ad" where=" closed=0 AND site_id=63 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
+<!--									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
+<!--								</calldata>-->
+<!--							</div>-->
+<!--							<div class="x6 border-right ad-3">-->
+<!--								<calldata mdl="Ad" where=" closed=0 AND site_id=64 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
+<!--									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
+<!--								</calldata>-->
+<!--							</div>-->
+<!--							<div class="x6 ad-3">-->
+<!--								<calldata mdl="Ad" where=" closed=0 AND site_id=65 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
+<!--									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
+<!--								</calldata>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 			<div class="blank-10 bg" style="border-bottom: thin solid #eee;">
 			</div>
 			<div class="tab index-tab" data-toggle="click">
@@ -219,8 +219,7 @@
                   <div class="tab-panel active" id="tab-active">
 						<ul class="index-tuan">
 							<volist name="news" id="item" key="index">
-								<div class="container1" onclick="location='<{:U('news/detail',array('article_id'=>
-						$item['article_id']))}>'">
+								<div class="container1" onclick="location='<{:U('news/detail',array('article_id'=>$item['article_id']))}>'">
 									<img class="x2" src="<{:config_img($item['photo'])}>">
 									<div class="des x8">
 										<h5><{:bao_msubstr($item['title'],0,14,false)}></h5>
@@ -262,8 +261,7 @@
 					<div class="tab-panel" id="tab-coupon">
 						<ul class="index-tuan">
 							<volist name="community" id="item" key="index">
-								<div class="container1" onclick="location='<{:U('community/detail',array('community_id'=>
-						$item['community_id']))}>'">
+								<div class="container1" onclick="location='<{:U('community/detail',array('community_id'=>$item['community_id']))}>'">
 									<img class="x2" src="<{:config_img($item['pic'])}>">
 									<div class="des x8">
 										<h5><{:bao_msubstr($item['name'],0,10,false)}></h5>

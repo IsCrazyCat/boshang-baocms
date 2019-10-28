@@ -32,7 +32,7 @@ class ListsAction extends CommonAction {
 		$user_id = $this->delivery_id;
 		$Delivery = D('Delivery')->where(array('user_id'=>$user_id))->find();
 		$DeliveryOrder = D('DeliveryOrder');
-		import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+		import('ORG.Util.Page'); // 导入分页类
 		$map['closed'] = 0;
 		$map['status'] = array('IN', array(0,1));
 		if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {

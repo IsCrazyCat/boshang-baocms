@@ -127,7 +127,7 @@ class ShopAction extends CommonAction{
         }
         $Shopdianping = D('Shopdianping');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
         $count = $Shopdianping->where($map)->count();
         $Page = new Page($count, 25);
@@ -196,7 +196,7 @@ class ShopAction extends CommonAction{
         $this->assign('act', $act);
         $file = D('Weixin')->getCode($shop_id, 1);
         $this->assign('file', $file);
-        //二开
+
         $this->Shopcates = D('Shopcate')->fetchAll();
         $this->seodatas['cate_name'] = $this->Shopcates[$detail['cate_id']]['cate_name'];//分类
         $this->seodatas['cate_area'] = $this->areas[$detail['area_id']]['area_name'];//地区
@@ -697,7 +697,7 @@ class ShopAction extends CommonAction{
             die;
         }
         $Shopdianping = D('Shopdianping');
-        import('ORG.Util.Page');// 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
         $count = $Shopdianping->where($map)->count();
         
@@ -837,7 +837,7 @@ class ShopAction extends CommonAction{
         }
         $Life = D('Life');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'user_id' => $detail['user_id']);
         $count = $Life->where($map)->count();
         
@@ -868,7 +868,7 @@ class ShopAction extends CommonAction{
         }
         $article = D('Article');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'shop_id' => $shop_id);
         $count = $article->where($map)->count();
         

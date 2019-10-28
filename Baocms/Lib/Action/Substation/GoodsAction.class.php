@@ -10,7 +10,7 @@ class GoodsAction extends CommonAction {
     }
     public function index() {
         $Goods = D('Goods');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0, 'is_mall' => 1,'city_id'=>$this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

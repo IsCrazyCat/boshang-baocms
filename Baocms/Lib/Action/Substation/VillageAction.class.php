@@ -15,7 +15,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_suggestion');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('city_id' => $this->city_id);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -42,7 +42,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_bbs');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -105,7 +105,7 @@ class VillageAction extends CommonAction
                 $this->baoError('操作失败');
             } else {
                 import('ORG.Util.Page');
-                // 导入分页类 二开qq 120--585--022   www.hatudou.com
+                // 导入分页类
                 $map = array("post_id" => $post_id);
                 $replys = D("Villagebbsreplys");
                 $count = $replys->where($map)->count();
@@ -133,7 +133,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_notice');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -163,7 +163,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_worker');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -190,7 +190,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         //$users = $this->_param('data', false);
         $keyword = $this->_param('keyword', 'htmlspecialchars');

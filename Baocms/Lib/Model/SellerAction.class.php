@@ -5,7 +5,7 @@ class SellerAction extends CommonAction
     {
         $Shopnews = D('Shopnews');
         import('ORG.Util.Pageabc');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('audit' => 1);
         $cates = D('Shopcate')->fetchAll();
         $cat = (int) $this->_param('cat');
@@ -77,7 +77,7 @@ class SellerAction extends CommonAction
         $this->assign('shop', D('Shop')->find($detail['shop_id']));
         //回复列表
         import('ORG.Util.Pageabc');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $count = D('Shopcomment')->where(array('post_id' => $news_id, 'parent_id' => 0))->count();
         //获取评论总数
         $Page = new Page($count, 15);

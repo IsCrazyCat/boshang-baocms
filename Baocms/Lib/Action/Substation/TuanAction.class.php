@@ -2,7 +2,7 @@
 
 /*
  * 增加限购
- * by QQ 86313535
+ *
  */
 
 class TuanAction extends CommonAction { //按逻辑  instructions  和  details 要分表出去
@@ -19,7 +19,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
 
     public function index() {
         $Tuan = D('Tuan');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0,'city_id'=>$this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

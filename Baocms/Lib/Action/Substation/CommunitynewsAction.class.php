@@ -7,7 +7,7 @@ class CommunitynewsAction extends CommonAction
     {
         $Communitynews = D('Communitynews');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map_community = array('city_id' => $this->city_id);
         $community_ids = D('Community')->where($map_community)->select();
         foreach ($community_ids as $val) {

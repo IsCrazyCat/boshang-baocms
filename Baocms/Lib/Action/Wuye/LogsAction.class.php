@@ -6,7 +6,7 @@ class LogsAction extends CommonAction
         //日志列表
         $logs = D('Communityorderlogs');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('community_id' => $this->community_id);
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);

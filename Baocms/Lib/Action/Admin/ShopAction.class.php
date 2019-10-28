@@ -114,7 +114,7 @@ class ShopAction extends CommonAction{
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0, 'audit' => 1);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');

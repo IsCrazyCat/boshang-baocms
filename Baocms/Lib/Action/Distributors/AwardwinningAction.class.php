@@ -6,7 +6,7 @@ class AwardwinningAction extends CommonAction {
     private $create_fields = array( 'goods_id', 'name', 'mobile');
     public function index() {
         $Awardwinning = D('Awardwinning');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $award_id = (int) $this->_get('award_id');
         $map = array('award_id' => $award_id);
         $this->assign('award_id', $award_id);

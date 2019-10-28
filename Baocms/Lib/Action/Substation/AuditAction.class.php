@@ -7,7 +7,7 @@ class AuditAction extends CommonAction
     {
         $Audit = D('Audit');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();

@@ -7,7 +7,7 @@ class MsgAction extends CommonAction {
     public function index() {
 
         $message = D('Usermessage');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map['user_id'] = $this->uid;
         $map['from_id'] = $this->uid;
         $map['_logic'] = 'OR';
@@ -48,7 +48,7 @@ class MsgAction extends CommonAction {
             $this->error('用户不存在');
         }
         $message = D('Usermessage');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $list1 = $message->where(array('user_id' => $this->uid, 'from_id' => $uid))->order(array('message_id' => 'desc'))->select();
         foreach ($list1 as $k => $val) {
             $list11[$val['message_id']] = $val;

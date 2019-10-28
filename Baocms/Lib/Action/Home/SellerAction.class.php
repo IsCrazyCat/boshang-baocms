@@ -5,7 +5,7 @@ class SellerAction extends CommonAction
     {
         $Shopnews = D('Shopnews');
         import('ORG.Util.Pageabc');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('audit' => 1);
         $cates = D('Shopcate')->fetchAll();
         $cat = (int) $this->_param('cat');

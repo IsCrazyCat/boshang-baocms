@@ -154,7 +154,7 @@ class OrderAction extends CommonAction{
     public function goods(){
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0, 'user_id' => $this->uid);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

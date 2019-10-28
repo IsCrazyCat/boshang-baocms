@@ -564,7 +564,7 @@ class TuanAction extends CommonAction{
     public function loadindex(){
         $Tuan = D('Tuan');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', TODAY));
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

@@ -5,7 +5,7 @@ class  YuyueAction extends CommonAction{
  
     public function index(){
         $Shopyuyue = D('Shopyuyue');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('shop_id'=>  $this->shop_id);
         $count = $Shopyuyue->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 25); // 实例化分页类 传入总记录数和每页显示的记录数

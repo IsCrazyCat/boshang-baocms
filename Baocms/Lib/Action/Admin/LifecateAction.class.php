@@ -7,7 +7,7 @@ class LifecateAction extends CommonAction
     {
         $Lifecate = D('Lifecate');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         $map = array();
         if ($keyword) {

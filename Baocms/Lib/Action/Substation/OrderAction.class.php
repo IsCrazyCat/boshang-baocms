@@ -5,7 +5,7 @@ class OrderAction extends CommonAction
     {
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -94,7 +94,7 @@ class OrderAction extends CommonAction
     {
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0, 'status' => 0, 'is_daofu' => 1, 'is_shop' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -175,7 +175,7 @@ class OrderAction extends CommonAction
     {
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0, 'status' => 1, 'is_shop' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -308,7 +308,7 @@ class OrderAction extends CommonAction
     {
         $Orderpick = D('Orderpick');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('shop_id' => 0);
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -355,7 +355,7 @@ class OrderAction extends CommonAction
         $orderids = explode(',', $pick['order_ids']);
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('order_id' => array('IN', $orderids));
         $list = $Order->where($map)->order(array('order_id' => 'asc'))->select();
         $user_ids = $order_ids = $addr_ids = array();
@@ -390,7 +390,7 @@ class OrderAction extends CommonAction
         $orderids = explode(',', $pick['order_ids']);
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('order_id' => array('IN', $orderids));
         $list = $Order->where($map)->order(array('order_id' => 'asc'))->select();
         $user_ids = $order_ids = $shop_ids = $addr_ids = array();
@@ -424,7 +424,7 @@ class OrderAction extends CommonAction
     {
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0, 'status' => 2);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

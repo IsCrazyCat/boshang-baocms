@@ -62,7 +62,7 @@ class NearAction extends CommonAction
         }
         $keyword = $this->_param('keyword');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
         $p = $_GET[$var];
         //验证城市信息

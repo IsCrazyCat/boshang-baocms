@@ -16,7 +16,7 @@ class LifeservicedianpingAction extends CommonAction {
 		
 		
         $Lifeservicedianping = D('Lifeservicedianping');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0);
        
         if ($id = (int) $this->_param('id')) {

@@ -15,7 +15,7 @@ class EleAction extends CommonAction {
 
     public function index() {
         $Ele = D('Ele');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name'] = array('LIKE', '%' . $keyword . '%');

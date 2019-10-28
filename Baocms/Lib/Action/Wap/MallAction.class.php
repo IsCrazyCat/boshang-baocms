@@ -536,8 +536,8 @@ class MallAction extends CommonAction{
 			$order['express_price'] = $express_price[$k];//写入运费
             $order['address_id'] = $defaultAddress['id'];//写入快递ID
 			
-			$val[0]['express_price'] = $express_price[$k];//写入运费,蜂蜜7月30日二开
-			$val[0]['address_id'] = $defaultAddress['id'];//写入快递,蜂蜜7月30日二开
+			$val[0]['express_price'] = $express_price[$k];//写入运费,浡莱克7月30日二开
+			$val[0]['address_id'] = $defaultAddress['id'];//写入快递,浡莱克7月30日二开
             $shop = D('Shop')->find($k);
             $order['is_shop'] = (int) $shop['is_pei'];
             if ($order_id = D('Order')->add($order)) {//这里写入订单表了
@@ -667,7 +667,7 @@ class MallAction extends CommonAction{
         $order_ids = explode(',', $detail['order_ids']);
 		//这里合并付款逻辑暂时不做1，做留言系统，2，做优惠劵ID，3;优惠劵减去的金额
         D('Order')->where(array('order_id' => array('IN', $order_ids)))->save(array('addr_id' => $addr_id));
-        /**********************蜂蜜 修复合并付款的时候的系列订单错误问题*****************************/
+        /**********************浡莱克 修复合并付款的时候的系列订单错误问题*****************************/
         $orders = D('order')->where(array('order_id' => array('IN', $order_ids)))->select();
         foreach ($orders as $k => $val) {
             $need_pay[$val[order_id]] = $val['total_price'] - $val['mobile_fan'] - $val['use_integral'];
@@ -691,7 +691,7 @@ class MallAction extends CommonAction{
             if (empty($payment)) {
                 $this->fengmiMsg('该支付方式不存在');
             }
-			//蜂蜜二开合并付款开始
+			//浡莱克二开合并付款开始
 			foreach($order_ids as $v){
 				$need_pay = D('Order')->useIntegral($this->uid, array($v));//这个不知道能不能返回
             	D('Order')->where("order_id={$v}")->save(array('need_pay' => $need_pay));//合并付款的时候更新实际付款金额    
@@ -699,7 +699,7 @@ class MallAction extends CommonAction{
 			}
 			$detail['need_pay']= $log_need;
             $detail['code'] = $code;
-			//蜂蜜二开合并付款结束
+			//浡莱克二开合并付款结束
             $detail['code'] = $code;
             D('Paymentlogs')->save($detail);
             $this->fengmiMsg('订单设置完成，即将进入付款。', U('mall/combine', array('log_id' => $detail['log_id'])));
@@ -793,7 +793,7 @@ class MallAction extends CommonAction{
                 D('Paymentlogs')->save($logs);
             }
 			
-            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，蜂蜜独创
+            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，浡莱克独创
             D('Weixintmpl')->weixin_notice_goods_user($order_id,$this->uid,1);//商城微信通知
             $this->fengmiMsg('订单设置完成，即将进入付款。', U('payment/payment', array('log_id' => $logs['log_id'])));
         }

@@ -8,7 +8,7 @@ class NearworkAction extends CommonAction {
 
     public function index() {
         $Work = D('Work');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map =array('shop_id'=>$this->shop_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
          $map['title'] = array('LIKE', '%' . $keyword . '%');

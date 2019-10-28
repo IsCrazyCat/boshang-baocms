@@ -7,7 +7,7 @@ class ShopdianpingAction extends CommonAction
     {
         $Shopdianping = D('Shopdianping');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('closed' => 0);
         if ($shop_id = (int) $this->_param('shop_id')) {
             $map['shop_id'] = $shop_id;

@@ -5,7 +5,7 @@ class TuanorderAction extends CommonAction
     {
         $Tuancode = D('Tuancode');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array('user_id' => $this->uid);
         //这里只显示 实物
         $status = (int) $this->_param('status');

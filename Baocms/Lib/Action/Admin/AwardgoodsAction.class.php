@@ -7,7 +7,7 @@ class AwardgoodsAction extends CommonAction
     {
         $Awardgoods = D('Awardgoods');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         $award_id = (int) $this->_get('award_id');
         if ($award_id) {

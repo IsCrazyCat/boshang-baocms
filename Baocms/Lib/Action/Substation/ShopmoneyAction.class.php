@@ -15,7 +15,7 @@ class ShopmoneyAction extends CommonAction
         //取得当前商家ID，给下面的maps查询
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = array();
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -68,7 +68,7 @@ class ShopmoneyAction extends CommonAction
     {
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         if ($month = $this->_param('month', 'htmlspecialchars')) {
             $this->assign('month', $month);
         }
@@ -100,7 +100,7 @@ class ShopmoneyAction extends CommonAction
     {
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         if ($year = $this->_param('year', 'htmlspecialchars')) {
             $this->assign('year', $year);
         }
@@ -132,7 +132,7 @@ class ShopmoneyAction extends CommonAction
     {
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         if ($day = $this->_param('day', 'htmlspecialchars')) {
             $this->assign('day', $day);
         }

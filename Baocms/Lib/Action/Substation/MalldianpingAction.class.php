@@ -6,7 +6,7 @@ class MalldianpingAction extends CommonAction {
 
     public function index() {
         $Goodsdianping = D('Goodsdianping');
-        import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0);
         if ($shop_id = (int) $this->_param('shop_id')) {
             $map['shop_id'] = $shop_id;

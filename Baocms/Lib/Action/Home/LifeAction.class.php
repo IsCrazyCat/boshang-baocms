@@ -183,7 +183,7 @@ class LifeAction extends CommonAction{
     {
         $Life = D('Life');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
         $map = $linkArr = array('city_id' => $this->city_id, 'audit' => 1, 'closed' => 0);
         $keyword = $this->_param('keyword');
         if ($keyword) {

@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 50553
  Source Host           : localhost:3306
- Source Schema         : baocms_com
+ Source Schema         : blklube_zmkm0523_com
 
  Target Server Type    : MySQL
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 24/10/2019 17:44:19
+ Date: 28/10/2019 15:05:48
 */
 
 SET NAMES utf8mb4;
@@ -97,12 +97,12 @@ CREATE TABLE `bao_ad`  (
   `closed` tinyint(1) NULL DEFAULT 0,
   `orderby` tinyint(3) NULL DEFAULT 100,
   PRIMARY KEY (`ad_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 200 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 201 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_ad
 -- ----------------------------
-INSERT INTO `bao_ad` VALUES (1, 1, 1, 'BAOCMS发布啦', 'http://blklube.com', '2014/09/19/541c2c0a0a93b.jpg', '', 0, 0, '2014-09-18', '2020-01-01', 1, 1);
+INSERT INTO `bao_ad` VALUES (1, 1, 1, 'blklube发布啦', 'http://blklube.com', '2014/09/19/541c2c0a0a93b.jpg', '', 0, 0, '2014-09-18', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (2, 1, 1, '首页横幅广告', '#', '2014/09/19/541c44c9c5aec.gif', '', 0, 0, '2014-09-18', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (3, 3, 1, '演示婚庆1', '/shop/detail/shop_id/2.html', '2014/10/10/54374be48e09d.jpg', '', 0, 0, '2014-09-14', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (4, 3, 1, '演示婚庆2', '/shop/detail/shop_id/3.html', '2014/10/10/54374c8d7e8b1.jpg', '', 0, 0, '2014-10-09', '2020-01-01', 1, 2);
@@ -124,7 +124,7 @@ INSERT INTO `bao_ad` VALUES (19, 4, 1, '新版家政', '/shop/detail/shop_id/2.h
 INSERT INTO `bao_ad` VALUES (20, 5, 1, '积分商城BANNER', '/shop/detail/shop_id/85.html', '2015/09/13/55f57d12e8a2d.jpg', '积分商城BANNER', 0, 0, '2014-11-20', '2020-01-01', 1, 2);
 INSERT INTO `bao_ad` VALUES (21, 7, 1, 'PC首页广告', '/shop/detail/shop_id/30.html', '2015/04/24/5539af4a076f8.jpg', 'PC首页广告', 0, 0, '2014-11-20', '2020-01-01', 1, 2);
 INSERT INTO `bao_ad` VALUES (22, 8, 1, '轮播广告', '/shop/detail/shop_id/55.html', '2015/04/23/5538bb2e90d19.jpg', '', 0, 0, '2014-11-21', '2020-01-01', 0, 1);
-INSERT INTO `bao_ad` VALUES (23, 1, 1, '家政', 'http://baocms.fengmiyuanma.com/', '2015/11/22/5651c943dddf1.jpg', '', 0, 0, '2014-11-24', '2020-01-01', 1, 1);
+INSERT INTO `bao_ad` VALUES (23, 1, 1, '家政', 'http://blklube.fengmiyuanma.com/', '2015/11/22/5651c943dddf1.jpg', '', 0, 0, '2014-11-24', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (24, 7, 1, '首页广告3', 'http://blklube.com', '2014/11/27/547684ed9e88e.jpg', '', 0, 0, '2014-11-26', '2020-01-01', 1, 3);
 INSERT INTO `bao_ad` VALUES (25, 11, 1, '最新上线', 'http://www.baidu.com', '2014/12/29/54a121043953a.jpg', '', 0, 0, '2014-12-29', '2020-01-01', 0, 23);
 INSERT INTO `bao_ad` VALUES (26, 9, 1, '品牌热区', 'http://www.jd.com', '2014/12/29/54a1216663781.png', '', 0, 0, '2014-12-15', '2020-01-01', 0, 34);
@@ -137,7 +137,7 @@ INSERT INTO `bao_ad` VALUES (32, 13, 1, '品牌热区', 'http://www.sina.com', '
 INSERT INTO `bao_ad` VALUES (33, 12, 1, '蜀王烤鱼火锅', 'http://www.qzone.qq.com', '2014/12/30/54a2448f3a145.png', '', 0, 0, '2014-12-28', '2020-01-01', 0, 100);
 INSERT INTO `bao_ad` VALUES (34, 14, 1, '商家新闻列表BANNER', '/shop/detail/shop_id/21.html', '2015/04/24/5539ade1809f4.jpg', '', 0, 0, '2015-01-05', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (35, 15, 0, '文章资讯列表页', '/shop/detail/shop_id/49.html', 'http://images4.5maiche.cn/2016-05-16_5739e545abfbd.png', '文章资讯列表页', 0, 0, '2015-01-06', '2020-01-01', 0, 1);
-INSERT INTO `bao_ad` VALUES (36, 1, 1, '商家加盟', 'http://baocms.fengmiyuanma.com/', '2015/11/22/5651c6b3aa5ff.png', '', 0, 0, '2015-01-06', '2020-01-01', 1, 2);
+INSERT INTO `bao_ad` VALUES (36, 1, 1, '商家加盟', 'http://blklube.fengmiyuanma.com/', '2015/11/22/5651c6b3aa5ff.png', '', 0, 0, '2015-01-06', '2020-01-01', 1, 2);
 INSERT INTO `bao_ad` VALUES (37, 5, 1, 'PC首页餐饮频道轮播广告', '/shop/detail/shop_id/85.html', 'http://images4.5maiche.cn/2016-05-16_5739beca5466a.png', '', 5, 0, '2015-01-06', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (38, 17, 1, '下班去哪玩', '/tuan/detail/tuan_id/13.html', '2015/01/07/54ac9f5c1b483.jpg', '', 0, 0, '2015-01-05', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (39, 16, 1, '0元抽奖等你来', '/tuan/detail/tuan_id/12.html', '2015/04/23/5538c9268922f.jpg', '', 0, 0, '2015-01-06', '2020-01-01', 0, 12);
@@ -176,15 +176,15 @@ INSERT INTO `bao_ad` VALUES (71, 33, 1, '广告位', '/mall/detail/goods_id/1.ht
 INSERT INTO `bao_ad` VALUES (72, 35, 1, '广告位', '/mall/detail/goods_id/1.html', '2015/04/25/553b2178c7231.jpg', '', 0, 0, '2015-01-07', '2020-01-01', 1, 34);
 INSERT INTO `bao_ad` VALUES (73, 33, 1, '订房', '/mall/detail/goods_id/1.html', 'http://images4.5maiche.cn/2016-10-12_57fe371f10ac3.png', '', 0, 0, '2015-01-07', '2020-01-01', 0, 34);
 INSERT INTO `bao_ad` VALUES (74, 7, 1, '4.0震撼发布', '/shop/detail/shop_id/30.html', '2015/04/24/5539af39aa4b1.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 1);
-INSERT INTO `bao_ad` VALUES (75, 7, 1, 'Baocms4.0震撼来袭', '/shop/detail/shop_id/30.html', '2015/04/24/5539af1cdbb22.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 2);
+INSERT INTO `bao_ad` VALUES (75, 7, 1, 'blklube4.0震撼来袭', '/shop/detail/shop_id/30.html', '2015/04/24/5539af1cdbb22.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 2);
 INSERT INTO `bao_ad` VALUES (76, 1, 0, '全新商户中心', 'http://cq.mantuo.net/merchant', 'http://images4.5maiche.cn/2016-05-16_57394ab778ac6.jpg', '', 46, 1, '2015-01-26', '2020-01-01', 0, 3);
-INSERT INTO `bao_ad` VALUES (77, 7, 1, 'Baocms震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d159431e855.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 3);
-INSERT INTO `bao_ad` VALUES (78, 7, 1, 'Baocms震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d159383a339.png', '', 0, 0, '2015-01-26', '2020-01-01', 0, 2);
-INSERT INTO `bao_ad` VALUES (79, 7, 1, 'Baocms震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d1592bda769.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 1);
-INSERT INTO `bao_ad` VALUES (80, 24, 1, 'Baocms震撼来袭', 'http://blklube.com/jifen/main.html', '2015/04/24/5539d955ec5b6.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 1);
-INSERT INTO `bao_ad` VALUES (81, 24, 1, 'Baocms震撼来袭', 'http://blklube.com/jifen/main.html', '2015/04/24/5539da88cb0b5.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 2);
-INSERT INTO `bao_ad` VALUES (82, 35, 1, 'Baocms震撼来袭', 'http://baocms.fengmiyuanma.com/', '2016/01/18/569c623473cb5.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 3);
-INSERT INTO `bao_ad` VALUES (83, 24, 1, 'Baocms', 'http://baocms.fengmiyuanma.com/', '2016/04/01/56fe3173b2c21.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 4);
+INSERT INTO `bao_ad` VALUES (77, 7, 1, 'blklube震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d159431e855.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 3);
+INSERT INTO `bao_ad` VALUES (78, 7, 1, 'blklube震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d159383a339.png', '', 0, 0, '2015-01-26', '2020-01-01', 0, 2);
+INSERT INTO `bao_ad` VALUES (79, 7, 1, 'blklube震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d1592bda769.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 1);
+INSERT INTO `bao_ad` VALUES (80, 24, 1, 'blklube震撼来袭', 'http://blklube.com/jifen/main.html', '2015/04/24/5539d955ec5b6.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 1);
+INSERT INTO `bao_ad` VALUES (81, 24, 1, 'blklube震撼来袭', 'http://blklube.com/jifen/main.html', '2015/04/24/5539da88cb0b5.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 2);
+INSERT INTO `bao_ad` VALUES (82, 35, 1, 'blklube震撼来袭', 'http://blklube.fengmiyuanma.com/', '2016/01/18/569c623473cb5.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 3);
+INSERT INTO `bao_ad` VALUES (83, 24, 1, 'blklube', 'http://blklube.fengmiyuanma.com/', '2016/04/01/56fe3173b2c21.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 4);
 INSERT INTO `bao_ad` VALUES (84, 55, 1, '汽车2', '/shop/detail/shop_id/33.html', '2015/01/29/54c9fb4c679ad.png', '', 0, 0, '2015-01-12', '2020-01-01', 0, 2);
 INSERT INTO `bao_ad` VALUES (85, 55, 1, '汽车3', '/shop/detail/shop_id/35.html', '2015/01/29/54c9fba36691a.png', '', 0, 0, '2015-01-12', '2020-01-01', 0, 3);
 INSERT INTO `bao_ad` VALUES (86, 36, 1, '汽车4', '/shop/detail/shop_id/36.html', '2015/01/29/54ca01f60a6aa.png', '', 0, 0, '2015-01-20', '2020-01-01', 0, 86);
@@ -265,7 +265,7 @@ INSERT INTO `bao_ad` VALUES (160, 48, 1, '生活信息', 'http://blklube.com/mal
 INSERT INTO `bao_ad` VALUES (161, 42, 1, '浪奇高端除菌洗衣液4斤促销装', '/mall/detail/goods_id/75.html', '2015/04/27/553dad170a01c.jpg', '', 0, 0, '2015-04-27', '2018-04-27', 0, 2);
 INSERT INTO `bao_ad` VALUES (162, 42, 1, '慕尼思丹茶几客厅家具', '/mall/detail/goods_id/84.html', '2015/04/27/553daf3c83fc1.jpg', '', 0, 0, '2015-04-27', '2018-04-27', 0, 3);
 INSERT INTO `bao_ad` VALUES (163, 23, 1, '万里挑一，为你而选', '/coupon/detail/coupon_id/18.html', '2015/10/17/562231e983db0.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 24);
-INSERT INTO `bao_ad` VALUES (164, 23, 1, 'BAOCMS家居频道诚意奉献', '/coupon/detail/coupon_id/5.html', '2015/10/17/562231dea6d60.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 25);
+INSERT INTO `bao_ad` VALUES (164, 23, 1, 'blklube家居频道诚意奉献', '/coupon/detail/coupon_id/5.html', '2015/10/17/562231dea6d60.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 25);
 INSERT INTO `bao_ad` VALUES (165, 17, 1, '超级囤货日，童装玩具全场满减', '/huodong/detail/activity_id/20.html', '2015/04/28/553f3025011ad.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 2);
 INSERT INTO `bao_ad` VALUES (166, 17, 1, '清仓四连发，底价1-4折', '/huodong/detail/activity_id/26.html', '2015/04/28/553f31adb993f.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 35);
 INSERT INTO `bao_ad` VALUES (167, 21, 1, '五月亲子节，深情钜惠', '/mall/detail/goods_id/16.html', '2015/04/28/553f34dc85803.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 1, 2);
@@ -274,25 +274,25 @@ INSERT INTO `bao_ad` VALUES (169, 21, 1, '大换购', 'http://blklube.com/mall/d
 INSERT INTO `bao_ad` VALUES (170, 52, 1, '大换购', '#', '2015/06/24/558a649ac8152.jpg', '', 0, 0, '2015-06-24', '2019-06-19', 0, 1);
 INSERT INTO `bao_ad` VALUES (171, 52, 1, 'php微信O2O生活宝门户系统', '#', '2015/06/24/558a648d1ba8f.jpg', '', 0, 0, '2015-06-16', '2015-06-27', 0, 2);
 INSERT INTO `bao_ad` VALUES (172, 2, 1, 'hao', 'http://www.baidu.com', '2015/07/07/559ba90dae9d9.png', 'hao', 0, 0, '2015-07-15', '2015-07-24', 1, 1);
-INSERT INTO `bao_ad` VALUES (173, 14, 0, '外卖', 'http://baocms.fengmiyuanma.com/', '2016/04/01/56fe31ccf1423.jpg', '', 6, 0, '2015-09-01', '2019-10-04', 0, 1);
-INSERT INTO `bao_ad` VALUES (174, 57, 1, '手机首页', 'http://baocms.5maiche.cn/', '2015/10/08/5615ffd428769.jpg', '', 0, 0, '2015-10-08', '2019-11-07', 1, 1);
-INSERT INTO `bao_ad` VALUES (175, 57, 1, '手机首页', 'http://baocms.fengmiyuanma.com/', '2015/12/21/5677840ae7c21.jpg', '', 0, 0, '2015-10-08', '2018-10-19', 1, 2);
+INSERT INTO `bao_ad` VALUES (173, 14, 0, '外卖', 'http://blklube.fengmiyuanma.com/', '2016/04/01/56fe31ccf1423.jpg', '', 6, 0, '2015-09-01', '2019-10-04', 0, 1);
+INSERT INTO `bao_ad` VALUES (174, 57, 1, '手机首页', 'http://blklube.5maiche.cn/', '2015/10/08/5615ffd428769.jpg', '', 0, 0, '2015-10-08', '2019-11-07', 1, 1);
+INSERT INTO `bao_ad` VALUES (175, 57, 1, '手机首页', 'http://blklube.fengmiyuanma.com/', '2015/12/21/5677840ae7c21.jpg', '', 0, 0, '2015-10-08', '2018-10-19', 1, 2);
 INSERT INTO `bao_ad` VALUES (176, 22, 0, '餐饮广告2', '/shop/detail/shop_id/2.html', '2015/10/17/56222f8b6edde.jpg', '', 0, 0, '2015-10-17', '2018-10-30', 0, 6);
 INSERT INTO `bao_ad` VALUES (177, 21, 0, '餐饮广告2', '/shop/detail/shop_id/2.html', '2015/10/17/5622302b43bdd.jpg', '', 0, 0, '2015-10-17', '2019-10-17', 0, 3);
-INSERT INTO `bao_ad` VALUES (178, 57, 0, '手机首页', '', '/attachs/2019/10/24/5db150506f7eb.jpg', '', 40, 0, '2015-12-20', '2020-01-10', 0, 0);
+INSERT INTO `bao_ad` VALUES (178, 57, 0, 'wap首页广告2', '', '/attachs/2019/10/28/5db68ae039bf8.jpg', '', 38, 0, '2015-12-20', '2023-12-25', 0, 2);
 INSERT INTO `bao_ad` VALUES (179, 59, 0, '登录页面', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-05-25_5745735431d48.jpg', '', 6, 0, '2015-12-30', '2019-12-26', 0, 0);
 INSERT INTO `bao_ad` VALUES (180, 6, 0, '品牌热区', '/shop/detail/shop_id/85.html', '2016/02/27/56d158dd4cfcd.jpg', '', 0, 0, '2016-02-27', '2020-02-27', 0, 1);
 INSERT INTO `bao_ad` VALUES (181, 6, 0, '品牌热区', '/shop/detail/shop_id/85.html', '2016/02/27/56d158f021a10.png', '', 0, 0, '2016-02-27', '2020-02-27', 0, 2);
 INSERT INTO `bao_ad` VALUES (182, 6, 0, '品牌热区', '/shop/detail/shop_id/85.html', '2016/02/27/56d159061128b.jpg', '', 0, 0, '2016-02-27', '2020-02-27', 0, 3);
 INSERT INTO `bao_ad` VALUES (183, 60, 0, 'PC一元云购', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-06-18_5764b038032ea.png', '', 6, 0, '2016-03-01', '2020-03-01', 0, 1);
-INSERT INTO `bao_ad` VALUES (184, 1, 0, '浡莱克润滑油', 'http://www.mantuo.net/worker', 'http://images4.5maiche.cn/2016-05-16_57394a9f2138e.jpg', '', 62, 0, '2016-03-22', '2020-03-25', 0, 2);
-INSERT INTO `bao_ad` VALUES (185, 1, 0, '浡莱克润滑油', 'http://www.mantuo.net/wuye', 'http://images4.5maiche.cn/2016-05-16_57394a8975553.jpg', '', 76, 0, '2016-03-23', '2020-03-19', 0, 1);
-INSERT INTO `bao_ad` VALUES (186, 61, 0, '手机黄页657*106', 'http://baocms.fengmiyuanma.com/', '2016/03/31/56fcc790d368c.png', '', 0, 0, '2016-03-31', '2020-03-26', 0, 1);
-INSERT INTO `bao_ad` VALUES (187, 62, 0, 'wap首页左320*420（文字广告）', 'http://blklube.com/', '2016/04/14/570f499010490.png', '', 64, 0, '2016-04-14', '2020-04-22', 0, 1);
-INSERT INTO `bao_ad` VALUES (188, 63, 0, 'wap首页右上510*240 ', 'http://blklube.com/', '2016/04/14/570f49b2cca78.png', '', 64, 0, '2016-04-14', '2020-04-23', 0, 2);
-INSERT INTO `bao_ad` VALUES (189, 64, 0, 'wap首页右下_左260*251', 'http://blklube.com/', '2016/04/14/570f49e3699f9.png', '', 37, 0, '2016-04-14', '2019-04-25', 0, 3);
-INSERT INTO `bao_ad` VALUES (190, 65, 0, 'wap首页右下_右260*250', 'http://blklube.com/', '2016/04/14/570f4a0489c1a.png', '', 28, 0, '2016-04-14', '2020-04-30', 0, 4);
-INSERT INTO `bao_ad` VALUES (191, 57, 0, '草鱼火锅', '', '/attachs/2019/10/24/5db15123a53bf.png', '', 30, 0, '2016-04-25', '2023-05-01', 0, 0);
+INSERT INTO `bao_ad` VALUES (184, 1, 0, '浡莱克', 'http://www.mantuo.net/worker', 'http://images4.5maiche.cn/2016-05-16_57394a9f2138e.jpg', '', 62, 0, '2016-03-22', '2020-03-25', 0, 2);
+INSERT INTO `bao_ad` VALUES (185, 1, 0, '浡莱克', 'http://www.mantuo.net/wuye', 'http://images4.5maiche.cn/2016-05-16_57394a8975553.jpg', '', 76, 0, '2016-03-23', '2020-03-19', 0, 1);
+INSERT INTO `bao_ad` VALUES (186, 61, 0, '手机黄页657*106', 'http://blklube.fengmiyuanma.com/', '2016/03/31/56fcc790d368c.png', '', 0, 0, '2016-03-31', '2020-03-26', 0, 1);
+INSERT INTO `bao_ad` VALUES (187, 62, 0, 'wap首页左320*420（文字广告）', 'http://blklube.com/', '/attachs/2019/10/28/5db68ff043c74.jpg', '', 63, 0, '2016-04-14', '2020-04-22', 0, 1);
+INSERT INTO `bao_ad` VALUES (188, 63, 0, 'wap首页右上510*240 ', 'http://blklube.com/', '/attachs/2019/10/28/5db6904a269c8.jpg', '', 65, 0, '2016-04-14', '2020-04-23', 0, 2);
+INSERT INTO `bao_ad` VALUES (189, 64, 0, 'wap首页右下_左260*251', 'http://blklube.com/', '/attachs/2019/10/28/5db69063f18a5.png', '', 37, 0, '2016-04-14', '2019-04-25', 0, 3);
+INSERT INTO `bao_ad` VALUES (190, 65, 0, 'wap首页右下_右260*250', 'http://blklube.com/', '/attachs/2019/10/28/5db6907873ddd.jpg', '', 28, 0, '2016-04-14', '2020-04-30', 0, 4);
+INSERT INTO `bao_ad` VALUES (191, 57, 0, 'wap首页广告位1', '', '/attachs/2019/10/28/5db68ab422d36.jpg', '', 30, 0, '2016-04-25', '2023-05-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (192, 66, 0, 'pc新闻1200*200', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-05-14_57370540b0221.png', '', 7, 0, '2016-05-14', '2020-05-30', 0, 1);
 INSERT INTO `bao_ad` VALUES (193, 66, 0, 'pc新闻1200*200', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-05-14_573705584f952.png', '', 4, 0, '2016-05-14', '2020-05-21', 0, 2);
 INSERT INTO `bao_ad` VALUES (194, 67, 0, 'pc顶部横幅', 'http://blklube.com', 'http://images4.5maiche.cn/2016-05-27_57483e2c79714.jpg', '', 0, 0, '2016-05-27', '2016-05-31', 0, 1);
@@ -301,6 +301,7 @@ INSERT INTO `bao_ad` VALUES (196, 69, 0, 'PC贴吧1200*400', 'http://www.mantuo.
 INSERT INTO `bao_ad` VALUES (197, 70, 0, '暖团', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-08-17_57b4628a98043.jpg', '', 1, 0, '2016-08-17', '2019-08-29', 0, 0);
 INSERT INTO `bao_ad` VALUES (198, 70, 0, '测试2', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-08-17_57b462a0d6eb7.png', '', 1, 0, '2016-08-17', '2020-08-28', 0, 2);
 INSERT INTO `bao_ad` VALUES (199, 57, 0, '汽车', '', 'http://images4.5maiche.cn/2016-09-09_57d25a600e8ff.jpg', '', 0, 0, '2016-09-09', '2016-09-10', 1, 0);
+INSERT INTO `bao_ad` VALUES (200, 57, 0, 'wap首页广告3', '', '/attachs/2019/10/28/5db68afe8d014.png', '', 0, 0, '2019-10-11', '2033-10-12', 0, 3);
 
 -- ----------------------------
 -- Table structure for bao_ad_site
@@ -400,15 +401,15 @@ CREATE TABLE `bao_admin`  (
 -- ----------------------------
 -- Records of bao_admin
 -- ----------------------------
-INSERT INTO `bao_admin` VALUES (1, 'admin', '7fef6171469e80d32c0559f88b377245', 1, 0, '15000000000', 0, 0, 0, 1441880203, '127.0.0.1', 1571900538, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (5, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 1, 1, '13355895566', 0, 0, 0, 1450145726, '27.13.153.38', 1571900538, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (6, 'ceshi', '96e79218965eb72c92a549dd5a330112', 2, 1, '13356782345', 0, 0, 0, 1456631504, '27.13.31.218', 1571900538, '127.0.0.1', 0, 1, 0);
-INSERT INTO `bao_admin` VALUES (7, '测试1', '49d92f4ddd6164663ed8fe915d915dc9', 2, 0, '13355666666', 0, 0, 0, 1456740370, '27.13.154.172', 1571900538, '127.0.0.1', 0, 0, 1);
-INSERT INTO `bao_admin` VALUES (8, 'ceshi1', '9464c3798239e316379036767f0ff7d1', 2, 7, '13366776677', 0, 0, 0, 1456740406, '27.13.154.172', 1571900538, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (9, '何总', 'e10adc3949ba59abbe56e057f20f883e', 2, 0, '13345678765', 0, 0, 0, 1460956329, '27.13.28.237', 1571900538, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (10, 'admincs', 'e10adc3949ba59abbe56e057f20f883e', 4, 0, '18247383933', 0, 0, 0, 1470822654, '110.17.189.74', 1571900538, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (11, 'beijing', 'cfe43c0212ab7a31c3050a3d97862463', 2, 12, '18600546481', 0, 0, 0, 1473210453, '114.242.8.210', 1571900538, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (12, '18859992378', '6f855dd04ea5552fbabadbe179b1cd39', 2, 0, '18859992378', 0, 0, 0, 1475331476, '117.24.24.132', 1571900538, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (1, 'admin', '7fef6171469e80d32c0559f88b377245', 1, 0, '15000000000', 0, 0, 0, 1441880203, '127.0.0.1', 1572242450, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (5, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 1, 1, '13355895566', 0, 0, 0, 1450145726, '27.13.153.38', 1572242450, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (6, 'ceshi', '96e79218965eb72c92a549dd5a330112', 2, 1, '13356782345', 0, 0, 0, 1456631504, '27.13.31.218', 1572242450, '127.0.0.1', 0, 1, 0);
+INSERT INTO `bao_admin` VALUES (7, '测试1', '49d92f4ddd6164663ed8fe915d915dc9', 2, 0, '13355666666', 0, 0, 0, 1456740370, '27.13.154.172', 1572242450, '127.0.0.1', 0, 0, 1);
+INSERT INTO `bao_admin` VALUES (8, 'ceshi1', '9464c3798239e316379036767f0ff7d1', 2, 7, '13366776677', 0, 0, 0, 1456740406, '27.13.154.172', 1572242450, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (9, '何总', 'e10adc3949ba59abbe56e057f20f883e', 2, 0, '13345678765', 0, 0, 0, 1460956329, '27.13.28.237', 1572242450, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (10, 'admincs', 'e10adc3949ba59abbe56e057f20f883e', 4, 0, '18247383933', 0, 0, 0, 1470822654, '110.17.189.74', 1572242450, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (11, 'beijing', 'cfe43c0212ab7a31c3050a3d97862463', 2, 12, '18600546481', 0, 0, 0, 1473210453, '114.242.8.210', 1572242450, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (12, '18859992378', '6f855dd04ea5552fbabadbe179b1cd39', 2, 0, '18859992378', 0, 0, 0, 1475331476, '117.24.24.132', 1572242450, '127.0.0.1', 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for bao_appoint
@@ -625,7 +626,7 @@ CREATE TABLE `bao_area`  (
   `area_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `orderby` tinyint(3) NULL DEFAULT 100,
   PRIMARY KEY (`area_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_area
@@ -645,6 +646,7 @@ INSERT INTO `bao_area` VALUES (30, 11, '乌达区', 2);
 INSERT INTO `bao_area` VALUES (31, 11, '海南区', 3);
 INSERT INTO `bao_area` VALUES (32, 12, '房山区', 0);
 INSERT INTO `bao_area` VALUES (33, 13, '梁山', 0);
+INSERT INTO `bao_area` VALUES (34, 15, '聊城市', 1);
 
 -- ----------------------------
 -- Table structure for bao_around
@@ -697,7 +699,7 @@ CREATE TABLE `bao_article`  (
 -- ----------------------------
 -- Records of bao_article
 -- ----------------------------
-INSERT INTO `bao_article` VALUES (1, 0, '重庆高速将进入“ETC通行”为主阶段', 6, 1, 2, 1, '重庆晨报', '10月23日，记者从重庆高速集团获悉，目前重庆686套ETC门架吊装和计划改造的936条ETC车道已全面开工，下个月ETC系统将与全国联网展开联调联试，届时重庆各高速公路出入口收费站将形成以ETC通行为主流，基本上只留一条人工车道的格局。', '重庆,收费站,etc,高速公路', 1, '', '', '', '/attachs/default.jpg', '<p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">我市各高速出入口收费站，将基本只留一条人工车道</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">我市ETC门架建设ETC车道改造，目前已全面开工</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">距离今年底前取消高速公路省界收费站不足百天，目前重庆方面进展如何？</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">10月23日，记者从重庆高速集团获悉，目前重庆686套ETC门架吊装和计划改造的936条ETC车道已全面开工，下个月ETC系统将与全国联网展开联调联试，届时重庆各高速公路出入口收费站将形成以ETC通行为主流，基本上只留一条人工车道的格局。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">为什么要安装ETC？</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">真正实现“秒过”收费站</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">按照《国务院办公厅关于印发深化收费公路制度改革取消省界收费站实施方案的通知》，今年底前，全国高速公路收费站力争基本取消，实现自由流收费。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">早在去年底，川渝两地就已率先取消了10个高速公路省界收费站，重庆其余10个省界收费站也计划在年底同步取消。这10个收费站分别是：江（津）习（水）、秀（山）松（桃）、渝黔、南（川）道（真）、酉（阳）沿（河）、万（州）利（川）、沪渝、沪蓉渝宜段、渝湘、黔（江）恩（施）。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">“省界收费站取消后，车辆的身份识别、路径记录和不停车收费将主要依靠ETC车载装置来实现。”</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">据悉，重庆共需建设ETC门架686套，改造ETC车道936条，目前均已全面开工。按照国家交通运输部的统一部署，11月重庆将进入全国性的联调，对ETC系统进行调试。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">全国省界站取消后，重庆各高速公路出入口收费站将形成以ETC通行为主流，基本上只留一条人工车道的格局。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">保留的人工车道将主要用于查验特殊车辆，如果没有安装ETC，以后上高速的入口需要排队领卡，下高速的匝道出口需要排队缴费，非常耗时。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">“与传统收费系统相比，车辆通过ETC车道的平均时间为3秒左右，而人工车道通行耗时约20秒，通行时间要比ETC慢6倍多。”该负责人说。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">此外，从2020年开始，除国务院另有规定外，各类通行费减免等优惠政策均依托ETC（国务院另行规定的除外，目前仅有重大节假日7座及以下小型客车免费通行）系统实现。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">安装ETC有优惠吗？</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">车辆通行费实行95折优惠</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">按照《重庆市高速公路ETC推广应用方案》要求，今年12月底前，重庆将努力实现全市汽车ETC安装率达80%以上、高速公路入口车辆使用电子不停车快捷收费系统比例达到90%以上的目标，高速公路基本实现自由流收费。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">据重庆高速集团路网公司相关负责人介绍，目前重庆私家车主约400万，截至今年10月20日，重庆ETC用户约280万，距80%的安装率目标任务（353万），还需新发展用户近73万。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">那么，市民办理ETC有哪些优惠呢？</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">该负责人表示，目前重庆高速对ETC用户的高速公路通行费实行95折优惠。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">举例来说，一辆五座小车从重庆主城至秀山，走渝湘高速，全程通行费230元，ETC车辆享通行费95折优惠，通行费为218.5元，通行一次将优惠12.5元。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">如何办理ETC？</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">“零门槛”足不出户自行安装</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">据了解，目前重庆实行ETC“零门槛”，车主可享受“先通行、后付费、无需预存”的零门槛免费办理政策，可绑定合作银行的信用卡或储蓄卡。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">目前合作银行有：建行、农行、邮储、工行、农商行、华夏银行、中国银行、重庆银行、招商银行、交通银行、中信银行。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">除了在传统的39个自营网点和303个合作银行网点免费办理的基础上，还推出了以下几种快捷办理方式：</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">一是通过“重庆高速ETC”微信公众号办理，车主填写正确的地址及电话等相关信息，申办成功后OBU设备“次日寄出，市内第三天到家”。客户只需将收到的OBU设备按照说明书描述，无需借助手机，一分钟完成安装激活，操作十分简便；</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">二是合作银行工作人员会在单位、小区、停车场等车主经常活动区域，开展上门免费办理服务，从现场受理、完成银行卡关联、设备安装到车上，全程仅需约6分钟，实现即办即装；</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">三是收费站办理，目前在60余个收费站广场设有银行临时ETC办理点，合作银行设立了醒目的办理提示（一般设在收费站出口方向右手边的广场边缘）；</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">四是收费站办理，目前已在G5013沙坪坝和G85九龙坡收费站试点，之后将逐步扩大到更多收费站。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">重庆晨报·上游新闻记者 黎静</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">新闻多一点</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\"><strong style=\"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;\">重庆有15万ETC用户 未对OBU系统进行升级</strong></p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">ETC系统进行联调联试后，ETC用户就必须对车上的OBU系统进行升级，因为这个OBU盒就是装有ETC卡的无线接收设备，车辆经过ETC门架时，不需要低速通行收费，而是可以在低于时速120公里的条件下完成收费，这就要求对原来已经装了ETC的用户进行OBU升级。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">如果不及时升级，这些车辆或将无法正常通行高速公路。记者了解到，全市280万ETC用户中，至少还有15万左右的ETC用户需要升级OBU盒。</p><p class=\"text\" style=\"margin-top: 0px; margin-bottom: 28px; padding: 0px; border: 0px; vertical-align: baseline; overflow-wrap: break-word; font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255); text-indent: 2em;\">需要升级的OBU盒是一种弧形外观，有重庆华虹电子字样的OBU。对于需要升级的OBU用户，重庆高速集团会发送提醒短信，广大车主也可以在重庆高速ETC微信公众号上进行自主查询。</p><p><br/></p>', 1, 0, 1571904415, '127.0.0.1', 12, 0, 0, 0, 0, 1);
+INSERT INTO `bao_article` VALUES (1, 0, '京东刘强东今日发新闻，讲2019年京东战略发展方向。 ', 5, 12, 32, 1, '搜狐网', '京东集团CEO刘强东发布新年贺信，称2018年对自己、对家人以及公司都是异常艰难的一年，但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。\r\n\r\n刘强东在信中称，这一年京东开启了从“科技零售”到“零售科技”的转型：京东商城正式升级为零售子集团，京东金融完成品牌升级，正式更名为京东数字科技并实现全年盈利，京东物流也推出了建设全球智能供应链基础网络的宏大计划，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。', '刘强东，京东', 1, '/attachs/2019/10/28/thumb_5db691acbe170.jpg', '', '', '/attachs/default.jpg', '<p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东集团CEO刘强东发布新年贺信，称2018年对自己、对家人以及公司都是异常艰难的一年，但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">刘强东在信中称，这一年京东开启了从“科技零售”到“零售科技”的转型：京东商城正式升级为零售子集团，京东金融完成品牌升级，正式更名为京东数字科技并实现全年盈利，京东物流也推出了建设全球智能供应链基础网络的宏大计划，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;\"><br/></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\"><span style=\"font-weight: 700;\">以下为新年信全文</span>刘强东称，在新的一年里，<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第一个关键词是组织</span>，在多项业务齐头并进的背景下，京东正在推动“小集团，大业务”的转型。<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第二个关键词是人才</span>，京东将全力践行“有能者上，有力者为”的人才任用机制。<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第三个关键词是价值</span>，为社会创造最大价值一直是京东存在的根</span><span style=\"border: 0px; margin: 0px; padding: 0px;\">本理由。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255); text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">亲爱的兄弟们：</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">春节马上就要到了，首先祝大家新春大吉、诸事顺意！今年春节，我们将连续第七年履行“春节也送货”的承诺，在此，我对千千万万战斗在服务一线的兄弟们以及你们的家人们表示最衷心的感谢！在寒冬中坚持送货的兄弟们一定要注意安全、保重身体，因为你们身上不仅担负着客户的嘱托，更有父母妻儿的牵挂。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">2018年对我本人、我的家人以及公司都是异常艰难的一年！但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。你们的奋斗精神让我坚信：只要兄弟们在一起，任何困难都可以过去！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">这一年，随着成为“零售基础设施服务商”的战略确立，集团全面开启了从“科技零售”到“零售科技”的转型，其中：</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东商城正式升级为零售子集团，确立了“以信赖为基础、以客户为中心的价值创造”的经营理念，围绕“有质量的增长”全面开展了变革，尤其是将我们核心的供应链能力进行了平台化、系统化和组件化的改造，这将继续推动我们在促进消费、助力供给侧结构性改革中持续为社会创造价值。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东金融完成了品牌升级，正式更名为京东数字科技并实现全年盈利。通过大数据、IoT、AI、区块链等前沿科技，京东数字科技在推动技术创新与实体经济深度融合方面产出了一系列的丰硕成果，积极助力了实体产业提升用户体验和升级商业模式。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东物流也推出了建设全球智能供应链基础网络的宏大计划，全面向社会开放和共享了我们遍布全球的六大物流网络，凭借“体验为本，效率制胜”，全面降低了社会化的物流成本，大幅提升了流通效率！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">除了这三大子集团，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。与此同时，我们在海外的布局已经初见成效，在印尼、在泰国，以及未来在更多“一带一路”的沿线国家，京东将持续不断地对外输出我们成熟的技术能力、供应链能力和物流能力。但更让我欣慰的是，我们各个板块已经培养并拥有了一大批具备成熟管理经验和国际化视野的领军人才和中坚力量，在刚刚结束的达沃斯世界经济论坛上，京东的管理团队集体亮相，向世界展现出了朝气蓬勃的风貌。我们还有很多可圈可点的成绩，还有无数可亲可敬的兄弟们，在此，我只想真诚地对大家说一声：大家辛苦了！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">即将到来的己亥新年，我们可能会面对更多的波折与挑战，但我坚信，只要我们保持初心和战略定力，牢记使命，就一定能够迎接春天的到来！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">在新的一年里，第一个关键词是组织。在多项业务齐头并进的背景下，我们正在推动“小集团，大业务”的转型。集团化是一次战略层面的重要组织升级，集团总部和业务单元的定位因此将变得更加明确。总部将从管理型总部升级为战略型总部，将运营职能下沉，更加关注战略布局及各业务板块的协同发展，更加强化职能服务的平台化建设和推动整个集团的数字化管理，为业务板块的发展提供助力；集团还将进一步授权，业务板块将升级为独立的作战军团，我们将会把更多的能力封装到业务板块中，使业务单元更加专注于自身的经营，让业务单元有意愿、有能力、有条件取得业务发展的胜利。去年我们在物流试点了Big Boss组织变革，今年将在全集团推广，“小集团、大业务”就是集团层面推进Big Boss变革的第一步有效实践。接下来我们将继续梳理支撑公司战略和经营目标的关键经营节点，并将这些关键经营节点Boss化，从而实现开源节流、盘活资源、充分发挥组织活力，集合众人之力共同提升经营业绩，实现有质量的增长。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">第二个关键词是人才。京东因人才而兴，人才因梦想而聚！过去，人才是京东最宝贵的资源，未来，我们将全力践行“有能者上，有力者为”的人才任用机制，致力于打造一群有担当懂经营的人才，对极具价值贡献和快速成长的优秀人才给予足够的回报与认可；同时，年轻人已然成为公司发展的生力军，公司近4成员工是90后，近9成的管理者是80后甚至90后，未来公司会继续给予年轻人机会，大胆破格任用价值观正、能力卓越的双高人才，并提供充分的土壤、空气和养分，培养足够多的年轻人成为未来的领导者，让每一位京东人都能在组织中不断地找到更有激情的舞台，焕发出新的活力，持续激发公司的生命力！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">第三个关键词是价值。为社会创造最大价值一直是我们存在的根本理由。回望过去，我们通过建立自营体系、自建物流，解决了正品行货、社会物流等难题，虽然历尽艰辛，但在强烈责任感的驱使下，我们都走了过来。未来，我们仍会遇到大量复杂的难题，解决之道根本没有任何范本可言。但我希望大家牢记，只要我们的出发点和最终的结果是以创造价值为导向，我们就一定会战胜任何困难，到达胜利的彼岸！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">最后，我深深地感到，公司越大、责任越大，我们要时刻反思警醒，将自满的情绪清零；要以最积极的姿态、最饱满的热情，用必胜的信念迎接春天的到来！再次祝福所有的兄弟们幸福安康，万事如意！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">你们的刘强东</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">2019年2月1日</span></p><p><br/></p>', 0, 0, 1572245957, '127.0.0.1', 22, 0, 0, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for bao_article_cate
@@ -1104,7 +1106,7 @@ CREATE TABLE `bao_business`  (
   `orderby` tinyint(3) NULL DEFAULT 100,
   `is_hot` tinyint(1) NULL DEFAULT 0,
   PRIMARY KEY (`business_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_business
@@ -1144,6 +1146,8 @@ INSERT INTO `bao_business` VALUES (37, '歌乐山镇 ', 28, 1, 1);
 INSERT INTO `bao_business` VALUES (38, '滨河区商圈', 29, 2, 0);
 INSERT INTO `bao_business` VALUES (39, '市区商圈', 29, 1, 0);
 INSERT INTO `bao_business` VALUES (40, '良乡', 32, 0, 1);
+INSERT INTO `bao_business` VALUES (41, '东昌府区', 34, 1, 0);
+INSERT INTO `bao_business` VALUES (42, '开发区', 34, 2, 0);
 
 -- ----------------------------
 -- Table structure for bao_city
@@ -1162,7 +1166,7 @@ CREATE TABLE `bao_city`  (
   `first_letter` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `theme` varchar(21) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'default',
   PRIMARY KEY (`city_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_city
@@ -1170,11 +1174,12 @@ CREATE TABLE `bao_city`  (
 INSERT INTO `bao_city` VALUES (7, '西安', 'http://images4.5maiche.cn/2016-08-11_57abf4f4b67d2.jpg', 'xian', 1, 0, '104.071189', '30.576419', 2, 'X', 'red');
 INSERT INTO `bao_city` VALUES (9, '白沟', 'http://images4.5maiche.cn/2016-09-26_57e8903ec5467.jpg', 'baigou', 1, 0, '116.030336', '39.126934', 1, 'B', 'red');
 INSERT INTO `bao_city` VALUES (1, '重庆市', '2016/04/12/thumb_570cb3394d904.jpg', 'cq', 1, 0, '108.111754', '29.355971', 9, 'C', 'news');
-INSERT INTO `bao_city` VALUES (10, '大连', '2016/04/12/thumb_570cb32f71337.jpg', 'dalian', 1,0, '121.615642', '38.917549', 0, 'D', '');
+INSERT INTO `bao_city` VALUES (10, '大连', '2016/04/12/thumb_570cb32f71337.jpg', 'dalian', 1, 0, '121.615642', '38.917549', 0, 'D', '');
 INSERT INTO `bao_city` VALUES (11, '乌海', 'http://images4.5maiche.cn/2016-08-13_57ae7baf06023.png', 'wuhai', 1, 0, '106.801868', '39.660217', 1, 'W', 'default');
 INSERT INTO `bao_city` VALUES (12, '北京市', 'http://images4.5maiche.cn/2016-09-06_57ced896cbd23.jpg', 'beijing', 1, 0, '116.413663', '39.911087', 0, 'B', 'red');
-INSERT INTO `bao_city` VALUES (13, '济宁', 'http://images4.5maiche.cn/2016-09-07_57cf8ef48ae15.jpg', 'jining', 1,0, '116.593861', '35.420372', 0, 'J', 'red');
+INSERT INTO `bao_city` VALUES (13, '济宁', 'http://images4.5maiche.cn/2016-09-07_57cf8ef48ae15.jpg', 'jining', 1, 0, '116.593861', '35.420372', 0, 'J', 'red');
 INSERT INTO `bao_city` VALUES (14, '泉州', 'http://images4.5maiche.cn/2016-10-13_57ffa8896374c.jpg', 'quanzhou', 1, 0, '118.682321', '24.88023', 1, 'Q', '');
+INSERT INTO `bao_city` VALUES (15, '山东省', '/attachs/2019/10/28/5db684a919a90.jpg', 'shandong', 1, 0, '117.126426', '36.65659', 1, 'S', 'default');
 
 -- ----------------------------
 -- Table structure for bao_cloud_goods
@@ -1761,7 +1766,7 @@ CREATE TABLE `bao_dayu_sms`  (
 -- ----------------------------
 -- Records of bao_dayu_sms
 -- ----------------------------
-INSERT INTO `bao_dayu_sms` VALUES (1, '浡莱克润滑油-1571902467', 'sms_yzm', '18864874770', 0, NULL, '尊敬的用户：您在浡莱克润滑油手机认证的验证码是692751千万别告诉别人！', 1571902467, '127.0.0.1');
+INSERT INTO `bao_dayu_sms` VALUES (1, '浡莱克-1572243205', 'sms_yzm', '18864874770', 0, NULL, '尊敬的用户：您在浡莱克手机认证的验证码是930425千万别告诉别人！', 1572243205, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for bao_dayu_tag
@@ -2364,7 +2369,7 @@ CREATE TABLE `bao_goods`  (
 -- ----------------------------
 -- Records of bao_goods
 -- ----------------------------
-INSERT INTO `bao_goods` VALUES (1, '金标CJ-4 15W-40 (4L)', '金标CJ-4 15W-40 (4L)-fbt', 1000, '4L', 0, 4, 5, NULL, 3, 16, 1, '1', NULL, 0, '/attachs/2019/10/24/thumb_5db1567c19af4.jpg', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQGf8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL0tFVFhfaHJsaXFqekRBN0VNMmo2AAIEs07XVwMEAAAAAA%3D%3D', 9900, 9900, 9900, 0, 0, 13, 15, '<p>金标CJ-4 15W-40 (4L)&nbsp;</p><p>润滑油&nbsp;润哦&nbsp;滑哦</p>', '<p>金标CJ-4 15W-40 (4L)&nbsp;</p><p>4L&nbsp;大容量&nbsp;超实惠。</p><p>必买</p>', '2023-05-01', 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1571903932, '127.0.0.1', 0, 0, 1, 10, 0, 0, 0, 8);
+INSERT INTO `bao_goods` VALUES (1, 'Apple 苹果 iPhone 11 移动联通电信4G手机 双卡双待 红色 全网通 (64GB)', 'Apple 苹果 iPhone 11', 1000, '入网型号 ART-AL00x 品牌 华为（HUAWEI） 产品名称 华为畅享10 上市年份 2019年 上市月份 10月', 0, 1, 5, NULL, 32, 40, 1, '12', NULL, 0, '/attachs/2019/10/28/thumb_5db68de94027d.jpg', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQGf8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL0tFVFhfaHJsaXFqekRBN0VNMmo2AAIEs07XVwMEAAAAAA%3D%3D', 541800, 500000, 490000, 0, 0, 13, 123, '<p>真品行货，童叟无欺，假一赔十<br/></p>', '<p>真品行货，童叟无欺，假一赔十</p>', '2033-10-12', 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1572245126, '127.0.0.1', 1, 0, 0, 0, 0, 0, 0, 4);
 
 -- ----------------------------
 -- Table structure for bao_goods_cate
@@ -2447,12 +2452,13 @@ CREATE TABLE `bao_goods_photos`  (
   `goods_id` int(11) NULL DEFAULT NULL,
   `photo` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`pic_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_goods_photos
 -- ----------------------------
-INSERT INTO `bao_goods_photos` VALUES (1, 1, '/attachs/2019/10/24/thumb_5db158db5e5f0.jpg');
+INSERT INTO `bao_goods_photos` VALUES (1, 1, '/attachs/2019/10/28/thumb_5db68dec15b50.jpg');
+INSERT INTO `bao_goods_photos` VALUES (2, 1, '/attachs/2019/10/28/thumb_5db68dee4e0f1.jpg');
 
 -- ----------------------------
 -- Table structure for bao_goods_shopcate
@@ -5487,8 +5493,8 @@ CREATE TABLE `bao_links`  (
 -- ----------------------------
 -- Records of bao_links
 -- ----------------------------
-INSERT INTO `bao_links` VALUES (1, 1, '快递查询', 'https://m.kuaidi100.com', '120585022@qq.com', '我们网站很不错', 0, 1, 1, 0, '');
-INSERT INTO `bao_links` VALUES (2, 1, '淘宝网', 'http://cq.blklube.com/', '120585022@qq.com', '你好，草拟吗', 0, 2, 1, 1475630687, '27.13.26.211');
+INSERT INTO `bao_links` VALUES (1, 1, '快递查询', 'https://m.kuaidi100.com', '505088726@qq.com', '我们网站很不错', 0, 1, 1, 0, '');
+INSERT INTO `bao_links` VALUES (2, 1, '淘宝网', 'http://cq.blklube.com/', '505088726@qq.com', '你好，草拟吗', 0, 2, 1, 1475630687, '27.13.26.211');
 
 -- ----------------------------
 -- Table structure for bao_lock
@@ -6315,13 +6321,13 @@ INSERT INTO `bao_navigation` VALUES (51, '家政', '', 'appoint', 0, 11, '/appoi
 INSERT INTO `bao_navigation` VALUES (52, '商家', '', 'shop', 0, 8, '/shop/index.html', '', 4, '', 0, 0, 0, 318);
 INSERT INTO `bao_navigation` VALUES (53, '抢购', 'icon-check-circle', 'tuan', 0, 9, 'tuan/index.html', 'http://images4.5maiche.cn/2016-07-28_57997ff02fa18.png', 2, 'bg-yellow', 0, 0, 0, 168);
 INSERT INTO `bao_navigation` VALUES (54, '外卖', 'icon-cutlery', 'ele', 0, 10, 'ele/index.html', 'http://images4.5maiche.cn/2016-07-28_5799800e49700.png', 2, 'bg-gray', 0, 0, 0, 268);
-INSERT INTO `bao_navigation` VALUES (55, '购物', 'icon-cart-plus', 'mall', 0, 11, 'mall/index.html', 'http://images4.5maiche.cn/2016-07-28_5799801d11cec.png', 2, 'bg-yellow', 0, 0, 0, 273);
+INSERT INTO `bao_navigation` VALUES (55, '购物', 'icon-cart-plus', 'mall', 0, 11, 'mall/index.html', 'http://images4.5maiche.cn/2016-07-28_5799801d11cec.png', 2, 'bg-yellow', 0, 0, 0, 272);
 INSERT INTO `bao_navigation` VALUES (56, '商家', 'icon-diamond', 'shop', 0, 12, 'shop/index.html', 'http://images4.5maiche.cn/2016-07-28_5799802c01212.png', 2, 'bg-green', 0, 0, 0, 163);
 INSERT INTO `bao_navigation` VALUES (57, '新版家政', 'icon-umbrella', 'appoint', 0, 7, 'appoint/index.html', 'http://images4.5maiche.cn/2016-07-28_57997fc778768.png', 2, 'bg-dot', 0, 0, 0, 218);
 INSERT INTO `bao_navigation` VALUES (59, '众筹', 'icon-building', 'crowd', 0, 8, 'crowd/index.html', 'http://images4.5maiche.cn/2016-07-28_579980c4e70ae.png', 2, 'bg-dot', 0, 0, 0, 260);
 INSERT INTO `bao_navigation` VALUES (60, '智慧乡村', 'icon-flag', 'village', 0, 8, 'village/index.html', 'http://images4.5maiche.cn/2016-07-28_57997fd59846a.png', 2, 'bg-green', 0, 0, 0, 232);
 INSERT INTO `bao_navigation` VALUES (61, '生活信息', 'icon-truck', 'life', 0, 9, 'life/index.html', 'http://images4.5maiche.cn/2016-07-28_57998001139c4.png', 2, 'bg-sub', 0, 0, 0, 180);
-INSERT INTO `bao_navigation` VALUES (62, '酒店', 'icon-ticket', 'hotels', 0, 1, 'hotels/index.html', 'http://images4.5maiche.cn/2016-07-28_57997d46b7275.png', 2, 'bg-green', 0, 0, 0, 2);
+INSERT INTO `bao_navigation` VALUES (62, '酒店', 'icon-ticket', 'hotels', 0, 1, 'hotels/index.html', 'http://images4.5maiche.cn/2016-07-28_57997d46b7275.png', 2, 'bg-green', 0, 0, 0, 1);
 INSERT INTO `bao_navigation` VALUES (63, '订座', 'icon-tty', 'booking', 0, 2, 'booking/index.html', 'http://images4.5maiche.cn/2016-07-28_57997f904c4af.png', 2, 'bg-main', 0, 0, 0, 2);
 INSERT INTO `bao_navigation` VALUES (64, '拼团', 'icon-paw', 'pintuan', 0, 3, 'pintuan/index.html', 'http://images4.5maiche.cn/2016-07-28_57997faaee801.png', 2, 'bg-yellow', 0, 0, 0, 0);
 INSERT INTO `bao_navigation` VALUES (65, '小区', 'icon-object-group', 'community', 0, 13, 'community/index.html', 'http://images4.5maiche.cn/2016-07-28_5799803b72727.png', 2, 'bg-dot', 0, 0, 0, 114);
@@ -51530,7 +51536,7 @@ INSERT INTO `bao_payment` VALUES (1, '支付宝', 'alipay.png', 'alipay', 'alipa
 INSERT INTO `bao_payment` VALUES (2, '财付通', 'tenpay.png', 'tenpay', 'tenpay_mobile.png', '没有测试过，有财付通的可以测试下，技术支持：1,2,0,5,8,5,0,2,2', 'a:2:{s:14:\"tenpay_account\";s:4:\"1111\";s:10:\"tenpay_key\";s:4:\"1111\";}', 0, 0, NULL);
 INSERT INTO `bao_payment` VALUES (3, '微信支付', 'weixin.png', 'weixin', 'weixin_mobile.png', '认证服务号并必须绑定本网站并设置好支付授权目录，技术支持：1-2-0--8-5-0-2-2', 'a:4:{s:5:\"appid\";s:18:\"wx52be2e6da0f4b4dd\";s:9:\"appsecret\";s:32:\"c3ecdbbef209f23556e4c9e8c40ad4d0\";s:5:\"mchid\";s:10:\"1272439301\";s:6:\"appkey\";s:32:\"2f2bc64138263432353d526940f6e22e\";}', 1, 1, '商户号mch_id与appid不匹配');
 INSERT INTO `bao_payment` VALUES (4, '余额支付', 'money.png', 'money', 'money_mobile.png', '余额支付是最方便快捷的，需要二开qq：1#2#0#5#8#5#0#0#2', '{s:5:\"appid\";s:0:\"\";s:10:\"paysignkey\";s:0:\"\";s:9:\"appsecret\";s:0:\"\";s:9:\"partnerid\";s:0:\"\";s:10:\"partnerkey\";s:0:\"\";}', 0, 1, NULL);
-INSERT INTO `bao_payment` VALUES (8, '微信扫码支付(native)', 'native.png', 'native', 'native_mobile.png', '不懂的联系QQ：120585022 配置。', 'a:4:{s:5:\"appid\";s:3:\"222\";s:9:\"appsecret\";s:3:\"222\";s:5:\"mchid\";s:3:\"222\";s:6:\"appkey\";s:3:\"222\";}', 0, 1, NULL);
+INSERT INTO `bao_payment` VALUES (8, '微信扫码支付(native)', 'native.png', 'native', 'native_mobile.png', '不懂的联系QQ：505088726 配置。', 'a:4:{s:5:\"appid\";s:3:\"222\";s:9:\"appsecret\";s:3:\"222\";s:5:\"mchid\";s:3:\"222\";s:6:\"appkey\";s:3:\"222\";}', 0, 1, NULL);
 
 -- ----------------------------
 -- Table structure for bao_payment_logs
@@ -51892,6 +51898,121 @@ CREATE TABLE `bao_recharge_card`  (
   `used_time` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`card_id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for bao_record
+-- ----------------------------
+DROP TABLE IF EXISTS `bao_record`;
+CREATE TABLE `bao_record`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `addtime` int(11) NULL DEFAULT NULL COMMENT '添加时间 到奖 精确 到 天',
+  `fjsl` smallint(6) NULL DEFAULT 0 COMMENT '发奖的个数',
+  `dqtime` int(20) NULL DEFAULT NULL COMMENT '精确到秒',
+  `jiangchi` int(11) NULL DEFAULT 0 COMMENT '每日奖池（精确到分）',
+  `fjzhong` int(11) NULL DEFAULT 0 COMMENT '发奖总数（精确到分）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 98 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of bao_record
+-- ----------------------------
+INSERT INTO `bao_record` VALUES (1, 1551369600, 7, 1551427300, 10000, 7);
+INSERT INTO `bao_record` VALUES (2, 1551456000, 0, 1551456001, 48, 0);
+INSERT INTO `bao_record` VALUES (3, 1551542400, 0, 1551542401, 0, 0);
+INSERT INTO `bao_record` VALUES (4, 1551628800, 0, 1551628801, 0, 0);
+INSERT INTO `bao_record` VALUES (5, 1551715200, 0, 1551715201, 26901, 0);
+INSERT INTO `bao_record` VALUES (6, 1551801600, 0, 1551801601, 0, 0);
+INSERT INTO `bao_record` VALUES (7, 1551888000, 0, 1551888001, 0, 0);
+INSERT INTO `bao_record` VALUES (8, 1551974400, 0, 1551974401, 0, 0);
+INSERT INTO `bao_record` VALUES (9, 1552060800, 0, 1552060801, 0, 0);
+INSERT INTO `bao_record` VALUES (10, 1552147200, 0, 1552147201, 0, 0);
+INSERT INTO `bao_record` VALUES (11, 1552233600, 0, 1552233601, 1, 0);
+INSERT INTO `bao_record` VALUES (12, 1552320000, 0, 1552320001, 0, 0);
+INSERT INTO `bao_record` VALUES (13, 1552406400, 0, 1552406401, 0, 0);
+INSERT INTO `bao_record` VALUES (14, 1552492800, 0, 1552492801, 0, 0);
+INSERT INTO `bao_record` VALUES (15, 1552579200, 0, 1552579201, 0, 0);
+INSERT INTO `bao_record` VALUES (16, 1552665600, 0, 1552665601, 0, 0);
+INSERT INTO `bao_record` VALUES (17, 1552752000, 0, 1552752001, 0, 0);
+INSERT INTO `bao_record` VALUES (18, 1552838400, 0, 1552838401, 0, 0);
+INSERT INTO `bao_record` VALUES (19, 1552924800, 0, 1552924801, 0, 0);
+INSERT INTO `bao_record` VALUES (20, 1553011200, 0, 1553011201, 0, 0);
+INSERT INTO `bao_record` VALUES (21, 1553097600, 0, 1553097601, 0, 0);
+INSERT INTO `bao_record` VALUES (22, 1553184000, 0, 1553184001, 0, 0);
+INSERT INTO `bao_record` VALUES (23, 1553270400, 0, 1553270401, 0, 0);
+INSERT INTO `bao_record` VALUES (24, 1553356800, 0, 1553356801, 0, 0);
+INSERT INTO `bao_record` VALUES (25, 1553443200, 0, 1553443201, 0, 0);
+INSERT INTO `bao_record` VALUES (26, 1553529600, 0, 1553529601, 0, 0);
+INSERT INTO `bao_record` VALUES (27, 1553616000, 0, 1553616001, 0, 0);
+INSERT INTO `bao_record` VALUES (28, 1553702400, 0, 1553702401, 0, 0);
+INSERT INTO `bao_record` VALUES (29, 1553788800, 0, 1553788801, 0, 0);
+INSERT INTO `bao_record` VALUES (30, 1553875200, 0, 1553875201, 0, 0);
+INSERT INTO `bao_record` VALUES (31, 1553961600, 0, 1553961601, 0, 0);
+INSERT INTO `bao_record` VALUES (32, 1554048000, 0, 1554048001, 0, 0);
+INSERT INTO `bao_record` VALUES (33, 1554134400, 0, 1554134401, 0, 0);
+INSERT INTO `bao_record` VALUES (34, 1554220800, 0, 1554220801, 0, 0);
+INSERT INTO `bao_record` VALUES (35, 1554307200, 0, 1554307201, 0, 0);
+INSERT INTO `bao_record` VALUES (36, 1554393600, 0, 1554393601, 0, 0);
+INSERT INTO `bao_record` VALUES (37, 1554480000, 0, 1554480001, 0, 0);
+INSERT INTO `bao_record` VALUES (38, 1554566400, 0, 1554566401, 0, 0);
+INSERT INTO `bao_record` VALUES (39, 1554652800, 1, 1554652801, 101, 10);
+INSERT INTO `bao_record` VALUES (40, 1554739200, 0, 1554739201, 10, 0);
+INSERT INTO `bao_record` VALUES (41, 1554825600, 0, 1554825601, 0, 0);
+INSERT INTO `bao_record` VALUES (42, 1554912000, 0, 1554912001, 12, 0);
+INSERT INTO `bao_record` VALUES (43, 1554998400, 0, 1554998401, 102, 0);
+INSERT INTO `bao_record` VALUES (44, 1555084800, 0, 1555084801, 7, 0);
+INSERT INTO `bao_record` VALUES (45, 1555171200, 0, 1555171201, 60000, 0);
+INSERT INTO `bao_record` VALUES (46, 1555257600, 0, 1555257601, 0, 0);
+INSERT INTO `bao_record` VALUES (47, 1555344000, 0, 1555344002, 0, 0);
+INSERT INTO `bao_record` VALUES (48, 1555430400, 0, 1555430401, 0, 0);
+INSERT INTO `bao_record` VALUES (49, 1555516800, 0, 1555516801, 0, 0);
+INSERT INTO `bao_record` VALUES (50, 1555603200, 0, 1555603201, 1, 0);
+INSERT INTO `bao_record` VALUES (51, 1555689600, 0, 1555689601, 0, 0);
+INSERT INTO `bao_record` VALUES (52, 1555776000, 0, 1555776001, 0, 0);
+INSERT INTO `bao_record` VALUES (53, 1555862400, 0, 1555862401, 0, 0);
+INSERT INTO `bao_record` VALUES (54, 1555948800, 0, 1555948801, 4001, 0);
+INSERT INTO `bao_record` VALUES (55, 1556035200, 0, 1556035201, 0, 0);
+INSERT INTO `bao_record` VALUES (56, 1556121600, 0, 1556121601, 0, 0);
+INSERT INTO `bao_record` VALUES (57, 1556208000, 0, 1556208001, 0, 0);
+INSERT INTO `bao_record` VALUES (58, 1556294400, 0, 1556294401, 0, 0);
+INSERT INTO `bao_record` VALUES (59, 1556380800, 0, 1556380801, 0, 0);
+INSERT INTO `bao_record` VALUES (60, 1556467200, 0, 1556467201, 0, 0);
+INSERT INTO `bao_record` VALUES (61, 1556553600, 0, 1556553601, 0, 0);
+INSERT INTO `bao_record` VALUES (62, 1556640000, 0, 1556640001, 0, 0);
+INSERT INTO `bao_record` VALUES (63, 1556726400, 0, 1556726401, 0, 0);
+INSERT INTO `bao_record` VALUES (64, 1556812800, 0, 1556812801, 0, 0);
+INSERT INTO `bao_record` VALUES (65, 1556899200, 0, 1556899201, 0, 0);
+INSERT INTO `bao_record` VALUES (66, 1556985600, 0, 1556985601, 0, 0);
+INSERT INTO `bao_record` VALUES (67, 1557072000, 0, 1557072001, 0, 0);
+INSERT INTO `bao_record` VALUES (68, 1557158400, 0, 1557158401, 22600, 0);
+INSERT INTO `bao_record` VALUES (69, 1557244800, 0, 1557244801, 0, 0);
+INSERT INTO `bao_record` VALUES (70, 1557331200, 0, 1557331201, 0, 0);
+INSERT INTO `bao_record` VALUES (71, 1557417600, 0, 1557417601, 1500, 0);
+INSERT INTO `bao_record` VALUES (72, 1557504000, 0, 1557504001, 100, 0);
+INSERT INTO `bao_record` VALUES (73, 1557590400, 0, 1557590401, 0, 0);
+INSERT INTO `bao_record` VALUES (74, 1557676800, 0, 1557676801, 0, 0);
+INSERT INTO `bao_record` VALUES (75, 1557763200, 0, 1557763201, 0, 0);
+INSERT INTO `bao_record` VALUES (76, 1557849600, 0, 1557849601, 0, 0);
+INSERT INTO `bao_record` VALUES (77, 1557936000, 0, 1557936001, 0, 0);
+INSERT INTO `bao_record` VALUES (78, 1558022400, 0, 1558022401, 0, 0);
+INSERT INTO `bao_record` VALUES (79, 1558108800, 0, 1558108801, 0, 0);
+INSERT INTO `bao_record` VALUES (80, 1558195200, 0, 1558195201, 0, 0);
+INSERT INTO `bao_record` VALUES (81, 1558281600, 0, 1558281601, 0, 0);
+INSERT INTO `bao_record` VALUES (82, 1558368000, 0, 1558368001, 0, 0);
+INSERT INTO `bao_record` VALUES (83, 1558454400, 0, 1558454401, 0, 0);
+INSERT INTO `bao_record` VALUES (84, 1558540800, 0, 1558540801, 137500, 0);
+INSERT INTO `bao_record` VALUES (85, 1558627200, 0, 1558627201, 0, 0);
+INSERT INTO `bao_record` VALUES (86, 1558713600, 0, 1558713601, 0, 0);
+INSERT INTO `bao_record` VALUES (87, 1558800000, 0, 1558800001, 0, 0);
+INSERT INTO `bao_record` VALUES (88, 1558886400, 0, 1558886401, 0, 0);
+INSERT INTO `bao_record` VALUES (89, 1558972800, 1, 1558972801, 2500, 2500);
+INSERT INTO `bao_record` VALUES (90, 1559059200, 0, 1559059201, 37500, 0);
+INSERT INTO `bao_record` VALUES (91, 1559145600, 0, 1559145601, 100, 0);
+INSERT INTO `bao_record` VALUES (92, 1559232000, 0, 1559232001, 0, 0);
+INSERT INTO `bao_record` VALUES (93, 1559318400, 0, 1559318401, 300, 0);
+INSERT INTO `bao_record` VALUES (94, 1559404800, 0, 1559404801, 0, 0);
+INSERT INTO `bao_record` VALUES (95, 1559491200, 0, 1559491201, 0, 0);
+INSERT INTO `bao_record` VALUES (96, 1559577600, 1, 1559577601, 100, 100);
+INSERT INTO `bao_record` VALUES (97, 1559664000, 0, 1559664001, 100, 0);
 
 -- ----------------------------
 -- Table structure for bao_register_ip
@@ -53099,7 +53220,7 @@ CREATE TABLE `bao_session`  (
 -- ----------------------------
 -- Records of bao_session
 -- ----------------------------
-INSERT INTO `bao_session` VALUES ('dna5999l1baa98b7802psn3475', 1571906704, 0x76657269667925374373253341342533412532324B44494625323225334261646D696E253743612533413137253341253742732533413825334125323261646D696E5F69642532322533427325334131253341253232312532322533427325334138253341253232757365726E616D65253232253342732533413525334125323261646D696E253232253342732533413825334125323270617373776F726425323225334273253341333225334125323237666566363137313436396538306433326330353539663838623337373234352532322533427325334137253341253232726F6C655F69642532322533427325334131253341253232312532322533427325334137253341253232636974795F696425323225334273253341312533412532323025323225334273253341362533412532326D6F62696C6525323225334273253341313125334125323231353030303030303030302532322533427325334131342533412532326C6F636B5F61646D696E5F6D756D25323225334273253341312533412532323025323225334273253341313325334125323269735F61646D696E5F6C6F636B25323225334273253341312533412532323025323225334273253341313825334125323269735F61646D696E5F6C6F636B5F74696D652532322533427325334131253341253232302532322533427325334131312533412532326372656174655F74696D652532322533427325334131302533412532323134343138383032303325323225334273253341392533412532326372656174655F697025323225334273253341392533412532323132372E302E302E3125323225334273253341392533412532326C6173745F74696D652532322533427325334131302533412532323135373138393634313625323225334273253341372533412532326C6173745F697025323225334273253341392533412532323132372E302E302E31253232253342732533413525334125323269735F697025323225334273253341312533412532323025323225334273253341313625334125323269735F757365726E616D655F6C6F636B2532322533427325334131253341253232302532322533427325334136253341253232636C6F7365642532322533427325334131253341253232302532322533427325334139253341253232726F6C655F6E616D6525323225334273253341313525334125323225453725423325424225453725424225394625453725414525413125453725393025383625453525393125393825323225334225374473636F64652537437325334136253341253232363932373531253232253342);
+INSERT INTO `bao_session` VALUES ('1b6gihqlhqc2b5957alplvko84', 1572247778, 0x76657269667925374373253341342533412532324657565325323225334261646D696E253743612533413137253341253742732533413825334125323261646D696E5F69642532322533427325334131253341253232312532322533427325334138253341253232757365726E616D65253232253342732533413525334125323261646D696E253232253342732533413825334125323270617373776F726425323225334273253341333225334125323237666566363137313436396538306433326330353539663838623337373234352532322533427325334137253341253232726F6C655F69642532322533427325334131253341253232312532322533427325334137253341253232636974795F696425323225334273253341312533412532323025323225334273253341362533412532326D6F62696C6525323225334273253341313125334125323231353030303030303030302532322533427325334131342533412532326C6F636B5F61646D696E5F6D756D25323225334273253341312533412532323025323225334273253341313325334125323269735F61646D696E5F6C6F636B25323225334273253341312533412532323025323225334273253341313825334125323269735F61646D696E5F6C6F636B5F74696D652532322533427325334131253341253232302532322533427325334131312533412532326372656174655F74696D652532322533427325334131302533412532323134343138383032303325323225334273253341392533412532326372656174655F697025323225334273253341392533412532323132372E302E302E3125323225334273253341392533412532326C6173745F74696D652532322533427325334131302533412532323135373232343231363825323225334273253341372533412532326C6173745F697025323225334273253341392533412532323132372E302E302E31253232253342732533413525334125323269735F697025323225334273253341312533412532323025323225334273253341313625334125323269735F757365726E616D655F6C6F636B2532322533427325334131253341253232302532322533427325334136253341253232636C6F7365642532322533427325334131253341253232302532322533427325334139253341253232726F6C655F6E616D6525323225334273253341313525334125323225453725423325424225453725424225394625453725414525413125453725393025383625453525393125393825323225334225374473636F64652537437325334136253341253232393330343235253232253342);
 
 -- ----------------------------
 -- Table structure for bao_setting
@@ -53114,10 +53235,10 @@ CREATE TABLE `bao_setting`  (
 -- ----------------------------
 -- Records of bao_setting
 -- ----------------------------
-INSERT INTO `bao_setting` VALUES ('site', 'a:35:{s:8:\"sitename\";s:12:\"浡莱克润滑油\";s:4:\"host\";s:22:\"http://www.blklube.com\";s:6:\"hostdo\";s:11:\"blklube.com\";s:6:\"imgurl\";s:25:\"http://www.blklube.com\";s:7:\"android\";s:45:\"http://www.appk6.com/public/bin/782/20831.apk\";s:3:\"ios\";s:45:\"http://www.appk6.com/public/bin/782/20831.ipa\";s:4:\"logo\";s:54:\"http://www.blklube.com/2016-09-13_57d740df12d4e.jpg\";s:6:\"wxcode\";s:54:\"http://www.blklube.com/2016-09-13_57d740e1f0de9.jpg\";s:2:\"qq\";s:9:\"120585022\";s:3:\"tel\";s:12:\"023-79678674\";s:5:\"email\";s:16:\"120585022@qq.com\";s:3:\"icp\";s:20:\"京ICP备14054253号\";s:5:\"title\";s:12:\"浡莱克润滑油\";s:7:\"keyword\";s:0:\"\";s:11:\"description\";s:0:\"\";s:8:\"headinfo\";s:0:\"\";s:6:\"tongji\";s:0:\"\";s:7:\"city_id\";s:1:\"1\";s:3:\"lng\";s:10:\"108.777362\";s:3:\"lat\";s:9:\"29.539334\";s:5:\"goods\";s:1:\"7\";s:3:\"ele\";s:1:\"1\";s:9:\"postaudit\";s:1:\"0\";s:10:\"replyaudit\";s:1:\"0\";s:17:\"xiaoqu_post_audit\";s:1:\"0\";s:18:\"xiaoqu_reply_audit\";s:1:\"0\";s:19:\"article_reply_audit\";s:1:\"1\";s:17:\"xiaoqu_news_audit\";s:1:\"1\";s:10:\"tribeaudit\";s:1:\"1\";s:15:\"fabu_life_audit\";s:1:\"0\";s:6:\"weixin\";s:1:\"0\";s:13:\"config_mobile\";s:11:\"13356872345\";s:12:\"config_email\";s:16:\"120585022@qq.com\";s:9:\"web_close\";s:1:\"1\";s:15:\"web_close_title\";s:0:\"\";}');
+INSERT INTO `bao_setting` VALUES ('site', 'a:35:{s:8:\"sitename\";s:12:\"浡莱克\";s:4:\"host\";s:22:\"http://www.blklube.com\";s:6:\"hostdo\";s:11:\"blklube.com\";s:6:\"imgurl\";s:25:\"http://images4.5maiche.cn\";s:7:\"android\";s:45:\"http://www.appk6.com/public/bin/782/20831.apk\";s:3:\"ios\";s:45:\"http://www.appk6.com/public/bin/782/20831.ipa\";s:4:\"logo\";s:54:\"http://images4.5maiche.cn/2016-09-13_57d740df12d4e.jpg\";s:6:\"wxcode\";s:54:\"http://images4.5maiche.cn/2016-09-13_57d740e1f0de9.jpg\";s:2:\"qq\";s:9:\"505088726\";s:3:\"tel\";s:12:\"023-79678674\";s:5:\"email\";s:16:\"505088726@qq.com\";s:3:\"icp\";s:20:\"京ICP备14054253号\";s:5:\"title\";s:12:\"浡莱克\";s:7:\"keyword\";s:0:\"\";s:11:\"description\";s:0:\"\";s:8:\"headinfo\";s:0:\"\";s:6:\"tongji\";s:0:\"\";s:7:\"city_id\";s:1:\"15\";s:3:\"lng\";s:10:\"116.044066\";s:3:\"lat\";s:9:\"36.461332\";s:5:\"goods\";s:1:\"7\";s:3:\"ele\";s:1:\"1\";s:9:\"postaudit\";s:1:\"0\";s:10:\"replyaudit\";s:1:\"0\";s:17:\"xiaoqu_post_audit\";s:1:\"0\";s:18:\"xiaoqu_reply_audit\";s:1:\"0\";s:19:\"article_reply_audit\";s:1:\"1\";s:17:\"xiaoqu_news_audit\";s:1:\"1\";s:10:\"tribeaudit\";s:1:\"1\";s:15:\"fabu_life_audit\";s:1:\"0\";s:6:\"weixin\";s:1:\"0\";s:13:\"config_mobile\";s:11:\"13356872345\";s:12:\"config_email\";s:16:\"505088726@qq.com\";s:9:\"web_close\";s:1:\"1\";s:15:\"web_close_title\";s:0:\"\";}');
 INSERT INTO `bao_setting` VALUES ('attachs', 'a:48:{s:15:\"pic_wap_quality\";a:1:{s:5:\"thumb\";s:2:\"80\";}s:14:\"pic_pc_quality\";a:1:{s:5:\"thumb\";s:2:\"80\";}s:8:\"shoplogo\";a:1:{s:5:\"thumb\";s:7:\"150X150\";}s:16:\"shop_environment\";a:1:{s:5:\"thumb\";s:7:\"600X400\";}s:8:\"sitelogo\";a:1:{s:5:\"thumb\";s:6:\"180X55\";}s:8:\"shopnews\";a:1:{s:5:\"thumb\";s:7:\"260X260\";}s:11:\"lifeservice\";a:2:{s:5:\"thumb\";s:7:\"350X285\";s:4:\"icon\";s:6:\"120X80\";}s:8:\"activity\";a:1:{s:5:\"thumb\";s:7:\"470X275\";}s:6:\"coupon\";a:1:{s:5:\"thumb\";s:7:\"577X430\";}s:5:\"cloud\";a:1:{s:5:\"thumb\";s:7:\"410X380\";}s:7:\"article\";a:1:{s:5:\"thumb\";s:7:\"260X260\";}s:13:\"integralgoods\";a:1:{s:5:\"thumb\";s:7:\"350X350\";}s:4:\"dian\";a:1:{s:5:\"thumb\";s:7:\"340X270\";}s:8:\"dingroom\";a:1:{s:5:\"thumb\";s:7:\"340X270\";}s:12:\"shopdianping\";a:1:{s:5:\"thumb\";s:7:\"380X260\";}s:8:\"dianping\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:4:\"user\";a:1:{s:5:\"thumb\";a:3:{s:5:\"thumb\";s:7:\"200X200\";s:6:\"middle\";s:7:\"120X120\";s:5:\"small\";s:5:\"60X60\";}}s:9:\"shopphoto\";a:1:{s:5:\"thumb\";s:7:\"300X300\";}s:9:\"recommend\";a:1:{s:5:\"thumb\";s:7:\"180X180\";}s:4:\"tuan\";a:1:{s:5:\"thumb\";s:7:\"480X275\";}s:4:\"life\";a:1:{s:5:\"thumb\";s:7:\"320X320\";}s:7:\"lifepic\";a:1:{s:5:\"thumb\";s:7:\"600X400\";}s:5:\"tieba\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:6:\"weixin\";a:1:{s:5:\"thumb\";s:7:\"320X120\";}s:5:\"goods\";a:1:{s:5:\"thumb\";s:7:\"470X470\";}s:10:\"shopbanner\";a:1:{s:5:\"thumb\";s:7:\"320X120\";}s:11:\"shopbanner1\";a:1:{s:5:\"thumb\";s:8:\"1000X300\";}s:10:\"eleproduct\";a:1:{s:5:\"thumb\";s:7:\"300X300\";}s:8:\"dingmenu\";a:1:{s:5:\"thumb\";s:7:\"600X450\";}s:10:\"weidianpic\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:10:\"shop_audit\";a:1:{s:5:\"thumb\";s:8:\"1000X800\";}s:7:\"village\";a:1:{s:5:\"thumb\";s:7:\"400X300\";}s:14:\"village_worker\";a:1:{s:5:\"thumb\";s:7:\"150X150\";}s:6:\"xiaoqu\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:2:\"ad\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:5:\"hotle\";a:1:{s:5:\"thumb\";s:7:\"400X300\";}s:6:\"pinche\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:7:\"appoint\";a:1:{s:5:\"thumb\";s:7:\"300X300\";}s:18:\"appoint_cate_photo\";a:1:{s:5:\"thumb\";s:5:\"80X80\";}s:16:\"appoint_dianping\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:14:\"appoint_worker\";a:1:{s:5:\"thumb\";s:7:\"200X300\";}s:19:\"delivery_user_photo\";a:1:{s:5:\"thumb\";s:7:\"600X450\";}s:11:\"thread_logo\";a:1:{s:5:\"thumb\";s:7:\"160X160\";}s:13:\"thread_banner\";a:1:{s:5:\"thumb\";s:8:\"1200X260\";}s:6:\"thread\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:7:\"running\";a:1:{s:5:\"thumb\";s:7:\"400X300\";}s:4:\"rank\";a:1:{s:5:\"thumb\";s:5:\"80X80\";}s:6:\"editor\";a:1:{s:5:\"thumb\";s:7:\"600X600\";}}');
 INSERT INTO `bao_setting` VALUES ('ucenter', 'a:15:{s:7:\"charset\";s:1:\"0\";s:10:\"UC_CONNECT\";s:5:\"mysql\";s:9:\"UC_DBHOST\";s:9:\"localhost\";s:9:\"UC_DBUSER\";s:4:\"root\";s:7:\"UC_DBPW\";s:6:\"123456\";s:9:\"UC_DBNAME\";s:6:\"ultrax\";s:12:\"UC_DBCHARSET\";s:4:\"utf8\";s:13:\"UC_DBTABLEPRE\";s:19:\"ultrax.pre_ucenter_\";s:12:\"UC_DBCONNECT\";s:1:\"0\";s:6:\"UC_KEY\";s:39:\"9ee6F9YQ0bzQof9b9RTbUIORIvL2f8DQEmakk6Q\";s:6:\"UC_API\";s:29:\"http://www.test.com/uc_server\";s:10:\"UC_CHARSET\";s:5:\"utf-8\";s:5:\"UC_IP\";s:0:\"\";s:8:\"UC_APPID\";s:1:\"2\";s:6:\"UC_PPP\";s:2:\"20\";}');
-INSERT INTO `bao_setting` VALUES ('sms', 'a:9:{s:5:\"dxapi\";s:2:\"dy\";s:3:\"url\";s:92:\"http://api.smsbao.com/sms?u=221119&p=87ed1b34e613f50c38c0bb56279b51fd&m={mobile}&c={content}\";s:7:\"charset\";s:1:\"0\";s:15:\"sms_bao_account\";s:6:\"123456\";s:16:\"sms_bao_password\";s:6:\"221119\";s:4:\"code\";s:1:\"0\";s:4:\"sign\";s:0:\"\";s:5:\"dykey\";s:8:\"23332169\";s:8:\"dysecret\";s:32:\"e27bfc113934f8297214e52720aadc9d\";}');
+INSERT INTO `bao_setting` VALUES ('sms', 'a:9:{s:5:\"dxapi\";s:2:\"dy\";s:3:\"url\";s:96:\"http://api.smsbao.com/sms?u=nlgliuyang&p=3ccd69fda19bef1f2f7a10d62db78619&m={mobile}&c={content}\";s:7:\"charset\";s:1:\"0\";s:15:\"sms_bao_account\";s:10:\"nlgliuyang\";s:16:\"sms_bao_password\";s:7:\"3832050\";s:4:\"code\";s:1:\"0\";s:4:\"sign\";s:0:\"\";s:5:\"dykey\";s:8:\"23332169\";s:8:\"dysecret\";s:32:\"e27bfc113934f8297214e52720aadc9d\";}');
 INSERT INTO `bao_setting` VALUES ('mail', 'a:5:{s:4:\"smtp\";s:12:\"smtp.163.com\";s:4:\"port\";s:2:\"25\";s:8:\"username\";s:19:\"13626690120@163.com\";s:8:\"password\";s:6:\"221119\";s:4:\"from\";s:19:\"13626690120@163.com\";}');
 INSERT INTO `bao_setting` VALUES ('weixin', 'a:9:{s:5:\"token\";s:20:\"3Nhv3QbbqCL8z3SblD8N\";s:5:\"appid\";s:18:\"wx9d4c046f19ab66c2\";s:9:\"appsecret\";s:32:\"75029977e3da1e2b7a8f29144f0a1e57\";s:2:\"id\";s:16:\"gh_b7de8310455a \";s:4:\"type\";s:1:\"1\";s:11:\"description\";s:30:\"你好，欢迎关注我们！\";s:5:\"title\";s:0:\"\";s:7:\"linkurl\";s:0:\"\";s:5:\"photo\";s:54:\"http://images4.5maiche.cn/2016-05-21_57406ca94935d.jpg\";}');
 INSERT INTO `bao_setting` VALUES ('integral', 'a:16:{s:5:\"gouwu\";s:1:\"1\";s:3:\"buy\";s:1:\"0\";s:15:\"return_integral\";s:2:\"80\";s:6:\"return\";s:1:\"1\";s:20:\"tuan_return_integral\";s:1:\"1\";s:20:\"mall_return_integral\";s:1:\"1\";s:17:\"integral_exchange\";s:1:\"1\";s:21:\"integral_exchange_tax\";s:2:\"10\";s:23:\"integral_exchange_small\";s:3:\"100\";s:21:\"integral_exchange_big\";s:4:\"1000\";s:5:\"share\";s:1:\"5\";s:5:\"reply\";s:1:\"1\";s:6:\"mobile\";s:3:\"100\";s:5:\"email\";s:3:\"100\";s:4:\"sign\";s:1:\"5\";s:9:\"firstsign\";s:2:\"50\";}');
@@ -53132,7 +53253,7 @@ INSERT INTO `bao_setting` VALUES ('weidian', 'a:5:{s:10:\"bianlidian\";s:2:\"16\
 INSERT INTO `bao_setting` VALUES ('mall', 'a:16:{s:5:\"ming1\";s:9:\"烤鸭店\";s:5:\"dian1\";s:1:\"1\";s:5:\"ming2\";s:9:\"蛋糕店\";s:5:\"dian2\";s:1:\"9\";s:5:\"ming3\";s:9:\"鲜花店\";s:5:\"dian3\";s:2:\"10\";s:5:\"ming4\";s:9:\"水果店\";s:5:\"dian4\";s:2:\"11\";s:5:\"ming5\";s:9:\"便利店\";s:5:\"dian5\";s:2:\"12\";s:5:\"ming6\";s:9:\"坚果店\";s:5:\"dian6\";s:1:\"6\";s:5:\"ming7\";s:9:\"奶茶店\";s:5:\"dian7\";s:1:\"7\";s:5:\"ming8\";s:9:\"茶叶店\";s:5:\"dian8\";s:1:\"8\";}');
 INSERT INTO `bao_setting` VALUES ('quanming', 'a:21:{s:7:\"content\";s:30:\"全民经济人内容描述。\";s:5:\"intro\";s:36:\"全民经济人活动规则描述。\";s:7:\"is_tuan\";s:1:\"1\";s:7:\"is_mall\";s:1:\"0\";s:6:\"is_ele\";s:1:\"0\";s:8:\"is_money\";s:1:\"0\";s:5:\"money\";s:3:\"300\";s:9:\"money_day\";s:2:\"90\";s:6:\"money1\";s:1:\"1\";s:6:\"money2\";s:1:\"2\";s:6:\"money3\";s:1:\"3\";s:6:\"money4\";s:1:\"4\";s:6:\"money5\";s:1:\"5\";s:6:\"money6\";s:1:\"6\";s:4:\"rate\";s:1:\"5\";s:5:\"rate1\";s:1:\"1\";s:5:\"rate2\";s:1:\"2\";s:5:\"rate3\";s:1:\"3\";s:5:\"rate4\";s:1:\"4\";s:5:\"rate5\";s:1:\"5\";s:5:\"rate6\";s:1:\"6\";}');
 INSERT INTO `bao_setting` VALUES ('other', 'a:11:{s:15:\"pc_search_title\";s:6:\"美女\";s:16:\"wap_search_title\";s:9:\"鸡公煲\";s:5:\"color\";s:7:\"#06C1AE\";s:6:\"mechat\";s:5:\"36062\";s:11:\"mechataudit\";s:1:\"1\";s:8:\"url_jump\";s:1:\"1\";s:11:\"footeraudit\";s:1:\"1\";s:6:\"footer\";s:1:\"1\";s:14:\"wap_navigation\";s:1:\"0\";s:14:\"wap_index_addr\";s:1:\"1\";s:17:\"check_connect_uid\";s:1:\"1\";}');
-INSERT INTO `bao_setting` VALUES ('register', 'a:12:{s:21:\"register_distribution\";s:1:\"1\";s:16:\"register_service\";s:1:\"1\";s:20:\"register_service_url\";s:31:\"http://baocms.fengmiyuanma.com/\";s:15:\"register_mobile\";s:1:\"0\";s:12:\"register_yzm\";s:1:\"0\";s:17:\"register_password\";s:1:\"6\";s:16:\"wap_register_yzm\";s:1:\"0\";s:22:\"wap_register_password2\";s:1:\"1\";s:18:\"register_lock_numl\";s:1:\"5\";s:21:\"register_is_lock_time\";s:3:\"900\";s:24:\"register_register_ip_num\";s:1:\"1\";s:30:\"register_register_is_lock_time\";s:3:\"600\";}');
+INSERT INTO `bao_setting` VALUES ('register', 'a:12:{s:21:\"register_distribution\";s:1:\"1\";s:16:\"register_service\";s:1:\"1\";s:20:\"register_service_url\";s:31:\"http://blklube.fengmiyuanma.com/\";s:15:\"register_mobile\";s:1:\"0\";s:12:\"register_yzm\";s:1:\"0\";s:17:\"register_password\";s:1:\"6\";s:16:\"wap_register_yzm\";s:1:\"0\";s:22:\"wap_register_password2\";s:1:\"1\";s:18:\"register_lock_numl\";s:1:\"5\";s:21:\"register_is_lock_time\";s:3:\"900\";s:24:\"register_register_ip_num\";s:1:\"1\";s:30:\"register_register_is_lock_time\";s:3:\"600\";}');
 INSERT INTO `bao_setting` VALUES ('operation', 'a:19:{s:6:\"pchome\";s:1:\"1\";s:7:\"appoint\";s:1:\"1\";s:5:\"crowd\";s:1:\"1\";s:7:\"booking\";s:1:\"1\";s:6:\"hotels\";s:1:\"1\";s:7:\"running\";s:1:\"1\";s:6:\"thread\";s:1:\"1\";s:4:\"farm\";s:1:\"1\";s:7:\"pintuan\";s:1:\"1\";s:6:\"pinche\";s:1:\"1\";s:4:\"news\";s:1:\"1\";s:4:\"life\";s:1:\"1\";s:5:\"jifen\";s:1:\"1\";s:6:\"market\";s:1:\"1\";s:4:\"mall\";s:1:\"1\";s:5:\"cloud\";s:1:\"1\";s:7:\"huodong\";s:1:\"1\";s:9:\"community\";s:1:\"1\";s:7:\"village\";s:1:\"1\";}');
 INSERT INTO `bao_setting` VALUES ('share', 'a:6:{s:9:\"qzone_uid\";s:9:\"421313131\";s:9:\"qzone_key\";s:18:\"857435645634643654\";s:7:\"qwb_uid\";s:6:\"345326\";s:7:\"qwb_key\";s:14:\"56865967235465\";s:9:\"weibo_uid\";s:5:\"24325\";s:9:\"weibo_key\";s:13:\"8645346452124\";}');
 INSERT INTO `bao_setting` VALUES ('cash', 'a:26:{s:7:\"is_cash\";s:1:\"1\";s:4:\"user\";s:3:\"200\";s:8:\"user_big\";s:4:\"1000\";s:20:\"user_cash_commission\";s:3:\"1.8\";s:4:\"shop\";s:3:\"100\";s:8:\"shop_big\";s:3:\"200\";s:20:\"shop_cash_commission\";s:3:\"2.8\";s:13:\"renzheng_shop\";s:3:\"200\";s:17:\"renzheng_shop_big\";s:4:\"5000\";s:16:\"user_cash_second\";s:1:\"5\";s:16:\"shop_cash_second\";s:1:\"4\";s:11:\"is_recharge\";s:1:\"0\";s:15:\"recharge_full_1\";s:3:\"100\";s:15:\"recharge_give_1\";s:2:\"10\";s:15:\"recharge_full_2\";s:3:\"100\";s:15:\"recharge_give_2\";s:2:\"30\";s:15:\"recharge_full_3\";s:3:\"500\";s:15:\"recharge_give_3\";s:2:\"80\";s:11:\"is_transfer\";s:1:\"1\";s:18:\"is_transferrank_id\";s:1:\"3\";s:17:\"is_transfer_small\";s:3:\"100\";s:15:\"is_transfer_big\";s:4:\"5000\";s:25:\"is_transfer_interval_time\";s:3:\"900\";s:22:\"is_transfer_commission\";s:1:\"3\";s:20:\"is_recharge_integral\";s:1:\"1\";s:24:\"return_recharge_integral\";s:1:\"1\";}');
@@ -53237,7 +53358,7 @@ CREATE TABLE `bao_shop`  (
 -- ----------------------------
 -- Records of bao_shop
 -- ----------------------------
-INSERT INTO `bao_shop` VALUES (1, NULL, 1, 36, 8, 3, 1, '0', 16, '浡莱克润滑油专卖店', '/attachs/2019/10/24/thumb_5db1552a92e9d.jpg', '/attachs/2019/10/24/thumb_5db15547575bd.jpg', '0635-123123', '', '', '18864874770', '郭君光', '浡莱克润滑油公司地址', 0, 0, 0, 0, 0, 0, '', 100, '116.04403', '36.461336', 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '润滑油，浡莱克，柴机油', 1571902973, '127.0.0.1', 0, '', '', '', '', NULL, 0);
+INSERT INTO `bao_shop` VALUES (1, NULL, 1, 69, 8, 32, 12, '0', 40, '北京京东世纪贸易有限公司', '/attachs/2019/10/28/thumb_5db68c052bf37.jpg', '/attachs/2019/10/28/thumb_5db68c4174aec.jpg', '400-606-5500', '', '', '18864874770', '刘强东', '北京亦庄经济技术开发区科创十一街18号院', 0, 0, 0, 0, 0, 0, '', 1, '116.570059', '39.791754', 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '京东，测试，购物', 1572244720, '127.0.0.1', 0, '', '', '', '', '', 0);
 
 -- ----------------------------
 -- Table structure for bao_shop_audit
@@ -53466,7 +53587,7 @@ CREATE TABLE `bao_shop_details`  (
 -- ----------------------------
 -- Records of bao_shop_details
 -- ----------------------------
-INSERT INTO `bao_shop_details` VALUES (1, '<p>德国浡莱克润滑油油，世界品牌，大制造</p>', 0, NULL, NULL, '', 0, '', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQG_8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL25FU3k5UERsLUtpRlhMclpWbWo2AAIEoU7XVwMEAAAAAA%3D%3D', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+INSERT INTO `bao_shop_details` VALUES (1, '<p><span style=\"color: rgb(51, 51, 51); font-family: Helvetica, Arial, Tahoma, &quot;Microsoft Yahei&quot;, 宋体, sans-serif; font-size: 15px; background-color: rgb(242, 242, 242);\">京东JD.COM-专业的综合网上购物商城，销售超数万品牌、4020万种商品，囊括家电、手机、电脑、母婴、服装等13大品类。秉承客户为先的理念，京东所售商品为正品行货、全国联保、机打发票。</span></p>', 0, NULL, NULL, '', 0, '', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQG_8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL25FU3k5UERsLUtpRlhMclpWbWo2AAIEoU7XVwMEAAAAAA%3D%3D', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- ----------------------------
 -- Table structure for bao_shop_dianping
@@ -55760,6 +55881,29 @@ CREATE TABLE `bao_user_integral_logs`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for bao_user_ldbt_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `bao_user_ldbt_logs`;
+CREATE TABLE `bao_user_ldbt_logs`  (
+  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `order_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `money` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `is_separate` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0 未发放 1 已发放 2 已取消',
+  `edit_time` int(10) NULL DEFAULT 0 COMMENT '发放时间',
+  `shop_id` int(11) NULL DEFAULT 0,
+  `pay_id` int(11) NULL DEFAULT 0,
+  PRIMARY KEY (`log_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of bao_user_ldbt_logs
+-- ----------------------------
+INSERT INTO `bao_user_ldbt_logs` VALUES (1, 1, 17, 1559555588, 1, 1, 1, 0, 1, 309);
+
+-- ----------------------------
 -- Table structure for bao_user_message
 -- ----------------------------
 DROP TABLE IF EXISTS `bao_user_message`;
@@ -55817,6 +55961,37 @@ CREATE TABLE `bao_user_profit_logs`  (
   `is_separate` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`log_id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Table structure for bao_user_ptgold_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `bao_user_ptgold_logs`;
+CREATE TABLE `bao_user_ptgold_logs`  (
+  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `xfz_user_id` int(11) NULL DEFAULT 0 COMMENT '消费者id',
+  `gold` int(11) NULL DEFAULT 0 COMMENT '平台获得',
+  `intro` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` int(11) NULL DEFAULT NULL,
+  `create_ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `shop_id` int(11) NULL DEFAULT 0 COMMENT '商家id',
+  `pay_id` int(11) NOT NULL COMMENT '支付id',
+  `order_id` int(11) NULL DEFAULT 0 COMMENT '订单id',
+  `xfz_q` int(11) NULL DEFAULT 0 COMMENT '消费者消费奖励',
+  `money` int(11) NULL DEFAULT 0 COMMENT '消费总金额',
+  `tjr_user_id` int(11) NULL DEFAULT 0 COMMENT '推荐人id',
+  `tjr_q` int(11) NULL DEFAULT 0 COMMENT '推荐人获得奖励',
+  `yj_user_id` int(11) NULL DEFAULT 0 COMMENT '一级id',
+  `yj_q` int(11) NULL DEFAULT 0 COMMENT '一级获得奖励',
+  `ej_user_id` int(11) NULL DEFAULT 0 COMMENT '二级',
+  `ej_q` int(11) NULL DEFAULT 0,
+  `sj_user_id` int(11) NULL DEFAULT 0 COMMENT '三级',
+  `sj_q` int(11) NULL DEFAULT 0,
+  `shop_money` int(11) NULL DEFAULT 0 COMMENT '商家获得钱数',
+  `md_q` int(11) NULL DEFAULT 0 COMMENT '免单钱数(作废)',
+  `is_md` tinyint(2) NULL DEFAULT 0 COMMENT '1 免单',
+  PRIMARY KEY (`log_id`, `pay_id`) USING BTREE,
+  INDEX `user_id`(`xfz_user_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for bao_user_rank
@@ -55886,6 +56061,27 @@ CREATE TABLE `bao_user_weixin`  (
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for bao_user_ydbfclbt_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `bao_user_ydbfclbt_logs`;
+CREATE TABLE `bao_user_ydbfclbt_logs`  (
+  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '会员UID',
+  `money` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '月度帮扶差旅补贴',
+  `is_separate` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否发奖 1 已发 0 未发 2已取消',
+  `shifoudabiao` varchar(100) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT '' COMMENT '是否达标消息',
+  `yuedu` int(11) NULL DEFAULT 0 COMMENT '月度消费总钱数',
+  `rijun` int(11) NULL DEFAULT 0 COMMENT '日均',
+  `bg_time` int(11) NULL DEFAULT 0 COMMENT '起始时间 年月一号时间戳',
+  `end_time` int(11) NULL DEFAULT 0 COMMENT '截止时间 年月一号时间戳',
+  `tianshu` int(3) NULL DEFAULT 0 COMMENT '当月天数',
+  `intro` varchar(100) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT '' COMMENT '消息 奖名称',
+  `edit_time` int(10) NULL DEFAULT 0 COMMENT '发放时间',
+  PRIMARY KEY (`log_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for bao_users
 -- ----------------------------
 DROP TABLE IF EXISTS `bao_users`;
@@ -55929,13 +56125,12 @@ CREATE TABLE `bao_users`  (
   `is_lock` tinyint(1) NULL DEFAULT 0,
   `is_lock_time` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_users
 -- ----------------------------
-INSERT INTO `bao_users` VALUES (1, '18864874770', 'e10adc3949ba59abbe56e057f20f883e', '14e1b600b1fd579f47433b88e8d85291', '/attachs/2019/10/24/thumb_5db154614854f.png', '', 'IsCrazyCat', 0, 0, 0, 3, 0, NULL, NULL, 1571902563, '127.0.0.1', NULL, NULL, NULL, 0, 0, '', '18864874770', 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, '0', 0, 0, 0, 0, NULL);
-INSERT INTO `bao_users` VALUES (2, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '14e1b600b1fd579f47433b88e8d85291', '/attachs/2019/10/24/thumb_5db159f081619.png', '', 'admin', 0, 0, 0, 3, 0, NULL, NULL, 1571903987, '127.0.0.1', NULL, NULL, NULL, 0, 0, '', '18864874770', 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, '0', 0, 0, 0, 0, NULL);
+INSERT INTO `bao_users` VALUES (1, '18864874770', 'e10adc3949ba59abbe56e057f20f883e', '14e1b600b1fd579f47433b88e8d85291', '/attachs/2019/10/28/thumb_5db68b9567d2c.jpg', '', 'gjg', 0, 0, 0, 3, 0, NULL, NULL, 1572244375, '127.0.0.1', NULL, NULL, NULL, 0, 0, '', '18864874770', 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, '0', 0, 0, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for bao_users_cash
@@ -56666,6 +56861,34 @@ INSERT INTO `bao_weixin_qrcode` VALUES (1, 1, 1);
 INSERT INTO `bao_weixin_qrcode` VALUES (2, 3, 1);
 
 -- ----------------------------
+-- Table structure for bao_weixin_qrcode_copy
+-- ----------------------------
+DROP TABLE IF EXISTS `bao_weixin_qrcode_copy`;
+CREATE TABLE `bao_weixin_qrcode_copy`  (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type` tinyint(1) NULL DEFAULT 0,
+  `soure_id` smallint(5) NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of bao_weixin_qrcode_copy
+-- ----------------------------
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (1, 1, 1);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (2, 2, 1);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (3, 1, 2);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (4, 2, 2);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (5, 3, 1);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (6, 1, 3);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (7, 3, 2);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (8, 1, 4);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (9, 3, 3);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (10, 1, 5);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (11, 2, 3);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (12, 1, 15);
+INSERT INTO `bao_weixin_qrcode_copy` VALUES (13, 1, 14);
+
+-- ----------------------------
 -- Table structure for bao_weixin_relay
 -- ----------------------------
 DROP TABLE IF EXISTS `bao_weixin_relay`;
@@ -56962,5 +57185,18 @@ CREATE TABLE `bao_zhe`  (
   `create_ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
   PRIMARY KEY (`zhe_id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for my_tongji_records
+-- ----------------------------
+DROP TABLE IF EXISTS `my_tongji_records`;
+CREATE TABLE `my_tongji_records`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ordermoney` decimal(11, 2) NULL DEFAULT 0.00 COMMENT '消费总额',
+  `addtime` int(11) NULL DEFAULT 0 COMMENT '当天时间戳',
+  `uid` int(11) NULL DEFAULT 0 COMMENT '会员id',
+  `beizhu` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

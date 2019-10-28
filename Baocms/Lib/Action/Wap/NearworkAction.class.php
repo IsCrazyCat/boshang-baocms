@@ -13,7 +13,7 @@ class NearworkAction extends CommonAction
     {
         $work = D('Work');
         import('ORG.Util.Page');
-        // 导入分页类 二开qq 120--585--022   www.hatudou.com
+        // 导入分页类
 		//$map = array('audit' => 1, 'city_id' => $this->city_id, 'expir_date' => array('EGT', TODAY));
         $map = array('audit' => 1,  'expir_date' => array('EGT', TODAY));
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {

@@ -2,7 +2,7 @@
 class TuancodeAction extends CommonAction{
     public function overdue(){
         $Tuancode = D('Tuancode');
-        import('ORG.Util.Page');// 导入分页类 二开qq 120--585--022   www.hatudou.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('is_used' => 0, 'status' => array('IN', array(0, 1)), 'fail_date' => array('ELT', TODAY));
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);

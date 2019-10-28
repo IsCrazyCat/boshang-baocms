@@ -99,7 +99,7 @@ class ThreadAction extends CommonAction {
 
     public function postload(){
             //回复的帖子
-            import('ORG.Util.Page'); // 导入分页类 二开qq 120--585--022   www.hatudou.com
+            import('ORG.Util.Page'); // 导入分页类
             $post_id = (int)$this->_param('post_id');
             $reply_list = D('Threadpostcomments')->where(array('post_id'=>$post_id,'type'=>array('IN',array(1,2))))->order(array('comment_id'=>'desc'))->select();
             $user_idss = $comment_idss = array();
