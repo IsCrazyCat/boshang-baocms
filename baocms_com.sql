@@ -1167,14 +1167,14 @@ CREATE TABLE `bao_city`  (
 -- ----------------------------
 -- Records of bao_city
 -- ----------------------------
-INSERT INTO `bao_city` VALUES (7, '西安', 'http://images4.5maiche.cn/2016-08-11_57abf4f4b67d2.jpg', 'xian', 1, 1, '104.071189', '30.576419', 2, 'X', 'red');
-INSERT INTO `bao_city` VALUES (9, '白沟', 'http://images4.5maiche.cn/2016-09-26_57e8903ec5467.jpg', 'baigou', 1, 1, '116.030336', '39.126934', 1, 'B', 'red');
-INSERT INTO `bao_city` VALUES (1, '重庆市', '2016/04/12/thumb_570cb3394d904.jpg', 'cq', 1, 1, '108.111754', '29.355971', 9, 'C', 'news');
-INSERT INTO `bao_city` VALUES (10, '大连', '2016/04/12/thumb_570cb32f71337.jpg', 'dalian', 1, 1, '121.615642', '38.917549', 0, 'D', '');
-INSERT INTO `bao_city` VALUES (11, '乌海', 'http://images4.5maiche.cn/2016-08-13_57ae7baf06023.png', 'wuhai', 1, 1, '106.801868', '39.660217', 1, 'W', 'default');
-INSERT INTO `bao_city` VALUES (12, '北京市', 'http://images4.5maiche.cn/2016-09-06_57ced896cbd23.jpg', 'beijing', 1, 1, '116.413663', '39.911087', 0, 'B', 'red');
-INSERT INTO `bao_city` VALUES (13, '济宁', 'http://images4.5maiche.cn/2016-09-07_57cf8ef48ae15.jpg', 'jining', 1, 1, '116.593861', '35.420372', 0, 'J', 'red');
-INSERT INTO `bao_city` VALUES (14, '泉州', 'http://images4.5maiche.cn/2016-10-13_57ffa8896374c.jpg', 'quanzhou', 1, 1, '118.682321', '24.88023', 1, 'Q', '');
+INSERT INTO `bao_city` VALUES (7, '西安', 'http://images4.5maiche.cn/2016-08-11_57abf4f4b67d2.jpg', 'xian', 1, 0, '104.071189', '30.576419', 2, 'X', 'red');
+INSERT INTO `bao_city` VALUES (9, '白沟', 'http://images4.5maiche.cn/2016-09-26_57e8903ec5467.jpg', 'baigou', 1, 0, '116.030336', '39.126934', 1, 'B', 'red');
+INSERT INTO `bao_city` VALUES (1, '重庆市', '2016/04/12/thumb_570cb3394d904.jpg', 'cq', 1, 0, '108.111754', '29.355971', 9, 'C', 'news');
+INSERT INTO `bao_city` VALUES (10, '大连', '2016/04/12/thumb_570cb32f71337.jpg', 'dalian', 1, 0, '121.615642', '38.917549', 0, 'D', '');
+INSERT INTO `bao_city` VALUES (11, '乌海', 'http://images4.5maiche.cn/2016-08-13_57ae7baf06023.png', 'wuhai', 1, 0, '106.801868', '39.660217', 1, 'W', 'default');
+INSERT INTO `bao_city` VALUES (12, '北京市', 'http://images4.5maiche.cn/2016-09-06_57ced896cbd23.jpg', 'beijing', 1, 0, '116.413663', '39.911087', 0, 'B', 'red');
+INSERT INTO `bao_city` VALUES (13, '济宁', 'http://images4.5maiche.cn/2016-09-07_57cf8ef48ae15.jpg', 'jining', 1, 0, '116.593861', '35.420372', 0, 'J', 'red');
+INSERT INTO `bao_city` VALUES (14, '泉州', 'http://images4.5maiche.cn/2016-10-13_57ffa8896374c.jpg', 'quanzhou', 1, 0, '118.682321', '24.88023', 1, 'Q', '');
 
 -- ----------------------------
 -- Table structure for bao_cloud_goods
