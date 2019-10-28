@@ -102,7 +102,7 @@ CREATE TABLE `bao_ad`  (
 -- ----------------------------
 -- Records of bao_ad
 -- ----------------------------
-INSERT INTO `bao_ad` VALUES (1, 1, 1, 'BAOCMS发布啦', 'http://baocms.com', '2014/09/19/541c2c0a0a93b.jpg', '', 0, 0, '2014-09-18', '2020-01-01', 1, 1);
+INSERT INTO `bao_ad` VALUES (1, 1, 1, 'BAOCMS发布啦', 'http://blklube.com', '2014/09/19/541c2c0a0a93b.jpg', '', 0, 0, '2014-09-18', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (2, 1, 1, '首页横幅广告', '#', '2014/09/19/541c44c9c5aec.gif', '', 0, 0, '2014-09-18', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (3, 3, 1, '演示婚庆1', '/shop/detail/shop_id/2.html', '2014/10/10/54374be48e09d.jpg', '', 0, 0, '2014-09-14', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (4, 3, 1, '演示婚庆2', '/shop/detail/shop_id/3.html', '2014/10/10/54374c8d7e8b1.jpg', '', 0, 0, '2014-10-09', '2020-01-01', 1, 2);
@@ -125,7 +125,7 @@ INSERT INTO `bao_ad` VALUES (20, 5, 1, '积分商城BANNER', '/shop/detail/shop_
 INSERT INTO `bao_ad` VALUES (21, 7, 1, 'PC首页广告', '/shop/detail/shop_id/30.html', '2015/04/24/5539af4a076f8.jpg', 'PC首页广告', 0, 0, '2014-11-20', '2020-01-01', 1, 2);
 INSERT INTO `bao_ad` VALUES (22, 8, 1, '轮播广告', '/shop/detail/shop_id/55.html', '2015/04/23/5538bb2e90d19.jpg', '', 0, 0, '2014-11-21', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (23, 1, 1, '家政', 'http://baocms.fengmiyuanma.com/', '2015/11/22/5651c943dddf1.jpg', '', 0, 0, '2014-11-24', '2020-01-01', 1, 1);
-INSERT INTO `bao_ad` VALUES (24, 7, 1, '首页广告3', 'http://baocms.com', '2014/11/27/547684ed9e88e.jpg', '', 0, 0, '2014-11-26', '2020-01-01', 1, 3);
+INSERT INTO `bao_ad` VALUES (24, 7, 1, '首页广告3', 'http://blklube.com', '2014/11/27/547684ed9e88e.jpg', '', 0, 0, '2014-11-26', '2020-01-01', 1, 3);
 INSERT INTO `bao_ad` VALUES (25, 11, 1, '最新上线', 'http://www.baidu.com', '2014/12/29/54a121043953a.jpg', '', 0, 0, '2014-12-29', '2020-01-01', 0, 23);
 INSERT INTO `bao_ad` VALUES (26, 9, 1, '品牌热区', 'http://www.jd.com', '2014/12/29/54a1216663781.png', '', 0, 0, '2014-12-15', '2020-01-01', 0, 34);
 INSERT INTO `bao_ad` VALUES (27, 10, 1, '风潮来袭', 'http://www.sina.com', '2014/12/29/54a1219463de0.png', '', 0, 0, '2014-12-04', '2020-01-01', 0, 100);
@@ -146,15 +146,15 @@ INSERT INTO `bao_ad` VALUES (41, 16, 1, '0元抽奖等你来', '/shop/detail/sho
 INSERT INTO `bao_ad` VALUES (42, 16, 1, '0元抽奖等你来', '/shop/detail/shop_id/39.html', '2015/04/23/5538c5d598232.jpg', '', 0, 0, '2015-01-06', '2020-01-01', 0, 23);
 INSERT INTO `bao_ad` VALUES (43, 17, 1, '下班去哪玩1', '/tuan/detail/tuan_id/13.html', '2015/01/07/54ac9f5c1b483.jpg', '', 0, 0, '2015-01-05', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (44, 17, 1, '下班去哪玩2', '/tuan/detail/tuan_id/13.html', '2015/01/07/54ac9f5c1b483.jpg', '', 0, 0, '2015-01-05', '2020-01-01', 1, 1);
-INSERT INTO `bao_ad` VALUES (45, 17, 1, '活动', 'http://baocms.com/huodong/detail/activity_id/16.html', '2015/04/28/553f333bc1a07.jpg', '', 0, 0, '2015-01-05', '2020-01-01', 0, 1);
+INSERT INTO `bao_ad` VALUES (45, 17, 1, '活动', 'http://blklube.com/huodong/detail/activity_id/16.html', '2015/04/28/553f333bc1a07.jpg', '', 0, 0, '2015-01-05', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (46, 18, 1, '优惠券轮播', '/coupon/detail/coupon_id/12.html', '2015/04/24/553a14654b69f.jpg', '', 0, 0, '2015-01-04', '2020-01-01', 0, 23);
 INSERT INTO `bao_ad` VALUES (47, 18, 1, '优惠券轮播', '/coupon/detail/coupon_id/12.html', '2015/04/24/553a1459348a3.jpg', '', 0, 0, '2015-01-04', '2020-01-01', 0, 23);
 INSERT INTO `bao_ad` VALUES (48, 19, 1, '优惠券轮播', '/coupon/detail/coupon_id/12.html', '2015/04/24/553a14462fe13.jpg', '', 0, 0, '2015-01-04', '2020-01-01', 1, 23);
-INSERT INTO `bao_ad` VALUES (49, 19, 1, 'PC生活信息首页横幅广告', 'http://baocms.com/tuan/detail/tuan_id/2.html', '2015/04/24/553a149f57f17.jpg', '', 0, 0, '2015-01-13', '2020-01-01', 1, 1);
+INSERT INTO `bao_ad` VALUES (49, 19, 1, 'PC生活信息首页横幅广告', 'http://blklube.com/tuan/detail/tuan_id/2.html', '2015/04/24/553a149f57f17.jpg', '', 0, 0, '2015-01-13', '2020-01-01', 1, 1);
 INSERT INTO `bao_ad` VALUES (50, 20, 1, '右侧二维码图片', '#', '2015/04/24/5539dd54ed0b5.jpg', '', 0, 0, '2015-01-13', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (51, 19, 1, '购物广告', '/mall/detail/goods_id/12.html', '2015/04/25/553af8986171e.jpg', '', 0, 0, '2015-01-12', '2020-01-01', 1, 12);
 INSERT INTO `bao_ad` VALUES (52, 5, 1, '品牌热区', '/shop/detail/shop_id/85.html', 'http://images4.5maiche.cn/2016-05-16_5739bebd0df4a.png', '', 1, 0, '2015-01-04', '2020-01-01', 0, 1);
-INSERT INTO `bao_ad` VALUES (53, 555, 1, 'PC活动首页轮播广告位', 'http://baocms.com/mall/detail/goods_id/16.html', '2015/04/25/553af4fd56053.jpg', '', 0, 0, '2015-01-13', '2020-01-01', 0, 1);
+INSERT INTO `bao_ad` VALUES (53, 555, 1, 'PC活动首页轮播广告位', 'http://blklube.com/mall/detail/goods_id/16.html', '2015/04/25/553af4fd56053.jpg', '', 0, 0, '2015-01-13', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (54, 22, 1, '汽车1', '/shop/detail/shop_id/118.html', '2015/10/17/56222f7f957b1.jpg', '', 0, 0, '2015-01-12', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (55, 22, 1, '结婚1', '/mobile/shop/index/cat/1.html', '2015/10/17/56222f75a43e6.jpg', '', 0, 0, '2015-01-12', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (56, 21, 1, '丽人3', '/shop/detail/shop_id/133.html', '2015/04/24/5539f3a0e1db2.jpg', '', 0, 0, '2015-01-12', '2020-01-01', 1, 1);
@@ -181,8 +181,8 @@ INSERT INTO `bao_ad` VALUES (76, 1, 0, '全新商户中心', 'http://cq.mantuo.n
 INSERT INTO `bao_ad` VALUES (77, 7, 1, 'Baocms震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d159431e855.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 3);
 INSERT INTO `bao_ad` VALUES (78, 7, 1, 'Baocms震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d159383a339.png', '', 0, 0, '2015-01-26', '2020-01-01', 0, 2);
 INSERT INTO `bao_ad` VALUES (79, 7, 1, 'Baocms震撼来袭', '/shop/detail/shop_id/29.html', '2016/02/27/56d1592bda769.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 1);
-INSERT INTO `bao_ad` VALUES (80, 24, 1, 'Baocms震撼来袭', 'http://baocms.com/jifen/main.html', '2015/04/24/5539d955ec5b6.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 1);
-INSERT INTO `bao_ad` VALUES (81, 24, 1, 'Baocms震撼来袭', 'http://baocms.com/jifen/main.html', '2015/04/24/5539da88cb0b5.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 2);
+INSERT INTO `bao_ad` VALUES (80, 24, 1, 'Baocms震撼来袭', 'http://blklube.com/jifen/main.html', '2015/04/24/5539d955ec5b6.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 1);
+INSERT INTO `bao_ad` VALUES (81, 24, 1, 'Baocms震撼来袭', 'http://blklube.com/jifen/main.html', '2015/04/24/5539da88cb0b5.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 1, 2);
 INSERT INTO `bao_ad` VALUES (82, 35, 1, 'Baocms震撼来袭', 'http://baocms.fengmiyuanma.com/', '2016/01/18/569c623473cb5.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 3);
 INSERT INTO `bao_ad` VALUES (83, 24, 1, 'Baocms', 'http://baocms.fengmiyuanma.com/', '2016/04/01/56fe3173b2c21.jpg', '', 0, 0, '2015-01-26', '2020-01-01', 0, 4);
 INSERT INTO `bao_ad` VALUES (84, 55, 1, '汽车2', '/shop/detail/shop_id/33.html', '2015/01/29/54c9fb4c679ad.png', '', 0, 0, '2015-01-12', '2020-01-01', 0, 2);
@@ -246,22 +246,22 @@ INSERT INTO `bao_ad` VALUES (141, 48, 1, '2F左侧', '/mall/index/cate_id/14.htm
 INSERT INTO `bao_ad` VALUES (142, 49, 1, '2F中间', '/mall/detail/goods_id/10.html', '2015/03/24/5511295e3f1a3.jpg', '', 0, 0, '2015-03-11', '2019-03-29', 0, 43);
 INSERT INTO `bao_ad` VALUES (143, 50, 1, '3F左侧', '/mall/index/cate_id/2.html', '2015/03/24/55112a77dc5b0.png', '', 0, 0, '2015-03-06', '2019-03-27', 0, 1);
 INSERT INTO `bao_ad` VALUES (144, 51, 1, '3F中间', '/mall/detail/goods_id/16.html', '2015/03/24/55112aa2deaa4.jpg', '', 0, 0, '2015-03-05', '2019-03-28', 0, 4);
-INSERT INTO `bao_ad` VALUES (145, 25, 1, 'PC活动首页轮播广告位', 'http://baocms.com/mall/detail/goods_id/16.html', '2015/04/25/553af4cc07f06.jpg', '', 0, 0, '2015-01-13', '2020-01-01', 0, 1);
+INSERT INTO `bao_ad` VALUES (145, 25, 1, 'PC活动首页轮播广告位', 'http://blklube.com/mall/detail/goods_id/16.html', '2015/04/25/553af4cc07f06.jpg', '', 0, 0, '2015-01-13', '2020-01-01', 0, 1);
 INSERT INTO `bao_ad` VALUES (146, 8, 1, '教育', '/shop/detail/shop_id/55.html', '2015/04/23/5538bb4f9ef3c.jpg', '', 0, 0, '2015-04-08', '2015-06-16', 0, 2);
 INSERT INTO `bao_ad` VALUES (147, 8, 1, '教育', '/shop/detail/shop_id/55.html', '2015/04/23/5538bba766128.jpg', '', 0, 0, '2015-04-02', '2015-08-12', 0, 3);
 INSERT INTO `bao_ad` VALUES (148, 14, 1, '母婴', '/shop/detail/shop_id/21.html', '2015/04/24/5539adcf0f924.jpg', '', 0, 0, '2015-04-01', '2015-06-26', 1, 1);
 INSERT INTO `bao_ad` VALUES (149, 14, 1, '母婴', '/shop/detail/shop_id/21.html', '2015/04/24/5539adbce04d6.jpg', '', 0, 0, '2015-04-09', '2015-08-23', 1, 2);
 INSERT INTO `bao_ad` VALUES (150, 15, 1, '母婴', '/shop/detail/shop_id/49.html', 'http://images4.5maiche.cn/2016-05-16_5739e533625a4.png', '', 0, 0, '2015-04-02', '2015-08-23', 0, 2);
 INSERT INTO `bao_ad` VALUES (151, 15, 1, '丽人', '/shop/detail/shop_id/49.html', 'http://images4.5maiche.cn/2016-05-16_5739e524a83e9.png', '', 0, 0, '2015-04-02', '2015-07-23', 0, 1);
-INSERT INTO `bao_ad` VALUES (152, 19, 1, '锅', 'http://baocms.com/tuan/detail/tuan_id/2.html', '2015/04/24/553a14d12b3a8.jpg', '', 0, 0, '2015-04-01', '2015-07-08', 1, 2);
-INSERT INTO `bao_ad` VALUES (153, 19, 1, '优惠', 'http://baocms.com/tuan/detail/tuan_id/2.html', '2015/09/13/55f57de98ce81.png', '', 0, 0, '2015-04-03', '2015-07-24', 0, 2);
-INSERT INTO `bao_ad` VALUES (154, 19, 1, '核桃', 'http://baocms.com/tuan/detail/tuan_id/2.html', '2015/09/13/55f57dcadff97.png', '', 0, 0, '2015-04-09', '2015-06-24', 0, 2);
-INSERT INTO `bao_ad` VALUES (155, 21, 1, '抢购', 'http://baocms.com/mall/detail/goods_id/16.html', '2015/04/28/553f35820675d.jpg', '', 0, 0, '2015-04-09', '2015-08-06', 1, 1);
+INSERT INTO `bao_ad` VALUES (152, 19, 1, '锅', 'http://blklube.com/tuan/detail/tuan_id/2.html', '2015/04/24/553a14d12b3a8.jpg', '', 0, 0, '2015-04-01', '2015-07-08', 1, 2);
+INSERT INTO `bao_ad` VALUES (153, 19, 1, '优惠', 'http://blklube.com/tuan/detail/tuan_id/2.html', '2015/09/13/55f57de98ce81.png', '', 0, 0, '2015-04-03', '2015-07-24', 0, 2);
+INSERT INTO `bao_ad` VALUES (154, 19, 1, '核桃', 'http://blklube.com/tuan/detail/tuan_id/2.html', '2015/09/13/55f57dcadff97.png', '', 0, 0, '2015-04-09', '2015-06-24', 0, 2);
+INSERT INTO `bao_ad` VALUES (155, 21, 1, '抢购', 'http://blklube.com/mall/detail/goods_id/16.html', '2015/04/28/553f35820675d.jpg', '', 0, 0, '2015-04-09', '2015-08-06', 1, 1);
 INSERT INTO `bao_ad` VALUES (156, 48, 1, '生活信息', '/mall/index/cate_id/14.html', '2015/04/25/553b279abfc36.jpg', '', 0, 0, '2015-04-09', '2015-07-25', 0, 1);
 INSERT INTO `bao_ad` VALUES (157, 48, 1, '生活信息', '/mall/index/cate_id/14.html', '2015/04/25/553b27b5d5deb.jpg', '', 0, 0, '2015-04-08', '2015-06-27', 0, 1);
 INSERT INTO `bao_ad` VALUES (158, 48, 1, '生活信息', '/mall/index/cate_id/14.html', '2015/04/25/553b27d3cd7fd.jpg', '', 0, 0, '2015-04-10', '2015-06-24', 0, 1);
 INSERT INTO `bao_ad` VALUES (159, 48, 1, '生活信息', '/mall/index/cate_id/14.html', '2015/04/25/553b27f619505.jpg', '', 0, 0, '2015-04-03', '2015-07-31', 0, 1);
-INSERT INTO `bao_ad` VALUES (160, 48, 1, '生活信息', 'http://baocms.com/mall/index/cate_id/14.html', '2015/04/25/553b28905b305.jpg', '', 0, 0, '2015-04-11', '2015-06-11', 0, 1);
+INSERT INTO `bao_ad` VALUES (160, 48, 1, '生活信息', 'http://blklube.com/mall/index/cate_id/14.html', '2015/04/25/553b28905b305.jpg', '', 0, 0, '2015-04-11', '2015-06-11', 0, 1);
 INSERT INTO `bao_ad` VALUES (161, 42, 1, '浪奇高端除菌洗衣液4斤促销装', '/mall/detail/goods_id/75.html', '2015/04/27/553dad170a01c.jpg', '', 0, 0, '2015-04-27', '2018-04-27', 0, 2);
 INSERT INTO `bao_ad` VALUES (162, 42, 1, '慕尼思丹茶几客厅家具', '/mall/detail/goods_id/84.html', '2015/04/27/553daf3c83fc1.jpg', '', 0, 0, '2015-04-27', '2018-04-27', 0, 3);
 INSERT INTO `bao_ad` VALUES (163, 23, 1, '万里挑一，为你而选', '/coupon/detail/coupon_id/18.html', '2015/10/17/562231e983db0.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 24);
@@ -269,8 +269,8 @@ INSERT INTO `bao_ad` VALUES (164, 23, 1, 'BAOCMS家居频道诚意奉献', '/cou
 INSERT INTO `bao_ad` VALUES (165, 17, 1, '超级囤货日，童装玩具全场满减', '/huodong/detail/activity_id/20.html', '2015/04/28/553f3025011ad.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 2);
 INSERT INTO `bao_ad` VALUES (166, 17, 1, '清仓四连发，底价1-4折', '/huodong/detail/activity_id/26.html', '2015/04/28/553f31adb993f.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 0, 35);
 INSERT INTO `bao_ad` VALUES (167, 21, 1, '五月亲子节，深情钜惠', '/mall/detail/goods_id/16.html', '2015/04/28/553f34dc85803.jpg', '', 0, 0, '2015-04-28', '2018-04-28', 1, 2);
-INSERT INTO `bao_ad` VALUES (168, 21, 1, '儿童节', 'http://baocms.com/mall/detail/goods_id/78.html', '2015/10/17/56222fea2a541.jpg', '', 0, 0, '2015-04-22', '2015-06-26', 0, 1);
-INSERT INTO `bao_ad` VALUES (169, 21, 1, '大换购', 'http://baocms.com/mall/detail/goods_id/13.html', '2015/10/17/56222fdabca0c.jpg', '', 0, 0, '2015-04-15', '2016-06-03', 0, 1);
+INSERT INTO `bao_ad` VALUES (168, 21, 1, '儿童节', 'http://blklube.com/mall/detail/goods_id/78.html', '2015/10/17/56222fea2a541.jpg', '', 0, 0, '2015-04-22', '2015-06-26', 0, 1);
+INSERT INTO `bao_ad` VALUES (169, 21, 1, '大换购', 'http://blklube.com/mall/detail/goods_id/13.html', '2015/10/17/56222fdabca0c.jpg', '', 0, 0, '2015-04-15', '2016-06-03', 0, 1);
 INSERT INTO `bao_ad` VALUES (170, 52, 1, '大换购', '#', '2015/06/24/558a649ac8152.jpg', '', 0, 0, '2015-06-24', '2019-06-19', 0, 1);
 INSERT INTO `bao_ad` VALUES (171, 52, 1, 'php微信O2O生活宝门户系统', '#', '2015/06/24/558a648d1ba8f.jpg', '', 0, 0, '2015-06-16', '2015-06-27', 0, 2);
 INSERT INTO `bao_ad` VALUES (172, 2, 1, 'hao', 'http://www.baidu.com', '2015/07/07/559ba90dae9d9.png', 'hao', 0, 0, '2015-07-15', '2015-07-24', 1, 1);
@@ -285,17 +285,17 @@ INSERT INTO `bao_ad` VALUES (180, 6, 0, '品牌热区', '/shop/detail/shop_id/85
 INSERT INTO `bao_ad` VALUES (181, 6, 0, '品牌热区', '/shop/detail/shop_id/85.html', '2016/02/27/56d158f021a10.png', '', 0, 0, '2016-02-27', '2020-02-27', 0, 2);
 INSERT INTO `bao_ad` VALUES (182, 6, 0, '品牌热区', '/shop/detail/shop_id/85.html', '2016/02/27/56d159061128b.jpg', '', 0, 0, '2016-02-27', '2020-02-27', 0, 3);
 INSERT INTO `bao_ad` VALUES (183, 60, 0, 'PC一元云购', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-06-18_5764b038032ea.png', '', 6, 0, '2016-03-01', '2020-03-01', 0, 1);
-INSERT INTO `bao_ad` VALUES (184, 1, 0, '蜂蜜源码', 'http://www.mantuo.net/worker', 'http://images4.5maiche.cn/2016-05-16_57394a9f2138e.jpg', '', 62, 0, '2016-03-22', '2020-03-25', 0, 2);
-INSERT INTO `bao_ad` VALUES (185, 1, 0, '蜂蜜源码', 'http://www.mantuo.net/wuye', 'http://images4.5maiche.cn/2016-05-16_57394a8975553.jpg', '', 76, 0, '2016-03-23', '2020-03-19', 0, 1);
+INSERT INTO `bao_ad` VALUES (184, 1, 0, '浡莱克润滑油', 'http://www.mantuo.net/worker', 'http://images4.5maiche.cn/2016-05-16_57394a9f2138e.jpg', '', 62, 0, '2016-03-22', '2020-03-25', 0, 2);
+INSERT INTO `bao_ad` VALUES (185, 1, 0, '浡莱克润滑油', 'http://www.mantuo.net/wuye', 'http://images4.5maiche.cn/2016-05-16_57394a8975553.jpg', '', 76, 0, '2016-03-23', '2020-03-19', 0, 1);
 INSERT INTO `bao_ad` VALUES (186, 61, 0, '手机黄页657*106', 'http://baocms.fengmiyuanma.com/', '2016/03/31/56fcc790d368c.png', '', 0, 0, '2016-03-31', '2020-03-26', 0, 1);
-INSERT INTO `bao_ad` VALUES (187, 62, 0, 'wap首页左320*420（文字广告）', 'http://baocms.com/', '2016/04/14/570f499010490.png', '', 64, 0, '2016-04-14', '2020-04-22', 0, 1);
-INSERT INTO `bao_ad` VALUES (188, 63, 0, 'wap首页右上510*240 ', 'http://baocms.com/', '2016/04/14/570f49b2cca78.png', '', 64, 0, '2016-04-14', '2020-04-23', 0, 2);
-INSERT INTO `bao_ad` VALUES (189, 64, 0, 'wap首页右下_左260*251', 'http://baocms.com/', '2016/04/14/570f49e3699f9.png', '', 37, 0, '2016-04-14', '2019-04-25', 0, 3);
-INSERT INTO `bao_ad` VALUES (190, 65, 0, 'wap首页右下_右260*250', 'http://baocms.com/', '2016/04/14/570f4a0489c1a.png', '', 28, 0, '2016-04-14', '2020-04-30', 0, 4);
+INSERT INTO `bao_ad` VALUES (187, 62, 0, 'wap首页左320*420（文字广告）', 'http://blklube.com/', '2016/04/14/570f499010490.png', '', 64, 0, '2016-04-14', '2020-04-22', 0, 1);
+INSERT INTO `bao_ad` VALUES (188, 63, 0, 'wap首页右上510*240 ', 'http://blklube.com/', '2016/04/14/570f49b2cca78.png', '', 64, 0, '2016-04-14', '2020-04-23', 0, 2);
+INSERT INTO `bao_ad` VALUES (189, 64, 0, 'wap首页右下_左260*251', 'http://blklube.com/', '2016/04/14/570f49e3699f9.png', '', 37, 0, '2016-04-14', '2019-04-25', 0, 3);
+INSERT INTO `bao_ad` VALUES (190, 65, 0, 'wap首页右下_右260*250', 'http://blklube.com/', '2016/04/14/570f4a0489c1a.png', '', 28, 0, '2016-04-14', '2020-04-30', 0, 4);
 INSERT INTO `bao_ad` VALUES (191, 57, 0, '草鱼火锅', '', '/attachs/2019/10/24/5db15123a53bf.png', '', 30, 0, '2016-04-25', '2023-05-01', 0, 0);
 INSERT INTO `bao_ad` VALUES (192, 66, 0, 'pc新闻1200*200', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-05-14_57370540b0221.png', '', 7, 0, '2016-05-14', '2020-05-30', 0, 1);
 INSERT INTO `bao_ad` VALUES (193, 66, 0, 'pc新闻1200*200', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-05-14_573705584f952.png', '', 4, 0, '2016-05-14', '2020-05-21', 0, 2);
-INSERT INTO `bao_ad` VALUES (194, 67, 0, 'pc顶部横幅', 'http://baocms.com', 'http://images4.5maiche.cn/2016-05-27_57483e2c79714.jpg', '', 0, 0, '2016-05-27', '2016-05-31', 0, 1);
+INSERT INTO `bao_ad` VALUES (194, 67, 0, 'pc顶部横幅', 'http://blklube.com', 'http://images4.5maiche.cn/2016-05-27_57483e2c79714.jpg', '', 0, 0, '2016-05-27', '2016-05-31', 0, 1);
 INSERT INTO `bao_ad` VALUES (195, 68, 0, '手机抢购_main', 'http://www.mantuo.net/wap/tuan/detail/tuan_id/2.html', 'http://images4.5maiche.cn/2016-06-29_5773ceb07adc8.png', '', 2, 0, '2016-06-29', '2020-06-29', 0, 1);
 INSERT INTO `bao_ad` VALUES (196, 69, 0, 'PC贴吧1200*400', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-07-13_5785d4c52b08c.png', '', 3, 0, '2016-07-13', '2020-07-24', 0, 1);
 INSERT INTO `bao_ad` VALUES (197, 70, 0, '暖团', 'http://www.mantuo.net/', 'http://images4.5maiche.cn/2016-08-17_57b4628a98043.jpg', '', 1, 0, '2016-08-17', '2019-08-29', 0, 0);
@@ -1167,14 +1167,14 @@ CREATE TABLE `bao_city`  (
 -- ----------------------------
 -- Records of bao_city
 -- ----------------------------
-INSERT INTO `bao_city` VALUES (7, '西安', 'http://images4.5maiche.cn/2016-08-11_57abf4f4b67d2.jpg', 'xian', 1, 1, '104.071189', '30.576419', 2, 'X', 'red');
-INSERT INTO `bao_city` VALUES (9, '白沟', 'http://images4.5maiche.cn/2016-09-26_57e8903ec5467.jpg', 'baigou', 1, 1, '116.030336', '39.126934', 1, 'B', 'red');
-INSERT INTO `bao_city` VALUES (1, '重庆市', '2016/04/12/thumb_570cb3394d904.jpg', 'cq', 1, 1, '108.111754', '29.355971', 9, 'C', 'news');
-INSERT INTO `bao_city` VALUES (10, '大连', '2016/04/12/thumb_570cb32f71337.jpg', 'dalian', 1, 1, '121.615642', '38.917549', 0, 'D', '');
-INSERT INTO `bao_city` VALUES (11, '乌海', 'http://images4.5maiche.cn/2016-08-13_57ae7baf06023.png', 'wuhai', 1, 1, '106.801868', '39.660217', 1, 'W', 'default');
-INSERT INTO `bao_city` VALUES (12, '北京市', 'http://images4.5maiche.cn/2016-09-06_57ced896cbd23.jpg', 'beijing', 1, 1, '116.413663', '39.911087', 0, 'B', 'red');
-INSERT INTO `bao_city` VALUES (13, '济宁', 'http://images4.5maiche.cn/2016-09-07_57cf8ef48ae15.jpg', 'jining', 1, 1, '116.593861', '35.420372', 0, 'J', 'red');
-INSERT INTO `bao_city` VALUES (14, '泉州', 'http://images4.5maiche.cn/2016-10-13_57ffa8896374c.jpg', 'quanzhou', 1, 1, '118.682321', '24.88023', 1, 'Q', '');
+INSERT INTO `bao_city` VALUES (7, '西安', 'http://images4.5maiche.cn/2016-08-11_57abf4f4b67d2.jpg', 'xian', 1, 0, '104.071189', '30.576419', 2, 'X', 'red');
+INSERT INTO `bao_city` VALUES (9, '白沟', 'http://images4.5maiche.cn/2016-09-26_57e8903ec5467.jpg', 'baigou', 1, 0, '116.030336', '39.126934', 1, 'B', 'red');
+INSERT INTO `bao_city` VALUES (1, '重庆市', '2016/04/12/thumb_570cb3394d904.jpg', 'cq', 1, 0, '108.111754', '29.355971', 9, 'C', 'news');
+INSERT INTO `bao_city` VALUES (10, '大连', '2016/04/12/thumb_570cb32f71337.jpg', 'dalian', 1,0, '121.615642', '38.917549', 0, 'D', '');
+INSERT INTO `bao_city` VALUES (11, '乌海', 'http://images4.5maiche.cn/2016-08-13_57ae7baf06023.png', 'wuhai', 1, 0, '106.801868', '39.660217', 1, 'W', 'default');
+INSERT INTO `bao_city` VALUES (12, '北京市', 'http://images4.5maiche.cn/2016-09-06_57ced896cbd23.jpg', 'beijing', 1, 0, '116.413663', '39.911087', 0, 'B', 'red');
+INSERT INTO `bao_city` VALUES (13, '济宁', 'http://images4.5maiche.cn/2016-09-07_57cf8ef48ae15.jpg', 'jining', 1,0, '116.593861', '35.420372', 0, 'J', 'red');
+INSERT INTO `bao_city` VALUES (14, '泉州', 'http://images4.5maiche.cn/2016-10-13_57ffa8896374c.jpg', 'quanzhou', 1, 0, '118.682321', '24.88023', 1, 'Q', '');
 
 -- ----------------------------
 -- Table structure for bao_cloud_goods
@@ -1761,7 +1761,7 @@ CREATE TABLE `bao_dayu_sms`  (
 -- ----------------------------
 -- Records of bao_dayu_sms
 -- ----------------------------
-INSERT INTO `bao_dayu_sms` VALUES (1, '蜂蜜源码-1571902467', 'sms_yzm', '18864874770', 0, NULL, '尊敬的用户：您在蜂蜜源码手机认证的验证码是692751千万别告诉别人！', 1571902467, '127.0.0.1');
+INSERT INTO `bao_dayu_sms` VALUES (1, '浡莱克润滑油-1571902467', 'sms_yzm', '18864874770', 0, NULL, '尊敬的用户：您在浡莱克润滑油手机认证的验证码是692751千万别告诉别人！', 1571902467, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for bao_dayu_tag
@@ -5488,7 +5488,7 @@ CREATE TABLE `bao_links`  (
 -- Records of bao_links
 -- ----------------------------
 INSERT INTO `bao_links` VALUES (1, 1, '快递查询', 'https://m.kuaidi100.com', '120585022@qq.com', '我们网站很不错', 0, 1, 1, 0, '');
-INSERT INTO `bao_links` VALUES (2, 1, '淘宝网', 'http://cq.baocms.com/', '120585022@qq.com', '你好，草拟吗', 0, 2, 1, 1475630687, '27.13.26.211');
+INSERT INTO `bao_links` VALUES (2, 1, '淘宝网', 'http://cq.blklube.com/', '120585022@qq.com', '你好，草拟吗', 0, 2, 1, 1475630687, '27.13.26.211');
 
 -- ----------------------------
 -- Table structure for bao_lock
@@ -53114,7 +53114,7 @@ CREATE TABLE `bao_setting`  (
 -- ----------------------------
 -- Records of bao_setting
 -- ----------------------------
-INSERT INTO `bao_setting` VALUES ('site', 'a:35:{s:8:\"sitename\";s:12:\"蜂蜜源码\";s:4:\"host\";s:22:\"http://www.baocms.com\";s:6:\"hostdo\";s:11:\"baocms.com\";s:6:\"imgurl\";s:25:\"http://www.baocms.com\";s:7:\"android\";s:45:\"http://www.appk6.com/public/bin/782/20831.apk\";s:3:\"ios\";s:45:\"http://www.appk6.com/public/bin/782/20831.ipa\";s:4:\"logo\";s:54:\"http://www.baocms.com/2016-09-13_57d740df12d4e.jpg\";s:6:\"wxcode\";s:54:\"http://www.baocms.com/2016-09-13_57d740e1f0de9.jpg\";s:2:\"qq\";s:9:\"120585022\";s:3:\"tel\";s:12:\"023-79678674\";s:5:\"email\";s:16:\"120585022@qq.com\";s:3:\"icp\";s:20:\"京ICP备14054253号\";s:5:\"title\";s:12:\"蜂蜜源码\";s:7:\"keyword\";s:0:\"\";s:11:\"description\";s:0:\"\";s:8:\"headinfo\";s:0:\"\";s:6:\"tongji\";s:0:\"\";s:7:\"city_id\";s:1:\"1\";s:3:\"lng\";s:10:\"108.777362\";s:3:\"lat\";s:9:\"29.539334\";s:5:\"goods\";s:1:\"7\";s:3:\"ele\";s:1:\"1\";s:9:\"postaudit\";s:1:\"0\";s:10:\"replyaudit\";s:1:\"0\";s:17:\"xiaoqu_post_audit\";s:1:\"0\";s:18:\"xiaoqu_reply_audit\";s:1:\"0\";s:19:\"article_reply_audit\";s:1:\"1\";s:17:\"xiaoqu_news_audit\";s:1:\"1\";s:10:\"tribeaudit\";s:1:\"1\";s:15:\"fabu_life_audit\";s:1:\"0\";s:6:\"weixin\";s:1:\"0\";s:13:\"config_mobile\";s:11:\"13356872345\";s:12:\"config_email\";s:16:\"120585022@qq.com\";s:9:\"web_close\";s:1:\"1\";s:15:\"web_close_title\";s:0:\"\";}');
+INSERT INTO `bao_setting` VALUES ('site', 'a:35:{s:8:\"sitename\";s:12:\"浡莱克润滑油\";s:4:\"host\";s:22:\"http://www.blklube.com\";s:6:\"hostdo\";s:11:\"blklube.com\";s:6:\"imgurl\";s:25:\"http://www.blklube.com\";s:7:\"android\";s:45:\"http://www.appk6.com/public/bin/782/20831.apk\";s:3:\"ios\";s:45:\"http://www.appk6.com/public/bin/782/20831.ipa\";s:4:\"logo\";s:54:\"http://www.blklube.com/2016-09-13_57d740df12d4e.jpg\";s:6:\"wxcode\";s:54:\"http://www.blklube.com/2016-09-13_57d740e1f0de9.jpg\";s:2:\"qq\";s:9:\"120585022\";s:3:\"tel\";s:12:\"023-79678674\";s:5:\"email\";s:16:\"120585022@qq.com\";s:3:\"icp\";s:20:\"京ICP备14054253号\";s:5:\"title\";s:12:\"浡莱克润滑油\";s:7:\"keyword\";s:0:\"\";s:11:\"description\";s:0:\"\";s:8:\"headinfo\";s:0:\"\";s:6:\"tongji\";s:0:\"\";s:7:\"city_id\";s:1:\"1\";s:3:\"lng\";s:10:\"108.777362\";s:3:\"lat\";s:9:\"29.539334\";s:5:\"goods\";s:1:\"7\";s:3:\"ele\";s:1:\"1\";s:9:\"postaudit\";s:1:\"0\";s:10:\"replyaudit\";s:1:\"0\";s:17:\"xiaoqu_post_audit\";s:1:\"0\";s:18:\"xiaoqu_reply_audit\";s:1:\"0\";s:19:\"article_reply_audit\";s:1:\"1\";s:17:\"xiaoqu_news_audit\";s:1:\"1\";s:10:\"tribeaudit\";s:1:\"1\";s:15:\"fabu_life_audit\";s:1:\"0\";s:6:\"weixin\";s:1:\"0\";s:13:\"config_mobile\";s:11:\"13356872345\";s:12:\"config_email\";s:16:\"120585022@qq.com\";s:9:\"web_close\";s:1:\"1\";s:15:\"web_close_title\";s:0:\"\";}');
 INSERT INTO `bao_setting` VALUES ('attachs', 'a:48:{s:15:\"pic_wap_quality\";a:1:{s:5:\"thumb\";s:2:\"80\";}s:14:\"pic_pc_quality\";a:1:{s:5:\"thumb\";s:2:\"80\";}s:8:\"shoplogo\";a:1:{s:5:\"thumb\";s:7:\"150X150\";}s:16:\"shop_environment\";a:1:{s:5:\"thumb\";s:7:\"600X400\";}s:8:\"sitelogo\";a:1:{s:5:\"thumb\";s:6:\"180X55\";}s:8:\"shopnews\";a:1:{s:5:\"thumb\";s:7:\"260X260\";}s:11:\"lifeservice\";a:2:{s:5:\"thumb\";s:7:\"350X285\";s:4:\"icon\";s:6:\"120X80\";}s:8:\"activity\";a:1:{s:5:\"thumb\";s:7:\"470X275\";}s:6:\"coupon\";a:1:{s:5:\"thumb\";s:7:\"577X430\";}s:5:\"cloud\";a:1:{s:5:\"thumb\";s:7:\"410X380\";}s:7:\"article\";a:1:{s:5:\"thumb\";s:7:\"260X260\";}s:13:\"integralgoods\";a:1:{s:5:\"thumb\";s:7:\"350X350\";}s:4:\"dian\";a:1:{s:5:\"thumb\";s:7:\"340X270\";}s:8:\"dingroom\";a:1:{s:5:\"thumb\";s:7:\"340X270\";}s:12:\"shopdianping\";a:1:{s:5:\"thumb\";s:7:\"380X260\";}s:8:\"dianping\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:4:\"user\";a:1:{s:5:\"thumb\";a:3:{s:5:\"thumb\";s:7:\"200X200\";s:6:\"middle\";s:7:\"120X120\";s:5:\"small\";s:5:\"60X60\";}}s:9:\"shopphoto\";a:1:{s:5:\"thumb\";s:7:\"300X300\";}s:9:\"recommend\";a:1:{s:5:\"thumb\";s:7:\"180X180\";}s:4:\"tuan\";a:1:{s:5:\"thumb\";s:7:\"480X275\";}s:4:\"life\";a:1:{s:5:\"thumb\";s:7:\"320X320\";}s:7:\"lifepic\";a:1:{s:5:\"thumb\";s:7:\"600X400\";}s:5:\"tieba\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:6:\"weixin\";a:1:{s:5:\"thumb\";s:7:\"320X120\";}s:5:\"goods\";a:1:{s:5:\"thumb\";s:7:\"470X470\";}s:10:\"shopbanner\";a:1:{s:5:\"thumb\";s:7:\"320X120\";}s:11:\"shopbanner1\";a:1:{s:5:\"thumb\";s:8:\"1000X300\";}s:10:\"eleproduct\";a:1:{s:5:\"thumb\";s:7:\"300X300\";}s:8:\"dingmenu\";a:1:{s:5:\"thumb\";s:7:\"600X450\";}s:10:\"weidianpic\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:10:\"shop_audit\";a:1:{s:5:\"thumb\";s:8:\"1000X800\";}s:7:\"village\";a:1:{s:5:\"thumb\";s:7:\"400X300\";}s:14:\"village_worker\";a:1:{s:5:\"thumb\";s:7:\"150X150\";}s:6:\"xiaoqu\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:2:\"ad\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:5:\"hotle\";a:1:{s:5:\"thumb\";s:7:\"400X300\";}s:6:\"pinche\";a:1:{s:5:\"thumb\";s:7:\"640X320\";}s:7:\"appoint\";a:1:{s:5:\"thumb\";s:7:\"300X300\";}s:18:\"appoint_cate_photo\";a:1:{s:5:\"thumb\";s:5:\"80X80\";}s:16:\"appoint_dianping\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:14:\"appoint_worker\";a:1:{s:5:\"thumb\";s:7:\"200X300\";}s:19:\"delivery_user_photo\";a:1:{s:5:\"thumb\";s:7:\"600X450\";}s:11:\"thread_logo\";a:1:{s:5:\"thumb\";s:7:\"160X160\";}s:13:\"thread_banner\";a:1:{s:5:\"thumb\";s:8:\"1200X260\";}s:6:\"thread\";a:1:{s:5:\"thumb\";s:7:\"300X200\";}s:7:\"running\";a:1:{s:5:\"thumb\";s:7:\"400X300\";}s:4:\"rank\";a:1:{s:5:\"thumb\";s:5:\"80X80\";}s:6:\"editor\";a:1:{s:5:\"thumb\";s:7:\"600X600\";}}');
 INSERT INTO `bao_setting` VALUES ('ucenter', 'a:15:{s:7:\"charset\";s:1:\"0\";s:10:\"UC_CONNECT\";s:5:\"mysql\";s:9:\"UC_DBHOST\";s:9:\"localhost\";s:9:\"UC_DBUSER\";s:4:\"root\";s:7:\"UC_DBPW\";s:6:\"123456\";s:9:\"UC_DBNAME\";s:6:\"ultrax\";s:12:\"UC_DBCHARSET\";s:4:\"utf8\";s:13:\"UC_DBTABLEPRE\";s:19:\"ultrax.pre_ucenter_\";s:12:\"UC_DBCONNECT\";s:1:\"0\";s:6:\"UC_KEY\";s:39:\"9ee6F9YQ0bzQof9b9RTbUIORIvL2f8DQEmakk6Q\";s:6:\"UC_API\";s:29:\"http://www.test.com/uc_server\";s:10:\"UC_CHARSET\";s:5:\"utf-8\";s:5:\"UC_IP\";s:0:\"\";s:8:\"UC_APPID\";s:1:\"2\";s:6:\"UC_PPP\";s:2:\"20\";}');
 INSERT INTO `bao_setting` VALUES ('sms', 'a:9:{s:5:\"dxapi\";s:2:\"dy\";s:3:\"url\";s:92:\"http://api.smsbao.com/sms?u=221119&p=87ed1b34e613f50c38c0bb56279b51fd&m={mobile}&c={content}\";s:7:\"charset\";s:1:\"0\";s:15:\"sms_bao_account\";s:6:\"123456\";s:16:\"sms_bao_password\";s:6:\"221119\";s:4:\"code\";s:1:\"0\";s:4:\"sign\";s:0:\"\";s:5:\"dykey\";s:8:\"23332169\";s:8:\"dysecret\";s:32:\"e27bfc113934f8297214e52720aadc9d\";}');
@@ -53123,7 +53123,7 @@ INSERT INTO `bao_setting` VALUES ('weixin', 'a:9:{s:5:\"token\";s:20:\"3Nhv3Qbbq
 INSERT INTO `bao_setting` VALUES ('integral', 'a:16:{s:5:\"gouwu\";s:1:\"1\";s:3:\"buy\";s:1:\"0\";s:15:\"return_integral\";s:2:\"80\";s:6:\"return\";s:1:\"1\";s:20:\"tuan_return_integral\";s:1:\"1\";s:20:\"mall_return_integral\";s:1:\"1\";s:17:\"integral_exchange\";s:1:\"1\";s:21:\"integral_exchange_tax\";s:2:\"10\";s:23:\"integral_exchange_small\";s:3:\"100\";s:21:\"integral_exchange_big\";s:4:\"1000\";s:5:\"share\";s:1:\"5\";s:5:\"reply\";s:1:\"1\";s:6:\"mobile\";s:3:\"100\";s:5:\"email\";s:3:\"100\";s:4:\"sign\";s:1:\"5\";s:9:\"firstsign\";s:2:\"50\";}');
 INSERT INTO `bao_setting` VALUES ('connect', 'a:7:{s:5:\"debug\";s:1:\"1\";s:9:\"qq_app_id\";s:9:\"101357064\";s:10:\"qq_app_key\";s:32:\"d3ad13af660501995b1c71000653417b\";s:9:\"wb_app_id\";s:10:\"2867720569\";s:10:\"wb_app_key\";s:32:\"b2e2c379cf030301674de38bda0ef955\";s:9:\"wx_app_id\";s:10:\"1105662745\";s:10:\"wx_app_key\";s:16:\"EybRvd83ntVgPwOU\";}');
 INSERT INTO `bao_setting` VALUES ('prestige', 'a:7:{s:4:\"name\";s:6:\"匠币\";s:5:\"login\";s:1:\"1\";s:13:\"dianping_shop\";s:1:\"1\";s:6:\"thread\";s:2:\"12\";s:6:\"mobile\";s:3:\"100\";s:5:\"email\";s:3:\"100\";s:8:\"is_goods\";s:1:\"1\";}');
-INSERT INTO `bao_setting` VALUES ('weixinmenu', 'a:2:{s:6:\"button\";a:3:{i:1;s:7:\"5月222\";i:2;s:13:\"功能展示1\";i:3;s:13:\"管理平台8\";}s:5:\"child\";a:3:{i:1;a:5:{i:1;a:2:{s:4:\"name\";s:7:\"外卖2\";s:3:\"url\";s:31:\"http://www.baocms.com/wap/ele/\";}i:2;a:2:{s:4:\"name\";s:7:\"商城2\";s:3:\"url\";s:27:\"http://www.baocms.com/wap/\";}i:3;a:2:{s:4:\"name\";s:7:\"商家3\";s:3:\"url\";s:31:\"http://www.baocms.com/wap/shop\";}i:4;a:2:{s:4:\"name\";s:9:\"自媒体\";s:3:\"url\";s:31:\"http://www.baocms.com/wap/news\";}i:5;a:2:{s:4:\"name\";s:12:\"分类信息\";s:3:\"url\";s:54:\"http://www.baocms.com/wap/life/channel/channel/1.html\";}}i:2;a:5:{i:1;a:2:{s:4:\"name\";s:6:\"团购\";s:3:\"url\";s:31:\"http://www.baocms.com/wap/tuan\";}i:2;a:2:{s:4:\"name\";s:15:\"一元云购物\";s:3:\"url\";s:32:\"http://www.baocms.com/wap/cloud\";}i:3;a:2:{s:4:\"name\";s:6:\"家政\";s:3:\"url\";s:38:\"http://www.baocms.com/wap/lifeservice\";}i:4;a:2:{s:4:\"name\";s:6:\"小区\";s:3:\"url\";s:36:\"http://www.baocms.com/wap/community\";}i:5;a:2:{s:4:\"name\";s:12:\"社区村镇\";s:3:\"url\";s:34:\"http://www.baocms.com/wap/village\";}}i:3;a:5:{i:1;a:2:{s:4:\"name\";s:13:\"店员管理1\";s:3:\"url\";s:29:\"http://www.baocms.com/worker\";}i:2;a:2:{s:4:\"name\";s:13:\"小区管理2\";s:3:\"url\";s:27:\"http://www.baocms.com/wuye\";}i:3;a:2:{s:4:\"name\";s:13:\"商户管理3\";s:3:\"url\";s:28:\"http://www.baocms.com/store\";}i:4;a:2:{s:4:\"name\";s:13:\"物流平台4\";s:3:\"url\";s:31:\"http://www.baocms.com/delivery\";}i:5;a:2:{s:4:\"name\";s:0:\"\";s:3:\"url\";s:0:\"\";}}}}');
+INSERT INTO `bao_setting` VALUES ('weixinmenu', 'a:2:{s:6:\"button\";a:3:{i:1;s:7:\"5月222\";i:2;s:13:\"功能展示1\";i:3;s:13:\"管理平台8\";}s:5:\"child\";a:3:{i:1;a:5:{i:1;a:2:{s:4:\"name\";s:7:\"外卖2\";s:3:\"url\";s:31:\"http://www.blklube.com/wap/ele/\";}i:2;a:2:{s:4:\"name\";s:7:\"商城2\";s:3:\"url\";s:27:\"http://www.blklube.com/wap/\";}i:3;a:2:{s:4:\"name\";s:7:\"商家3\";s:3:\"url\";s:31:\"http://www.blklube.com/wap/shop\";}i:4;a:2:{s:4:\"name\";s:9:\"自媒体\";s:3:\"url\";s:31:\"http://www.blklube.com/wap/news\";}i:5;a:2:{s:4:\"name\";s:12:\"分类信息\";s:3:\"url\";s:54:\"http://www.blklube.com/wap/life/channel/channel/1.html\";}}i:2;a:5:{i:1;a:2:{s:4:\"name\";s:6:\"团购\";s:3:\"url\";s:31:\"http://www.blklube.com/wap/tuan\";}i:2;a:2:{s:4:\"name\";s:15:\"一元云购物\";s:3:\"url\";s:32:\"http://www.blklube.com/wap/cloud\";}i:3;a:2:{s:4:\"name\";s:6:\"家政\";s:3:\"url\";s:38:\"http://www.blklube.com/wap/lifeservice\";}i:4;a:2:{s:4:\"name\";s:6:\"小区\";s:3:\"url\";s:36:\"http://www.blklube.com/wap/community\";}i:5;a:2:{s:4:\"name\";s:12:\"社区村镇\";s:3:\"url\";s:34:\"http://www.blklube.com/wap/village\";}}i:3;a:5:{i:1;a:2:{s:4:\"name\";s:13:\"店员管理1\";s:3:\"url\";s:29:\"http://www.blklube.com/worker\";}i:2;a:2:{s:4:\"name\";s:13:\"小区管理2\";s:3:\"url\";s:27:\"http://www.blklube.com/wuye\";}i:3;a:2:{s:4:\"name\";s:13:\"商户管理3\";s:3:\"url\";s:28:\"http://www.blklube.com/store\";}i:4;a:2:{s:4:\"name\";s:13:\"物流平台4\";s:3:\"url\";s:31:\"http://www.blklube.com/delivery\";}i:5;a:2:{s:4:\"name\";s:0:\"\";s:3:\"url\";s:0:\"\";}}}}');
 INSERT INTO `bao_setting` VALUES ('shop', 'a:5:{s:6:\"weixin\";s:2:\"30\";s:5:\"yuyue\";s:2:\"30\";s:4:\"card\";s:2:\"30\";s:3:\"bao\";s:2:\"30\";s:4:\"life\";a:2:{s:3:\"top\";s:1:\"1\";s:6:\"urgent\";s:1:\"1\";}}');
 INSERT INTO `bao_setting` VALUES ('mobile', 'a:10:{s:7:\"amazeui\";s:1:\"1\";s:14:\"delivery_price\";s:2:\"20\";s:18:\"data_shop_dianping\";s:1:\"5\";s:18:\"data_tuan_dianping\";s:1:\"4\";s:20:\"data_waimai_dianping\";s:1:\"3\";s:21:\"data_booking_dianping\";s:1:\"3\";s:18:\"data_mall_dianping\";s:1:\"3\";s:21:\"data_appoint_dianping\";s:1:\"3\";s:19:\"data_hotel_dianping\";s:1:\"3\";s:18:\"data_farm_dianping\";s:1:\"3\";}');
 INSERT INTO `bao_setting` VALUES ('ele', 'a:1:{s:4:\"time\";i:1476209668;}');
