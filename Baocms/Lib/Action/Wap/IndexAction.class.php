@@ -36,6 +36,7 @@ class IndexAction extends CommonAction {
         $this->assign('news', $news);
 		$this->assign('community', $community);
 
+		//已开启功能 status=2
 		$maps = array('status' => 2,'closed'=>0);
 		$this->assign('nav',$nav = D('Navigation') ->where($maps)->order(array('orderby' => 'asc'))->select());
 		$bg_time = strtotime(TODAY);

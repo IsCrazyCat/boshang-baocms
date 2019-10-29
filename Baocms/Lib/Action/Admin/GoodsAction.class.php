@@ -129,7 +129,7 @@ class GoodsAction extends CommonAction {
 	
 		$data['guige'] = htmlspecialchars($data['guige']);
         if (empty($data['guige'])) {
-            $this->baoError('副标题不能为空');
+            $this->baoError('规格不能为空');
         }
 
 		$data['num'] = (int) $data['num'];

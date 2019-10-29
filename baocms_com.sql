@@ -11,7 +11,7 @@
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 28/10/2019 15:05:48
+ Date: 29/10/2019 16:23:08
 */
 
 SET NAMES utf8mb4;
@@ -401,15 +401,15 @@ CREATE TABLE `bao_admin`  (
 -- ----------------------------
 -- Records of bao_admin
 -- ----------------------------
-INSERT INTO `bao_admin` VALUES (1, 'admin', '7fef6171469e80d32c0559f88b377245', 1, 0, '15000000000', 0, 0, 0, 1441880203, '127.0.0.1', 1572242450, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (5, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 1, 1, '13355895566', 0, 0, 0, 1450145726, '27.13.153.38', 1572242450, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (6, 'ceshi', '96e79218965eb72c92a549dd5a330112', 2, 1, '13356782345', 0, 0, 0, 1456631504, '27.13.31.218', 1572242450, '127.0.0.1', 0, 1, 0);
-INSERT INTO `bao_admin` VALUES (7, '测试1', '49d92f4ddd6164663ed8fe915d915dc9', 2, 0, '13355666666', 0, 0, 0, 1456740370, '27.13.154.172', 1572242450, '127.0.0.1', 0, 0, 1);
-INSERT INTO `bao_admin` VALUES (8, 'ceshi1', '9464c3798239e316379036767f0ff7d1', 2, 7, '13366776677', 0, 0, 0, 1456740406, '27.13.154.172', 1572242450, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (9, '何总', 'e10adc3949ba59abbe56e057f20f883e', 2, 0, '13345678765', 0, 0, 0, 1460956329, '27.13.28.237', 1572242450, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (10, 'admincs', 'e10adc3949ba59abbe56e057f20f883e', 4, 0, '18247383933', 0, 0, 0, 1470822654, '110.17.189.74', 1572242450, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (11, 'beijing', 'cfe43c0212ab7a31c3050a3d97862463', 2, 12, '18600546481', 0, 0, 0, 1473210453, '114.242.8.210', 1572242450, '127.0.0.1', 0, 0, 0);
-INSERT INTO `bao_admin` VALUES (12, '18859992378', '6f855dd04ea5552fbabadbe179b1cd39', 2, 0, '18859992378', 0, 0, 0, 1475331476, '117.24.24.132', 1572242450, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (1, 'admin', '7fef6171469e80d32c0559f88b377245', 1, 0, '15000000000', 0, 0, 0, 1441880203, '127.0.0.1', 1572310141, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (5, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 1, 1, '13355895566', 0, 0, 0, 1450145726, '27.13.153.38', 1572310141, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (6, 'ceshi', '96e79218965eb72c92a549dd5a330112', 2, 1, '13356782345', 0, 0, 0, 1456631504, '27.13.31.218', 1572310141, '127.0.0.1', 0, 1, 0);
+INSERT INTO `bao_admin` VALUES (7, '测试1', '49d92f4ddd6164663ed8fe915d915dc9', 2, 0, '13355666666', 0, 0, 0, 1456740370, '27.13.154.172', 1572310141, '127.0.0.1', 0, 0, 1);
+INSERT INTO `bao_admin` VALUES (8, 'ceshi1', '9464c3798239e316379036767f0ff7d1', 2, 7, '13366776677', 0, 0, 0, 1456740406, '27.13.154.172', 1572310141, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (9, '何总', 'e10adc3949ba59abbe56e057f20f883e', 2, 0, '13345678765', 0, 0, 0, 1460956329, '27.13.28.237', 1572310141, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (10, 'admincs', 'e10adc3949ba59abbe56e057f20f883e', 4, 0, '18247383933', 0, 0, 0, 1470822654, '110.17.189.74', 1572310141, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (11, 'beijing', 'cfe43c0212ab7a31c3050a3d97862463', 2, 12, '18600546481', 0, 0, 0, 1473210453, '114.242.8.210', 1572310141, '127.0.0.1', 0, 0, 0);
+INSERT INTO `bao_admin` VALUES (12, '18859992378', '6f855dd04ea5552fbabadbe179b1cd39', 2, 0, '18859992378', 0, 0, 0, 1475331476, '117.24.24.132', 1572310141, '127.0.0.1', 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for bao_appoint
@@ -699,7 +699,7 @@ CREATE TABLE `bao_article`  (
 -- ----------------------------
 -- Records of bao_article
 -- ----------------------------
-INSERT INTO `bao_article` VALUES (1, 0, '京东刘强东今日发新闻，讲2019年京东战略发展方向。 ', 5, 12, 32, 1, '搜狐网', '京东集团CEO刘强东发布新年贺信，称2018年对自己、对家人以及公司都是异常艰难的一年，但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。\r\n\r\n刘强东在信中称，这一年京东开启了从“科技零售”到“零售科技”的转型：京东商城正式升级为零售子集团，京东金融完成品牌升级，正式更名为京东数字科技并实现全年盈利，京东物流也推出了建设全球智能供应链基础网络的宏大计划，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。', '刘强东，京东', 1, '/attachs/2019/10/28/thumb_5db691acbe170.jpg', '', '', '/attachs/default.jpg', '<p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东集团CEO刘强东发布新年贺信，称2018年对自己、对家人以及公司都是异常艰难的一年，但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">刘强东在信中称，这一年京东开启了从“科技零售”到“零售科技”的转型：京东商城正式升级为零售子集团，京东金融完成品牌升级，正式更名为京东数字科技并实现全年盈利，京东物流也推出了建设全球智能供应链基础网络的宏大计划，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;\"><br/></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\"><span style=\"font-weight: 700;\">以下为新年信全文</span>刘强东称，在新的一年里，<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第一个关键词是组织</span>，在多项业务齐头并进的背景下，京东正在推动“小集团，大业务”的转型。<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第二个关键词是人才</span>，京东将全力践行“有能者上，有力者为”的人才任用机制。<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第三个关键词是价值</span>，为社会创造最大价值一直是京东存在的根</span><span style=\"border: 0px; margin: 0px; padding: 0px;\">本理由。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255); text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">亲爱的兄弟们：</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">春节马上就要到了，首先祝大家新春大吉、诸事顺意！今年春节，我们将连续第七年履行“春节也送货”的承诺，在此，我对千千万万战斗在服务一线的兄弟们以及你们的家人们表示最衷心的感谢！在寒冬中坚持送货的兄弟们一定要注意安全、保重身体，因为你们身上不仅担负着客户的嘱托，更有父母妻儿的牵挂。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">2018年对我本人、我的家人以及公司都是异常艰难的一年！但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。你们的奋斗精神让我坚信：只要兄弟们在一起，任何困难都可以过去！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">这一年，随着成为“零售基础设施服务商”的战略确立，集团全面开启了从“科技零售”到“零售科技”的转型，其中：</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东商城正式升级为零售子集团，确立了“以信赖为基础、以客户为中心的价值创造”的经营理念，围绕“有质量的增长”全面开展了变革，尤其是将我们核心的供应链能力进行了平台化、系统化和组件化的改造，这将继续推动我们在促进消费、助力供给侧结构性改革中持续为社会创造价值。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东金融完成了品牌升级，正式更名为京东数字科技并实现全年盈利。通过大数据、IoT、AI、区块链等前沿科技，京东数字科技在推动技术创新与实体经济深度融合方面产出了一系列的丰硕成果，积极助力了实体产业提升用户体验和升级商业模式。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东物流也推出了建设全球智能供应链基础网络的宏大计划，全面向社会开放和共享了我们遍布全球的六大物流网络，凭借“体验为本，效率制胜”，全面降低了社会化的物流成本，大幅提升了流通效率！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">除了这三大子集团，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。与此同时，我们在海外的布局已经初见成效，在印尼、在泰国，以及未来在更多“一带一路”的沿线国家，京东将持续不断地对外输出我们成熟的技术能力、供应链能力和物流能力。但更让我欣慰的是，我们各个板块已经培养并拥有了一大批具备成熟管理经验和国际化视野的领军人才和中坚力量，在刚刚结束的达沃斯世界经济论坛上，京东的管理团队集体亮相，向世界展现出了朝气蓬勃的风貌。我们还有很多可圈可点的成绩，还有无数可亲可敬的兄弟们，在此，我只想真诚地对大家说一声：大家辛苦了！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">即将到来的己亥新年，我们可能会面对更多的波折与挑战，但我坚信，只要我们保持初心和战略定力，牢记使命，就一定能够迎接春天的到来！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">在新的一年里，第一个关键词是组织。在多项业务齐头并进的背景下，我们正在推动“小集团，大业务”的转型。集团化是一次战略层面的重要组织升级，集团总部和业务单元的定位因此将变得更加明确。总部将从管理型总部升级为战略型总部，将运营职能下沉，更加关注战略布局及各业务板块的协同发展，更加强化职能服务的平台化建设和推动整个集团的数字化管理，为业务板块的发展提供助力；集团还将进一步授权，业务板块将升级为独立的作战军团，我们将会把更多的能力封装到业务板块中，使业务单元更加专注于自身的经营，让业务单元有意愿、有能力、有条件取得业务发展的胜利。去年我们在物流试点了Big Boss组织变革，今年将在全集团推广，“小集团、大业务”就是集团层面推进Big Boss变革的第一步有效实践。接下来我们将继续梳理支撑公司战略和经营目标的关键经营节点，并将这些关键经营节点Boss化，从而实现开源节流、盘活资源、充分发挥组织活力，集合众人之力共同提升经营业绩，实现有质量的增长。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">第二个关键词是人才。京东因人才而兴，人才因梦想而聚！过去，人才是京东最宝贵的资源，未来，我们将全力践行“有能者上，有力者为”的人才任用机制，致力于打造一群有担当懂经营的人才，对极具价值贡献和快速成长的优秀人才给予足够的回报与认可；同时，年轻人已然成为公司发展的生力军，公司近4成员工是90后，近9成的管理者是80后甚至90后，未来公司会继续给予年轻人机会，大胆破格任用价值观正、能力卓越的双高人才，并提供充分的土壤、空气和养分，培养足够多的年轻人成为未来的领导者，让每一位京东人都能在组织中不断地找到更有激情的舞台，焕发出新的活力，持续激发公司的生命力！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">第三个关键词是价值。为社会创造最大价值一直是我们存在的根本理由。回望过去，我们通过建立自营体系、自建物流，解决了正品行货、社会物流等难题，虽然历尽艰辛，但在强烈责任感的驱使下，我们都走了过来。未来，我们仍会遇到大量复杂的难题，解决之道根本没有任何范本可言。但我希望大家牢记，只要我们的出发点和最终的结果是以创造价值为导向，我们就一定会战胜任何困难，到达胜利的彼岸！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">最后，我深深地感到，公司越大、责任越大，我们要时刻反思警醒，将自满的情绪清零；要以最积极的姿态、最饱满的热情，用必胜的信念迎接春天的到来！再次祝福所有的兄弟们幸福安康，万事如意！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">你们的刘强东</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">2019年2月1日</span></p><p><br/></p>', 0, 0, 1572245957, '127.0.0.1', 22, 0, 0, 0, 0, 1);
+INSERT INTO `bao_article` VALUES (1, 0, '京东刘强东今日发新闻，讲2019年京东战略发展方向。 ', 5, 12, 32, 1, '搜狐网', '京东集团CEO刘强东发布新年贺信，称2018年对自己、对家人以及公司都是异常艰难的一年，但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。\r\n\r\n刘强东在信中称，这一年京东开启了从“科技零售”到“零售科技”的转型：京东商城正式升级为零售子集团，京东金融完成品牌升级，正式更名为京东数字科技并实现全年盈利，京东物流也推出了建设全球智能供应链基础网络的宏大计划，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。', '刘强东，京东', 1, '/attachs/2019/10/28/thumb_5db691acbe170.jpg', '', '', '/attachs/default.jpg', '<p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东集团CEO刘强东发布新年贺信，称2018年对自己、对家人以及公司都是异常艰难的一年，但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">刘强东在信中称，这一年京东开启了从“科技零售”到“零售科技”的转型：京东商城正式升级为零售子集团，京东金融完成品牌升级，正式更名为京东数字科技并实现全年盈利，京东物流也推出了建设全球智能供应链基础网络的宏大计划，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;\"><br/></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\"><span style=\"font-weight: 700;\">以下为新年信全文</span>刘强东称，在新的一年里，<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第一个关键词是组织</span>，在多项业务齐头并进的背景下，京东正在推动“小集团，大业务”的转型。<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第二个关键词是人才</span>，京东将全力践行“有能者上，有力者为”的人才任用机制。<span style=\"font-weight: 700; border: 0px; margin: 0px; padding: 0px;\">第三个关键词是价值</span>，为社会创造最大价值一直是京东存在的根</span><span style=\"border: 0px; margin: 0px; padding: 0px;\">本理由。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255); text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">亲爱的兄弟们：</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">春节马上就要到了，首先祝大家新春大吉、诸事顺意！今年春节，我们将连续第七年履行“春节也送货”的承诺，在此，我对千千万万战斗在服务一线的兄弟们以及你们的家人们表示最衷心的感谢！在寒冬中坚持送货的兄弟们一定要注意安全、保重身体，因为你们身上不仅担负着客户的嘱托，更有父母妻儿的牵挂。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">2018年对我本人、我的家人以及公司都是异常艰难的一年！但兄弟们彼此支持、携手前行，面对复杂多变的环境，求新求变、积极进取，在组织创新、业务拓展和社会责任方面都取得了优异的成绩，向外界充分展示了京东的信念和勇气。你们的奋斗精神让我坚信：只要兄弟们在一起，任何困难都可以过去！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">这一年，随着成为“零售基础设施服务商”的战略确立，集团全面开启了从“科技零售”到“零售科技”的转型，其中：</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东商城正式升级为零售子集团，确立了“以信赖为基础、以客户为中心的价值创造”的经营理念，围绕“有质量的增长”全面开展了变革，尤其是将我们核心的供应链能力进行了平台化、系统化和组件化的改造，这将继续推动我们在促进消费、助力供给侧结构性改革中持续为社会创造价值。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东金融完成了品牌升级，正式更名为京东数字科技并实现全年盈利。通过大数据、IoT、AI、区块链等前沿科技，京东数字科技在推动技术创新与实体经济深度融合方面产出了一系列的丰硕成果，积极助力了实体产业提升用户体验和升级商业模式。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">京东物流也推出了建设全球智能供应链基础网络的宏大计划，全面向社会开放和共享了我们遍布全球的六大物流网络，凭借“体验为本，效率制胜”，全面降低了社会化的物流成本，大幅提升了流通效率！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">除了这三大子集团，京东物产、京东安联保险和京东云这三块种子业务也开始生根发芽，展现出了强劲的发展潜力，这六个业务板块将为京东未来的发展奠定坚实的根基。与此同时，我们在海外的布局已经初见成效，在印尼、在泰国，以及未来在更多“一带一路”的沿线国家，京东将持续不断地对外输出我们成熟的技术能力、供应链能力和物流能力。但更让我欣慰的是，我们各个板块已经培养并拥有了一大批具备成熟管理经验和国际化视野的领军人才和中坚力量，在刚刚结束的达沃斯世界经济论坛上，京东的管理团队集体亮相，向世界展现出了朝气蓬勃的风貌。我们还有很多可圈可点的成绩，还有无数可亲可敬的兄弟们，在此，我只想真诚地对大家说一声：大家辛苦了！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">即将到来的己亥新年，我们可能会面对更多的波折与挑战，但我坚信，只要我们保持初心和战略定力，牢记使命，就一定能够迎接春天的到来！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">在新的一年里，第一个关键词是组织。在多项业务齐头并进的背景下，我们正在推动“小集团，大业务”的转型。集团化是一次战略层面的重要组织升级，集团总部和业务单元的定位因此将变得更加明确。总部将从管理型总部升级为战略型总部，将运营职能下沉，更加关注战略布局及各业务板块的协同发展，更加强化职能服务的平台化建设和推动整个集团的数字化管理，为业务板块的发展提供助力；集团还将进一步授权，业务板块将升级为独立的作战军团，我们将会把更多的能力封装到业务板块中，使业务单元更加专注于自身的经营，让业务单元有意愿、有能力、有条件取得业务发展的胜利。去年我们在物流试点了Big Boss组织变革，今年将在全集团推广，“小集团、大业务”就是集团层面推进Big Boss变革的第一步有效实践。接下来我们将继续梳理支撑公司战略和经营目标的关键经营节点，并将这些关键经营节点Boss化，从而实现开源节流、盘活资源、充分发挥组织活力，集合众人之力共同提升经营业绩，实现有质量的增长。</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">第二个关键词是人才。京东因人才而兴，人才因梦想而聚！过去，人才是京东最宝贵的资源，未来，我们将全力践行“有能者上，有力者为”的人才任用机制，致力于打造一群有担当懂经营的人才，对极具价值贡献和快速成长的优秀人才给予足够的回报与认可；同时，年轻人已然成为公司发展的生力军，公司近4成员工是90后，近9成的管理者是80后甚至90后，未来公司会继续给予年轻人机会，大胆破格任用价值观正、能力卓越的双高人才，并提供充分的土壤、空气和养分，培养足够多的年轻人成为未来的领导者，让每一位京东人都能在组织中不断地找到更有激情的舞台，焕发出新的活力，持续激发公司的生命力！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">第三个关键词是价值。为社会创造最大价值一直是我们存在的根本理由。回望过去，我们通过建立自营体系、自建物流，解决了正品行货、社会物流等难题，虽然历尽艰辛，但在强烈责任感的驱使下，我们都走了过来。未来，我们仍会遇到大量复杂的难题，解决之道根本没有任何范本可言。但我希望大家牢记，只要我们的出发点和最终的结果是以创造价值为导向，我们就一定会战胜任何困难，到达胜利的彼岸！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">最后，我深深地感到，公司越大、责任越大，我们要时刻反思警醒，将自满的情绪清零；要以最积极的姿态、最饱满的热情，用必胜的信念迎接春天的到来！再次祝福所有的兄弟们幸福安康，万事如意！</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">你们的刘强东</span></p><p style=\"border: 0px; margin-top: 0.63em; margin-bottom: 1.8em; padding: 0px; counter-reset: list-1 0 list-2 0 list-3 0 list-4 0 list-5 0 list-6 0 list-7 0 list-8 0 list-9 0; color: rgb(25, 25, 25); font-family: &quot;PingFang SC&quot;, Arial, 微软雅黑, 宋体, simsun, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"border: 0px; margin: 0px; padding: 0px;\">2019年2月1日</span></p><p><br/></p>', 0, 0, 1572245957, '127.0.0.1', 23, 0, 0, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for bao_article_cate
@@ -1150,6 +1150,39 @@ INSERT INTO `bao_business` VALUES (41, '东昌府区', 34, 1, 0);
 INSERT INTO `bao_business` VALUES (42, '开发区', 34, 2, 0);
 
 -- ----------------------------
+-- Table structure for bao_car
+-- ----------------------------
+DROP TABLE IF EXISTS `bao_car`;
+CREATE TABLE `bao_car`  (
+  `car_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名字',
+  `short_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '简称',
+  `type` tinyint(3) NULL DEFAULT NULL COMMENT '车辆类型',
+  `photo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'logoURL',
+  `english_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '英文名称，没有的就是拼音\r\n',
+  `parent_id` int(11) NULL DEFAULT 0 COMMENT '上级ID， 0则无上级',
+  `is_open` tinyint(1) NULL DEFAULT 1 COMMENT '是否有效 0无效 1有效',
+  `orderby` tinyint(3) NULL DEFAULT 100 COMMENT '排序',
+  `first_letter` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '首字母',
+  PRIMARY KEY (`car_id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bao_car
+-- ----------------------------
+INSERT INTO `bao_car` VALUES (16, 'BMW S系插电式混合动力', 'BMW 5系', 1, '/statics/img/car/car.png', 'bmw', 0, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (17, '林肯大陆CONTINENTAL 豪华即享', 'LinClon', 1, '/statics/img/car/car.png', 'LinClon', 0, 1, 100, 'L');
+INSERT INTO `bao_car` VALUES (18, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (19, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (20, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (21, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (22, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (23, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (24, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (25, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+INSERT INTO `bao_car` VALUES (26, '宝马S', 'BMW S', 1, '/themes/default/wap/statics/img/car/car.png', 'BMW', 16, 1, 100, 'B');
+
+-- ----------------------------
 -- Table structure for bao_city
 -- ----------------------------
 DROP TABLE IF EXISTS `bao_city`;
@@ -1166,7 +1199,7 @@ CREATE TABLE `bao_city`  (
   `first_letter` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `theme` varchar(21) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'default',
   PRIMARY KEY (`city_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_city
@@ -2364,12 +2397,15 @@ CREATE TABLE `bao_goods`  (
   `profit_rank_id` tinyint(3) NULL DEFAULT 0,
   `shoplx` smallint(8) NOT NULL COMMENT '商品类型',
   PRIMARY KEY (`goods_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_goods
 -- ----------------------------
 INSERT INTO `bao_goods` VALUES (1, 'Apple 苹果 iPhone 11 移动联通电信4G手机 双卡双待 红色 全网通 (64GB)', 'Apple 苹果 iPhone 11', 1000, '入网型号 ART-AL00x 品牌 华为（HUAWEI） 产品名称 华为畅享10 上市年份 2019年 上市月份 10月', 0, 1, 5, NULL, 32, 40, 1, '12', NULL, 0, '/attachs/2019/10/28/thumb_5db68de94027d.jpg', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQGf8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL0tFVFhfaHJsaXFqekRBN0VNMmo2AAIEs07XVwMEAAAAAA%3D%3D', 541800, 500000, 490000, 0, 0, 13, 123, '<p>真品行货，童叟无欺，假一赔十<br/></p>', '<p>真品行货，童叟无欺，假一赔十</p>', '2033-10-12', 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1572245126, '127.0.0.1', 1, 0, 0, 0, 0, 0, 0, 4);
+INSERT INTO `bao_goods` VALUES (2, '年度会员卡', '年度会员卡', 1000, '充98送98返98赚98', 0, 0, 11, NULL, 34, 41, 2, '15', NULL, 0, '/attachs/2019/10/28/thumb_5db6b3e46af9e.png', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEe8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xLzFFU1VvNi1sMGFpb0hQS0ZjR2o2AAIEu07XVwMEAAAAAA%3D%3D', 19600, 9900, 100, 0, 0, 99, 999, '<p>年度会员卡，充98送98返98赚98</p>', '<p>年度会员卡，充98送98返98赚98</p>', '2033-10-12', 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1572254913, '127.0.0.1', 1, 0, 0, 0, 0, 0, 1, 28);
+INSERT INTO `bao_goods` VALUES (3, '三年年度会员卡', '三年年度会员卡', 1000, '充198送198返198赚198', 0, 0, 11, NULL, 34, 41, 2, '15', NULL, 0, '/attachs/2019/10/28/thumb_5db6b3e46af9e.png', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEe8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xLzFFU1VvNi1sMGFpb0hQS0ZjR2o2AAIEu07XVwMEAAAAAA%3D%3D', 19600, 9900, 100, 0, 0, 99, 999, '<p>年度会员卡，充198送198返198赚198</p>', '<p>三年年度会员卡，充198送198返198赚198</p>', '2033-10-12', 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1572254913, '127.0.0.1', 1, 0, 0, 0, 0, 0, 1, 28);
+INSERT INTO `bao_goods` VALUES (4, '终身年度会员卡', '终身年度会员卡', 1000, '充298送298返298赚98', 0, 0, 16, NULL, 34, 41, 2, '15', NULL, 0, '/attachs/2019/10/28/thumb_5db6b3e46af9e.png', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHT8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xLzFrVHQ1ay1sbnFqbnUtRDJDV2o2AAIEM7PXVwMEAAAAAA%3D%3D', 19600, 9900, 100, 0, 0, 99, 999, '<p>年度会员卡，充298送98返298赚298</p>', '<p>终身年度会员卡，充298送298返98赚298</p>', '2033-10-12', 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1572254913, '127.0.0.1', 1, 0, 0, 0, 0, 0, 1, 28);
 
 -- ----------------------------
 -- Table structure for bao_goods_cate
@@ -2383,19 +2419,23 @@ CREATE TABLE `bao_goods_cate`  (
   `photo` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `rate` int(11) NULL DEFAULT 60 COMMENT '结算费率',
   PRIMARY KEY (`cate_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_goods_cate
 -- ----------------------------
-INSERT INTO `bao_goods_cate` VALUES (1, '休闲零食', 0, 1, 'http://images4.5maiche.cn/2016-08-27_57c170adb246c.png', 40);
+INSERT INTO `bao_goods_cate` VALUES (1, '休闲零食', 0, 1, '/attachs/2019/10/28/5db6acdc90126.png', 40);
 INSERT INTO `bao_goods_cate` VALUES (2, '糖果/巧克力', 1, 1, '', 23);
 INSERT INTO `bao_goods_cate` VALUES (3, '巧克力', 2, 1, '', 19);
-INSERT INTO `bao_goods_cate` VALUES (4, '手机', 0, 2, 'http://images4.5maiche.cn/2016-08-27_57c170ce07cbd.png', 68);
+INSERT INTO `bao_goods_cate` VALUES (4, '手机', 0, 2, '/attachs/2019/10/28/5db6ace7c1dd0.png', 68);
 INSERT INTO `bao_goods_cate` VALUES (5, '苹果手机', 4, 3, '', 62);
-INSERT INTO `bao_goods_cate` VALUES (10, '服装服饰', 0, 0, 'http://images4.5maiche.cn/2016-09-07_57cf7b8875beb.png', 100);
+INSERT INTO `bao_goods_cate` VALUES (10, '服装服饰', 0, 0, '/attachs/2019/10/28/5db6ac919aa28.png', 100);
 INSERT INTO `bao_goods_cate` VALUES (11, '精品女装', 10, 0, '', 100);
 INSERT INTO `bao_goods_cate` VALUES (12, '精品男装', 10, 0, '', 0);
+INSERT INTO `bao_goods_cate` VALUES (13, '会员卡', 0, 0, '/attachs/2019/10/28/5db6b276ecc99.jpg', 0);
+INSERT INTO `bao_goods_cate` VALUES (14, '年度会员', 13, 0, '/attachs/2019/10/28/5db6b4d218c75.png', 0);
+INSERT INTO `bao_goods_cate` VALUES (15, '三年会员', 13, 0, '/attachs/2019/10/28/5db6b4e5a06c9.png', 0);
+INSERT INTO `bao_goods_cate` VALUES (16, '永久会员', 13, 0, '/attachs/2019/10/28/5db6b4fa48ea8.png', 0);
 
 -- ----------------------------
 -- Table structure for bao_goods_dianping
@@ -2452,13 +2492,14 @@ CREATE TABLE `bao_goods_photos`  (
   `goods_id` int(11) NULL DEFAULT NULL,
   `photo` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`pic_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_goods_photos
 -- ----------------------------
 INSERT INTO `bao_goods_photos` VALUES (1, 1, '/attachs/2019/10/28/thumb_5db68dec15b50.jpg');
 INSERT INTO `bao_goods_photos` VALUES (2, 1, '/attachs/2019/10/28/thumb_5db68dee4e0f1.jpg');
+INSERT INTO `bao_goods_photos` VALUES (3, 2, '/attachs/2019/10/28/thumb_5db6b3ea3232a.png');
 
 -- ----------------------------
 -- Table structure for bao_goods_shopcate
@@ -6306,7 +6347,7 @@ CREATE TABLE `bao_navigation`  (
   `is_new` tinyint(1) NULL DEFAULT 0,
   `click` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`nav_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 75 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 77 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_navigation
@@ -6317,12 +6358,11 @@ INSERT INTO `bao_navigation` VALUES (46, '外卖', '', 'ele', 0, 7, '/ele/index.
 INSERT INTO `bao_navigation` VALUES (47, '团购', '', 'tuan', 0, 6, '/tuan/index.html', '', 4, '', 0, 0, 0, 412);
 INSERT INTO `bao_navigation` VALUES (48, '众筹', '', 'crowd', 0, 9, '/crowd/index.html', '', 4, '', 0, 0, 1, 608);
 INSERT INTO `bao_navigation` VALUES (49, '拼购', '', 'cloud', 0, 10, '/cloud/index.html', '', 4, '', 0, 0, 0, 329);
-INSERT INTO `bao_navigation` VALUES (51, '家政', '', 'appoint', 0, 11, '/appoint/index.html', '', 4, '', 0, 0, 1, 451);
 INSERT INTO `bao_navigation` VALUES (52, '商家', '', 'shop', 0, 8, '/shop/index.html', '', 4, '', 0, 0, 0, 318);
 INSERT INTO `bao_navigation` VALUES (53, '抢购', 'icon-check-circle', 'tuan', 0, 9, 'tuan/index.html', 'http://images4.5maiche.cn/2016-07-28_57997ff02fa18.png', 2, 'bg-yellow', 0, 0, 0, 168);
 INSERT INTO `bao_navigation` VALUES (54, '外卖', 'icon-cutlery', 'ele', 0, 10, 'ele/index.html', 'http://images4.5maiche.cn/2016-07-28_5799800e49700.png', 2, 'bg-gray', 0, 0, 0, 268);
 INSERT INTO `bao_navigation` VALUES (55, '购物', 'icon-cart-plus', 'mall', 0, 11, 'mall/index.html', 'http://images4.5maiche.cn/2016-07-28_5799801d11cec.png', 2, 'bg-yellow', 0, 0, 0, 272);
-INSERT INTO `bao_navigation` VALUES (56, '商家', 'icon-diamond', 'shop', 0, 12, 'shop/index.html', 'http://images4.5maiche.cn/2016-07-28_5799802c01212.png', 2, 'bg-green', 0, 0, 0, 163);
+INSERT INTO `bao_navigation` VALUES (56, '商家', 'icon-diamond', 'shop', 0, 12, 'shop/index.html', 'http://images4.5maiche.cn/2016-07-28_5799802c01212.png', 2, 'bg-green', 0, 0, 0, 164);
 INSERT INTO `bao_navigation` VALUES (57, '新版家政', 'icon-umbrella', 'appoint', 0, 7, 'appoint/index.html', 'http://images4.5maiche.cn/2016-07-28_57997fc778768.png', 2, 'bg-dot', 0, 0, 0, 218);
 INSERT INTO `bao_navigation` VALUES (59, '众筹', 'icon-building', 'crowd', 0, 8, 'crowd/index.html', 'http://images4.5maiche.cn/2016-07-28_579980c4e70ae.png', 2, 'bg-dot', 0, 0, 0, 260);
 INSERT INTO `bao_navigation` VALUES (60, '智慧乡村', 'icon-flag', 'village', 0, 8, 'village/index.html', 'http://images4.5maiche.cn/2016-07-28_57997fd59846a.png', 2, 'bg-green', 0, 0, 0, 232);
@@ -6333,12 +6373,12 @@ INSERT INTO `bao_navigation` VALUES (64, '拼团', 'icon-paw', 'pintuan', 0, 3, 
 INSERT INTO `bao_navigation` VALUES (65, '小区', 'icon-object-group', 'community', 0, 13, 'community/index.html', 'http://images4.5maiche.cn/2016-07-28_5799803b72727.png', 2, 'bg-dot', 0, 0, 0, 114);
 INSERT INTO `bao_navigation` VALUES (66, '新闻资讯', 'icon-leaf', 'news', 0, 14, 'news/index.html', 'http://images4.5maiche.cn/2016-07-28_57998049c7575.png', 2, 'bg-dot', 0, 0, 0, 113);
 INSERT INTO `bao_navigation` VALUES (67, '拼车', 'icon-bus', 'pinche', 0, 4, 'pinche/index.html', 'http://images4.5maiche.cn/2016-07-28_57997fba91527.png', 2, 'bg-yellow', 0, 0, 0, 1);
-INSERT INTO `bao_navigation` VALUES (68, '拼吧', 'icon-diamond', 'cloud', 0, 6, 'cloud/index.html', 'http://images4.5maiche.cn/2016-07-28_579980b6e35a4.png', 2, 'bg-dot', 0, 0, 0, 112);
 INSERT INTO `bao_navigation` VALUES (69, '新闻', '', 'news', 0, 3, '/news/index.html', '', 4, '', 0, 0, 0, 82);
 INSERT INTO `bao_navigation` VALUES (70, '预订', '', 'booking', 0, 12, '/booking/index.html', '', 4, '', 0, 0, 1, 303);
-INSERT INTO `bao_navigation` VALUES (72, '贴吧', 'icon-commenting', 'activity', 0, 15, 'thread/index.html', 'http://images4.5maiche.cn/2016-07-28_5799805a86b71.png', 2, 'bg-green', 0, 0, 0, 143);
+INSERT INTO `bao_navigation` VALUES (76, '选择车型', 'icon-ticket bg-green', '车型', 0, 0, 'car/index.html', '/attachs/2019/10/29/5db78e5644d49.png', 2, '', 0, 0, 0, 5);
 INSERT INTO `bao_navigation` VALUES (71, '酒店', '', 'Hotels', 0, 13, '/hotels/index.html', '', 4, '', 0, 0, 1, 338);
 INSERT INTO `bao_navigation` VALUES (74, '五折卡', '', 'zhe', 0, 5, '/zhe/index.html', '', 4, '', 0, 0, 1, 53);
+INSERT INTO `bao_navigation` VALUES (75, '会员卡', 'icon-ticket bg-green', '会员卡', 0, 1, '', '/attachs/2019/10/29/5db78d8b043f8.jpg', 2, '', 0, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for bao_order
@@ -53218,11 +53258,6 @@ CREATE TABLE `bao_session`  (
 ) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of bao_session
--- ----------------------------
-INSERT INTO `bao_session` VALUES ('1b6gihqlhqc2b5957alplvko84', 1572247778, 0x76657269667925374373253341342533412532324657565325323225334261646D696E253743612533413137253341253742732533413825334125323261646D696E5F69642532322533427325334131253341253232312532322533427325334138253341253232757365726E616D65253232253342732533413525334125323261646D696E253232253342732533413825334125323270617373776F726425323225334273253341333225334125323237666566363137313436396538306433326330353539663838623337373234352532322533427325334137253341253232726F6C655F69642532322533427325334131253341253232312532322533427325334137253341253232636974795F696425323225334273253341312533412532323025323225334273253341362533412532326D6F62696C6525323225334273253341313125334125323231353030303030303030302532322533427325334131342533412532326C6F636B5F61646D696E5F6D756D25323225334273253341312533412532323025323225334273253341313325334125323269735F61646D696E5F6C6F636B25323225334273253341312533412532323025323225334273253341313825334125323269735F61646D696E5F6C6F636B5F74696D652532322533427325334131253341253232302532322533427325334131312533412532326372656174655F74696D652532322533427325334131302533412532323134343138383032303325323225334273253341392533412532326372656174655F697025323225334273253341392533412532323132372E302E302E3125323225334273253341392533412532326C6173745F74696D652532322533427325334131302533412532323135373232343231363825323225334273253341372533412532326C6173745F697025323225334273253341392533412532323132372E302E302E31253232253342732533413525334125323269735F697025323225334273253341312533412532323025323225334273253341313625334125323269735F757365726E616D655F6C6F636B2532322533427325334131253341253232302532322533427325334136253341253232636C6F7365642532322533427325334131253341253232302532322533427325334139253341253232726F6C655F6E616D6525323225334273253341313525334125323225453725423325424225453725424225394625453725414525413125453725393025383625453525393125393825323225334225374473636F64652537437325334136253341253232393330343235253232253342);
-
--- ----------------------------
 -- Table structure for bao_setting
 -- ----------------------------
 DROP TABLE IF EXISTS `bao_setting`;
@@ -53353,12 +53388,13 @@ CREATE TABLE `bao_shop`  (
   `service_audit` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`shop_id`) USING BTREE,
   INDEX `cate_id`(`cate_id`, `area_id`, `business_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bao_shop
 -- ----------------------------
-INSERT INTO `bao_shop` VALUES (1, NULL, 1, 69, 8, 32, 12, '0', 40, '北京京东世纪贸易有限公司', '/attachs/2019/10/28/thumb_5db68c052bf37.jpg', '/attachs/2019/10/28/thumb_5db68c4174aec.jpg', '400-606-5500', '', '', '18864874770', '刘强东', '北京亦庄经济技术开发区科创十一街18号院', 0, 0, 0, 0, 0, 0, '', 1, '116.570059', '39.791754', 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '京东，测试，购物', 1572244720, '127.0.0.1', 0, '', '', '', '', '', 0);
+INSERT INTO `bao_shop` VALUES (1, NULL, 1, 69, 8, 32, 12, '0', 40, '北京京东世纪贸易有限公司', '/attachs/2019/10/28/thumb_5db68c052bf37.jpg', '/attachs/2019/10/28/thumb_5db68c4174aec.jpg', '400-606-5500', '', '', '18864874770', '刘强东', '北京亦庄经济技术开发区科创十一街18号院', 0, 0, 0, 0, 0, 0, '', 1, '116.570059', '39.791754', 0, 0, 6, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '京东，测试，购物', 1572244720, '127.0.0.1', 0, '', '', '', '', '', 0);
+INSERT INTO `bao_shop` VALUES (2, NULL, 1, 14, 8, 34, 15, '0', 41, '浡莱克润滑油旗舰店', '/attachs/2019/10/28/thumb_5db6b301d6f3f.jpg', '/attachs/2019/10/28/thumb_5db6b3041ab35.jpg', '0635-123456', '', '', '18864874770', '郭君光', '聊城市东昌府区百货大楼', 0, 0, 0, 0, 0, 0, '', 100, '115.996345', '36.462168', 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '聊城，润滑油，浡莱克', 1572254549, '127.0.0.1', 0, '', '', '', '', NULL, 0);
 
 -- ----------------------------
 -- Table structure for bao_shop_audit
@@ -53588,6 +53624,7 @@ CREATE TABLE `bao_shop_details`  (
 -- Records of bao_shop_details
 -- ----------------------------
 INSERT INTO `bao_shop_details` VALUES (1, '<p><span style=\"color: rgb(51, 51, 51); font-family: Helvetica, Arial, Tahoma, &quot;Microsoft Yahei&quot;, 宋体, sans-serif; font-size: 15px; background-color: rgb(242, 242, 242);\">京东JD.COM-专业的综合网上购物商城，销售超数万品牌、4020万种商品，囊括家电、手机、电脑、母婴、服装等13大品类。秉承客户为先的理念，京东所售商品为正品行货、全国联保、机打发票。</span></p>', 0, NULL, NULL, '', 0, '', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQG_8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL25FU3k5UERsLUtpRlhMclpWbWo2AAIEoU7XVwMEAAAAAA%3D%3D', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+INSERT INTO `bao_shop_details` VALUES (2, '<p>浡莱克润滑油 ，大品牌，值得信赖。</p>', 0, NULL, NULL, '', 0, '', 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQEw7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2YwUm04dlRsTGFoVXZWbmFnbWo2AAIEUkI1WAMEAAAAAA%3D%3D', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
 -- ----------------------------
 -- Table structure for bao_shop_dianping
@@ -56852,13 +56889,16 @@ CREATE TABLE `bao_weixin_qrcode`  (
   `type` tinyint(1) NULL DEFAULT 0,
   `soure_id` smallint(5) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of bao_weixin_qrcode
 -- ----------------------------
 INSERT INTO `bao_weixin_qrcode` VALUES (1, 1, 1);
 INSERT INTO `bao_weixin_qrcode` VALUES (2, 3, 1);
+INSERT INTO `bao_weixin_qrcode` VALUES (3, 1, 2);
+INSERT INTO `bao_weixin_qrcode` VALUES (4, 3, 2);
+INSERT INTO `bao_weixin_qrcode` VALUES (5, 3, 4);
 
 -- ----------------------------
 -- Table structure for bao_weixin_qrcode_copy
