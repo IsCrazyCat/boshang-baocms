@@ -8,7 +8,7 @@ class ShopdingyuyueAction extends CommonAction {
 
     public function index() {		
         $Shopdingyuyue = D('Shopdingyuyue');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         if($keyword = $this->_param('keyword','htmlspecialchars')){
             $map['name|mobile'] = array('LIKE','%'.$keyword.'%');
             $this->assign('keyword',$keyword);

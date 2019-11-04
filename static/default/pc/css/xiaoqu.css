@@ -53,7 +53,7 @@
 .xiaoqu-naver{z-index:9;}
 .xiaoqu-side{width:275px;float:right;}
 
-/*小区贴吧*/
+/*小区论坛*/
 .tie-list{padding:0;}
 .tie-list li{border-bottom: 1px dotted #E4E6EB;padding: 10px 0px;line-height: 30px;min-height: 30px;overflow: hidden;position: relative;z-index: 1;}
 .tie-list li:last-child{border:none!important;}
@@ -134,7 +134,7 @@
 .xiaoqu-midd .xiaoqu-tuan-list .tuan-item .item-des del{float:left;color:#999;margin-right:10px;}
 .xiaoqu-midd .xiaoqu-tuan-list .tuan-item .item-des  i{float:right;color:#999;font-style:normal;}
 
-/*小区贴吧*/
+/*小区论坛*/
 .xiaoqu-tie-list{border:thin solid #DDD;}
 .xiaoqu-post-form{background:#FAFAFA;overflow:hidden;border:thin solid #DDD;padding:10px 20px;border-top:none;}
 .xiaoqu-post-form .post-photo{width:600px;margin-left:30px;float:left;padding:20px 0;}

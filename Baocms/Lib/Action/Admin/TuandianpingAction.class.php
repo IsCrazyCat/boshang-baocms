@@ -6,7 +6,7 @@ class TuandianpingAction extends CommonAction {
 
     public function index() {
         $Tuandianping = D('Tuandianping');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($shop_id = (int) $this->_param('shop_id')) {
             $map['shop_id'] = $shop_id;
@@ -81,10 +81,10 @@ class TuandianpingAction extends CommonAction {
         }
         $data['order_id'] = (int) $data['order_id'];
         if (empty($data['order_id'])) {
-            $this->baoError('抢购订单不能为空');
+            $this->baoError('团购订单不能为空');
         }
         if (!$order = D('Tuanorder')->find($data['order_id'])) {
-            $this->baoError('抢购订单不存在');
+            $this->baoError('团购订单不存在');
         }
         $data['shop_id'] = (int) $order['shop_id'];
         $data['tuan_id'] = (int) $order['tuan_id'];
@@ -120,7 +120,7 @@ class TuandianpingAction extends CommonAction {
         if ($order_id = (int) $order_id) {
             $obj = D('Tuandianping');
             if (!$detail = $obj->find($order_id)) {
-                $this->baoError('请选择要编辑的抢购点评');
+                $this->baoError('请选择要编辑的团购点评');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();

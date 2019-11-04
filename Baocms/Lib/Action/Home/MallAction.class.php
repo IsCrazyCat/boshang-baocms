@@ -978,7 +978,11 @@ class MallAction extends CommonAction{
         }
         //总订单
         $order = array('user_id' => $this->uid, 'create_time' => NOW_TIME, 'create_ip' => $ip, 'need_pay' => $need_pay, 'goods_id' => $val['goods_id'], 'total_price' => 0);
-		
+		$tui = cookie('tui');
+        if (!empty($tui)) {
+            $tui = explode('_', $tui);
+            $tuiguang = array('uid' => (int) $tui[0], 'goods_id' => (int) $tui[1]);
+        }
         $defaultAddress = D('Paddress')->defaultAddress($this->uid, $type);//收货地址部分重写
         $order_ids = array();
         foreach ($ordergoods as $k => $val) {
@@ -996,6 +1000,14 @@ class MallAction extends CommonAction{
                 foreach ($val as $k1 => $val1) {
                     $val1['order_id'] = $order_id;
 					print_r($val1);
+					
+					//if (!empty($tuiguang)) {
+                        //if ($tuiguang['goods_id'] == $val1['goods_id']) {
+                            //$val1['tui_uid'] = $tuiguang['uid'];
+							$val1['tui_uid'] = $shop['tui_uid'];
+                        //}
+                    //}
+					
                     D('Ordergoods')->add($val1);
                 }
             }
@@ -1031,10 +1043,10 @@ class MallAction extends CommonAction{
             $this->error('没有有效支付记录！');
         }
         if (!($detail = D('Paymentlogs')->find($log_id))) {
-            $this->error('没有有效的支付记录！');
+            $this->error('没有有效的支付记录A！');
         }
         if ($detail['is_paid'] != 0 || empty($detail['order_ids']) || !empty($detail['order_id']) || empty($detail['need_pay'])) {
-            $this->error('没有有效的支付记录！');
+            $this->error('没有有效的支付记录B！');
         }
         $order_ids = explode(',', $detail['order_ids']);
         $ordergood = D('Ordergoods')->where(array('order_id' => array('IN', $order_ids)))->select();
@@ -1096,10 +1108,10 @@ class MallAction extends CommonAction{
             $this->error('没有有效支付记录！');
         }
         if (!($detail = D('Paymentlogs')->find($log_id))) {
-            $this->error('没有有效的支付记录！');
+            $this->error('没有有效的支付记录C！');
         }
         if ($detail['is_paid'] != 0 || empty($detail['order_ids']) || !empty($detail['order_id']) || empty($detail['need_pay'])) {
-            $this->error('没有有效的支付记录！');
+            $this->error('没有有效的支付记录D！');
         }
         $order_ids = explode(',', $detail['order_ids']);
         D('Order')->where(array('order_id' => array('IN', $order_ids)))->save(array('addr_id' => $addr_id));
@@ -1212,7 +1224,7 @@ class MallAction extends CommonAction{
                 $logs['code'] = $code;
                 D('Paymentlogs')->save($logs);
             }
-            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，跟日志同步，浡莱克独创
+            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，跟日志同步，博商独创
             D('Weixintmpl')->weixin_notice_goods_user($order_id,$this->uid,1);//商城微信通知
             $this->baoJump(U('payment/payment', array('log_id' => $logs['log_id'])));
         }

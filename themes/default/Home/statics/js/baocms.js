@@ -877,7 +877,7 @@ function setpage()
 function check_user_mobile_for_pc(url1, url2) {
     layer.open({
         type: 1,
-        title: '请绑定手机后操作',
+        title: '注册会员绑定信息',
         skin: 'layui-layer-demo', //加上边框
         area: ['450px', '280px'], //宽高
         content: '<div class="add-message"><p><span>*</span> 手机号：<input type="text" id="mobile" name="mobile" class="add-text add_mobile"><input class="send_button" type="button" id="jq_send" value="获取验证码"/></p><p><span>*</span> 验证码：<input type="text" id="yzm" name="yzm" class="add-text add_yzm">请输入手机获取的验证码</p></div> <div class="add-button"><input type="submit" id="go_mobile" class="add-hold" value="立刻认证"/></div>',

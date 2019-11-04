@@ -18,7 +18,7 @@
       <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
          <tr>
           <input type="hidden" id="shop_id" name="data[shop_id]" value="<{$detail.shop_id}>"/>
-          <td width="120"><p class="tuanfabu_t">选择抢购：</p></td>
+          <td width="120"><p class="tuanfabu_t">选择团购：</p></td>
           <td><div class="tuanfabu_nr">
           
               <select id="tuan_id" name="data[tuan_id]" class="tuanfabu_int tuanfabu_intw2" >
@@ -75,7 +75,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"activity"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_activity,height: height_activity,quality: 80,allowMagnify: false,crop: true}                                          
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -106,7 +108,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"activity"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									accept: {
 										title: 'Images',

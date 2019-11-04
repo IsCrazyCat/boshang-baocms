@@ -2,8 +2,8 @@
 
 <div class="mainBt">
     <ul>
-        <li class="li1">贴吧</li>
-        <li class="li2">论坛贴吧</li>
+        <li class="li1">论坛</li>
+        <li class="li2">论坛论坛</li>
         <li class="li2 li3">新增</li>
     </ul>
 </div>
@@ -13,13 +13,14 @@
         <form  target="baocms_frm" action="<{:U('post/create')}>" method="post">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
             
-              <tr>
+              <tr style="display:none">
                     <td class="lfTdBt">所在区域：</td>
                     <td class="rgTdBt">
                         
-                        <select name="data[city_id]" id="city_id" style="float: left;" class="seleFl w210"></select>
-                       <select name="data[area_id]" id="area_id" style="float: left;"  class="seleFl w210"></select>
-
+                        <!--<select name="data[city_id]" id="city_id" style="float: left;" class="seleFl w210"></select>
+                       <select name="data[area_id]" id="area_id" style="float: left;"  class="seleFl w210"></select>-->
+						<input name="data[city_id]" type="hidden" value="7" />
+                        <input name="data[area_id]" type="hidden" value="2" />
                     </td>
                 </tr>
                  <script src="<{:U('app/datas/cityarea')}>"></script>
@@ -105,7 +106,7 @@
                 
                 
                 <tr>
-                  <td class="lfTdBt">贴吧图片：</td>
+                  <td class="lfTdBt">发现图片：</td>
                         <td class="rgTdBt">
                             <div>
                                 <div id="moreToUpload" >上传图片</div>
@@ -120,7 +121,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"tieba"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									accept: {
 										title: 'Images',
@@ -143,7 +146,7 @@
                             <div class="jq_uploads_img">
                                 <foreach  name="photos" item="item">
                                     <span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;"> 
-                                        <img width="150" height="100" src="<{:config_img($item)}>">  
+                                        <img width="150" src="<{:config_img($item)}>">  
                                         <input type="hidden" name="photos[]" value="<{$item}>" />  
                                         <a href="javascript:void(0);">取消</a>  
                                     </span>
@@ -178,7 +181,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="lfTdBt">是否精华：</td>
+                    <td class="lfTdBt">是否推荐：</td>
                     <td class="rgTdBt">
                         <input type="radio" name="data[is_fine]" value="1" /> 是
                         <input type="radio" name="data[is_fine]" value="0" /> 否

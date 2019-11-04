@@ -1,0 +1,60 @@
+<include  file='public:header'/>
+
+<header class="top-fixed bg-yellow bg-inverse">
+	<div class="top-back">
+		<a class="top-addr" href="/user/member/index.html"><i class="icon-angle-left"></i></a>
+	</div>
+		<div class="top-title">
+            <div class="button-toolbar">
+                <div class="button-group">
+                    <a class="block button active" href="<{:LinkTo('mcenter/logs/myorder')}>">门店</a>
+                    <a class="block button" href="<{:LinkTo('user/goods/index',array('aready'=>2))}>">购物</a>
+                    <!--<a class="block button" href="<{:LinkTo('user/tuan/index',array('aready'=>0))}>">团购</a>-->
+                </div>
+            </div>
+		</div>
+	<div class="top-signed">
+		<a href="<{:u('user/message/index')}>">
+        <i class="icon-envelope"></i>
+        <span class="badge bg-red jiaofei"><if condition="$msg_day gt 0"><{$msg_day}></if></span>
+        </a>
+	</div>
+</header>
+
+<!-- 筛选TAB -->
+<style>
+ul{ padding-left:0px;}
+.list-media-x p { font-weight: normal;}
+.top-fixed .top-title {padding:0;margin-top: -2px;}
+.button-toolbar .button-group a{background: none;color: #FFF;}
+.button-toolbar .button-group a.active{background: #fff;color: #06C1AE;}
+</style>
+
+
+
+<!-- 筛选TAB2 -->
+
+  <table class="table" style="width:100%">
+    <tr>
+      <td align="center"><b>金额</b></td>
+      <td align="center"><b>详情</b></td>
+      <td align="center"><b>时间</b></td>
+    </tr>
+    <foreach name="list" item="var">
+      <tr>
+        <td align="center" style="width:15%"><{:round($var['money']/100,2)}></td>
+        <php> $shop_name = D('Shop') -> where(array('shop_id' => $var['shop_id'])) ->getField('shop_name');
+          $pieces = explode("），", $var['intro']); </php>
+        <td align="center"><a href="/wap/payment/yes/log_id/<{$var.pay_id}>.html" style="color:#06F;text-decoration:underline"><{$shop_name}><br />
+          <{$var.intro}></a></td>
+        <td align="center" style="width:25%"><{$var.create_time|date='Y-m-d H:i:s',###}></td>
+      </tr>
+    </foreach>
+  </table>
+  <div class="blank-10 bg"></div>
+  <div class="container login-open">
+    <h5 style="text-align:center"><{$page}><!--分页代码不要忘记加--> </h5>
+    <div class="blank-20"></div>
+  </div>
+
+<include file='public:footer'/> 

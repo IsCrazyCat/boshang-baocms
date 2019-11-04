@@ -62,6 +62,11 @@ class CarAction extends CommonAction
             die('0');
         }
         $cars = D('Car')->where($map)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        if(!empty($cars)){
+            foreach ($cars as $key=>$car){
+                $cars[$key]['catesInfo'] = get_car_goods($car['car_id']);
+            }
+        }
 
 
         $this->assign('list', $cars);

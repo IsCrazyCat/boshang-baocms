@@ -7,7 +7,7 @@ class PluginAction extends CommonAction
     {
         $Plugin = D('Plugin');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['plugin_name'] = array('LIKE', '%' . $keyword . '%');

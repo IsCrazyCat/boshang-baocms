@@ -7,7 +7,7 @@ class AuditAction extends CommonAction
     {
         $Audit = D('Audit');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();

@@ -32,13 +32,13 @@ class FeedbackAction extends CommonAction
             $this->baoError('该问题已被删除');
         }
         if ($detail['community_id'] != $this->community_id) {
-            $this->baoError('请不要回复其他物业的反馈问题');
+            $this->baoError('请不要评论其他物业的反馈问题');
         }
         if ($this->isPost()) {
             $data = $this->replyCheck($feed_id);
             $data['feed_id'] = $feed_id;
             if (false !== $feedback->save($data)) {
-                $this->baoSuccess('回复成功', U('feedback/index'));
+                $this->baoSuccess('评论成功', U('feedback/index'));
             }
             $this->baoError('操作失败');
         } else {
@@ -70,10 +70,10 @@ class FeedbackAction extends CommonAction
         $data['community_id'] = (int) $this->community_id;
         $data['reply'] = htmlspecialchars($_POST['reply']);
         if (empty($data['reply'])) {
-            $this->error('回复内容不能为空');
+            $this->error('评论内容不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['reply'])) {
-            $this->error('回复内容含有敏感词：' . $words);
+            $this->error('评论内容含有敏感词：' . $words);
         }
         $data['reply_time'] = NOW_TIME;
         $data['reply_ip'] = get_client_ip();

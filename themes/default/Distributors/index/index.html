@@ -1,7 +1,9 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
-	<div class="top-back"></div>
-		<div class="top-title">新版商户中心</div>
+	<div class="top-back">
+    	<a class="top-addr" href="javascript:window.history.go(-1);"><i class="icon-angle-left"></i></a>
+    </div>
+		<div class="top-title">商户中心</div>
 	<div class="top-signed">
 		<a href="<{:U('passport/logout')}>"><i class="icon-sign-out"></i></a>
 	</div>
@@ -47,22 +49,30 @@
                 <i class="icon-angle-right"></i>
              </a>
         </li>
-        <li>
-            <a href="<{:U('message/index')}>">
-                <span class="icon-volume-up"></span>商家通知
-                <font>
-                   <if condition="$msg_day gt 0">
-                     最新<{$msg_day}>条消息
-                    </if>
-                </font>
-                <i class="icon-angle-right"></i>
-            </a>
-        </li>
+        
+        
+        <if condition="!empty($open_mall)">
+            <if condition="!empty($SHOPGRADE['is_mall'])">
+                <li>
+                    <a href="<{:U('mart/index')}>"><span class="icon-home"></span>商城管理
+                    <font>
+                        <if condition="$counts['goods_order_two'] gt 0">
+                            已付款<{$counts['goods_order_two']}>单
+                        </if>
+                        <if condition="$counts['goods_order_one'] gt 0">
+                            ，已发货<b><{$counts ['goods_order_one']}></b>单。
+                        </if>
+                    </font>
+                    <i class="icon-angle-right"></i>
+                    </a>
+                </li>
+            </if>
+        </if>
         
         <if condition="!empty($SHOPGRADE['is_tuan'])">
             <li>
                 <a href="<{:U('tuan/order')}>"><span class="icon-tags"></span>
-                    抢购
+                    团购
                     <font>
                         <if condition="$counts['tuan_order_code_is_used'] gt 0">
                             待验<{$counts['tuan_order_code_is_used']}>单
@@ -71,7 +81,7 @@
                             ，已验<{$counts['tuan_order_code_is_used_ture']}>单
                         </if>
                         <if condition="$counts['tuan'] gt 0">
-                            ，抢购<{$counts['tuan']}>单
+                            ，团购<{$counts['tuan']}>单
                         </if>
                         <if condition="$counts['tuan_audit'] gt 0">
                             ，待审<b><{$counts['tuan_audit']}></b>单
@@ -81,8 +91,10 @@
                 </a>
             </li>
         </if>
+        
+        
         <if condition="!empty($SHOPGRADE['is_coupon'])">
-            <li>
+            <li style="display:none">
                 <a href="<{:U('coupon/index')}>">
                     <span class="icon-key"></span>优惠劵
                     <font>
@@ -104,23 +116,7 @@
             </li>
         </if>
         
-        <if condition="!empty($open_mall)">
-            <if condition="!empty($SHOPGRADE['is_mall'])">
-                <li>
-                    <a href="<{:U('mart/index')}>"><span class="icon-home"></span>商城管理
-                    <font>
-                        <if condition="$counts['goods_order_two'] gt 0">
-                            已付款<{$counts['goods_order_two']}>单
-                        </if>
-                        <if condition="$counts['goods_order_one'] gt 0">
-                            ，已发货<b><{$counts['goods_order_one']}></b>单。
-                        </if>
-                    </font>
-                    <i class="icon-angle-right"></i>
-                    </a>
-                </li>
-            </if>
-        </if>
+        
         
         <li>
             <a href="<{:U('fans/index')}>"><span class="icon-group"></span>粉丝
@@ -155,7 +151,7 @@
         <if condition="!empty($open_life)">
             <if condition="!empty($SHOPGRADE['is_life'])">
                 <li>
-                    <a href="<{:U('life/index')}>"><span class="icon-truck"></span>同城信息
+                    <a href="<{:U('life/index')}>"><span class="icon-truck"></span>生活信息
                     <font>
                         <if condition="$counts['life'] gt 0">
                             <{$counts['life']}>条，
@@ -171,7 +167,7 @@
         </if>
         
         
-        <li>
+        <li style="display:none">
             <a href="<{:U('nearwork/index')}>"><span class="icon-github"></span>人才招聘
                 <font>
                     <if condition="$counts['work'] gt 0">
@@ -185,7 +181,7 @@
             </a>
         </li>
         
-        <li>
+        <li style="display:none;">
             <a href="<{:U('yuyue/index')}>"><span class="icon-phone-square"></span>预约管理
                 <font>
                     <if condition="$counts['shopyuyue_one'] gt 0">
@@ -214,7 +210,20 @@
             </a>
         </li>
         
+        <li>
+            <a href="<{:U('message/index')}>">
+                <span class="icon-volume-up"></span>商家通知
+                <font>
+                   <if condition="$msg_day gt 0">
+                     最新<{$msg_day}>条消息
+                    </if>
+                </font>
+                <i class="icon-angle-right"></i>
+            </a>
+        </li>
+        
         <li><a href="<{:U('money/index')}>"><span class="icon-btc"></span>财务<i class="icon-angle-right"></i></a></li>
+        <!--<li><a href="<{:U('money/myqrcode',array('shop_id'=>$shop_id_qiu))}>"><span class="icon-btc"></span>收款二维码<i class="icon-angle-right"></i></a></li>-->
         <li><a href="<{:U('passport/logout')}>"><span class="icon-sign-out"></span>注销登录<i class="icon-angle-right"></i></a></li>
 	</ul>
 </div>

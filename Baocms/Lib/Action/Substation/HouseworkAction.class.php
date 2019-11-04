@@ -7,7 +7,7 @@ class  HouseworkAction extends CommonAction{
     
     public function index(){
         $Housework = D('Housework');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
 			
 	    
 		//调用数据开始        
@@ -49,7 +49,7 @@ class  HouseworkAction extends CommonAction{
     // 家政的项目配置
     public function setting(){
         $houseworksetting = D('Houseworksetting');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0,'city_id'=>$this->city_id);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
 		

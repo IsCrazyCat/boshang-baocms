@@ -5,7 +5,7 @@ class SellerAction extends CommonAction
     {
         $Shopnews = D('Shopnews');
         import('ORG.Util.Pageabc');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('audit' => 1);
         $cates = D('Shopcate')->fetchAll();
         $cat = (int) $this->_param('cat');
@@ -75,9 +75,9 @@ class SellerAction extends CommonAction
         $cates = D('Shopcate')->fetchAll();
         $this->assign('cate', $cates[$detail['cate_id']]);
         $this->assign('shop', D('Shop')->find($detail['shop_id']));
-        //回复列表
+        //评论列表
         import('ORG.Util.Pageabc');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $count = D('Shopcomment')->where(array('post_id' => $news_id, 'parent_id' => 0))->count();
         //获取评论总数
         $Page = new Page($count, 15);
@@ -131,7 +131,7 @@ class SellerAction extends CommonAction
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
         if (D('Shopcomment')->add($data)) {
-            $this->fengmiSuccess('回复成功！', U('seller/detail', array('news_id' => $data['post_id'])));
+            $this->fengmiSuccess('评论成功！', U('seller/detail', array('news_id' => $data['post_id'])));
         }
     }
     /**

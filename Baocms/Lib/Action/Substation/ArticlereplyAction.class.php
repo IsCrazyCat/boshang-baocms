@@ -7,7 +7,7 @@ class ArticlereplyAction extends CommonAction
     {
         $Articlecomment = D('Articlecomment');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         //搜索帖子ID
         //用户名搜索
@@ -91,7 +91,7 @@ class ArticlereplyAction extends CommonAction
         if ($comment_id = (int) $comment_id) {
             $obj = D('Articlecomment');
             if (!($detail = $obj->find($comment_id))) {
-                $this->baoError('请选择要编辑的回复帖子');
+                $this->baoError('请选择要编辑的评论帖子');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -106,7 +106,7 @@ class ArticlereplyAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要编辑的回复帖子');
+            $this->baoError('请选择要编辑的评论帖子');
         }
     }
     private function editCheck()
@@ -139,7 +139,7 @@ class ArticlereplyAction extends CommonAction
             $menu = $obj->fetchAll();
             foreach ($menu as $val) {
                 if ($val['parent_id'] == $comment_id) {
-                    $this->baoError('该回复下面还有其他回复');
+                    $this->baoError('该评论下面还有其他评论');
                 }
             }
             $obj->delete($comment_id);
@@ -153,7 +153,7 @@ class ArticlereplyAction extends CommonAction
                 }
                 $this->baoSuccess('删除成功！', U('articlereply/index'));
             }
-            $this->baoError('请选择要删除的回复帖子');
+            $this->baoError('请选择要删除的评论帖子');
         }
     }
     public function audit($comment_id = 0)
@@ -175,7 +175,7 @@ class ArticlereplyAction extends CommonAction
                 }
                 $this->baoSuccess('审核成功！', U('articlereply/index'));
             }
-            $this->baoError('请选择要审核的回复帖子');
+            $this->baoError('请选择要审核的评论帖子');
         }
     }
 }

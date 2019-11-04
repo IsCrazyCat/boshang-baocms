@@ -64,7 +64,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"dianping"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									accept: {
 										title: 'Images',
@@ -107,7 +109,7 @@
              <tr>
             
                 <tr>
-                    <td class="lfTdBt">商家回复：</td>
+                    <td class="lfTdBt">商家评论：</td>
                     <td class="rgTdBt">
                         <textarea name="data[reply]" rows="5" cols="60"><{$detail.reply|default=''}></textarea>
                     </td>

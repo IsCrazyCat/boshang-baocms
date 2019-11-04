@@ -201,6 +201,21 @@ class UserAction extends CommonAction{
     public function delete($user_id = 0){
         if (is_numeric($user_id) && ($user_id = (int) $user_id)) {
             $obj = D('Users');
+			$myuser = D('Users')->find($user_id);
+			if ($myuser['__referee']) {
+				 $flooruser = D("Users")->where("user_id in (".$myuser['__referee'].")")->order('user_id desc')->select();  
+				 
+				 foreach($flooruser as $rss){
+					  if ( $rss['tuanduishuju'] >= 1 ) {
+						D('Users')->where(array('user_id' => $rss['user_id']))->setDec('tuanduishuju');  
+						//D('Users')->save(array('user_id' => $rss['user_id'], 'tuanduishuju' => (int)$rss['tuanduishuju']-1 ));
+					  }
+				 }
+			}
+			
+			D('Users')->where(array('user_id' => $myuser['fuid1']))->setDec('gerenshuju');
+			D('connect')->where(array('uid' => $user_id)) -> delete();
+			
             $obj->delete($user_id);
             $this->baoSuccess('删除成功！', U('user/index'));
         } else {
@@ -350,12 +365,15 @@ class UserAction extends CommonAction{
                 $this->baoError('余额不足！');
             }
             D('Users')->save(array('user_id' => $user_id, 'money' => $detail['money'] + $money));
+			$rank_id = D('Users')->where('user_id='.$user_id)->getField('rank_id');
+		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
             D('Usermoneylogs')->add(array(
 				'user_id' => $user_id, 
 				'money' => $money, 
 				'intro' => $intro, 
 				'create_time' => NOW_TIME, 
-				'create_ip' => get_client_ip()
+				'create_ip' => get_client_ip(),
+				'rankname' => $rankname 
 			));
             $this->baoSuccess('操作成功', U('usermoneylogs/index'));
         } else {

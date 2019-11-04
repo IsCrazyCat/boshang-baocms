@@ -7,7 +7,7 @@ class  TongjiModel extends CommonModel{
     protected $tableName =  'tongji';
     
     private $type = array(
-        1   => '抢购',
+        1   => '团购',
         2   => '购物',
         3   => '外卖',
     );

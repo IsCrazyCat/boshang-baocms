@@ -8,7 +8,7 @@
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">商家发布的商品要在后台审核之后才能显示在前台</div>
+            <div class="left tuan_topser_l">商家发布的商品才能显示在前台</div>
         </div>
     </div> 
     <div class="tabnr_change  show">
@@ -56,7 +56,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_good,height: height_good,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -118,7 +120,7 @@
             
             
             <tr>
-                    <td class="lfTdBt"> 关键字回复图片：</td>
+                    <td class="lfTdBt"> 关键字评论图片：</td>
                  <td class="rgTdBt">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[end_photo]" value="<{$detail.end_photo}>" id="data_photo1" />
@@ -137,7 +139,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_goods,height: height_goods,quality: 80,allowMagnify: false,crop: true}                                           
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

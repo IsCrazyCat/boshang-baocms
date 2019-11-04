@@ -5,7 +5,7 @@ class CoupondownloadAction extends CommonAction
     {
         $Coupondownload = D('Coupondownload');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['mobile'] = array('LIKE', '%' . $keyword . '%');

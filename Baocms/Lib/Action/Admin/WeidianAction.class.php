@@ -12,7 +12,7 @@ class WeidianAction extends CommonAction
     {
         $wd = D('WeidianDetails');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['weidian_name'] = array('LIKE', '%' . $keyword . '%');
@@ -167,7 +167,7 @@ class WeidianAction extends CommonAction
     {
         $weidian = D('WeidianDetails');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('audit' => 1);
         if ($weidian_name = $this->_param('weidian_name', 'htmlspecialchars')) {
             $map['weidian_name'] = array('LIKE', '%' . $weidian_name . '%');

@@ -19,7 +19,7 @@
 				</td>
 				<td class="rgTdBt">
 					<input type="text" name="data[sitename]" value="<{$CONFIG.site.sitename}>" class="scAddTextName " />
-					<code>注意这个不是网站的Title，一般建议是网站的品牌名</code>
+					<code>注意这个不是网站的Title，一般建议是网站名</code>
 				</td>
 			</tr>
 			<tr>
@@ -28,7 +28,7 @@
 				</td>
 				<td class="rgTdBt">
 					<input type="text" name="data[host]" value="<{$CONFIG.site.host}>" class="scAddTextName " />
-					<code>例如：http://www.baocms.cn 如果你在二级目录下面就需要带上二级目录</code>
+					<code>例如：http://aihuaqian.boshang3710.com 如果你在二级目录下面就需要带上二级目录</code>
 				</td>
 			</tr>
 			<tr>
@@ -37,7 +37,7 @@
 				</td>
 				<td class="rgTdBt">
 					<input type="text" name="data[hostdo]" value="<{$CONFIG.site.hostdo}>" class="scAddTextName " />
-					<code>例如：baocms.cn 用于分站二级域名，这里的域名一定要泛解析，否则失效！</code>
+					<code>例如：aihuaqian.boshang3710.com 用于分站二级域名，这里的域名一定要泛解析，否则失效！</code>
 				</td>
 			</tr>
 			<tr>
@@ -46,7 +46,7 @@
 				</td>
 				<td class="rgTdBt">
 					<input type="text" name="data[imgurl]" value="<{$CONFIG.site.imgurl}>" class="scAddTextName " />
-					<code>例如：http://www.baocms.cn 一般情况下是和站点网址一样，如果做了CDN加速一般就可能是其他的域名，www.hatudou.com</code>
+					<code>例如：http://aihuaqian.boshang3710.com 一般情况下是和站点网址一样，如果做了CDN加速一般就可能是其他的域名，aihuaqian.boshang3710.com</code>
 				</td>
 			</tr>
 			<tr>
@@ -91,7 +91,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"sitelogo"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_sitelogo,height: height_sitelogo,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -124,7 +126,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 						pick: '#fileToUpload_wxcode',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
 						$("#data_wxcode").val(resporse.url);                             
@@ -247,14 +251,14 @@
 				<td class="rgTdBt">
                         商城
 					<input type="text" name="data[goods]" value='<{$CONFIG.site.goods}>' style="width: 50px;"  class="scAddTextName " />（天）
-                        外卖
-					<input type="text" name="data[ele]" value='<{$CONFIG.site.ele}>' style="width: 50px;"  class="scAddTextName " />（小时）
+                        <!--外卖-->
+					<!--<input type="text" name="data[ele]" value='<{$CONFIG.site.ele}>' style="width: 50px;"  class="scAddTextName " />（小时）-->
                     <code>这里直接是影响商家中心用户自动确认收货的时间，请认真填写，一般外卖3小时，商城7天</code>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td class="lfTdBt">
-					贴吧发帖免审核：
+					论坛发帖免审核：
 				</td>
 				<td class="rgTdBt">
 					<label><input type="radio" name="data[postaudit]" <eq name="CONFIG.site.postaudit" value="1">checked="checked"</eq> value="1"  />开启</label>
@@ -262,9 +266,9 @@
 					<code>开启之后帖子发布免审核！</code>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td class="lfTdBt">
-					贴吧回帖免审核：
+					论坛回帖免审核：
 				</td>
 				<td class="rgTdBt">
 					<label><input type="radio" name="data[replyaudit]" <eq name="CONFIG.site.replyaudit" value="1">checked="checked"</eq> value="1"  />开启</label>
@@ -272,7 +276,7 @@
 					<code>开启之后帖子发布免审核！</code>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td class="lfTdBt">
 					小区发帖免审核：
 				</td>
@@ -282,7 +286,7 @@
 					<code>开启之后小区帖子发布免审核！</code>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td class="lfTdBt">
 					小区回帖免审核：
 				</td>
@@ -292,7 +296,7 @@
 					<code>开启之后小区回帖发布免审核！</code>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td class="lfTdBt">
 					新闻评论免审核：
 				</td>
@@ -302,7 +306,7 @@
 					<code>开启后新闻评论免审核！小心使用！</code>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td class="lfTdBt">
 					物业通知免审核：
 				</td>
@@ -312,7 +316,7 @@
 					<code>开启之后物业发送通知免审核，自己看吧，怕就不要开启自动！</code>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none">
 				<td class="lfTdBt">
 					部落发帖免审核：
 				</td>
@@ -323,7 +327,7 @@
 				</td>
 			</tr>
             
-            <tr>
+            <tr style="display:none">
 				<td class="lfTdBt">
 					分类信息免审核：
 				</td>
@@ -333,7 +337,7 @@
 					<code>发布分类信息是不是免审核，请谨慎选择！</code>
 				</td>
 			</tr>
-			<tr>
+			<tr >
 				<td class="lfTdBt">
 					微信自动绑定：
 				</td>
@@ -352,6 +356,8 @@
 					<code>填写有有的场景需要通知给管理员的手机号！</code>
 				</td>
 			</tr>
+            
+            
 			<tr>
 				<td class="lfTdBt">
 					全局通知邮箱

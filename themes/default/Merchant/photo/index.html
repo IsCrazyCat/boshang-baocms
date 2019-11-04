@@ -33,7 +33,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shop_environment"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shop_environment,height: height_shop_environment,quality: 80,allowMagnify: false,crop: true}                                           
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

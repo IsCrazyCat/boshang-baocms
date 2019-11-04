@@ -221,7 +221,7 @@
 .ui-dialog-pannel .sns-login-list .fa-weibo{background:#EB7350;}
 
 
-/*AJAX回复*/
+/*AJAX评论*/
 .ui-ajax-review{padding:20px;}
 .ui-ajax-review .review-dialog-pannel .submit-btn{margin-top: 20px;height: auto;padding: 15px 80px;line-height: 18px;font-size: 16px;background-color: #FF635C;border-radius: 4px;color: #FFF;border: 0px none;outline: 0px none;cursor: pointer;box-shadow: 0px 2px 2px rgba(14, 5, 9, 0.16);}
 .ui-ajax-review .review-dialog-pannel blockquote{font-size:14px;}

@@ -5,7 +5,7 @@ class UsermoneylogsAction extends CommonAction
     {
         $Usermoneylogs = D('Usermoneylogs');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -43,10 +43,16 @@ class UsermoneylogsAction extends CommonAction
         // 分页显示输出
         $list = $Usermoneylogs->where($map)->order(array('log_id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $user_ids = array();
+		
+		$Userrank = D('Userrank');
         foreach ($list as $k => $val) {
             $user_ids[$val['user_id']] = $val['user_id'];
+			if ( strlen($val['rankname']) < 1 ) {
+			    $list[$k]['rankname'] = $Userrank->where('rank_id='.(int)$user_ids[$val['user_id']]['rank_id'])->getField('rank_name');
+			}
         }
         $this->assign('users', D('Users')->itemsByIds($user_ids));
+		
         $this->assign('list', $list);
         // 赋值数据集
         $this->assign('page', $show);

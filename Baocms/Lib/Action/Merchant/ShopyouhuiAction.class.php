@@ -64,13 +64,13 @@ class ShopyouhuiAction extends CommonAction {
 
     public function close(){
         if(false !== D('Shopyouhui')->data(array('is_open'=>0))->where(array('shop_id'=>$this->shop_id))->save()){
-            $this->baoSuccess('成功关闭优惠买单',U('shopyouhui/index'));
+            $this->baoSuccess('成功关闭门店付款',U('shopyouhui/index'));
         }
     }
     
     public function open(){
         if(false !== D('Shopyouhui')->data(array('is_open'=>1))->where(array('shop_id'=>$this->shop_id))->save()){
-            $this->baoSuccess('成功开启优惠买单',U('shopyouhui/index'));
+            $this->baoSuccess('成功开启门店付款',U('shopyouhui/index'));
         }
     }
     

@@ -9,7 +9,7 @@
 	<a class="top-addr" href="<{:u('index/index')}>"><i class="icon-angle-left"></i></a>
 </div>
 <div class="top-title">
-			往期抢购
+			往期团购
 </div>
 <div class="top-share">
 	<a href="<{:U('tuan/create')}>" class="top-addr icon-plus"> 上单</a>
@@ -22,7 +22,7 @@
 			<div class="field">
 				<div class="input-group">
 					<span class="addbtn"><button type="button" class="button icon-search"></button></span>
-					<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="抢购名称"  />
+					<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="团购名称"  />
 					<span class="addbtn"><button type="submit" class="button">搜索</button></span>
 				</div>
 			</div>
@@ -34,10 +34,10 @@ ul { padding-left: 0px;}
 </style>
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-	<li style="width: 25%;"><a href="<{:U('tuan/index')}>">正在抢购</a></li>
-	<li style="width: 25%;"><a href="<{:U('tuan/history')}>"  class="on">往期抢购</a></li>
+	<li style="width: 25%;"><a href="<{:U('tuan/index')}>">正在团购</a></li>
+	<li style="width: 25%;"><a href="<{:U('tuan/history')}>"  class="on">往期团购</a></li>
 	<li style="width: 25%;"><a href="<{:U('tuan/order')}>">订单管理</a></li>
-	<li style="width: 25%;"><a href="<{:U('tuan/used')}>">抢购券</a></li>
+	<li style="width: 25%;"><a href="<{:U('tuan/used')}>">团购券</a></li>
 </ul>
 <div class="list-media-x" id="list-media">
 	<ul>
@@ -69,21 +69,21 @@ ul { padding-left: 0px;}
 				可使用积分：<span class="text-dot"><{$var.use_integral}></span>
 			</p>
 			<else/>
-			<p class="text-gray">
+			<!--<p class="text-gray">
 				未设置积分抵现
-			</p>
+			</p>-->
 			</if>
 			<if condition="$var['mobile_fan'] gt 0">
 			<p class="text-gray">
 				手机下单立减：<span class="text-dot"><{:round($var['mobile_fan']/100,2)}></span>
 			</p>
 			<else/>
-			<p class="text-gray">
+			<!--<p class="text-gray">
 				未设置手机下单立减
-			</p>
+			</p>-->
 			</if>
 			<p class="text-small">
-				<span class="text-dot1 margin-right">抢购价：<span class="text-dot"><{$var['tuan_price']}></span>&nbsp;  原价：<del><{$var['price']}></del></span>
+				<span class="text-dot1 margin-right">团购价：<span class="text-dot"><{$var['tuan_price']}></span>&nbsp;  原价：<del><{$var['price']}></del></span>
 			</p>
 		</div>
 		</dd>

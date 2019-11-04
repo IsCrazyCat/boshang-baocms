@@ -115,7 +115,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"village"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_village,height: height_village,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -169,7 +171,7 @@
                    </script> 
         
          <tr>
-                    <td class="lfTdBt">是否开启贴吧：</td>
+                    <td class="lfTdBt">是否开启论坛：</td>
                     <td class="rgTdBt">
                        <input type="radio" name="data[is_bbs]" value="1"/>开启
 				<input type="radio" name="data[is_bbs]" value="0"  checked="checked" />不开启

@@ -57,10 +57,10 @@
       <p class="text-right padding-top">
       <if condition="$item['status'] eq -1">
       	<a class="button button-small bg-blue">到店付</a>	
-        <a target="x-frame"  href="<{:U('tuan/delete',array('order_id'=>$item['order_id']))}>" class="button button-small bg-dot">取消抢购</a>
+        <a target="x-frame"  href="<{:U('tuan/delete',array('order_id'=>$item['order_id']))}>" class="button button-small bg-dot">取消团购</a>
       <elseif condition="$item['status'] eq 0"/>
         <a class="button button-small bg-dot" href="<{:u('wap/tuan/pay',array('order_id'=>$item['order_id']))}>">付款</a>
-        <a target="x-frame"  href="<{:U('tuan/delete',array('order_id'=>$item['order_id']))}>" class="button button-small bg-dot">取消抢购</a>
+        <a target="x-frame"  href="<{:U('tuan/delete',array('order_id'=>$item['order_id']))}>" class="button button-small bg-dot">取消团购</a>
       <elseif condition="$item['status'] eq 1"/>
       	<a class="button button-small bg-dot">已付款</a>
       <elseif condition="$item['status'] eq 3"/>

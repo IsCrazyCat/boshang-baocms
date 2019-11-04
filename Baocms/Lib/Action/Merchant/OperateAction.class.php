@@ -8,13 +8,13 @@ class OperateAction extends CommonAction {
     public function index() {
         $counts = array();
         $bg_time = strtotime(TODAY);
-		//抢购
-		$counts['tuan'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id,'closed' => 0))->count();//总抢购数量
-		$counts['tuan_audit'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id,'closed' => 0,'status' => array('EGT', 0),'audit' => 0))->count();//待审核抢购
-		$counts['tuan_order'] = (int) D('Tuanorder')->where(array('shop_id' => $this->shop_id))->count();//总抢购清单
-		$counts['totay_tuan_order'] = (int) D('Tuanorder')->where(array('shop_id' => $this->shop_id,'create_time' => array(array('ELT', NOW_TIME),array('EGT', $bg_time),), 'status' => array('EGT', 0),))->count();//今日抢购订单
+		//团购
+		$counts['tuan'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id,'closed' => 0))->count();//总团购数量
+		$counts['tuan_audit'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id,'closed' => 0,'status' => array('EGT', 0),'audit' => 0))->count();//待审核团购
+		$counts['tuan_order'] = (int) D('Tuanorder')->where(array('shop_id' => $this->shop_id))->count();//总团购清单
+		$counts['totay_tuan_order'] = (int) D('Tuanorder')->where(array('shop_id' => $this->shop_id,'create_time' => array(array('ELT', NOW_TIME),array('EGT', $bg_time),), 'status' => array('EGT', 0),))->count();//今日团购订单
 		$counts['tuan_order_code_is_used'] = (int) D('Tuancode')->where(array('shop_id' => $this->shop_id,'is_used' => 0))->count();//未验证
-		$counts['tuan_order_code_status'] = (int) D('Tuancode')->where(array('shop_id' => $this->shop_id,'status' => 1))->count();//抢购退款中
+		$counts['tuan_order_code_status'] = (int) D('Tuancode')->where(array('shop_id' => $this->shop_id,'status' => 1))->count();//团购退款中
 		
 		//商城
 		$counts['goods'] = (int) D('Goods')->where(array('shop_id' => $this->shop_id,'closed' => 0,))->count();//总商品
@@ -66,8 +66,8 @@ class OperateAction extends CommonAction {
 		$counts['totay_ele_dianping'] = (int) D('Eledianping')->where(array('shop_id' => $this->shop_id,'closed' => 0,'create_time' => array(array('ELT', NOW_TIME),array('EGT', $bg_time),), 'status' => array('EGT', 0),))->count();//今日外卖点评
 		$counts['ding_dianping'] = (int) D('Shopdingdianping')->where(array('shop_id' => $this->shop_id,'closed' => 0))->count();//总订座点评
 		$counts['totay_ding_dianping'] = (int) D('Shopdingdianping')->where(array('shop_id' => $this->shop_id,'closed' => 0,'create_time' => array(array('ELT', NOW_TIME),array('EGT', $bg_time),), 'status' => array('EGT', 0),))->count();//今日订座点评
-		$counts['tuan_dianping'] = (int) D('Tuandianping')->where(array('shop_id' => $this->shop_id,'closed' => 0))->count();//总抢购点评
-		$counts['totay_tuan_dianping'] = (int) D('Tuandianping')->where(array('shop_id' => $this->shop_id,'closed' => 0,'create_time' => array(array('ELT', NOW_TIME),array('EGT', $bg_time),), 'status' => array('EGT', 0),))->count();//今日抢购点评
+		$counts['tuan_dianping'] = (int) D('Tuandianping')->where(array('shop_id' => $this->shop_id,'closed' => 0))->count();//总团购点评
+		$counts['totay_tuan_dianping'] = (int) D('Tuandianping')->where(array('shop_id' => $this->shop_id,'closed' => 0,'create_time' => array(array('ELT', NOW_TIME),array('EGT', $bg_time),), 'status' => array('EGT', 0),))->count();//今日团购点评
 		
 		//分类信息
 		$counts['life'] = (int) D('Life')->where(array('shop_id' => $this->shop_id,'closed' => 0))->count();//总分类信息
@@ -87,7 +87,7 @@ class OperateAction extends CommonAction {
 		
 
         $this->assign('counts', $counts);
-        /* 统计抢购 */
+        /* 统计团购 */
         $bg_date = date('Y-m-d', NOW_TIME - 86400 * 6);
         $end_date = TODAY;
         $bg_time = strtotime($bg_date);

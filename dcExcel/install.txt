@@ -1,0 +1,35 @@
+
+要求
+------------
+下列要求应满足使用PHPExcel之前：
+* PHP 5.2.0或更高版本
+* PHP扩展php_zip启用*）
+* PHP扩展php_xml启用
+* PHP扩展php_gd2启用（如果不是编译）
+*）php_zip由phpexcel_reader_excel2007只需要，phpexcel_writer_excel2007，
+phpexcel_reader_oocalc。换句话说，如果你需要PHPExcel处理。xlsx或ODS。
+文件，您将需要的压缩扩展，但否则。
+安装说明
+-------------------------
+安装很简单：将类文件夹的内容复制到任何位置
+在您的应用程序需要。
+例子:
+如果你的网站根目录是/var/www /你可能会想“创建子文件夹
+/var/www /类/复制文件到文件夹，所以你最终文件：
+/var/www /班/ PHPExcel.php
+/var/www /类/ PHPExcel / Calculation.php
+/var/www /类/ PHPExcel / cell.php
+…
+入门
+---------------
+一个很好的入门的方法是运行一些包含在下载的测试。
+复制“示例”文件夹旁边的“类”文件夹从上面，所以你结束了：
+/var/www /例子/ 01simple.php
+/var/www /例子/ 02types.php
+…
+开始运行测试通过指向您的浏览器到测试脚本：
+http://example.com/examples/01simple.php
+http://example.com/examples/02types.php
+…
+注：它可能是必要的修改，包括/需要在开始时的陈述
+如果你的“类”文件夹从上面的每个测试脚本被命名不同。

@@ -96,7 +96,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"pintuan"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_pintuan,height: height_pintuan,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -134,7 +136,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"pintuan"))}>',                             
 						pick: '#fileToUpload1',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_pics1_pintuan,height: height_pics1_pintuan,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -169,7 +173,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"pintuan"))}>',                             
 						pick: '#fileToUpload2',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_pics2_pintuan,height: height_pics2_pintuan,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -204,7 +210,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"pintuan"))}>',                             
 						pick: '#fileToUpload3',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_pics3_pintuan,height: height_pics3_pintuan,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -330,7 +338,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"activity"))}>',                             
 						pick: '#fileToUpload4',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_goods_pic_pintuan,height: height_goods_pic_pintuan,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

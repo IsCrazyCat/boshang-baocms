@@ -43,7 +43,7 @@ class GoldAction extends CommonAction {
     //
     public function logs() {
         $Usergoldlogs = D('Usergoldlogs');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('user_id'=>$this->uid);
         $count = $Usergoldlogs->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 25); // 实例化分页类 传入总记录数和每页显示的记录数

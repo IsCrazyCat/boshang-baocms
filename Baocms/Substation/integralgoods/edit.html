@@ -50,7 +50,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"integralgoods"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_integralgoods,height: height_integralgoods,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

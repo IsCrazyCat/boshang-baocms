@@ -240,7 +240,7 @@ img{
 .margin_b{margin-bottom: 0.04rem !important;}
 
 
-/*个人中心-我的消息开始-新增*/
+/*我的兜兜-我的消息开始-新增*/
 .myMessage_list li{ display:block; padding:0.1rem 0rem; border-bottom:1px dashed #dedede; overflow:hidden;}
 .myMessage_list li img{ float:left; width:0.48rem; height:0.48rem; margin-left:0.1rem;}
 .myMessage_list li .nr{ margin-left:0.68rem; background:#f7f7f7; overflow:hidden; padding:0.04rem 0.1rem; height:0.4rem;}
@@ -269,7 +269,7 @@ img{
 .myMessage_details_form table tr th{ font-size:0.16rem; color:#f34a00; vertical-align:top; line-height:0.24rem; font-weight:normal;}
 .myMessage_details_form table tr td textarea{ width:100%; height:1rem; border:1px solid #dedede; background:#fff none;}
 .myMessage_details_form table tr td .btn{background: #fb9335 none; border:none 0; padding: 0px 0.35rem; height: 0.3rem; line-height: 0.3rem; border-radius: 0.03rem; color: #fff; margin-top:0.1rem; font-size:0.16rem;}
-/*个人中心-我的消息结束-新增*/
+/*我的兜兜-我的消息结束-新增*/
 
 
 /*我的-服务中心开始*/

@@ -25,9 +25,9 @@
                     </td>
                 </tr>
                  <tr>
-                    <td  class="lfTdBt">产品规格：</td>
+                    <td  class="lfTdBt">产品规格*：</td>
                     <td class="rgTdBt"><input type="text" name="data[guige]" value="<{$detail.guige|default=''}>" class="manageInput" />
-					<code>可以不填写，暂时不支持多属性</code>
+					<code>必填，暂时不支持多属性</code>
                     </td>
                 </tr>  
                   <tr>
@@ -251,7 +251,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_good,height: height_good,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -280,7 +282,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									compress : {width:width_goodspic,height:height_goodspic,quality: 80,allowMagnify: false,crop: true},														
 								});                                                               
@@ -313,8 +317,8 @@
                     <td class="rgTdBt">                                  
                          <label><span>认证商家：</span><input type="checkbox" name="data[is_vs1]" <if condition="$detail['is_vs1'] eq 1"> checked="checked" </if>  value="1" /></label>
                         <label><span style="margin-left: 20px;">正品保证：</span><input type="checkbox" name="data[is_vs2]" <if condition="$detail['is_vs2'] eq 1"> checked="checked" </if> value="1" /></label>
-                        <label><span style="margin-left: 20px;">假一赔十：</span><input type="checkbox" name="data[is_vs3]" <if condition="$detail['is_vs3'] eq 1"> checked="checked" </if> value="1" /></label>
-                        <label><span style="margin-left: 20px;">当日送达：</span><input type="checkbox" name="data[is_vs4]" <if condition="$detail['is_vs4'] eq 1"> checked="checked" </if> value="1" /></label>
+                        <!--<label><span style="margin-left: 20px;">假一赔十：</span><input type="checkbox" name="data[is_vs3]" <if condition="$detail['is_vs3'] eq 1"> checked="checked" </if> value="1" /></label>
+                        <label><span style="margin-left: 20px;">当日送达：</span><input type="checkbox" name="data[is_vs4]" <if condition="$detail['is_vs4'] eq 1"> checked="checked" </if> value="1" /></label>-->
                     
                     </td>
                 </tr>        
@@ -363,7 +367,7 @@
 
             </td>
         </tr><tr>
-            <td class="lfTdBt">浏览量：</td>
+            <td class="lfTdBt">人气：</td>
             <td class="rgTdBt"><input type="text" name="data[views]" value="<{$detail.views|default=''}>" class="manageInput" />
 
             </td>
@@ -421,7 +425,7 @@
             <td class="lfTdBt">是否开启分成：</td>
             <td class="rgTdBt"><input type="checkbox" name="data[profit_enable]" value='1' <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> /><code>开启后才会分成</code></td>
         </tr>
-        <tr>
+        <tr style="display:none">
             <td class="lfTdBt">付款后等级升为：</td>
             <td class="rgTdBt">
                 <select name="data[profit_rank_id]" class="seleFl w200">
@@ -432,17 +436,17 @@
                 </select><code>提示会员的一个捷径，默认不需要设置</code>
             </td>
         </tr>
-        <tr>
+        <tr style="display:none">
             <td class="lfTdBt">一级分成比例：</td>
             <td class="rgTdBt"><input type="number" min="0" max="100" name="data[profit_rate1]" value='<{$detail.profit_rate1}>' class="manageInput " />
              %<code>一级分销分成比例</code></td>
         </tr>
-        <tr>
+        <tr style="display:none">
             <td class="lfTdBt">二级分成比例：</td>
             <td class="rgTdBt"><input type="number" min="0" max="100" name="data[profit_rate2]" value='<{$detail.profit_rate2}>' class="manageInput " />
             %<code>二级分销分成比例</code></td>
         </tr>
-        <tr>
+        <tr style="display:none">
             <td class="lfTdBt">三级分成比例：</td>
             <td class="rgTdBt"><input type="number" min="0" max="100" name="data[profit_rate3]" value='<{$detail.profit_rate3}>' class="manageInput " />
             %<code>三级分销分成比例</code></td>

@@ -8,7 +8,7 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>这里只是明细查询的地方，如果发货需要在商家中心进行操作！ </p>
+    <p class="attention"><span>注意：</span>这里只是明细查询的地方，如果发货需要在商家中心进行操作！  二开qq 448329273</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none; padding-bottom: 0px;">
             <div class="right">
@@ -128,8 +128,29 @@
                             <td>状态</td>
                             <td style="color: red;">
                                 <eq name="order.is_daofu" value="1">货到付款 ---</eq>
-                                <{$types[$order['status']]}>
+                                <!--<{$types[$order['status']]}>-->
+                                
+								
 
+                    发货状态：<select name="status" id="status_<{$order.order_id}>"  class="status"  >  
+                        <option  value="0" <eq name="order.status" value="0">selected="selected"</eq> >等待付款</option>
+                        <option  value="1" <eq name="order.status" value="1">selected="selected"</eq> >等待发货</option>
+                        <option  value="2" <eq name="order.status" value="2">selected="selected"</eq> >商家已发货</option>
+                        <option  value="3" <eq name="order.status" value="3">selected="selected"</eq> >客户已收货</option>
+                        <option  value="8" <eq name="order.status" value="8">selected="selected"</eq> >已完成配送</option>
+                    </select>
+                    <eq name="order.status" value="3">客户已收货</eq>
+                    <eq name="order.status" value="8">已完成配送</eq>
+                   
+                    <if condition="$order['status'] eq 2 ">
+                        <{:BA('order/distribution',array('order_id'=>$order['order_id']),'确认收货','act','remberBtn')}>               
+                    </if>
+                    
+                    <span id="status_span_<{$var.order_id}>"></span><br />
+                    
+                    运单号：<input name="fahuodanhao" class="fahuodanhao"   id="fahuodanhao_<{$order.order_id}>" onblur=""   type="text" value="<{$order.fahuodanhao}>" placeholder="发货运单号"  size="20" maxlength="50"   /><span id="fahuodanhao_span_<{$order.order_id}>"></span>
+                                                    
+								
                             </td>
 
                         </tr>
@@ -160,9 +181,10 @@
                                             <td><{:round($good['price']/100,2)}></td>
                                             <td><{:round($good['total_price']/100,2)}></td>
                                             <td  style="color: red;">
-                                        <if condition="$order['status'] neq 0  && $order['is_daofu'] neq 0">
-                                            <{$goodtypes[$good['status']]}>
-                                        </if>        
+                                           <{$types[$good['status']]}>
+                                                <!--<if condition="$order['status'] neq 0  && $order['is_daofu'] neq 0">
+                                                    <{$goodtypes[$good['status']]}>
+                                                </if> -->       
                                         </td>
 
                                         </tr>
@@ -183,4 +205,101 @@
                 <{$page}>
             </form>
         </div>
+        
+        <script>
+  $('.status').change(function(event){  
+    　
+        var status_id=$(this)[0].id;
+		var status_value=$(this).children('option:selected').val();//这就是selected的值  
+		if ( status_id.indexOf("_") != -1 ) {
+			var myid = status_id.split("_")[1];
+			if ( parseInt(myid) > 0 ) {
+               
+				$.post('http://aihuaqian.boshang3710.com/my/status_ajax.php',{order_id:myid,status:status_value},function(data) { 
+                               
+				     if (data == 1) {
+						 $("#status_span_"+myid).html("发货状态更改成功！");
+//                         if ( status_value == 2  ) {
+//                            window.location.href="/admin/order/distribution/order_id/"+myid; 
+//                         }
+						 document.location.reload(); 
+					 } else {
+						 
+						 //$('#status_'+myid).val(status_value);
+						 $("#status_span_"+myid).html("失败"); 
+						 document.location.reload();
+					 }
+					//chepaihao.value=data;
+				}) 	
+			} else {
+				alert("失败！");
+			}
+		}
+       
+    　  
+    　　
+    })
+
+
+
+/*$('.note').blur(function(event){
+        var note_id=$(this)[0].id;
+		var note_value=$(this)[0].value;
+		if ( note_id.indexOf("_") != -1 ) {
+			var myid = note_id.split("_")[1];
+			if ( parseInt(myid) > 0 ) {
+				$.post('http://aihuaqian.boshang3710.com/my/note_ajax2.php',{order_id:myid,note:note_value},function(data) {                      
+				     if (data == 1) {
+						 
+						 $("#note_span_"+myid).html("发货单号更改成功！");
+						 document.location.reload(); 
+					 } else {
+						 
+						 //$('#note_'+myid).val(fahuodanhao_value);
+						 $("#note_span_"+myid).html("失败"); 
+						 document.location.reload();
+					 }
+					
+				}) 	
+			} else {
+				//alert("失败！");
+			}
+		}
+        
+    })*/
+
+    $('.fahuodanhao').blur(function(event){
+        var fahuodanhao_id=$(this)[0].id;
+		var fahuodanhao_value=$(this)[0].value;
+        
+        
+                    
+        
+		if ( fahuodanhao_id.indexOf("_") != -1 ) {
+			var myid = fahuodanhao_id.split("_")[1];
+            
+			if ( parseInt(myid) > 0 ) {
+				$.post('http://aihuaqian.boshang3710.com/my/fahuodanhao_ajax2.php',{order_id:myid,fahuodanhao:fahuodanhao_value},function(data) {   
+                                    
+				     if (data == 1) {
+						 //alert("发货单号更改成功！");
+						 $("#fahuodanhao_span_"+myid).html("发货单号更改成功！");
+                         
+						 document.location.reload(); 
+					 } else {
+						 //alert("不正确或被禁用！");
+						 //$('#fahuodanhao_'+myid).val(fahuodanhao_value);
+						 $("#fahuodanhao_span_"+myid).html("失败"); 
+						 document.location.reload();
+					 }
+					//chepaihao.value=data;
+				}) 	
+			} else {
+				//alert("失败！");
+			}
+		}
+        
+    })
+</script>
+        
         <include  file='public:footer'/>       

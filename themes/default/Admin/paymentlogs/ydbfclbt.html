@@ -1,0 +1,80 @@
+<include file='public:header'/>
+<div class="mainBt">
+    <ul>
+        <li class="li1">支付日志</li>
+        <li class="li2">月度帮扶差旅补贴</li>
+        
+    </ul>
+</div>
+<div class="main-jsgl main-sc">
+    <div class="jsglNr">
+        <div class="selectNr" style="margin-top: 0px; border-top:none; display:none;">
+            <div class="left">
+            </div>
+            <div class="right">
+                <form class="search_form" method="post" action="<{:U('paymentlogs/index')}>">
+                    <div class="seleHidden" id="seleHidden">
+                        <span>订单编号（支付编号）:</span>
+                        <input type="text" name="keyword" value="<{$keyword}>" class="inptText"/>
+                        <input type="submit"value="搜索"class="inptButton"/>
+                    </div>
+                </form>
+                <a href="javascript:void(0);" class="searchG">高级搜索</a>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <form method="post" action="<{:U('paymentlogs/ydbfclbt')}>">
+            <div class="selectNr " class="selectNr" style="margin-top: 0px; border-top:none;">
+                <div class="left">
+                    <div class="seleK">
+                        <label><span>月份</span><input type="text" readonly="readonly"  name="nianyue_date" value="<{$nianyue_date}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM'});" class="text"/></label>
+                        
+                        <!--<label><span>开始时间</span><input type="text" name="bg_date" value="<{$bg_date|default=''}>"onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});" class="text"/></label>
+                        <label><span>结束时间</span><input type="text" name="end_date" value="<{$end_date|default=''}>"onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});" class="text"/></label>-->
+                        <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>"/>
+                        <input class="text" type="text" name="nickname" id="nickname" value="<{$nickname}>"/>
+                        <a mini="select" w="800" h="600" href="<{:U('user/select')}>" class="sumit">选择用户</a>
+                    </div>
+                </div>
+                <div class="right">
+                    <input type="submit" value="搜索" class="inptButton"/>&nbsp; 共 <{$tianshu}> 天&nbsp;&nbsp;
+                </div>
+        </form>
+
+        <div class="clear"></div>
+    </div>
+    <form target="baocms_frm" method="post">
+        <div class="tableBox">
+            <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"
+                   style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;">
+                <tr>
+                    <td>用户</td>
+                    <td>等级要求</td>
+                    <!--<td>记录</td>-->
+                    <td>月度(元)</td>
+                    <td>日均(元)</td>
+                    <td>是否达标</td>
+                    <td>获得补贴</td>
+                </tr>
+
+                <foreach name="list" item="var">
+                    <tr>
+                      <td><{$var.users.account}> (<{$var.user_id}>) <br />
+<{$var.users.nickname}>&nbsp;<{$var.users.ex0}>&nbsp;<{$var.users.mobile}></td>
+                       <td><{$var.userrank.rank_name}> <if condition="$var['userrank']['yuedubangfuchalv'] gt 0">&nbsp;要求日均 <{$var.userrank.yuedubangfuchalv}></if></td>
+                       <!--<td><{$var.jilu}></td>-->
+                       <td><{:round($var['yuedu']/100,2)}></td>
+                       <td><{:round($var['yuedu']/100/$tianshu,2)}></td> 
+                       <td><{$var.shifoudabiao}></td>
+                       <td><{:round($var['huodebutie']/100,2)}></td>
+                    </tr>
+                </foreach>
+            </table>
+            <{$page}>
+        </div>
+        
+    </form>
+</div>
+</div>
+<include file='public:footer'/>

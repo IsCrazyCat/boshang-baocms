@@ -166,7 +166,7 @@
 
 
 
-                            <td class="lfTdBt">用户名：</td>
+                            <td class="lfTdBt">真实姓名：</td>
 
 
 
@@ -174,7 +174,7 @@
 
 
 
-                                <code>一般不要写，兼容UCENTER，如果不整合DZ可以不填写，整合就需要填写用户名</code>
+                                <code style="display:none">一般不要写，兼容UCENTER，如果不整合DZ可以不填写，整合就需要填写用户名</code>
 
 
 
@@ -206,7 +206,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"user"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_user,height: height_user,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

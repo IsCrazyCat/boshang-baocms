@@ -34,7 +34,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"goods_cate"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_goods_cate,height: height_goods_cate,quality: 80,allowMagnify: false,crop: true}                         
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

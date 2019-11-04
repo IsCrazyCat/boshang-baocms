@@ -43,10 +43,10 @@ class WeixinAction extends CommonAction {
 		if ((int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
 			
 			
-			 //解决了多多份抢购无法点评的BUG	
+			 //解决了多多份团购无法点评的BUG	
 					   $Tuancode_count = $obj->where(array('order_id' => $data['order_id'], 'is_used' =>0))->count();	
 					   if($Tuancode_count ==1){
-						   D('Tuanorder')->save(array('order_id' => $data['order_id'], 'status' => 8));//抢购状态修改为8   
+						   D('Tuanorder')->save(array('order_id' => $data['order_id'], 'status' => 8));//团购状态修改为8   
 					   }
 					   
 			if ($obj->save(array('code_id' => $data['code_id'], 'is_used' => 1,'used_time' => NOW_TIME,'worker_id' => $this->uid, 'used_ip' => $ip))) { 
@@ -56,7 +56,7 @@ class WeixinAction extends CommonAction {
 					                 
 				//增加MONEY 的过程 稍后补充
 				if (!empty($data['price'])) {
-					$data['intro'] = '抢购消费'.$data['order_id'];
+					$data['intro'] = '团购消费'.$data['order_id'];
 					$shopmoney->add(array(
 						'shop_id' => $data['shop_id'],
 						'city_id' => $shop['city_id'],
@@ -70,12 +70,12 @@ class WeixinAction extends CommonAction {
 					));
 					
 					
-					D('Users')->Money($shop['user_id'], $data['settlement_price'], '商家抢购结算:' . $data['order_id']);//商户资金增加
-					//抢购返还积分给商家用户
+					D('Users')->Money($shop['user_id'], $data['settlement_price'], '商家团购结算:' . $data['order_id']);//商户资金增加
+					//团购返还积分给商家用户
 					if(!empty($data['real_integral'])){
 						$config = D('Setting')->fetchAll();
 						if($config['integral']['tuan_return_integral'] == 1){
-							D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '抢购用户消费积分返还给商家');
+							D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '团购用户消费积分返还给商家');
 						}
 					}
 					$this->success('团购券'.$code_id.'消费成功！',U('worker/index/index'));
@@ -88,7 +88,7 @@ class WeixinAction extends CommonAction {
 				$order = D('Tuanorder')->find($data['order_id']);
 				$tuan = D('Tuan')->find($data['tuan_id']);
 				$integral = (int) ($order['total_price'] / 100 / $order['num']);
-				D('Users')->addIntegral($data['user_id'], $integral, '抢购' . $tuan['title'] . ';订单' . $order['order_id']);
+				D('Users')->addIntegral($data['user_id'], $integral, '团购' . $tuan['title'] . ';订单' . $order['order_id']);
 				//可以优化的 不过最多限制了10条！
 			}
 		} else {

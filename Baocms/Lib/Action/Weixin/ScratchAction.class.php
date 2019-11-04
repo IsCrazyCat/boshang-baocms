@@ -48,7 +48,7 @@ class ScratchAction extends CommonAction {
 	
 			$objp =  D('Weixin_prize');
 			$filter['scratch_id'] = $scratch_id;
-			import('ORG.Util.Page'); // 导入分页类
+			import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
 			$count = $objp->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();

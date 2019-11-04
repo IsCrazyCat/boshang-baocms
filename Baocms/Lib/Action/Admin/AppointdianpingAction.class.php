@@ -6,7 +6,7 @@ class AppointdianpingAction extends CommonAction {
 
     public function index() {
         $Appointdianping = D('Appointdianping');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
        
         if ($dianping_id = (int) $this->_param('dianping_id')) {

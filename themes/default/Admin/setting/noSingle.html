@@ -1,0 +1,50 @@
+<include  file='public:header'/>
+<style>
+.profit {text-align: center;color: #333;font-weight: bold; background: #F5F5FB;}
+.lfTdBt{width:180px;}
+</style>
+<div class="mainBt">
+    <ul>
+        <li class="li1">设置</li>
+        <li class="li2">基本设置</li>
+        <li class="li2 li3">随机免单设置</li>
+    </ul>
+</div>
+<p class="attention"></p>
+<form  target="baocms_frm"  action="<{:U('setting/noSingle')}>" method="post">
+    <div class="mainScAdd">
+        <div class="tableBox">
+            <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
+                 <php>$config = D('Setting')->fetchAll();</php>
+                 <tr>
+                     <td class="lfTdBt">是否开启随机免单功能：</td>
+                     <td class="rgTdBt">
+                     <label><input type="radio" name="data[is_noSingle_single]" <eq name="CONFIG.noSingle.is_noSingle_single" value="1">checked="checked"</eq> value="1"/>开启</label>
+                     <label><input type="radio" name="data[is_noSingle_single]" <eq name="CONFIG.noSingle.is_noSingle_single" value="0">checked="checked"</eq>  value="0"/>关闭</label>
+                        <code>开启之后请设置免单额度区间和免单概率。</code>
+                      </td>
+			    </tr>
+                    
+                <tr>
+                    <td class="lfTdBt">请设置免单额度区间：</td>
+                    <td class="rgTdBt">
+                       最小值： <input type="text" name="data[min_noSingle_single]" value="<{$CONFIG.noSingle.min_noSingle_single}>" class="scAddTextName w80" />
+                         最大值： <input type="text" name="data[max_noSingle_single]" value="<{$CONFIG.noSingle.max_noSingle_single}>" class="scAddTextName w80" />
+						<code>值为0和正整数 元！</code>
+                    </td>
+                </tr>
+                     <tr>
+                    <td class="lfTdBt">请设置免单概率：</td>
+                    <td class="rgTdBt">
+                        <input type="text" name="data[prob_noSingle_single]" value="<{$CONFIG.noSingle.prob_noSingle_single}>" class="scAddTextName w80" />
+                        <code>值为0到100正整数%！</code>
+                    </td>
+                </tr>
+             
+
+            </table>
+        </div>
+        <div class="smtQr"><input type="submit" value="确认保存" class="smtQrIpt" /></div>
+    </div>
+</form>
+<include  file='public:footer'/>       

@@ -87,7 +87,7 @@ class BillAction extends CommonAction
     public function billorder()
     {
         $model = D('Billorder');
-        import('ORG.Util.Page');// 导入分页类
+        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);

@@ -10,13 +10,14 @@ class ShopmoneyModel extends CommonModel{
         return array(
 			'goods' => '商城',
 			'appoint' => '家政',
-			'tuan' => '抢购',
+			'tuan' => '团购',
 			'ele' => '外卖',
 			'booking'  => '订座',
-			'breaks'=>'优惠买单',
+			'breaks'=>'门店付款',
 			'crowd' =>'众筹',
 			'hotel' =>'酒店',
-			'farm'=>'农家乐'
+			'farm'=>'农家乐',
+			'gwmd'=>'门店付款'
 		);
     }
 	//返回商户订单表的支付类型

@@ -25,7 +25,7 @@ class NearactivityAction extends CommonAction {
 
     public function loaddata() {
         $huodong = D('Huodong');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('audit' => 1, 'closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

@@ -105,13 +105,13 @@
 		<div class="x3 border-right">
     		<a href="<{:U('village/tieba',array('village_id'=>$detail['village_id']))}>">
 				<img src="/static/default/wap/image/community/feed.png" />
-    			<p>乡村贴吧</p>
+    			<p>乡村论坛</p>
     		</a> 
 		</div>
 		<div class="x3 border-right">
           <a href="<{:U('village/tuan',array('village_id'=>$detail['village_id']))}>">
     			<img src="/static/default/wap/image/index/app-tuan.png" />
-    			<p>乡村抢购</p>
+    			<p>乡村团购</p>
     		</a>
 		</div>
 		<div class="x3">
@@ -190,7 +190,7 @@
 	</div>
 	<div class="blank-10 bg"></div>
 	<div class="cite-title padding border-bottom">
-		<h5><i class="icon-fire"></i>  身边抢购</h5>
+		<h5><i class="icon-fire"></i>  身边团购</h5>
 	</div>
 	<div class="mart-flush" id="flush">
 		<div class="bd">
@@ -216,10 +216,10 @@
 
 
 	<div class="blank-10 bg"></div>
-   <!--村镇贴吧-->
+   <!--村镇论坛-->
     <if condition="$detail['is_bbs'] eq 1">
 	<div class="cite-title padding border-bottom">
-		<h5><i class="icon-comments"></i> 乡村贴吧</h5>
+		<h5><i class="icon-comments"></i> 乡村论坛</h5>
 		<a href="<{:U('village/tieba',array('village_id'=>$detail['village_id']))}>">+ 进入</a>
 	</div>
 	<div id="tie-list" class="text-list">

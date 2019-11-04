@@ -199,7 +199,7 @@ class CrowdAction extends CommonAction {
 		$this->assign('crowdphoto', $crowdphoto );
 		
 		
-		//浡莱克二开开始
+		//博商二开开始
 		$this->assign('crowd_time', $crowd_time = $Crowd->crowd_time($detail['ltime']));//获取天数
 		//单独调用项目进展
 		$projectProgress = $Crowdproject->where(array('goods_id' =>$goods_id))->order(array('dateline' => 'desc'))->find();

@@ -18,7 +18,8 @@
     <div class="tabnr_change  show">
         <form method="post"  action="<{:U('goods/weidian')}>" target="baocms_frm">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <php>if(!$weidian){</php>
+            
+               
                 <tr>
                     <td><p class="tuanfabu_t">店铺名称：</p></td>
                     <td><div class="tuanfabu_nr">
@@ -41,14 +42,14 @@
                                 <option value="">=选择=</option>
                                  <foreach name="cates" item="var">
                                  <eq name="var.parent_id" value="0">
-                                     <option value="<{$var.cate_id}>"  <eq name="var.cate_id" value="$detail.cate_id">selected="selected"</eq> >
+                                     <option value="<{$var.cate_id}>"  <eq name="var.cate_id" value="$weidian.cate_id">selected="selected"</eq> >
                                      
                                      <{$var.cate_name}></option>              
                                      
                                      
                                       <foreach name="cates" item="var2">
                                     <eq name="var2.parent_id" value="$var.cate_id">
-                                    <option value="<{$var2.cate_id}>"  <eq name="var2.cate_id" value="$detail.cate_id">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$var2.cate_name}></option>
+                                    <option value="<{$var2.cate_id}>"  <eq name="var2.cate_id" value="$weidian.cate_id">selected="selected"</eq> > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$var2.cate_name}></option>
                                     </eq>
                                 </foreach>
                                      
@@ -69,8 +70,8 @@
                 </tr>
                 <script src="<{:U('app/datas/cityarea')}>"></script>
                 <script>
-                            var city_id = <?php echo (int)$city_id; ?> ;
-                            var area_id = <?php echo (int)$area_id; ?> ;
+                            var city_id = <?php echo (int)$weidian['city_id']; ?> ;
+                            var area_id = <?php echo (int)$weidian['area_id']; ?> ;
                             function changeCity(cid){
                             var area_str = '<option value="0">请选择.....</option>';
                                     for (a in cityareas.area){
@@ -108,16 +109,7 @@
                             <input type="text" name="data[business_time]" value="<{$weidian.business_time|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
                 </tr>
-                <php>}else{
-                </php>
-                <tr>
-                    <td><p class="tuanfabu_t">您的信息：</p></td>
-                    <td><div class="tuanfabu_nr" style="color:#999999;">
-                            <{$weidian.weidian_name}>,<{$weidian.addr}>,<{$weidian.cate_id}>,<{$weidian.city_id}>,<{$weidian.area_id}>,<{$weidian.business_time}>&nbsp;<span style="color:#ff0000;">* 基本信息不可修改</span>
-                        </div></td>
-                </tr>
-                <php>
-                    }</php>
+                
                
                
                
@@ -141,7 +133,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,    
+						resize: true,
+duplicate :true, //可重复上传  
+    
 						compress : {width: width_good,height: height_good,quality: 80,allowMagnify: false,crop: true}                                          
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -181,7 +175,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 						pick: '#fileToUpload1',                             
-						resize: true,    
+						resize: true,
+duplicate :true, //可重复上传  
+    
 						compress : {width: width_good,height: height_good,quality: 80,allowMagnify: false,crop: true}                                          
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -242,8 +238,8 @@
                                         var lng = "<{$CONFIG['site']['lng']}>";
                                         var lat = "<{$CONFIG['site']['lat']}>";
                                         if (!lng && !lat){
-                                map.centerAndZoom("合肥");
-                                        var point = new BMap.Point(117.260852, 31.825717);
+                                map.centerAndZoom("聊城");
+                                        var point = new BMap.Point(115.9918900000,36.4626820000);
                                 } else{
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                         var point = new BMap.Point(lng, lat);

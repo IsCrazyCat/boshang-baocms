@@ -90,6 +90,66 @@ class CashAction extends CommonAction{
 	public function cashlog(){
         $this->display();
     }
+	
+	public function quqian1() {
+		
+		$users = D('users')->find($this->uid);
+		if ( $users['fxbt_ktxbt_money'] > 0  ) {
+			D('Usermoneylogs') -> add(array(
+			'user_id' => $this->uid, 
+			'money' => 0 - $users['fxbt_ktxbt_money'], 
+			'create_time' => NOW_TIME, 
+			'create_ip' => $ip, 
+			'intro' => '分享补贴转余额', 
+			'shop_id' => 0, 
+			));
+			D('Users') -> save(array(
+				'user_id' => $this->uid, 
+				'money' => $users['money']+$users['fxbt_ktxbt_money'], 
+				'fxbt_ktxbt_money' => 0, 
+			));
+			$this -> success('分享补贴转余额 成功！', U('User/cash/index'));
+		} else {
+			//$this->fengmiMsg('余额不足', U('mcenter/index/index'));
+			$this -> error('分享补贴转余额 不足！');
+			die ;
+		}
+		
+        $this->display();
+    }
+	
+	
+	
+	public function quqian2() {
+		
+		$users = D('users')->find($this->uid);
+		if ( $users['ldbt_ktxbt_money'] > 0  ) {
+			D('Usermoneylogs') -> add(array(
+			'user_id' => $this->uid, 
+			'money' => 0 - $users['ldbt_ktxbt_money'], 
+			'create_time' => NOW_TIME, 
+			'create_ip' => $ip, 
+			'intro' => '链店补贴转余额', 
+			'shop_id' => 0, 
+			));
+		
+			D('Users') -> save(array(
+				'user_id' => $this->uid, 
+				'money' => $users['money']+$users['ldbt_ktxbt_money'], 
+				'ldbt_ktxbt_money' => 0, 
+			));
+			
+			$this -> success('链店补贴转余额 成功！', U('User/cash/index'));
+			
+		} else {
+			//$this->fengmiMsg('余额不足', U('mcenter/index/index'));
+			$this -> error('链店补贴 不足！');
+			die ;
+		}
+		
+        $this->display();
+    }
+	
     public function cashlogloaddata(){
         $Userscash = D('Userscash');
         import('ORG.Util.Page');

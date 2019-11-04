@@ -108,7 +108,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"appoint"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_appoint,height: height_appoint,quality: 80,allowMagnify: false,crop: true}                                               
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -138,7 +140,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"appoint"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									accept: {
 										title: 'Images',

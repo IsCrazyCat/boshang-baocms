@@ -1,3 +1,4 @@
+<php>$seo_title = '我的分销';</php>
 <include file="public:header"/>
 <style>
 .icon-sign-out, .top-fixed .top-back i { font-size: 18px;}
@@ -16,7 +17,7 @@ p, .p {margin-bottom: 0px;}
 			<a class="top-addr" href="<{:u('user/member/index')}>"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			我的分销中心
+			我的分销
 		</div>
        
 		<div class="top-share">
@@ -38,33 +39,97 @@ p, .p {margin-bottom: 0px;}
                 <{$MEMBER.nickname}> 
                 <else/>
                 <{$MEMBER.account}> 
-                </if>
-                <sup>VIP <{$MEMBER['rank_id']}></sup></span> 
+                </if>(UID:<{$MEMBER.user_id}>)
+                <sup><{$ranks[$MEMBER['rank_id']]['rank_name']}></sup></span> <br />
+				<{$MEMBER.mobile}> <br />
+                
 </div>
 </div>
-    <div class="member-collect">
-        <span><a href="<{:u('money/index')}>"><em>&yen;<{:round($MEMBER['money']/100,2)}></em><p>我的余额</p></a> </span>
-        <span><a href="<{:U('profit', array('status'=>1))}>"><em>&yen;<{:round($profit_ok/100,2)}></em><p>我的分成</p></a> </span>
-        <span><a href="<{:U('profit', array('status'=>2))}>"><em>&yen;<{:round($profit_cancel/100,2)}></em><p>已取消的分成</p></a> </span>
+
+    <div class="member-collect" >
+        <!--<span><a href="<{:u('money/index')}>"><em>&yen;<{:round($MEMBER['money']/100,2)}></em><p>可提现补贴</p></a> </span>
+        <span><a href="<{:U('profit', array('status'=>1))}>"><em>&yen;<{:round($profit_ok/100,2)}></em><p>累计分享补贴</p></a> </span>
+        <span><a href="<{:U('profit', array('status'=>2))}>"><em>&yen;<{:round($profit_cancel/100,2)}></em><p>未结算补贴</p></a> </span>-->
+        <span><a href="/user/cash/index.html"><em>&yen;<{:round(($MEMBER['fxbt_ktxbt_money']+$MEMBER['ldbt_ktxbt_money'])/100,2)}></em><p>可提现补贴</p></a> </span>
     </div>
 </div>   
 
 </div>
 
+
 <div class="panel-list">
+<h3 style=" height:2rem; line-height:2rem; text-align:center; margin-left:0rem;">分享补贴</h3>
 	<ul>
-        <li><a href="<{:U('profit', array('status'=>1))}>"><span class="icon-btc"></span>收益统计<i class="icon-angle-right"></i></a></li>
-        <li><a href="<{:U('subordinate')}>"><span class="icon-arrow-down"></span>我的下级<i class="icon-angle-right"></i></a></li>
-        <li><a href="<{:U('superior')}>"><span class="icon-arrow-up"></span>我的上级<i class="icon-angle-right"></i></a></li>
-        <li><a href="<{:U('qrcode')}>"><span class="icon-qrcode"></span>二维码<i class="icon-angle-right"></i></a></li>
-        <li><a href="<{:U('poster')}>"><span class="icon-tv"></span>我的海报<i class="icon-angle-right"></i></a></li>
+        <li><a href="javascript:void(0);"><span class="icon-btc"></span>可提现补贴<i class="angle-right"> <{:round($MEMBER['fxbt_ktxbt_money']/100,2)}> 元</i></a></li>
+        <li><a href="<{:U('profit', array('status'=>1))}>" ><span class="icon-arrow-down"></span>累计分享补贴<i class="angle-right"> <{:round($profit_ok/100,2)}> 元</i></a></li>
+        <li><a href="<{:U('profit', array('status'=>0))}>" ><span class="icon-arrow-down"></span>未结算补贴<i class="angle-right"> <{:round($profit_wjsbt/100,2)}> 元</i></a></li>
+
+        <!--<li><a href="<{:U('profit', array('status'=>1))}>"  style="color:#00aa88;"><span class="icon-btc"></span>分享补贴明细<i class="ico-angle-right"></i></a></li>-->
+        <li><a href="<{:U('fxsubordinate')}>" style="color:#00aa88;" ><span class="icon-arrow-down"></span>分享数据<i class="angle-right"> <{$fxbt_fxsj|default='0'}> 个</i></a></li>
+        <li><a href="<{:U('subordinate')}>"  style="color:#00aa88;" ><span class="icon-arrow-down"></span>裂变数据<i class="angle-right"> <{$fxbt_lbsj|default='0'}> 个</i></a></li>
+        <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>数据总量<i class="angle-right"> <{$fxbt_sjzl|default='0'}> 个</i></a></li>
+       
 	</ul>
 </div>
+
+
+
+
+<div class="panel-list">
+<h3 style=" height:2rem; line-height:2rem; text-align:center; margin-left:0rem;">链店补贴</h3>
+	<ul>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>累计链店补贴<i class="angle-right"> <{:round($ldbt_ljldbt/100+0.00,2)}> 元</i></a></li>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>可提现补贴<i class="angle-right"> <{:round($MEMBER['ldbt_ktxbt_money']/100,2)}> 元</i></a></li>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>未结算补贴<i class="angle-right"> <{:round($ldbt_wjsbt/100+0.00,2)}> 元</i></a></li>
+       <li><a href="<{:U('liandian')}>" style="color:#00aa88;"  ><span class="icon-arrow-down"></span>链店数量<i class="angle-right"> <{$fxbt_ldsl|default='0'}> 个</i></a></li>
+	</ul>
+</div>
+
+
+<div class="panel-list">
+<h3 style=" height:2rem; line-height:2rem; text-align:center; margin-left:0rem;">股东分红奖金</h3>
+	<ul>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>累计分红奖金<i class="angle-right"> <{:round($gdfh_ljfh/100+0.00,2)}> 元</i></a></li>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>本月分红奖金<i class="angle-right"> <{:round($gdfh_byfh/100+0.00,2)}> 元</i></a></li>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>上月收入（分红奖金除外）<i class="angle-right"> <{:round($gdfh_sysr/100+0.00,2)}> 元</i></a></li>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>本月收入（分红奖金除外）<i class="angle-right"> <{:round($gdfh_bysr/100+0.00,2)}> 元</i></a></li>
+	</ul>
+</div>
+
+<!--<div class="panel-list">
+<h3 style=" height:2rem; line-height:2rem; text-align:center; margin-left:0rem;">股东差旅补贴</h3>
+	<ul>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>累计差旅补贴<i class="angle-right"> <{:round($gdclbt_ljclbt/100+0.00,2)}> 元</i></a></li>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>上月差旅补贴<i class="angle-right"> <{:round($gdclbt_syclbt/100+0.00,2)}> 元</i></a></li>
+       <li><a href="javascript:void(0);"><span class="icon-arrow-down"></span>本月差旅补贴<i class="angle-right"> <{:round($gdclbt_byclbt/100+0.00,2)}> 元</i></a></li>
+	</ul>
+</div>-->
+
+
+
+
+<div class="panel-list">
+	<ul>
+      <h3 style=" height:2rem; line-height:2rem; text-align:center; margin-left:0rem;">分享</h3>
+        <li><a href="<{:U('superior')}>"><span class="icon-arrow-up"></span>我的推荐人<i class="icon-angle-right"></i></a></li>
+        <li><a style="color:#00aa88;" href="<{:U('qrcode')}>"><span class="icon-qrcode"></span>二维码<i class="icon-angle-right"></i></a></li>
+        <li><a style="color:#00aa88;" href="<{:U('poster')}>"><span class="icon-tv"></span>我的海报<i class="icon-angle-right"></i></a></li>
+	</ul>
+</div>
+
+
 
 <div class="blank-10 bg"></div>
 <div class="blank-10"></div>
 <div class="container text-center">
-		<a class="button button-block button-big bg-dot" href="<{:u('wap/passport/logout')}>">退出后台</a>
+        <if condition=" $CONFIG['site']['weixin'] eq 1 "> 
+             <if condition="$is_weixin">
+             <else/> 
+                 <a class="button button-block button-big bg-dot" href="<{:u('wap/passport/logout')}>">退出后台</a>
+             </if>
+        <else/> 
+            <a class="button button-block button-big bg-dot" href="<{:u('wap/passport/logout')}>">退出后台</a>
+        </if>
 </div>
 
 <include  file='distribution:footer'/>

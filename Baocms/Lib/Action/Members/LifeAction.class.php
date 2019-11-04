@@ -123,7 +123,7 @@ class LifeAction extends CommonAction {
 
     public function index() {
         $Life = D('Life');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('user_id' => $this->uid); //分类信息是关联到UID 的 
         $count = $Life->where($map)->count(); // 查询满足要求的总记录数
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数
@@ -213,11 +213,11 @@ class LifeAction extends CommonAction {
         }
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
-            $this->baoError('地区不能为空');
+            //$this->baoError('地区不能为空');
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->baoError('商圈不能为空');
+            //$this->baoError('商圈不能为空');
         }
         $data['user_id'] = $this->uid;
         $data['is_shop'] = (int) $data['is_shop'];

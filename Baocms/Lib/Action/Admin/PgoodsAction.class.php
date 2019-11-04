@@ -4,7 +4,7 @@ private $create_fields = array('name', 'cate_id', 'shop_id', 'list_pic', 'pics1'
 private $edit_fields = array('name', 'cate_id', 'shop_id', 'list_pic', 'pics1', 'pics2', 'pics3','describe','content', 'sales_num', 'virtual_sales_num', 'xiangou_num', 'market_price', 'one_price', 'tuanz_price', 'tuan_num', 'tuan_price', 'tuan_num2','tuan_price2', 'tuan_num3', 'tuan_price3', 'open_tuanj', 'tuan_status', 'tuan_hours', 'goods_unit', 'goods_pic', 'share_title', 'share_desc', 'is_show', 'paixu', 'end_time','zhongliang','kuaidi','is_yunfei','yunfei_ids');
     public function index() {
         $Goods = D('pgoods');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name'] = array('LIKE', '%' . $keyword . '%');
             $this->assign('keyword', $keyword);

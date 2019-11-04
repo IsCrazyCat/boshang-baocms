@@ -5,7 +5,7 @@ class ShoppicAction extends CommonAction
     {
         $Shoppic = D('Shoppic');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

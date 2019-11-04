@@ -18,7 +18,7 @@ class HousekeepingcateAction extends CommonAction
     {
         $housekeepingcate = D('Housekeepingcate');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => array('IN', '0,-1'));
         if ($cate_name = $this->_param('cate_name', 'htmlspecialchars')) {
             $map['cate_name'] = array('LIKE', '%' . $cate_name . '%');

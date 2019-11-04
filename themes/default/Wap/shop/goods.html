@@ -12,12 +12,13 @@
     
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-        <li style="width:16.66666667%;"><a href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">首页</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">抢购</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>" class="on">商品</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>">优惠</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>">新闻</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">评价</a></li>
+        <li style="width:33.333%;"><a href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">首页</a></li>
+        
+        <li style="width:33.333%;"><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>" class="on">商品</a></li>
+        <!--<li style="width:20%;"><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>">优惠</a></li>-->
+        <li style="width:33.333%;"><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>">新闻</a></li>
+        <!--<li style="width:20%;"><a href="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">评价</a></li>-->
+        <!--<li style="width:20%;"><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">团购</a></li>-->
 </ul>
 <style>
 .list-have-pic .list-box { padding-right:5px;}
@@ -89,4 +90,4 @@
         </div>
     </div>
 </div>
-<include file='public:footer'/>   
+<include file='public:footer-shop'/>   

@@ -33,7 +33,7 @@ class IndexAction extends CommonAction {
 
     public function index() {
         
-        if (!is_mobile()) {
+        if (is_mobile()) {
             header("Location:" . U('Wap/index/index'));
             die;
         }

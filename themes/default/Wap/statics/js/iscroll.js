@@ -1627,6 +1627,8 @@ function Indicator (scroller, options) {
 		listenY: true,
 		interactive: false,
 		resize: true,
+duplicate :true, //可重复上传  
+
 		defaultScrollbars: false,
 		shrink: false,
 		fade: false,

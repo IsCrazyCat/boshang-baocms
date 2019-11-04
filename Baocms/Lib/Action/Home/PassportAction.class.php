@@ -118,7 +118,7 @@ class PassportAction extends CommonAction
         }
         $randstring = session('scode');
         if (empty($randstring)) {
-            $randstring = rand_string(6, 1);
+            $randstring = rand_string(4, 1);
             session('scode', $randstring);
         }
         if ($this->_CONFIG['sms']['dxapi'] == 'dy') {
@@ -324,7 +324,7 @@ class PassportAction extends CommonAction
         }
         $randstring = session('scode');
         if (empty($randstring)) {
-            $randstring = rand_string(6, 1);
+            $randstring = rand_string(4, 1);
             session('scode', $randstring);
         }
         //大鱼短信
@@ -384,6 +384,7 @@ class PassportAction extends CommonAction
 				));
             } else {
                 D('Sms')->sendSms('sms_newpwd', $mobile, array(
+				    'sitename' => $this->_CONFIG['site']['sitename'], 
 					'newpwd' => $password
 				));
             }
@@ -547,7 +548,7 @@ class PassportAction extends CommonAction
                 $connect = $data;
                 $connect['connect_id'] = D('Connect')->add($data);
             } else {
-                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token']));
+                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token'], 'nickname' => $data['nickname'], 'headimgurl' => $data['headimgurl']));
             }
             if ($data['type'] == 'qq') {
                 $user_info = D('Connect')->user_info($data['client_id'], $data['open_id'], $data['token']);//这里可能有问题，缺少user_info函数
@@ -586,12 +587,12 @@ class PassportAction extends CommonAction
                 $connect = $data;
                 $connect['connect_id'] = D('Connect')->add($data);
             } else {
-                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token']));
+                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token'], 'nickname' => $data['nickname'], 'headimgurl' => $data['headimgurl']));
             }
             if (empty($connect['uid'])) {
                 if ($this->uid) {
                     D('Connect')->save(array('connect_id' => $connect['connect_id'], 'uid' => $this->uid));
-                    $this->success('绑定第三方登录成功', U('user/information/index'));
+                    $this->success('绑定第三方登录成功', U('user/member/index'));
                 } else {
                     session('connect', $connect['connect_id']);
                     header('Location: ' . U('passport/bind'));

@@ -1,5 +1,5 @@
 <?php
-//WAP会员中心众筹
+//WAP我的兜兜众筹
 class CrowdAction extends CommonAction {
 	 private $create_fields = array('city_id', 'area_id','title','intro', 'user_id', 'photo', 'cate_id', 'price', 'all_price', 'commission',  'orderby', 'views',  'details','lat','lng', 'end_date','ltime');
     private $edit_fields = array('city_id', 'area_id','title','intro', 'user_id', 'photo', 'cate_id', 'price', 'all_price', 'commission',  'orderby', 'views',  'details', 'lat','lng', 'end_date','ltime');

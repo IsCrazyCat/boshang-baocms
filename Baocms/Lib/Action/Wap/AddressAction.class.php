@@ -53,7 +53,7 @@ class AddressAction extends CommonAction{
 			$this->fengmiMsg('操作失败');
 		}
 	}
-
+//添加收货地址
 	public function addrcat() {
 		$type = I('type', '', 'trim,htmlspecialchars');
 		$order_id = (int)$this -> _get('order_id');//order_id先暂时不去模板里面调用
@@ -69,7 +69,7 @@ class AddressAction extends CommonAction{
 			$data['log_id'] = (int) $data['log_id'];
 			$data['pc_order'] = (int) $data['pc_order'];
 			$create_category = (int) $data['category'];//调用
-			$data['addxm'] = htmlspecialchars($data['addxm']);
+			$data['xm'] = htmlspecialchars($data['addxm']);
 			$data['addtel'] = htmlspecialchars($data['addtel']);
 			if (empty($data['addtel'])) {
 				$this->fengmiMsg('联系电话不能为空');
@@ -79,16 +79,16 @@ class AddressAction extends CommonAction{
 			}
 			$data['province'] = (int) $data['province'];
 			if (empty($data['province'])) {
-				$this->fengmiMsg('省份不能为空');
+				//$this->fengmiMsg('省份不能为空');
 			}
 			$data['city'] = (int) $data['city'];
-			if (empty($data['city'])) {
-				$this->fengmiMsg('城市不能为空');
-			}
+			// if (empty($data['city'])) {
+			// 	$this->fengmiMsg('城市不能为空');
+			// }
 			$data['areas'] = (int) $data['areas'];
-			if (empty($data['areas'])) {
-				$this->fengmiMsg('地区不能为空');
-			}
+			// if (empty($data['areas'])) {
+			// 	$this->fengmiMsg('地区不能为空');
+			// }
 			$data['addinfo'] = htmlspecialchars($data['addinfo']);
 			if (empty($data['addinfo'])) {
 				$this->fengmiMsg('详细地址不能为空');
@@ -166,7 +166,7 @@ class AddressAction extends CommonAction{
 			$data = $this->checkFields($this->_post('data', false), array('type','defaults','addxm', 'addtel', 'province', 'city', 'areas', 'addinfo'));
 			$data['type'] = htmlspecialchars($data['type']);
 			$data['defaults'] = (int) $data['defaults'];
-			$data['addxm'] = htmlspecialchars($data['addxm']);
+			$data['xm'] = htmlspecialchars($data['addxm']);
 			$data['addtel'] = htmlspecialchars($data['addtel']);
 			if (empty($data['addtel'])) {
 				$this->fengmiMsg('联系电话不能为空');
@@ -176,15 +176,15 @@ class AddressAction extends CommonAction{
 			}
 			$data['province'] = (int) $data['province'];
 			if (empty($data['province'])) {
-				$this->fengmiMsg('省份不能为空');
+				//$this->fengmiMsg('省份不能为空');
 			}
 			$data['city'] = (int) $data['city'];
 			if (empty($data['city'])) {
-				$this->fengmiMsg('城市不能为空');
+				//$this->fengmiMsg('城市不能为空');
 			}
 			$data['areas'] = (int) $data['areas'];
 			if (empty($data['areas'])) {
-				$this->fengmiMsg('地区不能为空');
+				//$this->fengmiMsg('地区不能为空');
 			}
 			$data['addinfo'] = htmlspecialchars($data['addinfo']);
 			if (empty($data['addinfo'])) {
@@ -268,15 +268,15 @@ class AddressAction extends CommonAction{
 			}
 			$data['province'] = (int) $data['province'];
 			if (empty($data['province'])) {
-				$this->fengmiMsg('省份不能为空');
+				//$this->fengmiMsg('省份不能为空');
 			}
 			$data['city'] = (int) $data['city'];
 			if (empty($data['city'])) {
-				$this->fengmiMsg('城市不能为空');
+				//$this->fengmiMsg('城市不能为空');
 			}
 			$data['areas'] = (int) $data['areas'];
 			if (empty($data['areas'])) {
-				$this->fengmiMsg('地区不能为空');
+				//$this->fengmiMsg('地区不能为空');
 			}
 			$data['addinfo'] = htmlspecialchars($data['addinfo']);
 			if (empty($data['addinfo'])) {
@@ -334,7 +334,7 @@ class AddressAction extends CommonAction{
 		}
 		$this -> display();
 	}
-	//删除地址会员中心直接删除的时候
+	//删除地址我的兜兜直接删除的时候
 	public function delete() {
 		$address_id = (int)$this -> _get('address_id');
 		$obj = D('Paddress');

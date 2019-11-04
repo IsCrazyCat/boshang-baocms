@@ -14,7 +14,7 @@ class HouseworkAction extends CommonAction
         $holder = D('shop')->where(array('shop_id' => $this->shop_id))->find();
         $Housework = D('Housework');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['svctime|contents'] = array('LIKE', '%' . $keyword . '%');

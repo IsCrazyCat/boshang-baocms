@@ -7,7 +7,7 @@ class MarketAction extends CommonAction
     {
         $market = D('Market');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['market_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -77,7 +77,7 @@ class MarketAction extends CommonAction
         $data['city_id'] = $area['city_id'];
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->baoError('所在商圈不能为空');
+            //$this->baoError('所在商圈不能为空');
         }
         $data['market_name'] = htmlspecialchars($data['market_name']);
         if (empty($data['market_name'])) {
@@ -195,7 +195,7 @@ class MarketAction extends CommonAction
         $data['city_id'] = $area['city_id'];
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->baoError('所在商圈不能为空');
+            //$this->baoError('所在商圈不能为空');
         }
         $data['market_name'] = htmlspecialchars($data['market_name']);
         if (empty($data['market_name'])) {
@@ -254,7 +254,7 @@ class MarketAction extends CommonAction
     {
         $market = D('Market');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -480,7 +480,7 @@ class MarketAction extends CommonAction
     {
         $marketenter = D('Marketenter');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($market_id = (int) $this->_param('market_id', false)) {
             if (!($detail = D('Market')->find($market_id))) {

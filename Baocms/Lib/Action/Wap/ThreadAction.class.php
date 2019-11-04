@@ -98,8 +98,8 @@ class ThreadAction extends CommonAction {
     }
 
     public function postload(){
-            //回复的帖子
-            import('ORG.Util.Page'); // 导入分页类
+            //评论的帖子
+            import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
             $post_id = (int)$this->_param('post_id');
             $reply_list = D('Threadpostcomments')->where(array('post_id'=>$post_id,'type'=>array('IN',array(1,2))))->order(array('comment_id'=>'desc'))->select();
             $user_idss = $comment_idss = array();
@@ -426,10 +426,10 @@ class ThreadAction extends CommonAction {
             if ($this->isPost()) {
                     $data['contents'] = htmlspecialchars($this->_param('contents'));
                     if(empty($data['contents'])){
-                        $this->fengmiMsg('回复内容不能为空');
+                        $this->fengmiMsg('评论内容不能为空');
                     }
                     if ($words = D('Sensitive')->checkWords($data['contents'])) {
-                        $this->fengmiMsg('回复内容含有敏感词：' . $words);
+                        $this->fengmiMsg('评论内容含有敏感词：' . $words);
                     }
                     if($com_id = (int)$this->_param('comment_id')){
                         
@@ -451,9 +451,9 @@ class ThreadAction extends CommonAction {
                         D('Threadpost')->updateCount($post_id, 'reply_num');
                         D('Threadpost')->save(array('post_id' => $post_id, 'last_id' => $this->uid, 'last_time' => $data['create_time']));
 						D('Users')->prestige($this->uid, 'thread');
-                        $this->fengmiMsg('回复成功',U('thread/postdetail',array('post_id'=>$post_id)));
+                        $this->fengmiMsg('评论成功',U('thread/postdetail',array('post_id'=>$post_id)));
                     }else{
-                        $this->fengmiMsg('回复失败');
+                        $this->fengmiMsg('评论失败');
                     }
             }else{
                 $this->assign('comment_id',$comment_id);

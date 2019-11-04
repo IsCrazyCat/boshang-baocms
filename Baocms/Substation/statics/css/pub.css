@@ -26,7 +26,7 @@ a{text-decoration:none}
 .top .center .t3 ul li:hover{ background-color: #415160;background-image:none}
 .top .center .t3 ul li a.cur{background-color:#415160}
 .jq_menu2{border-right:0 solid #008fbf!important}
-.main_logon{background-repeat:repeat;background-position:center center;height:100%;width:100%;overflow:hidden;    background-color: #eee;}
+.main_logon{background-repeat:repeat;background-position:center center;height:100%;width:100%;overflow:hidden;  }
 .login{width:560px;margin:100px auto;background-color: #fff;
 -o-box-shadow: 0 0 5px rgba(0,0,0,.2);
     -ms-box-shadow: 0 0 5px rgba(0,0,0,.2);

@@ -79,7 +79,9 @@
 			server: '<{:U("app/upload/uploadify",array("model"=>"tieba"))}>',                             
 			pick: '#moreToUpload',
 			fileNumberLimit:10,                    
-			resize: true,    
+			resize: true,
+duplicate :true, //可重复上传  
+    
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -93,7 +95,7 @@
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_tieba_pic,
-                    quality:60
+                    quality:80
                 });
             }
         });

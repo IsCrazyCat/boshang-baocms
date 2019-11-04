@@ -4,7 +4,7 @@
 				<div class="card-l">
 					
 					<p>名称：<{:bao_Msubstr($tuans[$item['tuan_id']]['title'],0,10)}></p>
-                    <p>抢购劵编号：<{$item.code_id}>&nbsp;&nbsp;&nbsp;订单ID：<{$item.order_id}>&nbsp;</p>
+                    <p>团购劵编号：<{$item.code_id}>&nbsp;&nbsp;&nbsp;订单ID：<{$item.order_id}>&nbsp;</p>
 					<p>密码：<em class="text-yellow margin-right"><{$item.code}></i></em>
                          <eq name="item.is_used" value="1">
                             已使用
@@ -44,7 +44,7 @@
 	$(document).ready(function () {
 		$(document).on('click', ".jquery-delete", function (e) {
 			var code_id = $(this).attr('rel');
-			layer.confirm('您确定要删除该抢购劵？', {
+			layer.confirm('您确定要删除该团购劵？', {
 				skin: 'layer-ext-demo', 
 				area: ['50%', 'auto'], //宽高
 				btn: ['是的', '不'], //按钮

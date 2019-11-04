@@ -39,7 +39,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_goods,height: height_goods,quality: 80,allowMagnify: false,crop: true}                                           
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -91,7 +93,7 @@
                 </div></td>
             </tr>
             <tr>
-                <td width="120"><p class="tuanfabu_t">没有中奖回复：</p></td>
+                <td width="120"><p class="tuanfabu_t">没有中奖评论：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[aginfo]" value="<{$detail.aginfo|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
                 </div></td>
@@ -103,7 +105,7 @@
                 </div></td>
             </tr>
              <tr>
-                    <td class="lfTdBt"> 关键字回复图片：</td>
+                    <td class="lfTdBt"> 关键字评论图片：</td>
                  <td class="rgTdBt">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[end_photo]" value="<{$detail.end_photo}>" id="data_photo1" />
@@ -122,7 +124,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 						pick: '#fileToUpload1',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_goods,height: height_goods,quality: 80,allowMagnify: false,crop: true}                                           
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

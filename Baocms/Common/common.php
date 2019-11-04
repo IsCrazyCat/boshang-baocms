@@ -310,6 +310,9 @@ function getDistance($lat1, $lng1, $lat2, $lng2) {
     return $s;
 }
 
+
+
+
 function getDistanceCN($lat1, $lng1, $lat2, $lng2) {
     $s = getDistanceNone($lat1, $lng1, $lat2, $lng2);
     $s = $s / 10000;
@@ -323,6 +326,12 @@ function getDistanceCN($lat1, $lng1, $lat2, $lng2) {
     return $s;
 }
 
+
+function mygetDistance($lat1, $lng1, $lat2, $lng2) {
+    $s = getDistanceNone($lat1, $lng1, $lat2, $lng2);
+    
+    return $s;
+}
 
 //空白区域插件
 function block($id) {
@@ -610,9 +619,11 @@ function isPhone($string) {
  * @return boolean
  */
 function isMobile($string) {
-    if(preg_match('/^[1]+[3,4,5,7,8]+\d{9}$/', $string))
-            return true;
-        return false;
+    if(preg_match('/^[1]+[1,2,3,4,5,6,7,8,9]+\d{9}$/', $string)){
+		 return true;
+	} else {
+		return false;
+	}
     //return ctype_digit($string) && (11 == strlen($string)) && ($string[0] == 1);
 }
 
@@ -1406,4 +1417,55 @@ function getSiteUrl(){
 //格式化打印函数
 function p($array) {
 	dump ( $array, 1, '<pre style=font-size:14px;color:#00ae19;>', 0 );
+}
+//获取车型和商品的关联信息
+function get_car_goods($car_id){
+
+    $goods_ids = D('Cargoods')->where(array('car_id'=>$car_id,'closed'=>0))->getField('good_id',true);
+    $catesInfo = array();//类别数组-一级分类 按照类别分组统计
+    $catechildsInfo = array();//类别数组-二级分类 按照类别分组统计
+    foreach ($goods_ids as $key=>$val) {
+        $good = D('Goods')->find($val);
+
+        $catechildsInfo[$good['cate_id']][$good['goods_id']] = $good['title'];
+
+//        if(empty($catechildsInfo[$good['cate_id']])){
+//            $catechildsInfo[$good['cate_id']] = $good['goods_id'];
+//        }else{
+//            $cate_child_array = $catechildsInfo[$good['cate_id']];
+//            if(is_array($cate_child_array)){
+//                array_push($cate_child_array,$good['goods_id']);
+//            }else{
+//                $cate_child_array = array($cate_child_array,$good['goods_id']);
+//            }
+//            $catechildsInfo[$good['cate_id']]=$cate_child_array;
+//        }
+
+
+    }
+    foreach ($catechildsInfo as $key=>$val){
+        $cate = D('Goodscate')->find($key);
+        $catechildsInfo[$key]['name']=$cate['cate_name'];
+        $catesInfo[$cate['parent_id']][$key]=$val;
+        $catesInfo[$cate['parent_id']][$key]['name']=$cate['cate_name'];
+
+    }
+    foreach ($catesInfo as $key=>$val){
+        $cate = D('Goodscate')->find($key);
+        $catesInfo[$key]['name']=$cate['cate_name'];
+        $cate_count = 0;
+        foreach ($val as $ckey=>$cval){
+            if($ckey == 'name'){
+                continue;
+            }
+            $catesInfo[$key][$ckey]['count'] = count($val[$ckey])-1;
+            $cate_count += count($val[$ckey])-1;
+        }
+        $catesInfo[$key]['count'] = $cate_count;
+    }
+
+//    $result['catesInfo'] = $catesInfo;
+//    $result['catechildsInfo']=$catechildsInfo;
+
+    return $catesInfo;
 }

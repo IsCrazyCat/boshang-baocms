@@ -6,7 +6,7 @@
         <!--banner-->
         <div class="flexslider seat_flexslider">
             <ul class="slides">
-                <calldata mdl="Ad" where=" bg_date ELT '{$today}' AND end_date EGT '{$today}' AND closed=0 AND site_id=69" limit="0,5" cache="21600" order="orderby asc">
+                <calldata mdl="Ad" where=" bg_date ELT '{$today}' AND  city_id IN ({$city_ids}) AND end_date EGT '{$today}' AND closed=0 AND site_id=69" limit="0,5" cache="21600" order="orderby asc">
                     <li class="list"><a target="_blank" href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>1))}>"><img src="<{:config_img($item['photo'])}>" width="1200" height="400" /></a></li>
 		</calldata>
             </ul>
@@ -18,7 +18,7 @@
     	<div class="left tribeCont_l">
         	<!--全部分类-->
         	<div class="tribe_cate">
-            	<h3>贴吧分类</h3>
+            	<h3>论坛分类</h3>
                 <div>
                     <ul>
                         <calldata mdl="Threadcate" where="" limit="0,50" cache="21600" order="orderby asc">
@@ -31,9 +31,9 @@
             <!--全部分类end-->
         </div>
         <div class="right tribeCont_r">
-            <!--贴吧推荐-->
+            <!--论坛推荐-->
             <div class="tribe_recmd">
-            	<h3>推荐贴吧</h3>
+            	<h3>推荐论坛</h3>
                 <div class="multipleColumn" style="margin:0 auto">
                     <div class="hd">
                         <a class="prev"></a>
@@ -94,7 +94,7 @@
                     });
                 </script>
             </div>
-            <!--贴吧推荐end-->
+            <!--论坛推荐end-->
             <!--话题动态-->
             <div class="tribe_topic_box">
             	<div class="tribe_topic_tab">
@@ -115,7 +115,7 @@
                             <foreach name="list" item="item">
                                 <li class="tribe_topic_list">
                                     <div class="topCont">
-                                            <div class="left from"><span class="tag tag2"><{$cates[$item['cate_id']]['cate_name']}><b>·</b></span><{$tribes[$item['thread_id']]['thread_name']}>贴吧</div>
+                                            <div class="left from"><span class="tag tag2"><{$cates[$item['cate_id']]['cate_name']}><b>·</b></span><{$tribes[$item['thread_id']]['thread_name']}>论坛</div>
                                     </div>
                                     <h3 class="bt"><a href="<{:U('thread/postdetail',array('post_id'=>$item['post_id']))}>">【<{$tribes[$item['thread_id']]['thread_name']}>】<{$item.title}></a><span class="num"><{$item.reply_num}></span></h3>
                                     <P class="nr"><{:cleanhtml($item['details'])}></P>

@@ -12,7 +12,7 @@
 					<p class="ctrl" style="float:right; position:inherit">
 						<span class="time"><{:formatTime($item['create_time'])}>
                             <if condition="$item['user_id'] neq $MEMBER['user_id']">
-                            <a class="comment_id" href="<{:U('thread/reply',array('post_id'=>$item['post_id'],'comment_id'=>$item['comment_id']))}>">回复</a>
+                            <a class="comment_id" href="<{:U('thread/reply',array('post_id'=>$item['post_id'],'comment_id'=>$item['comment_id']))}>">评论</a>
                             </if>
                         </span>
 					</p>
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</div>
-        <!--回复列表开始-->
+        <!--评论列表开始-->
         <div class="line">
             <div class="x2">
                     <span class="avatar"></span>
@@ -42,7 +42,7 @@
                         </div>
                     </volist>
                 </div>
-         <!--回复列表结束-->
+         <!--评论列表结束-->
         </div>
 	</li>
 </volist>

@@ -180,7 +180,7 @@ class AppointAction extends CommonAction {
             $detail['sign'] = 0;
         }
 		
-		$Appoint->updateCount($appoint_id, 'views');//更新浏览量
+		$Appoint->updateCount($appoint_id, 'views');//更新人气
 		$detail['thumb'] = unserialize($detail['thumb']);
 		//修复点评开启
 		$Appointdianping = D('Appointdianping');
@@ -202,7 +202,7 @@ class AppointAction extends CommonAction {
             $this->error('该技师不存在！');
             die;
         }
-		$Appointworker ->updateCount($worker_id, 'views');//更新技师浏览量
+		$Appointworker ->updateCount($worker_id, 'views');//更新技师人气
 		$detail['thumb'] = unserialize($detail['thumb']);
 		$Appointdianping = D('Appointdianping');//修复点评开启
 		$pingnum = $Appointdianping->where(array('appoint_id' =>$detail['appoint_id'],'worker_id' => $worker_id))->count();

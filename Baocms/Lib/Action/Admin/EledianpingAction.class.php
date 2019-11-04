@@ -6,7 +6,7 @@ class EledianpingAction extends CommonAction {
 
     public function index() {
         $Eledianping = D('Eledianping');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($shop_id = (int) $this->_param('shop_id')) {
             $map['shop_id'] = $shop_id;

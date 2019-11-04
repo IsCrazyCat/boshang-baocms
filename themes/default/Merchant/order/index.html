@@ -60,7 +60,8 @@
     <span class="td_top_1">
    <if condition="!empty($order['address_id'])">
    收货地址：
-   <{$addrs[$order['address_id']]['xm']}>--<{$addrs[$order['address_id']]['tel']}>--<{$addrs[$order['address_id']]['area_str']}>---<{$addrs[$order['address_id']]['info']}>
+   <!--<{$addrs[$order['address_id']]['xm']}>---->
+   <{$addrs[$order['address_id']]['tel']}>--<!--<{$addrs[$order['address_id']]['area_str']}>-----><{$addrs[$order['address_id']]['info']}>
    </span>
    </if>
     </td>
@@ -101,13 +102,32 @@
     
     </td>
     <td class="left6" width="9%">
-    <{$users[$order['user_id']]['account']}>
+    <{$users[$order['user_id']]['ext0']}>&nbsp;<{$users[$order['user_id']]['mobile']}><br />
+<{$users[$order['user_id']]['account']}> [<{$order['user_id']}>]
     <eq name="order.is_mobile" value="1"><br/><img src="/themes/default/Merchant/statics/images/mobile.png" /></eq>
     
     </td>
     <td class="left7" width="8%">
         <eq name="order.is_daofu" value="1">货到付款<br/></eq>
-        <{$types[$order['status']]}><br/>
+       <!-- <{$types[$order['status']]}>-->
+       
+                    发货状态：<select name="status" id="status_<{$order.order_id}>"  class="status"  >  
+                        <option  value="0" <eq name="order.status" value="0">selected="selected"</eq> >等待付款</option>
+                        <option  value="1" <eq name="order.status" value="1">selected="selected"</eq> >等待发货</option>
+                        <option  value="2" <eq name="order.status" value="2">selected="selected"</eq> >商家已发货</option>
+                        <option  value="3" <eq name="order.status" value="3">selected="selected"</eq> >客户已收货</option>
+                        <option  value="8" <eq name="order.status" value="8">selected="selected"</eq> >已完成配送</option>
+                    </select>
+                    <eq name="order.status" value="3">客户已收货</eq>
+                    <eq name="order.status" value="8">已完成配送</eq>
+                        
+                    
+                    <span id="status_span_<{$var.order_id}>"></span><br />
+                    
+                   <div style="width:100%; float:left;"><input name="fahuodanhao" class="fahuodanhao"   id="fahuodanhao_<{$order.order_id}>" onblur=""   type="text" value="<{$order.fahuodanhao}>" placeholder="发货运单号"  size="20" maxlength="50"   /><span id="fahuodanhao_span_<{$order.order_id}>"></span> </div>
+                    
+                    
+       <br/>
         <eq name="order.is_print" value="1">已打印<br/></eq> 
         <a class="href" href="<{:U('order/detail',array('order_id'=>$order['order_id'],'type'=>wait))}>">订单详情</a>
     </td>
@@ -135,5 +155,98 @@
 
     <{$page}>
 </div>
+
+<script>
+  $('.status').change(function(event){  
+    　
+        var status_id=$(this)[0].id;
+		var status_value=$(this).children('option:selected').val();//这就是selected的值  
+		if ( status_id.indexOf("_") != -1 ) {
+			var myid = status_id.split("_")[1];
+			if ( parseInt(myid) > 0 ) {
+               
+				$.post('http://aihuaqian.boshang3710.com/my/status_ajax.php',{order_id:myid,status:status_value},function(data) { 
+                               
+				     if (data == 1) {
+						 
+						 $("#status_span_"+myid).html("发货状态更改成功！");
+						 document.location.reload(); 
+					 } else {
+						 
+						 //$('#status_'+myid).val(status_value);
+						 $("#status_span_"+myid).html("失败"); 
+						 document.location.reload();
+					 }
+					//chepaihao.value=data;
+				}) 	
+			} else {
+				alert("失败！");
+			}
+		}
+       
+    　  
+    　　
+    })
+
+
+
+/*$('.note').blur(function(event){
+        var note_id=$(this)[0].id;
+		var note_value=$(this)[0].value;
+		if ( note_id.indexOf("_") != -1 ) {
+			var myid = note_id.split("_")[1];
+			if ( parseInt(myid) > 0 ) {
+				$.post('http://aihuaqian.boshang3710.com/my/note_ajax.php',{order_id:myid,note:note_value},function(data) {                      
+				     if (data == 1) {
+						 
+						 $("#note_span_"+myid).html("发货单号更改成功！");
+						 document.location.reload(); 
+					 } else {
+						 
+						 //$('#note_'+myid).val(fahuodanhao_value);
+						 $("#note_span_"+myid).html("失败"); 
+						 document.location.reload();
+					 }
+					
+				}) 	
+			} else {
+				//alert("失败！");
+			}
+		}
+        
+    })*/
+
+    $('.fahuodanhao').blur(function(event){
+        var fahuodanhao_id=$(this)[0].id;
+		var fahuodanhao_value=$(this)[0].value;
+        
+        
+                    
+        
+		if ( fahuodanhao_id.indexOf("_") != -1 ) {
+			var myid = fahuodanhao_id.split("_")[1];
+            
+			if ( parseInt(myid) > 0 ) {
+				$.post('http://aihuaqian.boshang3710.com/my/fahuodanhao_ajax.php',{order_id:myid,fahuodanhao:fahuodanhao_value},function(data) {   
+                                    
+				     if (data == 1) {
+						 //alert("发货单号更改成功！");
+						 $("#fahuodanhao_span_"+myid).html("发货单号更改成功！");
+						 document.location.reload(); 
+					 } else {
+						 //alert("不正确或被禁用！");
+						 //$('#fahuodanhao_'+myid).val(fahuodanhao_value);
+						 $("#fahuodanhao_span_"+myid).html("失败"); 
+						 document.location.reload();
+					 }
+					//chepaihao.value=data;
+				}) 	
+			} else {
+				//alert("失败！");
+			}
+		}
+        
+    })
+</script>
 
 <include  file='public:footer'/>

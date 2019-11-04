@@ -40,7 +40,7 @@ class FarmAction extends CommonAction {
    
     public function loaddata() {
         $f = D('Farm');
-        import('ORG.Util.Page');// 导入分页类
+        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
 
         $lists = $f->where($map)->order('farm_id desc')->select();
         $lat = addslashes(cookie('lat'));
@@ -109,7 +109,7 @@ class FarmAction extends CommonAction {
     public function loaddata_lists() {
         
         $f = M('Farm');
-        import('ORG.Util.Page');// 导入分页类
+        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
         
         //条件开始
         $map = array();
@@ -223,7 +223,7 @@ class FarmAction extends CommonAction {
             
             $package = D('FarmPackage')->where(array('farm_id'=>$detail['farm_id']))->select();
             
-            //抢购
+            //团购
             $tuan_list = D('Tuan')->where(array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', NOW),'bg_date' => array('ELT', NOW),'shop_id'=>$detail['shop_id']))->limit(2)->select();
             
             //其它农家

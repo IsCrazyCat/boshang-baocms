@@ -5,7 +5,7 @@ class ActivitysignAction extends CommonAction
     {
         $Activitysign = D('Activitysign');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

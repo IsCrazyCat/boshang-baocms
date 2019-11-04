@@ -207,12 +207,16 @@ class PayAction extends CommonAction{
         }
         $member['money'] = $member['money'] - $detail['need_pay'];
         if (D('Users')->save(array('user_id' => $this->uid, 'money' => $member['money']))) {
+			
+			$rank_id = D('Users')->where('user_id='.$this->uid)->getField('rank_id');
+		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
             D('Usermoneylogs')->add(array(
 				'user_id' => $this->uid, 
 				'money' => -$detail['need_pay'], 
 				'create_time' => NOW_TIME, 
 				'create_ip' => get_client_ip(), 
-				'intro' => '余额支付' . $logs_id
+				'intro' => '余额支付 支付ID:' . $logs_id,
+				'rankname' => $rankname 
 			));
             D('Payment')->logsPaid($logs_id);
             if ($detail['type'] == 'ele') {

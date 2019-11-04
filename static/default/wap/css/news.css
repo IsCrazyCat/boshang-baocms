@@ -56,7 +56,7 @@
 .detail .detail-read img{max-width:100%!important;}
 .detail .detail-read p{text-indent:0;margin:5px 0;}
 
-/*回复列表*/
+/*评论列表*/
 .comm-list{padding:10px;}
 .comm-list h2{font-size:20px;font-family:"Microsoft YaHei";}
 .comm-list img{width:40px;height:40px;border-radius:40px!important;}

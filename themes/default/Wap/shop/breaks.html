@@ -4,7 +4,7 @@
 		<a class="top-addr" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>"><i class="icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
-			优惠买单
+			门店付款
 		</div>
 	<div class="top-signed">
 	</div>
@@ -209,4 +209,4 @@ $shop = D('Shop')->where(array('shop_id'=>$detail['shop_id']))->find();
         </div>
 
 </if><!--满减结束-->
-<include file='public:footer'/> 
+<include file='public:footer-shop'/> 

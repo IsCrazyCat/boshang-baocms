@@ -59,7 +59,7 @@ class CloudAction extends CommonAction{
         $this->assign("status", $status);
         $this->display();
 	}
-	//会员中心云购数据加载
+	//我的兜兜云购数据加载
 	public function loaddata(){
         $obj = D("Cloudlogs");
         import("ORG.Util.Page");

@@ -11,7 +11,7 @@ class MallAction extends CommonAction{
         //统计商城分类数量代码开始
         $cat = (int) $this->_param('cat');
         $Goods = D('Goods');
-        $goodscates = D('Goodscate')->fetchAll();
+		$goodscates = D('Goodscate')->fetchAll();
         foreach ($goodscates as $key => $v) {
             if ($v['cate_id']) {
                 $catids = D('Goodscate')->getChildren($v['cate_id']);
@@ -26,6 +26,7 @@ class MallAction extends CommonAction{
         $this->assign('goodscates', $goodscates);
 		$check_user_addr = D('Paddress')->where(array('user_id'=>$this->uid))->find();//全局检测地址
 		$this->assign('check_user_addr', $check_user_addr);
+		
     }
     public function index(){
         $keyword = $this->_param('keyword', 'htmlspecialchars');
@@ -35,12 +36,13 @@ class MallAction extends CommonAction{
         $business = (int) $this->_param('business');
         $cate_id = (int) $this->_param('cate_id');
         $order = (int) $this->_param('order');
+        $car_id = (int) $this->_param('car_id');
         $this->assign('area', $area);
         $this->assign('business', $business);
         $this->assign('cate_id', $cate_id);
         $this->assign('order', $order);
         $this->assign('cat', $cat);
-        $this->assign('nextpage', LinkTo('mall/loaddata', array('cat' => $cat, 'order' => $order, 'area' => $area, 'business' => $business, 'cate_id' => $cate_id, 'keyword' => $keyword, 'p' => '0000')));
+        $this->assign('nextpage', LinkTo('mall/loaddata', array('cat' => $cat, 'order' => $order, 'area' => $area, 'business' => $business, 'cate_id' => $cate_id, 'keyword' => $keyword, 'car_id'=>$car_id , 'p' => '0000')));
         $this->display();
     }
    
@@ -72,7 +74,11 @@ class MallAction extends CommonAction{
                 $map['cate_id'] = $cat;
             }
         }
-        $map['city_id'] = $this->city_id;
+        if($car_id = (int) $this->_param('car_id')){
+            $goods_ids = D('Cargoods')->where(array('car_id'=>$car_id,'closed'=>0))->getField('good_id',true);
+            $map['goods_id'] = array('IN',$goods_ids);
+        }
+//        $map['city_id'] = $this->city_id;
         $count = $Goods->where($map)->count();
         $Page = new Page($count, 10);
         $show = $Page->show();
@@ -162,7 +168,12 @@ class MallAction extends CommonAction{
 	        }
         $key[$goods_id]=$spec_key;//规格
         cookie('goods_spec', $goods_spec, 604800);
-        $this->ajaxReturn(array('status' => 'success', 'msg' => '加入购物车成功,正在跳转到购物车', 'url' => U('mall/cart')));
+		
+        $this->ajaxReturn(array('status' => 'success', 'msg' => '提交中...', 'url' => U('mall/cart')));
+		//return $this->redirect(U('mall/cart'));
+//		header("Location:" . U('wap/mall/cart'));
+//        die;
+		
     }
     public function cartadd($goods_id){
         $shop_id = (int) $this->_param('shop_id');
@@ -498,6 +509,8 @@ class MallAction extends CommonAction{
             $total_mobile += $mobile_fan;
             $all_integral += $canuserintegral;
 			
+			
+			
             $ordergoods[$val['shop_id']][] = array(
 				'goods_id' => $val['goods_id'], 
 				'shop_id' => $val['shop_id'], 
@@ -536,19 +549,20 @@ class MallAction extends CommonAction{
 			$order['express_price'] = $express_price[$k];//写入运费
             $order['address_id'] = $defaultAddress['id'];//写入快递ID
 			
-			$val[0]['express_price'] = $express_price[$k];//写入运费,浡莱克7月30日二开
-			$val[0]['address_id'] = $defaultAddress['id'];//写入快递,浡莱克7月30日二开
+			$val[0]['express_price'] = $express_price[$k];//写入运费,博商7月30日二开
+			$val[0]['address_id'] = $defaultAddress['id'];//写入快递,博商7月30日二开
             $shop = D('Shop')->find($k);
             $order['is_shop'] = (int) $shop['is_pei'];
             if ($order_id = D('Order')->add($order)) {//这里写入订单表了
                 $order_ids[] = $order_id;
                 foreach ($val as $k1 => $val1) {
                     $val1['order_id'] = $order_id;
-                    if (!empty($tuiguang)) {
-                        if ($tuiguang['goods_id'] == $val1['goods_id']) {
-                            $val1['tui_uid'] = $tuiguang['uid'];
-                        }
-                    }
+                    //if (!empty($tuiguang)) {
+                       // if ($tuiguang['goods_id'] == $val1['goods_id']) {
+                            //$val1['tui_uid'] = $tuiguang['uid'];
+							$val1['tui_uid'] = $shop['tui_uid'];
+                       //}
+                    //}
                     D('Ordergoods')->add($val1);
                 }
             }
@@ -631,7 +645,7 @@ class MallAction extends CommonAction{
 		
 		//收货地址部分重写
 		if (false == $defaultAddress = D('Paddress')->order_address_id($this->uid,$order_id)) {
-		   $this->error('获取用户地址出错，请先去会员中心添加商城地址后下单');
+		   $this->error('获取用户地址出错，请先去我的兜兜添加商城地址后下单');
 		}
 		$changeAddressUrl = "http://" . $_SERVER['HTTP_HOST'] . U('address/addlist', array('type' => goods, 'order_id' => $order_id));
 		$this -> assign('defaultAddress', $defaultAddress);
@@ -667,7 +681,7 @@ class MallAction extends CommonAction{
         $order_ids = explode(',', $detail['order_ids']);
 		//这里合并付款逻辑暂时不做1，做留言系统，2，做优惠劵ID，3;优惠劵减去的金额
         D('Order')->where(array('order_id' => array('IN', $order_ids)))->save(array('addr_id' => $addr_id));
-        /**********************浡莱克 修复合并付款的时候的系列订单错误问题*****************************/
+        /**********************博商 修复合并付款的时候的系列订单错误问题*****************************/
         $orders = D('order')->where(array('order_id' => array('IN', $order_ids)))->select();
         foreach ($orders as $k => $val) {
             $need_pay[$val[order_id]] = $val['total_price'] - $val['mobile_fan'] - $val['use_integral'];
@@ -691,7 +705,7 @@ class MallAction extends CommonAction{
             if (empty($payment)) {
                 $this->fengmiMsg('该支付方式不存在');
             }
-			//浡莱克二开合并付款开始
+			//博商二开合并付款开始
 			foreach($order_ids as $v){
 				$need_pay = D('Order')->useIntegral($this->uid, array($v));//这个不知道能不能返回
             	D('Order')->where("order_id={$v}")->save(array('need_pay' => $need_pay));//合并付款的时候更新实际付款金额    
@@ -699,7 +713,7 @@ class MallAction extends CommonAction{
 			}
 			$detail['need_pay']= $log_need;
             $detail['code'] = $code;
-			//浡莱克二开合并付款结束
+			//博商二开合并付款结束
             $detail['code'] = $code;
             D('Paymentlogs')->save($detail);
             $this->fengmiMsg('订单设置完成，即将进入付款。', U('mall/combine', array('log_id' => $detail['log_id'])));
@@ -793,7 +807,7 @@ class MallAction extends CommonAction{
                 D('Paymentlogs')->save($logs);
             }
 			
-            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，浡莱克独创
+            D('Order')->where("order_id={$order_id}")->save(array('need_pay' => $need_pay));//再更新一次最终的价格，博商独创
             D('Weixintmpl')->weixin_notice_goods_user($order_id,$this->uid,1);//商城微信通知
             $this->fengmiMsg('订单设置完成，即将进入付款。', U('payment/payment', array('log_id' => $logs['log_id'])));
         }

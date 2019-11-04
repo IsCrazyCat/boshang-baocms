@@ -43,7 +43,7 @@
                 
                 
                 <tr>
-                  <td class="lfTdBt">小区贴吧图片：</td>
+                  <td class="lfTdBt">小区发现图片：</td>
                         <td class="rgTdBt">
                             <div>
                                 <div id="moreToUpload" >编辑图片</div>
@@ -58,7 +58,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"tieba"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									accept: {
 										title: 'Images',
@@ -108,7 +110,7 @@
                             });
                    </script> 
                 <tr>
-                    <td class="lfTdBt">浏览量：</td>
+                    <td class="lfTdBt">人气：</td>
                     <td class="rgTdBt"><input type="text" name="data[views]" value="<{$detail.views|default=''}>" class="manageInput" />
 
                     </td>

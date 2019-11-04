@@ -26,13 +26,13 @@
         
         <if condition="$detail['reply'] eq null">
          <p class="text-center border-bottom padding text-small text-gray">
-			<span>您还未回复！点击下面按钮回复。</span>
+			<span>您还未评论！点击下面按钮评论。</span>
 		</p>
         
         <else/>
         
         <p class="text-center border-bottom padding text-small text-gray">
-			<span>回复时间：<{$detail.reply_time|date='Y-m-d H:i:s',###}></span>
+			<span>评论时间：<{$detail.reply_time|date='Y-m-d H:i:s',###}></span>
 		</p>
         
         <div class="padding">
@@ -48,9 +48,9 @@
 		<div class="button-group">
         
         <if condition="$detail['reply'] eq null">
-        <a class="block button bg-dot active" href="javascript:void(0);">等待回复</a>
+        <a class="block button bg-dot active" href="javascript:void(0);">等待评论</a>
         <else/>
-		<a class="block button bg-gray active" href="javascript:void(0);">已回复</a>
+		<a class="block button bg-gray active" href="javascript:void(0);">已评论</a>
        </if>     
 		</div>
 	</div>

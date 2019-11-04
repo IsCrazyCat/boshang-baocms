@@ -14,7 +14,6 @@
 <php>
   $addarres = D('Paddress')->find($detail['address_id']);
 </php>
-
 <div class="panel-list">
 	<ul>
 		<li>
@@ -89,10 +88,20 @@
 		</li>
 		<li>
 			<a href="javascript:;">
-				配送地址
+				收货地址
 				<small class="text-small margin-left text-gray"> <{$addarres.area_str}> <{$addarres.info }></small>
 			</a>
 		</li>
+        
+        <if condition="$detail['fahuodanhao']">
+            <li>
+                <a href="javascript:;">
+                    运 单 号 
+                    <small class="text-small margin-left text-gray"> <{$detail['fahuodanhao']}></small>
+                </a>
+            </li>
+        </if>
+        
 	</ul>
 </div>
 		
@@ -116,6 +125,12 @@
 <div class="blank-30"></div>
 	<div class="container text-center">
 		<eq name="detail.is_daofu" value="0">
+               
+               <eq name="detail.status" value="2">
+               <!--<a class="button button-block button-big bg-dot" href="<{:U('/User/goods/queren',array('order_id'=>$detail['order_id']))}>">确认收货</a><br />-->
+
+               </eq>
+               
                 <eq name="detail.status" value="0">
                 <a class="button button-block button-big bg-dot" href="<{:u('wap/mall/pay',array('type'=>goods,'order_id'=>$detail['order_id'],'address_id'=>$detail['address_id']))}>">去付款</a>
                 <else />

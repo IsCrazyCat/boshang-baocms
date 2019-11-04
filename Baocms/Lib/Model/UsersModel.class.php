@@ -5,7 +5,7 @@ class UsersModel extends CommonModel{
     protected $_integral_type = array(
 		'login' => '每日登陆', 
 		'dianping_shop' => '商家点评', 
-		'thread' => '回复帖子', 
+		'thread' => '评论帖子', 
 		'mobile' => '手机认证', 
 		'email' => '邮件认证'
 	);
@@ -174,13 +174,113 @@ class UsersModel extends CommonModel{
 	
 	
     public function addGold($user_id, $num, $intro = ''){
+		$lenxing = 0;
+		if(strstr($intro,"申请提现")){
+			$lenxing = 4;
+		}
+		if(strstr($intro,"到店付款")){
+			$lenxing = 2;
+		}
+		if(strstr($intro,"在线购物")){
+			$lenxing = 1;
+		}
+		
         if ($this->updateCount($user_id, 'gold', $num)) {
             return D('Usergoldlogs')->add(array(
 				'user_id' => $user_id, 
 				'gold' => $num, 
 				'intro' => $intro, 
 				'create_time' => NOW_TIME, 
-				'create_ip' => get_client_ip()
+				'create_ip' => get_client_ip(),
+				'lenxing' => $lenxing
+			));
+        }
+        return false;
+    }
+	
+	
+	public function myaddptGold(  $order_id,$shop_id,$pay_id){
+		   
+			$paymentlogs = D('paymentlogs')->where(array('log_id' => $pay_id, 'is_paid' => 1))->find();
+			if ( (int)$paymentlogs['log_id'] > 0 ) {
+				$intro = '';
+				
+				
+				if ( $paymentlogs['type'] == 'goods' ) {
+					$intro = '商城购物';
+				}
+				if ( $paymentlogs['type'] == 'gwmd' ) {
+					$intro = '到店付款';
+				}
+				if ( $paymentlogs['code'] == 'weixin' ) {
+					$intro = $intro.'(微信支付)';
+				} else if ( $paymentlogs['type'] == 'money' ) {
+					$intro = $intro.'(余额支付)';
+				} 
+				
+				$shopmoney = D('shopmoney')->where(array('pay_id' => $pay_id,'shop_id' => $shop_id))->find();
+				$usermoneylogs_0 = D('usermoneylogs')->where(" pay_id =  '".$pay_id."' and intro LIKE '%消费奖励%' ")->find();
+				$usermoneylogs_1 = D('usermoneylogs')->where(" pay_id =  '".$pay_id."' and intro LIKE '%一级分成%' ")->find();
+				$usermoneylogs_2 = D('usermoneylogs')->where(" pay_id =  '".$pay_id."' and intro LIKE '%二级分成%' ")->find();
+				$usermoneylogs_3 = D('usermoneylogs')->where(" pay_id =  '".$pay_id."' and intro LIKE '%三级分成%' ")->find();
+				$usermoneylogs_L = D('usermoneylogs')->where(" pay_id =  '".$pay_id."' and intro LIKE '%[链店补贴]%' ")->find();
+				if ($paymentlogs['ismiandan'] == 1 ) {
+					$gold = 0 - (int)$paymentlogs['need_pay'];
+				} else {
+					$gold = (int)$paymentlogs['need_pay'] - (int)$shopmoney['money'] - (int)$usermoneylogs_0['money'] - (int)$usermoneylogs_1['money'] - (int)$usermoneylogs_2['money'] - (int)$usermoneylogs_3['money'] - (int)$usermoneylogs_L['money'] ;
+				}
+				if ($usermoneylogs_0['create_time']) {
+					$create_time = $usermoneylogs_0['create_time'];
+				} else {
+					$create_time = NOW_TIME;
+				}
+				
+				$result = D('Userptgoldlogs') ->where(array('pay_id' => $pay_id))->count();
+				if ( (int)$result == 0 ) {
+					return D('Userptgoldlogs')->add(array(
+						'user_id' => $paymentlogs['user_id'], //消费者uid
+						'gold' => $gold, //平台获得 
+						'intro' => $intro, 
+						'create_time' => $create_time, 
+						'create_ip' => get_client_ip(),
+						'order_id' => $order_id,//支付id
+						'shop_id' => $shop_id,//商家id
+						'xfz_q' => (int)$usermoneylogs_0['money'],//订单id
+						'money' => $paymentlogs['need_pay'],
+						'tjr_user_id' => $usermoneylogs_L['user_id'],
+						'tjr_q' => (int)$usermoneylogs_L['money'],
+						'yj_user_id' => $usermoneylogs_1['user_id'],
+						'yj_q' => (int)$usermoneylogs_1['money'],
+						'ej_user_id' => $usermoneylogs_2['user_id'],
+						'ej_q' => (int)$usermoneylogs_2['money'],
+						'sj_user_id' => $usermoneylogs_3['user_id'],
+						'sj_q' => (int)$usermoneylogs_3['money'],
+						'shop_money' => $shopmoney['money'],
+						'is_md' => $paymentlogs['ismiandan'],
+						'pay_id' => $pay_id
+					));
+				} else {
+					D('Userptgoldlogs')->save(array('user_id' => $paymentlogs['user_id'],'gold' => $gold, 'intro' => $intro, 'create_time' => $create_time, 'create_ip' => get_client_ip(), 'order_id' => $order_id, 'shop_id' => $shop_id, 'xfz_q' => (int)$usermoneylogs_0['money'], 'money' => $paymentlogs['need_pay'], 'tjr_user_id' => $usermoneylogs_L['user_id'], 'tjr_q' => (int)$usermoneylogs_L['money'], 'yj_user_id' => $usermoneylogs_1['user_id'], 'yj_q' => (int)$usermoneylogs_1['money'], 'ej_user_id' => $usermoneylogs_2['user_id'], 'ej_q' => (int)$usermoneylogs_2['money'], 'sj_user_id' => $usermoneylogs_3['user_id'], 'sj_q' => (int)$usermoneylogs_3['money'], 'shop_money' => $shopmoney['money'], 'is_md' => $paymentlogs['ismiandan']), array('where' => array('pay_id' => $pay_id)));
+						
+				}
+			} else {
+				return false;	
+			}
+       
+    }
+	
+	public function myaddGold($user_id, $num, $intro = '',$order_id,$shop_id,$pay_id,$lenxing){
+        if ($this->updateCount($user_id, 'gold', $num)) {
+            return D('Usergoldlogs')->add(array(
+				'user_id' => $user_id, 
+				'gold' => $num, 
+				'intro' => $intro, 
+				'create_time' => NOW_TIME, 
+				'create_ip' => get_client_ip(),
+				'order_id' => $order_id,
+				'shop_id' => $shop_id,
+				'pay_id' => $pay_id,
+				'lenxing' => $lenxing
 			));
         }
         return false;
@@ -202,11 +302,42 @@ class UsersModel extends CommonModel{
 	//写入用户余额
     public function addMoney($user_id, $num, $intro = ''){
         if ($this->updateCount($user_id, 'money', $num)) {
-            return D('Usermoneylogs')->add(array('user_id' => $user_id, 'money' => $num, 'intro' => $intro, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip()));
+			$rank_id = D('Users')->where('user_id='.$user_id)->getField('rank_id');
+		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
+            return D('Usermoneylogs')->add(array('user_id' => $user_id, 'money' => $num, 'intro' => $intro, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(), 'rankname' => $rankname));
         }
         return false;
     }
 	
+	//写入用户余额
+    public function add_my_Money($user_id, $num, $intro = '',$shop_id=0,$pay_id=0){
+        if ($this->updateCount($user_id, 'money', $num)) {
+			$rank_id = D('Users')->where('user_id='.$user_id)->getField('rank_id');
+		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
+            return D('Usermoneylogs')->add(array('user_id' => $user_id, 'money' => $num, 'intro' => $intro, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(),'shop_id' => $shop_id, 'pay_id' => $pay_id, 'rankname' => $rankname ));
+        }
+        return false;
+    }
+
+	//写入用户 分享补贴 可提现补贴
+    public function add_fxbt_ktxbt_money($user_id, $num, $intro = '',$shop_id=0,$pay_id=0){
+        if ($this->updateCount($user_id, 'fxbt_ktxbt_money', $num)) {
+			$rank_id = D('Users')->where('user_id='.$user_id)->getField('rank_id');
+		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
+            return D('Usermoneylogs')->add(array('user_id' => $user_id, 'money' => $num, 'intro' => $intro, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(),'shop_id' => $shop_id, 'pay_id' => $pay_id, 'rankname' => $rankname ));
+        }
+        return false;
+    }
+
+	//写入用户 链店补贴可提现补贴
+    public function add_ldbt_ktxbt_money($user_id, $num, $intro = '',$shop_id=0,$pay_id=0){
+        if ($this->updateCount($user_id, 'ldbt_ktxbt_money', $num)) {
+            return D('Usermoneylogs')->add(array('user_id' => $user_id, 'money' => $num, 'intro' => $intro, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(), 'shop_id' => $shop_id, 'pay_id' => $pay_id, 'rankname' => $rankname));
+        }
+        return false;
+    }
+
+    
 	
     public function addIntegral($user_id, $num, $intro = ''){
         if ($this->updateCount($user_id, 'integral', $num)) {
@@ -312,12 +443,15 @@ class UsersModel extends CommonModel{
 			   'frozen_money'=> $detail['frozen_money'] + $money,
 			   'frozen_money_time'=>NOW_TIME
 		   ));
+		   $rank_id = D('Users')->where('user_id='.$user_id)->getField('rank_id');
+		   $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
            D('Usermoneylogs')->add(array(
 			   'user_id' => $user_id,
 			   'money'=>$money,
 			   'intro' => $intro,
 			   'create_time' => NOW_TIME,
-			   'create_ip'  => get_client_ip()
+			   'create_ip'  => get_client_ip(),
+			   'rankname' => $rankname
 		   ));
 		 return true;
     }
@@ -355,16 +489,33 @@ class UsersModel extends CommonModel{
 		return true;
     }
 	
-    public function addProfit($user_id, $orderType = 0, $orderId, $num, $is_separate){
+    public function addProfit($user_id, $orderType = 0, $orderId, $num, $is_separate, $shop_id=0 , $pay_id=0){
         return D('Userprofitlogs')->add(array(
 			'user_id' => $user_id, 
 			'money' => $num, 
 			'order_id' => $orderId, 
 			'order_type' => $orderType, 
 			'create_time' => NOW_TIME, 
-			'is_separate' => $is_separate
+			'is_separate' => $is_separate,
+			'shop_id' => $shop_id,
+			'pay_id' => $pay_id
 		));
     }
+	
+	
+	public function addldbt($user_id, $orderType = 0, $orderId, $num, $is_separate,$shop_id=0,$pay_id=0){
+        return D('Userldbtlogs')->add(array(
+			'user_id' => $user_id, 
+			'money' => $num, 
+			'order_id' => $orderId, 
+			'order_type' => $orderType, 
+			'create_time' => NOW_TIME, 
+			'is_separate' => $is_separate,
+			'shop_id' => $shop_id,
+			'pay_id' => $pay_id
+		));
+    }
+
 	
 	//充值余额送积分
     public function return_recharge_integral($logs_id,$user_id, $money){

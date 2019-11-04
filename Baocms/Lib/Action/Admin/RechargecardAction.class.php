@@ -7,7 +7,7 @@ class RechargecardAction extends CommonAction
     {
         $Rechargecard = D('Rechargecard');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('end_date' => array('EGT', TODAY));
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

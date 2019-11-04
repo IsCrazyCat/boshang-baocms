@@ -50,7 +50,7 @@
 .tie-item .item-foot{background:#fafafa;font-size:12px;padding:10px;}
 .tie-item .item-foot p{margin:0;height:25px;line-height:25px;overflow:hidden;}
 .tie-item .item-foot em{color:#4170B6;}
-/*贴吧发现首页*/
+/*论坛发现首页*/
 .page-center-box{position:absolute;top:5.5rem;left:0;right:0;width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;bottom:1.5rem}
 .fl{float:left}
 .faxian_cont-left{width:30%;position:absolute;left:0;top:0;height:100%;overflow-y:scroll}
@@ -70,7 +70,7 @@
 .faxian_cont-rig .cont-rig_list a.zhu{text-align:center;border-radius:0.3rem;border:0.1rem solid #e6e6e6; display:block;color: #2fbdaa;width:3.6rem;height:1.8rem;line-height:1.8rem;position:absolute;right:0.3rem;background: #fff;}
 .black9{color:#999!important}
 .clear{clear:both;font-size:0;height:0;line-height:0}
-/*贴吧关注*/
+/*论坛关注*/
 .border_t { border-top: 0.1rem solid #e5e5e5;}
 .guanzhu_cont{background: #fff;margin-top:2.2rem;}
 .guanzhu_cont .cont_list{padding:0.8rem;position:relative;}
@@ -116,7 +116,7 @@
 .tie-ding span{float:right;color:#999;}
 .tie-ding a{width:80%;overflow:hidden;display:block;height:20px;line-height:20px;float:left;}
 
-/*贴吧底部*/
+/*论坛底部*/
 .foot-bar{bottom:0px;display:table;width:100%;height:50px;padding:0px;table-layout:fixed;position:fixed;z-index:10;right:0px;left:0px;background:rgba(255,255,255,0.8);box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);backface-visibility: hidden;}
 .foot-bar .left-icon{font-size:30px;color:#4170B6;width:100%;text-align:center;display:block;height:50px;line-height:45px;border-right:thin solid #eee;}
 .foot-bar .post-icon{color:#4170B6;width:100%;text-align:center;display:block;height:50px;line-height:50px;font-size:16px;}

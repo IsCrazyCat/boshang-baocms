@@ -7,9 +7,9 @@
 			<p class="text-gray x10">反馈时间：<{$item.create_time|date='Y-m-d',###}></p>
             <p class="text-gray x10">所属小区：<{$communitys[$item['community_id']]['name']}> </p>
             <if condition="$item['reply'] eq null">
-            <a class="button button-small bg-blue text-right " href="Javascript: void(0)">等待回复</a>
+            <a class="button button-small bg-blue text-right " href="Javascript: void(0)">等待评论</a>
 			<else/>
-            <a class="button button-small bg-dot text-right " href="<{:U('community/feedbackdetail',array('feed_id'=>$item['feed_id']))}>">查看回复</a>
+            <a class="button button-small bg-dot text-right " href="<{:U('community/feedbackdetail',array('feed_id'=>$item['feed_id']))}>">查看评论</a>
             </if>
 		</div>
 	</div>

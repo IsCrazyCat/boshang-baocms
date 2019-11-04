@@ -1,0 +1,35 @@
+<include file="public:header"/>
+<header class="top-fixed bg-yellow bg-inverse">
+	<div class="top-back">
+		<a class="top-addr" href="<{:U('distribution/index')}>"><i class="icon-angle-left"></i></a>
+	</div>
+		<div class="top-title">
+			链店列表
+		</div>
+	<div class="top-signed">
+		<include file="public:message"/>
+	</div>
+</header>
+
+<div class="list-media-x" id="list-media">
+<div class="blank-10 bg"></div>
+	<ul>
+     <foreach name="list" item="item">
+        <li class="line">
+          <dd class="zhong">
+           <p>
+             <a class="x3" href="/wap/shop/detail/shop_id/<{$item.shop_id}>.html" >ID：<{$item.shop_id}></a>
+             <a class="x9 text-right" href="/wap/shop/detail/shop_id/<{$item.shop_id}>.html"><{$item.shop_name}></a>
+           </p>
+          </dd>
+        </li>
+    	<div class="blank-10 bg"></div>
+     </foreach>
+    </ul>
+</div>	
+
+
+
+
+
+<include  file='distribution:footer'/>

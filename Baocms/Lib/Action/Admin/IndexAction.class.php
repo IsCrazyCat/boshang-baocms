@@ -1,5 +1,6 @@
 <?php
 class IndexAction extends CommonAction{
+	
     public function index(){
         $menu = D('Menu')->fetchAll();
         if ($this->_admin['role_id'] != 1) {
@@ -54,14 +55,13 @@ class IndexAction extends CommonAction{
         $counts['totay_order'] = (int) D('Order')->where(array('type' => 'goods', 'create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time)), 'status' => array('EGT', 0)))->count();
        
         $counts['order'] = (int) D('Order')->where(array('type' => 'goods', 'status' => array('EGT', 0)))->count();
-        
         $counts['gold'] = (int) D('Order')->where(array('type' => 'gold', 'status' => array('EGT', 0)))->count();
         $counts['today_yuyue'] = (int) D('Shopyuyue')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();
         
         //查询今日会员
 		$counts['users'] = (int) D('Users')->count();
         $counts['totay_user'] = (int) D('Users')->where(array('reg_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();
-		$counts['user_moblie'] = (int) D('Users')->where(array('mobile'=>array('EXP','IS NULL')))->count();
+		$counts['user_moblie'] = (int) D('Users')->where("  LENGTH(mobile)>= 2 " )->count();
 		$counts['user_email'] = (int) D('Users')->where(array('email'=>array('EXP','IS NULL')))->count();
 		$counts['user_weixin'] = (int) D('Connect')->where(array('type'=>weixin))->count();
 		$counts['user_weibo'] = (int) D('Connect')->where(array('type'=>weibo))->count();
@@ -70,13 +70,22 @@ class IndexAction extends CommonAction{
 		//查询资金
 		$counts['moneylogs'] = (int) D('Usermoneylogs')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();
 
-		$counts['money_and'] = (int) D('Users')->sum('money');
+		$counts['money_and'] = (int) D('Users')->sum('money')+(int) D('Users')->sum('ldbt_ktxbt_money')+(int) D('Users')->sum('fxbt_ktxbt_money');
 		$counts['money_integral'] = (int) D('Users')->sum('integral');
-		$counts['money_cash'] = (int) D('Userscash')->sum('money');
-		$counts['money_cash_day'] = (int) D('Userscash')->where(array('addtime' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->sum('money');
-		$counts['money_cash_ok'] = (int) D('Userscash')->where(array('status'=>1))->sum('money');
-		$counts['money_cash_audit'] = (int) D('Userscash')->where(array('status'=>0))->count();
-	
+//		$counts['money_cash'] = (int) D('Userscash')->sum('money');
+//		$counts['money_cash_day'] = (int) D('Userscash')->where(array('addtime' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->sum('money');
+//		$counts['money_cash_ok'] = (int) D('Userscash')->where(array('status'=>1))->sum('money');
+//		$counts['money_cash_audit'] = (int) D('Userscash')->where(array('status'=>0))->count();
+		
+		$counts['money_cash'] = (int) D('Userscash')->where(array('type'=>'user'))->sum('money');
+		$counts['money_cash_day'] = (int) D('Userscash')->where(array('addtime' => array(array('ELT', NOW_TIME), array('EGT', $bg_time)),'type'=>'user'))->sum('money');
+		$counts['money_cash_ok'] = (int) D('Userscash')->where(array('status'=>1,'type'=>'user'))->sum('money');
+		$counts['money_cash_audit'] = (int) D('Userscash')->where(array('status'=>0,'type'=>'user'))->count();
+		
+		
+	    
+		$counts['gold_and'] = (int) D('Users')->sum('gold');
+	   
         //查询今日商
 		$counts['shop'] = (int) D('Shop')->count();
         $counts['totay_shop'] = (int) D('Shop')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();
@@ -87,12 +96,18 @@ class IndexAction extends CommonAction{
 		$counts['shop_weidian_audit'] = (int) D('Weidiandetails')->where(array('audit' => 0))->count();
 		$counts['totay_dianping'] = (int) D('Shopdianping')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();
 		
+		$counts['shop_money_cash'] = (int) D('Userscash')->where(array('type'=>'shop'))->sum('gold');
+		$counts['shop_money_cash_day'] = (int) D('Userscash')->where(array('addtime' => array(array('ELT', NOW_TIME), array('EGT', $bg_time)),'type'=>'shop'))->sum('gold');
+		$counts['shop_money_cash_ok'] = (int) D('Userscash')->where(array('status'=>1,'type'=>'shop'))->sum('gold');
+		$counts['shop_money_cash_audit'] = (int) D('Userscash')->where(array('status'=>0,'type'=>'shop'))->count();
+
+		
 		//查询商城
 		
 	$counts['goods'] = (int) D('Goods')->count();
 	$counts['goods_day'] = (int) D('Goods')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();	
 	$counts['goods_audit'] = (int) D('Goods')->where(array('audit' => 0))->count();	
-	$counts['order'] = (int) D('Ordergoods')->count();	
+	$counts['order'] = (int) D('Order')->count();	
 	$counts['order_day'] = (int) D('Ordergoods')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();	
 	$counts['order_tui'] = (int) D('Ordergoods')->where(array('status' => 2))->count();
 	$counts['totay_dianping_goods'] = (int) D('Goodsdianping')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count();

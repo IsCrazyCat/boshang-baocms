@@ -10,7 +10,7 @@ class WeixinkeywordAction extends CommonAction {
     public function index() {
      
         $Shopweixinkeyword = D('Shopweixinkeyword');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('shop_id' => $this->shop_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['keyword'] = array('LIKE', '%' . $keyword . '%');
@@ -58,7 +58,7 @@ class WeixinkeywordAction extends CommonAction {
 
 
         if (empty($data['contents'])) {
-            $this->baoError('回复内容不能为空');
+            $this->baoError('评论内容不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['contents'])) {
             $this->baoError('内容含有敏感词：' . $words);
@@ -115,7 +115,7 @@ class WeixinkeywordAction extends CommonAction {
         $data['title'] = htmlspecialchars($data['title']);
 
         if (empty($data['contents'])) {
-            $this->baoError('回复内容不能为空');
+            $this->baoError('评论内容不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['contents'])) {
             $this->baoError('内容含有敏感词：' . $words);

@@ -5,7 +5,7 @@ class FenzhanshopcashAction extends CommonAction
     {
         $Userscash = D('Userscash');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('type' => shop, 'city_id' => $this->city_id);
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');

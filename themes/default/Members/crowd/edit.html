@@ -146,7 +146,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_goods,height: height_goods,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -173,7 +175,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									compress : {width:width_goods_pic,height:height_goods_pic,quality: 80,allowMagnify: false,crop: true},														                        
 								});                                                               
@@ -233,8 +237,8 @@
                             var lng = "<{$detail['lng']}>";
                             var lat = "<{$detail['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("合肥");
-                                var point = new BMap.Point(117.260852, 31.825717);
+                                map.centerAndZoom("聊城");
+                                var point = new BMap.Point(115.9918900000,36.4626820000);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);

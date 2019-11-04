@@ -54,7 +54,7 @@ class ShopdingyueAction extends CommonAction {
     }
     public  function  shoplist(){
     	$shopdingyue=M('shop_dingyue');
-    	import('ORG.Util.Page'); // 导入分页类
+    	import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
     	$map = array();	
     	if($audit = $this->_param('audit')){
     		$map['audit'] = $audit;

@@ -5,7 +5,7 @@ class TuanorderAction extends CommonAction
     {
         $Tuancode = D('Tuancode');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('user_id' => $this->uid);
         //这里只显示 实物
         $status = (int) $this->_param('status');
@@ -46,7 +46,7 @@ class TuanorderAction extends CommonAction
                 $this->baoError('非法操作');
             }
             if ($detail['status'] != 0 || $detail['is_used'] != 0) {
-                $this->baoError('该抢购券不能申请退款');
+                $this->baoError('该团购券不能申请退款');
             }
             if (D('Tuancode')->save(array('code_id' => $code_id, 'status' => 1))) {
                 $this->baoSuccess('申请成功！等待网站客服处理！', U('index/index'));
@@ -56,27 +56,27 @@ class TuanorderAction extends CommonAction
     }
     public function delete($code_id = 0)
     {
-        //根据抢购券id删除
+        //根据团购券id删除
         if (is_numeric($code_id) && ($code_id = (int) $code_id)) {
             $obj = D('Tuancode');
             if (!($detial = $obj->find($code_id))) {
-                $this->baoError('该抢购券不存在');
+                $this->baoError('该团购券不存在');
             }
             if ($detial['user_id'] != $this->uid) {
                 $this->baoError('请不要操作他人的订单');
             }
             if ($detial['status'] == 1) {
-                $this->baoError('该抢购券暂时不能删除');
+                $this->baoError('该团购券暂时不能删除');
             }
             if ($detial['status'] == 0) {
                 if ($detial['is_used'] == 0) {
-                    $this->baoError('该抢购券暂时不能删除');
+                    $this->baoError('该团购券暂时不能删除');
                 }
             }
             $obj->delete($code_id);
             $this->baoSuccess('删除成功！', U('index/index'));
         } else {
-            $this->baoError('请选择要删除的抢购券');
+            $this->baoError('请选择要删除的团购券');
         }
     }
 }

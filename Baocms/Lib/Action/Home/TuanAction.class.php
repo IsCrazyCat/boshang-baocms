@@ -46,15 +46,15 @@ class TuanAction extends CommonAction{
             $tuan_id = $id;
         }
         if (empty($tuan_id)) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该团购信息不存在！');
             die;
         }
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该团购信息不存在！');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该团购信息不存在！');
             die;
         } else {
             $cate_id = (int) $detail['cate_id'];
@@ -170,7 +170,7 @@ class TuanAction extends CommonAction{
     {
         $Tuan = D('Tuan');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', TODAY));
         $linkArr = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -406,7 +406,7 @@ class TuanAction extends CommonAction{
             die;
         }
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'closed' => 0, 'bg_date' => array('ELT', TODAY), 'end_date' => array('EGT', TODAY));
         $linkArr = array();
         $around_id = (int) $this->_param('around_id');
@@ -565,19 +565,29 @@ class TuanAction extends CommonAction{
         $order = (int) $this->_param('order');
         if (!empty($order)) {
             //编辑订单
+			$tui_uid = 0 ;
+			$myshop = D('Shop')->find($detail['shop_id']);
+			$tui_uid = $myshop['tui_uid'];
+			
             $data = array(
 				'order_id' => $order, 
 				'num' => $num, 
 				'total_price' => $detail['tuan_price'] * $num, 
 				'need_pay' => $detail['tuan_price'] * $num - $detail['use_integral'] * $num / 100, 
 				'update_time' => NOW_TIME, 
-				'update_ip' => get_client_ip()
+				'update_ip' => get_client_ip(),
+				'tui_uid' => $tui_uid,
 			);
             if (false !== D('Tuanorder')->save($data)) {
                 $this->baoSuccess('修改订单成功！', U('tuan/pay', array('order_id' => $order)));
             }
             $this->baoError('修改订单失败！');
         } else {
+			$tui_uid = 0 ;
+			$myshop = D('Shop')->find($detail['shop_id']);
+			$tui_uid = $myshop['tui_uid'];
+			
+			
             $data = array(
 				'tuan_id' => $tuan_id, 
 				'num' => $num, 
@@ -587,7 +597,8 @@ class TuanAction extends CommonAction{
 				'create_ip' => get_client_ip(), 
 				'total_price' => $detail['tuan_price'] * $num, 
 				'need_pay' => $detail['tuan_price'] * $num, 
-				'status' => 0
+				'status' => 0,
+				'tui_uid' => $tui_uid,
 			);
             if ($order_id = D('Tuanorder')->add($data)) {
                 $where['tuan_id'] = $tuan_id;
@@ -708,7 +719,7 @@ class TuanAction extends CommonAction{
                 D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,0);
                 $this->baoSuccess('恭喜您下单成功！', U('tuan/yes', array('code' => $codestr)));
             } else {
-                $this->baoError('您已经设置过该抢购为到店付了！');
+                $this->baoError('您已经设置过该团购为到店付了！');
             }
         } else {
             $payment = D('Payment')->checkPayment($code);
@@ -741,7 +752,7 @@ class TuanAction extends CommonAction{
     public function yes($code){
         $code = htmlspecialchars($code);
         $this->assign('waitSecond', 10);
-        $this->success('恭喜您选择了到店支付，抢购券为:<font style="color:red;">' . $code . '</font>!到店消费时出示可以享受抢购价！', U('members/index'));
+        $this->success('恭喜您选择了到店支付，团购券为:<font style="color:red;">' . $code . '</font>!到店消费时出示可以享受团购价！', U('members/index'));
     }
     public function pay(){
         if (empty($this->uid)) {
@@ -756,7 +767,7 @@ class TuanAction extends CommonAction{
         }
         $tuan = D('Tuan')->find($order['tuan_id']);
         if (empty($tuan) || $tuan['closed'] == 1 || $tuan['end_date'] < TODAY) {
-            $this->error('该抢购不存在');
+            $this->error('该团购不存在');
             die;
         }
         $this->assign('use_integral', $tuan['use_integral'] * $order['num']);

@@ -12,7 +12,7 @@ class MsgAction extends CommonAction
     public function index() {
         $Msg = D('Msg');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed'=>0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
@@ -44,6 +44,10 @@ class MsgAction extends CommonAction
         if ($this->isPost()) {
             $data = $this->createCheck();
             $obj = D('Msg');
+			
+			
+			
+			
             if ($obj->add($data)) {
                 $this->baoSuccess('添加成功', U('msg/index'));
             }
@@ -92,6 +96,9 @@ class MsgAction extends CommonAction
         if ($words = D('Sensitive')->checkWords($data['details'])) {
             $this->baoError('详细内容含有敏感词：' . $words);
         }
+		$data['dailiviews']  = ',0,';
+		$data['shopsviews']  = ',0,';
+		$data['usersviews'] = ',0,';
         return $data;
     }
     public function edit($msg_id = 0)

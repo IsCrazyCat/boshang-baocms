@@ -7,7 +7,7 @@ class UseraddrAction extends CommonAction
     {
         $Useraddr = D('Useraddr');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name|mobile|addr'] = array('LIKE', '%' . $keyword . '%');
@@ -81,11 +81,11 @@ class UseraddrAction extends CommonAction
         $data['city_id'] = $this->city_id;
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
-            $this->baoError('地区不能为空');
+            //$this->baoError('地区不能为空');
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->baoError('商圈不能为空');
+            //$this->baoError('商圈不能为空');
         }
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {
@@ -144,11 +144,11 @@ class UseraddrAction extends CommonAction
         $data['city_id'] = $this->city_id;
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
-            $this->baoError('地区不能为空');
+            //$this->baoError('地区不能为空');
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->baoError('商圈不能为空');
+            //$this->baoError('商圈不能为空');
         }
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {

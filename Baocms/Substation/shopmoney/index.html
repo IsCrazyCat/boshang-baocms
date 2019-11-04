@@ -7,11 +7,11 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>如果订单是非实物订单，那么需要在商家确认抢购券消费的时候资金才会转入到商家账户</p>
+    <p class="attention"><span>注意：</span></p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
-                <{:BA('shopmoney/create','','添加资金记录')}>
+                <!--<{:BA('shopmoney/create','','添加资金记录')}>-->
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('shopmoney/index')}>">
@@ -63,9 +63,9 @@
                     <td>商家</td>
                     <td>资金</td>
                     <td>时间</td>
-                    <td>IP</td>
+                    <!--<td>IP</td>-->
                     <td>类型</td>
-                    <td>原始订单</td>
+                    <td>订单ID</td>
                     <td>说明</td>    
                 </tr>
                 <foreach name="list" item="var">
@@ -73,14 +73,15 @@
                         <td><input class="child_money_id" type="checkbox" name="money_id[]" value="<{$var.money_id}>" /></td>
                         <td><{$var.money_id}></td>
                         <td><{$shops[$var['shop_id']]['shop_name']}></td>
-                        <td><{:round($var['money']/100,2)}></td>
+                        <td><{:round($var['money']/100,2)}> 元</td>
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
-                        <td><{$var.create_ip}></td>
+                        <!--<td><{$var.create_ip}></td>-->
                         <td>
-                        <if condition="$var['type'] eq 'tuan'">抢购
+                        <if condition="$var['type'] eq 'tuan'">团购
                         <elseif condition="$var['type'] eq 'goods'"/>购物
                         <elseif condition="$var['type'] eq 'ele'"/>订餐
-                        <elseif condition="$var['type'] eq 'breaks'"/>优惠买单
+                        <elseif condition="$var['type'] eq 'breaks'"/>优惠
+                        <elseif condition="$var['type'] eq 'gwmd'"/>门店付款
                         <else/>订座
                         </if>
                         

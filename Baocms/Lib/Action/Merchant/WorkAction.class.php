@@ -2,14 +2,21 @@
 
 /****************** 版权声明 ******************************
  *
+ *----------------聊城博商网络科技有限公司-----------------
+ *----------------      aihuaqian.boshang3710.com    -----------------
+ *QQ:448329273  
+ *电话:0551-63641901  
+ *EMAIL：youge@baocms.com
+ * 
  ***************  未经许可不得用于商业用途  ****************/
+ 
 
 class  WorkAction extends CommonAction{
     private $edit_fields = array('title', 'money1', 'money2','num','intro','work_time','expir_date');
 
     public function index() {
         $Work = D('Work');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('shop_id' => $this->shop_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

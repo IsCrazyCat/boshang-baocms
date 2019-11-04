@@ -226,10 +226,10 @@
 <link rel="stylesheet" type="text/css" href="/static/default/webuploader/webuploader.css">
 <script src="/static/default/webuploader/webuploader.min.js"></script>    
      
-    <!--发帖与回复-->
+    <!--发帖与评论-->
     <div class="tribeCont_r">
         <div class="tribe_topic_fabiao"> 
-        	<h3>文章回复</h3>
+        	<h3>文章评论</h3>
                 <form method="post" id="reply_form">
                 <input type="hidden" value="0" name="data[parent_id]" />
  				<input type="hidden" value="<{$detail.article_id}>" name="data[article_id]" />
@@ -247,7 +247,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"article"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									compress : {width:width_article,height:height_article,quality: 80,allowMagnify: false,crop: true},														                        
 								});                                                               
@@ -279,7 +281,7 @@
             </form>
         </div>
     </div>
-    <!--发帖与回复end-->
+    <!--发帖与评论end-->
     <script>
         $(document).ready(function(){
             $("#reply_btn").click(function(){

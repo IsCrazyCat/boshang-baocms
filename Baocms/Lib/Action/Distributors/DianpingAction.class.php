@@ -31,10 +31,10 @@ class DianpingAction extends CommonAction{
             if ($reply = $this->_param('reply', 'htmlspecialchars')) {
                 $data = array('dianping_id' => $dianping_id, 'reply' => $reply);
                 if (D('Shopdianping')->save($data)) {
-                    $this->error('回复成功', U('dianping/index'));
+                    $this->error('评论成功', U('dianping/index'));
                 }
             }
-            $this->error('请填写回复');
+            $this->error('请填写评论');
         } else {
             $this->assign('detail', $detail);
             $this->display();
@@ -109,10 +109,10 @@ class DianpingAction extends CommonAction{
             if ($reply = $this->_param('reply', 'htmlspecialchars')) {
                 $data = array('order_id' => $order_id, 'reply' => $reply);
                 if (D('Tuandianping')->save($data)) {
-                    $this->error('回复成功', U('dianping/tuan'));
+                    $this->error('评论成功', U('dianping/tuan'));
                 }
             }
-            $this->error('请填写回复');
+            $this->error('请填写评论');
         } else {
             $this->assign('detail', $detail);
             $this->display();
@@ -129,10 +129,10 @@ class DianpingAction extends CommonAction{
             if ($reply = $this->_param('reply', 'htmlspecialchars')) {
                 $data = array('order_id' => $order_id, 'reply' => $reply);
                 if (D('Eledianping')->save($data)) {
-                    $this->error('回复成功', U('dianping/waimai'));
+                    $this->error('评论成功', U('dianping/waimai'));
                 }
             }
-            $this->error('请填写回复');
+            $this->error('请填写评论');
         } else {
             $this->assign('detail', $detail);
             $this->display();
@@ -177,10 +177,10 @@ class DianpingAction extends CommonAction{
             if ($reply = $this->_param('reply', 'htmlspecialchars')) {
                 $data = array('order_id' => $order_id, 'reply' => $reply);
                 if (D('Bookingdianping')->save($data)) {
-                    $this->baoSuccess('回复成功', U('bookingdianping/ding'));
+                    $this->baoSuccess('评论成功', U('bookingdianping/ding'));
                 }
             }
-            $this->error('请填写回复');
+            $this->error('请填写评论');
         } else {
             $this->assign('detail', $detail);
             $this->display();
@@ -216,7 +216,7 @@ class DianpingAction extends CommonAction{
         $this->assign('page', $show);
         $this->display();
     }
-	//家政点评回复
+	//家政点评评论
 	public function appointreply($dianping_id){
         $dianping_id = (int) $dianping_id;
         $obj = D('Appointdianping');
@@ -228,10 +228,10 @@ class DianpingAction extends CommonAction{
             if ($reply = $this->_param('reply', 'htmlspecialchars')) {
                 $data = array('dianping_id' => $dianping_id, 'reply' => $reply);
                 if ($obj->save($data)) {
-                    $this->baoSuccess('回复成功', U('dianping/booking'));
+                    $this->baoSuccess('评论成功', U('dianping/booking'));
                 }
             }
-            $this->error('请填写回复');
+            $this->error('请填写评论');
         } else {
             $this->assign('detail', $detail);
             $this->display();
@@ -268,7 +268,7 @@ class DianpingAction extends CommonAction{
         $this->assign('page', $show);
         $this->display();
     }
-	//农家乐点评回复
+	//农家乐点评评论
 	public function farmreply($comment_id){
         $comment_id = (int) $comment_id;
         $obj = D('FarmComment');
@@ -280,10 +280,10 @@ class DianpingAction extends CommonAction{
             if ($reply = $this->_param('reply', 'htmlspecialchars')) {
                 $data = array('comment_id' => $comment_id, 'reply' => $reply);
                 if ($obj->save($data)) {
-                    $this->baoSuccess('回复成功', U('dianping/farm'));
+                    $this->baoSuccess('评论成功', U('dianping/farm'));
                 }
             }
-            $this->error('请填写回复');
+            $this->error('请填写评论');
         } else {
             $this->assign('detail', $detail);
             $this->display();

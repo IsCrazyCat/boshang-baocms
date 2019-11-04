@@ -8,7 +8,7 @@
 	<a class="top-addr" href="<{:u('tuan/index')}>"><i class="icon-angle-left"></i></a>
 </div>
 <div class="top-title">
-编辑抢购
+编辑团购
 </div>
 </header>
 <style>
@@ -21,7 +21,7 @@
 	<div class="blank-10"></div>
 	<div class="Upload-img-box">
 		<div id="fileToUpload">
-			编辑抢购图
+			编辑团购图
 		</div>
 		<div class="Upload-img">
 			<div class="list-img loading">
@@ -40,15 +40,17 @@
 			swf: '/static/default/webuploader/Uploader.swf',                             
 			server: '<{:U("app/upload/uploadify",array("model"=>"tuan"))}>',                             
 			pick: '#fileToUpload',                             
-			resize: true,    
-			compress : {width:width_tuan,height:height_tuan,quality:60,allowMagnify: false,crop: true}//裁剪       
+			resize: true,
+duplicate :true, //可重复上传  
+    
+			compress : {width:width_tuan,height:height_tuan,quality:80,allowMagnify: false,crop: true}//裁剪       
         });
         uploader.on( 'beforeFileQueued', function( file ) {
             $(".loading").show();
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_tuan,//这里裁剪长度
-                    quality:60
+                    quality:80
                 });
             }
         });
@@ -100,7 +102,9 @@
 			server: '<{:U("app/upload/uploadify",array("model"=>"tuan"))}>',                             
 			pick: '#moreToUpload',
 			fileNumberLimit:10,                    
-			resize: true,    
+			resize: true,
+duplicate :true, //可重复上传  
+    
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -113,7 +117,7 @@
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_tuan_pic,
-                    quality:60
+                    quality:80
                 });
             }
         });
@@ -141,7 +145,7 @@
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">抢购名称：</span>
+			<span class="x3">团购名称：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[title]" value="<{$detail.title|default=''}>" />
 			</span>
@@ -149,7 +153,7 @@
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">抢购简介：</span>
+			<span class="x3">团购简介：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[intro]" value="<{$detail.intro|default=''}>" />
 			</span>
@@ -157,7 +161,7 @@
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">抢购分类</span>
+			<span class="x3">团购分类</span>
 			<span class="x4">
 			<select name="parent_id" id="parent_id" class="text-select">
 				<option value="0" selected="selected">请选择</option>
@@ -248,7 +252,7 @@
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">抢购价格：</span>
+			<span class="x3">团购价格：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[tuan_price]" value="<{$detail.tuan_price|default=''}>" />
 			</span>
@@ -282,10 +286,10 @@
 	<div class="blank-10 bg"></div>
     
      <!--分销开始-->
-	<if condition="!empty($SHOP['is_profit'])">
+	
 	<div class="blank-10" bg>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">是否分成给上级分销商：</span>
 			<span class="x4">
@@ -295,7 +299,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">一级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -303,7 +307,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">二级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -311,7 +315,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">三级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -319,7 +323,7 @@
 			</span>
 		</div>
 	</div>
-	</if>
+	<if condition="!empty($SHOP['is_profit'])"></if>
     <div class="blank-10 bg"></div>
     <!--分销结束-->
 	<!--下面是时间-->

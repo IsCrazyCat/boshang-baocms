@@ -4,11 +4,11 @@ class LoginAction extends CommonAction{
         $this->display();
     }
     public function loging(){
-        $yzm = $this->_post('yzm');
-        if (strtolower($yzm) != strtolower(session('verify'))) {
-            session('verify', null);
-            $this->baoError('验证码不正确!', 2000, true);
-        }
+//        $yzm = $this->_post('yzm');
+//        if (strtolower($yzm) != strtolower(session('verify'))) {
+//            session('verify', null);
+//            $this->baoError('验证码不正确!', 2000, true);
+//        }
         $username = $this->_post('username', 'trim');
         $password = $this->_post('password', 'trim,md5');
         $adminObj = D('Admin');

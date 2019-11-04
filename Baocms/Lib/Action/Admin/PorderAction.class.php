@@ -3,7 +3,7 @@ class PorderAction extends CommonAction {
 	public function index() {
 		$Order = D('Porder');
 		import('ORG.Util.Page');
-		// 导入分页类
+		// 导入分页类    aihuaqian.boshang3710.com
 		$keyword = $this -> _param('keyword', 'htmlspecialchars');
 		if ($keyword) {
 			$map['order_no'] = array('LIKE', '%' . $keyword . '%');
@@ -563,7 +563,7 @@ class PorderAction extends CommonAction {
 	public function pllist() {
 		$Order = D('Porder');
 		import('ORG.Util.Page');
-		// 导入分页类
+		// 导入分页类    aihuaqian.boshang3710.com
 		$map['order_status'] = 9;
 		if (isset($_GET['ktt']) || isset($_POST['ktt'])) {
 			$ktt = (int)$this -> _param('ktt');
@@ -669,7 +669,7 @@ class PorderAction extends CommonAction {
 	public function tuan() {
 		$Order = D('Porder');
 		import('ORG.Util.Page');
-		// 导入分页类
+		// 导入分页类    aihuaqian.boshang3710.com
 		$map['order_status'] = array('IN', array(3, 4, 5, 9));
 		$map['tstatus'] = array('IN', array(0, 1));
 		if (isset($_GET['ktt']) || isset($_POST['ktt'])) {

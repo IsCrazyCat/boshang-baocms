@@ -17,7 +17,7 @@ class ShopnewsAction extends CommonAction
         //取得当前商家ID，给下面的maps查询
         $Shopnews = D('Shopnews');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
@@ -123,7 +123,7 @@ class ShopnewsAction extends CommonAction
             //查询上级ID编辑处代结束
             $obj = D('Shopnews');
             if (!($detail = $obj->find($news_id))) {
-                $this->baoError('请选择要编辑的商家资讯');
+                $this->baoError('请选择要编辑的发现');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -138,7 +138,7 @@ class ShopnewsAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要编辑的商家资讯');
+            $this->baoError('请选择要编辑的发现');
         }
     }
     private function editCheck()
@@ -196,7 +196,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->baoSuccess('删除成功！', U('shopnews/index'));
             }
-            $this->baoError('请选择要删除的商家资讯');
+            $this->baoError('请选择要删除的发现');
         }
     }
     public function audit($news_id = 0)
@@ -223,7 +223,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->baoSuccess('审核成功！', U('shopnews/index'));
             }
-            $this->baoError('请选择要审核的商家资讯');
+            $this->baoError('请选择要审核的发现');
         }
     }
 }

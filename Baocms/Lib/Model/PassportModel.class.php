@@ -250,12 +250,53 @@ class PassportModel {
                 $data['invite1'] = $userinvite['invite2'];
             }
         }
-        $fuid = (int)cookie('fuid');
+		if (  (int)$data['fuid1'] > 0  ) {
+			$fuid = $data['fuid1'];
+		} else {
+			$fuid = (int)cookie('fuid');	
+			
+		} 
+		if ( $fuid  ) {
+		} else {
+			if(!empty($invite_id)){
+				$fuid = (int)$invite_id;	
+			}
+		}
+		
+		
+		
         $fuser = $obj->find($fuid);
         if ($fuser) {
-            $data['fuid1'] = $fuser['user_id'];
-            $data['fuid2'] = $fuser['fuid1'];
-            $data['fuid3'] = $fuser['fuid2'];
+			
+			$data['shangxianjihe'] = ','.$fuser['shangxianjihe'].",".$fuser['user_id'].','; 
+			$data['shangxianjihe'] = str_replace(",,",",",$data['shangxianjihe']);//上线集合 带逗号
+			$data['__referee'] = ltrim(rtrim($fuser['__referee'].",".$fuser['user_id'],","),','); //安排上线
+			
+			if ($data['__referee']) {
+				 $flooruser = D("Users")->where("user_id in (".$data['__referee'].")")->order('user_id desc')->select();  
+				 foreach($flooruser as $rss){
+					  //D('Users')->save(array('user_id' => $rss['user_id'], 'tuanduishuju' => (int)$rss['tuanduishuju']+1 ));
+					  D('Users')->where(array('user_id' => $rss['user_id']))->setInc('tuanduishuju');  
+				 }
+			}
+			D('Users')->where(array('user_id' => $fuser['user_id']))->setInc('gerenshuju');
+			
+			
+			if  ( (int)$fuid<>(int)$this->uid ) {
+				//$data['fuid1'] = (int)$fuser['user_id'];
+				$data['fuid1'] = $fuid;
+			}
+			if  ( (int)$fuser['fuid1']<>(int)$this->uid ) {
+				$data['fuid2'] = (int)$fuser['fuid1'];
+			}
+			if  ( (int)$fuser['fuid2']<>(int)$this->uid ) {
+				$data['fuid3'] = (int)$fuser['fuid2'];
+			}
+			
+            
+			
+			
+			
             $profit_integral1 = (int)$this->_CONFIG['profit']['profit_integral1'];
             $profit_integral2 = (int)$this->_CONFIG['profit']['profit_integral2'];
             $profit_integral3 = (int)$this->_CONFIG['profit']['profit_integral3'];

@@ -20,7 +20,10 @@
                     <th><span class="color_r">*</span>商户名称：</th>
                     <td><input type="text" name="data[shop_name]"  class="but"  /><p>商户名称是店铺的名称，显示在店铺详情，最多20个字符</p></td>
                 </tr>
-
+                  <tr>
+                    <th>推荐人手机：</th>
+                    <td><input type="text" name="data[tui_uid]"  class="but"  /><p>选填</p></td>
+                </tr>
 				  <tr>
                          <p class="tuanfabu_t">店铺图片：</p>
                  <div class="tuanfabu_nr">
@@ -41,7 +44,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shoplogo"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shoplogo,height: height_shoplogo,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -77,7 +82,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shoplogo"))}>',                             
 						pick: '#fileToUpload2',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shoplogo,height: height_shoplogo,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -269,8 +276,8 @@
                             var lng = "<{$CONFIG['site']['lng']}>";
                             var lat = "<{$CONFIG['site']['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("合肥");
-                                var point = new BMap.Point(117.260852, 31.825717);
+                                map.centerAndZoom("聊城");
+                                var point = new BMap.Point(115.9918900000,36.4626820000);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);

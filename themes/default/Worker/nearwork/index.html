@@ -43,7 +43,7 @@
             <a href="<{:U('nearwork/edit',array('work_id'=>$item['work_id']))}>" class="button  bg-yellow float-right">编辑</a></h5>	
             
 			<p class="addr">有效期:<{$item.expir_date}></p>
-            <p class="addr">浏览量：<{$item.views}></p>
+            <p class="addr">人气：<{$item.views}></p>
             <p class="addr">审核状态：<if condition="$item['audit'] eq 1">正常<else/>未审核</if></p>
             
 		</div>

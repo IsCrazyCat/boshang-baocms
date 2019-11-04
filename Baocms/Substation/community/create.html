@@ -98,7 +98,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"xiaoqu"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						accept: {
 							title: 'Images',
 							extensions: 'gif,jpg,jpeg,png',

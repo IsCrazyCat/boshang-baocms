@@ -16,16 +16,32 @@ class CommonAction extends Action{
         define("IS_WEIXIN", $is_weixin);
         searchwordfrom();
         $this->uid = (int) getuid();
+		
+		
+				
+		
         if (empty($this->uid)) {
-            header("Location: " . U("wap/passport/login"));
-            exit;
+			if ($is_weixin) {
+				//$this->wxlogin();
+				header('Location:' . U('/wap/passport/wxlogin/shop_id/'.$shop_id));
+				die;
+			} else {
+				header("Location: " . U("/wap/passport/login"));
+                exit;
+			}
         }
         $this->member = D("Users")->find($this->uid);
 		
         if (empty($this->member)) {
-            setuid(0);
-            header("Location: " . U("wap/passport/login"));
-            exit;
+			setuid(0);
+			if ($is_weixin) {
+				header('Location:' . U('/wap/passport/wxlogin/shop_id/'.$shop_id));
+				die;
+				//$this->wxlogin();
+			} else {
+				header("Location: " . U("/wap/passport/login"));
+                exit;
+			}
         }
         $this->ex = d("Usersex")->find($this->uid);
         $this->checkFzmoney();
@@ -80,7 +96,7 @@ class CommonAction extends Action{
         $this->assign("act", ACTION_NAME);
         $this->assign("is_weixin", IS_WEIXIN);
 		
-		D('Tuanorder')->chenk_guoqi_time();//检测抢购过期时间
+		D('Tuanorder')->chenk_guoqi_time();//检测团购过期时间
 		
         $this->msg();
         $this->assign('profit', $profit = $this->_CONFIG['profit']['profit']);

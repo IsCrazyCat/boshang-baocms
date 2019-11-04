@@ -11,13 +11,14 @@ class PaymentModel extends CommonModel {
         'ele' => '在线订餐',
         'booking'  => '订座定金',
         'fzmoney'=> '冻结金充值',
-        'breaks'=>'优惠买单',
+        'breaks'=>'门店付款',
 		'pintuan' => '拼团',//拼团添加
 		'crowd' =>'众筹',
 		'donate' =>'打赏',
 		'running'=>'跑腿',
 		'farm'=>'农家乐预订',
-		'cloud'=>'云购'
+		'cloud'=>'云购',
+		'gwmd' => '门店付款'
     );
     protected $type = null;
     protected $log_id = null;
@@ -49,13 +50,13 @@ class PaymentModel extends CommonModel {
             }
         }
 
-        if (!is_weixin()) {
-            unset($return['weixin']);
-        }
-
-        if (is_weixin()) {
-            unset($return['alipay']);
-        }
+//        if (!is_weixin()) {
+//            unset($return['weixin']);
+//        }
+//
+//        if (is_weixin()) {
+//            unset($return['alipay']);
+//        }
         return $return;
     }
 	//外卖关闭在线支付
@@ -214,7 +215,7 @@ class PaymentModel extends CommonModel {
 					);
                     D('Quanming')->fzmoney($logs['user_id']);
                     return true;
-                }elseif($logs['type'] == 'breaks'){   //优惠买单
+                }elseif($logs['type'] == 'breaks'){   //门店付款
                     $order = D('Breaksorder')->find($logs['order_id']);
                     $shop = D('Shop')->find($order['shop_id']);
                     D('Users')->updateCount($shop['user_id'], 'money', $logs['need_pay']);
@@ -237,12 +238,11 @@ class PaymentModel extends CommonModel {
 						'money' => $logs['need_pay'], 
 						'create_time' => NOW_TIME, 
 						'create_ip' => $ip, 
-						'intro' => '余额充值
-						，支付记录ID：' . $logs['log_id'], 
+						'intro' => '余额充值，支付记录ID：' . $logs['log_id'], 
 					));
 					return true;
 
-                } elseif ($logs['type'] == 'tuan') {//抢购都是发送抢购券！
+                } elseif ($logs['type'] == 'tuan') {//团购都是发送团购券！
                     $member = D('Users') -> find($logs['user_id']);
 					$codes = array();
 					$obj = D('Tuancode');
@@ -283,7 +283,7 @@ class PaymentModel extends CommonModel {
 					D('Tongji') -> log(1, $logs['need_pay']);//统计//分销
 					$tuan_is_profit = D('Shop') -> find($order['shop_id']);
 					if($tuan_is_profit['is_profit'] == 1){
-						D('Userprofitlogs')->profitFusers(0, $logs['user_id'], $logs['order_id']);//单个抢购奖励分成和升级等级
+						D('Userprofitlogs')->profitFusers(0, $logs['user_id'], $logs['order_id']);//单个团购奖励分成和升级等级
 					}
 					return true;
                 } elseif ($logs['type'] == 'ele') {//餐饮订餐
@@ -401,7 +401,253 @@ class PaymentModel extends CommonModel {
 					$pgoods -> where(array('id' => $tuan['goods_id'])) -> setInc('sales_num', $tuan['goods_num']);//更新销售数量
 					$tuanrenCount = D('Ptuanteam') -> where(array('tuan_id' => $tuan['tuan_id'], 'tuan_status' => 2)) -> count();//拼团二开结束
 					return true;
-				}else { // 商城购物
+				} elseif ($logs['type'] == 'gwmd') {
+					/*李洪顺开始*/
+					
+					$ip = get_client_ip();
+
+					if ( (int)$logs['shop_id'] > 0 ) {
+						
+					    $users = D('users')->find($logs['user_id']);
+						$shop = D('shop')->find($logs['shop_id']);
+						
+						if ( $logs['need_pay'] > 0 ) {
+							D('Usermoneylogs') -> add(array(
+								'user_id' => $logs['user_id'], 
+								'money' => 0-$logs['need_pay'], 
+								'create_time' => NOW_TIME, 
+								'create_ip' => $ip, 
+								'intro' => '到店付款 会员支付 支付ID：' . $logs['log_id'], 
+								'shop_id' => $logs['shop_id'], 
+								'pay_id' => $logs['log_id'], 
+							));
+						}
+						
+						
+						//$need_pay = $logs['need_pay']*10000;
+						$need_pay = $logs['need_pay'];
+						
+						$taxrate = 0 ;
+						if ( $shop['jiesuanfeilv'] > 0 ) {
+							$taxrate = $need_pay*$shop['jiesuanfeilv']/100; 
+						} else {
+							$shopcate = D('shopcate')->find($shop['cate_id']);
+							if ( (int)$shopcate['rate'] > 0 ) {
+								$taxrate = $need_pay/1000*$shopcate['rate']; //千分比
+							}
+						}
+						
+						
+						$jianli = floor($need_pay - $taxrate);
+						//$jianli = $need_pay * 0.85;
+						
+						
+						if ( $taxrate > 0 ) { 
+						    $userProfitModel = D('Userprofitlogs');
+							$userLdbtModel = D('Userldbtlogs');
+							$userModel = D('Users');
+							$shop_id = $logs['shop_id'];
+							$pay_id = $logs['log_id'];
+							$order_id = $logs['order_id']; 
+							/*====================================消费者本人返 5%====================================*/
+								$xfbe = $taxrate / 15 * 5 ; 
+								if ($logs['user_id']) {
+									$userModel->add_my_Money($logs['user_id'], (int)$xfbe, $intro = '平台消费奖励',$shop_id,$pay_id);
+								}
+							/*====================================消费者本人返 5%====================================*/
+							/*====================================商家推广者返 1%====================================*/
+							    $sjtgk = floor($taxrate / 15 * 1) ; 
+								
+								if ($shop['tui_uid']) {
+									if ($sjtgk > 0) {
+										$tui_uid = $shop['tui_uid'];
+										$info0 =  '支付ID:' . $logs['log_id'] . ' [链店补贴]商家推荐人返佣 ' . round($sjtgk/100 , 2).' 元' ;
+										$wheres['user_id'] = array('eq', $tui_uid);
+										$wheres['pay_id'] = array('eq', $logs['log_id']);	
+										$mynum0 = $userLdbtModel->where($wheres)->count();
+										if ( (int)$mynum0 == 0  ) {  
+											$userModel->add_ldbt_ktxbt_money($tui_uid, $sjtgk, $info0, $shop_id, $pay_id);
+											$userModel->addldbt($tui_uid, 1, $goods['order_id'], $sjtgk, 1, $shop_id, $pay_id);
+										} else {
+											$userModel->add_ldbt_ktxbt_money($tui_uid, $sjtgk, $info0, $shop_id, $pay_id);
+											$userLdbtModel->save(array('is_separate' => 1,'money' => $sjtgk, 'edit_time' => NOW_TIME), array('where' => array('pay_id' => $logs['log_id'],'shop_id' => $logs['shop_id'],  'user_id' => $tui_uid)));
+										}	
+									}							 
+                              }
+								
+							/*====================================商家推广者返 1%====================================*/
+/*====================================上线一二三级返佣====================================*/
+							if ($users['fuid1']) {
+								$fuser1 = $userModel->find($users['fuid1']);
+								$Userrank_1 = D('Userrank')->find($fuser1['rank_id']);
+								$profit_rate1 = round($Userrank_1['yijibutie'],8);
+								$money1 = floor($taxrate / 15 * $profit_rate1  );
+								if ($money1 > 0) {
+									$info1 = '支付ID:' . $pay_id . ' 一级分成: ' . round($money1 / 100, 2).' 元';
+									$fuser1 = $userModel->find($users['fuid1']);
+									if ($fuser1) {
+										
+										$wheres['user_id'] = array('eq', $users['fuid1']);
+										$wheres['pay_id'] = array('eq', $pay_id);	
+										$mynum1 = $userProfitModel->where($wheres)->count();
+										if ( (int)$mynum1 == 0  ) {  
+											$userModel->add_fxbt_ktxbt_money($users['fuid1'], $money1, $info1,$shop_id,$pay_id);
+											$userModel->addProfit($users['fuid1'], 11, $order_id, $money1, 1,$shop_id, $pay_id);
+										} else {
+											$userModel->add_fxbt_ktxbt_money($users['fuid1'], $money1, $info1,$shop_id,$pay_id);
+											$userProfitModel->save(array('is_separate' => 1,'money' => $money1, 'edit_time' => NOW_TIME), array('where' => array('order_id' => $order_id, 'order_type' => -1, 'user_id' => $users['fuid1'])));
+										}
+										
+										
+									}
+									
+								}
+							}
+							//$profit_rate2 = (int)$this->_CONFIG['profit']['profit_rate2'];
+							if ($users['fuid2']) {
+								$fuser2 = $userModel->find($users['fuid2']);
+								$Userrank_2 = D('Userrank')->find($fuser2['rank_id']);
+								$profit_rate2 = round($Userrank_2['erjibutie'],8);
+								$money2 = floor($taxrate / 15 * $profit_rate2 );
+								if ($money2 > 0) {
+									$info2 = '支付ID:' . $pay_id . '  二级分成: ' . round($money2 / 100, 2).' 元';
+									//$fuser2 = $userModel->find($users['fuid2']);
+									if ($fuser2) {
+										$wheres['user_id'] = array('eq', $users['fuid2']);
+										$wheres['pay_id'] = array('eq', $pay_id);	
+										$mynum2 = $userProfitModel->where($wheres)->count();
+										if ( (int)$mynum2 == 0  ) {  
+											 $userModel->add_fxbt_ktxbt_money($users['fuid2'], $money2, $info2,$shop_id,$pay_id);
+											 $userModel->addProfit($users['fuid2'], 11, $order_id, $money2, 1,$shop_id,$pay_id);
+										} else {
+											$userModel->add_fxbt_ktxbt_money($users['fuid2'], $money2, $info2,$shop_id,$pay_id);
+											$userProfitModel->save(array('is_separate' => 1,'money' => $money2, 'edit_time' => NOW_TIME), array('where' => array('order_id' => $order_id, 'order_type' => -1, 'user_id' => $users['fuid2'])));
+										}
+									}
+								}
+							}
+							if ($users['fuid3']) {
+								$fuser3 = $userModel->find($users['fuid3']);
+								$Userrank_3 = D('Userrank')->find($fuser3['rank_id']);
+								$profit_rate3 = round($Userrank_3['sanjibutie'],8);
+								$money3 = floor($taxrate / 15 * $profit_rate3);
+								if ($money3 > 0) {
+									$info3 = '支付ID:' . $pay_id . ' 三级分成: ' . round($money3 / 100, 2) .' 元';
+									if ($fuser3) {
+											
+										$wheres['user_id'] = array('eq', $users['fuid3']);
+										$wheres['pay_id'] = array('eq', $pay_id);	
+										$mynum3 = $userProfitModel->where($wheres)->count();
+										if ( (int)$mynum3 == 0  ) {  
+											$userModel->add_fxbt_ktxbt_money($users['fuid3'], $money3, $info3,$shop_id,$pay_id);
+											$userModel->addProfit($users['fuid3'], 11, $order_id, $money3, 1,$shop_id,$pay_id);
+										} else {
+											$userModel->add_fxbt_ktxbt_money($users['fuid3'], $money3, $info3,$shop_id,$pay_id);
+											$userProfitModel->save(array('is_separate' => 1,'money' => $money3 , 'edit_time' => NOW_TIME), array('where' => array('order_id' => $order_id, 'order_type' => -1, 'user_id' => $users['fuid3'])));
+										}						
+										
+										
+									}
+								}
+							}
+
+/*====================================上线一二三级返佣====================================*/
+						}
+						
+						if ( (int)$shop['user_id']> 0 ) {
+						   $shopusers = D('users')->find($shop['user_id']);	
+						}
+						if ((int)$shopusers['user_id'] > 0) {
+						
+						
+							//D('Users') -> updateCount($shop['user_id'], 'gold', $jianli); //商家资金 为 gold 原金块字段
+							
+							
+							if ( $jianli > 0 ) {
+								D('Users')->myaddGold($shop['user_id'], $jianli, '到店付款',0,$shop['shop_id'],$logs['log_id'],2);
+								$info = '门店：' . $shop['shop_name'] . ' 到店付款 门店收入 支付ID：' . $logs['log_id'];
+								
+//								D('Usermoneylogs') -> add(array(
+//									'user_id' => $shop['user_id'], 
+//									'money' => $jianli, 
+//									'create_time' => NOW_TIME, 
+//									'create_ip' => $ip, 
+//									'intro' => $info, 
+//									'shop_id' => $logs['shop_id'], 
+//									'pay_id' => $logs['log_id'], 
+//								));
+								D('Shopmoney')->add(array(
+									'shop_id' => $shop['shop_id'], 
+									'money' => $jianli, 
+									'create_time' => NOW_TIME, 
+									'create_ip' => $ip, 
+									'type' => 'gwmd', 
+									'order_id' => 0, 
+									'intro' => $info,
+									'pay_id' => $logs['log_id']
+								));
+								
+								
+								//平台收入
+								D('Users')->myaddptGold( 0,$shop['shop_id'],$logs['log_id']);
+								
+							}
+							
+						}
+						
+//						D('Shop')->save(array(
+//						   'shop_id'=>$logs['shop_id'],
+//						   'jianchi'=> $shop['jianchi'] + $jianchi,
+//						   'jianli'=> $shop['jianli'] + $jianli,
+//						));
+                         
+						 
+						if (  strlen($users['truename']) < 2  ) {
+							D('Users')->save(array(
+							   'user_id'=>$logs['user_id'],
+							   'truename'=>$logs['youname']
+							));
+						}
+						if (  strlen($users['mobile']) < 10  ) {
+							D('Users')->save(array(
+							   'user_id'=>$logs['user_id'],
+							   'mobile'=> $logs['youmobile']
+							));
+						}
+						
+						/* 在用户店铺付款后 商家微信模板消息通知 开始 */
+						
+						/*
+							{{first.DATA}}
+							订单编号：{{keyword1.DATA}}
+							下单时间：{{keyword2.DATA}}
+							{{remark.DATA}}
+						*/
+					    if ( (int)$shop['user_id']> 0 ) {
+						   $shopusers = D('users')->find($shop['user_id']);	
+						}
+						if ((int)$shopusers['user_id'] > 0) {
+							include_once "Baocms/Lib/Net/Wxmesg.class.php";
+							$_data_order = array(
+								'url' => "http://" . $_SERVER['HTTP_HOST'] . "/wap/payment/yes/log_id/" . $logs['log_id'] . ".html", 
+								'topcolor' => '#F55555', 
+								'first' => '门店：'.$shop['shop_name'], 
+								'remark' => '收款：'. round($need_pay / 100, 2) . ' 元 , 到账：'. round($jianli / 100, 2) . ' 元', 
+								'keyword1' => $logs['log_id'].' 金额：'.round($need_pay / 100, 2) . ' 元',//消费金额
+								'keyword2' => date("Y-m-d H:i:s",NOW_TIME),//消费时间
+							);
+							$order_data = Wxmesg::ddfkorder($_data_order);
+							$return = Wxmesg::net((int)$shop['user_id'], 'OPENTM203940481', $order_data);						
+						}
+						/* 在用户店铺付款后 商家微信模板消息通知 结束 */
+
+
+						
+					}
+					
+					
+					/*李洪顺结束*/
+				} else { // 商城购物
                     if (empty($logs['order_id']) && !empty($logs['order_ids'])) {//合并付款
                         $order_ids = explode(',', $logs['order_ids']);
 						$goods_order_profit = D('Order')->where(array('order_id'=>$logs['order_id']))->find();

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!--<meta name="viewport" content="width=640" />-->
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="">
+<meta name="format-detection" content="telephone=no">
+<title>测试微信分享</title>
+<meta name="keywords" content="测试 分享">
+<meta name="description" content="" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+</head>
+<body style=margin-top:0>
+
+
+</body>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	
+  $(function(){
+        $.ajax({
+               type: "GET",
+               url: "myapi.php",
+               data: "urlparam="+window.location.href.split('#')[0],
+               success: function(data){
+                    var result = JSON.parse(data);						
+					if (result != null) {  
+						wx.config({  
+							debug: false,  
+							appId: result.appId,  
+							timestamp: result.timestamp,  
+							nonceStr: result.nonceStr,  
+							signature: result.signature,  
+							jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']  
+					});  
+					}  
+               },
+			   error: function(){
+			   
+			   }
+            });
+    });
+	
+  window.sharedata = {
+        title: '标题',
+        desc: '描述',
+        link: window.location.href,
+        imgUrl: 'http://avatar.csdn.net/0/4/F/1_zyq527758142.jpg',
+        success: function () {
+			alert('成功分享');
+        },
+        cancel: function () {
+            alert('取消分享');
+        }
+    };
+
+    wx.ready(function () {
+
+        wx.onMenuShareAppMessage(sharedata);
+        wx.onMenuShareTimeline(sharedata);
+    });
+</script>
+</html>

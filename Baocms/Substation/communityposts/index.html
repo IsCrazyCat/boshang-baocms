@@ -3,12 +3,12 @@
 <div class="mainBt">
     <ul>
         <li class="li1">智慧小区</li>
-        <li class="li2">小区贴吧</li>
+        <li class="li2">小区论坛</li>
         <li class="li2 li3">帖子列表</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>这里是小区贴吧管理、后台不能添加帖子，帖子请去前台添加，记住这个是硬删除、非软删除。</p>
+    <p class="attention"><span>注意：</span>这里是小区论坛管理、后台不能添加帖子，帖子请去前台添加，记住这个是硬删除、非软删除。</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
@@ -65,7 +65,7 @@
                         </if>
                         </td>
                         <td>
-                            <{:BA('communitypostsreply/index',array("post_id"=>$var["post_id"]),'查看回复','','remberBtn')}>
+                            <{:BA('communitypostsreply/index',array("post_id"=>$var["post_id"]),'查看评论','','remberBtn')}>
                             <{:BA('communityposts/edit',array("post_id"=>$var["post_id"]),'编辑','','remberBtn')}>
                             <{:BA('communityposts/delete',array("post_id"=>$var["post_id"]),'删除','act','remberBtn')}>
                             <eq name="var.audit" value="0"> <{:BA('communityposts/audit',array("post_id"=>$var["post_id"]),'审核','act','remberBtn')}> </eq>

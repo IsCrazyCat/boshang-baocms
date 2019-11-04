@@ -24,7 +24,7 @@ class HotelsAction extends CommonAction {
 
     public function index() {
         $hotel = D('Hotel');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id);
         $linkArr = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -201,7 +201,7 @@ class HotelsAction extends CommonAction {
             $this->assign('room_count',$room_count);
             //评论
             $comment = D('Hotelcomment');
-            import('ORG.Util.Page'); // 导入分页类
+            import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
             $map = array('closed' => 0, 'hotel_id' => $hotel_id);
             if($have_photo = (int)$this->_param('have_photo')){
                 $map['have_photo'] = $have_photo;
@@ -222,7 +222,7 @@ class HotelsAction extends CommonAction {
             if (!empty($comment_ids)) {
                 $this->assign('pics', D('Hotelcommentpics')->where(array('comment_id' => array('IN', $comment_ids)))->select());
             }
-            //抢购
+            //团购
             $tuan_list = D('Tuan')->where(array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', NOW),'bg_date' => array('ELT', NOW),'shop_id'=>$detail['shop_id']))->limit(3)->select();
             $this->assign('tuan_list',$tuan_list);
             $this->assign('list', $list); // 赋值数据集

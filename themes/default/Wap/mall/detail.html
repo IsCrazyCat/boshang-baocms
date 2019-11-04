@@ -51,6 +51,55 @@
 			<a href="<{:U('mall/cart')}>" class="inner-cart" id="share-btn"></a>
 		</div>
 	</header>
+    
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+	
+  $(function(){
+        $.ajax({
+               type: "GET",
+               url: "http://aihuaqian.boshang3710.com/myapi.php",
+               data: "urlparam="+window.location.href.split('#')[0],
+               success: function(data){
+                    var result = JSON.parse(data);						
+					if (result != null) {  
+						wx.config({  
+							debug: false,  
+							appId: result.appId,  
+							timestamp: result.timestamp,  
+							nonceStr: result.nonceStr,  
+							signature: result.signature,  
+							jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']  
+					});  
+					}  
+               },
+			   error: function(){
+			   
+			   }
+            });
+    });
+	
+  window.sharedata = {
+        title: "<{:bao_msubstr($detail['title'],0,24)}>",
+        desc: "<{$shop['shop_name']}>",
+        link: window.location.href,
+        imgUrl: "http://aihuaqian.boshang3710.com/<{:config_img($detail['photo'])}>",
+        success: function () {
+			//alert('成功分享');
+        },
+        cancel: function () {
+            alert('取消分享');
+        }
+    };
+
+    wx.ready(function () {
+
+        wx.onMenuShareAppMessage(sharedata);
+        wx.onMenuShareTimeline(sharedata);
+    });
+</script>    
    
     
 <div class="tuan-detail">
@@ -59,11 +108,11 @@
 		<div class="hd">
 			<ul></ul>
 		</div>
-		<div class="bd">
+		<div class="bd category">
 			<ul>
-          		<li><a href="javascript:void(0);"><img src="<{:config_img($detail['photo'])}>" /></a></li>
+          		<li><a href="javascript:void(0);"><img src="http://aihuaqian.boshang3710.com/<{:config_img($detail['photo'])}>"  class="pic" /></a></li>
                 <foreach  name="pics" item="item">
-                <li><a href="javascript:void(0);"><img src="<{:config_img($item['photo'])}>" /></a></li>
+                <li><a href="javascript:void(0);"><img src="http://aihuaqian.boshang3710.com/<{:config_img($item['photo'])}>"  class="pic" /></a></li>
                 </foreach>
 			</ul>
 		</div>
@@ -78,9 +127,40 @@
 			effect:"left", 
 			autoPlay:true,//自动播放
 			autoPage:true, //自动分页
-			switchLoad:"_src" 
+			switchLoad:"_src",
+			delayTime:400,
+			interTime:3500,
+			 
 		});
 	</script>
+    
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>　
+            // 点击查看大图
+            function funcReadImgInfo(){
+                var imgs = [];
+                var imgObj = $(".category .pic");//这里改成相应的对象
+                for(var i=0; i<imgObj.length; i++){
+                    imgs.push(imgObj.eq(i).attr('src'));
+                    imgObj.eq(i).click(function(){
+                        var nowImgurl = $(this).attr('src');
+                            
+						   var reg = /thumb_/g;
+						   nowImgurl = nowImgurl.replace(reg,'');
+						   
+						 
+                            WeixinJSBridge.invoke("imagePreview",{
+                                "urls":imgs,
+                                "current":nowImgurl
+                            });
+                    });
+                }
+            }
+
+            $(function(){
+                funcReadImgInfo();
+            });
+    </script>
 
 <div class="item-detail">
 			<div class="detail-row bb">
@@ -205,30 +285,7 @@
             </div>
 		</div>		
 		
-        <if condition="!empty($recom)"><!--如果看了又看不等于空-->
-          <div class="blank-10 bg"></div>
-            <div class="item-list item-intro" id="item-list">
-                <h2>看了又看</h2>
-                <ul>
-                <volist name="recom" id="item" key="index">
-                <li class="line">
-                    <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>">
-                    <div class="x3">
-                        <img src="<{:config_img($item['photo'])}>" />
-                    </div>
-                    <div class="x9">
-                        <h5><{$item.title}></h5>
-                        <p class="desc"><{:bao_Msubstr($item[instructions],0,60)}></p>
-                        <p class="info">
-                            <span>&yen;<{:round($item['mall_price']/100,2)}></span><del>&yen;<{:round($item['price']/100,2)}></del>
-                            <em>已售<{$item.sold_num}></em>
-                    </div>
-                    </a>
-                </li>
-                </volist>
-                </ul>
-            </div>
-        </if>
+        
         
         
    
@@ -248,13 +305,18 @@
         <a data-spm="dstore" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">
         <span class="icon"></span>店铺</a>
     </div>
-    <div id="bottom-cart-entrance" class="add-to-cart cartadd2">加入购物车</div>
+    <!--<div id="bottom-cart-entrance" class="add-to-cart cartadd2">加入购物车</div>-->
      <if condition="$detail['num'] elt 0"> 
    	 <div class="buy-now "><a>暂无库存</a></div>
      <else/>
      <div class="buy-now"><a href="javascript:" class="buy_now">立即购买</a></div>
      </if>
 </div>
+
+
+
+
+
 
 <script>
         $(document).ready(function () {
@@ -284,10 +346,14 @@
                                 var url = '__ROOT__/index.php?g=wap&m=mall&a=buy&mt=<{:time()}>&goods_id=<{$detail.goods_id}>&num=' + num<if condition='$spec_goods_price' >+'&spec_key='+spec_key</if>;
                                 $.get(url, function (data) {
                                     if (data.status == 'success') {
-                                        layer.msg(data.msg);
-                                        setTimeout(function(){
-                                            window.location.href=data.url;
-                                        },2000);  
+//										if ( date.msg == '提交中' ) {
+//											window.location.href=data.url;
+//										} else {
+											layer.msg(data.msg);
+											setTimeout(function(){
+												window.location.href=data.url;
+											},1);  
+//										}
                                     } else {
                                        layer.msg(data.msg);
                                     }
@@ -366,7 +432,6 @@ function get_goods_price(){
 
 </script>
 <iframe id="x-frame" name="x-frame" style="display:none;"></iframe>	
+
 </body>
 </html>
-
-<include file="public:footer_share"/>

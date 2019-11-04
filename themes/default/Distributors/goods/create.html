@@ -16,6 +16,11 @@
 .fabu-form .form-content {border: none;resize: none;width: 100%;height: 80px;padding: 10px;font-size: 12px;}
 .fabu-form .form-content1 {border: none;resize: none;width: 100%;height: 150px;padding: 10px;font-size: 12px;}
 .shuxing{width: 20px; height: 20px;margin-bottom: 10px;}
+
+.Upload-img .jq_photo_more span.resporse_photo, .Upload-img .moreToUpload_img{margin:0 5px 5px 0; float:left; z-index:3;}
+.Upload-img .jq_photo_more span.resporse_photo img, .Upload-img .jq_uploads_img img{width:100%;margin-bottom:3px;}
+
+.Upload-img .jq_photo_more span.resporse_photo a.resporse_a, .Upload-img .jq_uploads_img .moreToUpload_img a{ font-size:12px; color:#FFF;margin-right: 0px;bottom:0;width:45px;height:20px;line-height:20px;text-align:center;background: #06c1ae;padding: 0 10px;}
 </style>
 <form class="fabu-form" method="post" target="x-frame" action="<{:U('goods/create')}>">
 	<div class="blank-10">
@@ -40,15 +45,17 @@
 			swf: '/static/default/webuploader/Uploader.swf',                             
 			server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 			pick: '#fileToUpload',                             
-			resize: true,    
-			compress : {width:width_good,height:height_good,quality:60,allowMagnify: false,crop: true}//裁剪       
+			resize: true,
+duplicate :true, //可重复上传  
+    
+			compress : {width:width_good,height:height_good,quality:80,allowMagnify: false,crop: true}//裁剪       
         });
         uploader.on( 'beforeFileQueued', function( file ) {
             $(".loading").show();
-            if(file.size > 1024000){
+            if(file.size > 2024000){
                 uploader.option( 'compress', {
                     width:width_good,//这里裁剪长度
-                    quality:60
+                    quality:80
                 });
             }
         });
@@ -77,6 +84,7 @@
 		<div class="Upload-img">
 			<div class="list-img loading_photo" style="display:none;">
 				<img src="">
+                
 			</div>
 			<div class="list-img jq_photo_photo" style="display:none;">
 			</div>
@@ -93,7 +101,10 @@
 			server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 			pick: '#moreToUpload',
 			fileNumberLimit:10,                    
-			resize: true,    
+			resize: true,
+duplicate :true, //可重复上传  
+ 
+            duplicate :true, //可重复上传   
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -107,13 +118,13 @@
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_goods_pic,
-                    quality:60
+                    quality:80
                 });
             }
         });
         uploader.on('uploadSuccess', function( file,resporse) {
             $(".loading_photo").hide();
-            var str = '<img src="'+resporse.url+'"><input type="hidden" name="photos[]" value="' + resporse.url + '" />';
+            var str = '<span class="resporse_photo x3"><a class="resporse_a" href="javascript:void(0);"><img src="'+resporse.url+'"><input type="hidden" name="photos[]" value="' + resporse.url + '" />取消</a></span>';
             $(".jq_photo1").append(str);  
         });
         uploader.on( 'uploadError', function( file ) {
@@ -123,8 +134,39 @@
             $(document).on("click", ".photo img", function () {
                 $(this).parent().remove();
             });
+			$(document).on("click", ".resporse_photo a", function () {
+                $(this).parent().remove();
+            });
         });
     </script>
+    
+    
+	<script>
+        function cop(){
+            var title=document.getElementById("title").value;
+            document.getElementById("intro").value = title;
+        }
+		
+		function cop2(){
+            var mall_price=document.getElementById("mall_price").value;
+			mall_price = parseFloat(mall_price);
+            document.getElementById("price").value = mall_price*1.2;
+        }
+
+		
+		function check(e) { 
+			var re = /^\d+(?=\.{0,1}\d+$|$)/ 
+			if (e.value != "") { 
+				if (!re.test(e.value)) { 
+					alert("请输入正确的数字"); 
+					e.value = ""; 
+					e.focus(); 
+				} 
+			} 
+		} 
+		
+    </script>
+    
 	<div class="blank-10"></div>
     
 	<div class="blank-10 bg border-top"></div>
@@ -132,41 +174,41 @@
 		<div class="line">
 			<span class="x3">商品名称：</span>
 			<span class="x9">
-			<input type="text" class="text-input" name="data[title]" value="<{$detail.title|default=''}>" />
+			<input type="text" class="text-input" name="data[title]" id="title" onpropertychange="cop()" oninput="cop()" value="<{$detail.title|default=''}>" />
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x3">商品简介：</span>
 			<span class="x9">
-			<input type="text" class="text-input" name="data[intro]" value="<{$detail.intro|default=''}>" />
+			<input type="text" class="text-input" name="data[intro]" id="intro" value="<{$detail.intro|default=''}>" />
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x3">产品规格：</span>
 			<span class="x9">
-			<input type="text" class="text-input" name="data[guige]" value="<{$detail.guige|default=''}>" />
+			<input type="text" class="text-input" name="data[guige]" value="<{$detail.guige|default='份'}>" />
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x3">商品库存：</span>
 			<span class="x9">
-			<input type="text" class="text-input" name="data[num]" value="<{$detail.num|default=''}>" />
+			<input type="text" class="text-input" name="data[num]" value="<{$detail.num|default='1000000'}>" />
 			</span>
 		</div>
 	</div>
 	<!--二开开始-->
-	<div class="row">
+	<div class="row" style="display:none" >
 		<div class="line">
 			<span class="x3">是否免运费：</span>
 			<span class="x9">
 			<label><span>免运费</span>
-			<input style="width: 20px; height: 20px;" type="radio" name="data[is_reight]" value="0" <eq name="detail.is_reight" value="0">checked="checked"</eq> >
+			<input style="width: 20px; height: 20px;" type="radio" name="data[is_reight]" value="0" checked="checked" <eq name="detail.is_reight" value="0">checked="checked"</eq> >
 			</label>
 			<label><span style="margin-left: 20px;">不免运费</span>
 			<input style="width: 20px; height: 20px;" type="radio" name="data[is_reight]" value="1" <eq name="detail.is_reight" value="1">checked="checked"</eq>>
@@ -174,15 +216,15 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none" >
 		<div class="line">
 			<span class="x3">商品重量：</span>
 			<span class="x9">
-			<input type="text" placeholder="不支持小数点" class="text-input" name="data[weight]" value="<{$detail.weight|default=''}>" />
+			<input type="text" placeholder="不支持小数点" class="text-input" name="data[weight]" value="<{$detail.weight|default='0'}>" />
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none"> 
 		<div class="line">
 			<span class="x3">运费模板：</span>
 			<span class="x9">
@@ -215,23 +257,23 @@
 			</select>
 			</span>
 			<script>
-                                $(document).ready(function (e) {
-                                    $("#parent_id").change(function () {
-                                        var url = '<{:U("goods/child",array("parent_id"=>"0000"))}>';
-                                        if ($(this).val() > 0) {
-                                            var url2 = url.replace('0000', $(this).val());
-                                            $.get(url2, function (data) {
-                                                $("#cate_id").html(data);
-                                            }, 'html');
-                                        }
-                                    });
-                                });
-                            </script>
+				$(document).ready(function (e) {
+					$("#parent_id").change(function () {
+						var url = '<{:U("goods/child",array("parent_id"=>"0000"))}>';
+						if ($(this).val() > 0) {
+							var url2 = url.replace('0000', $(this).val());
+							$.get(url2, function (data) {
+								$("#cate_id").html(data);
+							}, 'html');
+						}
+					});
+				});
+            </script>
 		</div>
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">自定分类：</span>
+			<span class="x3">商家产品分类（选填）：</span>
 			<span class="x9">
 			<select id="shopcate_id" name="data[shopcate_id]" class="text-select">
 				<option value="0" selected="selected">请选择</option>
@@ -242,36 +284,39 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x3">属性：</span>
 			<span class="x9">
 			<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="1"/>认证商家&nbsp;&nbsp;</label>
-			<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="2"/>正品保证&nbsp;&nbsp;</label><br/>
-			<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="3"/>假一赔十&nbsp;&nbsp;</label>
-			<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="4"/>当日送达&nbsp;&nbsp;</label><br/>
+			<label><input name="data[is_vs1]" type="checkbox" class="shuxing" value="2" checked="checked"/>正品保证&nbsp;&nbsp;</label><br/>
+			<!--<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="3"/>假一赔十&nbsp;&nbsp;</label>
+			<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="4"/>当日送达&nbsp;&nbsp;</label><br/>-->
 			<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="5"/>免运费&nbsp;&nbsp;</label>
 			<label><input class="shuxing" type="checkbox" name="data[is_vs1]" value="6"/>货到付款&nbsp;&nbsp;</label>
 			</span>
 		</div>
 	</div>
-	<div class="row">
-		<div class="line">
-			<span class="x3">市场价格：</span>
-			<span class="x9">
-			<input type="text" class="text-input" name="data[price]" value="<{$detail.price|default=''}>" />
-			</span>
-		</div>
-	</div>
+	
 	<div class="row">
 		<div class="line">
 			<span class="x3">商城价格：</span>
 			<span class="x9">
-			<input type="text" class="text-input" name="data[mall_price]" value="<{$detail.mall_price|default=''}>" />
+			<input type="text" class="text-input" name="data[mall_price]" id="mall_price"   onblur="check(this)" onpropertychange="cop2()" oninput="cop2()"   onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  value="<{$detail.mall_price|default=''}>" />
 			</span>
 		</div>
 	</div>
-	<div class="row">
+    
+    <div class="row">
+		<div class="line">
+			<span class="x3">市场价格：</span>
+			<span class="x9">
+			<input type="text" class="text-input" name="data[price]" id="price"   onblur="check(this)"  onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  value="<{$detail.price|default=''}>" />
+			</span>
+		</div>
+	</div>
+    
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x3">可使用积分：</span>
 			<span class="x9">
@@ -279,20 +324,20 @@
 			</span>
 		</div>
 	</div>
-	<if condition="!empty($SHOP['is_profit'])">
+	
 	<div class="blank-10" bg>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">是否分成给上级分销商：</span>
 			<span class="x4">
 			<label><span>是</span>
-			<input style="width: 20px; height: 20px;" type="radio" name="data[profit_enable]" value='1' <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> />
+			<input name="data[profit_enable]" type="radio" style="width: 20px; height: 20px;" value='1' checked="checked" <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> />
 			</label>
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">一级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -300,7 +345,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">二级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -308,7 +353,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="display:none">
 		<div class="line">
 			<span class="x8">三级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -316,7 +361,7 @@
 			</span>
 		</div>
 	</div>
-	</if>
+	<if condition="!empty($SHOP['is_profit'])"></if>
 	<!--下面是时间-->
 	<div class="blank-10" bg>
 	</div>
@@ -326,7 +371,7 @@
 		<div class="line">
 			<span class="x3">过期时间：</span>
 			<span class="x9">
-			<input type="text" class="text-input line-input datepicker" id="svctime1" name="data[end_date]" size="30" readonly="readonly" value="<{$detail['end_date']}>" placeholder="选择过期时间" />
+			<input type="text" class="text-input line-input datepicker" id="svctime1" name="data[end_date]" size="30" readonly="readonly" value="<php>echo date('Y-m-d', strtotime('+10 year'));</php>" placeholder="选择过期时间" />
 			</span>
 		</div>
 		<div class="blank-20">

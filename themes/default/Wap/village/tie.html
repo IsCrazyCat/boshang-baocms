@@ -63,7 +63,7 @@
 	</script>
 	
 	<div class="tie-from">
-		<span class="text-gray">话题来自：</span> <a href="<{:U('village/tieba',array('village_id'=>$detail['village_id']))}>"><{$detail.name}>贴吧</a>
+		<span class="text-gray">话题来自：</span> <a href="<{:U('village/tieba',array('village_id'=>$detail['village_id']))}>"><{$detail.name}>论坛</a>
 		<i class="float-right icon-angle-right"></i>
 	</div>
 	
@@ -97,7 +97,7 @@
 	</div>
 	<div class="blank-10"></div>
 	<div class="reply-title">
-		<h3><i class="icon-commenting-o"></i> 全部回复</h3>
+		<h3><i class="icon-commenting-o"></i> 评论</h3>
 	</div>
 	<ul id="reply-list" class="reply-list"></ul>
 	<script>
@@ -129,7 +129,7 @@
 		<div class="x10">
 			<a class="post-icon" href="<{:U('village/reply',array('post_id'=>$tie['post_id']))}>">
 				<i class="icon-pencil-square"></i>
-				回复帖子
+				评论帖子
 			</a>
 		</div>
 	</div>

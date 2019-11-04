@@ -5,54 +5,161 @@
 			<a class="top-addr" href="<{:U('tieba/index',array('cat'=>$detail['cate_id']))}>"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			城市贴吧
+			<{$mobile_title}>
 		</div>
 		<div class="top-share">
-			<a href="javascript:void(0);" id="share-btn"><i class="icon-share"></i></a>
+        <a class="post-icon" href="<{:U('tieba/post')}>">
+						<!--<i class="icon-pencil-square"></i>-->
+						发帖
+					</a>
+			<!--<a href="javascript:void(0);" id="share-btn"><i class="icon-share"></i></a>-->
 		</div>
 	</header>
 <style>
 p, .p {margin-bottom: inherit;line-height: inherit;}
 </style>
-	<div id="share-box" class="share-box">
-		<div class="dialog-mask"></div>
-			<ul class="line">
-				<li class="-mob-share-weibo x3">
-					<img src="/static/default/wap/image/share/share-weibo.png" />
-					<p>新浪微博</p>
-				</li>
-				<li class="-mob-share-tencentweibo x3">
-					<img src="/static/default/wap/image/share/share-twb.png" />
-					<p>腾讯微博</p>
-				</li>
-				<li class="-mob-share-qzone x3">
-					<img src="/static/default/wap/image/share/share-qzone.png" />
-					<p>QQ空间</p>
-				</li>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script> 
+	var BAO_PUBLIC = "__PUBLIC__"; 
+	var BAO_ROOT = "__ROOT__"; 
+	var BAO_SURL = "<{$CONFIG['site']['host']}>__SELF__"
+</script>
+<script>
 
-				<li class="-mob-share-qq x3">
-					<img src="/static/default/wap/image/share/share-py.png" />
-					<p>QQ好友</p>
-				</li>
-				<li class="-mob-share-weixin x3">
-					<img src="/static/default/wap/image/share/share-weixin.png" />
-					<p>微信</p>
-				</li>
-				<li class="-mob-share-renren x3">
-					<img src="/static/default/wap/image/share/share-renren.png" />
-					<p>人人网</p>
-				</li>
-				<li class="-mob-share-kaixin x3">
-					<img src="/static/default/wap/image/share/share-kaixin.png" />
-					<p>开心网</p>
-				</li>
-				<li id="mui-card-close" class="mui-card-close x3">
-					<img src="/static/default/wap/image/share/share-close.png" />
-					<p>关闭</p>
-				</li>
-			</ul>
-		<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=890ab8bbdb3c"></script>
-	</div>
+<php>
+             
+            $mycontent = strip_tags($detail['details']);
+$mycontent = mb_substr($mycontent,0,32,'utf-8');
+$mycontent = mb_ereg_replace("&nbsp;"," ",$mycontent);
+//			  if($detail['pic'] ==''){
+//				$gallery = getImgs($detail['details']);
+//			  }else{
+//			    $gallery = explode(',',$detail['pic']);
+//			  }
+//              
+//              $spic = $gallery[0];
+		   </php>
+$(function(){
+	
+	var newurl = BAO_SURL.replace(/\?\S+/,'');
+	var stitle = "<{$mobile_title}>"; 
+	var sdesc = "<{$mycontent}>";
+	var surl = newurl+'?fuid=<{:getuid()}>';	
+	var catchpic = $('img');
+	var lcatchpic = "<{$CONFIG['site']['host']}>" + $('img').eq(0).attr("src");
+	$('img').each(function(){
+		if($(this).width() >= 60){
+			lcatchpic = $(this).attr("src");
+			if(lcatchpic.indexOf("http://") < 0){
+				lcatchpic = "<{$CONFIG['site']['host']}>" + lcatchpic;
+			}
+			return false;
+		};
+	});
+	
+	var spic = "<{$CONFIG['site']['host']}>"+BAO_PUBLIC+'/img/logo.jpg';
+	
+	if(catchpic.length > 0){
+		spic = lcatchpic;
+		
+	}
+	console.log(lcatchpic);
+	wx.config({
+	debug: false,
+	appId: '<{$signPackage.appId}>',
+    timestamp: '<{$signPackage.timestamp}>',
+    nonceStr: '<{$signPackage.nonceStr}>',
+    signature: '<{$signPackage.signature}>',
+	jsApiList: [
+	'checkJsApi',
+	'onMenuShareTimeline',
+	'onMenuShareAppMessage',
+	'onMenuShareQQ',
+	'onMenuShareWeibo',
+	'onMenuShareQZone'
+	]
+	});
+	wx.ready(function(){
+		wx.onMenuShareTimeline({
+			title: stitle, 
+			link: surl, 
+			imgUrl: spic,
+			success: function () { 
+				alert("分享成功!");
+
+			},
+			cancel: function () { 
+				alert("分享失败!");
+			}
+		});
+		wx.onMenuShareAppMessage({		
+			title: stitle,
+			desc: sdesc, // 分享描述
+			link: surl, 
+			imgUrl: spic,
+			type: '', // 分享类型,music、video或link，不填默认为link
+			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+			success: function () { 
+				alert("分享成功!");
+
+			},
+			cancel: function () { 
+				alert("分享失败!");
+			}
+		});
+		wx.onMenuShareQQ({
+			title: stitle,
+			desc: sdesc, // 分享描述
+			link: surl, 
+			imgUrl: spic,
+			success: function () { 
+			   alert("分享成功!");
+
+			},
+			cancel: function () { 
+			   alert("分享失败!");
+			}
+		});
+		wx.onMenuShareWeibo({
+			title: stitle,
+			desc: sdesc, // 分享描述
+			link: surl, 
+			imgUrl: spic,
+			success: function () { 
+			  alert("分享成功!");
+
+			},
+			cancel: function () { 
+				alert("分享失败!");
+			}
+		});	
+		wx.onMenuShareQZone({
+			title: stitle,
+			desc: sdesc, // 分享描述
+			link: surl, 
+			imgUrl: spic,
+			success: function () { 
+			   alert("分享成功!");
+
+			},
+			cancel: function () { 
+				alert("分享失败!");
+			}
+		});	
+	});
+})	
+</script>	
+    
+    <style type="text/css">
+    
+/* .pic{overflow:hidden; text-align:center!important;}
+ .gallery{overflow:hidden;padding:0; text-align:center!important;}
+ .gallery li{float:left;border:none; list-style:none; text-align:center!important;}
+ .gallery img{max-width: 33%;height:auto;overflow: hidden;float: left;display: inline;margin-right: 10px;position: relative;z-index: 1; width:auto}
+ .pic span{width:33%;float:left;display:block;}
+*/
+    
+    </style>
 
 	<script>
 
@@ -67,41 +174,121 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 			});
 		});
 	</script>
+    
+    
+    
+<!--<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>-->
 
-	<div class="tie-from">
-		<span class="text-gray">话题来自：</span> <a href="<{:U('tieba/index',array('cat'=>$cate['cate_id']))}>"><{$cate['cate_name']}></a>
+        
+
+
+	<div class="tie-from" style='display:none;'>
+		<span class="text-gray"></span> <a href="<{:U('tieba/index',array('cat'=>$cate['cate_id']))}>"><{$cate['cate_name']}></a>
 		<i class="float-right icon-angle-right"></i>
 	</div>
 
-	<div class="tie-detail">
-		<div class="tie-item">
-			<div class="item-head line">
-				<span class="avatar x2">
-            		<img src="<{:config_img($puser['face'])}>" />
+
+            <div class="item-head line" style='padding: 10px;'>
+				<span class="avatar x2" style='width: 16.66666667%;'>
+            		<img src="<{:config_img($puser['face'])}>" style='width: 40px;height: 40px;border-radius: 30px;overflow: hidden;' />
 				</span>
-				<span class="info x10">
-					<em><{:config_user_name($puser['nickname'])}></em>
-					<span class="float-right"><{$detail.create_time|date="Y-m-d",###}></span>
-					<p class="title"><{:msubstr($detail['title'],0,25)}></p>
-				</span>
+				<span class="info x10" style='float: left;font-size: 12px;overflow: hidden;'>
+					<em style='font-weight: bold;font-size:1.2em;'><{:config_user_name($puser['nickname'])}></em>
+					
+					<p class="title" style='font-size: 1.5em;font-weight: bold;display: block;height: 30px;overflow: hidden;line-height: 30px;margin: 0;overflow: hidden;    display: none;'><{:msubstr($detail['title'],0,25)}></p>
+					<span class="title" style='color: #999;font-size:0.85em;font-weight: bold;display: block;height: 30px;overflow: hidden;line-height: 30px;margin: 0;overflow: hidden;'><{$detail.create_time|date="Y-m-d",###}></span>
+                </span>
 				<span class="coner"></span>
 			</div>
-			<div class="item-body">
-				<php>
-					if($detail['pic'] ==''){
-						$pic = getImgs($detail['details']);
-					}else{
-						$pic = explode(',',$detail['pic']);
-					}
-					  $content = $detail['details'];
-				</php>
-				<p><{$content}></p>
-				<div class="blank-10"></div>
-				<div class="ctrl">
+            
+
+
+
+	<div class="tie-detail" align="center">
+		<div class="tie-item " align="center" >
+			
+            
+            
+			<div class="item-body category" align="center">
+		   <php>
+             $content = $detail['details'];
+            $my_content = strip_tags($detail['details']);
+
+			  if($detail['pic'] ==''){
+				$gallery = getImgs($detail['details']);
+			  }else{
+			    $gallery = explode(',',$detail['pic']);
+			  }
+              
+              $spic = $gallery[0];
+		   </php>
+           
+            <if condition="!empty($gallery)">
+                    <ul  style="width:100%; text-align:center"  >
+                    <php>$i=0;</php>  
+                        <foreach name="gallery" item="var">
+                            <php>$i++;if($i <= 24){</php>
+                                <li style=" width:33.33331%;  height: 6.7rem; overflow: hidden; float:left; text-align:center; margin-top:5px; margin-bottom:5px;   " onclick=" funcReadImgInfo('<php>echo $i++;</php>');" ><img src="http://aihuaqian.boshang3710.com/<{:config_img($var)}>" class="pic" style="vertical-align: middle;"
+       onload="this.style.marginTop = (100-this.height)/2+'px';" /></li><!--this.style.marginLeft = (parseInt(this.parentNode.style.width) - this.width) /2 + 'px'-->
+                            <php>}</php>
+                        </foreach>
+                    </ul>
+            </if>
+            
+           <div class="ctrl" style="margin-top:10px;">
+           
+                <div  style="text-align:left; float:left;  padding-top:10px; margin:5px; "  ><{$content}></div><br />
+
+
 					<a class="ctrl-zan" id="zan-<{$detail.post_id}>" data="<{$detail.post_id}>"><i class="icon-thumbs-up"></i> <em><{$detail['zan_num']}></em></a>
 					<a class="ctrl-reply"><i class="icon-comments"></i> <em><{$detail['reply_num']}></em></a>
 				</div>
 			</div>
+      
+      
+      
+	<script>　
+
+            // 点击查看大图
+            function funcReadImgInfo(myi){
+                var imgs = [];
+                var imgObj = $(".category .pic");//这里改成相应的对象
+				if (  Number(myi) > 0 ) {
+					var myi = Number(myi);
+				} else {
+					var myi = 0;	
+				}
+				
+                for(var i=0; i<imgObj.length; i++){
+	                
+	                //if(i<myi){continue;}
+                    imgs.push(imgObj.eq(i).attr('src'));
+                    var reg = /thumb_/g;
+                    var c = imgs.join(',');
+					cc = c.replace(reg,'');
+					var imgss = cc.split(',');
+					//imgs = cc.split(,);
+										
+                    imgObj.eq(i).click(function(){
+                           var nowImgurl = $(this).attr('src');
+						   nowImgurl = nowImgurl.replace(reg,'');
+						   //alert(nowImgurl);
+                            WeixinJSBridge.invoke("imagePreview",{
+                                "urls":imgss,
+                                "current":nowImgurl
+                            });
+                    });
+                }
+            }
+
+            $(function(){
+                funcReadImgInfo();
+            });
+         </script>      
+      
+
+            
+           
 
 			<if condition="!empty($item['reply'])">
 			<div class="item-foot">
@@ -117,7 +304,7 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 
 	<div class="reply-title">
 
-		<h3><i class="icon-commenting-o"></i> 全部回复</h3>
+		<h3><i class="icon-commenting-o"></i> 评论</h3>
 
 	</div>
 
@@ -171,41 +358,60 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 
 		});
 
-	</script>
+	</script><br />
+<br />
+
 
 <nav class="foot-bar">
 
 	<div class="line">
 
-		<div class="x2">
+		<div class="x2" style='display:none;'>
 
 			<a class="left-icon" href="<{:U('tieba/index')}>"><i class="icon-angle-left"></i></a>
 
 		</div>
 
-		<div class="x8">
+		<div class="x8" style='width:100%;'>
 
 			<div class="line">
 
-				<span class="x6">
+				<span class="x6" style='width:25%;'>
+                
+              <a class="ctrl-zan" style='color: #4170B6;width: 100%;text-align: center;display: block;height: 50px;line-height: 50px;font-size: 16px;' id="zan-<{$detail.post_id}>" data="<{$detail.post_id}>"><i class="icon-thumbs-up" style='font-style:normal;'>点赞</i></a>
 
-					<a class="post-icon" href="<{:U('tieba/main')}>">
+				</span>
 
-						<i class="icon-reorder"></i>
 
-						分类
+				<span class="x6" style='width:25%;'>
+
+					<a class="post-icon" href="<{:U('tieba/reply',array('post_id'=>$detail['post_id']))}>">
+
+						<i class="icon-pencil-square" style='margin-right:0px;'></i>
+
+						评论
 
 					</a>
 
 				</span>
 
-				<span class="x6">
 
-					<a class="post-icon" href="<{:U('tieba/reply',array('post_id'=>$detail['post_id']))}>">
 
-						<i class="icon-pencil-square"></i>
+				<span class="x6" style='width:25%;'>
 
-						回复
+					<a class="post-icon" href="<{:U('tieba/post')}>">
+						<i class="icon-pencil-square" style='margin-right:0px;'></i>
+						发帖
+					</a>
+
+				</span>
+                <span class="icon icoa" style='width:25%;'>
+
+					<a class="post-icon" href="http://aihuaqian.boshang3710.com/wap/tieba/index.html">
+
+						<i class="icon-pencil-square" style='margin-right:0px;'></i>
+
+						首页
 
 					</a>
 
@@ -215,7 +421,7 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 
 		</div>
 
-		<div class="x2">
+		<div class="x2" style='display:none;'>
 
 			<a class="right-icon" href="<{:u('user/index/index')}>"><i class="icon-ellipsis-v"></i></a>
 
@@ -225,6 +431,9 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 
 </nav>
 
+
+
+	
 </body>
 
 </html>

@@ -63,9 +63,9 @@
                     <td>需要支付金额(元)</td>
                     <td>消费类型</td>
                     <td>创建时间</td>
-                    <td>创建IP</td>
+                    <!--<td>创建IP</td>-->
                     <td>支付时间</td>
-                    <td>支付IP</td>
+                    <!--<td>支付IP</td>-->
                     <td>是否已经支付</td>
                     <td>支付类型</td>
                    <!-- <td>查询</td>
@@ -83,34 +83,43 @@
                             <if condition="$var.type eq 'money'">   <span style="color: green">余额充值</span>
                                 <elseif condition="$var.type eq 'ele'"/><span style="color: orange">外卖</span>
                                 <elseif condition="$var.type eq 'gold'"/><span style="color: blueviolet">金块充值</span>
-                                <elseif condition="$var.type eq 'tuan'"/><span style="color: blue">团购/抢购</span>
+                                <elseif condition="$var.type eq 'tuan'"/><span style="color: blue">团购/团购</span>
                                 <elseif condition="$var.type eq 'ding'"/><span style="color: grey">座位预定</span>
                                 <elseif condition="$var.type eq 'goods'"/><span style="color:darkmagenta">商城购物</span>
+                                <elseif condition="$var.type eq 'gwmd'"/><span style="color:darkmagenta">门店付款</span>
                                 <else /> <{$var.type}>
                             </if>
                         </td>
                         <td>
-                        
                         <{$var.create_time|date='Y-m-d H:i:s',###}>
-                       
-                        
                         </td>
-                        <td><{$var.create_ip}></td>
+                        <!--<td><{$var.create_ip}></td>-->
                         
                         <td>
                         <if condition="!empty($var['pay_time'])">
-                        <{$var.pay_time|date='Y-m-d H:i:s',###}>
+                        <{$var.pay_time|date='Y-m-d H:i:s',###}><br />
+<{$var.youname}>&nbsp;&nbsp;<{$var.youmobile}>
                          <else/>
-                        未支付无支付时间
+                        未支付
                         </if>
+                        
                         </td>
-                        <td><{$var.pay_ip}></td>
+                        <!--<td><{$var.pay_ip}></td>-->
                         <td>
                             <eq name="var.is_paid" value="1">
-                                <font style="color: green">已支付</font>
+                                <font style="color: green">已支付</font><br />
+									<eq name="var.ismiandan" value="1">
+                               		 <span style="color:#F00">
+                                     <a href="/my/zhongjiang.php?log_id=<{$var.log_id}>">已免单</a>
+                                     </span>
+                            		</eq>
                                 <else/>
                                 <font style="color: red">未支付</font>
                             </eq>
+                            <eq name="var.ismiandan" value="1">
+                                <span style="color:#F00"><a href="/my/zhongjiang.php?log_id=<{$var.log_id}>">已免单</a></span>
+                            </eq>
+                            
                         </td>
                         <td>
                             

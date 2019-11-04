@@ -33,26 +33,26 @@ class WeixinWechat
     }
 
     /* ========================发送被动响应消息 begin================================== */
-    /* 回复文本消息 */
+    /* 评论文本消息 */
     public function replyText($content)
     {
         $msg ['Content'] = $content;
         $this->_replyData ( $msg, 'text' );
     }
-    /* 回复图片消息 */
+    /* 评论图片消息 */
     public function replyImage($media_id)
     {
         $msg ['Image'] ['MediaId'] = $media_id;
         $this->_replyData ( $msg, 'image' );
     }
-    /* 回复语音消息 */
+    /* 评论语音消息 */
     public function replyVoice($media_id)
     {
         $msg ['Voice'] ['MediaId'] = $media_id;
         $msg ['Voice'] ['MediaId'] = $media_id;
         $this->_replyData ( $msg, 'voice' );
     }
-    /* 回复视频消息 */
+    /* 评论视频消息 */
     public function replyVideo($media_id, $title = '', $description = '')
     {
         $msg ['Video'] ['MediaId'] = $media_id;
@@ -60,7 +60,7 @@ class WeixinWechat
         $msg ['Video'] ['Description'] = $description;
         $this->_replyData ( $msg, 'video' );
     }
-    /* 回复音乐消息 */
+    /* 评论音乐消息 */
     public function replyMusic($media_id, $title = '', $description = '', $music_url, $HQ_music_url)
     {
         $msg ['Music'] ['ThumbMediaId'] = $media_id;

@@ -2,7 +2,7 @@
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布抢购</a></li>
+        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布团购</a></li>
     </ul>
 </div>
 <div class="tuan_content">
@@ -15,17 +15,17 @@
         <form method="post"  action="<{:U('tuan/create')}>"  target="baocms_frm">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">抢购名称：</p></td>
+                    <td width="120"><p class="tuanfabu_t">团购名称：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[title]" value="<{$detail.title|default=''}>" class="tuanfabu_int tuanfabu_intw1" />
                              <code>填写标题，建议20字以内</code>
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">抢购简介：</p></td>
+                    <td width="120"><p class="tuanfabu_t">团购简介：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[intro]" value="<{$detail.intro|default=''}>" class="tuanfabu_int tuanfabu_intw3" />
-                            <code>填写抢购简介，建议30字以内</code>
+                            <code>填写团购简介，建议30字以内</code>
                         </div></td>
                 </tr>
                 
@@ -126,7 +126,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"tuan"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						accept: {
 							title: 'Images',
 							extensions: 'gif,jpg,jpeg,png',
@@ -171,7 +173,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"tuan"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									accept: {
 										title: 'Images',
@@ -222,14 +226,14 @@
                             <label><span style="margin-left: 20px;">是否精选：</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[is_chose]" value="1" /></label>
                             <label><span style="margin-left: 20px;">是否新单：</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[is_new]" value="1" /></label>
                             <label><span style="margin-left: 20px;">是否免预约：</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[freebook]" value="1" /></label>
-                            <label><span style="margin-left: 20px;">是否返现1%：</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[is_return_cash]" value="1" /></label>
-                            <label><span style="margin-left: 20px;">是否多店可用：</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[is_multi]" value="1" /></label>
+                            <!--<label><span style="margin-left: 20px;">是否返现1%：</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[is_return_cash]" value="1" /></label>
+                            <label><span style="margin-left: 20px;">是否多店可用：</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[is_multi]" value="1" /></label>-->
                             <label><span style="margin-left: 20px;">是否仅能下一次单</span><input style="width: 20px; height: 20px;" type="checkbox" name="data[xiadan]" value="1" /></label>
                             
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">每天抢购份数:</p></td>
+                    <td width="120"><p class="tuanfabu_t">每天团购份数:</p></td>
                     <td><div class="tuanfabu_nr">
                     	<input type="text" name="data[xiangou]" value="<{$detail.xiangou|default='0'}>" class="tuanfabu_int tuanfabu_intw2" />
 					<code>0表示不限购</code></div></td>
@@ -242,7 +246,7 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">抢购价格：</p></td>
+                    <td width="120"><p class="tuanfabu_t">团购价格：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[tuan_price]" value="<{$detail.tuan_price|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
@@ -258,38 +262,38 @@
                 <tr>
                     <td width="120"><p class="tuanfabu_t">库存：</p></td>
                     <td><div class="tuanfabu_nr">
-                            <input type="text" name="data[num]" value="<{$detail.num|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
+                            <input type="text" name="data[num]" value="<{$detail.num|default='1000'}>" class="tuanfabu_int tuanfabu_intw2" />
                             <code>请填写库存</code>
                         </div></td>
                 </tr>
                 
                <!--分销单独调用开始-->
-                 <if condition="!empty($SHOP['is_profit'])">
-                 <tr>
+                 
+                 <tr style="display:none">
                     <td width="120"><p class="tuanfabu_t">分成给上级分销商：</p></td>
                     <td><div class="tuanfabu_nr">
                           <input type="checkbox" name="data[profit_enable]" value='1' <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> />
                         <code> 如需分成这里必须打钩，如此商品无需分成、则不勾选、下面不填写即可</code></div></td>
                 </tr>
-                <tr>
+                <tr style="display:none">
                     <td width="120"><p class="tuanfabu_t">一级会员分成比例：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[profit_rate1]" value="<{$detail['profit_rate1']}>" class="tuanfabu_int "  /> %
                         <code> 这里是销售价，所以建议您留足够的利润给代理商分成，比如您产品销售100元，您拿30元分成、那么下面30元怎么样一个比例给1、2、3级分销商</code></div></td>
                 </tr>
-                <tr>
+                <tr style="display:none">
                     <td width="120"><p class="tuanfabu_t">二级会员分成比例：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[profit_rate2]" value="<{$detail['profit_rate2']}>" class="tuanfabu_int" /> %
                        <code> 同上</code> </div></td>
                 </tr>
-                <tr>
+                <tr style="display:none">
                     <td width="120"><p class="tuanfabu_t">三级会员分成比例：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[profit_rate3]" value="<{$detail['profit_rate3']}>" class="tuanfabu_int" /> %
                         <code> 同上</code></div></td>
                 </tr>
-                </if>
+                <if condition="!empty($SHOP['is_profit'])"></if>
                 <!--分销单独调用结束-->
                 
                 

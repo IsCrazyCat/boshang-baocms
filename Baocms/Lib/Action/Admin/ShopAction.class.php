@@ -1,11 +1,12 @@
 <?php
 class ShopAction extends CommonAction{
-    private $create_fields = array('user_id', 'cate_id', 'grade_id','city_id', 'area_id', 'business_id', 'shop_name', 'logo', 'mobile', 'photo', 'addr', 'tel', 'extension', 'contact', 'tags', 'near', 'is_pei', 'business_time', 'delivery_time', 'orderby', 'lng', 'lat', 'price', 'recognition','panorama_url');
-    private $edit_fields = array('user_id', 'cate_id','grade_id','city_id', 'area_id', 'business_id', 'shop_name', 'mobile', 'logo', 'photo', 'addr', 'tel', 'extension', 'contact', 'tags', 'near', 'business_time', 'delivery_time', 'is_pei', 'orderby', 'lng', 'lat', 'price', 'is_ding', 'recognition','panorama_url', 'apiKey', 'mKey', 'partner', 'machine_code', 'service', 'service_audit', 'is_ele_print', 'is_tuan_print', 'is_goods_print', 'is_booking_print','is_appoint_print','service_audit');
+	
+    private $create_fields = array('user_id', 'cate_id', 'grade_id','city_id', 'area_id', 'business_id', 'shop_name', 'logo', 'mobile', 'photo', 'addr', 'tel', 'extension', 'contact', 'tags', 'near', 'is_pei', 'business_time', 'delivery_time', 'orderby', 'lng', 'lat', 'price', 'recognition','panorama_url','tui_uid','jiesuanfeilv');
+    private $edit_fields = array('user_id', 'cate_id','grade_id','city_id', 'area_id', 'business_id', 'shop_name', 'mobile', 'logo', 'photo', 'addr', 'tel', 'extension', 'contact', 'tags', 'near', 'business_time', 'delivery_time', 'is_pei', 'orderby', 'lng', 'lat', 'price', 'is_ding', 'recognition','panorama_url', 'apiKey', 'mKey', 'partner', 'machine_code', 'service', 'service_audit', 'is_ele_print', 'is_tuan_print', 'is_goods_print', 'is_booking_print','is_appoint_print','service_audit','jiesuanfeilv');
 	
 	public function _initialize(){
         parent::_initialize();
-        $this->assign('grades',$grades = D('Shopgrade')->where(array('closed'=>0))->select());//哈土豆二开增加商家等级
+        $this->assign('grades',$grades = D('Shopgrade')->where(array('closed'=>0))->select());//博商二开增加商家等级
     }
     public function index(){
         $Shop = D('Shop');
@@ -114,7 +115,7 @@ class ShopAction extends CommonAction{
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0, 'audit' => 1);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -172,7 +173,7 @@ class ShopAction extends CommonAction{
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->baoError('所在商圈不能为空');
+            //$this->baoError('所在商圈不能为空');
         }
         $data['shop_name'] = htmlspecialchars($data['shop_name']);
         if (empty($data['shop_name'])) {
@@ -288,7 +289,7 @@ class ShopAction extends CommonAction{
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->baoError('所在商圈不能为空');
+            //$this->baoError('所在商圈不能为空');
         }
         $data['shop_name'] = htmlspecialchars($data['shop_name']);
         if (empty($data['shop_name'])) {
@@ -358,10 +359,54 @@ class ShopAction extends CommonAction{
         }
     }
     public function audit($shop_id = 0){
-        if (is_numeric($shop_id) && ($shop_id = (int) $shop_id)) {
+        if (is_numeric($shop_id) && ($shop_id = (int)$shop_id)) {
             $obj = D('Shop');
             $obj->save(array('shop_id' => $shop_id, 'audit' => 1));
-            $this->baoSuccess('审核成功！', U('shop/apply'));
+			
+			$WeidianDetails = D('WeidianDetails');
+			$map['shop_id'] = $shop_id;
+			$count = $WeidianDetails->where($map)->count();
+		    
+			if ( (int)$count == 0 ) {
+			
+			  $myShop = D('Shop')->find($shop_id);
+			  $myShopdetails = D('Shopdetails')->find($shop_id);
+			  
+			  $data['weidian_name'] = $myShop['shop_name'] ; 
+			  $data['addr']  = $myShop['addr'] ; 
+			  $data['business_time'] = $myShopdetails['business_time'] ; 
+			  $data['details']  = $myShopdetails['details'] ; 
+			  $data['pic']  = $myShop['photo'] ; 
+			  $data['logo']  = $myShop['logo'] ;  
+			  $data['shop_id']  = $shop_id; 
+			  $data['lng']  = $myShop['lng'] ; 
+			  $data['lat']  = $myShop['lat'] ; 
+			  $data['cate_id']  = $myShop['cate_id'] ; //查询类别
+			  
+			  $cate_name = D('Shopcate')->where(" cate_id = ".$myShop['cate_id'])->getField('cate_name');
+			  if ( strlen($cate_name) > 0 ) {
+			  	  $my_cate_id =  D('Weidiancate')->where(" cate_name like '%,{$cate_name},%'  ")->getField('cate_id',1);//公关
+				  if ( (int)$my_cate_id > 0 ) {
+				  	  $data['cate_id']  = $my_cate_id;
+				  }
+			  }
+			  
+			  
+			  $data['audit'] =  1; 
+			  $data['reg_time'] =   NOW_TIME ;
+			  $data['update_time'] =  0 ; 
+			  $data['city_id'] =  $myShop['city_id']; 
+			  $data['area_id']  = $myShop['area_id']; 
+			  $data['closed'] = 0;
+			  
+				if ( $WeidianDetails->add($data)) {
+					$this->baoSuccess('审核成功！', U('shop/apply'));
+				}
+			
+			}
+			
+			$this->baoSuccess('审核成功！', U('shop/apply'));
+			
         } else {
             $shop_id = $this->_post('shop_id', false);
             if (is_array($shop_id)) {

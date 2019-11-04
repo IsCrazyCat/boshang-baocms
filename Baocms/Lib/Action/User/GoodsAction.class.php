@@ -91,10 +91,12 @@ class GoodsAction extends CommonAction{
             $this->assign('goods', D('Goods')->itemsByIds($goods_ids));
         }
         $this->assign('ordergoods', $order_goods);
-        $this->assign('addr', D('Useraddr')->find($detail['addr_id']));
+        $this->assign('addr', D('Useraddr')->find($detail['address_id']));
         $this->assign('types', D('Order')->getType());
         $this->assign('goodtypes', D('Ordergoods')->getType());
         $this->assign('detail', $detail);
+		
+		
         $this->display();
     }
     //
@@ -111,10 +113,10 @@ class GoodsAction extends CommonAction{
 			//检测配送状态
 			$shop = D('Shop')->find($detial['shop_id']);
             if ($shop['is_pei'] != 1) {
-                $DeliveryOrder = D('DeliveryOrder')->where(array('type_order_id' => $order_id, 'type' => 0))->find();
-                if ($DeliveryOrder['status'] != 8) {
-                    $this->fengmiMsg('配送员还未完成订单');
-                }
+                 $DeliveryOrder = D('DeliveryOrder')->where(array('type_order_id' => $order_id, 'type' => 0))->find();
+//                if ($DeliveryOrder['status'] != 8) {
+//                    $this->fengmiMsg('配送员还未完成订单');
+//                }
             }
 		    if($detial['is_daofu'] == 1) {
 			   $into = '货到付款确认收货成功';
@@ -122,11 +124,159 @@ class GoodsAction extends CommonAction{
 				if ($detial['status'] != 2) {
                  	$this->fengmiMsg('该订单暂时不能确定收货');
 				}
-				$into = '确认收货成功';
+				$into = '确认收货成功A';
 			}
 			if ($obj->save(array('order_id' => $order_id, 'status' => 3))) {
+				
+				        
+				
+						
+						$userProfitModel = D('Userprofitlogs');
+						$userLdbtModel = D('Userldbtlogs');
+						$userModel = D('Users');
+						
+						if (!empty($order_id)) {
+							$order = D('Order')->find($order_id);
+							$userobj = D('Users');
+							
+							$shop_id = $order['shop_id'];
+							$wherea['order_id'] = array('eq', $order_id);	
+							$logs = D('Paymentlogs')->where($wherea)->find();
+							$pay_id = $logs['log_id']; 
+							
+							$goods_order = D('Order')->where(array('order_id'=>$order_id))->find();
+							$goods_order_shop = D('Shop') ->find($goods_order['shop_id']);
+							if($goods_order_shop['is_profit'] == 1){
+								D('Userprofitlogs')->myprofitFusers(1, $logs['user_id'], $order_id);//单个商品奖励分成和升级等级
+							}
+							
+							
+							$taxrate = 0 ; //结算费率金额
+							$result = D('Ordergoods')->where(" order_id = '".$order_id."' ")->field(" goods_id, total_price ")->select();
+							//开始循环遍历二维数组$result
+							foreach($result as $k=>$val){ 
+								if ( $val == "" ) {
+									continue;
+								}
+								$jiesuanfeilv = D('goods')->where('goods_id='.$val['goods_id'])->getField('jiesuanfeilv');
+								if ( floor($jiesuanfeilv) > 0 ) { 
+									$taxrate = $taxrate + $val['total_price'] * $jiesuanfeilv / 100 ; //百分比 
+								}
+							}
+							/*====================================消费者本人返 5%====================================*/
+							$xfbe = $taxrate / 15 * 5 ; 
+							if ( ($logs['user_id']) && ($logs['is_paid']) ) {
+								$userModel->add_my_Money($logs['user_id'], (int)$xfbe, $intro = '平台消费奖励',$shop_id,$pay_id);
+							}
+							/*====================================消费者本人返 5%====================================*/ 
+							
+							
+							
+								D('Order')->save(array( 'order_id' => $order_id));
+								$goods = D('Ordergoods')->where(array('order_id' => $order_id))->select();
+								if (!empty($goods)) {
+									$taxrate = 0 ; //结算费率金额
+									D('Ordergoods')->save(array('status' => 8), array('where' => array('order_id' => $order_id)));
+									if ($order['is_daofu'] == 0) {
+										$ip = get_client_ip();
+										foreach ($goods as $val) {
+											//if ($val['status'] == 1) {
+												$info = '产品ID' . $val['goods_id'];
+												$tg = $userobj->checkInvite($order['user_id'], $val['total_price']);
+												if ($tg !== false) {
+													//推广员分层的判断
+													$userobj->addIntegral($tg['uid'], $tg['integral'], "分享获得积分！");
+												}
+												$money = $val['total_price'];
+												
+												$js_price = $val['total_price']  - $val['mobile_fan'];//结算价格减去模板立减
+												$gooddetail = D('Goods')->find($val['goods_id']);
+												//$Goodscate = D('Goodscate')->find($gooddetail['cate_id']);
+												$taxrate_d = 0 ;
+												$jiesuanfeilv = D('Goods')->where('goods_id='.$val['goods_id'])->getField('jiesuanfeilv');
+												if ( floor($jiesuanfeilv) > 0 ) { 
+													$taxrate_d = intval(($js_price * $jiesuanfeilv)/100);
+												}
+												$moneyB = $js_price - $taxrate_d;//结算价格，运费不算扣点
+												 
+												if ($val['tui_uid']) {
+													//推广员分成
+														
+				//                                    if (!empty($gooddetail['commission']) && $gooddetail['commission'] < $gooddetail['mall_price'] && $gooddetail['commission'] < $val['total_price']) {
+														//小于的情况下才能返利不然你懂的
+														
+														$money0 = floor( $taxrate_d / 15 * 1);
+														if ($money0 > 0) {
+												
+															$tui_uid = $val['tui_uid'];
+															$info0 =  '订单ID:' . $val['order_id'] .'产品ID:' . $val['goods_id'] . ', [链店补贴]商家推荐人返佣 ' . round($money0/100 , 2).' 元' ;
+															$wheres['user_id'] = array('eq', $tui_uid);
+															$wheres['order_id'] = array('eq', $val['order_id']);	
+															$wheres['order_type'] = array('eq', 1);	
+															$mynum0 = $userLdbtModel->where($wheres)->count();
+															if ( (int)$mynum0 == 0  ) {  
+																$userModel->add_ldbt_ktxbt_money($tui_uid, $money0, $info0, $shop_id, $pay_id);
+																$userModel->addldbt($tui_uid, 1, $val['order_id'], $money0, 1, $shop_id, $pay_id);
+															} else {
+																$userModel->add_ldbt_ktxbt_money($tui_uid, $money0, $info0, $shop_id, $pay_id);
+																$userLdbtModel->save(array('is_separate' => 1,'money' => $money0, 'edit_time' => NOW_TIME), array('where' => array('order_id' => $val['order_id'], 'order_type' => 1, 'user_id' => $tui_uid)));
+															}	
+														}
+				
+														
+				//                                        $moneyC = round($money / 100*1, 2);
+				//                                        D('Users')->addMoney($val['tui_uid'], $moneyC, '推广佣金');
+				                                          if ( round($taxrate / 100, 2) > 0 ) { 
+														  	$info .= ' 扣除了推广员佣金' . round($taxrate / 100, 2).' 元';
+														  }
+														
+														
+				//                                    }
+												}
+												
+												
+												
+												$my_pay_id = D('paymentlogs')->where(array('order_id' => $order_id, 'is_paid' => 1))->getField('log_id');
+												$info .= ' 商城付款 门店收入 支付ID：'.$my_pay_id; 
+												//给商户写入资金日志
+												D('Shopmoney')->add(array(
+													'shop_id' => $val['shop_id'], 
+													'money' => $moneyB, 
+													'create_time' => NOW_TIME, 
+													'create_ip' => $ip, 
+													'type' => 'goods', 
+													'order_id' => $order_id, 
+													'intro' => $info,
+													'pay_id' => $my_pay_id
+												));
+												$my_shop_user_id = D('shop')->where(array('shop_id' => $val['shop_id']))->getField('user_id');
+												if ( (int)$my_shop_user_id > 0 ) {
+													//给商户写入资金
+													D('Users')->myaddGold($my_shop_user_id, $moneyB, '在线购物',$order_id,$val['shop_id'],$my_pay_id,1);
+													//平台收入
+													D('Users')->myaddptGold( $order_id,$val['shop_id'],$my_pay_id);
+												}
+												
+												
+											//}
+										}
+									}
+									
+								}
+							}
+							
+						
+
+				
+				
+				
                 D('Order')->overOrder($order_id); //确认到账入口
                 $this->fengmiMsg($into, U('goods/index', array('aready' => 8)));
+				echo "<script>alert('确认收货成功！');parent.location.href='".U('/user/goods/index', array('aready' => 8))."'; </script>"; 
+				header("Location:".U('/user/goods/index', array('aready' => 8)) ); 
+				exit();
+				//$this->success('确认收货成功！',U('goods/index', array('aready' => 8)));
+				
             }else{
 				$this->fengmiMsg('操作失败');
 			}

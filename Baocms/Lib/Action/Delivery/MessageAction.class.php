@@ -40,7 +40,7 @@ class MessageAction extends CommonAction{
         $list = array_slice($lists, $Page->firstRow, $Page->listRows);
         $this->assign('list',$list);
         $this->assign('page', $show);
-        $this->assign('types', $Msg->getType());//会员中心采用
+        $this->assign('types', $Msg->getType());//我的兜兜采用
         $this->display();
     }
   

@@ -23,7 +23,7 @@
 <div class="nav">
     <div class="navList">
         <ul>
-            <li class="navListAll"><span class="navListAllt">全部抢购分类</span>
+            <li class="navListAll"><span class="navListAllt">全部团购分类</span>
                 <div class="shadowy navAll">
                     <include file="public:cate"/>
                 </div>
@@ -40,7 +40,7 @@
         <div class="dcsy_banner">
             <div class="dcsy_flexslider">
                 <ul class="slides">
-                    <calldata mdl="Ad" where=" closed=0 AND site_id=14 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="21600" order="orderby asc">
+                    <calldata mdl="Ad" where=" closed=0 AND site_id=14 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="21600" order="orderby asc">
                         <li class="sy_hotgzLi"><a target="_blank" href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>1))}>"><img src="<{:config_img($item['photo'])}>" width="1182" height="105" /></a></li>
                     </calldata>
                 </ul>

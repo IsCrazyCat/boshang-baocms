@@ -2,7 +2,7 @@
 <div class="mainBt">
     <ul>
              <li class="li1">社区村设置</li>
-        <li class="li2">意见回复</li>
+        <li class="li2">意见评论</li>
     </ul>
 </div>
 <form target="baocms_frm" action="<{:U('village/reply',array('id'=>$detail['id']))}>" method="post">
@@ -25,7 +25,7 @@
               
                     
                     
-                 <tr><td class="lfTdBt">回复内容：</td><td class="rgTdBt">
+                 <tr><td class="lfTdBt">评论内容：</td><td class="rgTdBt">
                   <script type="text/plain" id="data_reply" name="data[reply]" style="width:800px;height:360px;"><{$detail.reply}></script>
 					</td>
              </tr><link rel="stylesheet" href="__PUBLIC__/qiniu_ueditor/themes/default/css/ueditor.min.css" type="text/css">
@@ -44,7 +44,7 @@
                 
                             </table>
         </div>
-        <div class="smtQr"><input type="submit" value="回复" class="smtQrIpt" /></div>
+        <div class="smtQr"><input type="submit" value="评论" class="smtQrIpt" /></div>
     </div>
 </form>
 <include  file='public:footer'/>   

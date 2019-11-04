@@ -5,7 +5,7 @@ class UsergoldlogsAction extends CommonAction
     {
         $Usergoldlogs = D('Usergoldlogs');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -31,6 +31,14 @@ class UsergoldlogsAction extends CommonAction
             $this->assign('user_id', $user_id);
             $map['user_id'] = $user_id;
         }
+		
+		if ($shop_id = (int) $this->_param('shop_id')) {
+            $Shops = D('Shop')->find($shop_id);
+            $this->assign('shop_name', $Shops['shop_name']);
+            $this->assign('shop_id', $shop_id);
+            $map['shop_id'] = $shop_id;
+        }
+		
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['intro'] = array('LIKE', '%' . $keyword . '%');
             $this->assign('keyword', $keyword);

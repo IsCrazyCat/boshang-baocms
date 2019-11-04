@@ -27,7 +27,9 @@
             server: '<{:U("app/upload/upload",array("model"=>"life"))}>',
             pick: '#fileToUpload',
             resize: true,
-            compress:{quality:60},
+duplicate :true, //可重复上传  
+
+            compress:{quality:80},
         });
         //监听文件处理
         uploader.on( 'beforeFileQueued', function( file ) {
@@ -35,7 +37,7 @@
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width: 640,
-                    quality:60
+                    quality:80
                 });
             }
         });

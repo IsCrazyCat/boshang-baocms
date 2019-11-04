@@ -10,11 +10,13 @@
     <div class="mainScAdd">
         <div class="tableBox">
             <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
-                <tr>
+                <tr  style="display:none">
                     <td class="lfTdBt">所在区域：</td>
                     <td class="rgTdBt">
-                        <select name="data[city_id]" id="city_id" style="float: left;" class="seleFl w210"></select>
-                       <select name="data[area_id]" id="area_id" style="float: left;"  class="seleFl w210"></select>
+                        <!--<select name="data[city_id]" id="city_id" style="float: left;" class="seleFl w210"></select>
+                       <select name="data[area_id]" id="area_id" style="float: left;"  class="seleFl w210"></select>-->
+                       <input name="data[city_id]" type="hidden" value="7" />
+                        <input name="data[area_id]" type="hidden" value="2" />
                     </td>
                 </tr>
                  <script src="<{:U('app/datas/cityarea')}>"></script>
@@ -85,7 +87,7 @@
                 </tr>
                 
                   <tr>
-                  <td class="lfTdBt">贴吧图片：</td>
+                  <td class="lfTdBt">发现图片：</td>
                         <td class="rgTdBt">
                             <div>
                                 <div id="moreToUpload" >上传图片</div>
@@ -100,7 +102,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"thread"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									accept: {
 										title: 'Images',
@@ -110,7 +114,7 @@
 									compress : {width: width_thread,height: height_thread,quality: pic_pc_quality,allowMagnify: false,crop: true}    													
 								});                                                               
 								uploader.on( 'uploadSuccess', function( file,resporse) {                                    
-								var str = '<span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;">  <img width="150" height="100" src="' + resporse.url + '">  <input type="hidden" name="thumb[]" value="' + resporse.url + '" />    <a href="javascript:void(0);">取消</a>  </span>';                                   
+								var str = '<span style="width: 150px;  float: left; margin-left: 5px; margin-top: 10px;">  <img width="150"  src="' + resporse.url + '">  <input type="hidden" name="thumb[]" value="' + resporse.url + '" />    <a href="javascript:void(0);">取消</a>  </span>';                                   
 								 $(".jq_uploads_img").append(str);                                
 									 });                                                            
 								 uploader.on( 'uploadError', function( file ) {                                    
@@ -122,8 +126,8 @@
                              </script>
                             <div class="jq_uploads_img">
                                 <foreach  name="thumb" item="item">
-                                    <span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;"> 
-                                        <img width="150" height="100" src="<{:config_img($item['photo'])}>">  
+                                    <span style="width: 150px;  float: left; margin-left: 5px; margin-top: 10px;"> 
+                                        <img width="150"  src="<{:config_img($item['photo'])}>">  
                                         <input type="hidden" name="thumb[]" value="<{$item.photo}>" />  
                                         <a href="javascript:void(0);">取消</a>  
                                     </span>
@@ -157,7 +161,7 @@
                   </td>
                 </tr>
                 <tr>
-                    <td class="lfTdBt">是否精华：</td>
+                    <td class="lfTdBt">是否推荐：</td>
                     <td class="rgTdBt">
                         <input type="radio" name="data[is_fine]"  <eq name="detail.is_fine" value="1">checked="checked"</eq>  value="1" /> 是
                         <input type="radio" name="data[is_fine]" <eq name="detail.is_fine" value="0">checked="checked"</eq> value="0" /> 否

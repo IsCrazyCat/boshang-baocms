@@ -1,13 +1,13 @@
 <include  file='public:header'/>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">营销管理</a> > <a href="">微信营销</a> > <a>关键词回复</a></li>
+        <li><a href="#">营销管理</a> > <a href="">微信营销</a> > <a>关键词评论</a></li>
     </ul>
 </div>
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">关键字回复必须要开通微信功能！</div>
+            <div class="left tuan_topser_l">关键字评论必须要开通微信功能！</div>
         </div>
     </div> 
     <div class="tabnr_change  show">
@@ -61,7 +61,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"weixin"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_weixin,height: height_weixin,quality: 80,allowMagnify: false,crop: true}                                           
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

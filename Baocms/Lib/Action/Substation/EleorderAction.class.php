@@ -15,7 +15,7 @@ class EleorderAction extends CommonAction
         //取得当前商家ID，给下面的maps查询
         $Eleorder = D('Eleorder');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($order_id = (int) $this->_param('order_id')) {
             $maps['order_id'] = $order_id;

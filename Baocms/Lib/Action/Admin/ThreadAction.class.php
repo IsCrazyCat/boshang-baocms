@@ -38,7 +38,7 @@ class ThreadAction extends CommonAction {
     }
 
 
-    //贴吧打赏列表
+    //论坛打赏列表
 	public function donate(){
         $Threaddonate = D('Threaddonate');
         import('ORG.Util.Page');
@@ -118,7 +118,7 @@ class ThreadAction extends CommonAction {
         }
         $Thread = D('Thread')->find(array('where' => array('user_id' => $data['user_id'])));
         if (!empty($shop)) {
-           $this->baoError('该管理者已经拥有贴吧');
+           $this->baoError('该管理者已经拥有论坛');
         }
 		   
         $data['photo'] = htmlspecialchars($data['photo']);
@@ -189,7 +189,7 @@ class ThreadAction extends CommonAction {
         }
         $Thread = D('Thread')->find(array('where' => array('user_id' => $data['user_id'])));
         if (!empty($shop)) {
-           $this->baoError('该管理者已经拥有贴吧');
+           $this->baoError('该管理者已经拥有论坛');
         }
         $data['photo'] = htmlspecialchars($data['photo']);
         if (empty($data['photo'])) {

@@ -1,10 +1,12 @@
+<php>$mobile_title = '新闻';</php>
+
 <include file='public:header'/>    
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
 			<a class="top-addr" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			商家新闻
+			新闻
 		</div>
         <div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('all/index')}>">
@@ -23,12 +25,13 @@
 ul{ padding-left:0px;}
 </style>        
 <ul id="shangjia_tab">
-        <li style="width:16.66666667%;"><a href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">首页</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">抢购</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">商品</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>" >优惠</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>"  class="on">新闻</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">评价</a></li>
+        <li style="width:33.33331%;"><a href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">首页</a></li>
+        
+        <li style="width:33.33331%;"><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">商品</a></li>
+        <!--<li style="width:20%;"><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>" >优惠</a></li>-->
+        <li style="width:33.33331%;"><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>"  class="on">新闻</a></li>
+        <!--<li style="width:20%;"><a href="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">评价</a></li>-->
+        <!--<li style="width:20%;"><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">团购</a></li>-->
 </ul>
 
 
@@ -61,4 +64,4 @@ ul{ padding-left:0px;}
 		
 	</div>
 
-<include file="public:footer"/>
+<include file="public:footer-shop"/>

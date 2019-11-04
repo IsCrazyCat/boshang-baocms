@@ -1,143 +1,559 @@
 <include file="public:header"/>
+<div style="display:none">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=C9613fa45f450daa331d85184c920119"></script>
+<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
 
-	<header class="top-fixed bg-yellow bg-inverse">
-		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
-		</div>
-		<div class="top-title">
-			商家分类
-		</div>
-		<div class="top-search" style="display:none;">
-			<form method="post" action="<{:U('shop/index')}>">
-				<input name="keyword" placeholder="输入商家的关键字"  />
-				<button type="submit" class="icon-search"></button> 
-			</form>
-		</div>
-		<div class="top-signed">
-			<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
-		</div>
-	</header>
+<script type="text/javascript">
+//设置cookie
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*1*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+//获取cookie
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
 
-<div id="filter2" class="filter2">
+function delCookie(name)
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval!=null)
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
 
-    <ul class="tab clearfix">
-      <li class="item">
-        <a href="javascript:void(0);"> 
-        <if condition="!empty($cat)">
-        <span id="str_b_node" style="color:#f60"> <{$shopcates[$cat]['cate_name']}></span>
+
+wx.config({
+	debug: false,
+	appId: '<{$appid}>',
+	timestamp: '<{$sign["timestamp"]}>',
+	nonceStr: '<{$sign["nonceStr"]}>',
+	signature: '<{$sign["signature"]}>',
+	jsApiList: [
+		// 所有要调用的 API 都要加到这个列表中
+		'checkJsApi',
+		//'openLocation',
+		'getLocation'
+	  ]
+});
+		
+
+   wx.ready(function () {
+	wx.checkJsApi({
+		jsApiList: [
+			'getLocation'
+		],
+		success: function (res) {
+			if (res.checkResult.getLocation == false) {
+				alert('你的微信版本太低，不支持微信JS接口，请升级到最新的微信版本！');
+				return;
+			}
+		}
+	});
+//地理位置
+
+
+
+			//type: 'wgs84',
+    wx.getLocation({
+      type: 'gcj02',
+			
+		success: function (res) {
+        const lat = res.latitude;
+        const lng = res.longitude;
+		
+               	
+        
+         var x_PI= 3.14159265358979324 * 3000.0 / 180.0;
+         var z = Math.sqrt(lng * lng + lat * lat) + 0.00002 * Math.sin(lat * x_PI);
+         var theta = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * x_PI);
+         var bd_lng = z * Math.cos(theta) + 0.0065;
+         var bd_lat = z * Math.sin(theta) + 0.006;
+        
+			var my_bd_lng = Number(bd_lng); 
+			if ( my_bd_lng > 1  ) {
+				setCookie('lat', bd_lat, 1); 
+				setCookie('lng', bd_lng, 1);
+				setCookie('lat_ok', bd_lat, 1); 
+				setCookie('lng_ok', bd_lng, 1);
+				dingwei('<{:U("wap/index/dingwei",array("t"=>$nowtime,"lat"=>"'+bd_lat+'","lng"=>"'+bd_lng+'"))}>', bd_lat, bd_lng);
+			}
+		    
+      }
+		});
+		
+	
+			});
+
+	
+</script>
+
+<script>
+    wx.config({
+	debug: false,
+	appId: '<{$signPackage.appId}>',
+    timestamp: '<{$signPackage.timestamp}>',
+    nonceStr: '<{$signPackage.nonceStr}>',
+    signature: '<{$signPackage.signature}>',
+	jsApiList: [
+		'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'onMenuShareQZone'
+		]
+	});
+
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+            title: '<{$CONFIG.site.title}>',
+        	link: "<{$CONFIG.site.description}>", 
+        	imgUrl: "<{:config_weixin_img($CONFIG['site']['logo'])}>", 
+            success: function (){
+				//layer.msg('分享成功');
+			},
+            cancel: function (){ 
+				layer.msg('分享失败');
+			}
+     });
+     //分享给朋友
+     wx.onMenuShareAppMessage({
+            title: '<{$CONFIG.site.title}>',
+            desc: '<{$CONFIG.site.description}>',
+            link: "<{$CONFIG.site.host}>", 
+        	imgUrl: "<{:config_weixin_img($CONFIG['site']['logo'])}>", 
+            type: '',
+            dataUrl: '',
+            success: function (){
+				//layer.msg('分享成功');
+			},
+            cancel: function (){ 
+				layer.msg('分享失败');
+			}
+      });
+});
+
+
+</script>
+</div>
+<style>
+/*aihuaqian.boshang3710.com的css重写*/
+.item-list h5 {
+	height: inherit;
+}
+.is_renzheng {
+	background: #33b095;
+	padding: 0 3px;
+	color: #fff !important;
+	font-size: 12px;
+	margin-right: 5px;
+	height: 16px;
+	line-height: 16px;
+	margin-top: 3px;
+}
+.cate-wrap {
+	font-size:0;
+	background-color:#fff;
+	border-bottom:1px solid #f3f3f3;
+	width:100%;
+	overflow:hidden;
+}
+.cate-wrap li {
+	box-sizing:border-box;
+	width:20%;
+	float:left
+}
+.icon2 {
+	color:#555;
+	font-size:16px;
+	text-align:center;
+	display:block;
+padding:.6rem 0
+}
+.cate-img {
+	background-size:6rem auto;
+	display:inline-block
+}
+.cate-img img {
+	width:2.6rem;
+	height:2.6rem
+}
+.cate-desc {
+	display:block
+}
+.cate-desc {
+padding-top:.4rem;
+font-size: 0.7rem;
+}
+.container {
+	margin-top: 0rem;
+}
+.item-list img {
+	position:relative;
+	padding:0px;
+}
+.item-list li span.album {
+	font-size:12px;
+	color:#FFF;
+	margin-right: 1px;
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	background: rgba(0, 0, 0, 0.3);
+}
+.header {
+	background-color: transparent !important
+}
+.search-btn {
+	background: rgba(0, 0, 0, 0.20) !important;
+}
+.top-fixed .top-signed a {
+	margin:0;
+	font-size:20px;
+	top:10px;
+	left:10px;
+	display:block;
+	width:30px;
+	height:30px;
+	border-radius:50%;
+	background: rgba(0, 0, 0, .20);
+	color:#fff;
+	text-align:center;
+}
+.top-fixed .top-local i.iconfont {
+	font-size:16px
+}
+.top-fixed .top-local a.top-addr {
+	background: rgba(0, 0, 0, 0.20);
+	border-radius:0.5rem;
+	height:2.8rem;
+	padding:3px 10px;
+}
+.top-fixed .top-search {
+	margin: 0 0 0 10%;
+}
+.top-fixed .top-search {
+	width:80%
+}
+.top-fixed .top-search input {
+	border-radius:20px;
+}
+/*幻灯图片*/
+.focus {
+	width:100%;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	margin-top:-50px;
+}
+.focus .hd {
+	width:100%;
+	height:11px;
+	position:absolute;
+	z-index:1;
+	bottom:5px;
+	text-align:center;
+}
+.focus .hd ul {
+	display:inline-block;
+	height:10px;
+	padding:3px 5px;
+	background-color: transparent;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	font-size:0;
+	vertical-align:top;
+}
+.focus .hd ul li {
+	display:inline-block;
+	width:5px;
+	height:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	background:transparent;
+	margin:0 5px;
+	vertical-align:top;
+	overflow:hidden;
+}
+.focus .hd ul .on {
+	background: transparent;
+}
+.focus .bd {
+	position:relative;
+	z-index:0;
+	width: 95%;
+	margin: 0 auto;
+}
+.focus .bd li img {
+	width:100%;
+	max-height:132px;
+	background:url(/my/img/loading-0.gif) center center no-repeat;
+	border-radius: 12px;
+}
+.focus .bd li a {
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+}
+/*引导图标*/
+.index-guide {
+	border-bottom:thin solid #dedede;
+}
+.index-guide span {
+	width:20%;
+	display:block;
+	float:left;
+}
+.index-guide .col {
+	width:100%;
+	padding:5% 15%;
+	display:block;
+	color:#999;
+	text-align:center;
+}
+.index-guide .col img {
+	width:80%;
+}
+.index-guide .col p {
+	margin:0;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	width:100%;
+	overflow:hidden;
+	font-size:12px;
+}
+.keyword {
+	background-color: rgba(246,246,246,0.1); color:#b0b0b0; border:#999 1ps solid;	
+}
+</style>
+
+
+<header class="top-fixed bg-yellow bg-inverse" style=" background-color:#FFF" >
+<!--<div class="top-local" style="margin-left:0.5rem; padding-left:0rem; left:0px;"> <a href="<{:U('city/index')}>" class="top-addr"> <{:bao_msubstr($city_name,0,4,false)}><i class="icon-daohang iconfont icon-angle-down"></i></a> </div>-->
+<div class="top-local" style="margin-left:0.2rem; padding-left:0rem; left:0px; color:#b0b0b0;margin-top: 1px;"> <a href="javascript:history.back(-1);" class="top-addr" style='display: block;height: 28px;padding:0px 10px;'>返回 <i class="icon-daohang iconfont icon-angle-left"></i></a> </div>
+
+<div class="top-search" style=" width:70%;  margin-left:18%">
+  <form method="post" action="<{:U('all/index')}>" style='    background-color: #f6f6f6;border-radius: 25px;'>
+    <input name="keyword"  class="keyword" placeholder="<{$CONFIG[other][wap_search_title]}>" style="background-color: rgba(246,246,246,0.1); color:#b0b0b0; border:#999 1ps solid;" />
+    
+    <button type="submit" class="icon-search"></button>
+  </form>
+</div>
+<div class="top-signed"> 
+  <a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a> </div>
+</header>
+
+<div class=" bg" style="line-height:48px; height:48px;background: #fff;"></div>
+
+<div id="focus" class="focus">
+  <div class="hd">
+    <ul>
+    </ul>
+  </div>
+  <div class="bd">
+    <ul>
+      <!--下面的limit="0,2"是幻灯的个数，2代表2张图，以此类推，site_id=57是你广告位的ID-->
+      <calldata mdl="Ad" where=" closed=0 AND site_id=72 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,2" cache="7200" order="orderby asc">
+        <li> <a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a> </li>
+      </calldata>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+			$(function(){
+				$("#search-btn").click(function(){
+					if($(".top-search").css("display")=='block'){
+						$(".top-search").hide();
+						$(".top-title").show(200);
+					}
+					else{
+						$(".top-search").show();
+						$(".top-title").hide(200);
+					}
+				});
+			});
+			
+			$(window).scroll(function(){
+                if(($(".top-fixed").length > 0)) { 
+                    if(($(this).scrollTop() > 0) && ($(window).width() > 100)){
+                    $("header").removeClass("header");
+					$("#search-btn").addClass("search-btn");
+					$("#home-follow-public").addClass("home-follow-public-none");
+					$("#home-follow-public").show(200);
+                } else {
+					$("#home-follow-public").hide(200);
+                    $("header").addClass("header");
+					$("#search-btn").removeClass("search-btn");
+                }
+                };
+            });
+			
+			function closeDiv(){
+			  var p = $("#home-follow-public").css("display");
+				  if(typeof(p)=="undefined"||p==""||p=="block"){
+					$("#home-follow-public").css("display","none");
+				  }else{
+					$("#home-follow-public").css("display","block");
+				  }
+			 }
+			 
+//			 $(document).ready(function (){
+//				 $('.navigation_index_cate').flexslider({
+//					directionNav: true,
+//					pauseOnAction: false,
+//				 });
+//			 	$('.flexslider_cate').flexslider({
+//					directionNav: true,
+//					pauseOnAction: false,
+//				});
+//            });
+			TouchSlide({ slideCell:"#index-notice",autoPlay:true,effect:"leftLoop",interTime:3000});
+			TouchSlide({slideCell: "#focus",titCell: ".hd ul", mainCell: ".bd ul",effect: "left",autoPlay: true,autoPage: true, switchLoad: "_src",});
+		</script>
+<ul class="cate-wrap bbOnepx">
+  <php>$a = 0;$cat = 0;
+    if((int)$_GET['cat']>0)
+    { 
+    $cat = $_GET['cat']; 
+    } </php>
+  <volist name="shopcates" id="item">
+    <eq name="item.parent_id" value="$cat">
+      <php>$a++;</php>
+      <if condition="$a lt 16">
+        <li style="min-width:20%; max-width:50%; width:auto;"> <a class="icon2" href="<{:U('shop/index',array('cat'=>$item['cate_id']))}>" tongji_tag="m_home_job_new"> <span class="cate-img" id="job"><img src="<{:config_img($item['photo'])}>" /></span> <span class="cate-desc"><{:bao_msubstr($item['cate_name'],0,4,false)}></span> </a> </li>
+      </if>
+    </eq>
+  </volist>
+</ul>
+
+
+
+<div id="filter2" class="filter2" style="100%" >
+  <ul class="tab clearfix" >
+    <li class="item" > <a href="javascript:void(0);">
+      <if condition="!empty($cat)"> <span id="str_b_node" style="color:#f60">全部<{$shopcates[$cat]['cate_name']}></span>
         <else/>
-        <span id="str_b_node">选择分类</span>
-        </if><em></em>
-        </a>
-      </li>
-      <li class="item">
-        <a href="javascript:void(0);"> 
-        <if condition="!empty($business_id)">
-            <span id="str_b_node" style="color:#f60;"><{$bizs[$business_id]['business_name']}></span>
-            <else/>
-                <if condition="!empty($area_id)">
-               <span id="str_b_node" style="color:#f60;"><{$areass[$area_id]['area_name']}></span>
-                <else/>
-                <span id="str_d_node">选择地区</span>
-                </if>
-            </if><em></em>
-        </a>
-      </li>
-      <li class="item">
-        <a href="javascript:void(0);">
-        <if condition="empty($order)">
-        <span id="str_e_node">选择排序</span>
+        <span id="str_b_node">选择分类</span> </if>
+      <em></em> </a> </li>
+    <li class="item"> <a href="javascript:void(0);">
+      <if condition="!empty($business_id)"> <span id="str_b_node" style="color:#f60;"><{$bizs[$business_id]['business_name']}></span>
+        <else/>
+        <if condition="!empty($area_id)"> <span id="str_b_node" style="color:#f60;"><{$areass[$area_id]['area_name']}></span>
+          <else/>
+          <span id="str_d_node">附近</span> </if>
+      </if>
+      <em></em> </a> </li>
+    <li class="item"> <a href="javascript:void(0);">
+      <if condition="empty($order)"> <span id="str_e_node">智能排序</span>
         <elseif condition="$order eq 1"/>
         <span id="str_b_node" style="color:#f60;">距离排序</span>
         <elseif condition="$order eq 2"/>
-        <span id="str_b_node" style="color:#f60;">推荐排序</span>
-        </if>
-        <em></em>
-        </a>
-      </li>
+        <span id="str_b_node" style="color:#f60;">推荐排序</span> </if>
+      <em></em> </a> </li>
+  </ul>
+  <div class="inner" style=" display:none; height:100%;">
+    <ul style="height:100%;">
+      <li class="item"> <a class="rights" href="<{:U('shop/index')}>">全部一级分类</a> </li>
+      
+      
+      <if condition="!empty($cat)">
+      
+           <foreach name="shopcates" item="var">
+               <if condition="$var.parent_id neq 0">
+                    <if condition="$var.parent_id eq $cat">
+                      <li id="cat_<{$var['cate_id']}>"><a class="rights "  title="<{$var.cate_name}>" href="<{:LinkTo('shop/index',array('cat'=>$var['cate_id']))}>"><{$var.cate_name}><span class="num">(<{$var.count}>)</span></a>
+                      </li>
+                    </if>
+                </if>
+            </foreach>        
+      
+       
+      <else/>
+            <foreach name="shopcates" item="var">
+                <if condition="$var.parent_id eq 0">
+                  <li id="cat_<{$var['cate_id']}>"><a class="rights hasUlLink" title="<{$var.cate_name}>" href="javascript:void(0);>"><{$var.cate_name}><span class="num">(<{$var.count}>)</span></a>
+                    <ul id="items0">
+                      <foreach name="shopcates" item="product">
+                        <if condition="$product.parent_id eq $var['cate_id']">
+                          <li><a title="<{$product.cate_name}>" href="<{:LinkTo('shop/index',array('cat'=>$product['cate_id']))}>"> <{$product.cate_name}><span class="num">(<{$product.count}>)</span></a> 
+                        </if>
+                      </foreach>
+                    </ul>
+                  </li>
+                </if>
+            </foreach>      
+      </if>
+      
+      
+      
+      
+      
     </ul>
     
-    <div class="inner" style=" display:none">
-      <ul>
-        <li class="item">
-        <a class="rights" href="<{:U('shop/index')}>">全部分类</a>
+  </div>
+  <div class="inner" style=" display:none">
+    <ul id="inner2">
+      <li class="item"> <a class="rights" href="<{:LinkTo('shop/index',array('cat'=>$cat))}>">全部地区</a> </li>
+      <foreach name="areas" item="var">
+        <php>if($var['city_id'] == $city_id){</php>
+        <li id="cat_<{$var['cate_id']}>"><a class="rights hasUlLink" title="<{$var.cate_name}>" href="javascript:void(0);>"><{$var.area_name}></a>
+          <ul id="items0">
+            <li><a href="<{:LinkTo('shop/index',array('cat'=>$cat,'area'=>$area_id))}>" class="<if condition='empty($business_id)'>on</if>">全部商圈</a></li>
+            <foreach name="bizs" item="product">
+              <if condition="$product.area_id eq $var['area_id']">
+                <li><a title="<{$product.business_name}>" href="<{:LinkTo('shop/index',array('cat'=>$var['cate_id'],'area'=>$var['area_id'],'business'=>$product['business_id']))}>"> <{$product.business_name}></a> 
+              </if>
+            </foreach>
+          </ul>
         </li>
-       <foreach name="shopcates" item="var">
-         <if condition="$var.parent_id eq 0">  
-            <li id="cat_<{$var['cate_id']}>"><a class="rights hasUlLink" title="<{$var.cate_name}>" href="javascript:void(0);>"><{$var.cate_name}><span class="num">(<{$var.count}>)</span></a>
-             
-               <ul id="items0">  
-                <foreach name="shopcates" item="product">
-                   <if condition="$product.parent_id eq $var['cate_id']"> 
-                       <li><a title="<{$product.cate_name}>" href="<{:LinkTo('shop/index',array('cat'=>$product['cate_id']))}>"> <{$product.cate_name}><span class="num">(<{$product.count}>)</span></a>
-                            
-                   </if>
-                </foreach>
-               </ul>
-                       
-             </li>
-         </if>
-        </foreach>
-       
-      </ul><!--1级end-->
+        <php>}</php>
+      </foreach>
+    </ul>
+    <!--1级end--> 
     
-    </div>
-    
-    <div class="inner" style=" display:none">
-      <ul id="inner2">
-        <li class="item">
-        <a class="rights" href="<{:LinkTo('shop/index',array('cat'=>$cat))}>">全部地区</a>
-        </li>
-       <foreach name="areas" item="var">
-               <php>if($var['city_id'] == $city_id){</php>         
-            <li id="cat_<{$var['cate_id']}>"><a class="rights hasUlLink" title="<{$var.cate_name}>" href="javascript:void(0);>"><{$var.area_name}></a>
-             
-               <ul id="items0">  
-               <li><a href="<{:LinkTo('shop/index',array('cat'=>$cat,'area'=>$area_id))}>" class="<if condition='empty($business_id)'>on</if>">全部商圈</a></li>
-                <foreach name="bizs" item="product">
-                   <if condition="$product.area_id eq $var['area_id']"> 
-                       <li><a title="<{$product.business_name}>" href="<{:LinkTo('shop/index',array('cat'=>$var['cate_id'],'area'=>$var['area_id'],'business'=>$product['business_id']))}>"> <{$product.business_name}></a>
-                            
-                   </if>
-                </foreach>
-               </ul>
-                       
-             </li>
-                <php>}</php>      
-        </foreach>
-       
-      </ul><!--1级end-->
-    
-    </div>
-    
-    <div class="inner" style="display:none;">
-              <ul>
-                <li><a <if condition="$order eq 1"> style="color:red;"</if> href="<{:LinkTo('shop/index',array('cat'=>$cat,'area'=>$area_id,'business'=>$business_id,'order'=>1))}>">距离优先</a></li>
-                <li><a <if condition="$order eq 2">style="color:red;"</if> href="<{:LinkTo('shop/index',array('cat'=>$cat,'area'=>$area_id,'business'=>$business_id,'order'=>2))}>">推荐排序</a></li>
-            </ul>
-      </div>
-      
-      <div id="parent_container" class="inner_parent" style="display:none;">
-        <div class="innercontent"></div>
-      </div>
-      <div id="inner_container" class="inner_child" style="display:none;">
-        <div class="innercontent"></div>
-      </div>
-    
+  </div>
+  <div class="inner" style="display:none;">
+    <ul>
+      <li><a 
+        <if condition="$order eq 1"> style="color:red;"</if>
+        href="<{:LinkTo('shop/index',array('cat'=>$cat,'area'=>$area_id,'business'=>$business_id,'order'=>1))}>">距离优先</a></li>
+      <li><a 
+        <if condition="$order eq 2">style="color:red;"</if>
+        href="<{:LinkTo('shop/index',array('cat'=>$cat,'area'=>$area_id,'business'=>$business_id,'order'=>2))}>">推荐排序</a></li>
+    </ul>
+  </div>
+  <div id="parent_container" class="inner_parent" style="display:none;">
+    <div class="innercontent"></div>
+  </div>
+  <div id="inner_container" class="inner_child" style="display:none;">
+    <div class="innercontent"></div>
+  </div>
 </div>
-<!--end-->    
+<!--end-->
 
-<div id="fullbg" class="fullbg" style="display: none; height: 250px;">
-<i class="pull2"></i>
-</div>
-
-    <style>
+<div id="fullbg" class="fullbg" style="display: none; height: 250px;"> <i class="pull2"></i> </div>
+<style>
 	.container {
     margin-top: 0rem;
 }
 	</style>
-    
-    <script type="text/javascript">
+<script type="text/javascript">
 	$(function(){
 		$("#search-btn").click(function(){
 			if($(".top-search").css("display")=='block'){
@@ -179,15 +595,13 @@
 		});
 	});
 	</script>
-    
-	<div class="container">
-		<div id="shop-list" class="shop-list"></div>
-	</div>
-	<script>
+<div class="container">
+  <div id="shop-list" class="shop-list"></div>
+</div>
+<script>
 		$(document).ready(function () {
 				showFilter({ibox:'filter2',content1:'parent_container',content2:'inner_container',fullbg:'fullbg'});
 			loaddata('<{$nextpage}>', $("#shop-list"), true);
 		});
-	</script>
-
-<include file="public:footer"/>
+	</script> 
+<include file="public:footer-shop"/>

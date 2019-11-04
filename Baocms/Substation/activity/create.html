@@ -21,14 +21,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="lfTdBt">选择抢购：</td>
+                    <td class="lfTdBt">选择团购：</td>
                     <td class="rgTdBt" > 
                         <div class="lt">
                             <select id="tuan_id" name="data[tuan_id]" class="scAddTextName manageSelect w300 sj" >
                                 <option value="0">请选择...</option>     
                             </select>
                         </div>
-                        <a id="btn_tuan" href="javascript:void(0);" class="seleSj">选择商家抢购</a>
+                        <a id="btn_tuan" href="javascript:void(0);" class="seleSj">选择商家团购</a>
                     </td>
                 </tr>
                 <script type="text/javascript" language="javascript">
@@ -98,7 +98,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"activity"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_activity,height: height_activity,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -128,7 +130,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"activity"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									compress : {width:width_activity_pic,height:height_activity_pic,quality: 80,allowMagnify: false,crop: true},														
 								});                                                               

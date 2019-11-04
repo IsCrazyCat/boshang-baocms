@@ -36,7 +36,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shop_audit"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shop_audit,height: height_shop_audit,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -95,7 +97,7 @@
               
                 <!--下面是员工信息-->
                 
-                 <tr>
+               <tr style="display:none">
                     <td width="120"><p class="tuanfabu_t">员工姓名：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[user_name]" value="<{$detail.user_name|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
@@ -103,7 +105,7 @@
                 </tr>
                 
                 <!--单图上传案例开始【photo】-->
-             <tr><td><p class="tuanfabu_t">员工照片：</p></td>
+             <tr style="display:none"><td><p class="tuanfabu_t">员工照片：</p></td>
                  <td><div class="tuanfabu_nr">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[pic]" value="<{$detail.pic}>" id="data_pic" />
@@ -122,7 +124,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shop_audit"))}>',                             
 						pick: '#fileToUpload2',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shop_audit_pic,height: height_shop_audit_pic,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -138,7 +142,7 @@
             <!--单图上传案例结束-->
             
                 
-                  <tr>
+                  <tr style="display:none">
                     <td width="120"><p class="tuanfabu_t">员工手机号：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[mobile]" value="<{$detail.mobile|default=''}>" class="tuanfabu_int tuanfabu_intw2" />

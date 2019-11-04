@@ -11,7 +11,25 @@
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
        		<div class="left">
                 <a>会员总提现【已审】：<{$user_cash}>元</a>    
-                <a>会员提现佣金【已审】：<{$user_cash_commission}>元</a>           
+                <!--<a>会员提现佣金【已审】：<{$user_cash_commission}>元</a> -->   
+                
+                &nbsp;&nbsp;
+                <if condition="$ssysr gt 0 "> 
+                     <{$ssy}>月收入 <{:round($ssysr/100,2)}> 元
+                </if>
+                &nbsp;&nbsp;
+                <if condition="$sysr gt 0 "> 
+                     <{$sy}>月收入 <{:round($sysr/100,2)}> 元
+                </if>
+                &nbsp;&nbsp;
+                <if condition="$bysr gt 0 "> 
+                     <{$by}>月收入 <{:round($bysr/100,2)}> 元
+                </if>
+                &nbsp;&nbsp; 
+                <if condition="$cxze gt 0 "> 
+                查询总额 <{:round($cxze/100,2)}> 元
+                </if>
+                       
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('usercash/index')}>">
@@ -32,6 +50,21 @@
             <div class="selectNr selectNr2">
                 <div class="left">
                     <div class="seleK">
+                    
+                        <label>
+                            <span>开始时间</span>
+                            <input type="text" name="bg_date" value="<{$bg_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd'});"  class="text" />
+                        </label>
+                        <label>
+                            <span>结束时间</span>
+                            <input type="text" name="end_date" value="<{$end_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd'});"  class="text" />
+                        </label>
+                        <label>
+                            <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
+                            <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text w150 sj" />
+                            <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="seleSj">选择商家</a>
+                        </label>                     
+                    
                         <label>
                             <span>账户</span>
                             <input type="text" name="account" value="<{$account}>" class="inptText" />

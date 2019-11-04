@@ -100,7 +100,7 @@
     <a target="x-frame" class="button button-small bg-dot" href="<{:U('goods/cancel_refund',array('order_id'=>$order['order_id']))}>">取消退款</a>
 </case>
 
-<case value="2"><a target="x-frame"  class="button button-small bg-blue" href="<{:U('goods/queren',array('order_id'=>$order['order_id']))}>">确认收货</a></case>
+<case value="2"><a target="x-frame"  class="button button-small bg-blue" href="<{:U('/User/goods/queren',array('order_id'=>$order['order_id']))}>">确认收货</a></case>
     <case value="8">
      <eq name="order.is_dianping" value="0">
         	<a class="button button-small bg-blue" href="<{:U('goods/dianping',array('order_id'=>$order['order_id']))}>">我要评价</a>

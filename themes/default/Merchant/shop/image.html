@@ -38,7 +38,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shopphoto,height: height_shopphoto,quality: 80,allowMagnify: false,crop: true}                                           
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -72,7 +74,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shoplogo"))}>',                             
 						pick: '#fileToUpload1',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shoplogo,height: height_shoplogo,quality: 80,allowMagnify: false,crop: true}                                           
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

@@ -270,9 +270,11 @@
                             var map = new BMap.Map("allmap");
                             var lng = "<{$lng}>";
                             var lat = "<{$lat}>";
+							var lng = "<{$CONFIG['site']['lng']}>";
+							var lat = "<{$CONFIG['site']['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("合肥");
-                                var point = new BMap.Point(117.260852, 31.825717);
+                                map.centerAndZoom("聊城");
+                                var point = new BMap.Point(115.9918900000,36.4626820000);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);
@@ -373,7 +375,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"life"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_life,height: height_life,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -421,7 +425,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"life"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									compress : {width:width_life_pic,height:height_life_pic,quality: 80,allowMagnify: false,crop: true},														                        
 								});                                                               

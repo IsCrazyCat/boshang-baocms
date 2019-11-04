@@ -7,7 +7,7 @@
     </ul>
 </div>
 <div class="main-jsgl">
-    <p class="attention"><span>注意：</span>支付方式配置，目前先开通支付宝微信，那些不常用的支付方式删除了，没卵用！</p>
+    <p class="attention"><span>注意：</span>支付方式配置，目前先开通支付宝微信！</p>
     <div class="jsglNr">
         <div class="title" style="margin-bottom: 10px;">支付方式</div>
         <div class="tableBox">
@@ -19,7 +19,7 @@
                     <td>PC支付图标</td>
                     <td>WAP支付图标</td>
                     <td>说明</td>
-                    <td>错误返回说明</td>
+                    <!--<td>错误返回说明</td>-->
                     <td>操作</td>   
                 </tr>
                 <foreach name="list" item="var">
@@ -30,7 +30,7 @@
                         <td width="60"><img style="width:50px;" src="/static/default/wap/image/pay/<{$var.mobile_logo}>"></td>
                         <td width="60"><eq name="var.is_mobile_only" value="0"><img style="width:50px;" src="/static/default/wap/image/pay/<{$var.logo}>"></eq></td>
                         <td style="text-align: left;"><{$var.contents}></td>
-                        <td style=" color:#F00"><{$var.error_intro}></td>
+                        <!--<td style=" color:#F00"><{$var.error_intro}></td>-->
                         <td class="w80">
                             <eq name="var.is_open" value="1">
                             <{:BA('payment/uninstall',array("payment_id"=>$var["payment_id"]),'卸载','act','remberBtn')}>

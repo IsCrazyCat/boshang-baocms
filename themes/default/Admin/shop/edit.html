@@ -181,7 +181,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shoplogo"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shoplogo,height: height_shoplogo,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -217,7 +219,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 						pick: '#fileToUpload1',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_shopphoto,height: height_shopphoto,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -257,9 +261,9 @@
         </tr>
         <tr>
 
-            <td class="lfTdBt">标签：</td>
-            <td class="rgTdBt"><input type="text" name="data[tags]" value="<{$detail.tags|default=''}>" class="scAddTextName w210" />
-                <code>每个标签用“，”分隔</code>
+            <td class="lfTdBt">推荐特色：</td>
+            <td class="rgTdBt"><input type="text" name="data[tags]" value="<{$detail.tags|default=''}>" class="scAddTextName " style=" width:100%" />
+                <code>每个特色用“，”分隔</code>
             </td>
         </tr>
 
@@ -285,7 +289,7 @@
             </td>
         </tr>
         
-        <tr>
+        <tr  style="display:none">
               <td  class="lfTdBt">全景URL地址：</td>
                 <td class="rgTdBt"><input type="text" name="data[panorama_url]" value="<{$detail.panorama_url}>" class="scAddTextName w360" />
                 <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>
@@ -298,7 +302,7 @@
             <td class="rgTdBt"><input type="text" name="data[price]" value="<{$ex.price|default='0'}>" class="scAddTextName w210" />
             </td>
         </tr>
-        <tr>
+        <tr  style="display:none">
 
             <td class="lfTdBt">订座：</td>
             <td class="rgTdBt">&nbsp;&nbsp;&nbsp;<input type="radio" name="data[is_ding]" value="1" <if condition="$detail.is_ding eq 1"> checked="checked" </if>  />是 &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="data[is_ding]" value="0"  <if condition="$detail.is_ding eq 0"> checked="checked" </if>/>否&nbsp;&nbsp;&nbsp;
@@ -334,14 +338,14 @@
        
         
 
-        <tr>
+        <tr style="display:none">
             <td class="lfTdBt">打印标识(apiKey)</td>
             <td class="rgTdBt"><input type="text" name="data[apiKey]" value="<{$detail.apiKey}>" class="scAddTextName w210" />
             <code>打印标识</code>
             </td>
         </tr>
 
-		<tr>
+		<tr style="display:none">
             <td class="lfTdBt">密钥(mKey)</td>
             <td class="rgTdBt"><input type="text" name="data[mKey]" value="<{$detail.mKey}>" class="scAddTextName w210" />
             <code>密钥</code>
@@ -349,14 +353,14 @@
 
         </tr>
 
-		<tr>
+		<tr style="display:none">
             <td class="lfTdBt">用户id(partner)</td>
             <td class="rgTdBt"><input type="text" name="data[partner]" value="<{$detail.partner}>" class="scAddTextName w210" />
             <code>你再打印平台注册的ID</code>
             </td>
         </tr>
 
-		<tr>
+		<tr style="display:none">
             <td class="lfTdBt">打印机终端号(machine_code)</td>
             <td class="rgTdBt"><input type="text" name="data[machine_code]" value="<{$detail.machine_code}>" class="scAddTextName w210" />
              <code>打印机终端号，一般购买打印机后打印机后面都有此号码。</code>
@@ -366,7 +370,7 @@
         
  
         
-        <tr>
+        <tr style="display:none">
                 <td  class="lfTdBt">客服代码：</td>
                 <td class="rgTdBt"><textarea  name="data[service]" cols="120" rows="15" ><{$detail.service|default=''}></textarea>
 
@@ -375,7 +379,7 @@
             
 		
         
-          <tr>
+          <tr style="display:none">
               <td class="lfTdBt">是否显示客服代码</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[service_audit]" value="0" <if condition="$detail[service_audit] eq 0">checked="checked"</if> />不显示
@@ -385,7 +389,7 @@
           </tr>
           
           
-          <tr>
+          <tr style="display:none">
               <td class="lfTdBt">外卖打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_ele_print]" value="1" <if condition="$detail[is_ele_print] eq 1">checked="checked"</if> />开启
@@ -394,16 +398,16 @@
                </td>
           </tr>
           
-          <tr>
-              <td class="lfTdBt">抢购打印</td>
+          <tr style="display:none">
+              <td class="lfTdBt">团购打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_tuan_print]" value="1" <if condition="$detail[is_tuan_print] eq 1">checked="checked"</if> />开启
 				<input type="radio" name="data[is_tuan_print]" value="0" <if condition="$detail[is_tuan_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印抢购订单</code>
+                <code>开启状态才能打印团购订单</code>
                </td>
           </tr>
           
-           <tr>
+           <tr style="display:none">
               <td class="lfTdBt">商城打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_goods_print]" value="1" <if condition="$detail[is_goods_print] eq 1">checked="checked"</if> />开启
@@ -412,7 +416,7 @@
                </td>
           </tr>
           
-           <tr>
+           <tr style="display:none">
               <td class="lfTdBt">订座打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_booking_print]" value="1" <if condition="$detail[is_booking_print] eq 1">checked="checked"</if> />开启
@@ -421,7 +425,7 @@
                </td>
           </tr>
           
-          <tr>
+          <tr style="display:none">
               <td class="lfTdBt">家政打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_appoint_print]" value="1" <if condition="$detail[is_appoint_print] eq 1">checked="checked"</if> />开启
@@ -444,6 +448,39 @@
                             toolbars:[['fullscreen', 'source', 'undo', 'redo', 'bold', 'italic', 'underline', 'fontborder', 'backcolor', 'fontsize']],  
                             });
                    </script> 
+        
+        
+         <script>
+			function check(e) { 
+				var re = /^\d+(?=\.{0,1}\d+$|$)/ 
+				if (e.value != "") { 
+					if (!re.test(e.value)) { 
+						alert("请输入正确的数字"); 
+						e.value = ""; 
+						e.focus(); 
+					} 
+				} 
+			} 
+         </script>
+         <tr>
+              <td class="lfTdBt">结算费率</td>
+              <td class="rgTdBt">
+                <input type="text" name="data[jiesuanfeilv]" value="<{$detail.jiesuanfeilv}>" onblur="check(this)"  onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" class="scAddTextName w210" />%
+                <code>默认为 15.00%</code>
+               </td>
+          </tr>
+        
+        
+         <tr>
+              <td class="lfTdBt">推荐人信息</td>
+              <td class="rgTdBt">
+                 <php>
+                        $myusers = D('Users')->where(array('user_id'=>$detail['tui_uid']))->find();
+                 </php>
+                <code><{$myusers['account']}>( <{$myusers['user_id']}> )&nbsp;<{$myusers['nickname']}><br />
+<{$myusers['ext0']}>&nbsp;<{$myusers['mobile']}></code>
+               </td>
+          </tr>
         
 
     </table>

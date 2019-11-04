@@ -5,11 +5,12 @@
         protected $type = array(
             goods => '商城购物',
             gold => '金块充值',
-            tuan => '抢购',
+            tuan => '团购',
             money => '余额充值',
             ele => '外卖',
 			pintuan => '拼团',
             ding => '座位预定',
+			gwmd => '门店付款'
         );
 
         protected $is_paid = array(

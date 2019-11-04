@@ -11,7 +11,7 @@ class FenzhanshopmoneyAction extends CommonAction
         $this->assign('city_id', $city_id);
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('city_id' => $city_id);
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -66,7 +66,7 @@ class FenzhanshopmoneyAction extends CommonAction
         $this->assign('city_id', $city_id);
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         if ($month = $this->_param('month', 'htmlspecialchars')) {
             $this->assign('month', $month);
         }
@@ -101,7 +101,7 @@ class FenzhanshopmoneyAction extends CommonAction
         $Shopmoney = D('Shopmoney');
         $map = array('city_id' => $city_id);
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         if ($year = $this->_param('year', 'htmlspecialchars')) {
             $this->assign('year', $year);
         }
@@ -135,7 +135,7 @@ class FenzhanshopmoneyAction extends CommonAction
         $this->assign('city_id', $city_id);
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         if ($day = $this->_param('day', 'htmlspecialchars')) {
             $this->assign('day', $day);
         }

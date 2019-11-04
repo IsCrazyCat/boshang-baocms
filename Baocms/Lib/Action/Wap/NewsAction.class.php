@@ -36,7 +36,7 @@ class NewsAction extends CommonAction {
     }
 	 public function load() {
 		$Article = D('Article');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('city_id' => $this->city_id,'closed' => 0,'audit' => 1);
 		
 		$cat = (int) $this->_param('cat');
@@ -267,7 +267,7 @@ class NewsAction extends CommonAction {
 		$data['create_time'] = NOW_TIME;
 		$data['create_ip'] = get_client_ip();
 		if (D('Articlecomment')->add($data)) {
-			$this->success('回复成功！', U('news/detail', array('article_id' => $data['post_id'])));
+			$this->success('评论成功！', U('news/detail', array('article_id' => $data['post_id'])));
 		}
 	}
 	

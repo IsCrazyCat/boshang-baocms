@@ -13,7 +13,7 @@ class VillageAction extends CommonAction{
 	  public function index() {
         $Village = D('Village');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         //$users = $this->_param('data', false);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
@@ -176,7 +176,7 @@ class VillageAction extends CommonAction{
     public function suggestion(){
         $Village = D('Village_suggestion');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -202,7 +202,7 @@ class VillageAction extends CommonAction{
     {
         $Village = D('Village_bbs');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -264,7 +264,7 @@ class VillageAction extends CommonAction{
                 $this->baoError('操作失败');
             } else {
                 import('ORG.Util.Page');
-                // 导入分页类
+                // 导入分页类    aihuaqian.boshang3710.com
                 $map = array('post_id' => $post_id);
                 $replys = D('Villagebbsreplys');
                 $count = $replys->where($map)->count();
@@ -313,7 +313,7 @@ class VillageAction extends CommonAction{
         if (is_numeric($reply_id) && ($reply_id = (int) $reply_id)) {
             $obj = D('Villagebbsreplys');
             $obj->save(array('reply_id' => $reply_id, 'audit' => 1));
-            $this->baoSuccess('审回复成功！', U('village/bbs_view', array('post_id' => $reply_id)));
+            $this->baoSuccess('审评论成功！', U('village/bbs_view', array('post_id' => $reply_id)));
         } else {
             $reply_id = $this->_post('reply_id', false);
             if (is_array($reply_id)) {
@@ -323,14 +323,14 @@ class VillageAction extends CommonAction{
                 }
                 $this->baoSuccess('批量审核成功！', U('village/bbs_view', array('post_id' => $reply_id)));
             }
-            $this->baoError('请选择要审核社区回复');
+            $this->baoError('请选择要审核社区评论');
         }
     }
     public function notice()
     {
         $Village = D('Village_notice');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -359,7 +359,7 @@ class VillageAction extends CommonAction{
     {
         $Village = D('Village_worker');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -478,7 +478,7 @@ class VillageAction extends CommonAction{
         if ($id = (int) $id) {
             $obj = D('Village_suggestion');
             if (!($detail = $obj->find($id))) {
-                $this->baoError('请选择要回复的意见');
+                $this->baoError('请选择要评论的意见');
             }
             if ($this->isPost()) {
                 $data = $this->_post('data', false);
@@ -488,15 +488,15 @@ class VillageAction extends CommonAction{
                 $data['user'] = $_SESSION['admin']['username'];
                 if (false !== $obj->save($data)) {
                     //  $obj->cleanCache();
-                    $this->baoSuccess('回复成功', U('Village/suggestion', array('village_id' => $data['village_id'])));
+                    $this->baoSuccess('评论成功', U('Village/suggestion', array('village_id' => $data['village_id'])));
                 }
-                $this->baoError('回复成功');
+                $this->baoError('评论成功');
             } else {
                 $this->assign('detail', $detail);
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要回复的意见');
+            $this->baoError('请选择要评论的意见');
         }
     }
     public function notice_edit($id = 0)
@@ -675,7 +675,7 @@ class VillageAction extends CommonAction{
     {
         $User = D('Village');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         //搜索
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('name', 'htmlspecialchars')) {

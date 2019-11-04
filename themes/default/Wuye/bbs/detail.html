@@ -4,7 +4,7 @@
 			<a class="top-addr" href="<{:U('bbs/index')}>"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			小区贴吧详情
+			小区论坛详情
 		</div>
 		<div class="top-share">
 	
@@ -13,14 +13,14 @@
 	
 	
 	
-	<div class="tie-from"><span class="text-gray">话题来自：</span><{$detail.name}>贴吧</div>
+	<div class="tie-from"><span class="text-gray">话题来自：</span><{$detail.name}>论坛</div>
 	
 	<div class="tie-detail">
 		<div class="tie-item">
 			<div class="item-head">
 				<span class="avatar">
                 
-                 <!--手机贴吧头像调用-->
+                 <!--手机论坛头像调用-->
             <?php if(strstr($puser['face'],"http")){ ?>
             <img  src="<{$puser['face']}>" />
             <?php }else{ ?>
@@ -71,7 +71,7 @@
 	</div>
 	<div class="blank-10"></div>
 	<div class="reply-title">
-		<h3><i class="icon-commenting-o"></i> 全部回复</h3>
+		<h3><i class="icon-commenting-o"></i> 评论</h3>
 	</div>
 	<ul id="reply-list" class="reply-list"></ul>
 	<script>
@@ -98,7 +98,7 @@
 	<div class="line">
 		<div class="x12">
 			<a class="button bg-dot dibu" href="<{:U('bbs/delete',array('post_id'=>$tie['post_id']))}>">
-				删除此贴吧
+				删除此论坛
 			</a>
 		</div>
 	</div>

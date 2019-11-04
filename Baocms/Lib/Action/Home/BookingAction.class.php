@@ -97,7 +97,7 @@ class  BookingAction extends  CommonAction{
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
             $this->error('该商家已删除或未审核');
         }else{
-            import('ORG.Util.Page'); // 导入分页类
+            import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
             $linkArr['shop_id'] = $shop_id;
             $map = array('closed' => 0,'shop_id'=>$shop_id);
             if($keyword = $this->_param('keyword', 'htmlspecialchars')){

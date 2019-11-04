@@ -98,6 +98,7 @@ class GoodsAction extends CommonAction {
 
         $wd = D('WeidianDetails');
         $weidian = $wd->where('shop_id =' . ($this->shop_id))->find();
+		
         if ($this->isPost()) {
             $data = $this->checkFields($this->_post('data', false), array('weidian_name', 'addr', 'city_id', 'area_id', 'cate_id', 'business_time', 'details', 'pic', 'logo', 'lng', 'lat', 'reg_time'));
             if (empty($weidian)) {
@@ -172,6 +173,12 @@ class GoodsAction extends CommonAction {
         $this->check_weidian();
         if ($this->isPost()) {
             $data = $this->createCheck();
+			
+			$shopcate = D('shopcate')->find($data['cate_id']);
+			if ( (int)$shopcate['rate'] > 0 ) {
+				$data['jiesuanfeilv'] = $shopcate['rate']; //千分比
+			}
+			
             $obj = D('Goods');
             if ($goods_id = $obj->add($data)) {
                 $wei_pic = D('Weixin')->getCode($goods_id, 3); 
@@ -466,7 +473,8 @@ class GoodsAction extends CommonAction {
         $data['select3'] = (int) $data['select3'];
         $data['select4'] = (int) $data['select4'];
         
-		$data['profit_enable'] = (int) $data['profit_enable'];
+		//$data['profit_enable'] = (int) $data['profit_enable'];
+		$data['profit_enable'] = 1;
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
@@ -475,6 +483,7 @@ class GoodsAction extends CommonAction {
         $data['sold_num'] = 0;
         $data['view'] = 0;
         $data['is_mall'] = 1;
+		$data['audit'] = 1;
         return $data;
     }
 
@@ -631,12 +640,13 @@ class GoodsAction extends CommonAction {
         $data['select3'] = (int) $data['select3'];
         $data['select4'] = (int) $data['select4'];
         $data['select5'] = (int) $data['select5'];
-		$data['profit_enable'] = (int) $data['profit_enable'];
+		//$data['profit_enable'] = (int) $data['profit_enable'];
+		$data['profit_enable'] = 1;
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
         $data['orderby'] = (int) $data['orderby'];
-		$data['audit'] = 0;
+		$data['audit'] = 1;
         return $data;
     }
 	  public function ajax($cate_id,$goods_id=0){

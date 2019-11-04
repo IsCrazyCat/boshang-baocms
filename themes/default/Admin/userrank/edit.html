@@ -9,18 +9,70 @@
                             <td class="rgTdBt"><input type="text" name="data[rank_name]" value="<{$detail.rank_name|default=''}>" class="scAddTextName w150" />
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display:none">
                             <td class="lfTdBt">等级样式1：</td>
                             <td class="rgTdBt"><input type="text" name="data[icon]" value="<{$detail.icon|default=''}>" class="scAddTextName w150" />
                                 <code>这里就是前台调用图标的css样式，不会的留空</code>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="display:none">
                             <td class="lfTdBt">等级样式2：</td>
                             <td class="rgTdBt"><input type="text" name="data[icon1]" value="<{$detail.icon1|default=''}>" class="scAddTextName w150" />
                                 <code>可以为空主要防止不同样式，前端UI样式设计的时候用</code>
                             </td>
                         </tr>
+                        
+                        
+                        <tr >
+                            <td class="lfTdBt">团队数据：</td>
+                            <td class="rgTdBt"><input type="text" name="data[tuanduishuju]" value="<{$detail.tuanduishuju|default=''}>" class="scAddTextName w150" />
+                                <code></code>
+                            </td>
+                        </tr>
+
+                        <tr >
+                            <td class="lfTdBt">个人数据：</td>
+                            <td class="rgTdBt"><code style="float:left; clear:both; width:96%;border:0px;"><input type="text" name="data[jianjiegerenshuju]" value="<{$detail.jianjiegerenshuju|default=''}>" style="width:96%" class="scAddTextName "  /></code>
+<input type="text" name="data[gerenshuju]" value="<{$detail.gerenshuju|default=''}>" class="scAddTextName w150" />
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="lfTdBt">一级补贴：</td>
+                            <td class="rgTdBt"><input type="text" name="data[yijibutie]" value="<{$detail.yijibutie|default=''}>" class="scAddTextName w150" /> %
+                                <code></code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="lfTdBt">二级补贴：</td>
+                            <td class="rgTdBt"><input type="text" name="data[erjibutie]" value="<{$detail.erjibutie|default=''}>" class="scAddTextName w150" /> %
+                                <code></code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="lfTdBt">三级补贴：</td>
+                            <td class="rgTdBt"><input type="text" name="data[sanjibutie]" value="<{$detail.sanjibutie|default=''}>" class="scAddTextName w150" /> %
+                                <code></code>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="lfTdBt">月底帮扶差旅补贴：</td>
+                            <td class="rgTdBt"><input type="text" name="data[yuedubangfuchalv]" value="<{$detail.yuedubangfuchalv|default=''}>" class="scAddTextName w150" />
+                                <code style="float:left; clear:both; width:96%;border:0px;"><input type="text" name="data[jianjieyuedubangfuchalv]" value="<{$detail.jianjieyuedubangfuchalv|default=''}>" style="width:96%" class="scAddTextName "  /></code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="lfTdBt">年度股权分红：</td>
+                            <td class="rgTdBt"><code style="float:left; clear:both; width:96%;border:0px;"><input type="text" name="data[jianjienianduguquanfenhong]" value="<{$detail.jianjienianduguquanfenhong|default=''}>" style="width:96%" class="scAddTextName "  /></code>
+                            <input type="text" name="data[nianduguquanfenhong]" value="<{$detail.nianduguquanfenhong|default=''}>" class="scAddTextName w150" /> %
+                                
+                            </td>
+                        </tr>
+                        
                         <tr>
                         <td class="lfTdBt">等级图标：</td>
                          <td class="rgTdBt">
@@ -31,7 +83,7 @@
                             <div style="width:100px;height:80px; float:left;">
                                 <img id="photo_img" width="60" height="60"  src="<{:config_img($detail['photo'])}>" />
                                  <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                                建议尺寸<{$CONFIG.attachs.rank.thumb}>
+                                建议尺寸<{$CONFIG.attachs.rank.thumb}> 
                             </div>
                             <script>                                            
                                 var width_rank = '<{:thumbSize($CONFIG[attachs][rank][thumb],0)}>';                         
@@ -41,7 +93,9 @@
                                 swf: '/static/default/webuploader/Uploader.swf',                             
                                 server: '<{:U("app/upload/uploadify",array("model"=>"rank"))}>',                             
                                 pick: '#fileToUpload',                             
-                                resize: true,  
+                                resize: true,
+duplicate :true, //可重复上传  
+  
                                 compress : {width: width_rank,height: height_rank,quality:80,allowMagnify: false,crop: true}                           
                             });                                                 
                             uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -53,7 +107,7 @@
                             });                     
                             </script>
                         </td>
-                        <tr>
+                        <tr style="display:none">
                             <td class="lfTdBt">需要<{$CONFIG.prestige.name|default='威望'}>：</td>
                             <td class="rgTdBt"><input type="text" name="data[prestige]" value="<{$detail.prestige|default=''}>" class="scAddTextName w150" />
                                 <code>当用户<{$CONFIG.prestige.name|default='威望'}>满足的时候自动升级</code>

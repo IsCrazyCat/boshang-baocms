@@ -9,7 +9,9 @@
 		<span class="x12 text-right">
         	<a class="button button-little bg-dot"><{$var.type}></a>
             <a class="button button-little bg-blue">资金：<{:round($var['money']/100,2)}></a>
-            <a class="button button-little bg-yellow">原始订单：<{$var.order_id}></a>
+            <if condition="$vo['order_id'] gt 0">
+            	<a class="button button-little bg-yellow">原始订单：<{$var.order_id}></a>
+            </if>
         </span>
 	</div>
 	<div class="blank-10 bg"></div>

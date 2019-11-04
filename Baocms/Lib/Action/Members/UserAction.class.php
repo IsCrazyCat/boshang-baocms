@@ -6,7 +6,7 @@ class UserAction extends CommonAction
         $Activity = D('Activity');
         $Activitysign = D('Activitysign');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('user_id' => $this->uid);
         $count = $Activitysign->where($map)->count();
         $Page = new Page($count, 10);

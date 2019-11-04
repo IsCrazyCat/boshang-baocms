@@ -92,7 +92,7 @@ class PostAction extends CommonAction {
         }
     }
 
-    public function postreply($post_id = 0) {
+    public function 发现($post_id = 0) {
         if ($post_id = (int) $post_id) {
             $obj = D('Post');
             if (!$detail = $obj->find($post_id)) {
@@ -115,7 +115,7 @@ class PostAction extends CommonAction {
                 if ($obj->add($data)) {
                     D('Post')->save(array('post_id' => $post_id, 'last_id' => $this->uid, 'last_time' => NOW_TIME));
                     D('Users')->prestige($this->uid, 'reply');
-                    $this->baoSuccess('回复成功', U('share/detail', array('post_id' => $post_id)));
+                    $this->baoSuccess('评论成功', U('share/detail', array('post_id' => $post_id)));
                 }
                 $this->baoError('操作失败！');
             } else {

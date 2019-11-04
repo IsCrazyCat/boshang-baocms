@@ -1,7 +1,7 @@
 <include file="public:header"/>
 
 <style>
-/*www.hatudou.com的css重写*/
+/*aihuaqian.boshang3710.com的css重写*/
 .item-list h5 { height: inherit;}
 .is_renzheng{background: #33b095;padding: 0 3px;color: #fff !important;font-size: 12px;margin-right: 5px; height: 16px;line-height: 16px;margin-top: 3px;}
 .cate-wrap{font-size:0;background-color:#fff;border-bottom:1px solid #f3f3f3;width:100%;overflow:hidden;}
@@ -34,6 +34,34 @@
 		</div>
         </if>
 	</header>
+    <if condition="empty($keyword)">
+    <div id="focus" class="focus">
+			<div class="hd"><ul></ul></div>
+			<!--下面的limit="0,2"是幻灯的个数，2代表2张图，以此类推，site_id=57是你广告位的ID-->
+			<div class="bd" >
+				<ul>
+					<calldata mdl="Ad" where=" closed=0 AND site_id=71 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,4" cache="7200" order="orderby asc">
+						<li>
+							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a>
+						</li>
+					</calldata>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			TouchSlide({
+				slideCell: "#focus",
+				titCell: ".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true, //自动播放
+				autoPage: true, //自动分页
+				switchLoad: "_src", //切换加载，真实图片路径为"_src", 
+			});
+		</script>
+     </if>
+    
+    
     <script>
 		$(function(){
 			$("#search-btn").click(function(){
@@ -77,24 +105,28 @@
 		});
 	</script>
     
-    <if condition="empty($cat) && empty($business_id) && empty($order) && empty($keyword)">
         <ul class="cate-wrap bbOnepx">
-            <php>$a = 0;</php>
+            <php>$a = 0;$cat = 0;
+            if((int)$_GET['cat']>0)
+			{
+			   $cat = $_GET['cat']; 
+			}
+            
+            </php>
             <volist name="goodscates" id="item">
-                <eq name="item.parent_id" value="0">
+                <eq name="item.parent_id" value="$cat">
                     <php>$a++;</php>    
-                    <if condition="$a lt 10"> 
+                    <if condition="$a lt 11"> 
                         <li>
                             <a class="icon2" href="<{:U('mall/index',array('cat'=>$item['cate_id']))}>" tongji_tag="m_home_job_new">
                                 <span class="cate-img" id="job"><img src="<{:config_img($item['photo'])}>" /></span>
-                                <span class="cate-desc"><{:bao_msubstr($item['cate_name'],0,2,false)}></span>
+                                <span class="cate-desc"><{:bao_msubstr($item['cate_name'],0,4,false)}></span>
                             </a>
                         </li>
                     </if>
                 </eq>
             </volist>
         </ul>
-    </if>
     
     
     
@@ -222,4 +254,4 @@
         });
     </script>
 	
-<include  file='public:footer'/>    
+<include  file='public:footer-shop'/>    

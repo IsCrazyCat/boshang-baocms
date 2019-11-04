@@ -148,6 +148,12 @@ class GoodsAction extends CommonAction{
         $this->check_weidian();
         if ($this->isPost()) {
             $data = $this->createCheck();
+			
+			$shopcate = D('shopcate')->find($data['cate_id']);
+			if ( (int)$shopcate['rate'] > 0 ) {
+				$data['jiesuanfeilv'] = $shopcate['rate']; //千分比
+			}
+			
             $obj = D('Goods');
             if ($goods_id = $obj->add($data)) {
                 $wei_pic = D('Weixin')->getCode($goods_id, 3);
@@ -157,7 +163,7 @@ class GoodsAction extends CommonAction{
                 if (!empty($photos)) {
                     D('Goodsphoto')->upload($goods_id, $photos);
                 }
-                $this->fengmiMsg('添加成功,请等待审核', U('mart/index'));
+                $this->fengmiMsg('添加成功', U('mart/index'));
             }
             $this->fengmiMsg('操作失败！');
         } else {
@@ -264,7 +270,8 @@ class GoodsAction extends CommonAction{
         $data['select3'] = (int) $data['select3'];
         $data['select4'] = (int) $data['select4'];
         $data['select5'] = (int) $data['select5'];
-		$data['profit_enable'] = (int) $data['profit_enable'];
+		//$data['profit_enable'] = (int) $data['profit_enable'];
+		$data['profit_enable'] = 1;
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
@@ -274,6 +281,7 @@ class GoodsAction extends CommonAction{
         $data['sold_num'] = 0;
         $data['view'] = 0;
         $data['is_mall'] = 1;
+		$data['audit'] = 1;
         return $data;
     }
     public function edit($goods_id = 0){
@@ -304,7 +312,7 @@ class GoodsAction extends CommonAction{
 					if (!empty($photos)) {
 						D('Goodsphoto')->upload($goods_id, $photos);
 					}
-                    $this->fengmiMsg('编辑成功，请联系管理员审核', U('mart/index'));
+                    $this->fengmiMsg('编辑成功', U('mart/index'));
                 }
                 $this->fengmiMsg('操作失败');
             } else {
@@ -409,12 +417,13 @@ class GoodsAction extends CommonAction{
         $data['select3'] = (int) $data['select3'];
         $data['select4'] = (int) $data['select4'];
         $data['select5'] = (int) $data['select5'];
-		$data['profit_enable'] = (int) $data['profit_enable'];
+		//$data['profit_enable'] = (int) $data['profit_enable'];
+		$data['profit_enable'] = 1;
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];		
         $data['orderby'] = (int) $data['orderby'];
-        $data['audit'] = 0;
+        $data['audit'] = 1;
         return $data;
     }
     public function child($parent_id = 0){

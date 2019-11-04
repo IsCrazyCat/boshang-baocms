@@ -11,7 +11,24 @@
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
         	<div class="left">
                 <a>商家总提现【已审】：<{$shop_cash}>元</a>    
-                <a>商家提现佣金【已审】：<{$shop_cash_commission}>元</a>           
+                <!--<a>商家提现佣金【已审】：<{$shop_cash_commission}>元</a> -->  
+                &nbsp;&nbsp;
+                <if condition="$ssysr gt 0 "> 
+                     <{$ssy}>月收入 <{:round($ssysr/100,2)}> 元
+                </if>
+                &nbsp;&nbsp;
+                <if condition="$sysr gt 0 "> 
+                     <{$sy}>月收入 <{:round($sysr/100,2)}> 元
+                </if>
+                &nbsp;&nbsp;
+                <if condition="$bysr gt 0 "> 
+                     <{$by}>月收入 <{:round($bysr/100,2)}> 元
+                </if>
+                &nbsp;&nbsp; 
+                <if condition="$cxze gt 0 "> 
+                查询总额 <{:round($cxze/100,2)}> 元
+                </if>
+                        
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('usercash/shop')}>">
@@ -28,15 +45,32 @@
             </div>
             <div class="clear"></div>
         </div>
-        <form method="post" action="<{:U('usercash/shop')}>">
-            <div class="selectNr selectNr2">
+        <form method="post" action="<{:U('usercash/gold')}>">
+            
+               <div class="selectNr selectNr2">
                 <div class="left">
                     <div class="seleK">
+                    
+                        <label>
+                            <span>开始时间</span>
+                            <input type="text" name="bg_date" value="<{$bg_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd'});"  class="text" />
+                        </label>
+                        <label>
+                            <span>结束时间</span>
+                            <input type="text" name="end_date" value="<{$end_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd'});"  class="text" />
+                        </label>
+                        <label>
+                            <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
+                            <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text w150 sj" />
+                            <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="seleSj">选择商家</a>
+                        </label>                    
+                    
                         <label>
                             <span>账户</span>
                             <input type="text" name="account" value="<{$account}>" class="inptText" />
                         </label>
                     </div>
+                    
                 </div>
                 <div class="right">
                     <input type="submit" value="   搜索"  class="inptButton" />
@@ -62,7 +96,12 @@
                     <tr>
                         <td><input class="child_cash_id" type="checkbox" name="cash_id[]" value="<{$var.cash_id}>" <?php if ($var['status'] != 0){echo 'disabled="disabled"';}?> /></td>
                         <td><{$var.cash_id}></td>
-                        <td><{$var.account}></td>
+                        <td>
+                        <php>
+                        $shop_name = D('shop')->where('shop_id='.$var['shop_id'])->getfield('shop_name');
+                        </php><{$shop_name}>(<{$var.shop_id}>)
+                        <br />
+<{$var.account}>(<{$var.user_id}>)</td>
                         <td>
                             <p>户名：<{$var.bank_realname}></p>
                             <p>银行：<{$var.bank_name}></p>
@@ -71,7 +110,7 @@
                         </td>
                         <td><{$var['gold'] / 100}> 元</td>
                         <td><if condition="!empty($var['commission'])">手续费：&yen; <{:round($var['commission']/100,2)}>元<else/>无</if></td>
-                        <td><{$var['addtime']|date='Y-m-d', ###}></td>
+                        <td><{$var['addtime']|date='Y-m-d H:i:s', ###}></td>
                         <td>
                     <if condition="$var.status eq 0">
                         未审

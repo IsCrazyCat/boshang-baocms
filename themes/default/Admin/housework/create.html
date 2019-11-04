@@ -172,7 +172,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"lifeservice"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_lifeservice,height: height_lifeservice,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -204,7 +206,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"lifeservice"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									compress : {width:width_lifeservice_pic,height:height_lifeservice_pic,quality: 80,allowMagnify: false,crop: true},														
 								});                                                               
@@ -263,7 +267,7 @@
                         
                         
                         <tr>
-                            <td class="lfTdBt">浏览量：</td>
+                            <td class="lfTdBt">人气：</td>
                             <td class="rgTdBt">
                                 <input name="views" value="<{$detail.views}>" type="text" class="manageInput" />
                             </td>

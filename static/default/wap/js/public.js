@@ -115,11 +115,11 @@ $(document).ready(function (){
 function check_user_mobile(url1,url2){
 	layer.open({
 		type: 1,
-		title:'<h4>请绑定手机后操作</h4>',
+		title:'<h4>绑定会员信息</h4>',
 		skin: 'layui-layer-molv', //加上边框
-		area: ['90%', '300px'], //宽高
+		area: ['100%', '100%'], //宽高
 		shift:6,
-		content: '<div class="form-auto form-x"><div class="form-group"><div class="label"><label>手机号</label></div><div class="field form-inline"><input class="input input-auto" name="mobile" id="mobile" value="" placeholder="填写手机号码" size="20" type="text"> <button class="button margin-top bg-yellow" id="jq_send">获取验证码</button></div></div><div class="form-group"><div class="label" ><label>验证码</label></div><div class="field"><input class="input input-auto" name="yzm" id="yzm" value="" size="10" placeholder="填写验证码" type="text"></div></div><div class="form-button"><button id="go_mobile" class="button bg-yellow edit_post" type="submit">立刻认证</button></div></div>'
+		content: '<div class="form-auto form-x" style=" margin:0px; padding:0px; top:0px;"><div class="form-group"><div class="label"><label>手机号</label></div><div class="field form-inline"><input class="input input-auto" name="mobile" id="mobile" value="" placeholder="填写手机号码" size="20" type="text"> <button class="button margin-top bg-yellow" id="jq_send">获取验证码</button></div></div><div class="form-group"><div class="label" ><label>短信验证码</label></div><div class="field"><input class="input input-auto" name="yzm" id="yzm" value="" size="10" placeholder="填写验证码" type="text"></div><div class="label" ><label>真实姓名</label></div><div class="field"><input class="input input-auto" name="ext0" id="ext0" value="" size="20" placeholder="请填写真实姓名" type="text"></div><div class="label" ><label>登陆密码</label></div><div class="field"><input class="input input-auto" name="password" id="password" value="123456" size="20" placeholder="请输入登陆密码" type="text"></div></div><div class="form-button"><button id="go_mobile" class="button bg-yellow edit_post" type="submit">提 交</button></div></div>'
 	});
 	//获取验证码
 	var mobile_timeout;
@@ -165,12 +165,16 @@ function check_user_mobile(url1,url2){
 	$('#go_mobile').click(function(){
 		var ml = $('#mobile').val();
 		var y = $('#yzm').val();
-		$.post(url2,{mobile:ml,yzm:y},function(result){										
+		var ext0 = $('#ext0').val();
+		var password = $('#password').val();
+		$.post(url2,{mobile:ml,yzm:y,ext0:ext0,password:password},function(result){										
 			if(result.status == 'success'){
-				layer.msg(result.msg);
+				//layer.msg(result.msg);
+				alert(result.msg);
+				window.location.replace("/user/distribution/index.html");
 				setTimeout(function(){
 					location.reload(true);
-				},3000);
+				},2000);
 			}else{
 				layer.msg(result.msg,{icon:2});
 			}														
@@ -185,10 +189,10 @@ function check_user_mobile(url1,url2){
 function change_user_mobile(url1,url2){
 	layer.open({
 		type: 1,
-		title:'请绑定手机后操作',
+		title:'注册会员绑定信息',
 		skin: 'layer-ext-demo', //加上边框
 		area: ['90%', '300px'], //宽高
-		content: '<div class="padding-big">手机号<br /><input name="mobile" id="mobile" type="text" size="13" class="input input-auto" /> <button class="button margin-top bg-yellow" type="button" id="jq_send">获取验证码</button><br /><div class="blank-10"></div>验证码<br /><input  class="input input-auto" size="10"  name="yzm" id="yzm" type="text" /> 输入验证码<br><div class="blank-20"></div><input type="submit" value="立刻认证" class="button bg-yellow"  id="go_mobile" /></div>'
+		content: '<div class="padding-big">手机号<br /><input name="mobile" id="mobile" type="text" size="13" class="input input-auto" /> <button class="button margin-top bg-yellow" type="button" id="jq_send">获取验证码</button><br /><div class="blank-10"></div>短信验证码<br /><input  class="input input-auto" size="10"  name="yzm" id="yzm" type="text" /> 输入验证码<br><div class="blank-20"></div><input type="submit" value="提交" class="button bg-yellow"  id="go_mobile" /></div>'
 	});
 	//获取验证码
 	var mobile_timeout;

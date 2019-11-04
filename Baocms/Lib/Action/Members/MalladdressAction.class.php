@@ -38,15 +38,15 @@ class MalladdressAction extends CommonAction{
 			}
 			$data['province'] = (int) $data['province'];
 			if (empty($data['province'])) {
-				$this->baoError('省份不能为空');
+				//$this->baoError('省份不能为空');
 			}
 			$data['city'] = (int) $data['city'];
 			if (empty($data['city'])) {
-				$this->baoError('城市不能为空');
+				//$this->baoError('城市不能为空');
 			}
 			$data['areas'] = (int) $data['areas'];
 			if (empty($data['areas'])) {
-				$this->baoError('地区不能为空');
+				//$this->baoError('地区不能为空');
 			}
 			$data['addinfo'] = htmlspecialchars($data['addinfo']);
 			if (empty($data['addinfo'])) {
@@ -131,15 +131,15 @@ class MalladdressAction extends CommonAction{
 			}
 			$data['province'] = (int) $data['province'];
 			if (empty($data['province'])) {
-				$this->baoError('省份不能为空');
+				//$this->baoError('省份不能为空');
 			}
 			$data['city'] = (int) $data['city'];
 			if (empty($data['city'])) {
-				$this->baoError('城市不能为空');
+				//$this->baoError('城市不能为空');
 			}
 			$data['areas'] = (int) $data['areas'];
 			if (empty($data['areas'])) {
-				$this->baoError('地区不能为空');
+				//$this->baoError('地区不能为空');
 			}
 			$data['info'] = htmlspecialchars($data['addinfo']);
 			if (empty($data['info'])) {

@@ -44,8 +44,8 @@ class  ConnectModel extends Model{
      * @return array 用户的信息数组
      * */
     public function wx_user_info($openid,$access_token){
-	//$url = 'https://api.weixin.qq.com/cgi-bin/user/info??access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
-       $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid;
+	$url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+      // $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid; //这儿是错的
 	 //  $url = 'https://api.weixin.qq.com/sns/auth?access_token='.$access_token;
 	  
         $str = $this->visit_url($url);
@@ -56,6 +56,8 @@ class  ConnectModel extends Model{
 		
 		
     }
+	
+	
 	
 	/**
      * 请求URL地址，得到返回字符串

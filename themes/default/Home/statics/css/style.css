@@ -3108,7 +3108,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF000000,endCol
 .hotel_jiajian input{ float:left;}
 .hotel_jiajian input[type='button']{ width:44px; height:40px; background:#e6e6e6; font-size:40px; appearance:none; -webkit-appearance: none; vertical-align:middle; color:#999; border:none; line-height:40px;}
 .hotel_jiajian input[type='text']{ height:38px; width:68px; text-align:center; background:#fff; border:1px solid #e6e6e6;}
-/*订酒店个人中心订单*/
+/*订酒店我的兜兜订单*/
 .hotel_ord_user table tr th{ font-weight:normal; text-align:right; width:120px;}
 .hotel_ord_user table tr th,.hotel_ord_user table tr td{ padding:5px 0; vertical-align:middle;}
 .hotel_ord_user .ts{ color:#999; line-height:24px; margin-left:10px;}
@@ -3192,7 +3192,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF000000,endCol
 .farm_soso h3{ color:#fff; font-size:16px; line-height:44px;}
 .farm_soso h3 b{ font-weight:bold;}
 .farm_soso h3.price{ font-size:20px;}
-/*农家乐订单-个人中心*/
+/*农家乐订单-我的兜兜*/
 .farmOrd_state{ background:#fff6db; padding:20px 10px; border:1px solid #f5d8a7; overflow:hidden;}
 .farmOrd_state p{ font-size:18px; line-height:24px;}
 .farmOrd_state .cancel{ font-size:16px; line-height:40px;}
@@ -3336,7 +3336,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF000000,endCol
 .seat_menuList .pub_wz .btn_box .btn,.seat_recmd .list .btn{ display:inline-block; width:70px; height:40px; background:#ff6600 url(../images/seat/cartIco.png) no-repeat center; border-radius:3px;}
 .seat_recmd_tit{ border:1px solid #e6e6e6; background:#fff; line-height:38px; padding:0 20px; overflow:hidden; margin-bottom:10px; font-size:18px;}
 .seat_recmd_tit .more .ico{ display:inline-block; width:12px; height:12px; vertical-align:middle; margin-left:5px; background:url(../images/mall/ico.png) no-repeat -30px -26px;}
-/*订座订单-个人中心*/
+/*订座订单-我的兜兜*/
 /*.seatOrd_form{ width:616px; border:1px solid #e6e6e6; background:#fff; margin:30px auto;}
 .seatOrd_form .box{ margin:0 60px;}
 .seatOrd_form .title{ font-size:25px; line-height:60px; font-weight:bold; padding:10px 0;}
@@ -3733,7 +3733,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF000000,endCol
 .tribeMain_title .btn{display:inline-block;font-size:16px; color:#fff; height:40px; line-height:40px; width:130px; text-align:center; border-radius:5px; background:#ff7878; vertical-align:middle; margin-left:20px;}
 .tribeMain_title .btn b{ font-size:32px; vertical-align:super; line-height:40px; vertical-align:sub;}
 .tribeMain_title .btn2{ background:#ccc;}
-/*部落发表与回复*/
+/*部落发表与评论*/
 .tribe_topic_fabiao h3{ font-size:18px; line-height:18px; margin:30px 0 15px; padding-left:10px; border-left:3px solid #2fbdaa; overflow:hidden;}
 .tribe_topic_fabiao input{ width:100%; border:1px solid #ccc; margin-bottom:20px; background:#fff; height:40px; line-height:40px; text-indent:10px; font-size:16px;}
 .tribe_topic_fabiao input.check{ width:auto; margin-bottom:0px; text-indent:0px; vertical-align:middle;}

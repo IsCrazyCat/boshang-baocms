@@ -6,8 +6,8 @@
                     <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                         <tr>
                             <td class="lfTdBt">账户：</td>
-                            <td class="rgTdBt"><input type="text" name="data[account]" value="<{$detail.account|default=''}>" class="scAddTextName w200" />
-                                <code>账号只允许手机或邮件</code>
+                            <td class="rgTdBt"><input type="text" name="data[account]" id="account" value="<{$detail.account|default=''}>" class="scAddTextName w200" oninput="upperCase(this.id)" onpropertychange="upperCase(this.id)"  readonly = "readonly"    onclick = "document.getElementById('account').readOnly=false;" />
+                                <code>账号只允许手机</code>
                             </td>
                         </tr>
                        <tr>
@@ -50,9 +50,9 @@
                         </tr>
                         <tr>
 
-                            <td class="lfTdBt">别名：</td>
+                            <td class="lfTdBt">真实姓名：</td>
                             <td class="rgTdBt"><input type="text" name="data[ext0]" value="<{$detail.ext0|default=''}>" class="scAddTextName w200" />
-                                <code>一般不要写，兼容UCENTER，如果不整合DZ可以不填写，整合就需要填写用户名</code>
+                                <code style="display:none">一般不要写，兼容UCENTER，如果不整合DZ可以不填写，整合就需要填写用户名</code>
                             </td>
                         </tr>
 
@@ -78,7 +78,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"user"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_user,height: height_user,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             

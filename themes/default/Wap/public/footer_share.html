@@ -3,12 +3,16 @@
 	var BAO_ROOT = "__ROOT__"; 
 	var BAO_SURL = "<{$CONFIG['site']['host']}>__SELF__"
 </script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+
 <script>
+
+
 $(function(){
+	
 	var newurl = BAO_SURL.replace(/\?\S+/,'');
-	var stitle = "<{$config['title']}>"; 
-	var sdesc = "<{$config['title']}>";
+	var stitle = "<{$mobile_title}>"; 
+	var sdesc = "<{$mobile_description}>";
 	var surl = newurl+'?fuid=<{:getuid()}>';	
 	var catchpic = $('img');
 	var lcatchpic = "<{$CONFIG['site']['host']}>" + $('img').eq(0).attr("src");
@@ -50,6 +54,7 @@ $(function(){
 			imgUrl: spic,
 			success: function () { 
 				alert("分享成功!");
+
 			},
 			cancel: function () { 
 				alert("分享失败!");
@@ -64,6 +69,7 @@ $(function(){
 			dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 			success: function () { 
 				alert("分享成功!");
+
 			},
 			cancel: function () { 
 				alert("分享失败!");
@@ -76,6 +82,7 @@ $(function(){
 			imgUrl: spic,
 			success: function () { 
 			   alert("分享成功!");
+
 			},
 			cancel: function () { 
 			   alert("分享失败!");
@@ -88,6 +95,7 @@ $(function(){
 			imgUrl: spic,
 			success: function () { 
 			  alert("分享成功!");
+
 			},
 			cancel: function () { 
 				alert("分享失败!");
@@ -100,6 +108,7 @@ $(function(){
 			imgUrl: spic,
 			success: function () { 
 			   alert("分享成功!");
+
 			},
 			cancel: function () { 
 				alert("分享失败!");

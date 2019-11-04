@@ -12,6 +12,15 @@ class CommonAction extends Action
     protected $city = array();
     protected function _initialize()
     {
+		
+		$appid = $this->_CONFIG['weixin']["appid"];
+        $appsecret = $this->_CONFIG['weixin']["appsecret"];
+        import("@/Net.Jssdk");
+        $jssdk = new JSSDK("{$appid}", "{$appsecret}");
+        $sign = $jssdk->GetSignPackage();
+        $this->assign("sign", $sign);
+		$this->assign('appid',$appid);
+
         define('__HOST__', 'http://' . $_SERVER['HTTP_HOST']);
         $this->_CONFIG = D('Setting')->fetchAll();
         $this->citys = D('City')->fetchAll();
@@ -19,7 +28,7 @@ class CommonAction extends Action
         //设置根域名
         $this->assign('citys', $this->citys);
         $this->city_id = cookie('city_id');
-       
+
         if (empty($this->city_id)) {
             import('ORG/Net/IpLocation');
             $IpLocation = new IpLocation('UTFWry.dat');// 实例化类 参数表示IP地址库文件
@@ -83,7 +92,7 @@ class CommonAction extends Action
         }
         $tui_uids = (int) $this->_get('tui_uids');
         if ($tui_uids) {
-            cookie('tuis', $tui_uids, 15 * 86400); //半个月有效果
+            cookie('tuis', $tui_uids, 10 * 86400); //半个月有效果
         }
         $this->_CONFIG = D('Setting')->fetchAll();
         define('__HOST__', $this->_CONFIG['site']['host']);
@@ -196,16 +205,31 @@ class CommonAction extends Action
             $s_mobile = session('mobile');
             $s_code = session('code');
             if ($mobile != $s_mobile) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '手机号码和收取验证码的手机号不一致！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '手机号码和收取验证码的手机号不一致E！'));
             }
             if ($yzm != $s_code) {
                 $this->ajaxReturn(array('status' => 'error', 'msg' => '验证码不正确！'));
             }
-            $data = array('user_id' => $this->uid, 'mobile' => $mobile);
+			
+			
+			
+            $data = array('user_id' => $this->uid, 'mobile' => $mobile, 'account' => $mobile);
+			
+			$ext0 = $this->_post('ext0');
+			$ext0 =  str_replace("请填写真实姓名","",$ext0);
+            $password = $this->_post('password');
+			if ( strlen($ext0) > 1  ) {
+				$data['ext0'] = $ext0;
+			}
+			if ( strlen($password) > 1  ) {
+			 	$data['password'] = md5($password);
+			}
+			
             if (D('Users')->save($data)) {
                 D('Users')->integral($this->uid, 'mobile');
                 D('Users')->prestige($this->uid, 'mobile');
-                $this->ajaxReturn(array('status' => 'success', 'msg' => '恭喜您通过手机认证！'));
+                //$this->ajaxReturn(array('status' => 'success', 'msg' => '恭喜您通过手机认证！'));
+				$this->ajaxReturn(array('status' => 'success', 'msg' => '恭喜您绑定会员信息成功！'));
             }
             $this->ajaxReturn(array('status' => 'error', 'msg' => '更新失败！'));
         } else {
@@ -224,7 +248,7 @@ class CommonAction extends Action
         session('mobile', $mobile);
         $randstring = session('life_code', 100);
         if (empty($randstring)) {
-            $randstring = rand_string(6, 1);
+            $randstring = rand_string(4, 1);
             session('life_code', $randstring);
         }
         //如果开启大鱼
@@ -250,12 +274,12 @@ class CommonAction extends Action
             $s_mobile = session('mobile');
             $s_code = session('code');
             if ($mobile != $s_mobile) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '手机号码和收取验证码的手机号不一致！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '手机号码和收取验证码的手机号不一致F！'));
             }
             if ($yzm != $s_code) {
                 $this->ajaxReturn(array('status' => 'error', 'msg' => '验证码不正确！'));
             }
-            $data = array('user_id' => $this->uid, 'mobile' => $mobile);
+            $data = array('user_id' => $this->uid, 'mobile' => $mobile, 'account' => $mobile);
             if (D('Users')->save($data)) {
                 $this->ajaxReturn(array('status' => 'success', 'msg' => '恭喜您成功更换绑定手机号！'));
             }
@@ -276,7 +300,7 @@ class CommonAction extends Action
         session('mobile', $mobile);
         $randstring = session('code');
         if (empty($randstring)) {
-            $randstring = rand_string(6, 1);
+            $randstring = rand_string(4, 1);
             session('code', $randstring);
         }
         //如果开启大鱼

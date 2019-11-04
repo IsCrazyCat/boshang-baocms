@@ -65,9 +65,9 @@ body{background:#F1F1F1;}
             <h3><a href="##">1：上次登录地址：<{$ad.last_ip}></a></h3>
             <h3><a href="##">2：更新到<{$v}></a></h3>
             <h3><a href="##">3：php版本：<{:phpversion()}></a></h3>
-            <h3><a href="http://www.hatudou.com/list-83.html">4：点击查看今日更新</a></h3>
-            <h3><a href="http://www.hatudou.com/list-87.html">5：更多精品源码下载</a></h3>
-            <h3><a href="http://www.hatudou.com/list-93.html">6：不会？点击看教程</a></h3>
+            <!--<h3><a href="http://aihuaqian.boshang3710.com/list-83.html">4：点击查看今日更新</a></h3>
+            <h3><a href="http://aihuaqian.boshang3710.com/list-87.html">5：更多精品源码下载</a></h3>
+            <h3><a href="http://aihuaqian.boshang3710.com/list-93.html">6：不会？点击看教程</a></h3>-->
 
             </div>
     </div>
@@ -85,10 +85,10 @@ body{background:#F1F1F1;}
             <div class="comiis_19forum_list">
             <h3><a href="<{:U('user/index')}>" class="dot">1：今日新增<a class="red"><{$counts.totay_user}></a>个会员</a></h3>
             <h3><a href="<{:U('user/index')}>">2：已有<{$counts.user_moblie}>人验证手机号</a></h3>
-            <h3><a href="<{:U('user/index')}>">3：已有<{$counts.user_email}>人绑定邮箱</a></h3>
-            <h3><a href="<{:U('user/index')}>">4：qq注册<{$counts.user_qq}>人.</a></h3>
-            <h3><a href="<{:U('user/index')}>">5：微信登录<{$counts.user_weixin}>人.</a></h3>
-            <h3><a href="<{:U('user/index')}>">6：微博注册<{$counts.user_weibo}>人.</h3>
+            <!--<h3><a href="<{:U('user/index')}>">3：已有<{$counts.user_email}>人绑定邮箱</a></h3>-->
+            <!--<h3><a href="<{:U('user/index')}>">4：qq注册<{$counts.user_qq}>人.</a></h3>-->
+            <h3><a href="<{:U('user/index')}>">3：微信登录<{$counts.user_weixin}>人.</a></h3>
+            <!--<h3><a href="<{:U('user/index')}>">6：微博注册<{$counts.user_weibo}>人.</h3>-->
 
  
             </div>
@@ -103,12 +103,22 @@ body{background:#F1F1F1;}
         <div class="comiis_19forum_title">
             <span class="comiis_19forum_icon"></span>
             <h2><a href="#">资金统计</a></h2>
-            <em>会员总资金<{:round($counts['money_and']/100,2)}>元</em>
+            <!--<em>会员总资金<{:round($counts['money_and']/100,2)}>元</em>-->
+             <em><a href="<{:U('order/index')}>"><a href="/admin/usermoneylogs/index.html"  >交易日志</a></em>
         </div>
-            <div class="comiis_19forum_list">
+            <div class="comiis_19forum_list" style="height:400px">
             <h3><a href="<{:U('usermoneylogs/index')}>">1：会员总资金<{:round($counts['money_and']/100,2)}>元</a></h3>
-            <h3><a href="<{:U('usermoneylogs/index')}>">2：会员总积分<{$counts['money_integral']}>分</a></h3>
-            <h3><a href="<{:U('usercash/index')}>">3：今日提现<a class="red"><{:round($counts['money_cash_day']/100,2)}></a>元，<a class="red"><{$counts['money_cash_audit']}></a>人待审</a></h3>
+            <!--<h3><a href="<{:U('usermoneylogs/index')}>">2：会员总积分<{$counts['money_integral']}>分</a></h3>-->
+            <h3><a href="<{:U('usercash/index')}>">2：今日会员提现<a class="red"><{:round($counts['money_cash_day']/100,2)}></a>元
+</h3><!--<h3>&nbsp;<a class="red"><{$counts['money_cash_audit']}></a>人待审</a></h3>-->
+            <h3><a href="<{:U('order/index')}>">3：商户总资金<{:round($counts['gold_and']/100,2)}>元</a></h3>
+            
+            <h3><a href="<{:U('usercash/gold')}>">4：已通过商户提现<a class="red"><{:round($counts['shop_money_cash_ok']/100,2)}></a></h3><h3>&nbsp;
+今日商户提现<a class="red"><{:round($counts['shop_money_cash_day']/100,2)}></a>元
+</h3><!--<h3>&nbsp;
+<a class="red"><{$counts['shop_money_cash_audit']}></a>人待审</a></h3>-->
+           
+            
             </div>
     </div>
 </div>
@@ -147,29 +157,30 @@ body{background:#F1F1F1;}
             <div class="comiis_19forum_list">
             <h3><a href="<{:U('goods/index')}>">1：共有<{$counts['goods']}>个商品</a></h3>
             <h3><a href="<{:U('goods/index')}>">2：今日新增<a class="red"><{$counts['goods_day']}></a>个，待审核<a class="red"><{$counts['goods_audit']}></a>个</a></h3>
-            <h3><a href="<{:U('order/index')}>">3：订单<{$counts['order']}>个，今日<a class="red"><{$counts['order_day']}></a>个</a></h3>
-            <h3><a href="<{:U('order/index')}>">4：商城退款申请：<a class="red"><{$counts.order_tui}></a>笔</a></h3>
-            <h3><a href="<{:U('malldianping/index')}>">5：商城共：<{$counts.dianping_goods}>条点评</a></h3>
-            <h3><a href="<{:U('malldianping/index')}>">6：今日商城点评：<a class="red"><{$counts.totay_dianping_goods}></a>次</a></h3>
+            <h3><a href="<{:U('order/index')}>">3：线上商城订单<{$counts['order']}>个，今日<a class="red"><{$counts['order_day']}></a>个</a></h3>
+            <!--<h3><a href="<{:U('order/index')}>">4：商城退款申请：<a class="red"><{$counts.order_tui}></a>笔</a></h3>-->
+            
+            <!--<h3><a href="<{:U('malldianping/index')}>">5：商城共：<{$counts.dianping_goods}>条点评</a></h3>-->
+            <!--<h3><a href="<{:U('malldianping/index')}>">6：今日商城点评：<a class="red"><{$counts.totay_dianping_goods}></a>次</a></h3>-->
             </div>
     </div>
 </div>
 </li>
 
 
-<li class="comiis_19forum comiis_19forum_style0 masonry-brick">
+<!--<li class="comiis_19forum comiis_19forum_style0 masonry-brick">
 <div class="comiis_19forum_top comiis_19forum_id1">
     <div class="comiis_19forum_div">
         <div class="comiis_19forum_title">
             <span class="comiis_19forum_icon"></span>
-            <h2><a href="<{:U('tuan/index')}>">抢购数据</a></h2>
-            <em>共有<{$counts.tuan}>个抢购</em>
+            <h2><a href="<{:U('tuan/index')}>">团购数据</a></h2>
+            <em>共有<{$counts.tuan}>个团购</em>
         </div>
             <div class="comiis_19forum_list">
-            <h3><a href="<{:U('tuan/index')}>">1：共有<{$counts.tuan}>个抢购</a></h3>
+            <h3><a href="<{:U('tuan/index')}>">1：共有<{$counts.tuan}>个团购</a></h3>
             <h3><a href="<{:U('tuan/index')}>">2：今日上单<a class="red"><{$counts.tuan_day}></a>个，待审核<a class="red"><{$counts.tuan_audit}></a>个</a></h3>
             <h3><a href="<{:U('tuanorder/index')}>">3：订单<{$counts.order_tuan}>个，今日<a class="red"><{$counts.totay_order_tuan}></a>个</a></h3>
-            <h3><a href="<{:U('tuancode/index')}>">4：还有<a class="red"><{$counts.tuan_code_used}></a>抢购劵待验证</a></h3>
+            <h3><a href="<{:U('tuancode/index')}>">4：还有<a class="red"><{$counts.tuan_code_used}></a>团购劵待验证</a></h3>
             <h3><a href="<{:U('tuandianping/index')}>">5：团购共<{$counts.dianping_tuan}>条点评</a></h3>
             <h3><a href="<{:U('tuandianping/index')}>">6：今日团购点评<a class="red"><{$counts.totay_dianping_tuan}></a>次</a></h3>
             </div>
@@ -257,7 +268,7 @@ body{background:#F1F1F1;}
             </div>
     </div>
 </div>
-</li>
+</li>-->
 
 
 
@@ -266,13 +277,13 @@ body{background:#F1F1F1;}
     <div class="comiis_19forum_div">
         <div class="comiis_19forum_title">
             <span class="comiis_19forum_icon"></span>
-            <h2><a href="<{:U('article/index')}>">自媒体</a></h2>
+            <h2><a href="<{:U('article/index')}>">新闻资讯</a></h2>
             <em>总<{$counts.article}>篇文章</em>
         </div>
             <div class="comiis_19forum_list">
             <h3><a href="<{:U('article/index')}>">1：共<{$counts.article}>篇文章。</a></h3>
             <h3><a href="<{:U('article/index')}>">2：今日<a class="red"><{$counts.article_day}></a>篇文章，<a class="red"><{$counts.article_audit}></a>篇待审核</a></h3>
-            <h3><a href="<{:U('article/index')}>">3：总文章回复<{$counts.article_reply}>次，点赞<{$counts.article_zan}>次</a></h3>
+            <h3><a href="<{:U('article/index')}>">3：总文章评论<{$counts.article_reply}>次，点赞<{$counts.article_zan}>次</a></h3>
             <h3><a href="<{:U('article/index')}>">4：总文章浏览<{$counts.article_vies}>次</a></h3>
             </div>
     </div>

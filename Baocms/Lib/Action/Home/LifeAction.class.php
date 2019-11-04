@@ -183,7 +183,7 @@ class LifeAction extends CommonAction{
     {
         $Life = D('Life');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = $linkArr = array('city_id' => $this->city_id, 'audit' => 1, 'closed' => 0);
         $keyword = $this->_param('keyword');
         if ($keyword) {
@@ -417,11 +417,11 @@ class LifeAction extends CommonAction{
         }
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
-            $this->fengmiError('地区不能为空');
+            //$this->fengmiError('地区不能为空');
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            $this->fengmiError('商圈不能为空');
+            //$this->fengmiError('商圈不能为空');
         }
         $data['text1'] = htmlspecialchars($data['text1']);
         $data['text2'] = htmlspecialchars($data['text2']);

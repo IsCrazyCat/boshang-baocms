@@ -76,7 +76,7 @@
 			<ul class="qqlink">
 				<li class="qqlink_wz">合作账号登录：</li>
 				<if condition="!empty($CONFIG['connect']['qq_app_id'])"><li><a href="<{:U('passport/qqlogin')}>"></a></li></if>
-				<!--<if condition="!empty($CONFIG['connect']['wx_app_id'])"><li class="li2"><a href="<{:U('passport/wxlogin')}>"></a></li></if>-->
+				<if condition="!empty($CONFIG['connect']['wx_app_id'])"><li class="li2"><a href="<{:U('passport/wxlogin')}>"></a></li></if>
 				<if condition="!empty($CONFIG['connect']['wb_app_id'])"><li class="li3"><a href="<{:U('passport/wblogin')}>"></a></li></if>
 			</ul>
 		</div>
@@ -107,7 +107,7 @@
 </div>
 <div class="footer--mini">
     <p class="copyright">
-       <span>copyright 2013-2113 <{$Think.SERVER.HTTP_HOST}> All Rights Reserved <{$CONFIG.site.sitename}>版权所有 - <{$CONFIG.site.tongji}></span>
+       <span>copyright 2013-2113 <{$Think.SERVER.HTTP_HOST}> All Rights Reserved <{$CONFIG.site.sitename}> - <{$CONFIG.site.tongji}></span>
         <span class="f1"><{$CONFIG.site.icp}> </span>
     </p>
 </div>

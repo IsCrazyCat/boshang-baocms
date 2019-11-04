@@ -34,7 +34,7 @@ class InfoAction extends CommonAction{
             session('mobile', $mobile);
             $randstring = session('code');
             if (empty($randstring)) {
-                $randstring = rand_string(6, 1);
+                $randstring = rand_string(4, 1);
                 session('code', $randstring);
             }
             //大鱼短信

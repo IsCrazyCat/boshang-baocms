@@ -2,15 +2,15 @@
 
 class GoodsAction extends CommonAction {
 
-       private $create_fields = array('title','intro','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','settlement_price','use_integral','mobile_fan', 'commission', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id',);
-    private $edit_fields = array('title','intro','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','settlement_price','use_integral','mobile_fan', 'commission', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id',);
+       private $create_fields = array('title','intro','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','settlement_price','use_integral','mobile_fan', 'commission', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv');
+    private $edit_fields = array('title','intro','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','settlement_price','use_integral','mobile_fan', 'commission', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv');
     public function _initialize() {
         parent::_initialize();
         $this->assign('ranks',D('Userrank')->fetchAll());
     }
     public function index() {
         $Goods = D('Goods');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0, 'is_mall' => 1,'city_id'=>$this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
@@ -60,6 +60,13 @@ class GoodsAction extends CommonAction {
         if ($this->isPost()) {
             $data = $this->createCheck();
             $obj = D('Goods');
+			
+			$shopcate = D('shopcate')->find($data['cate_id']);
+			if ( (int)$shopcate['rate'] > 0 ) {
+				$data['jiesuanfeilv'] = $shopcate['rate']; //千分比
+			}
+			
+			
             if ($goods_id = $obj->add($data)) {
                 $wei_pic = D('Weixin')->getCode($goods_id, 3); //购物类型是3
                 $obj->save(array('goods_id'=>$goods_id,'wei_pic'=>$wei_pic));
@@ -188,7 +195,8 @@ class GoodsAction extends CommonAction {
         $data['create_ip'] = get_client_ip();
         $data['orderby'] = (int) $data['orderby'];
         $data['is_mall'] = 1;
-        $data['profit_enable'] = (int) $data['profit_enable'];
+        //$data['profit_enable'] = (int) $data['profit_enable'];
+		$data['profit_enable'] = 1;
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
@@ -356,11 +364,14 @@ class GoodsAction extends CommonAction {
         $data['use_integral'] = (int) $data['use_integral'];
         $data['sold_num'] = (int) $data['sold_num'];
         $data['orderby'] = (int) $data['orderby'];
-        $data['profit_enable'] = (int) $data['profit_enable'];
+        //$data['profit_enable'] = (int) $data['profit_enable'];
+		$data['profit_enable'] = 1;
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
         $data['profit_prestige'] = (int) $data['profit_prestige'];
+		
+		$data['jiesuanfeilv'] = htmlspecialchars($data['jiesuanfeilv']);
         return $data;
     }
 

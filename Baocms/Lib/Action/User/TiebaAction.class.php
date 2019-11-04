@@ -4,7 +4,7 @@ class TiebaAction extends CommonAction{
         parent::_initialize();
 		$sharecate = D('Sharecate')->fetchAll();
         $this->assign('sharecate', $sharecate);
-        $tieba = (int) $this->_CONFIG['operation']['tieba'];
+        $tieba = (int) $this->_CONFIG['operation']['thread'];
         if ($tieba == 0) {
             $this->error('此功能已关闭');
             die;
@@ -86,7 +86,10 @@ class TiebaAction extends CommonAction{
                 }
             }
             $data['pic'] = ltrim($photo1, ',');
-            $data['details'] = $tupian[contents] . $photo;
+            //$data['details'] = $tupian[contents] . $photo;
+            $data['details'] = $tupian[contents] ;
+			$data['audit'] = 1;
+			
             $last = $obj->save($data);
             if ($last) {
                 $this->fengmiMsg('修改帖子成功啦！', U('tieba/index'));

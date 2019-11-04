@@ -7,7 +7,7 @@ class ZhuantiAction extends CommonAction
         $count = M('Zhuan')->count();
         // 查询满足要求的总记录数
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $Page = new Page($count, 15);
         // 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();
@@ -37,7 +37,7 @@ class ZhuantiAction extends CommonAction
         $count = D('Zhuanmap')->count();
         // 查询满足要求的总记录数
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $Page = new Page($count, 15);
         // 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();
@@ -294,7 +294,7 @@ class ZhuantiAction extends CommonAction
         $count = D('Zhuanfloor')->count();
         // 查询满足要求的总记录数
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $Page = new Page($count, 15);
         // 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show();

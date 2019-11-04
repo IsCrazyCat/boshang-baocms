@@ -147,7 +147,7 @@ class AppointAction extends CommonAction {
             $detail['sign'] = 0;
         }
 		
-		$Appoint->updateCount($appoint_id, 'views');//更新浏览量
+		$Appoint->updateCount($appoint_id, 'views');//更新人气
 		$detail['thumb'] = unserialize($detail['thumb']);
 		
 		// 点评开始

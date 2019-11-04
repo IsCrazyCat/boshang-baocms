@@ -13,12 +13,12 @@
         |<a href="<{:U('passport/register')}>">注册</a>
         <else/>
         <div class="left">欢迎 <b style="color: red;font-size:14px;"><{$MEMBER.nickname}></b> 来到<{$CONFIG.site.sitename}>&nbsp;&nbsp; 
-        <a href="<{:u('members/index/index')}>" class="maincl" >个人中心</a>
+        <a href="<{:u('members/index/index')}>" class="maincl" >我的兜兜</a>
         <a href="<{:u('members/message/index')}>" class="maincl toponeCart" >消息中心
         <if condition="!empty($msg_day)"><i id="num" class="radius100"><{$msg_day}></if></i></a>
         <a href="<{:u('home/passport/logout')}>" class="maincl" >退出登录</a>
         </if>
-        <a href="<{:U('download/index')}>" class="topSm blackcl6">下载手机客户端</a>
+        <!--<a href="<{:U('download/index')}>" class="topSm blackcl6">下载手机客户端</a>-->
     </div>
     <div class="right">
         <ul>
@@ -75,17 +75,17 @@
                 <div class="list">
                     <ul>
                     <li><a href="<{:u('home/hotels/index')}>">酒店频道</a><em class="hot"></em></li>
-                    <li><a href="<{:u('home/farm/index')}>">农家乐频道</a><em class="hot"></em></li>
+                    <!--<li><a href="<{:u('home/farm/index')}>">农家乐频道</a><em class="hot"></em></li>-->
                     <li><a href="<{:u('home/activity/index')}>">活动频道</a></li>
-                    <li><a href="<{:u('home/life/index')}>">同城信息</a></li>
+                    <li><a href="<{:u('home/life/index')}>">生活信息</a></li>
                     <li><a href="<{:u('home/coupon/index')}>">优惠券</a></li>
                     <li><a href="<{:u('home/jifen/index')}>">积分商城</a></li>
-                    <li><a href="<{:u('home/cloud/index')}>">拼吧</a></li>
+                    <!--<li><a href="<{:u('home/cloud/index')}>">拼吧</a></li>-->
                     <li><a href="<{:u('home/news/index')}>">文章资讯</a></li>
-                    <li><a href="<{:u('home/appoint/index')}>">新版家政</a></li>
+                    <!--<li><a href="<{:u('home/appoint/index')}>">新版家政</a></li>-->
                     <li><a href="<{:u('merchant/index/index')}>">商家中心</a></li>
                     <li><a href="<{:u('distributors/index/index')}>">商户管理</a></li>
-                    <li><a href="<{:u('Property/index/index')}>">物业登录</a></li>
+                    <!--<li><a href="<{:u('Property/index/index')}>">物业登录</a></li>-->
                     </ul>
                 </div>
             </li>

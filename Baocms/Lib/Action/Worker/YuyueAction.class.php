@@ -12,7 +12,7 @@ class YuyueAction extends CommonAction
     {
         $Shopyuyue = D('Shopyuyue');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('shop_id' => $this->shop_id);
         $count = $Shopyuyue->where($map)->count();
         // 查询满足要求的总记录数

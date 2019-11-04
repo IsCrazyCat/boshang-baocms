@@ -8,7 +8,7 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>这里是众筹的话题列表，后台不可添加，只提供回复功能</p>
+    <p class="attention"><span>注意：</span>这里是众筹的话题列表，后台不可添加，只提供评论功能，不懂：120---585---022</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
            <!-- <div class="left">
@@ -43,7 +43,7 @@
                             <td><{$var.answer_c|default='未回答'}></td>
                             <td><{$var.answer_time|date='Y-m-d H:i:s',###}></td>
                             <td>
-                                <{:BA('crowd/ask_answer',array("ask_id"=>$var["ask_id"]),'回复','load','remberBtn_small',400,300)}>
+                                <{:BA('crowd/ask_answer',array("ask_id"=>$var["ask_id"]),'评论','load','remberBtn_small',400,300)}>
                                 <{:BA('crowd/ask_delete',array("ask_id"=>$var["ask_id"]),'删除','act','remberBtn')}>
                             </td>
                         </tr>

@@ -5,7 +5,7 @@ class PaymentAction extends CommonAction
     {
         $Payment = D('Payment');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $count = $Payment->count();
         // 查询满足要求的总记录数
         $Page = new Page($count, 15);

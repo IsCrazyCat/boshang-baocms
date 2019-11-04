@@ -5,7 +5,7 @@ class ShopAction extends CommonAction
     {
         $shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('tui_uid' => $this->uid, 'closed' => 0);
         $count = $shop->where($map)->count();
         // 查询满足要求的总记录数
@@ -53,7 +53,7 @@ class ShopAction extends CommonAction
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');

@@ -9,7 +9,7 @@
 <header id="header" class="homeHeader page_view">
     <div class="left"><a class="ico-back" href="javascript:history.go(-1);"><span><i></i></span></a></div>
     <div class="cent">
-    	<span class="shop_name">抢购详情</span>	
+    	<span class="shop_name">团购详情</span>	
     </div>
     <div class="head-icon">
         <a class="ico-search" data-am-collapse="{target: '#homeSearch'}"> <span><i></i></span></a>
@@ -19,7 +19,7 @@
 <div class="homeSearch am-collapse" id="homeSearch">
     <div id="new_searchtext">
         <form id="searchForm" method="get" action="<{:U('tuan/index')}>">
-            <input id="keyword" class="inp-search" name="keyword" type="text" placeholder="请输入抢购关键字搜索" x-webkit-speech="">
+            <input id="keyword" class="inp-search" name="keyword" type="text" placeholder="请输入团购关键字搜索" x-webkit-speech="">
             <input class="btn-search" name="search-btn" type="submit">
         </form>
     </div>
@@ -62,10 +62,10 @@
 <div class="hatudou_com_eval">
     <div class="info"> 
     	<a href="<{:U('tuan/dianping',array('tuan_id'=>$detail['tuan_id']))}>"> 
-        <span>抢购评论</span> 
+        <span>团购评论</span> 
             <span class="am-fr"> 
             <em class="star"><i style="width:0%"></i></em> 
-            <em><{$pingnum}></em> 条抢购评论 <i class="am-icon-angle-right"></i>
+            <em><{$pingnum}></em> 条团购评论 <i class="am-icon-angle-right"></i>
             </span> 
         </a>
     </div>
@@ -99,7 +99,7 @@
 
 <h1 class="tbtj">购买须知</h1>
 <div class="detail_con"><{:cleanhtml($tuandetails['instructions'])}></div>
-<h1 class="tbtj">抢购详情</h1>
+<h1 class="tbtj">团购详情</h1>
 <div data-am-widget="gallery" class="detail_con" data-am-gallery="{ pureview: true }"><{$tuandetails['details']}></div>
 
 <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default  am-no-layout">
@@ -112,7 +112,7 @@
             <if condition="$detail.num lt 1 ">
                 <a href="javascript:void(0);" class="am-btn am-btn-default am-radius am-btn-sm">卖光了</a>
             <else />
-                <a href="<{:U('tuan/buy',array('tuan_id'=>$detail['tuan_id']))}>" class="am-btn am-btn-warning am-radius am-btn-sm">立即抢购</a>
+                <a href="<{:U('tuan/buy',array('tuan_id'=>$detail['tuan_id']))}>" class="am-btn am-btn-warning am-radius am-btn-sm">立即团购</a>
             </if>
           </if>  
         </li>

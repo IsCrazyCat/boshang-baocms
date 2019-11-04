@@ -1,0 +1,84 @@
+<include  file='public:header'/>    
+<body>
+<link rel="stylesheet" href="/static/default/wap/css/mcenter.css">
+<header class="top-fixed bg-yellow bg-inverse">
+		<div class="top-back">
+			<a class="top-addr" href="javascript:history.back();"><i class="icon-angle-left"></i></a>
+		</div>
+		<div class="top-title">
+			完成支付 
+		</div>
+	</header>  
+    
+    
+
+
+<div class="panel-list">
+	<ul>
+		<li>
+			<a href="javascript:;">
+				支付编号：
+				<em><{$detail.log_id}></em>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;">
+				付款时间：
+				<em class="text-dot"><{$detail.create_time|date='Y-m-d H:i',###}></em>
+			</a>
+		</li>
+        
+        <eq name="detail.ismiandan" value="1">
+            <li>
+                <a href="javascript:;">
+                    是否免单：
+                    <em class="text-dot">免单</em>
+                </a>
+            </li>
+        </eq>        
+        
+        
+	</ul>
+</div>
+<div class="blank-10 bg"></div>
+<div class="panel-list">
+	<ul>
+		
+		
+		<li>
+			<a href="javascript:;">
+				付款方式：
+				<em>到店付款&nbsp;
+<if condition=" $detail['code'] eq 'weixin' ">
+微信支付
+</if>
+<if condition=" $detail['code'] eq 'money' ">
+余额支付
+</if>
+<if condition=" $detail['code'] eq 'alipay' ">
+支付宝
+</if><!--<{$paytype[$detail['code']]['name']}>-->
+                </em>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;">
+				支付金额：
+				<em>￥<{:round($detail['need_pay']/100,2)}></em>
+			</a>
+		</li>
+       
+        
+	</ul>
+</div>
+
+
+<div class="blank-30"></div>
+<div class="line text-center">
+	<a class="button bg-dot" href="<{:u('mcenter/logs/mymoneylogs')}>">付款日志</a>
+	<a class="button bg-main" href="<{:u('user/member/index')}>">我的兜兜</a>
+</div>
+<div class="blank-20"></div>
+
+
+<include  file='public:footer'/>    

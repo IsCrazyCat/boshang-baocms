@@ -71,6 +71,8 @@ class IndexAction extends CommonAction{
 		
 		
         $this->assign('counts', $counts);
+          $shop_id_qiu=$this->shop_id;
+        $this->assign('shop_id_qiu', $shop_id_qiu);
         $this->display();
     }
     public function dingwei() {
@@ -78,6 +80,8 @@ class IndexAction extends CommonAction{
         $lng = $this->_get('lng', 'htmlspecialchars');
         cookie('lat', $lat);
         cookie('lng', $lng);
+		cookie('lat_ok', $lat);
+        cookie('lng_ok', $lng);
         die(NOW_TIME);
     }
 }

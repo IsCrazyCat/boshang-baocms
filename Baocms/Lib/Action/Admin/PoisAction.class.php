@@ -152,7 +152,7 @@ class PoisAction extends CommonAction {
     public function stick() {
         $Pois = D('Near');
 		$Word = D('Nearword');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
 		$time = time();
         $map ="pois_id <> ''"  ;
         $count = $Word->where($map)->count(); // 查询满足要求的总记录数 
@@ -183,7 +183,7 @@ class PoisAction extends CommonAction {
             $this->assign('keyword', $keyword);
         }
         $Pois = D('Nearword');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $count = $Pois->where()->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 25); // 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show(); // 分页显示输出

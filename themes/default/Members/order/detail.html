@@ -8,10 +8,10 @@
             
             <li>订单编号：<span class="fontcl2"><{$detail.order_id}></span></li>
             
-            <li>抢购名称：<span class="fontcl2"><{$tuans['title']}></span></li>
-            <li>抢购单价：<span class="fontcl2"><em>&yen; <{:round($tuans['tuan_price']/100,2)}> 元</em></span></li>
-            <li>抢购数量：<span class="fontcl2"><{$detail.num}></span></li>
-            <li>抢购总价：<span class="fontcl2"><em>&yen; <{:round($detail['total_price']/100,2)}> 元</em></span></li>
+            <li>团购名称：<span class="fontcl2"><{$tuans['title']}></span></li>
+            <li>团购单价：<span class="fontcl2"><em>&yen; <{:round($tuans['tuan_price']/100,2)}> 元</em></span></li>
+            <li>团购数量：<span class="fontcl2"><{$detail.num}></span></li>
+            <li>团购总价：<span class="fontcl2"><em>&yen; <{:round($detail['total_price']/100,2)}> 元</em></span></li>
             <li>下单时间：<span class="fontcl2"><{$detail.create_time|date='Y-m-d H:i',###}></span></li>
             <if condition="$detail['use_integral'] gt 0">
             <li>使用积分：<{$detail['use_integral']}> 分

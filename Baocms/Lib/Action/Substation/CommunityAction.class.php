@@ -9,7 +9,7 @@ class CommunityAction extends CommonAction
     {
         $Community = D('Community');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('city_id' => $this->city_id);
         $users = $this->_param('data', false);
         if ($users['user_id']) {
@@ -223,7 +223,7 @@ class CommunityAction extends CommonAction
     {
         $User = D('Community');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => array('IN', '0,-1'), 'city_id' => $this->city_id);
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');

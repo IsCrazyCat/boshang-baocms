@@ -6,7 +6,7 @@ class BreaksAction extends CommonAction {
 		$aready = (int) $this->_param('aready');
         $this->assign('aready', $aready);
         $this->assign('nextpage', LinkTo('breaks/loaddata',array('aready' => $aready,'t' => NOW_TIME, 'p' => '0000')));
-        $this->mobile_title = '优惠买单';
+        $this->mobile_title = '门店付款';
 		$this->display(); // 输出模板
 	}
   

@@ -4,7 +4,7 @@
         <div class="tgdd_t">
             <ul>
                 <li <if condition="$status eq 1 or empty($status)">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>1))}>">商家点评</a></li>
-                <li <if condition="$status eq 2">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>2))}>">抢购点评</a></li>
+                <li <if condition="$status eq 2">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>2))}>">团购点评</a></li>
                 <if condition="$open_mall eq '1' ">
                 <li <if condition="$status eq 6">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>6))}>">商城（微店）点评</a></li>
                 </if>
@@ -125,7 +125,7 @@
 
         </td>
 
-        <td class="td_dianping_10" colspan="2"><if condition="!empty($var['reply'])"><span style="color:#F00">商家回复：<{$var.reply}></span><else/>商家无回复</if></td>
+        <td class="td_dianping_10" colspan="2"><if condition="!empty($var['reply'])"><span style="color:#F00">商家评论：<{$var.reply}></span><else/>商家无评论</if></td>
 
       </tr>
 
@@ -155,7 +155,7 @@
 
                     <tr class="tgdd_nrt">
 
-                    <th>抢购订单</th>
+                    <th>团购订单</th>
 
                     <th>数量</th>
 

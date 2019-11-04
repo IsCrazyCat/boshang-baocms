@@ -1,4 +1,4 @@
-﻿<include file="public:header"/>
+<include file="public:header"/>
 <link rel="stylesheet" type="text/css" href="/static/default/webuploader/webuploader.css">
 <script src="/static/default/webuploader/webuploader.min.js"></script>
 <header class="top-fixed bg-yellow bg-inverse">
@@ -33,6 +33,8 @@
 			server: '<{:U("app/upload/upload",array("model"=>"user"))}>',
 			pick: '#fileToUpload',
 			resize: true,
+duplicate :true, //可重复上传  
+
 			compress:{width:300,height:300,quality: 80,allowMagnify: false,crop: true},
 		});
 		

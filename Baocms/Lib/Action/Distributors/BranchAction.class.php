@@ -17,7 +17,7 @@ class BranchAction extends CommonAction {
     public function index() {
         
         $branch = D('Shopbranch');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0, 'shop_id' => $this->shop_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name|addr'] = array('LIKE', '%' . $keyword . '%');

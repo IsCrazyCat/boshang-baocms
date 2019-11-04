@@ -54,7 +54,7 @@ $(document).ready(function () {
     </div>
 	<div class="sy_flexslider">
         <ul class="slides">
-            <calldata mdl="Ad" where=" closed=0 AND site_id=5 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,5" cache="21600" order="orderby asc">
+            <calldata mdl="Ad" where=" closed=0 AND site_id=5 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,5" cache="21600" order="orderby asc">
                  <li class="list" style="background:url('<{:config_img($item['photo'])}>') center center no-repeat;">
                  <a target="_blank" href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>1))}>"></a></li>
             </calldata>
@@ -203,9 +203,9 @@ $(document).ready(function () {
         <div class="clear"></div>
     </div>
     <!--热门推荐结束-->
-    <!--限时抢购-->
+    <!--限时团购-->
     <div class="mall_tit">
-    	<h2 class="left"><b class="bq">抢</b>限时抢购</h2>
+    	<h2 class="left"><b class="bq">抢</b>限时团购</h2>
         <a href="<{:U('mall/index')}>" class="more right graycl">更多&gt;</a>
     </div>
     <div class="mall_recmd mall_buy mb20">
@@ -256,7 +256,7 @@ $(document).ready(function () {
             
             	<volist name='xianshi' id='item'>
                     <li class="list">
-                        <p class="bq_box"><span class="bq">抢购</span></p>
+                        <p class="bq_box"><span class="bq">团购</span></p>
                         <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><img src="<{:config_img($item['photo'])}>" width="204" height="145" /></a>
                         <h3 class="overflow_clear mt10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="blackcl3"><{:bao_msubstr($item['title'],0,12,false)}></a></h3>
                         <p class="price fontcl1">￥<{$item['rush_price']/100}></p>
@@ -268,7 +268,7 @@ $(document).ready(function () {
         </div>
         <div class="clear"></div>
     </div>
-    <!--限时抢购结束-->
+    <!--限时团购结束-->
 </div>
 <div class="mall_bggrey">
     <div class="pagewd">

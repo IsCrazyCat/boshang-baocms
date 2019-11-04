@@ -40,7 +40,7 @@ class DingmenuAction extends CommonAction {
 
         $dingmenu = D('Shopdingmenu');
 
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
 
         $map = array('closed' => 0);
 
@@ -82,7 +82,7 @@ class DingmenuAction extends CommonAction {
 
         $dingmenu = D('Shopdingmenu');
 
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
 
         $map = array('closed' => 1);
 

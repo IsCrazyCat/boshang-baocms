@@ -33,7 +33,7 @@
 	<div class="line">
 		<span class="x3">收货人：</span>
 		<span class="x9">
-			<input type="text" class="text-input" name="data[addxm]"  id="addxm" value="" />
+			<input type="text" class="text-input" name="data[addxm]"  id="addxm" value="<if condition="!empty($MEMBER['ext0'])"><{$MEMBER.ext0}><else/><{$MEMBER.nickname}></if>" />
 		</span>
 	</div>
 </div>
@@ -42,7 +42,7 @@
 	<div class="line">
 		<span class="x3">手机号：</span>
 		<span class="x9">
-			<input type="text" class="text-input" name="data[addtel]" id="addtel" value="" />
+			<input type="text" class="text-input" name="data[addtel]" id="addtel" value="<if condition="!empty($MEMBER['ext0'])"><{$MEMBER.mobile}></if>" />
 		</span>
 	</div>
 </div>
@@ -90,12 +90,16 @@
 
 
 
-
-
-
-<div class="line border-bottom">
-	<textarea class="form-content" name="data[addinfo]"  id="addinfo" placeholder="请填写您的详细地址"><{$detail.instructions}></textarea>
+<div class="row">
+	<div class="line">
+		<span class="x3">收货地址：</span>
+		<span class="x9" >
+			<textarea style="margin:0px; padding:0px; border:1px;"  class="form-content" name="data[addinfo]"  id="addinfo" placeholder="您的详细收货地址"><{$detail.instructions}></textarea>
+		</span>
+	</div>
 </div>
+
+
 
  
              
@@ -114,7 +118,7 @@ function getCity(){
   var province = $("#province").val();
   $.ajax({
         type: "GET",
-        url: "<{$CONFIG.site.host}>/wap/pintuan/city/upid/"+province,
+        url: "<{$CONFIG.site.host}>/wap/address/city/upid/"+province,
         dataType : "jsonp",
         jsonpCallback:"jsonpCallback",
         cache : false,
@@ -133,7 +137,7 @@ function getArea(){
   var city = $("#city").val();
   $.ajax({
         type: "GET",
-        url: "<{$CONFIG.site.host}>/wap/pintuan/city/upid/"+city,
+        url: "<{$CONFIG.site.host}>/wap/address/city/upid/"+city,
         dataType : "jsonp",
         jsonpCallback:"jsonpCallback",
         cache : false,

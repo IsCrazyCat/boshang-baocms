@@ -229,10 +229,10 @@ class WeixinModel {
     }
 
     /**
-     * * 响应微信发送的信息（自动回复）
+     * * 响应微信发送的信息（自动评论）
      * @param  string $to      接收用户名
      * @param  string $from    发送者用户名
-     * @param  array  $content 回复信息，文本信息为string类型
+     * @param  array  $content 评论信息，文本信息为string类型
      * @param  string $type    消息类型
      * @param  string $flag    是否新标刚接受到的信息
      * @return string          XML字符串
@@ -258,16 +258,16 @@ class WeixinModel {
     }
 
     /**
-     * 回复文本信息
-     * @param  string $content 要回复的信息
+     * 评论文本信息
+     * @param  string $content 要评论的信息
      */
     private function text($content) {
         $this->data['Content'] = $content;
     }
 
     /**
-     * 回复音乐信息
-     * @param  string $content 要回复的音乐
+     * 评论音乐信息
+     * @param  string $content 要评论的音乐
      */
     private function music($music) {
         list(
@@ -280,8 +280,8 @@ class WeixinModel {
     }
 
     /**
-     * 回复图文信息
-     * @param  string $news 要回复的图文内容
+     * 评论图文信息
+     * @param  string $news 要评论的图文内容
      */
     private function news($news) {
         $articles = array();

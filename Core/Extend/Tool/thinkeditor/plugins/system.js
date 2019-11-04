@@ -367,7 +367,7 @@ $.TE.plugin( 'image', {
 						'<div class="te_dialog_image">'+
 						'	<div class="seltab">'+
 						'		<div class="links Lovh">'+
-						'			<a href="#" class="cstyle">插入图片</a>'+
+						'			<a href="javascript:void(0);" class="cstyle">插入图片</a>'+
 						'		</div>'+
 						'		<div class="bdb">&nbsp;</div>'+
 						'	</div>'+
@@ -864,18 +864,18 @@ $.TE.plugin( 'fontsize', {
 			$html = $(
 				'<div class="te_dialog_fontsize Lovh">'+
 				'	<div class="centbox">'+
-				'		<div><a href="#" style="font-size:10px">10</a></div>'+
-				'		<div><a href="#" style="font-size:12px">12</a></div>'+
-				'		<div><a href="#" style="font-size:14px">14</a></div>'+
-				'		<div><a href="#" style="font-size:16px">16</a></div>'+
-				'		<div><a href="#" style="font-size:18px">18</a></div>'+
-				'		<div><a href="#" style="font-size:20px">20</a></div>'+
-				'		<div><a href="#" style="font-size:22px">22</a></div>'+
-				'		<div><a href="#" style="font-size:24px">24</a></div>'+
-				'		<div><a href="#" style="font-size:36px">36</a></div>'+
-				'		<div><a href="#" style="font-size:48px">48</a></div>'+
-				'		<div><a href="#" style="font-size:60px">60</a></div>'+
-				'		<div><a href="#" style="font-size:72px">72</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:10px">10</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:12px">12</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:14px">14</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:16px">16</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:18px">18</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:20px">20</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:22px">22</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:24px">24</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:36px">36</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:48px">48</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:60px">60</a></div>'+
+				'		<div><a href="javascript:void(0);" style="font-size:72px">72</a></div>'+
 				'	</div>'+
 				'</div>'
 			),

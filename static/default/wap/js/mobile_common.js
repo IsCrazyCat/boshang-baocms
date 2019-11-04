@@ -17,7 +17,7 @@ function MSGwindowShow_JSON(data){
 			$('#chrcontent2').val('');
 			$('#maskTB').trigger('click');
 			if(data.isopen === '0'){
-				MSGwindowShow('revert','0','恭喜你，回复成功！请耐心等待系统审核！','','');
+				MSGwindowShow('revert','0','恭喜你，评论成功！请耐心等待系统审核！','','');
 			}else{
 				successPostRevert(data);
 			}
@@ -372,7 +372,7 @@ var IDC2 = (function(){
 				}
 			}else{
 				$('#login_ico').attr({'href':siteUrl+'member/login.html'+hash});
-				txt='<p>您好，欢迎来到'+siteName+'！<br><a href="'+siteUrl+'member/login.html'+hash+'">[登录]</a>　　　<a href="'+siteUrl+'member/register.html">[注册]</a><input value="0" id="isLogin" type="hidden" /><input value="" id="user_jibie" type="hidden" /></p>';
+				txt='<p>您好，欢迎来到'+siteName+'！<br><a href="'+siteUrl+'member/login.html'+hash+'">[登录]</a>　　　<a href="'+siteUrl+'member/register">[注册]</a><input value="0" id="isLogin" type="hidden" /><input value="" id="user_jibie" type="hidden" /></p>';
 				if(typeof getUserState !== 'undefined'){
 					window['userDate'] = {};
 					getUserState();

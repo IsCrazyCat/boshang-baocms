@@ -5,7 +5,7 @@ class PhoneAction extends CommonAction
     {
         $phones = D('Convenientphonemaps');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('community_id' => $this->community_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name'] = array('LIKE', '%' . $keyword . '%');

@@ -16,7 +16,7 @@
         <ul>
               <li class="tuanfabu_tabli tabli_change on"><a href="<{:U('weixin/index')}>">绑定公众账号</a></li>
             <li class="tuanfabu_tabli tabli_change"><a href="<{:U('weixin/menu')}>">自定义菜单</a></li>
-            <li class="tuanfabu_tabli tabli_change"><a href="<{:U('weixinkeyword/index')}>">关键字回复</a></li>
+            <li class="tuanfabu_tabli tabli_change"><a href="<{:U('weixinkeyword/index')}>">关键字评论</a></li>
         </ul>
     </div>
     <div class="tabnr_change  show">
@@ -54,7 +54,7 @@
                 </div></td>
             </tr>
             <tr>
-                <td width="120"><p class="tuanfabu_t">关注时回复内容形式：</p></td>
+                <td width="120"><p class="tuanfabu_t">关注时评论内容形式：</p></td>
                 <td><div class="tuanfabu_nr">
                 <select name="weixin_msg[type]" class="manageSelect w150 jq_type">
                     <option <eq name="details.weixin_msg.type" value="1">selected="selected"</eq> value="1">文字</option>
@@ -78,7 +78,7 @@
                 });
             </script>
             <tr class="jq_type_1">
-                <td align="right"><p class="tuanfabu_t">回复内容：</p></td>
+                <td align="right"><p class="tuanfabu_t">评论内容：</p></td>
                 <td>
                 	<div class="tuanfabu_nr">
                     <textarea name="weixin_msg[description]" cols="60" rows="10"><{$details.weixin_msg.description}></textarea>
@@ -86,7 +86,7 @@
                 </td>
             </tr>
             <tr class="jq_type_2">
-                <td align="right"><p class="tuanfabu_t">回复标题：</p></td>
+                <td align="right"><p class="tuanfabu_t">评论标题：</p></td>
                 <td>
                 	<div class="tuanfabu_nr">
                     <input type="text" name="weixin_msg[title]" value="<{$details.weixin_msg.title}>" class="manageInput " />

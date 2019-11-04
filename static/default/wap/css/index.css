@@ -171,7 +171,7 @@ dl.list dd,dl.list dt{margin:0;border-bottom:1px solid #DDD8CE;overflow:hidden;f
 .xiaoqu-roll .hd{width:100%;text-align:center;position:absolute;bottom:10px;}
 .xiaoqu-roll .hd li{width:10px;height:10px;background:#fff;border-radius:10px;display:inline-block;text-indent:-99999px;margin:0 3px;}
 .xiaoqu-roll .hd .on{background:#f60!important;}
-/*贴吧调用*/
+/*论坛调用*/
 .index-tieba {height:40px;padding:0 10px 10px 10px;}
 .index-tieba a{display:block;width:100%;height:20px;}
 

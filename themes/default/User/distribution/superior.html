@@ -4,7 +4,7 @@
 		<a class="top-addr" href="<{:U('distribution/index')}>"><i class="icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
-			我的上级
+			我的推荐人
 		</div>
 	<div class="top-signed">
 		<include file="public:message"/>
@@ -24,22 +24,24 @@
 			<div class="x8">
 				<h1>帐号：<{$fuser.account}></h1>
 				<p>昵称：<{$fuser.nickname}></p>
-                <p class="text-small">VIP：<{$fuser['rank_id']}></p>
-                <p class="text-small">Email：<{$fuser.email}></p>
+                <php>$Userrank = D('Userrank')->find($fuser['rank_id']); </php>
+                <p class="text-small">等级：<{$Userrank['rank_name']}></p>
+                <p class="text-small">mobile：<{$fuser.mobile}></p>
 			</div>
 		</div>
 	<else/>
     	<div class="line detail-base">
 			<div class="x4"><div class="pic"><if condition="!empty($CONFIG['site']['logo'])">
-					<img src="<{:config_img($CONFIG['site']['logo'])}>/" />
+					<img src="<{:config_img($CONFIG['site']['logo'])}>" />
 					<else/>
-					<img src="__PUBLIC__/img/logo_03.png" />
+					<!--<img src="__PUBLIC__/img/logo_03.png" />-->
+                    <img src="__ROOT__/attachs/<{$fuser.face|default='default.jpg'}>" />
 					</if></div></div>
 			<div class="x8">
 				<h1>平台方</h1>
 				<p>电话：<{$CONFIG['site']['tel']}></p>
                 <p class="text-small">QQ：<{$CONFIG['site']['qq']}></p>
-                <p class="text-small">Email：<{$CONFIG['site']['email']}></p>
+                <p class="text-small">email：<{$CONFIG['site']['email']}></p>
 			</div>
 		</div>
     </if>

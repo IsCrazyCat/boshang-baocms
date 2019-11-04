@@ -5,7 +5,7 @@ class OrdertuiAction extends CommonAction
     {
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0, 'is_shop' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

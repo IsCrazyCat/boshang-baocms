@@ -163,7 +163,7 @@ class ZheAction extends CommonAction {
             $this->assign('catestr', $this->shopcates[$detail['cate_id']]['cate_name']);
         }
 		
-		$Zhe->updateCount($zhe_id, 'views');//更新浏览量
+		$Zhe->updateCount($zhe_id, 'views');//更新人气
 		$this->assign('shops', D('Shop')->find($detail['shop_id']));
         $this->assign('totalnum', $count);
         $this->assign('list', $list); 

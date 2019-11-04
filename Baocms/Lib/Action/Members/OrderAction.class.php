@@ -112,7 +112,7 @@ class OrderAction extends CommonAction{
         $order_id = I('order_id', 0, 'trim,intval');
         $obj = D('Tuanorder');
         if (!($detail = D('Tuanorder')->find($order_id))) {
-            $this->baoError('抢购不存在', U('order/index'));
+            $this->baoError('团购不存在', U('order/index'));
         }
         if ($detail['status'] == -1) {
             $Tuancode = D('Tuancode');
@@ -121,28 +121,28 @@ class OrderAction extends CommonAction{
             $maps['status'] = array('gt', 0);
             $tuan_code_status = $Tuancode->where($maps)->select();
             if (!empty($tuan_code_is_used)) {
-                $this->baoError('已有抢购劵验证不能取消订单');
+                $this->baoError('已有团购劵验证不能取消订单');
             } elseif (!empty($tuan_code_status)) {
-                $this->baoError('已有抢购劵申请退款不行执行此操作');
+                $this->baoError('已有团购劵申请退款不行执行此操作');
             } else {
                 $tuan_code = $Tuancode->where(array('order_id' => $order_id, 'status' => 0, 'is_used' => 0))->select();
                 foreach ($tuan_code as $k => $value) {
                     $Tuancode->save(array('code_id' => $value['code_id'], 'closed' => 1));
                 }
                 $obj->save(array('order_id' => $order_id, 'closed' => 1));
-                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消抢购订单' . $detail['order_id'] . '积分退还');
+                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消团购订单' . $detail['order_id'] . '积分退还');
                 //返积分
                 $this->baoSuccess('取消订单成功!', U('tuan/index'));
             }
         } elseif ($detail['status'] != 0) {
             $this->baoSuccess('状态不正确', U('order/index'));
         } elseif ($detial['closed'] == 1) {
-            $this->baoSuccess('抢购已关闭', U('order/index'));
+            $this->baoSuccess('团购已关闭', U('order/index'));
         } elseif ($detail['user_id'] != $this->uid) {
-            $this->baoSuccess('不能操作别人的抢购', U('order/index'));
+            $this->baoSuccess('不能操作别人的团购', U('order/index'));
         } else {
             if ($obj->save(array('order_id' => $order_id, 'closed' => 1))) {
-                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消抢购订单' . $detail['order_id'] . '积分退还');
+                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消团购订单' . $detail['order_id'] . '积分退还');
                 //返积分
                 $this->baoSuccess('取消订单成功!', U('order/index'));
             } else {
@@ -154,7 +154,7 @@ class OrderAction extends CommonAction{
     public function goods(){
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类
+        // 导入分页类    aihuaqian.boshang3710.com
         $map = array('closed' => 0, 'user_id' => $this->uid);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -271,6 +271,7 @@ class OrderAction extends CommonAction{
             $this->baoSuccess('取消退款成功！', U('order/goods'));
         }
     }
+	
     public function goodsshou($order_id = 0){
         if (is_numeric($order_id) && ($order_id = (int) $order_id)) {
             $obj = D('Order');
@@ -285,7 +286,7 @@ class OrderAction extends CommonAction{
             if ($shop['is_pei'] != 1) {
                 $DeliveryOrder = D('DeliveryOrder')->where(array('type_order_id' => $order_id, 'type' => 0))->find();
                 if ($DeliveryOrder['status'] != 8) {
-                    $this->baoError('配送员还未完成订单');
+                    $this->baoError('配送员还未完成订单A');
                 }
             }
             if ($detial['is_daofu'] == 1) {
@@ -297,7 +298,145 @@ class OrderAction extends CommonAction{
                 $into = '确认收货成功';
             }
             if ($obj->save(array('order_id' => $order_id, 'status' => 3))) {
+				D('Ordergoods')->save(array('order_id' => $order_id, 'status' => 3));
                 D('Order')->overOrder($order_id);
+				
+/*分成开始*/
+
+		
+			$userProfitModel = D('Userprofitlogs');
+			$userLdbtModel = D('Userldbtlogs');
+			$userModel = D('Users');
+			
+			$order = D('Order')->find($order_id);
+				
+			
+			$shop_id = $order['shop_id'];
+			$wherea['order_id'] = array('eq', $order_id);	
+			$logs = D('Paymentlogs')->where($wherea)->find();
+			$pay_id = $logs['log_id']; 
+			
+			$taxrate = 0 ; //结算费率金额
+			$result = D('Ordergoods')->where(" order_id = '".$order_id."' ")->field(" goods_id, total_price ")->select();
+			//开始循环遍历二维数组$result
+			foreach($result as $k=>$val){ 
+				if ( $val == "" ) {
+					continue;
+				}
+				$jiesuanfeilv = D('goods')->where('goods_id='.$val['goods_id'])->getField('jiesuanfeilv');
+				if ( floor($jiesuanfeilv) > 0 ) { 
+					$taxrate = $taxrate + $val['total_price'] * $jiesuanfeilv / 100 ; //百分比 
+				}
+			}
+			/*====================================消费者本人返 5%====================================*/
+			$xfbe = $taxrate / 15 * 5 ; 
+			if ( ($logs['user_id']) && ($logs['is_paid']) ) {
+				$userModel->add_my_Money($logs['user_id'], (int)$xfbe, $intro = '平台消费奖励',$shop_id,$pay_id);
+			}
+			/*====================================消费者本人返 5%====================================*/ 
+			
+			
+            $userobj = D('Users');
+            if ($order['status'] == 2) {
+                D('Order')->save(array('status' => 8, 'order_id' => $order_id));
+                $goods = D('Ordergoods')->where(array('order_id' => $order_id))->select();
+                if (!empty($goods)) {
+					$taxrate = 0 ; //结算费率金额
+                    D('Ordergoods')->save(array('status' => 8), array('where' => array('order_id' => $order_id)));
+                    if ($order['is_daofu'] == 0) {
+                        $ip = get_client_ip();
+                        foreach ($goods as $val) {
+                            //if ($val['status'] == 1) {
+                                $info = '产品ID' . $val['goods_id'];
+                                $tg = $userobj->checkInvite($order['user_id'], $val['total_price']);
+                                if ($tg !== false) {
+                                    //推广员分层的判断
+                                    $userobj->addIntegral($tg['uid'], $tg['integral'], "分享获得积分！");
+                                }
+                                $money = $val['total_price'];
+								
+								$js_price = $val['total_price']  - $val['mobile_fan'];//结算价格减去模板立减
+								$gooddetail = D('Goods')->find($val['goods_id']);
+		//						$Goodscate = D('Goodscate')->find($gooddetail['cate_id']);
+								$jiesuanfeilv = D('goods')->where('goods_id='.$val['goods_id'])->getField('jiesuanfeilv');
+								if ( floor($jiesuanfeilv) > 0 ) { 
+									$taxrate_d = intval(($js_price * $jiesuanfeilv)/100);
+								}
+								$moneyB = $js_price - $taxrate_d;//结算价格，运费不算扣点
+								
+								
+                                if ($val['tui_uid']) {
+                                    //推广员分成
+                                        
+//                                    if (!empty($gooddetail['commission']) && $gooddetail['commission'] < $gooddetail['mall_price'] && $gooddetail['commission'] < $val['total_price']) {
+                                        //小于的情况下才能返利不然你懂的
+										
+										$money0 = floor( $taxrate_d / 15 * 1);
+										if ($money0 > 0) {
+								
+											$tui_uid = $val['tui_uid'];
+											$info0 =  '订单ID:' . $val['order_id'] .'产品ID:' . $val['goods_id'] . ', [链店补贴]商家推荐人返佣 ' . round($money0/100 , 2).' 元' ;
+											$wheres['user_id'] = array('eq', $tui_uid);
+											$wheres['order_id'] = array('eq', $val['order_id']);	
+											$wheres['order_type'] = array('eq', 1);	
+											$mynum0 = $userLdbtModel->where($wheres)->count();
+											if ( (int)$mynum0 == 0  ) {  
+												$userModel->add_ldbt_ktxbt_money($tui_uid, $money0, $info0, $shop_id, $pay_id);
+												$userModel->addldbt($tui_uid, 1, $val['order_id'], $money0, 1, $shop_id, $pay_id);
+											} else {
+												$userModel->add_ldbt_ktxbt_money($tui_uid, $money0, $info0, $shop_id, $pay_id);
+												$userLdbtModel->save(array('is_separate' => 1,'money' => $money0, 'edit_time' => NOW_TIME, 'shop_id' => $shop_id, 'pay_id' => $pay_id), array('where' => array('order_id' => $val['order_id'], 'order_type' => 1, 'user_id' => $tui_uid)));
+											}	
+											
+										}
+
+//                                        $moneyC = round($money / 100*1, 2);
+//                                        D('Users')->addMoney($val['tui_uid'], $moneyC, '推广佣金');
+										  if ( round($taxrate / 100, 2) > 0 ) { 
+                                          	  $info .= ' 扣除了推广员佣金' . round($taxrate / 100, 2).' 元';
+										  }
+										
+										
+//                                    }
+                                }
+								
+								
+								
+								$my_pay_id = D('paymentlogs')->where(array('order_id' => $order_id, 'is_paid' => 1))->getField('log_id');
+								$info .= ' 商城付款 门店收入 支付ID：'.$my_pay_id; 
+								//给商户写入资金日志
+                                D('Shopmoney')->add(array(
+									'shop_id' => $val['shop_id'], 
+									'money' => $moneyB, 
+									'create_time' => NOW_TIME, 
+									'create_ip' => $ip, 
+									'type' => 'goods', 
+									'order_id' => $order_id, 
+									'intro' => $info,
+									'pay_id' => $my_pay_id
+								));
+								$my_shop_user_id = D('shop')->where(array('shop_id' => $val['shop_id']))->getField('user_id');
+								if ( (int)$my_shop_user_id > 0 ) {
+									//给商户写入资金
+									D('Users')->myaddGold($my_shop_user_id, $moneyB, '在线购物',$order_id,$val['shop_id'],$my_pay_id,1);
+									//平台收入
+									D('Users')->myaddptGold( $order_id,$val['shop_id'],$my_pay_id);
+								}
+								
+								
+                            //}
+                        }
+                    }
+					
+                   // $this->baoSuccess('发货成功！',  $_SERVER['HTTP_REFERER']);
+                }
+            }
+        
+
+
+/*分成结束*/
+				
+				
                 //确认到账入口
                 $this->baoSuccess($into, U('order/goods'));
             } else {

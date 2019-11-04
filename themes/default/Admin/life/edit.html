@@ -404,7 +404,9 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"activity"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,  
+						resize: true,
+duplicate :true, //可重复上传  
+  
 						compress : {width: width_life,height: height_life,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -438,7 +440,7 @@
 
             </td>
         </tr><tr>
-            <td class="lfTdBt">浏览量：</td>
+            <td class="lfTdBt">人气：</td>
             <td class="rgTdBt"><input type="text" name="data[views]" value="<{$detail.views|default=''}>" class="manageInput w200" />
 
             </td>
@@ -462,7 +464,9 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"lifepic"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true, 
+									resize: true,
+duplicate :true, //可重复上传  
+ 
 									crop: false,  
 									compress : {width:width_lifepic,height:height_lifepic,quality: 80,allowMagnify: false,crop: true},														
 								});                                                               

@@ -1,17 +1,24 @@
 <volist name="list" id="item" key="index">
-    <php>$shop = D('Shop')->find($item['shop_id']);</php>
     <li class="line">
-        <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>">
+<!--        <a href="<{:U('mall/index',array('goods_id'=>$item['goods_id']))}>">-->
             <div style="width:30%;float:left">
                 <img src="<{$item['photo']}>" />
             </div>
             <div style="margin-top:0.1rem; padding: 0 5px;width:70%;float:left">
-                <h4>宝马豪华车S系列</h4>
-                <p class="desc">该车型适用 <span style="color:#F00; font-size:12px;">某某某型号</span> 机油</p>
-                <p class="info">某某号机油售价：<span>&yen;<{:round($item['mall_price']/100,2)}></span><del>&yen;<{:round($item['price']/100,2)}></del>
-                    <em>已售13</em>
-                </p>
+                <h4><{$item.name}></h4>
+                <if condition="empty($item['catesInfo']) neq true">
+                    <foreach name="item['catesInfo']" item="val" index="key">
+                        <a  href="<{:U('mall/index',array('cat'=>$key,'car_id'=>$item['car_id']))}>">
+                            <p class="desc"> <span style="color:#F00; font-size:12px;"><{$val['count']}>款</span> <{$val['name']}>适用该车型<{$key}></p>
+                        </a>
+                    </foreach>
+                <else/>
+                    <p class="desc"> 暂无商品适用该车型</p>
+                </if>
+
+<!--                <p class="desc"> <span style="color:#F00; font-size:12px;">4款</span> 机油适用该车型</p>-->
+<!--                <p class="desc"> <span style="color:#F00; font-size:12px;">4款</span> 柴油适用该车型</p>-->
             </div>
-        </a>
+<!--        </a>-->
     </li>
 </volist>

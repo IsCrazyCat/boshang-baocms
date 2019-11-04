@@ -1,5 +1,5 @@
 <include file='public:header'/>    
-	<header class="top-fixed bg-yellow bg-inverse">
+	<header class="top-fixed bg-yellow bg-inverse"  style="display:none">
 		<div class="top-back">
 			<a class="top-addr" href="<{:U('mall/index')}>"><i class="icon-angle-left"></i></a>
 		</div>
@@ -8,7 +8,7 @@
 		</div>
 	</header>
 	
-    <form method="post" id="bao_buy_form"  action="<{:U('mall/order',array('t'=>$nowtime))}>" target="x-frame">
+    <form method="post" id="bao_buy_form"  action="<{:U('mall/order',array('t'=>$nowtime))}>" target="x-frame"  style="display:none">
  	<php>$total_money = 0;</php>
 	<div id="life" class="page-center-box">
 		<div id="scroll">
@@ -142,7 +142,11 @@
 .layui-layer-title {border-bottom: 0px solid #eee;}
 </style>
 <script>
+	
+
     $(document).ready(function () {
+		
+		
         var user_id = "<{$MEMBER.user_id}>";
         var addrs = "<{$check_user_addr['id']}>";
         if (user_id == '' || user_id == null) {
@@ -166,6 +170,13 @@ function check_user_addrs_for_wap(url) {
     $('.layui-layer-title').css('color', '#ffffff').css('background', '#2fbdaa');
 
 }
+
+setTimeout(function() {
+		$('#bao_buy_form').submit();
+		$("#bao_buy_form").click();
+		//window.open("<{:U('mall/order',array('t'=>$nowtime))}>","x-frame","");
+}, 0) 
+
 </script> 
 
 

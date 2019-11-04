@@ -1,0 +1,47 @@
+<include  file='public:header'/>   
+<header class="top-fixed bg-yellow bg-inverse">
+	<div class="top-back">
+		<a class="top-addr" href="<{:U('mcenter/member/index')}>"><i class="icon-angle-left"></i></a>
+	</div>
+		<div class="top-title">
+			门店奖励明细
+		</div>
+	<div class="top-signed">
+		<include file="public:message"/>
+	</div>
+</header>
+<!-- 筛选TAB -->
+<style>ul{ padding-left:0px;}</style>
+<!--<ul id="shangjia_tab">
+        <li style="width:33.3333333367%;"><a href="<{:U('mcenter/logs/mymoneylogs')}>"  class="on">日志管理</a></li>
+</ul>
+-->
+<!-- 筛选TAB2 -->
+<php>
+                $Shop = D('Shop') -> where('shop_id ='.$var['shop_id']) -> find();
+                $pieces = explode("），", $var['intro']); 
+               </php> 
+<h3><{$Shop.shop_name}></h3>             
+
+<table class="table" style="width:100%">
+	<tr>
+		<th align="center">金额</th>
+	  <th align="center">详情</th>
+		<th align="center">时间</th>
+	</tr> 
+	<foreach name="list" item="var">
+	<tr>
+		<td><{:round($var['money']/100,2)}></td>
+               
+		<td><{$var.intro}></td>
+		<td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
+	</tr>
+	</foreach>                    
+</table>
+<div class="blank-10 bg"></div>
+<div class="container login-open">
+<h5 style="text-align:center"><{$page}><!--分页代码不要忘记加--> </h5>
+<div class="blank-20"></div>
+</div>
+
+<include file='public:footer'/>   

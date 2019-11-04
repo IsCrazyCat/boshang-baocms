@@ -15,7 +15,7 @@ class EleAction extends CommonAction {
 
     public function index() {
         $Ele = D('Ele');
-        import('ORG.Util.Page'); // 导入分页类
+        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name'] = array('LIKE', '%' . $keyword . '%');
