@@ -7,7 +7,7 @@ class LifeAction extends CommonAction
     {
         $Life = D('Life');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('city_id' => $this->city_id, 'closed' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

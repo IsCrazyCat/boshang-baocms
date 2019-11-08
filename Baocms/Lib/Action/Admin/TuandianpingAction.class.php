@@ -6,7 +6,7 @@ class TuandianpingAction extends CommonAction {
 
     public function index() {
         $Tuandianping = D('Tuandianping');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('closed' => 0);
         if ($shop_id = (int) $this->_param('shop_id')) {
             $map['shop_id'] = $shop_id;

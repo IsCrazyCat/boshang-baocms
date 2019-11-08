@@ -18,7 +18,7 @@ class ShopyuyueAction extends CommonAction
         //取得当前商家ID，给下面的maps查询
         $Shopyuyue = D('Shopyuyue');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $maps['name|mobile'] = array('LIKE', '%' . $keyword . '%');

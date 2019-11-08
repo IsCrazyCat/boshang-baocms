@@ -49,7 +49,7 @@ class GoodstypeAction extends CommonAction {
         // 关键词搜索               
         $model = M('TpGoodsAttribute');
         $count = $model->where($where)->count();
-                import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com      
+                import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $Page       = new Page($count,13);
         $show = $Page->show();
         $goodsAttributeList = $model->where($where)->order('`order` desc,attr_id DESC')->limit($Page->firstRow.','.$Page->listRows)->select();

@@ -4,7 +4,7 @@ class FansAction extends CommonAction {
 
 	public function index() {
 		$fans = D('Shopfavorites'); //实例化fans模型
-		import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 		$map = array('shop_id' => $this->shop_id); //查询条件	
 		if ($keyword = $this->_post('keyword', 'htmlspecialchars')) {
 			$maps['user_id|nickname|mobile|account'] = trim($keyword);

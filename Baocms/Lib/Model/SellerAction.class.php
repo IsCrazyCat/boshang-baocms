@@ -5,7 +5,7 @@ class SellerAction extends CommonAction
     {
         $Shopnews = D('Shopnews');
         import('ORG.Util.Pageabc');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('audit' => 1);
         $cates = D('Shopcate')->fetchAll();
         $cat = (int) $this->_param('cat');
@@ -77,7 +77,7 @@ class SellerAction extends CommonAction
         $this->assign('shop', D('Shop')->find($detail['shop_id']));
         //评论列表
         import('ORG.Util.Pageabc');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $count = D('Shopcomment')->where(array('post_id' => $news_id, 'parent_id' => 0))->count();
         //获取评论总数
         $Page = new Page($count, 15);

@@ -226,7 +226,7 @@ class PkuaidiAction extends CommonAction
     {
         $Paddress = D('Paddlist');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name'] = array('LIKE', '%' . $keyword . '%');
             $this->assign('keyword', $keyword);

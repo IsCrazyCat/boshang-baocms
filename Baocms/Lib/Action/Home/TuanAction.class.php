@@ -170,7 +170,7 @@ class TuanAction extends CommonAction{
     {
         $Tuan = D('Tuan');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', TODAY));
         $linkArr = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -406,7 +406,7 @@ class TuanAction extends CommonAction{
             die;
         }
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'closed' => 0, 'bg_date' => array('ELT', TODAY), 'end_date' => array('EGT', TODAY));
         $linkArr = array();
         $around_id = (int) $this->_param('around_id');

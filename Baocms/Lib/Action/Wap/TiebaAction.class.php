@@ -61,7 +61,7 @@ class TiebaAction extends CommonAction{
     }
     public function loaddata(){
         $Post = D('Post');//必须审核
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         $map = array('closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
         $parent_id = 0;
 		

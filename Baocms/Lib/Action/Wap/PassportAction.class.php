@@ -34,189 +34,22 @@ class PassportAction extends CommonAction{
 			
             //开始其他的判断了
            if (true == D('Passport')->register($data)) {
-				
-				
-				
-				$this->uid = getUid();
-                if ((int)$this->uid > 0) {
-					
-					
-						//自动升级开始 lihongshun 2019.2.19
-						$myuser = D('Users')->find($this->uid);
-						
-						
-						if ($myuser['__referee']) {
-							 $myuser_referee = $myuser['__referee'];
-							 $floor_users = D('Users')->where("user_id in (".$myuser['__referee'].")")->order('user_id desc')->select();  
-							 foreach($floor_users as $rss){
-									$rss_gerenshuju = (int)$rss['gerenshuju']; 
-									$gerenshuju_count = D('Users')->where(" fuid1 = '".$rss['user_id']."' ")->count(); 
-									if ( (int)$gerenshuju_count > 0  ) {
-										if ( (int)$gerenshuju_count <> (int)$rss['gerenshuju'] ) {
-											 D('Users')->save(array('user_id' => $rss['user_id'], 'gerenshuju' => $gerenshuju_count));
-										}
-										$rss_gerenshuju = $gerenshuju_count;
-									}
-									$rss_tuanduishuju = (int)$rss['tuanduishuju'];
-									$tuanduishuju_count = D('Users')->where(" shangxianjihe LIKE '%,".$rss['user_id'].",%' ")->count(); 
-									if ( (int)$tuanduishuju_count > 0 ) {
-										if ( (int)$tuanduishuju_count <> (int)$rss['tuanduishuju'] ) {
-											 D('Users')->save(array('user_id' => $rss['user_id'], 'tuanduishuju' => $tuanduishuju_count));
-										}
-										$rss_tuanduishuju = $tuanduishuju_count;
-									} 
-									
-									//$this->fengmiMsg($rss_gerenshuju.' '.$tuanduishuju_count );
-			
-									$arr_rank_name = array("GD3", "GD2", "GD1", "D4", "D3", "D2", "D1");
-									foreach ($arr_rank_name as $my_rank_name) {
-										$mapA['rank_name'] = array('LIKE', '%'.$my_rank_name.'%');
-										$myrank = D('Userrank')->where($mapA)->find();
-										$my_tuanduishuju = $myrank['tuanduishuju'];
-										$my_gerenshuju = $myrank['gerenshuju'];
-										if(strpos($myrank['jianjiegerenshuju'],'除最大数据包外') !==false){
-											$mapB['shangxianjihe'] = array('LIKE', '%'.$rss['user_id'].'%');
-											$max_xiaxiang_gerenshuju = D('Users')->where($mapB)->max('gerenshuju');
-											if ( (int)$rss_gerenshuju > (int)$max_xiaxiang_gerenshuju ) {
-												$rss_gerenshuju = (int)$rss_gerenshuju - (int)$max_xiaxiang_gerenshuju;
-											} 
-										}
-										if ( ( $rss_tuanduishuju > 0 ) and  ( $rss_gerenshuju > 0 ) ) {
-											if ( ( $rss_tuanduishuju >= $my_tuanduishuju ) and  ( $rss_gerenshuju >= $my_gerenshuju ) ) {
-												 D('Users')->save(array('user_id' => $rss['user_id'], 'rank_id' => $myrank['rank_id'], 'prestige' => $myrank['prestige'] ));
-											}
-										}
-										
-									}
-									
-									//普通会员升级D1 一级就达到20人的情况下，二三级没人，也可以升级
-									$rank_id = M('Users')->where(" user_id = '".$rss['user_id']."' ")->field('rank_id');
-									if ((int)$rank_id == 1) {
-										if ( (int)$rss_gerenshuju >= 20 ) {
-											D('Users')->save(array( 'user_id' => $rss['user_id'], 'rank_id' => 2 ));
-										}
-									} 
-									
-							 }
-						}
-						//自动升级结束
-					
-					
-				}
-				
-				
-				
-				
-				
-//							$is_weixin = is_weixin();
-//							if ($is_weixin) {
-//									$state = md5(uniqid(rand(), TRUE));
-//									session('state', $state);
-//									$login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0a5face51bfd15e1&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
-//									header("location:{$login_url}");
-//									die;
-//							}				
-				
-//				$login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0a5face51bfd15e1&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
-//				header("location:{$login_url}");
-									
-//				$is_weixin = is_weixin();
-//				if ($is_weixin) {
-	                
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/member/index';
+			$wx_back_url = 'http://www.blklube.com/user/member/index';
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);
-	
-	
-			//$login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0a5face51bfd15e1&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . md5(uniqid(rand(), TRUE)) . '#wechat_redirect';
-	
-					$this->fengmiMsg('恭喜您，注册成功！', U('wap/passport/wxlogin'));
-					//$this->fengmiMsg('恭喜您，注册成功！', $login_url);
-//				} else {
-//					$this->fengmiMsg('恭喜您，注册成功！', U('user/member/index'));
-//				}
+
+               $this->fengmiMsg('恭喜您，注册成功！', U('user/member/index'));
 
             }
             $this->error(D('Passport')->getError());
         } else {
 			
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/member/index';
+			$wx_back_url = 'http://www.blklube.com/user/member/index';
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);
 
-			
-            //分销开始
-            
-			$fuid = $_GET['fuid'];
-			if ($fuid) {
-			}else{
-				$fuid = (int)cookie('fuid');
-				if ($fuid) {
-				} else {
-					$fuid = (int)cookie('invite_id');
-				}
-			}
-            if ($fuid) {
-				
-				$fuid = (int)cookie('fuid');
-			    $invite_id = (int)cookie('invite_id');
-				
-                $profit_min_rank_id = (int) $this->_CONFIG['profit']['profit_min_rank_id'];
-                $fuser = D('Users')->find($fuid);
-                if ($fuser) {
-                    $flag = false;
-                    if ($profit_min_rank_id) {
-                        $modelRank = D('Userrank');
-                        $rank = $modelRank->find($profit_min_rank_id);
-                        $userRank = $modelRank->find($fuser['rank_id']);
-                        if ($rank) {
-                            if ($userRank && $userRank['prestige'] >= $rank['prestige']) {
-                                $flag = true;
-                            } else {
-                                $flag = false;
-                            }
-                        } else {
-                            $flag = false;
-                        }
-                    } else {
-                        $flag = true;
-                    }
-                    $fuser['nickname'] = empty($fuser['nickname']) ? $fuser['account'] : $fuser['nickname'];
-                    if ($flag) {
-                        $this->assign('fuser', $fuser);
-                    }
-                }
-            }
-			
-				//echo '微信内置浏览器';
-				 // header('Location:' . U('/wap/passport/wxlogin'));
-				 //header('Location:' . U('/wap/index/index'));
-				 // $this->wxlogin();
-                 //die;
-				 
-				 
-/*					if (empty($this->uid)) { 
-						
-						$is_weixin = is_weixin();
-							if ($is_weixin) {
-									$state = md5(uniqid(rand(), TRUE));
-									session('state', $state);
-									$login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0a5face51bfd15e1&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
-									header("location:{$login_url}");
-									die;
-							}
-					}				 
-*/				 
-				 
-				 
-				 
-				 
-				 
-			
-			
-            //分销结束
             $this->display();
         }
     }
@@ -313,12 +146,12 @@ class PassportAction extends CommonAction{
     {
 		$shop_id =  I('get.shop_id');
         if ((int)$shop_id>0) {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/money/myindex/shop_id/'.$shop_id;
+			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
-			session('backurl', 'http://aihuaqian.boshang3710.com/user/money/myindex/shop_id/'.$shop_id);
+			session('backurl', 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id);
 		} else {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/member/index';
+			$wx_back_url = 'http://www.blklube.com/user/member/index';
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);
@@ -405,7 +238,7 @@ class PassportAction extends CommonAction{
 		
 		$shop_id =  I('get.shop_id');
 		if ( $shop_id  ) {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/money/myindex/shop_id/'.$shop_id;
+			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);

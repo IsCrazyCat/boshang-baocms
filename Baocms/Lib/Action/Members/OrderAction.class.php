@@ -154,7 +154,7 @@ class OrderAction extends CommonAction{
     public function goods(){
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('closed' => 0, 'user_id' => $this->uid);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

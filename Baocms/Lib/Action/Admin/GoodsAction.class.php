@@ -2,8 +2,8 @@
 
 class GoodsAction extends CommonAction {
 
-    private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv');
-    private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv');
+    private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv','car_ids');
+    private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv','car_ids');
 	
 	
     public function _initialize() {
@@ -69,6 +69,10 @@ class GoodsAction extends CommonAction {
 			
             $obj = D('Goods');
             if ($goods_id = $obj->add($data)) {
+                if(!empty($data['car_ids'])){
+                    //关联车辆ID
+                    $this->addCarGood($goods_id,$data['car_ids']);
+                }
                 $wei_pic = D('Weixin')->getCode($goods_id, 3); //购物类型是3
                 $obj->save(array('goods_id'=>$goods_id,'wei_pic'=>$wei_pic));
                 $photos = $this->_post('photos', false);
@@ -76,7 +80,7 @@ class GoodsAction extends CommonAction {
                     D('Goodsphoto')->upload($goods_id, $photos);
                 }
                 //修改库存的东西
-   			$this->shuxin($goods_id);
+   			    $this->shuxin($goods_id);
                 $this->baoSuccess('添加成功', U('goods/index'));
             }
             $this->baoError('操作失败！');
@@ -127,7 +131,7 @@ class GoodsAction extends CommonAction {
         if (empty($data['title'])) {
             $this->baoError('产品名称不能为空');
         }
-	
+        $data['car_id'] = htmlspecialchars($data['car_id']);
 		$data['intro'] = htmlspecialchars($data['intro']);
         if (empty($data['intro'])) {
             $this->baoError('副标题不能为空');
@@ -219,6 +223,7 @@ class GoodsAction extends CommonAction {
         if (!isDate($data['end_date'])) {
             $this->baoError('过期时间格式不正确');
         }
+        $data['car_ids'] = htmlspecialchars($data['car_ids']);
 		$data['is_vs1'] = (int) $data['is_vs1'];
 		$data['is_vs2'] = (int) $data['is_vs2'];
 		$data['is_vs3'] = (int) $data['is_vs3'];
@@ -264,15 +269,25 @@ class GoodsAction extends CommonAction {
 				//$this->baoError($data['jiesuanfeilv']);
 				
                 if (false !== $obj->save($data)) {
+                    if(!empty($data['car_ids'])){
+                        //关联车辆ID
+                        $this->addCarGood($goods_id,$data['car_ids']);
+                    }
                     $photos = $this->_post('photos', false);
                     if (!empty($photos)) {
                         D('Goodsphoto')->upload($goods_id, $photos);
                     }
-                         $this->shuxin($goods_id);
+                    $this->shuxin($goods_id);
                     $this->baoSuccess('操作成功', U('goods/index'));
                 }
                 $this->baoError('操作失败');
             } else {
+                $cars = D('CarGoods')->where(array('good_id'=>$goods_id))->select();
+                foreach ($cars as $key=>$val){
+                    $car = D('Car')->find($val['car_id']);
+                    $cars[$key]['car'] = $car;
+                }
+                $this->assign('cars',$cars);
                 $this->assign('detail', $obj->_format($detail));
 				$this->assign('parent_id',D('Goodscate')->getParentsId($detail['cate_id']));
 				$this->assign('attrs', D('Goodscateattr')->order(array('orderby' => 'asc'))->where(array('cate_id' => $detail['cate_id']))->select());
@@ -394,6 +409,7 @@ class GoodsAction extends CommonAction {
         if (!isDate($data['end_date'])) {
             $this->baoError('过期时间格式不正确');
         }
+        $data['car_ids'] = htmlspecialchars($data['car_ids']);
 		$data['is_vs1'] = (int) $data['is_vs1'];
 		$data['is_vs2'] = (int) $data['is_vs2'];
 		$data['is_vs3'] = (int) $data['is_vs3'];
@@ -539,5 +555,15 @@ class GoodsAction extends CommonAction {
        }
         $str .= "</table>";
        return $str;   
+    }
+    public function addCarGood($good_id,$car_ids){
+        $car_ids = explode(",",$car_ids);
+        $data['good_id'] = $good_id;
+        $data['create_time']=time();
+        D('Cargoods')->where(array('good_id'=>$good_id))->delete();
+        foreach ($car_ids as $key=>$id){
+            $data['car_id'] = $id;
+            D('Cargoods')->add($data);
+        }
     }
 }

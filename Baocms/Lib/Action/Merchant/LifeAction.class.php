@@ -13,7 +13,7 @@ class  LifeAction extends  CommonAction{
     
     public function index(){
         $Life = D('Life');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('user_id'=>  $this->uid); //分类信息是关联到UID 的 
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

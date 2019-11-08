@@ -9,7 +9,7 @@ class AwardgoodsAction extends CommonAction {
 
     public function index() {
         $Awardgoods = D('Awardgoods');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $award_id = (int) $this->_get('award_id');
         $map = array('award_id'=>$award_id);
         if (!$detail = D('Award')->find($award_id)) {

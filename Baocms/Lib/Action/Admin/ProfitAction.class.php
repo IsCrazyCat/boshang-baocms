@@ -3,7 +3,7 @@
 class ProfitAction extends CommonAction{
     public function order(){
         $model = D('Order');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         //$map = array('is_profit'=>1);
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -510,7 +510,7 @@ class ProfitAction extends CommonAction{
 
     public function user() {
         $User = D('Users');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('u.closed'=>array('IN','0,-1'));
         if($account = $this->_param('account','htmlspecialchars')){
             $map['u.account'] = array('LIKE','%'.$account.'%');

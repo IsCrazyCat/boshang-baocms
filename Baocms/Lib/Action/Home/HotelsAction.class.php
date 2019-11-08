@@ -24,7 +24,7 @@ class HotelsAction extends CommonAction {
 
     public function index() {
         $hotel = D('Hotel');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id);
         $linkArr = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -201,7 +201,7 @@ class HotelsAction extends CommonAction {
             $this->assign('room_count',$room_count);
             //评论
             $comment = D('Hotelcomment');
-            import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+            import('ORG.Util.Page'); // 导入分页类    www.blklube.com
             $map = array('closed' => 0, 'hotel_id' => $hotel_id);
             if($have_photo = (int)$this->_param('have_photo')){
                 $map['have_photo'] = $have_photo;

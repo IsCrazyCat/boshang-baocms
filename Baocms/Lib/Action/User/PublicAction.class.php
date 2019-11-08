@@ -3,7 +3,7 @@
 /*
  * 软件为聊城博商网络公司出品，未经授权许可不得使用！
  * 作者：baocms团队
- * 官网：aihuaqian.boshang3710.com
+ * 官网：www.blklube.com
  * 邮件: youge@baocms.com  QQ 448329273
  */
 

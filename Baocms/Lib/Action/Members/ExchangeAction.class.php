@@ -14,7 +14,7 @@ class ExchangeAction extends CommonAction {
 
     public function index() {
         $Integralexchange = D('Integralexchange');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('user_id' => $this->uid);
         $count = $Integralexchange->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 25); // 实例化分页类 传入总记录数和每页显示的记录数

@@ -21,7 +21,7 @@ class TuanAction extends CommonAction
     public function orderload()
     {
         $Tuanorder = D('Tuanorder');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         $map = array('shop_id' => $this->shop_id, 'closed' => 0);//这里只显示 实物
         $aready = (int) $this->_param('aready');
         if ($aready == 1) {
@@ -166,7 +166,7 @@ class TuanAction extends CommonAction
     {
         $Tuancode = D('Tuancode');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('shop_id' => $this->shop_id, 'is_used' => '1', 'worker_id' => $this->uid);
         if (strtotime($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && strtotime($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);

@@ -156,7 +156,7 @@ class OrderAction extends CommonAction{
     public function wait(){
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('closed' => 0, 'status' => 1, 'is_shop' => 0);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -330,7 +330,7 @@ class OrderAction extends CommonAction{
         $orderids = explode(',', $pick['order_ids']);
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('order_id' => array('IN', $orderids));
         $list = $Order->where($map)->order(array('order_id' => 'asc'))->select();
         $user_ids = $order_ids = $addr_ids = array();
@@ -365,7 +365,7 @@ class OrderAction extends CommonAction{
         $orderids = explode(',', $pick['order_ids']);
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('order_id' => array('IN', $orderids));
         $list = $Order->where($map)->order(array('order_id' => 'asc'))->select();
         $user_ids = $order_ids = $shop_ids = $addr_ids = array();
@@ -398,7 +398,7 @@ class OrderAction extends CommonAction{
     public function delivery(){
         $Order = D('Order');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('closed' => 0, 'status' => 2);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

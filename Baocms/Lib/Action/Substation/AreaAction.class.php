@@ -7,7 +7,7 @@ class AreaAction extends CommonAction
     {
         $Area = D('Area');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $city_ids = D('City')->where($mapss)->order(array('city_id' => 'desc'))->select();

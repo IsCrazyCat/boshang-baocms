@@ -25,7 +25,7 @@ class ShakeAction extends CommonAction {
 			//$member =  K::M('member/weixin')->detail_by_openid($openid);
 
 //$openid = 123456;
-			import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 			$filter['shake_id'] = $shake_id;
 			$count = D('Weixin_shakeprize')->where($filter)->count();
 			$Page = new Page($count, 15);

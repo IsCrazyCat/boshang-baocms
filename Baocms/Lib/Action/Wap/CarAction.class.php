@@ -7,9 +7,10 @@ class CarAction extends CommonAction
     {
         $cars = array();
         $map['parent_id'] = 0;
+        $map['is_open'] = '1';
+        $map['closed']=0;
         if ($keyword2 = $this->_param('keyword2', 'htmlspecialchars')) {
             $map = array('name|english_name|short_name' => array('LIKE', '%' . $keyword2 . '%'));
-            $map['parent_id'] = 0;
             $citlist = D('car')->where($map)->select();
             $cars = $citlist;
             $this->assign('keyword2', $keyword2);
@@ -50,7 +51,8 @@ class CarAction extends CommonAction
         }
 
         $map['parent_id'] = $parent_id;
-        $mao['is_open'] = '1';
+        $map['is_open'] = '1';
+        $map['closed']=0;
 
 
         $count = D('Car')->where($map)->count();

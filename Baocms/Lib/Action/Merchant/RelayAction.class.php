@@ -18,7 +18,7 @@ class RelayAction extends CommonAction {
         if(!$shop_id = $this->shop_id){
 			 $this->baoError('商家不能为空');
 		}
-		import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 		$map = array('shop_id' => $shop_id);
 		$obj = D('Weixin_relay');
 		$pager = array();
@@ -169,7 +169,7 @@ class RelayAction extends CommonAction {
 			}
 			$map = array();
 			$map['relay_id'] =$relay_id;
-			import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 			$count = $obj->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -247,7 +247,7 @@ class RelayAction extends CommonAction {
         }else if(!$detail = $obj->find($relay_id)){
             $this->baoError('该摇一摇不存在或已经删除');
         }else{
-            import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+            import('ORG.Util.Page'); // 导入分页类    www.blklube.com
             $map = array('shop_id' => $shop_id);
 			$map['relay_id'] = $relay_id;
             $count = $objp->where($map)->count();
@@ -424,7 +424,7 @@ class RelayAction extends CommonAction {
 			$this->baoError('你要查看的内容不存在或已经删除');
 		}else{
 			$objl = D('Weixin_relaylist');
-			import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
             $map = array('relay_id' => $relay_id);
 			$map = array('openid' => $openid);
             $count = $objl->where($map)->count();

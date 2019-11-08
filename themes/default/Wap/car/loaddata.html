@@ -9,7 +9,7 @@
                 <if condition="empty($item['catesInfo']) neq true">
                     <foreach name="item['catesInfo']" item="val" index="key">
                         <a  href="<{:U('mall/index',array('cat'=>$key,'car_id'=>$item['car_id']))}>">
-                            <p class="desc"> <span style="color:#F00; font-size:12px;"><{$val['count']}>款</span> <{$val['name']}>适用该车型<{$key}></p>
+                            <p class="desc"> <span style="color:#F00; font-size:12px;"><{$val['count']}>款</span> <{$val['name']}>适用该车型</p>
                         </a>
                     </foreach>
                 <else/>

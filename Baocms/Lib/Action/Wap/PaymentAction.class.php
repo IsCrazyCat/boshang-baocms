@@ -404,7 +404,7 @@ class PaymentAction extends CommonAction {
 									$my_uid = $this -> uid;
 									 cookie('my_uid', $my_uid);
 									 session('my_uid', $my_uid);
-									 //$this -> gwmd_success('恭喜您 获得随机免单!', "http://aihuaqian.boshang3710.com/my/zhongjiang.php?log_id=".$log_id );
+									 //$this -> gwmd_success('恭喜您 获得随机免单!', "http://www.blklube.com/my/zhongjiang.php?log_id=".$log_id );
 									
 									 $this -> success('恭喜您获得随机免单!请稍等...', '/my/zhongjiang.php?log_id='.$log_id);
 									  header('Location:/my/zhongjiang.php?log_id='.$log_id);

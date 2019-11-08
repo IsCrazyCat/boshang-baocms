@@ -3,7 +3,7 @@
 /****************** 版权声明 ******************************
  *
  *----------------聊城博商网络科技有限公司-----------------
- *----------------      aihuaqian.boshang3710.com    -----------------
+ *----------------      www.blklube.com    -----------------
  *QQ:448329273  
  *电话:0551-63641901  
  *EMAIL：youge@baocms.com
@@ -16,7 +16,7 @@ class  WorkAction extends CommonAction{
 
     public function index() {
         $Work = D('Work');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('shop_id' => $this->shop_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

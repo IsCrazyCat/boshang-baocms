@@ -19,7 +19,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
 
     public function index() {
         $Tuan = D('Tuan');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('closed' => 0,'city_id'=>$this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

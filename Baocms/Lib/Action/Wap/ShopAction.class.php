@@ -169,7 +169,7 @@ class ShopAction extends CommonAction{
 	 public function myqrcode($shop_id){
         $shop_id = (int)$shop_id;
 		
-		$wx_back_url = 'http://aihuaqian.boshang3710.com/wap/shop/detail/shop_id/'.$shop_id;
+		$wx_back_url = 'http://www.blklube.com/wap/shop/detail/shop_id/'.$shop_id;
 
 		cookie('wx_back_url', $wx_back_url);
 		

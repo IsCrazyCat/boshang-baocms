@@ -7,7 +7,7 @@ class ShopyuyueAction extends CommonAction
     {
         $Shopyuyue = D('Shopyuyue');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name|mobile'] = array('LIKE', '%' . $keyword . '%');

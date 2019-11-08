@@ -50,7 +50,7 @@ class HotelsAction extends CommonAction {
     
     public function loaddata() {
         $hotel = D('Hotel');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id);
         $linkArr = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {

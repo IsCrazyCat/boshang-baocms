@@ -20,7 +20,7 @@ class MessageAction extends CommonAction {
 			$this->error('您还没有登录！', U('passport/login'));
 		}
 		$Message = D('Message');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('user_id' => $this->uid ,'parent_id' => 0);
         $count = $Message->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数
@@ -62,7 +62,7 @@ class MessageAction extends CommonAction {
 			$this->error('您还没有登录！', U('passport/login'));
 		}
 		$Message_fa = D('Message');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('send_id' => $this->uid ,'parent_id' => 0);
         $count = $Message_fa->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数
@@ -138,7 +138,7 @@ class MessageAction extends CommonAction {
 			$this->error('您还没有登录！', U('passport/login'));
 		}
 		$Message = D('Message');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('parent_id'=>$msg_id);
         $count = $Message->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数
@@ -170,7 +170,7 @@ class MessageAction extends CommonAction {
 			$this->error('您还没有登录！', U('passport/login'));
 		}
 		$Message = D('Message');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('parent_id'=>$msg_id);
         $count = $Message->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数

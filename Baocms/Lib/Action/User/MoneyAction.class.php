@@ -9,7 +9,7 @@ class MoneyAction extends CommonAction
 	public function myindex(){
         $shop_id =  I('get.shop_id');
         if ($shop_id) {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/money/myindex/shop_id/'.$shop_id;
+			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);

@@ -100,7 +100,7 @@ class PublicAction extends CommonAction
     //升级之前需要请求BAOCMS看看是否是授权用户，BAOCMS会进行回调验证TOKEN授权的
     public function token()
     {
-        $url = 'http://aihuaqian.boshang3710.com/update/token.html?host=' . urlencode($_SERVER['HTTP_HOST']) . '&bao_key=' . C('BAO_KEY');
+        $url = 'http://www.blklube.com/update/token.html?host=' . urlencode($_SERVER['HTTP_HOST']) . '&bao_key=' . C('BAO_KEY');
         $token = file_get_contents($url);
         if (empty($token)) {
             $this->error('获取TOKEN失败，请稍后再试！');

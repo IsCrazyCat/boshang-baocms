@@ -34,7 +34,7 @@
 			geolocation.getCurrentPosition(function(r){
 				if(this.getStatus() === 0) {
 					var address = r.address.province + r.address.city + r.address.district + r.address.street;
-					$.post("http://aihuaqian.boshang3710.com/wap/index/dingwei.html",{lat:r.point.lat,lon:r.point.lng,address:address,url:url,type:'browser'},function(response){
+					$.post("http://www.blklube.com/wap/index/dingwei.html",{lat:r.point.lat,lon:r.point.lng,address:address,url:url,type:'browser'},function(response){
 						
 						$("span[attr-ctrl='distance']").each(function(){   
 							var lat = $(this).attr("attr-lat");

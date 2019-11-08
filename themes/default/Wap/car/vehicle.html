@@ -15,17 +15,17 @@
     <if condition="empty($keyword)">
         <div class="top-title">在线商城</div>
     </if>
-    <div class="top-search" style="<if condition="empty($keyword)">display:none;</if>">
-    <form method="post" action="<{:U('mall/index')}>">
-        <input name="keyword" placeholder="<{$keyword|default='输入商品的关键字'}>"  />
-        <button type="submit" class="icon-search"></button>
-    </form>
-    </div>
-    <if condition="empty($keyword)">
-        <div class="top-signed">
-            <a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
-        </div>
-    </if>
+<!--    <div class="top-search" style="<if condition="empty($keyword)">display:none;</if>">-->
+<!--    <form method="post" action="<{:U('car/vehicle')}>">-->
+<!--        <input name="keyword" placeholder="<{$keyword|default='输入商品的关键字'}>"  />-->
+<!--        <button type="submit" class="icon-search"></button>-->
+<!--    </form>-->
+<!--    </div>-->
+<!--    <if condition="empty($keyword)">-->
+<!--        <div class="top-signed">-->
+<!--            <a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>-->
+<!--        </div>-->
+<!--    </if>-->
 </header>
 <script>
     $(function(){

@@ -14,7 +14,7 @@ class MyactivityAction extends CommonAction {
     public function index() {
         $Activity = D('Activity');
         $Activitysign = D('Activitysign');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('user_id' => $this->uid);
         $count = $Activitysign->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数

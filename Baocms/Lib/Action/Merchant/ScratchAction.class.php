@@ -14,7 +14,7 @@ class ScratchAction extends CommonAction {
         if(!$shop_id = $this->shop_id){
 			 $this->baoError('商家不能为空');
 		}
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 		$map = array('shop_id' => $shop_id);
 		$obj = D('Weixin_scratch');
 		$count = $obj->where($map)->count();
@@ -174,7 +174,7 @@ class ScratchAction extends CommonAction {
 			}
 			$map = array();
 			$map['scratch_id'] =$scratch_id;
-			import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 			$count = $obj->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -238,7 +238,7 @@ class ScratchAction extends CommonAction {
         }else if(!$detail = $obj->find($scratch_id)){
             $this->baoError('该刮刮卡不存在或已经删除');
         }else{
-            import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+            import('ORG.Util.Page'); // 导入分页类    www.blklube.com
             $map = array('shop_id' => $shop_id);
             $map = array('scratch_id' => $scratch_id);
             $count = $objp->where($map)->count();

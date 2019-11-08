@@ -60,7 +60,7 @@
   $(function(){
         $.ajax({
                type: "GET",
-               url: "http://aihuaqian.boshang3710.com/myapi.php",
+               url: "http://www.blklube.com/myapi.php",
                data: "urlparam="+window.location.href.split('#')[0],
                success: function(data){
                     var result = JSON.parse(data);						
@@ -85,7 +85,7 @@
         title: "<{:bao_msubstr($detail['title'],0,24)}>",
         desc: "<{$shop['shop_name']}>",
         link: window.location.href,
-        imgUrl: "http://aihuaqian.boshang3710.com/<{:config_img($detail['photo'])}>",
+        imgUrl: "http://www.blklube.com/<{:config_img($detail['photo'])}>",
         success: function () {
 			//alert('成功分享');
         },
@@ -110,9 +110,9 @@
 		</div>
 		<div class="bd category">
 			<ul>
-          		<li><a href="javascript:void(0);"><img src="http://aihuaqian.boshang3710.com/<{:config_img($detail['photo'])}>"  class="pic" /></a></li>
+          		<li><a href="javascript:void(0);"><img src="http://www.blklube.com/<{:config_img($detail['photo'])}>"  class="pic" /></a></li>
                 <foreach  name="pics" item="item">
-                <li><a href="javascript:void(0);"><img src="http://aihuaqian.boshang3710.com/<{:config_img($item['photo'])}>"  class="pic" /></a></li>
+                <li><a href="javascript:void(0);"><img src="http://www.blklube.com/<{:config_img($item['photo'])}>"  class="pic" /></a></li>
                 </foreach>
 			</ul>
 		</div>

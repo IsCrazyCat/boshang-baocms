@@ -7,7 +7,7 @@ class UseraddrAction extends CommonAction
     {
         $Useraddr = D('Useraddr');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name|mobile|addr'] = array('LIKE', '%' . $keyword . '%');

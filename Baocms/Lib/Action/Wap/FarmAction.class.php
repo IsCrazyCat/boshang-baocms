@@ -40,7 +40,7 @@ class FarmAction extends CommonAction {
    
     public function loaddata() {
         $f = D('Farm');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
 
         $lists = $f->where($map)->order('farm_id desc')->select();
         $lat = addslashes(cookie('lat'));
@@ -109,7 +109,7 @@ class FarmAction extends CommonAction {
     public function loaddata_lists() {
         
         $f = M('Farm');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         
         //条件开始
         $map = array();

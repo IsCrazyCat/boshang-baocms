@@ -24,7 +24,7 @@ class NewsAction extends CommonAction
     public function index()
     {
         $Article = D('Article');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         $map = array('city_id' => $this->city_id, 'closed' => 0, 'audit' => 1);
 
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -254,7 +254,7 @@ class NewsAction extends CommonAction
         $cates = D('Articlecate')->fetchAll();
         $Article = D('Article');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('closed' => 0);
         $cat = (int) $this->_param('cat');
         $cates = D('Articlecate')->fetchAll();

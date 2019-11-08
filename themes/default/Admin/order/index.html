@@ -215,7 +215,7 @@
 			var myid = status_id.split("_")[1];
 			if ( parseInt(myid) > 0 ) {
                
-				$.post('http://aihuaqian.boshang3710.com/my/status_ajax.php',{order_id:myid,status:status_value},function(data) { 
+				$.post('http://www.blklube.com/my/status_ajax.php',{order_id:myid,status:status_value},function(data) {
                                
 				     if (data == 1) {
 						 $("#status_span_"+myid).html("发货状态更改成功！");
@@ -248,7 +248,7 @@
 		if ( note_id.indexOf("_") != -1 ) {
 			var myid = note_id.split("_")[1];
 			if ( parseInt(myid) > 0 ) {
-				$.post('http://aihuaqian.boshang3710.com/my/note_ajax2.php',{order_id:myid,note:note_value},function(data) {                      
+				$.post('http://www.blklube.com/my/note_ajax2.php',{order_id:myid,note:note_value},function(data) {
 				     if (data == 1) {
 						 
 						 $("#note_span_"+myid).html("发货单号更改成功！");
@@ -279,7 +279,7 @@
 			var myid = fahuodanhao_id.split("_")[1];
             
 			if ( parseInt(myid) > 0 ) {
-				$.post('http://aihuaqian.boshang3710.com/my/fahuodanhao_ajax2.php',{order_id:myid,fahuodanhao:fahuodanhao_value},function(data) {   
+				$.post('http://www.blklube.com/my/fahuodanhao_ajax2.php',{order_id:myid,fahuodanhao:fahuodanhao_value},function(data) {
                                     
 				     if (data == 1) {
 						 //alert("发货单号更改成功！");

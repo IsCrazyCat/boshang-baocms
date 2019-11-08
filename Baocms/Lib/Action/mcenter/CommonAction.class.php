@@ -24,7 +24,7 @@
 		
 		$shop_id = I('get.shop_id','','htmlspecialchars');
 		if ( (int)$shop_id > 0 ) {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/mcenter/money/myindex/shop_id/'.$shop_id;
+			$wx_back_url = 'http://www.blklube.com/mcenter/money/myindex/shop_id/'.$shop_id;
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 		}

@@ -15,12 +15,12 @@ $jsonmenu = '{
 	  {	
           "type":"view",
           "name":"附近优惠",
-          "url":"http://aihuaqian.boshang3710.com/wap/index/index"
+          "url":"http://www.blklube.com/wap/index/index"
       },
 	    {	
           "type":"view",
           "name":"大家说",
-          "url":"http://aihuaqian.boshang3710.com/wap/tieba/index.html"
+          "url":"http://www.blklube.com/wap/tieba/index.html"
       },
 	  {	
           
@@ -30,17 +30,17 @@ $jsonmenu = '{
            {    
                "type":"view",
                "name":"会员中心",
-              "url":"http://aihuaqian.boshang3710.com/user/member/index.html"
+              "url":"http://www.blklube.com/user/member/index.html"
             },
              {    
                "type":"view",
                "name":"分销中心",
-              "url":"http://aihuaqian.boshang3710.com/user/distribution/index.html"
+              "url":"http://www.blklube.com/user/distribution/index.html"
             },
             {    
                "type":"view",
                "name":"商家中心",
-              "url":"http://aihuaqian.boshang3710.com/Distributors"
+              "url":"http://www.blklube.com/Distributors"
             }]
       }
 	  

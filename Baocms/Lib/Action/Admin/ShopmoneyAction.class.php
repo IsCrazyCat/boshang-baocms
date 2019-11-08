@@ -36,7 +36,7 @@ class ShopmoneyAction extends CommonAction{
 		
 		
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
 		
     
 		
@@ -153,7 +153,7 @@ class ShopmoneyAction extends CommonAction{
 		
 		
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
 		
     
 		
@@ -234,7 +234,7 @@ class ShopmoneyAction extends CommonAction{
     public function tjyear(){
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         if ($year = $this->_param('year', 'htmlspecialchars')) {
             $this->assign('year', $year);
         }
@@ -260,7 +260,7 @@ class ShopmoneyAction extends CommonAction{
     public function tjday(){
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         if ($day = $this->_param('day', 'htmlspecialchars')) {
             $this->assign('day', $day);
         }

@@ -13,7 +13,7 @@ class VillageAction extends CommonAction{
 	  public function index() {
         $Village = D('Village');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         //$users = $this->_param('data', false);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
@@ -176,7 +176,7 @@ class VillageAction extends CommonAction{
     public function suggestion(){
         $Village = D('Village_suggestion');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -202,7 +202,7 @@ class VillageAction extends CommonAction{
     {
         $Village = D('Village_bbs');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -264,7 +264,7 @@ class VillageAction extends CommonAction{
                 $this->baoError('操作失败');
             } else {
                 import('ORG.Util.Page');
-                // 导入分页类    aihuaqian.boshang3710.com
+                // 导入分页类    www.blklube.com
                 $map = array('post_id' => $post_id);
                 $replys = D('Villagebbsreplys');
                 $count = $replys->where($map)->count();
@@ -330,7 +330,7 @@ class VillageAction extends CommonAction{
     {
         $Village = D('Village_notice');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -359,7 +359,7 @@ class VillageAction extends CommonAction{
     {
         $Village = D('Village_worker');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -675,7 +675,7 @@ class VillageAction extends CommonAction{
     {
         $User = D('Village');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         //搜索
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('name', 'htmlspecialchars')) {

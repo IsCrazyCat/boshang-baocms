@@ -9,7 +9,7 @@ class MoneyAction extends CommonAction{
 
         $shop_id = (int)$shop_id;
         
-        $wx_back_url = 'http://aihuaqian.boshang3710.com/mcenter/money/myindex/shop_id/'.$shop_id;
+        $wx_back_url = 'http://www.blklube.com/mcenter/money/myindex/shop_id/'.$shop_id;
         cookie('wx_back_url', $wx_back_url);
         
         if(empty($shop_id)){
@@ -141,7 +141,7 @@ class MoneyAction extends CommonAction{
             }
         }
         $money = D('Shopmoney');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         $count = $money->where($map)->count();
         $Page = new Page($count, 10);
         $show = $Page->show();

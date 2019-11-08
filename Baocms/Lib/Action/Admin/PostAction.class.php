@@ -9,7 +9,7 @@ class PostAction extends CommonAction
         $list2 = $Sharecate->fetchAll();
         $Post = D('Post');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

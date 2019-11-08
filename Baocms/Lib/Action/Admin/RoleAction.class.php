@@ -7,7 +7,7 @@ class RoleAction extends CommonAction
     {
         $Role = D('Role');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         $map = array();
         if ($keyword) {

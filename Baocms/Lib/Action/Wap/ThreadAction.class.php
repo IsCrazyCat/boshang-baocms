@@ -99,7 +99,7 @@ class ThreadAction extends CommonAction {
 
     public function postload(){
             //评论的帖子
-            import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+            import('ORG.Util.Page'); // 导入分页类    www.blklube.com
             $post_id = (int)$this->_param('post_id');
             $reply_list = D('Threadpostcomments')->where(array('post_id'=>$post_id,'type'=>array('IN',array(1,2))))->order(array('comment_id'=>'desc'))->select();
             $user_idss = $comment_idss = array();

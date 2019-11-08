@@ -12,7 +12,7 @@ class PacketAction extends CommonAction {
         if(!$shop_id = $this->shop_id){
 			 $this->baoError('商家不能为空');
 		}
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 		$map = array('shop_id' => $shop_id);
 		$obj = D('Weixin_packet');
 		$count = $obj->where($map)->count();
@@ -166,7 +166,7 @@ class PacketAction extends CommonAction {
 			}
 			$map = array();
 			$map['packet_id'] =$packet_id;
-			import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 			$count = $obj->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -231,7 +231,7 @@ class PacketAction extends CommonAction {
 			}else{
 				$objl = D('Weixin_packetling');
 				$map['packet_id'] = $sn_id;
-				import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+				import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 				$count = $objl->where($map)->count();
 				$Page = new Page($count, 15);
 				$show = $Page->show();

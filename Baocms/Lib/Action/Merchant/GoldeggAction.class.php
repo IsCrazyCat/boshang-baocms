@@ -16,7 +16,7 @@ class GoldeggAction extends CommonAction {
 		if(!$shop_id = $this->shop_id){
 			 $this->baoError('商家不能为空');
 		}
-		import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 		$map = array('shop_id' => $shop_id);
 		$obj = D('Weixin_goldegg');
 		$count = $obj->where($map)->count();
@@ -186,7 +186,7 @@ class GoldeggAction extends CommonAction {
 			}
 			$map = array();
 			$map['egg_id'] =$id;
-			import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
 			$count = $obj->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();

@@ -127,7 +127,7 @@ class ShopAction extends CommonAction{
         }
         $Shopdianping = D('Shopdianping');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
         $count = $Shopdianping->where($map)->count();
         $Page = new Page($count, 25);
@@ -703,7 +703,7 @@ class ShopAction extends CommonAction{
             die;
         }
         $Shopdianping = D('Shopdianping');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
         $count = $Shopdianping->where($map)->count();
         
@@ -843,7 +843,7 @@ class ShopAction extends CommonAction{
         }
         $Life = D('Life');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'user_id' => $detail['user_id']);
         $count = $Life->where($map)->count();
         
@@ -874,7 +874,7 @@ class ShopAction extends CommonAction{
         }
         $article = D('Article');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'shop_id' => $shop_id);
         $count = $article->where($map)->count();
         

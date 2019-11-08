@@ -55,7 +55,7 @@ class TuanAction extends CommonAction{
 	
     public function orderloading(){
         $Tuanorder = D('Tuanorder');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         $map = array('user_id' => $this->uid, 'closed' => 0);//这里只显示 实物
         if (isset($_GET['aready']) || isset($_POST['aready'])) {
             $aready = (int) $this->_param('aready');

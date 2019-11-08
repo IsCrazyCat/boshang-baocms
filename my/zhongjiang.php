@@ -69,7 +69,7 @@ mysql_close($con); //关闭MySQL连接
   </tr>
 </table>
 
-<img src="<?php  if ($ismiandan == 1){ echo 'zhongjiang.jpg';} else { echo 'weizhongjiang.jpg'; } ?>" border="0"  class="img" usemap="#mymap" onclick="window.location.href='http://aihuaqian.boshang3710.com/wap/payment/yes/log_id/<?php echo $my_log_id;?>.html'" />
+<img src="<?php  if ($ismiandan == 1){ echo 'zhongjiang.jpg';} else { echo 'weizhongjiang.jpg'; } ?>" border="0"  class="img" usemap="#mymap" onclick="window.location.href='http://www.blklube.com/wap/payment/yes/log_id/<?php echo $my_log_id;?>.html'" />
 
 
 </body>

@@ -5,7 +5,7 @@ class TuanorderAction extends CommonAction
     {
         $Tuancode = D('Tuancode');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array('user_id' => $this->uid);
         //这里只显示 实物
         $status = (int) $this->_param('status');

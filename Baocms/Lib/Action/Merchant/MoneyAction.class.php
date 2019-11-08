@@ -151,7 +151,7 @@ class MoneyAction extends CommonAction{
         }
 		
         $money = D('Shopmoney');
-        import('ORG.Util.Page');// 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page');// 导入分页类    www.blklube.com
         $count = $money->where($map)->count();
         $Page = new Page($count, 16);
         $show = $Page->show();

@@ -6,7 +6,7 @@ class ConvenientphoneAction extends CommonAction{
     {
         $Convenientphone = D('Convenientphone');
         import('ORG.Util.Page');
-        // 导入分页类    aihuaqian.boshang3710.com
+        // 导入分页类    www.blklube.com
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -197,7 +197,7 @@ class ConvenientphoneAction extends CommonAction{
                 $this->assign('areas', D('Area')->select());
                 $this->assign('communitys', D('Community')->select());
                 import('ORG.Util.Page');
-                // 导入分页类    aihuaqian.boshang3710.com
+                // 导入分页类    www.blklube.com
                 $count = $obj->where(array('phone_id' => $phone_id))->count();
                 // 查询满足要求的总记录数
                 $Page = new Page($count, 25);
@@ -238,7 +238,7 @@ class ConvenientphoneAction extends CommonAction{
                 $this->assign('areas', D('Area')->select());
                 $this->assign('communitys', D('Village')->select());
                 import('ORG.Util.Page');
-                // 导入分页类    aihuaqian.boshang3710.com
+                // 导入分页类    www.blklube.com
                 $count = $obj->where(array('phone_id' => $phone_id))->count();
                 // 查询满足要求的总记录数
                 $Page = new Page($count, 25);

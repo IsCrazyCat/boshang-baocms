@@ -11,7 +11,7 @@ class CouponpcAction extends CommonAction{
     public function index() {
         
         $Coupon = D('Coupon');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('shop_id'=>  $this->shop_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
@@ -74,7 +74,7 @@ class CouponpcAction extends CommonAction{
          * 
          */
         $Coupondownload = D('Coupondownload');
-        import('ORG.Util.Page'); // 导入分页类    aihuaqian.boshang3710.com
+        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
         $map = array('shop_id'=>  $this->shop_id);
         $count = $Coupondownload->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 25); // 实例化分页类 传入总记录数和每页显示的记录数

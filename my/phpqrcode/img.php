@@ -24,15 +24,15 @@ $sql =" select logo from bao_shop where  shop_id =  '". $shop_id ."' " ;
 $result = mysql_query($sql,$con); //查询
 while($rs = mysql_fetch_array($result))
 {
-	$logo = 'http://aihuaqian.boshang3710.com/'.$rs['logo'];
+	$logo = 'http://www.blklube.com/'.$rs['logo'];
 }
 
-$value = 'http://aihuaqian.boshang3710.com/User/money/myindex/shop_id/'.$shop_id; //二维码内容
+$value = 'http://www.blklube.com/User/money/myindex/shop_id/'.$shop_id; //二维码内容
 $errorCorrectionLevel = 'L';//容错级别
 $matrixPointSize = 7;//生成图片大小
 //生成二维码图片
 QRcode::png($value, 'qrcode.png', $errorCorrectionLevel, $matrixPointSize, 2);
-//$logo = 'http://aihuaqian.boshang3710.com/attachs/2019/05/13/thumb_5cd93c2390e12.JPG';//准备好的logo图片
+//$logo = 'http://www.blklube.com/attachs/2019/05/13/thumb_5cd93c2390e12.JPG';//准备好的logo图片
 $QR = 'qrcode.png';//已经生成的原始二维码图
    
 if ($logo !== FALSE) {

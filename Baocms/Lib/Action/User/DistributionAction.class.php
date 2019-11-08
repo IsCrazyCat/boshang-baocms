@@ -39,10 +39,10 @@ class DistributionAction extends CommonAction{
             die;
         }
 		
-		$wx_back_url = 'http://aihuaqian.boshang3710.com/user/distrbution/index';
+		$wx_back_url = 'http://www.blklube.com/user/distrbution/index';
 		cookie('wx_back_url', $wx_back_url);
 		cookie('back_url', $wx_back_url);
-		session('backurl', 'http://aihuaqian.boshang3710.com/user/distrbution/index');
+		session('backurl', 'http://www.blklube.com/user/distrbution/index');
 		
 		$User = D('Users');
 		

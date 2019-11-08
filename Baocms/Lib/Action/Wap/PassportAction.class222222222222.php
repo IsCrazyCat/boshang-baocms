@@ -48,7 +48,7 @@ class PassportAction extends CommonAction{
             $this->error(D('Passport')->getError());
         } else {
 			
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/member/index';
+			$wx_back_url = 'http://www.blklube.com/user/member/index';
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);
@@ -213,12 +213,12 @@ class PassportAction extends CommonAction{
     {
 		$shop_id =  I('get.shop_id');
         if ((int)$shop_id>0) {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/money/myindex/shop_id/'.$shop_id;
+			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
-			session('backurl', 'http://aihuaqian.boshang3710.com/user/money/myindex/shop_id/'.$shop_id);
+			session('backurl', 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id);
 		} else {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/member/index';
+			$wx_back_url = 'http://www.blklube.com/user/member/index';
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);
@@ -303,7 +303,7 @@ class PassportAction extends CommonAction{
 		
 		$shop_id =  I('get.shop_id');
 		if ( $shop_id  ) {
-			$wx_back_url = 'http://aihuaqian.boshang3710.com/user/money/myindex/shop_id/'.$shop_id;
+			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
 			cookie('wx_back_url', $wx_back_url);
 			cookie('back_url', $wx_back_url);
 			session('backurl', $wx_back_url);
