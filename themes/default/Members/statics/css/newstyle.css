@@ -792,7 +792,7 @@ body{background-color:#fff}
 
 .lef #jq_star, .lef #jq_star1, .lef #jq_star2, .lef #jq_star3{margin-top: 7px;}
 
-/*我的兜兜-我的消息开始-新增*/
+/*个人中心-我的消息开始-新增*/
 .myMessage_list li{ display:block; padding:10px 0; border-bottom:1px dashed #dedede; overflow:hidden;}
 .myMessage_list li img{ float:left; width:48px; height:48px; margin-left:10px;}
 .myMessage_list li .nr{ margin-left:68px; background:#f7f7f7; overflow:hidden; padding:4px 10px; height:40px;}
@@ -815,9 +815,9 @@ body{background-color:#fff}
 .myMessage_details_form table tr th{ font-size:16px; color:#f34a00; vertical-align:top; line-height:24px; font-weight:normal;}
 .myMessage_details_form table tr td textarea{ width:100%; height:200px; border:1px solid #dedede; background:#fff none;}
 .myMessage_details_form table tr td .btn{background: #fb9335 none; border:none 0; padding: 0px 35px; height: 30px; line-height: 30px; border-radius: 3px; color: #fff; margin-top:10px; font-size:16px;}
-/*我的兜兜-我的消息结束-新增*/
+/*个人中心-我的消息结束-新增*/
 
-/*我的兜兜-一元购开始-新增*/
+/*个人中心-一元购开始-新增*/
 /*列表页*/
 .mine_yiyuan{ text-align:left; padding:0 20px;}
 .mine_yiyuan p{ font-size:12px; line-height:24px;}
@@ -846,9 +846,9 @@ body{background-color:#fff}
 .hotel_state .img{ width:720px; height:10px; background:url(../images/state.png) no-repeat center 0; margin-top:10px;}
 .hotel_state .img2{ background-position:center -10px;}
 .hotel_state .img3{ background-position:center -20px;}
-/*我的兜兜-一元购结束-新增*/
+/*个人中心-一元购结束-新增*/
 
-/*我的兜兜-订酒店 2016-04-11*/
+/*个人中心-订酒店 2016-04-11*/
 .hotel_orddtl_box{ border:1px solid #e6e6e6; background:#fff; padding:0 20px;}
 .hotel_orddtl_box .title{ border-bottom:2px solid #e6e6e6; line-height:40px; font-size:16px; padding-top:10px;}
 .hotel_orddtl_infor{ overflow:hidden; border-bottom:1px solid #e6e6e6; margin-bottom:10px; padding:10px 0;}
@@ -865,6 +865,6 @@ body{background-color:#fff}
 .hotel_tongji .btn{ display:inline-block; width:224px; height:94px; text-align:center; line-height:94px; color:#fff; background:#ff6600; border:none; font-size:24px; vertical-align:top; margin-left:20px;}
 .hotel_ts{padding:10px  20px;background: #f8f0d8;overflow: hidden; line-height:34px; margin-bottom:20px; border:1px solid #e6e6e6; font-size:16px;}
 .hotel_ts .btn {display: inline-block;padding: 0 10px;border-radius:3px;background: #2fbdaa; border:none;color: #fff;line-height: 34px; height:34px;}
-/*我的兜兜-订酒店end 2016-04-11*/
+/*个人中心-订酒店end 2016-04-11*/
 
 

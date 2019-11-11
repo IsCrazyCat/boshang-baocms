@@ -127,7 +127,7 @@ class ShopAction extends CommonAction{
         }
         $Shopdianping = D('Shopdianping');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
         $count = $Shopdianping->where($map)->count();
         $Page = new Page($count, 25);
@@ -145,7 +145,7 @@ class ShopAction extends CommonAction{
         if (!empty($dianping_ids)) {
             $this->assign('pics', D('Shopdianpingpics')->where(array('dianping_id' => array('IN', $dianping_ids)))->select());
         }
-        $this->assign('totalnum', $count);
+		$this->assign('totalnum', $count);
         $maps = array('closed' => 0, 'shop_id' => $shop_id, 'audit' => 1);
         $branchs = D('Shopbranch')->where($maps)->order(array('orderby' => 'asc'))->select();
         $shop_arr = array('name' => '总店', 'score' => $detail['score'], 'score_num' => $detail['score_num'], 'lng' => $detail['lng'], 'lat' => $detail['lat'], 'telephone' => $detail['tel'], 'addr' => $detail['addr']);
@@ -196,7 +196,7 @@ class ShopAction extends CommonAction{
         $this->assign('act', $act);
         $file = D('Weixin')->getCode($shop_id, 1);
         $this->assign('file', $file);
-        //二开
+
         $this->Shopcates = D('Shopcate')->fetchAll();
         $this->seodatas['cate_name'] = $this->Shopcates[$detail['cate_id']]['cate_name'];//分类
         $this->seodatas['cate_area'] = $this->areas[$detail['area_id']]['area_name'];//地区
@@ -256,16 +256,13 @@ class ShopAction extends CommonAction{
         }
         $this->baoError('取消关注失败！');
     }
-    //商家入驻
     public function apply(){
         if (empty($this->uid)) {
             header('Location:' . U('passport/login'));
             die;
         }
         if (D('Shop')->find(array('where' => array('user_id' => $this->uid)))) {
-            //$this->error('您已经拥有一家店铺了！', U('Merchant/index/index'));
-			header("Location:" . U('Merchant/index/index'));
-            die;
+            $this->error('您已经拥有一家店铺了！', U('Merchant/index/index'));
         }
         if ($this->isPost()) {
             $yzm = $this->_post('yzm');
@@ -274,17 +271,14 @@ class ShopAction extends CommonAction{
                 $this->baoError('验证码不正确!', 2000, true);
             }
             $data = $this->createCheck();
-            var_dump($data);die;
             $obj = D('Shop');
             $details = $this->_post('details', 'htmlspecialchars');
-            //sensitive_words   敏感词表
             if ($words = D('Sensitive')->checkWords($details)) {
                 $this->baoError('商家介绍含有敏感词：' . $words, 2000, true);
             }
             $ex = array('details' => $details, 'near' => $data['near'], 'price' => $data['price'], 'business_time' => $data['business_time']);
             unset($data['near'], $data['price'], $data['business_time']);
             if ($shop_id = $obj->add($data)) {
-                //生成二维码  getCode
                 $wei_pic = D('Weixin')->getCode($shop_id, 1);
                 $ex['wei_pic'] = $wei_pic;
                 D('Shopdetails')->upDetails($shop_id, $ex);
@@ -320,11 +314,11 @@ class ShopAction extends CommonAction{
         }
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
-            //$this->baoError('地区不能为空', 2000, true);
+            $this->baoError('地区不能为空', 2000, true);
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            //$this->baoError('商圈不能为空', 2000, true);
+            $this->baoError('商圈不能为空', 2000, true);
         }
         $data['contact'] = htmlspecialchars($data['contact']);
         if (empty($data['contact'])) {
@@ -354,7 +348,7 @@ class ShopAction extends CommonAction{
             $this->baoError('您已经是商家了', 2000, true);
         }
         $data['recognition'] = 1;
-        $data['is_pei'] = 1;
+		$data['is_pei'] = 1;
         $data['user_id'] = $this->uid;
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
@@ -537,7 +531,7 @@ class ShopAction extends CommonAction{
             D('Shop')->updateCount($shop_id, 'score_num');
             D('Users')->updateCount($this->uid, 'ping_num');
             D('Shopdianping')->updateScore($shop_id);
-            D('Users')->prestige($this->uid, 'dianping_shop');
+			D('Users')->prestige($this->uid, 'dianping_shop');
             $this->baoSuccess('恭喜您点评成功!', U('shop/detail', array('shop_id' => $shop_id)));
         }
         $this->baoError('点评失败！');
@@ -590,37 +584,37 @@ class ShopAction extends CommonAction{
                 //通知用户
                 if ($this->_CONFIG['sms']['dxapi'] == 'dy') {
                     D('Sms')->DySms($this->_CONFIG['site']['sitename'], 'sms_shop_yuyue_code', $data['mobile'], array(
-                    'shop_name' => $detail['shop_name'], 
-                    'shop_tel' => $detail['mobile'], 
-                    'shop_addr' => $detail['addr'], 
-                    'code' => $data['code']
-                    ));
+					'shop_name' => $detail['shop_name'], 
+					'shop_tel' => $detail['mobile'], 
+					'shop_addr' => $detail['addr'], 
+					'code' => $data['code']
+					));
                 } else {
                     D('Sms')->sendSms('sms_shop_yuyue', $data['mobile'], array(
-                    'shop_name' => $detail['shop_name'], 
-                    'shop_tel' => $detail['tel'], 
-                    'shop_addr' => $detail['addr'], 
-                    'code' => $data['code']
-                    ));
+					'shop_name' => $detail['shop_name'], 
+					'shop_tel' => $detail['tel'], 
+					'shop_addr' => $detail['addr'], 
+					'code' => $data['code']
+					));
                 }
                 //预约通知商家功能开始
                 if (!empty($detail['mobile'])) {
                     if ($this->_CONFIG['sms']['dxapi'] == 'dy') {
                         D('Sms')->DySms($this->_CONFIG['site']['sitename'], 'sms_shop_yuyue_shop', $detail['mobile'], array(
-                            'name' => $data['name'], 
-                            'content' => $data['content'], 
-                            'yuyue_date' => $data['yuyue_date'], 
-                            'mobile' => $data['mobile'], 
-                            'number' => $data['number']
-                        ));
+							'name' => $data['name'], 
+							'content' => $data['content'], 
+							'yuyue_date' => $data['yuyue_date'], 
+							'mobile' => $data['mobile'], 
+							'number' => $data['number']
+						));
                     } else {
                         D('Sms')->sendSms('sms_shangjia_yuyue', $detail['mobile'], array(
-                            'name' => $data['name'], 
-                            'content' => $data['content'], 
-                            'mobile' => $data['mobile'], 
-                            'number' => $data['number'], 
-                            'yuyue_date' => $data['yuyue_date']
-                        ));
+							'name' => $data['name'], 
+							'content' => $data['content'], 
+							'mobile' => $data['mobile'], 
+							'number' => $data['number'], 
+							'yuyue_date' => $data['yuyue_date']
+						));
                     }
                 }
                 //预约通知商家功能结束
@@ -673,19 +667,19 @@ class ShopAction extends CommonAction{
                 //通知用户
                 if ($this->_CONFIG['sms']['dxapi'] == 'dy') {
                     D('Sms')->DySms($this->_CONFIG['site']['sitename'], 'sms_shop_recognition_admin', $mobile, array(
-                        'shop_name' => $detail['shop_name'], 
-                        'name' => $data['name']
-                    ));
+						'shop_name' => $detail['shop_name'], 
+						'name' => $data['name']
+					));
                 }
                 $shop_name = $detail['shop_name'];
                 //邮件通知网站管理员
                 $pc_email_recognition = $this->_CONFIG['site']['config_email'];
                 D('Email')->sendMail('pc_email_recognition', $pc_email_recognition, '你好，管理员：有客户认领商家了！', array(
-                    'shop_name' => $shop_name, 
-                    'name' => $data['name'], 
-                    'mobile' => $data['mobile'], 
-                    'content' => $data['content']
-                ));
+					'shop_name' => $shop_name, 
+					'name' => $data['name'], 
+					'mobile' => $data['mobile'], 
+					'content' => $data['content']
+				));
                 $this->ajaxReturn(array('status' => 'success', 'msg' => '认领成功！', U('shop/detail', array('shop_id' => $detail['shop_id']))));
             } else {
                 $this->ajaxReturn(array('status' => 'error', 'msg' => '参数错误'));
@@ -703,7 +697,7 @@ class ShopAction extends CommonAction{
             die;
         }
         $Shopdianping = D('Shopdianping');
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
         $count = $Shopdianping->where($map)->count();
         
@@ -843,7 +837,7 @@ class ShopAction extends CommonAction{
         }
         $Life = D('Life');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'user_id' => $detail['user_id']);
         $count = $Life->where($map)->count();
         
@@ -874,7 +868,7 @@ class ShopAction extends CommonAction{
         }
         $article = D('Article');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'shop_id' => $shop_id);
         $count = $article->where($map)->count();
         

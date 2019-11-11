@@ -7,7 +7,7 @@ class ShopweixinkeywordAction extends CommonAction
     {
         $Shopweixinkeyword = D('Shopweixinkeyword');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['keyword'] = array('LIKE', '%' . $keyword . '%');
@@ -74,7 +74,7 @@ class ShopweixinkeywordAction extends CommonAction
         }
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['contents'])) {
-            $this->baoError('评论内容不能为空');
+            $this->baoError('回复内容不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['contents'])) {
             $this->baoError('内容含有敏感词：' . $words);
@@ -130,7 +130,7 @@ class ShopweixinkeywordAction extends CommonAction
         }
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['contents'])) {
-            $this->baoError('评论内容不能为空');
+            $this->baoError('回复内容不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['contents'])) {
             $this->baoError('内容含有敏感词：' . $words);

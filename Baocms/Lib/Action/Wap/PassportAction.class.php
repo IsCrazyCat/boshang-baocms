@@ -20,6 +20,8 @@ class PassportAction extends CommonAction{
             $invite_id = (int) cookie('invite_id');
             if (!empty($invite_id)) {
                 $data['invite_id'] = $invite_id;
+            }else{
+
             }
 			if (empty($data['password'])) {
                $this->fengmiMsg('请输入密码');
@@ -33,49 +35,50 @@ class PassportAction extends CommonAction{
             }
 			
             //开始其他的判断了
-           if (true == D('Passport')->register($data)) {
-			$wx_back_url = 'http://www.blklube.com/user/member/index';
-			cookie('wx_back_url', $wx_back_url);
-			cookie('back_url', $wx_back_url);
-			session('backurl', $wx_back_url);
-
-               $this->fengmiMsg('恭喜您，注册成功！', U('user/member/index'));
-
+            if (true == D('Passport')->register($data)) {
+                $this->fengmiMsg('恭喜您，注册成功！', U('index/index'));
             }
             $this->error(D('Passport')->getError());
         } else {
-			
-			$wx_back_url = 'http://www.blklube.com/user/member/index';
-			cookie('wx_back_url', $wx_back_url);
-			cookie('back_url', $wx_back_url);
-			session('backurl', $wx_back_url);
-
+            //分销开始
+            $fuid = (int) cookie('fuid');
+            if ($fuid) {
+                $profit_min_rank_id = (int) $this->_CONFIG['profit']['profit_min_rank_id'];
+                $fuser = D('Users')->find($fuid);
+                if ($fuser) {
+                    $flag = false;
+                    if ($profit_min_rank_id) {
+                        $modelRank = D('Userrank');
+                        $rank = $modelRank->find($profit_min_rank_id);
+                        $userRank = $modelRank->find($fuser['rank_id']);
+                        if ($rank) {
+                            if ($userRank && $userRank['prestige'] >= $rank['prestige']) {
+                                $flag = true;
+                            } else {
+                                $flag = false;
+                            }
+                        } else {
+                            $flag = false;
+                        }
+                    } else {
+                        $flag = true;
+                    }
+                    $fuser['nickname'] = empty($fuser['nickname']) ? $fuser['account'] : $fuser['nickname'];
+                    if ($flag) {
+                        $this->assign('fuser', $fuser);
+                    }
+                }
+            }
+            //分销结束
             $this->display();
         }
     }
     private function createCheck()
     {
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
-		
-
-		$data['fuid1'] = htmlspecialchars($_POST['fuid1']);
-		
-		$_POST['tjrmobile'] = trim($_POST['tjrmobile']);
-		$tjrmobile = htmlspecialchars($_POST['tjrmobile']);
-		$tjrmobile = str_replace("请输入推荐人手机","",$tjrmobile);
-		if ( strlen($tjrmobile) > 10 ) {
-			$this->fengmiMsg($tjrmobile);
-			if (!isMobile($tjrmobile)) {
-				$this->fengmiMsg('推广手机号不正确，请检查~');
-			} 
-			if ($tjruser = D('Users')->where(array('mobile' => $tjrmobile))->find()) {
-				$data['fuid1'] = (int)$tjruser['user_id'];
-			}
-		}
-		
+        $data['fuid1'] = htmlspecialchars($_POST['fuid1']);
         //微信自动分享
         $data['account'] = htmlspecialchars($_POST['account']);
-		$data['account'] = str_replace("请输入手机号码","",$data['account']);
         if (!isMobile($data['account'])) {
             session('verify', null);
             $this->fengmiMsg('只允许手机号注册，请检查~');
@@ -87,16 +90,9 @@ class PassportAction extends CommonAction{
             session('verify', null);
             $this->fengmiMsg('请输入正确的密码!密码长度必须要在' . $register_password . '个字符以上', 2000, true);
         }
-		$ext0 = htmlspecialchars(trim($_POST['ext0']));
-		$ext0 = str_replace("请输入真实姓名(选填)","",$ext0);
-		if ( strlen(trim($_POST['ext0'])) > 1 ) {
-			$data['nickname'] = $ext0;
-		} else {
-			$data['nickname'] = $data['account'];
-		}
+        $data['nickname'] = $data['account'];
         $data['token'] = $data['token'];
-		
-        $data['ext0'] = $ext0;
+        $data['ext0'] = $data['account'];
         //兼容UCENTER
         $data['mobile'] = $data['account'];
         $data['reg_ip'] = get_client_ip();
@@ -124,7 +120,7 @@ class PassportAction extends CommonAction{
         }
         $randstring = session('scode');
         if (empty($randstring)) {
-            $randstring = rand_string(4, 1);
+            $randstring = rand_string(6, 1);
             session('scode', $randstring);
         }
         if ($this->_CONFIG['sms']['dxapi'] == 'dy') {
@@ -144,19 +140,6 @@ class PassportAction extends CommonAction{
     }
     public function login()
     {
-		$shop_id =  I('get.shop_id');
-        if ((int)$shop_id>0) {
-			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
-			cookie('wx_back_url', $wx_back_url);
-			cookie('back_url', $wx_back_url);
-			session('backurl', 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id);
-		} else {
-			$wx_back_url = 'http://www.blklube.com/user/member/index';
-			cookie('wx_back_url', $wx_back_url);
-			cookie('back_url', $wx_back_url);
-			session('backurl', $wx_back_url);
-	
-		}
         if ($this->isPost()) {
             $account = $this->_post('account');
             if (empty($account)) {
@@ -168,9 +151,7 @@ class PassportAction extends CommonAction{
             }
             $backurl = $this->_post('backurl', 'htmlspecialchars');
             if (empty($backurl)) {
-				
-					$backurl = U('user/member/index');
-                
+                $backurl = U('user/member/index');
             }
             if (true == D('Passport')->login($account, $password)) {
                 $this->fengmiMsg('恭喜您登录成功！', $backurl);
@@ -179,41 +160,11 @@ class PassportAction extends CommonAction{
             }
         } else {
             if (!empty($_SERVER['HTTP_REFERER']) && strstr($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) && !strstr($_SERVER['HTTP_REFERER'], 'passport')) {
-               $backurl = $_SERVER['HTTP_REFERER'];
+                $backurl = $_SERVER['HTTP_REFERER'];
             } else {
-				if ( strlen(cookie('wx_back_url')) > 1 ) {
-				    $backurl = cookie('wx_back_url');
-				} elseif( strlen( session('backurl') ) > 1 ) {
-					$backurl = session('backurl');
-				} elseif( strlen( cookie('back_url') ) > 1 ) {
-					$backurl = cookie('backurl');
-				}  else {
-					$backurl = U('user/member/index/#01');
-				}
-				
-				//$backurl = U('user/member/index');
+                $backurl = U('user/member/index');
             }
             $this->assign('backurl', $backurl);
-			
-			
-			//if (empty($this->uid)) {
-				$is_weixin = is_weixin();
-				if ($is_weixin) {
-//				    if (strpos(cookie('wx_back_url'), 'myindex/shop_id') !== false) {
-//				        header('Location:' . cookie('wx_back_url'));
-//					    die;
-//			        } elseif (strpos(session('backurl'), 'myindex/shop_id') !== false) {
-//				        header('Location:' . session('backurl'));
-//					    die;
-//			        }  else {
-//						header('Location:' . $backurl);
-//					    die;
-//					}
-				}
-			//}
-			
-			
-			
             $this->display();
         }
     }
@@ -231,26 +182,9 @@ class PassportAction extends CommonAction{
     }
     public function wxlogin(){
         $state = md5(uniqid(rand(), TRUE));
-        if ( strlen(cookie('wx_back_url')) == 0 ) {
-			cookie('wx_back_url', $_SERVER['HTTP_REFERER']);
-		}
+        cookie('wx_back_url', $_SERVER['HTTP_REFERER']);
         session('state', $state);
-		
-		$shop_id =  I('get.shop_id');
-		if ( $shop_id  ) {
-			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
-			cookie('wx_back_url', $wx_back_url);
-			cookie('back_url', $wx_back_url);
-			session('backurl', $wx_back_url);
-		}
-		
-//		header("Location: " . U('Wap/passport/login'));
-//      die;
-		
-		
-		//$login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->_CONFIG['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
-       // $login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->_CONFIG['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxcallback')) . '&response_type=code&scope=snsapi_base&state=' . $state . '#wechat_redirect';
-        $login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->_CONFIG['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxcallback')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
+        $login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->_CONFIG['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxcallback')) . '&response_type=code&scope=snsapi_base&state=' . $state . '#wechat_redirect';
         header("Location:{$login_url}");
         die;
     }
@@ -279,19 +213,13 @@ class PassportAction extends CommonAction{
         $this->thirdlogin($data);
     }
     public function wxcallback()
-	
     {
-		
-		
         if ($_REQUEST['state'] == session('state')) {
             import('@/Net.Curl');
             $curl = new Curl();
             if (empty($_REQUEST['code'])) {
-//				header("Location: " . U('Wap/passport/login'));
-//                 die;
                 $this->error('授权后才能登陆！', U('passport/login'));
             }
-			
             $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . $this->_CONFIG['weixin']['appid'] . '&secret=' . $this->_CONFIG['weixin']['appsecret'] . '&code=' . $_REQUEST['code'] . '&grant_type=authorization_code';
             $str = $curl->get($token_url);
             $params = json_decode($str, true);
@@ -300,68 +228,13 @@ class PassportAction extends CommonAction{
                 echo '<h3>msg  :</h3>' . $params['errmsg'];
                 die;
             }
-			
             if (empty($params['openid'])) {
-//				header("Location: " . U('Wap/passport/login'));
-//                 die;
                 $this->error('登录失败', U('passport/login'));
-				
             }
-			//$this->error(print_r($params));
-//			$access_token = $this->getAccessToken();
-//			 $mydata = json_decode(file_get_contents("access_token.json"));
-//             $access_token = $mydata->access_token;
-//			$wx_user_info = D('Connect')->wx_user_info($params['openid'], $access_token);
-//			$myurl = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$params['open_id'].'&lang=zh_CN';
-//			$mystr = $curl->get($myurl);
-//			$wx_user_info = json_decode($mystr, true);
-           // $data = array('type' => 'weixin', 'open_id' => $params['openid'], 'token' => $params['refresh_token'], 'nickname' => $wx_user_info['nickname'], 'headimgurl' => $wx_user_info['headimgurl'],'unionid' => $wx_user_info['unionid'],'province' => $wx_user_info['province']);
-			
-			$info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token=' . $params['access_token'] . '&openid=' . $params['openid'] . '&lang=zh_CN';
-            $info = $curl->get($info_url);
-            $info = json_decode($info, true);
-            $data = array(
-				'type' => 'weixin', 
-				'open_id' => $params['openid'], 
-				'token' => $params['refresh_token'], 
-				'nickname' => $info['nickname'], 
-				'headimgurl' => $info['headimgurl'],
-				'unionid' => $info['unionid'],
-				'province' => $info['province']
-			);								
-			
-			
+            $data = array('type' => 'weixin', 'open_id' => $params['openid'], 'token' => $params['refresh_token']);
             $this->thirdlogin($data);
-        } else {
-			header("Location: " . U('Wap/passport/login'));
-            die;	
-		}
+        }
     }
-	
-    public 	function getAccessToken() {
-    // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
-	
-	
-    $data = json_decode(file_get_contents("access_token.json"));
-    if ($data->expire_time < time()) {
-      // 如果是企业号用以下URL获取access_token
-      // $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$this->appId&corpsecret=$this->appSecret";
-      $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$this->appId&secret=$this->appSecret";
-      $res = json_decode($this->httpGet($url));
-      $access_token = $res->access_token;
-      if ($access_token) {
-        $data->expire_time = time() + 7000;
-        $data->access_token = $access_token;
-        $fp = fopen("access_token.json", "w");
-        fwrite($fp, json_encode($data));
-        fclose($fp);
-      }
-    } else {
-      $access_token = $data->access_token;
-    }
-    return $access_token;
-  }
-	
     public function qqcallback()
     {
         import('@/Net.Curl');
@@ -430,14 +303,8 @@ class PassportAction extends CommonAction{
 				'open_id' => $params['openid'], 
 				'token' => $params['refresh_token'], 
 				'nickname' => $info['nickname'], 
-				'headimgurl' => $info['headimgurl'],
-				'unionid' => $info['unionid'],
-				'province' => $info['province']
+				'headimgurl' => $info['headimgurl']
 			);
-			
-			
-			
-			
             $this->wxconn($data);
         }
     }
@@ -446,23 +313,15 @@ class PassportAction extends CommonAction{
         $connect = D('Connect')->getConnectByOpenid($data['type'], $data['open_id']);
         if (empty($connect)) {
             $connect = $data;
-			$data['uid']=(int)getUid();
             $connect['connect_id'] = D('Connect')->add($data);
         } else {
-            D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token'], 'nickname' => $data['nickname'], 'headimgurl' => $data['headimgurl']));
+            D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token'], 'nickname' => $data['nickname']));
         }
         if (empty($connect['uid'])) {
             session('connect', $connect['connect_id']);
-			
-			
-			
-			
-			header("Location: " . U('Wap/passport/register'));
-            die;
-					
             // 用户数据整理
             $host = explode('.', $this->_CONFIG['site']['host']);
-            $account = uniqid() . '@hmd.com' ;
+            $account = uniqid() . '@' . $host[1] . '.' . $host[2];
             if ($data['nickname'] == '') {
                 $nickname = $data['type'] . $connect['connect_id'];
             } else {
@@ -472,90 +331,48 @@ class PassportAction extends CommonAction{
 				'account' => $account, 
 				'password' => rand(10000000, 999999999), 
 				'nickname' => $nickname, 
-				'ext0' => $nickname, 
+				'ext0' => $account, 
 				'face' => $data['headimgurl'], 
 				'token' => $data['token'], 
 				'reg_time' => NOW_TIME, 
 				'reg_ip' => get_client_ip()
 			);
-			
-			$fuid = (int)cookie('fuid');	
-			if ( $fuid  ) {
-			} else {
-				$fuid = (int)cookie('invite_id');	
-			} 
-			$fuser = D('Users')->find($fuid);
-			if ($fuser) {
-				if  ( (int)$fuser['user_id']<>(int)$this->uid ) {
-					$user['fuid1'] = $fuser['user_id'];
-				}
-				if  ( (int)$fuser['fuid1']<>(int)$this->uid ) {
-					$user['fuid2'] = (int)$fuser['fuid1'];
-				}
-				if  ( (int)$fuser['fuid2']<>(int)$this->uid ) {
-					$user['fuid3'] = (int)$fuser['fuid2'];
-				}
-			}
             //注册用户资料
-//            if (!D('Passport')->register($user)) {
-//                $this->error('创建帐号失败');
-//            }
+            if (!D('Passport')->register($user)) {
+                $this->error('创建帐号失败');
+            }
             // 注册第三方接口
             $token = D('Passport')->getToken();
             $connect['uid'] = $token['uid'];
             D('Connect')->save(array('connect_id' => $connect['connect_id'], 'uid' => $connect['uid']));// 注册成功智能跳转
             $backurl = session('backurl');
-			
-			$backurl = strtolower($backurl);
-			if(strpos($backurl,'/login')!== false){ 
-				$backurl = U('user/member/index/#02');
-			}
-			
-			setcookie("fuid", "", time() - 3600, "/");
-			setcookie("invite_id", "", time() - 3600, "/");
-			
             if (!empty($backurl)) {
                 header("Location:{$backurl}");
             } else {
-                header('Location:' . U('user/member/index/#02'));
+                header('Location:' . U('user/member/index'));
             }
         } else {
-
-			D('Users')->save(array('user_id' => $connect['uid'], 'token' => $data['token'], 'nickname' => $data['nickname'], 'face' => $data['headimgurl'],  'province' => $data['province']));
-
-			
-			
             setuid($connect['uid']);
             session('access', $connect['connect_id']);
             // 注册成功智能跳转
             $backurl = session('backurl');
-			
-			$backurl = strtolower($backurl);
-			if(strpos($backurl,'/login')!== false){ 
-				$backurl = U('user/member/index/#02');
-			}
-			
-			setcookie("fuid", "", time() - 3600, "/");
-			setcookie("invite_id", "", time() - 3600, "/");
             if (!empty($backurl)) {
                 header("Location:{$backurl}");
             } else {
-                header('Location:' . U('user/member/index/#03'));
+                header('Location:' . U('user/member/index'));
             }
         }
         die;
     }
     private function thirdlogin($data){
-		
         if ($this->_CONFIG['connect']['debug']) {
-			
 
             $connect = D('Connect')->getConnectByOpenid($data['type'], $data['open_id']);
             if (empty($connect)) {
                 $connect = $data;
                 $connect['connect_id'] = D('Connect')->add($data);
             } else {
-                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token'], 'nickname' => $data['nickname'], 'headimgurl' => $data['headimgurl']));
+                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token']));
             }
             //如果是qq登录则获取
             if ($data['type'] == 'qq') {
@@ -563,69 +380,20 @@ class PassportAction extends CommonAction{
                 $nickname = $user_info['nickname'];
                 $face = $user_info['figureurl_qq_2'] == '' ? $user_info['figureurl_qq_1'] : $user_info['figureurl_qq_2'];
             }
-			
-			
-			
             //结束
             if (empty($connect['uid'])) {
-				
-				if (empty($this->uid)) {
-					
-					header("Location: " . U('Wap/passport/register'));
-                    die;
-					
-//					$account = $data['type'] . rand(100000, 999999) . '@wx.com';
-//					$user = array('account' => $account, 'password' => rand(100000, 999999), 'nickname' => $data['nickname'], 'face' => $data['headimgurl'], 'ext0' => $data['nickname'],'token' => $data['token'],  'create_time' => NOW_TIME, 'create_ip' => get_client_ip());
-//					if (!D('Passport')->register($user)) {
-//						//$this->error('创建帐号失败');
-//					}
-				}
-                 
+                $account = $data['type'] . rand(100000, 999999) . '@qq.com';
+                $user = array('account' => $account, 'password' => rand(100000, 999999), 'nickname' => $nickname, 'face' => $face, 'ext0' => $account, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip());
+                if (!D('Passport')->register($user)) {
+                    $this->error('创建帐号失败');
+                }
                 $token = D('Passport')->getToken();
-				if ( (int)$token['uid'] > 0 ) {
-					$connect['uid'] = $token['uid'];
-				} else {
-					$connect['uid'] = $this->uid;
-				}
-                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'uid' => $connect['uid'], 'nickname' => $data['nickname'], 'headimgurl' => $data['headimgurl'], 'unionid' => $data['unionid'] ));
-				D('Users')->save(array('user_id' => $connect['uid'], 'nickname' => $data['nickname'], 'face' => $data['headimgurl'],  'province' => $data['province'],'token' => $data['token']));
-				
+                $connect['uid'] = $token['uid'];
+                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'uid' => $connect['uid']));
             }
             setuid($connect['uid']);
             session('access', $connect['connect_id']);
-			
-			if ( (int)$connect['uid'] > 0 ) {
-				$gerenshuju_count = M('Users')->where(" fuid1 = '".$connect['uid']."' ")->count(); 
-				if ( (int)$gerenshuju_count > 0  ) {
-					D('Users')->save(array('user_id' => $connect['uid'], 'gerenshuju' => $gerenshuju_count));
-				}
-				$tuanduishuju_count = M('Users')->where(" shangxianjihe LIKE '%,".$connect['uid'].",%' ")->count(); 
-				if ( (int)$tuanduishuju_count > 0 ) { 
-					D('Users')->save( array('user_id' => $connect['uid'], 'tuanduishuju' => $tuanduishuju_count) );
-				}
-			}
-			    //D('connect')->where(' uid is null or uid = 0')->delete(); 
-				
-			    if ( strlen(cookie('wx_back_url')) > 1 ) {
-				    $backurl = cookie('wx_back_url');
-				} elseif( strlen( session('backurl') ) > 1 ) {
-					$backurl = session('backurl');
-				} elseif( strlen( cookie('back_url') ) > 1 ) {
-					$backurl = cookie('backurl');
-				}  else {
-					$backurl = U('user/member/index/#04');
-				}
-				$backurl = strtolower($backurl);
-				if(strpos($backurl,'port/login')!== false){ 
-				    $backurl = U('user/member/index/#04');
-				}
-				if(strpos($backurl,'port/register')!== false){ 
-					$backurl = U('user/member/index/#05');
-				}
-                header('Location:' . $backurl);
-			
-			
-            //header('Location:' . U('user/member/index'));
+            header('Location:' . U('user/member/index'));
             die;
         } else {
             $connect = D('Connect')->getConnectByOpenid($data['type'], $data['open_id']);
@@ -633,35 +401,15 @@ class PassportAction extends CommonAction{
                 $connect = $data;
                 $connect['connect_id'] = D('Connect')->add($data);
             } else {
-                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token'], 'nickname' => $data['nickname'], 'headimgurl' => $data['headimgurl']));
+                D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token']));
             }
-			
             if (empty($connect['uid'])) {
                 session('connect', $connect['connect_id']);
                 header('Location: ' . U('passport/bind'));
             } else {
                 setuid($connect['uid']);
                 session('access', $connect['connect_id']);
-				
-				if ( strlen(cookie('wx_back_url')) > 1 ) {
-				    $backurl = cookie('wx_back_url');
-				} elseif( strlen( session('backurl') ) > 1 ) {
-					$backurl = session('backurl');
-				} elseif( strlen( cookie('back_url') ) > 1 ) {
-					$backurl = cookie('backurl');
-				}  else {
-					$backurl = U('user/member/index/#05');
-				}
-			     
-				$backurl = strtolower($backurl);
-				if(strpos($backurl,'/login')!== false){ 
-				    $backurl = U('user/member/index/#05');
-				} 
-			
-                header('Location:' . $backurl);
-				
-				
-               // header('Location:' . U('user/member/index'));
+                header('Location:' . U('user/member/index'));
             }
             die;
         }
@@ -739,7 +487,7 @@ class PassportAction extends CommonAction{
 					'newpwd' => $password
 				));
             } else {
-                D('Sms')->sendSms('sms_newpwd', $mobile, array('sitename' => $this->_CONFIG['site']['sitename'], 'newpwd' => $password));
+                D('Sms')->sendSms('sms_newpwd', $mobile, array('newpwd' => $password));
             }
         }
         $this->fengmiMsg('重置密码成功！', U('passport/suc', array('way' => $way)));
@@ -766,7 +514,7 @@ class PassportAction extends CommonAction{
         }
         $randstring = session('scode');
         if (empty($randstring)) {
-            $randstring = rand_string(4, 1);
+            $randstring = rand_string(6, 1);
             session('scode', $randstring);
         }
         //大鱼短信

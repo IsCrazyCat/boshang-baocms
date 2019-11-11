@@ -8,7 +8,7 @@
 	<a class="top-addr" href="<{:u('tuan/index')}>"><i class="icon-angle-left"></i></a>
 </div>
 <div class="top-title">
-	添加团购
+	添加抢购
 </div>
 </header>
 <style>
@@ -24,7 +24,7 @@
 	</div>
 	<div class="Upload-img-box">
 		<div id="fileToUpload">
-			上传团购图
+			上传抢购图
 		</div>
 		<div class="Upload-img">
 			<div class="list-img loading" style="display:none;">
@@ -42,17 +42,15 @@
 			swf: '/static/default/webuploader/Uploader.swf',                             
 			server: '<{:U("app/upload/uploadify",array("model"=>"tuan"))}>',                             
 			pick: '#fileToUpload',                             
-			resize: true,
-duplicate :true, //可重复上传  
-    
-			compress : {width:width_tuan,height:height_tuan,quality:80,allowMagnify: false,crop: true}//裁剪       
+			resize: true,    
+			compress : {width:width_tuan,height:height_tuan,quality:60,allowMagnify: false,crop: true}//裁剪       
         });
         uploader.on( 'beforeFileQueued', function( file ) {
             $(".loading").show();
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_tuan,//这里裁剪长度
-                    quality:80
+                    quality:60
                 });
             }
         });
@@ -94,9 +92,7 @@ duplicate :true, //可重复上传
 			server: '<{:U("app/upload/uploadify",array("model"=>"tuan"))}>',                             
 			pick: '#moreToUpload',
 			fileNumberLimit:10,                    
-			resize: true,
-duplicate :true, //可重复上传  
-    
+			resize: true,    
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -110,7 +106,7 @@ duplicate :true, //可重复上传
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_tuan_pic,
-                    quality:80
+                    quality:60
                 });
             }
         });
@@ -139,7 +135,7 @@ duplicate :true, //可重复上传
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">团购名称：</span>
+			<span class="x3">抢购名称：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[title]" value="<{$detail.title|default=''}>" />
 			</span>
@@ -147,7 +143,7 @@ duplicate :true, //可重复上传
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">团购简介：</span>
+			<span class="x3">抢购简介：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[intro]" value="<{$detail.intro|default=''}>" />
 			</span>
@@ -155,7 +151,7 @@ duplicate :true, //可重复上传
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">团购分类</span>
+			<span class="x3">抢购分类</span>
 			<span class="x4">
 			<select name="parent_id" id="parent_id" class="text-select">
 				<option value="0" selected="selected">请选择</option>
@@ -230,7 +226,7 @@ duplicate :true, //可重复上传
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">团购价格：</span>
+			<span class="x3">抢购价格：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[tuan_price]" value="<{$detail.tuan_price|default=''}>" />
 			</span>
@@ -260,20 +256,20 @@ duplicate :true, //可重复上传
 			</span>
 		</div>
 	</div>
-	
+	<if condition="!empty($SHOP['is_profit'])">
 	<div class="blank-10" bg>
 	</div>
-	<div class="row" style="display:none">
+	<div class="row">
 		<div class="line">
 			<span class="x8">是否分成给上级分销商：</span>
 			<span class="x4">
 			<label><span>是</span>
-			<input style="width: 20px; height: 20px;" type="radio" name="data[profit_enable]" value='1' checked="checked" <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> />
+			<input style="width: 20px; height: 20px;" type="radio" name="data[profit_enable]" value='1' <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> />
 			</label>
 			</span>
 		</div>
 	</div>
-	<div class="row" style="display:none">
+	<div class="row">
 		<div class="line">
 			<span class="x8">一级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -281,7 +277,7 @@ duplicate :true, //可重复上传
 			</span>
 		</div>
 	</div>
-	<div class="row" style="display:none">
+	<div class="row">
 		<div class="line">
 			<span class="x8">二级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -289,7 +285,7 @@ duplicate :true, //可重复上传
 			</span>
 		</div>
 	</div>
-	<div class="row" style="display:none">
+	<div class="row">
 		<div class="line">
 			<span class="x8">三级会员分成(填写百分比%)：</span>
 			<span class="x4">
@@ -297,7 +293,7 @@ duplicate :true, //可重复上传
 			</span>
 		</div>
 	</div>
-	<if condition="!empty($SHOP['is_profit'])"></if>
+	</if>
 	<!--下面是时间-->
 	<div class="blank-10" bg>
 	</div>
@@ -339,14 +335,14 @@ duplicate :true, //可重复上传
 		<textarea class="form-content" name="instructions" placeholder="购买须知,建议不超过100字！"></textarea>
 	</div>
 	<div class="line border-bottom">
-		<textarea class="form-content1" name="details" placeholder="添加团购内容，建议不超过200字，如需上传文章详情图，请到使用电脑编辑！"></textarea>
+		<textarea class="form-content1" name="details" placeholder="添加抢购内容，建议不超过200字，如需上传文章详情图，请到使用电脑编辑！"></textarea>
 	</div>
 	<div class="blank-10 bg">
 	</div>
 	<div class="container">
 		<div class="blank-30">
 		</div>
-		<button type="submit" class="button button-block button-big bg-dot">添加团购</button>
+		<button type="submit" class="button button-block button-big bg-dot">添加抢购</button>
 		<div class="blank-30">
 		</div>
 	</div>

@@ -9,7 +9,7 @@ class EleAction extends CommonAction{
     }
     public function index(){
         $Ele = D('Ele');
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name'] = array('LIKE', '%' . $keyword . '%');

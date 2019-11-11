@@ -71,7 +71,7 @@ class JifenAction extends CommonAction{
         $rsd = $sd->where(array('shop_id' => $detail['shop_id']))->find();
         $this->assign('rsd', $rsd);
         $this->assign('detail', $detail);
-        //二开
+
         $this->seodatas['title'] = $detail['title'];
         $this->seodatas['price'] = $detail['price'];
         $this->seodatas['num'] = $detail['num'];
@@ -114,10 +114,10 @@ class JifenAction extends CommonAction{
                 $data['area_id'] = (int) $data['area_id'];
                 $data['business_id'] = (int) $data['business_id'];
                 if (empty($data['area_id'])) {
-                    //$this->baoError('地区不能为空');
+                    $this->baoError('地区不能为空');
                 }
                 if (empty($data['business_id'])) {
-                    //$this->baoError('商圈不能为空');
+                    $this->baoError('商圈不能为空');
                 }
                 $data['mobile'] = htmlspecialchars($data['mobile']);
                 if (empty($data['mobile'])) {

@@ -1,6 +1,6 @@
 <?php
 class AliSms {
-	private $gatewayUrl = "http://gw.api.boshang3710.com/router/rest";
+	private $gatewayUrl = "http://gw.api.taobao.com/router/rest";
 	private $method="alibaba.aliqin.fc.sms.num.send";
 	private $format="json";
 	private $v="2.0";

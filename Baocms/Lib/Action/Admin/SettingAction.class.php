@@ -83,7 +83,7 @@ class SettingAction extends CommonAction{
             $this->display();
         }
     }
-	//其他设置   支付设置
+	
 	public function pay(){
         if ($this->isPost()) {
             $data = $this->_post('data', false);
@@ -95,22 +95,6 @@ class SettingAction extends CommonAction{
             $this->display();
         }
     }
-    //随机免单设置 qiu  2019 01 14
-    public function noSingle(){
-        // $randomNumber=rand(1,100);
-        // if()
-        // var_dump($randomNumber);die;
-              if ($this->isPost()) {
-            $data = $this->_post('data', false);
-            $data = serialize($data);
-            D('Setting')->save(array('k' => 'noSingle', 'v' => $data));
-            D('Setting')->cleanCache();
-            $this->baoSuccess('随机免单设置成功', U('setting/noSingle'));
-        } else {
-            $this->display();
-        }
-    }
-      //随机免单设置 qiu  2019 01 14   end
     public function weixin(){
         if ($this->isPost()) {
             $data = $this->_post('data', false);

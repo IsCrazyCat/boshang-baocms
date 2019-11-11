@@ -14,7 +14,7 @@ class HdmobileAction extends CommonAction
     {
         $Huodong = D('Huodong');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('closed' => 0, 'city_id' => $this->city_id);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

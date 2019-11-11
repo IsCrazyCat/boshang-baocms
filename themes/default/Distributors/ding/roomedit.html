@@ -33,10 +33,8 @@
 			swf: '/static/default/webuploader/Uploader.swf',                             
 			server: '<{:U("app/upload/uploadify",array("model"=>"dingroom"))}>',                             
 			pick: '#fileToUpload',                             
-			resize: true,
-duplicate :true, //可重复上传  
-    
-			compress : {width:width_dingroom,height:height_dingroom,quality:80,allowMagnify: false,crop: true}//裁剪       
+			resize: true,    
+			compress : {width:width_dingroom,height:height_dingroom,quality:60,allowMagnify: false,crop: true}//裁剪       
         });
         //监听文件处理
         uploader.on( 'beforeFileQueued', function( file ) {
@@ -44,7 +42,7 @@ duplicate :true, //可重复上传
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_dingroom,//这里裁剪长度
-                    quality:80
+                    quality:60
                 });
             }
         });

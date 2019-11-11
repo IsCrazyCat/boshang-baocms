@@ -57,7 +57,6 @@
                                 <li><a href="javascript:void(0);" class="jq_menu" rel="<{$var.menu_id}>" ><{$var.menu_name}></a></li>
                             </if>
                         </foreach>
-                            
                         <div class="clear"></div>
                         <script>
                             $(document).ready(function (e) {
@@ -78,16 +77,13 @@
                                 $(".t2 li").eq(0).find('.jq_menu').click();
                             });
                         </script>
-                        
-                        
                     </ul>
                 </div>
                 
                 
                 <div class="t3">
                 <ul> 
-                     <!--<li><a class="jq_menu" target="_blank" href="http://www.blklube.com/10680.html">分站版本号：V3.0</a>
-                     <li><a class="jq_menu" target="_blank" href="http://www.blklube.com/list-83.html">使用教程</a>-->
+                     <li><a class="jq_menu" target="_blank" href="">分站版本号：V3.0</a>
                      <li><a href="<{:U('login/logout')}>" class="jq_menu">退出</a></li>
                      <li class=" jq_menu2" ><a href="/" target="_blank" class="jq_menu">站点首页</a></li>
                 </ul>
@@ -103,7 +99,7 @@
                 <div class="side-user">
               <div class="avatar"><img src="__TMPL__statics/images/avatar1_50.jpg" alt="Avatar" width="46" height="46"></div>
               <div class="info">
-                <a href="javascript:void(0);">您好！<{$admin.username}>
+                <a href="#">您好！<{$admin.username}>
                 <a target="main_frm" href="<{:U('clean/cache')}>">更新缓存</a>
                 <img src="__TMPL__statics/images/state_online.png" alt="Status"> <span>城市：<{$city}></span>
              

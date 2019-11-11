@@ -2,7 +2,7 @@
 class TuancodeAction extends CommonAction{
     public function overdue(){
         $Tuancode = D('Tuancode');
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('is_used' => 0, 'status' => array('IN', array(0, 1)), 'fail_date' => array('ELT', TODAY));
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -193,7 +193,7 @@ class TuancodeAction extends CommonAction{
                 }
                 $this->baoSuccess('删除成功！', U('Tuancode/index'));
             }
-            $this->baoError('请选择要删除的团购券');
+            $this->baoError('请选择要删除的抢购券');
         }
     }
     public function overdueing($code_id = 0) {
@@ -203,10 +203,10 @@ class TuancodeAction extends CommonAction{
                 if (D('Tuancode')->save(array('code_id' => $code_id, 'status' => 2))) { //将内容变成
                     $obj = D('Users');
                     if ($detail['real_money'] > 0) {
-                        $obj->addMoney($detail['user_id'], $detail['real_money'], '团购券退款:' . $detail['code']);
+                        $obj->addMoney($detail['user_id'], $detail['real_money'], '抢购券退款:' . $detail['code']);
                     }
                     if ($detail['real_integral'] > 0) {
-                        $obj->addIntegral($detail['user_id'], $detail['real_integral'], '团购券退款:' . $detail['code']);
+                        $obj->addIntegral($detail['user_id'], $detail['real_integral'], '抢购券退款:' . $detail['code']);
                     }
                 }
             }
@@ -221,10 +221,10 @@ class TuancodeAction extends CommonAction{
                         if (D('Tuancode')->save(array('code_id' => $id, 'status' => 2))) {
                             //将内容变成
                             if ($detail['real_money'] > 0) {
-                                $obj->addMoney($detail['user_id'], $detail['real_money'], '团购券退款:' . $detail['code']);
+                                $obj->addMoney($detail['user_id'], $detail['real_money'], '抢购券退款:' . $detail['code']);
                             }
                             if ($detail['real_integral'] > 0) {
-                                $obj->addIntegral($detail['user_id'], $detail['real_integral'], '团购券退款:' . $detail['code']);
+                                $obj->addIntegral($detail['user_id'], $detail['real_integral'], '抢购券退款:' . $detail['code']);
                             }
                         }
                     }
@@ -246,17 +246,17 @@ class TuancodeAction extends CommonAction{
             if (D('Tuancode')->save(array('code_id' => $code_id, 'status' => 2))) {//将内容变成
                 $obj = D('Users');
                 if ($detail['real_money'] > 0) {
-                    $obj->addMoney($detail['user_id'], $detail['real_money'], '团购券退款:' . $detail['code']);
+                    $obj->addMoney($detail['user_id'], $detail['real_money'], '抢购券退款:' . $detail['code']);
                 }
                 if ($detail['real_integral'] > 0) {
-                    $obj->addIntegral($detail['user_id'], $detail['real_integral'], '团购券退款:' . $detail['code']);
+                    $obj->addIntegral($detail['user_id'], $detail['real_integral'], '抢购券退款:' . $detail['code']);
                 }
             }
             $where['tuan_id'] = $detail['tuan_id'];
             $tuan_num = D("Tuanorder")->where($where)->getField("num");
 			D('Sms')->tuancode_refund_user($code_id);// 退款成功通知用户
             D("Tuan")->where($where)->setInc("num", $tuan_num);// 修复退款后增加库存
-			D('Weixintmpl')->weixin_shop_confirm_refund_user($code_id,4);//团购商家确认退款，传订单ID跟类型
+			D('Weixintmpl')->weixin_shop_confirm_refund_user($code_id,4);//抢购商家确认退款，传订单ID跟类型
             $this->baoSuccess('退款成功！', U('Tuancode/refund'));
         } else {
             $this->baoError('当前订单状态不正确');

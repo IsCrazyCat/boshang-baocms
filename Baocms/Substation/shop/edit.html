@@ -181,7 +181,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="logo_img" width="120" height="80"  src="<{:config_img($detail['logo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        建议尺寸<{$CONFIG.attachs.shoplogo.thumb}>
+                        <{$CONFIG.attachs.shoplogo.thumb}>
                     </div>
                     <script>                                            
 						var width_shoplogo = '<{:thumbSize($CONFIG[attachs][shoplogo][thumb],0)}>';                         
@@ -191,9 +191,7 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shoplogo"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,
-duplicate :true, //可重复上传  
-  
+						resize: true,  
 						compress : {width: width_shoplogo,height: height_shoplogo,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -219,7 +217,7 @@ duplicate :true, //可重复上传
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        建议尺寸<{$CONFIG.attachs.shopphoto.thumb}>
+                        <{$CONFIG.attachs.shopphoto.thumb}>
                     </div>
                     <script>                                            
 						var width_shopphoto = '<{:thumbSize($CONFIG[attachs][shopphoto][thumb],0)}>';                         
@@ -229,9 +227,7 @@ duplicate :true, //可重复上传
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 						pick: '#fileToUpload1',                             
-						resize: true,
-duplicate :true, //可重复上传  
-  
+						resize: true,  
 						compress : {width: width_shopphoto,height: height_shopphoto,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -293,9 +289,9 @@ duplicate :true, //可重复上传
         </tr>
         <tr>
 
-            <td class="lfTdBt">推荐特色：</td>
-            <td class="rgTdBt"><input type="text" name="data[tags]" value="<{$detail.tags|default=''}>" class="scAddTextName " style=" width:100%" />
-                <code>每个特色用“，”分隔</code>
+            <td class="lfTdBt">标签：</td>
+            <td class="rgTdBt"><input type="text" name="data[tags]" value="<{$detail.tags|default=''}>" class="scAddTextName w210" />
+                <code>每个标签用“，”分隔</code>
             </td>
         </tr>
         <tr>
@@ -373,14 +369,14 @@ duplicate :true, //可重复上传
        
         
 
-        <tr style="display:none">
+        <tr>
             <td class="lfTdBt">打印标识(apiKey)</td>
             <td class="rgTdBt"><input type="text" name="data[apiKey]" value="<{$detail.apiKey}>" class="scAddTextName w210" />
             <code>打印标识</code>
             </td>
         </tr>
 
-		<tr style="display:none">
+		<tr>
             <td class="lfTdBt">密钥(mKey)</td>
             <td class="rgTdBt"><input type="text" name="data[mKey]" value="<{$detail.mKey}>" class="scAddTextName w210" />
             <code>密钥</code>
@@ -388,14 +384,14 @@ duplicate :true, //可重复上传
 
         </tr>
 
-		<tr style="display:none">
+		<tr>
             <td class="lfTdBt">用户id(partner)</td>
             <td class="rgTdBt"><input type="text" name="data[partner]" value="<{$detail.partner}>" class="scAddTextName w210" />
             <code>你再打印平台注册的ID</code>
             </td>
         </tr>
 
-		<tr style="display:none">
+		<tr>
             <td class="lfTdBt">打印机终端号(machine_code)</td>
             <td class="rgTdBt"><input type="text" name="data[machine_code]" value="<{$detail.machine_code}>" class="scAddTextName w210" />
              <code>打印机终端号，一般购买打印机后打印机后面都有此号码。</code>
@@ -405,7 +401,7 @@ duplicate :true, //可重复上传
         
  
         
-        <tr style="display:none">
+        <tr>
                 <td  class="lfTdBt">客服代码：</td>
                 <td class="rgTdBt"><textarea  name="data[service]" cols="120" rows="15" ><{$detail.service|default=''}></textarea>
 
@@ -414,7 +410,7 @@ duplicate :true, //可重复上传
             
 		
         
-          <tr style="display:none">
+          <tr>
               <td class="lfTdBt">是否显示客服代码</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[service_audit]" value="0" <if condition="$detail[service_audit] eq 0">checked="checked"</if> />不显示
@@ -424,7 +420,7 @@ duplicate :true, //可重复上传
           </tr>
           
           
-          <tr style="display:none">
+          <tr>
               <td class="lfTdBt">外卖打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_ele_print]" value="1" <if condition="$detail[is_ele_print] eq 1">checked="checked"</if> />开启
@@ -433,16 +429,16 @@ duplicate :true, //可重复上传
                </td>
           </tr>
           
-          <tr style="display:none">
-              <td class="lfTdBt">团购打印</td>
+          <tr>
+              <td class="lfTdBt">抢购打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_tuan_print]" value="1" <if condition="$detail[is_tuan_print] eq 1">checked="checked"</if> />开启
 				<input type="radio" name="data[is_tuan_print]" value="0" <if condition="$detail[is_tuan_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印团购订单</code>
+                <code>开启状态才能打印抢购订单</code>
                </td>
           </tr>
           
-           <tr style="display:none">
+           <tr>
               <td class="lfTdBt">商城打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_goods_print]" value="1" <if condition="$detail[is_goods_print] eq 1">checked="checked"</if> />开启
@@ -451,7 +447,7 @@ duplicate :true, //可重复上传
                </td>
           </tr>
           
-           <tr style="display:none">
+           <tr>
               <td class="lfTdBt">订座打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_ding_print]" value="1" <if condition="$detail[is_ding_print] eq 1">checked="checked"</if> />开启

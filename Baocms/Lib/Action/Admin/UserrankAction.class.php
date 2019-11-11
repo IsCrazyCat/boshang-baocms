@@ -1,14 +1,13 @@
 <?php
- 
 class UserrankAction extends CommonAction
 {
-    private $create_fields = array('rank_name', 'icon', 'icon1','tuanduishuju','gerenshuju','yijibutie','erjibutie','sanjibutie','yuedubangfuchalv','nianduguquanfenhong','jianjiegerenshuju','jianjieyuedubangfuchalv','jianjienianduguquanfenhong', 'prestige', 'rebate');
-    private $edit_fields = array('rank_name', 'icon', 'icon1','tuanduishuju','gerenshuju','yijibutie','erjibutie','sanjibutie','yuedubangfuchalv','nianduguquanfenhong','jianjiegerenshuju','jianjieyuedubangfuchalv','jianjienianduguquanfenhong', 'prestige', 'rebate');
+    private $create_fields = array('rank_name', 'icon', 'icon1', 'prestige', 'rebate');
+    private $edit_fields = array('rank_name', 'icon', 'icon1', 'prestige', 'rebate');
     public function index()
     {
         $Userrank = D('Userrank');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array();
         $count = $Userrank->where($map)->count();
         // 查询满足要求的总记录数
@@ -50,20 +49,6 @@ class UserrankAction extends CommonAction
             $this->baoError('等级图标不能为空');
         }
         $data['icon1'] = htmlspecialchars($data['icon1']);
-		
-        $data['tuanduishuju'] = htmlspecialchars($data['tuanduishuju']);
-        $data['gerenshuju'] = htmlspecialchars($data['gerenshuju']);
-        $data['yijibutie'] = htmlspecialchars($data['yijibutie']);
-        $data['erjibutie'] = htmlspecialchars($data['erjibutie']);
-        $data['sanjibutie'] = htmlspecialchars($data['sanjibutie']);
-        $data['yuedubangfuchalv'] = htmlspecialchars($data['yuedubangfuchalv']);
-        $data['nianduguquanfenhong'] = htmlspecialchars($data['nianduguquanfenhong']);
-
-        $data['jianjiegerenshuju'] = htmlspecialchars($data['jianjiegerenshuju']);
-        $data['jianjieyuedubangfuchalv'] = htmlspecialchars($data['jianjieyuedubangfuchalv']);
-        $data['jianjienianduguquanfenhong'] = htmlspecialchars($data['jianjienianduguquanfenhong']);
-
-		
         $data['prestige'] = (int) $data['prestige'];
         $data['rebate'] = (int) $data['rebate'];
         return $data;
@@ -103,19 +88,6 @@ class UserrankAction extends CommonAction
             $this->baoError('等级图标不能为空');
         }
         $data['icon1'] = htmlspecialchars($data['icon1']);
-
-        $data['tuanduishuju'] = htmlspecialchars($data['tuanduishuju']);
-        $data['gerenshuju'] = htmlspecialchars($data['gerenshuju']);
-        $data['yijibutie'] = htmlspecialchars($data['yijibutie']);
-        $data['erjibutie'] = htmlspecialchars($data['erjibutie']);
-        $data['sanjibutie'] = htmlspecialchars($data['sanjibutie']);
-        $data['yuedubangfuchalv'] = htmlspecialchars($data['yuedubangfuchalv']);
-        $data['nianduguquanfenhong'] = htmlspecialchars($data['nianduguquanfenhong']);
-		
-        $data['jianjiegerenshuju'] = htmlspecialchars($data['jianjiegerenshuju']);
-        $data['jianjieyuedubangfuchalv'] = htmlspecialchars($data['jianjieyuedubangfuchalv']);
-        $data['jianjienianduguquanfenhong'] = htmlspecialchars($data['jianjienianduguquanfenhong']);
-
         $data['rebate'] = (int) $data['rebate'];
         $data['prestige'] = (int) $data['prestige'];
         return $data;

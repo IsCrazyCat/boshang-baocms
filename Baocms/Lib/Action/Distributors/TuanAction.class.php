@@ -1,8 +1,8 @@
 <?php
 class TuanAction extends CommonAction
 {
-    private $create_fields = array('shop_id', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'price', 'tuan_price', 'settlement_price', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook', 'branch_id', 'profit_enable', 'profit_rate1', 'profit_rate2', 'profit_rate3', 'profit_rank_id','jiesuanfeilv');
-    private $edit_fields = array('shop_id', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'price', 'tuan_price', 'settlement_price', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook', 'branch_id', 'profit_enable', 'profit_rate1', 'profit_rate2', 'profit_rate3', 'profit_rank_id','jiesuanfeilv');
+    private $create_fields = array('shop_id', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'price', 'tuan_price', 'settlement_price', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook', 'branch_id', 'profit_enable', 'profit_rate1', 'profit_rate2', 'profit_rate3', 'profit_rank_id');
+    private $edit_fields = array('shop_id', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'price', 'tuan_price', 'settlement_price', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook', 'branch_id', 'profit_enable', 'profit_rate1', 'profit_rate2', 'profit_rate3', 'profit_rank_id');
     protected $tuancates = array();
     public function _initialize(){
         parent::_initialize();
@@ -36,15 +36,9 @@ class TuanAction extends CommonAction
         if ($this->isPost()) {
             $data = $this->createCheck();
             $obj = D('Tuan');
-			
-			$tuancate = D('tuancate')->find($data['cate_id']);
-			if ( (int)$tuancate['rate'] > 0 ) {
-				$data['jiesuanfeilv'] = $tuancate['rate']; //千分比
-			}
-			
             $details = $this->_post('details', 'SecurityEditorHtml');
             if (empty($details)) {
-                $this->fengmiMsg('团购详情不能为空');
+                $this->fengmiMsg('抢购详情不能为空');
             }
             if ($words = D('Sensitive')->checkWords($details)) {
                 $this->fengmiMsg('详细内容含有敏感词：' . $words);
@@ -68,7 +62,7 @@ class TuanAction extends CommonAction
             $data['thumb'] = serialize($thumb);
             if ($tuan_id = $obj->add($data)) {
                 $wei_pic = D('Weixin')->getCode($tuan_id, 2);
-                //团购类型是2
+                //抢购类型是2
                 $obj->save(array('tuan_id' => $tuan_id, 'wei_pic' => $wei_pic));
                 D('Tuandetails')->add(array('tuan_id' => $tuan_id, 'details' => $details, 'instructions' => $instructions));
                 $this->fengmiMsg('添加成功，请等待网站管理员审核后即可显示', U('tuan/index'));
@@ -82,7 +76,7 @@ class TuanAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
-            $this->fengmiMsg('团购分类不能为空');
+            $this->fengmiMsg('抢购分类不能为空');
         }
         $data['shop_id'] = $this->shop_id;
         $data['branch_id'] = (int) $data['branch_id'];
@@ -102,11 +96,11 @@ class TuanAction extends CommonAction
         }
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
-            $this->fengmiMsg('团购名称不能为空');
+            $this->fengmiMsg('抢购名称不能为空');
         }
         $data['intro'] = htmlspecialchars($data['intro']);
         if (empty($data['intro'])) {
-            $this->fengmiMsg('团购副标题不能为空');
+            $this->fengmiMsg('抢购副标题不能为空');
         }
         $data['photo'] = htmlspecialchars($data['photo']);
         if (empty($data['photo'])) {
@@ -121,17 +115,17 @@ class TuanAction extends CommonAction
         }
         $data['tuan_price'] = (int) ($data['tuan_price'] * 100);
         if (empty($data['tuan_price'])) {
-            $this->fengmiMsg('团购价格不能为空');
+            $this->fengmiMsg('抢购价格不能为空');
         }
         $data['settlement_price'] = (int) ($data['tuan_price'] - $data['tuan_price'] * $this->tuancates[$data['cate_id']]['rate'] / 1000);
         $data['use_integral'] = (int) $data['use_integral'];
-        //团购检测积分合法性开始
+        //抢购检测积分合法性开始
 		if (D('Tuan')->check_add_use_integral($data['use_integral'],$data['settlement_price'])) {//传2参数
             //这里暂时保留，后期增加逻辑;
         }else{
 			$this->fengmiMsg(D('Tuan')->getError(), 3000, true);	  
 		}
-		//团购检测积分合法性结束
+		//抢购检测积分合法性结束
         $data['num'] = (int) $data['num'];
         if (empty($data['num'])) {
             $this->fengmiMsg('库存不能为空');
@@ -159,8 +153,7 @@ class TuanAction extends CommonAction
         $data['is_return_cash'] = (int) $data['is_return_cash'];
         $data['fail_date'] = htmlspecialchars($data['fail_date']);
         //增加分销
-        //$data['profit_enable'] = (int) $data['profit_enable'];
-		$data['profit_enable'] = 1;
+        $data['profit_enable'] = (int) $data['profit_enable'];
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
@@ -172,13 +165,13 @@ class TuanAction extends CommonAction
         if ($tuan_id = (int) $tuan_id) {
             $obj = D('Tuan');
             if (!($detail = $obj->find($tuan_id))) {
-                $this->error('请选择要编辑的团购');
+                $this->error('请选择要编辑的抢购');
             }
             if ($detail['shop_id'] != $this->shop_id) {
-                $this->error('请不要操作别人的团购');
+                $this->error('请不要操作别人的抢购');
             }
             if ($detail['closed'] != 0) {
-                $this->error('该团购已被删除');
+                $this->error('该抢购已被删除');
             }
             $tuan_details = D('Tuandetails')->getDetail($tuan_id);
             if ($this->isPost()) {
@@ -224,14 +217,14 @@ class TuanAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->error('请选择要编辑的团购');
+            $this->error('请选择要编辑的抢购');
         }
     }
     private function editCheck(){
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
-            $this->fengmiMsg('团购分类不能为空');
+            $this->fengmiMsg('抢购分类不能为空');
         }
         $data['shop_id'] = $this->shop_id;
         $data['lng'] = $this->shop['lng'];
@@ -260,17 +253,17 @@ class TuanAction extends CommonAction
         }
         $data['tuan_price'] = (int) ($data['tuan_price'] * 100);
         if (empty($data['tuan_price'])) {
-            $this->fengmiMsg('团购价格不能为空');
+            $this->fengmiMsg('抢购价格不能为空');
         }
         $data['settlement_price'] = (int) ($data['tuan_price'] - $data['tuan_price'] * $this->tuancates[$data['cate_id']]['rate'] / 1000);
         $data['use_integral'] = (int) $data['use_integral'];
-        //团购检测积分合法性开始
+        //抢购检测积分合法性开始
 		if (D('Tuan')->check_add_use_integral($data['use_integral'],$data['settlement_price'])) {//传2参数
             //这里暂时保留，后期增加逻辑;
         }else{
 			$this->fengmiMsg(D('Tuan')->getError(), 3000, true);	  
 		}
-		//团购检测积分合法性结束
+		//抢购检测积分合法性结束
         $data['num'] = (int) $data['num'];
         if (empty($data['num'])) {
             $this->fengmiMsg('库存不能为空');
@@ -299,8 +292,7 @@ class TuanAction extends CommonAction
         $data['is_return_cash'] = (int) $data['is_return_cash'];
         $data['fail_date'] = htmlspecialchars($data['fail_date']);
         //增加分销
-        //$data['profit_enable'] = (int) $data['profit_enable'];
-		$data['profit_enable'] = 1;
+        $data['profit_enable'] = (int) $data['profit_enable'];
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
@@ -336,7 +328,7 @@ class TuanAction extends CommonAction
 	public function loaddata(){
         $Tuanorder = D('Tuanorder');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('shop_id' => $this->shop_id);
         
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -439,10 +431,10 @@ class TuanAction extends CommonAction
         $tuan_id = (int) $tuan_id;
         $obj = D('Tuan');
         if (empty($tuan_id)) {
-            $this->error('该团购信息不存在！');
+            $this->error('该抢购信息不存在！');
         }
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->error('该团购信息不存在！');
+            $this->error('该抢购信息不存在！');
         }
         if ($detail['shop_id'] != $this->shop_id) {
             $this->error('非法操作');
@@ -455,10 +447,10 @@ class TuanAction extends CommonAction
         $tuan_id = (int) $tuan_id;
         $obj = D('Tuan');
         if (empty($tuan_id)) {
-            $this->error('该团购信息不存在！');
+            $this->error('该抢购信息不存在！');
         }
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->error('该团购信息不存在！');
+            $this->error('该抢购信息不存在！');
         }
         if ($detail['shop_id'] != $this->shop_id) {
             $this->error('非法操作');
@@ -466,7 +458,7 @@ class TuanAction extends CommonAction
         $obj->save(array('tuan_id' => $tuan_id, 'closed' => 0));
         $this->success('上单成功！', U('tuan/index'));
     }
-    //团购分类
+    //抢购分类
     public function child($parent_id = 0)
     {
         $datas = D('Tuancate')->fetchAll();
@@ -519,14 +511,14 @@ class TuanAction extends CommonAction
                 }
             }
             if (empty($c)) {
-                $this->fengmiMsg('请输入团购券!');
+                $this->fengmiMsg('请输入抢购券!');
             }
             $obj = D('Tuancode');
             $shopmoney = D('Shopmoney');
             $return = array();
             $ip = get_client_ip();
             if (count($code) > 10) {
-                $this->fengmiMsg('一次最多验证10条团购券！');
+                $this->fengmiMsg('一次最多验证10条抢购券！');
             }
             $userobj = D('Users');
             foreach ($code as $key => $var) {
@@ -534,17 +526,17 @@ class TuanAction extends CommonAction
                 if (!empty($var)) {
                     $data = $obj->find(array('where' => array('code' => $var)));
                     if (!empty($data) && $data['shop_id'] == $this->shop_id && (int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
-                        //解决了多多份团购无法点评的BUG
+                        //解决了多多份抢购无法点评的BUG
                         $Tuancode_count = $obj->where(array('order_id' => $data['order_id'], 'is_used' => 0))->count();
                         if ($Tuancode_count == 1) {
                             D('Tuanorder')->save(array('order_id' => $data['order_id'], 'status' => 8));
-                            //团购状态修改为8
+                            //抢购状态修改为8
                         }
                         if ($obj->save(array('code_id' => $data['code_id'], 'is_used' => 1, 'used_time' => NOW_TIME, 'worker_id' => $this->uid, 'used_ip' => $ip))) {
 							 D('Sms')->tuan_TZ_user($data['code_id']);//发短信，先发再处理逻辑
                             //增加MONEY 的过程 稍后补充
                             if (!empty($data['price'])) {
-                                $data['intro'] = '团购消费' . $data['order_id'];
+                                $data['intro'] = '抢购消费' . $data['order_id'];
                                 $shop = D('Shop')->find($data['shop_id']);
                                 $shopmoney->add(array(
 									'shop_id' => $data['shop_id'], 
@@ -557,23 +549,23 @@ class TuanAction extends CommonAction
 									'order_id' => $data['order_id'], 
 									'intro' => $data['intro']
 								));
-                                D('Users')->Money($shop['user_id'], $data['settlement_price'], '商户团购资金结算:' . $data['order_id']);//商户资金增加
+                                D('Users')->Money($shop['user_id'], $data['settlement_price'], '商户抢购资金结算:' . $data['order_id']);//商户资金增加
                                 $return[$var] = $var;
-                                D('Users')->gouwu($data['user_id'], $data['price'], '团购券消费成功');
-								//团购返还积分给商家用户
+                                D('Users')->gouwu($data['user_id'], $data['price'], '抢购券消费成功');
+								//抢购返还积分给商家用户
 								if(!empty($data['real_integral'])){
 									$config = D('Setting')->fetchAll();
 									if($config['integral']['tuan_return_integral'] == 1){
-										D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '团购用户消费积分返还给商家');
+										D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '抢购用户消费积分返还给商家');
 									}
 								}
                                 $this->fengmiMsg($key . '验证成功!', U('tuan/used'));
                             } else {
-                                $this->fengmiMsg($key . '到店付团购券验证成功!', U('tuan/used'));
+                                $this->fengmiMsg($key . '到店付抢购券验证成功!', U('tuan/used'));
                             }
                         }
                     } else {
-                        $this->fengmiMsg($key . 'X该团购券无效!', U('tuan/used'));
+                        $this->fengmiMsg($key . 'X该抢购券无效!', U('tuan/used'));
                     }
                 }
             }

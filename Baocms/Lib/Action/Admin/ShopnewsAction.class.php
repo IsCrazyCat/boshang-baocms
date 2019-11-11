@@ -7,7 +7,7 @@ class ShopnewsAction extends CommonAction
     {
         $Shopnews = D('Shopnews');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
@@ -104,7 +104,7 @@ class ShopnewsAction extends CommonAction
         if ($news_id = (int) $news_id) {
             $obj = D('Shopnews');
             if (!($detail = $obj->find($news_id))) {
-                $this->baoError('请选择要编辑的发现');
+                $this->baoError('请选择要编辑的商家资讯');
             }
 
             if ($this->isPost()) {
@@ -120,7 +120,7 @@ class ShopnewsAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要编辑的发现');
+            $this->baoError('请选择要编辑的商家资讯');
         }
     }
     private function editCheck()
@@ -169,7 +169,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->baoSuccess('删除成功！', U('shopnews/index'));
             }
-            $this->baoError('请选择要删除的发现');
+            $this->baoError('请选择要删除的商家资讯');
         }
     }
     public function audit($news_id = 0)
@@ -187,7 +187,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->baoSuccess('审核成功！', U('shopnews/index'));
             }
-            $this->baoError('请选择要审核的发现');
+            $this->baoError('请选择要审核的商家资讯');
         }
     }
 }

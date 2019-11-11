@@ -26,7 +26,7 @@
                 <if condition="empty($MEMBER)">
                     <div class="left"><span class="welcome">您好，欢迎访问<{$CONFIG.site.sitename}></span><a href="<{:u('home/passport/login')}>">登陆</a>|<a href="<{:U('passport/register')}>">注册</a>
                         <else/>
-                        <div class="left">欢迎 <b style="color: red;font-size:14px;"><{$MEMBER.nickname}></b> 来到<{$CONFIG.site.sitename}>&nbsp;&nbsp; <a href="<{:u('members/index/index')}>" >我的兜兜</a>|<a href="<{:u('home/passport/logout')}>" >退出登录</a>
+                        <div class="left">欢迎 <b style="color: red;font-size:14px;"><{$MEMBER.nickname}></b> 来到<{$CONFIG.site.sitename}>&nbsp;&nbsp; <a href="<{:u('members/index/index')}>" >个人中心</a>|<a href="<{:u('home/passport/logout')}>" >退出登录</a>
                         </if>
                         </div>
                         <div class="right">                    

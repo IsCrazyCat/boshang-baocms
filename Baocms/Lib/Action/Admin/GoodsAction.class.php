@@ -4,8 +4,8 @@ class GoodsAction extends CommonAction {
 
     private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv','car_ids');
     private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv','car_ids');
-	
-	
+
+
     public function _initialize() {
         parent::_initialize();
         $this->assign('ranks',D('Userrank')->fetchAll());
@@ -61,12 +61,6 @@ class GoodsAction extends CommonAction {
     public function create() {
         if ($this->isPost()) {
             $data = $this->createCheck();
-			
-			$shopcate = D('shopcate')->find($data['cate_id']);
-			if ( (int)$shopcate['rate'] > 0 ) {
-				$data['jiesuanfeilv'] = $shopcate['rate']; //千分比
-			}
-			
             $obj = D('Goods');
             if ($goods_id = $obj->add($data)) {
                 if(!empty($data['car_ids'])){
@@ -131,7 +125,7 @@ class GoodsAction extends CommonAction {
         if (empty($data['title'])) {
             $this->baoError('产品名称不能为空');
         }
-        $data['car_id'] = htmlspecialchars($data['car_id']);
+	
 		$data['intro'] = htmlspecialchars($data['intro']);
         if (empty($data['intro'])) {
             $this->baoError('副标题不能为空');
@@ -252,9 +246,6 @@ class GoodsAction extends CommonAction {
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
-				
-				
-				
                 $data['goods_id'] = $goods_id;
                 if (!empty($detail['wei_pic'])) {
                     if (true !== strpos($detail['wei_pic'], "https://mp.weixin.qq.com/")) {
@@ -265,9 +256,6 @@ class GoodsAction extends CommonAction {
                     $wei_pic = D('Weixin')->getCode($goods_id, 3);
                     $data['wei_pic'] = $wei_pic;
                 }
-				
-				//$this->baoError($data['jiesuanfeilv']);
-				
                 if (false !== $obj->save($data)) {
                     if(!empty($data['car_ids'])){
                         //关联车辆ID
@@ -311,8 +299,6 @@ class GoodsAction extends CommonAction {
 
     private function editCheck() {
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
-		
-		
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
             $this->baoError('产品名称不能为空');
@@ -424,11 +410,6 @@ class GoodsAction extends CommonAction {
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
         $data['profit_prestige'] = (int) $data['profit_prestige'];
-		
-		
-		//$this->baoError($data['jiesuanfeilv']);
-		$data['jiesuanfeilv'] = htmlspecialchars($data['jiesuanfeilv']);
-		
         return $data;
     }
 

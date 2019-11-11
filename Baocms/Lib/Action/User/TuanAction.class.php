@@ -11,7 +11,7 @@ class TuanAction extends CommonAction{
 		$order_id = I('order_id', 0, 'trim,intval');
         $obj = D('Tuanorder');
         if (!($detail = D('Tuanorder')->find($order_id))) {
-            $this->fengmiMsg('团购不存在', U('tuan/index'));
+            $this->fengmiMsg('抢购不存在', U('tuan/index'));
         }
 		
 	    if ($detail['status'] == -1) {
@@ -22,27 +22,27 @@ class TuanAction extends CommonAction{
 			$maps['status'] = array('gt',0);
 			$tuan_code_status = $Tuancode->where($maps)->select();
 			if (!empty($tuan_code_is_used)) {
-				$this->fengmiMsg('已有团购劵验证不能取消订单');
+				$this->fengmiMsg('已有抢购劵验证不能取消订单');
 			}elseif(!empty($tuan_code_status)){
-				$this->fengmiMsg('已有团购劵申请退款不行执行此操作');
+				$this->fengmiMsg('已有抢购劵申请退款不行执行此操作');
 			}else{
 				$tuan_code = $Tuancode->where(array('order_id' => $order_id,'status'=>0,'is_used'=>0))->select();
 				foreach($tuan_code as $k => $value){
 					$Tuancode->save(array('code_id' => $value['code_id'], 'closed' => 1));
 				}	
 				$obj->save(array('order_id' => $order_id, 'closed' => 1));
-				D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消团购订单' . $detail['order_id'] . '积分退还');//返积分
+				D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消抢购订单' . $detail['order_id'] . '积分退还');//返积分
 				$this->fengmiMsg('取消订单成功!', U('tuan/index'));
 			}
         }elseif($detail['status'] != 0){
 			$this->fengmiMsg('状态不正确', U('tuan/index'));
 		}elseif($detial['closed'] == 1){
-			$this->fengmiMsg('团购已关闭', U('tuan/index'));
+			$this->fengmiMsg('抢购已关闭', U('tuan/index'));
 		}elseif($detail['user_id'] != $this->uid){
-			$this->fengmiMsg('不能操作别人的团购', U('tuan/index'));
+			$this->fengmiMsg('不能操作别人的抢购', U('tuan/index'));
 		}else{
 			 if ($obj->save(array('order_id' => $order_id, 'closed' => 1))) {
-				D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消团购订单' . $detail['order_id'] . '积分退还');//返积分
+				D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消抢购订单' . $detail['order_id'] . '积分退还');//返积分
 				$this->fengmiMsg('取消订单成功!', U('tuan/index'));
 			 }else{
 				$this->fengmiMsg('操作失败');
@@ -55,7 +55,7 @@ class TuanAction extends CommonAction{
 	
     public function orderloading(){
         $Tuanorder = D('Tuanorder');
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('user_id' => $this->uid, 'closed' => 0);//这里只显示 实物
         if (isset($_GET['aready']) || isset($_POST['aready'])) {
             $aready = (int) $this->_param('aready');
@@ -113,7 +113,7 @@ class TuanAction extends CommonAction{
             $this->error("该订单不存在");
         }
         if (!($tc = D("Tuancode")->where(array("order_id" => $order_id, "is_used" => 1))->find())) {
-            $this->error("您的团购券还没有使用");
+            $this->error("您的抢购券还没有使用");
         }
         if ($detail['user_id'] != $this->uid) {
             $this->error("请不要操作他人的订单");

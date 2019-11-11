@@ -224,7 +224,7 @@ class PacketAction extends CommonAction {
 		$filter	 	= array('packet_id'=>$id);
 		$opens = array();
 		$objp =  D('Weixin_packetsn');
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
 		$count = $objp->where($filter)->count();
 		$Page = new Page($count, 15);
 		$show = $Page->show();
@@ -253,7 +253,7 @@ class PacketAction extends CommonAction {
 		
 		$filter = $pager = array();
 		$objp =  D('Weixin_packetsn');
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
 		$count = $objp->where($filter)->count();
 		$Page = new Page($count, 15);
 		$show = $Page->show();
@@ -267,7 +267,7 @@ class PacketAction extends CommonAction {
 //$openid ='999999';
 		$filter	 	= array('open_id'=>$openid,'packet_id'=>$id,'is_reward'=>'1');
 		$objp =  D('Weixin_packetsn');
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
 		$count = $objp->where($filter)->count();
 		$Page = new Page($count, 15);
 		$show = $Page->show();

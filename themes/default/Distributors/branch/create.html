@@ -30,8 +30,6 @@
 			server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 			pick: '#fileToUpload',   
 			resize: true,
-duplicate :true, //可重复上传  
-
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -217,7 +215,7 @@ duplicate :true, //可重复上传
 	<div class="line">
 		<span class="x3">营业时间</span>
 		<span class="x9">
-			<input type="text" class="text-input" name="data[business_time]"  value="<{$detail.business_time|default='8:00-20:00'}>"  />
+			<input type="text" class="text-input" name="data[business_time]"  value="<{$detail.business_time|default=''}>"  />
 		</span>
 	</div>
 </div>
@@ -226,7 +224,7 @@ duplicate :true, //可重复上传
 <!--商家地图开始-->
 <div class="line padding border-bottom">		
         <div id="login-input">
-                        <span class="mr10"><input type="text" name="data[lng]" id="lng" value="<php>echo strtr($detail.lng,"\'+bd_lng+\'","");</php>" class="mapinputs w100" /></span>
+                        <span class="mr10"><input type="text" name="data[lng]" id="lng" value="<{$detail.lng|default=''}>" class="mapinputs w100" /></span>
                         <span><input type="text" name="data[lat]" id="lat" value="<{$detail.lat|default=''}>" class="w100 mapinputs" /></span>
                         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
                         <div class="top" style="width:100%; margin-bottom: 20px;">
@@ -239,11 +237,9 @@ duplicate :true, //可重复上传
                             var map = new BMap.Map("allmap");
                             var lng = "<{$lng}>";
                             var lat = "<{$lat}>";
-							var lng = "<{$CONFIG['site']['lng']}>";
-							var lat = "<{$CONFIG['site']['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("聊城");
-                                var point = new BMap.Point(115.9918900000,36.4626820000);
+                                map.centerAndZoom("合肥");
+                                var point = new BMap.Point(117.260852, 31.825717);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);

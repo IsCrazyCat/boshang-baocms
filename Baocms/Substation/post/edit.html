@@ -2,8 +2,8 @@
 
 <div class="mainBt">
     <ul>
-        <li class="li1">论坛</li>
-        <li class="li2">论坛论坛</li>
+        <li class="li1">贴吧</li>
+        <li class="li2">论坛贴吧</li>
         <li class="li2 li3">编辑</li>
     </ul>
 </div>
@@ -13,11 +13,11 @@
         <form target="baocms_frm" action="<{:U('post/edit',array('post_id'=>$detail['post_id']))}>" method="post">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
             
-             <tr style="display:none">
+             <tr>
                     <td class="lfTdBt">所在区域：</td>
                     <td class="rgTdBt">
                         
-                       <select name="data[city_id]" id="city_id" style="float: left;" class="seleFl w210"></select>
+                        <select name="data[city_id]" id="city_id" style="float: left;" class="seleFl w210"></select>
                        <select name="data[area_id]" id="area_id" style="float: left;"  class="seleFl w210"></select>
 
                     </td>
@@ -106,7 +106,7 @@
                 </tr> 
                 
                 <tr>
-                  <td class="lfTdBt">发现图片：</td>
+                  <td class="lfTdBt">贴吧图片：</td>
                         <td class="rgTdBt">
                             <div>
                                 <div id="moreToUpload" >上传图片</div>
@@ -121,9 +121,7 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"tieba"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true,
-duplicate :true, //可重复上传  
- 
+									resize: true, 
 									crop: false,  
 									accept: {
 										title: 'Images',
@@ -133,7 +131,7 @@ duplicate :true, //可重复上传
 									compress : {width: width_tieba_pic,height: height_tieba_pic,quality: pic_pc_quality,allowMagnify: false,crop: true}    													
 								});                                                               
 								uploader.on( 'uploadSuccess', function( file,resporse) {                                    
-								var str = '<span style="width: 150px; float: left; margin-left: 5px; margin-top: 10px;">  <img width="150" height="100" src="' + resporse.url + '">  <input type="hidden" name="photos[]" value="' + resporse.url + '" />    <a href="javascript:void(0);">取消</a>  </span>';                                   
+								var str = '<span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;">  <img width="150" height="100" src="' + resporse.url + '">  <input type="hidden" name="photos[]" value="' + resporse.url + '" />    <a href="javascript:void(0);">取消</a>  </span>';                                   
 								 $(".jq_uploads_img").append(str);                                
 									 });                                                            
 								 uploader.on( 'uploadError', function( file ) {                                    
@@ -180,7 +178,7 @@ duplicate :true, //可重复上传
                     </td>
                 </tr>
                 <tr>
-                    <td class="lfTdBt">是否推荐：</td>
+                    <td class="lfTdBt">是否精华：</td>
                     <td class="rgTdBt">
                         <input type="radio" name="data[is_fine]"  <eq name="detail.is_fine" value="1">checked="checked"</eq>  value="1" /> 是
                         <input type="radio" name="data[is_fine]" <eq name="detail.is_fine" value="0">checked="checked"</eq> value="0" /> 否

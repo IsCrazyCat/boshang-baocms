@@ -7,7 +7,7 @@ class SystemcontentAction extends CommonAction
     {
         $Systemcontent = D('Systemcontent');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array();
         $count = $Systemcontent->where($map)->count();
         // 查询满足要求的总记录数

@@ -7,7 +7,7 @@
                           意见内容:<{$item['context']}>
 			</li>
                         <li class="padding border-bottom" style="color:red;margin-left: 50px">
-                           ->评论内容：<{$item['reply']}><if condition="$item.user neq ''">评论人：<{$item.user}></if><span>评论时间：<{$item.replytime|date='Y-m-d',###}></span>
+                           ->回复内容：<{$item['reply']}><if condition="$item.user neq ''">回复人：<{$item.user}></if><span>回复时间：<{$item.replytime|date='Y-m-d',###}></span>
 			</li>
 	</li>
 </foreach>

@@ -1,26 +1,13 @@
 <?php
-
 class ShopAction extends CommonAction{
     public function _initialize(){
         parent::_initialize();
-		
-		
-		$appid = $this->_CONFIG['weixin']["appid"];
-        $appsecret = $this->_CONFIG['weixin']["appsecret"];
-        import("@/Net.Jssdk");
-        $jssdk = new JSSDK("{$appid}", "{$appsecret}");
-        $sign = $jssdk->GetSignPackage();
-        $this->assign("sign", $sign);
-		$this->assign('appid',$appid);
-		
-		
         $this->lifecate = D('Lifecate')->fetchAll();
         $this->lifechannel = D('Lifecate')->getChannelMeans();
         $this->assign('lifecate', $this->lifecate);
         $this->assign('channel', $this->lifechannel);
         //统计商家分类数量代码开始
         $shopcates = D('Shopcate')->fetchAll();
-		
         foreach ($shopcates as $key => $v) {
             if ($v['cate_id']) {
                 $catids = D('Shopcate')->getChildren($v['cate_id']);
@@ -35,99 +22,8 @@ class ShopAction extends CommonAction{
         $this->assign('shopcates', $shopcates);
         //结束
     }
-	
-	public function index0()
-    {
-		
-		$lat0 = $this->_get('lat', 'htmlspecialchars');
-        $lng0 = $this->_get('lng', 'htmlspecialchars');
-		if ( ( (int)$lat0>0 ) && ( (int)$lng0>0 )  ) { 
-			cookie('lat', $lat0);
-			cookie('lng', $lng0);
-			cookie('lat_ok', $lat0);
-			cookie('lng_ok', $lng0);	
-		}
-		
-		
-		$lat = addslashes(cookie('lat_ok'));
-        $lng = addslashes(cookie('lng_ok'));
-        if (empty($lat) || empty($lng)) {
-            $lat = addslashes(cookie('lat'));
-            $lng = addslashes(cookie('lng'));
-        }
-
-		if (empty($lat) || empty($lng)) {
-            $lat = $this->_CONFIG['site']['lat'];
-            $lng = $this->_CONFIG['site']['lng'];
-        }
-        if (empty($lat) || empty($lng)) {
-            $lat = $this->city['lat'];
-            $lng = $this->city['lng'];
-        }
-
-		
-		$cat = (int) $this->_param('cat');
-        $this->assign('cat', $cat);
-        $order = (int) $this->_param('order');
-        $this->assign('order', $order);
-        $keyword = $this->_param('keyword', 'htmlspecialchars');
-        $this->assign('keyword', $keyword);
-        $areas = D('Area')->fetchAll();
-        $area = (int) $this->_param('area');
-        $this->assign('area_id', $area);
-        $biz = D('Business')->fetchAll();
-        $business = (int) $this->_param('business');
-        $this->assign('business_id', $business);
-        $this->assign('areas', $areas);
-        $this->assign('biz', $biz);
-        $this->assign('nextpage', LinkTo('shop/loaddata', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
-        //$this->assign('nextpage', LinkTo('index/push', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
-        $this->display();
-        
-        // 输出模板
-    }
-	
-	 public function dingwei() {
-        $lat = $this->_get('lat', 'htmlspecialchars');
-        $lng = $this->_get('lng', 'htmlspecialchars');
-        cookie('lat', $lat);
-        cookie('lng', $lng);
-		cookie('lat_ok', $lat);
-        cookie('lng_ok', $lng);
-        echo NOW_TIME;
-    }
-	
     public function index()
     {
-		
-		$lat0 = $this->_get('lat', 'htmlspecialchars');
-        $lng0 = $this->_get('lng', 'htmlspecialchars');
-		if ( ( (int)$lat0>0 ) && ( (int)$lng0>0 )  ) { 
-			cookie('lat', $lat0);
-			cookie('lng', $lng0);
-			cookie('lat_ok', $lat0);
-			cookie('lng_ok', $lng0);	
-		}
-		
-		
-		$lat = addslashes(cookie('lat_ok'));
-        $lng = addslashes(cookie('lng_ok'));
-        if (empty($lat) || empty($lng)) {
-            $lat = addslashes(cookie('lat'));
-            $lng = addslashes(cookie('lng'));
-        }
-
-		if (empty($lat) || empty($lng)) {
-            $lat = $this->_CONFIG['site']['lat'];
-            $lng = $this->_CONFIG['site']['lng'];
-        }
-        if (empty($lat) || empty($lng)) {
-            $lat = $this->city['lat'];
-            $lng = $this->city['lng'];
-        }
-		
-		
-		
         $cat = (int) $this->_param('cat');
         $this->assign('cat', $cat);
         $order = (int) $this->_param('order');
@@ -142,127 +38,69 @@ class ShopAction extends CommonAction{
         $this->assign('business_id', $business);
         $this->assign('areas', $areas);
         $this->assign('biz', $biz);
-        //$this->assign('nextpage', LinkTo('shop/loaddata', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
-        $this->assign('nextpage', LinkTo('index/push', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
+        $this->assign('nextpage', LinkTo('shop/loaddata', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
         $this->display();
         // 输出模板
     }
-	
-	
     //二维码名片开始
     public function qrcode($shop_id){
         $shop_id = (int) $shop_id;
         if (empty($shop_id)) {
             $this->error('该商家不存在');
         }
-		$wei_pic = D('Weixin')->getCode($shop_id, 1 ,$this->uid);
-		$this->assign('wei_pic', $wei_pic);
         $shop = D('Shop')->find($shop_id);
         $file = D('Weixin')->getCode($shop_id, 1);
         $this->assign('file', $file);
         $this->assign('shop', $shop);
         $this->display();
     }
-	
-	
-	//二维码名片开始
-	 public function myqrcode($shop_id){
-        $shop_id = (int)$shop_id;
-		
-		$wx_back_url = 'http://www.blklube.com/wap/shop/detail/shop_id/'.$shop_id;
 
-		cookie('wx_back_url', $wx_back_url);
-		
-        if(empty($shop_id)){
-            $this->error('该门店不存在');
+
+    //二维码名片开始
+    public function shopping_qrcode($shop_id){
+        $shop_id = (int) $shop_id;
+        if (empty($shop_id)) {
+            $this->error('该商家不存在');
         }
-        $detail=$shop = D('Shop')->find($shop_id);
-        
-		 $users = D('users')->find($this->uid);
-		 $this->assign('nickname', $users['nickname']);
-		
-		//门店二维码
-        $file = D('Weixin')->getCode($shop_id,1,$this->uid);
+        $map = array('shop_id'=>$shop_id,'closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
+        $shop = D('Shop')->where($map)->find();
+        if(empty($shop)){
+            $this->error('该商家不存在或未审核');
+        }
+        //判断商家二维码是否已经生成过了
+        if(empty($shop['shopping_qrcode_url'])){
+            //扫码跳转链接
+            $qr_url = U("user/Payment/scanshoppingqrcode",array('shop_id'=>$shop_id));;
+            $file = shoppingQrcode("wap/shop&&qrcode",$qr_url,$shop['logo']);
+            if(!D('Shop')->save(array('shop_id'=>$shop_id,'shopping_qrcode_url'=>$file))){
+                $this->error('二维码生成错误，请重试！');
+            }
+        }else{
+            $file = $shop['shopping_qrcode_url'];
+        }
+
+
         $this->assign('file', $file);
-		
-        $this->assign('shop',$shop);
-		 $this->assign('detail',$detail);
+        $this->assign('shop', $shop);
         $this->display();
     }
-//二维码名片结束
-	
-	
-//    public function gps($shop_id)
-//    {
-//        $shop_id = (int) $shop_id;
-//        if (empty($shop_id)) {
-//            $this->error('该商家不存在');
-//        }
-//        $shop = D('Shop')->find($shop_id);
-//        $this->assign('shop', $shop);
-//        $this->display();
-//    }
-	
-	
-	 public function gps($shop_id,$type = '0'){
+    public function gps($shop_id)
+    {
         $shop_id = (int) $shop_id;
-		$type = (int) $this->_param('type');
-        if(empty($shop_id)){
+        if (empty($shop_id)) {
             $this->error('该商家不存在');
         }
         $shop = D('Shop')->find($shop_id);
         $this->assign('shop', $shop);
-		$this->assign('type', $type);
-		
-		$this->assign('amap', $amap= $this->bd_decrypt($shop['lng'],$shop['lat']));
         $this->display();
     }
-   
-   
-      //BD-09(百度) 坐标转换成  GCJ-02(火星，高德) 坐标
-      //@param bd_lon 百度经度
-      //@param bd_lat 百度纬度
-	public function bd_decrypt($bd_lon,$bd_lat){
-			$x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-			$x = $bd_lon - 0.0065;
-			$y = $bd_lat - 0.006;
-			$z = sqrt($x * $x + $y * $y) - 0.00002 * sin($y * $x_pi);
-			$theta = atan2($y, $x) - 0.000003 * cos($x * $x_pi);
-			$data['gg_lon'] = $z * cos($theta);
-			$data['gg_lat'] = $z * sin($theta);
-			return $data;
-	}
-	
-	
-	
     public function main()
     {
         $this->display();
     }
-	
-   /**
-     * @desc arraySort php二维数组排序 按照指定的key 对数组进行排序
-     * @param array $arr 将要排序的数组
-     * @param string $keys 指定排序的key
-     * @param string $type 排序类型 asc | desc
-     * @return array
-     */
-public function arraySort($arr, $keys, $type = 'asc') {
-        $keysvalue = $new_array = array();
-        foreach ($arr as $k => $v){
-            $keysvalue[$k] = $v[$keys];
-        }
-        $type == 'asc' ? asort($keysvalue) : arsort($keysvalue);
-        reset($keysvalue);
-        foreach ($keysvalue as $k => $v) {
-           $new_array[$k] = $arr[$k];
-        }
-        return $new_array;
-}		
-	
     public function loaddata()
     {
-              $Shop = D('Shop');
+        $Shop = D('Shop');
         import('ORG.Util.Page');
         $map = array('closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
         $cat = (int) $this->_param('cat');
@@ -286,22 +124,12 @@ public function arraySort($arr, $keys, $type = 'asc') {
             $map['business_id'] = $business;
         }
         $order = (int) $this->_param('order');
-		
-		$lat = addslashes(cookie('lat_ok'));
-		$lng = addslashes(cookie('lng_ok'));
-		if(empty($lat) || empty($lng)){
-			$lat = addslashes(cookie('lat'));
-			$lng = addslashes(cookie('lng'));
-		}
+        $lat = addslashes(cookie('lat'));
+        $lng = addslashes(cookie('lng'));
         if (empty($lat) || empty($lng)) {
-          $lat = addslashes($this->city['lat']);
-          $lng = addslashes($this->city['lng']);
+            $lat = $this->city['lat'];
+            $lng = $this->city['lng'];
         }
-        if (empty($lat) || empty($lng)) {
-            $lat = addslashes($this->_CONFIG['site']['lat']);
-            $lng = addslashes($this->_CONFIG['site']['lng']);
-        }
-		
         switch ($order) {
             case 2:
                 $orderby = array('orderby' => 'asc', 'ranking' => 'desc');
@@ -311,7 +139,7 @@ public function arraySort($arr, $keys, $type = 'asc') {
                 break;
         }
         $count = $Shop->where($map)->count();
-        $Page = new Page($count, 20);
+        $Page = new Page($count, 8);
         $show = $Page->show();
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
         $p = $_GET[$var];
@@ -319,44 +147,18 @@ public function arraySort($arr, $keys, $type = 'asc') {
             die('0');
         }
         $list = $Shop->where($map)->order($orderby)->limit($Page->firstRow . ',' . $Page->listRows)->select();
-        
-		$reloaded = $this->_param('reloaded');
-		
-		foreach ($list as $k => $val) {
+        foreach ($list as $k => $val) {
             $list[$k]['d'] = getDistance($lat, $lng, $val['lat'], $val['lng']);
-			$ddd[$k] = $list[$k]['ddd'] = mygetDistance($lat, $lng, $val['lat'], $val['lng']);
-			
-			$myd = str_replace("m","",$list[$k]['d']);
-			$myd = str_replace("k","",$myd);
-			if ( (int)$myd > 6500 ) {
-				$lat = addslashes(cookie('lat_ok'));
-				$lng = addslashes(cookie('lng_ok'));
-				if(empty($lat) || empty($lng)){
-					$lat = addslashes(cookie('lat'));
-					$lng = addslashes(cookie('lng'));
-				}
-				$this->assign('myd', $myd);
-				cookie('myd', $myd);
-				
-				
-
-			} 
-			
         }
         $shop_ids = array();
         foreach ($list as $key => $v) {
             $shop_ids[$v['shop_id']] = $v['shop_id'];
-			
         }
         $shopdetails = D('Shopdetails')->itemsByIds($shop_ids);
         foreach ($list as $k => $val) {
             $list[$k]['price'] = $shopdetails[$val['shop_id']]['price'];
-			$list[$k]['favnum'] = D('Shopfavorites')->where(array('shop_id' => $val['shop_id']))->count();
         }
-		
-		$list2 =  $this->arraySort($list, 'ddd', 'asc');
-		
-        $this->assign('list', $list2);
+        $this->assign('list', $list);
         $this->assign('page', $show);
         $this->display();
     }
@@ -864,10 +666,10 @@ public function arraySort($arr, $keys, $type = 'asc') {
             $this->error('该商家已经被删除');
             die;
         }
-        $article = D('article');
+        $Shopnews = D('Shopnews');
         import('ORG.Util.Page');
         $map = array('audit' => 1, 'city_id' => $this->city_id, 'shop_id' => $shop_id);
-        $count = $article->where($map)->count();
+        $count = $Shopnews->where($map)->count();
         $Page = new Page($count, 10);
         $show = $Page->show();
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
@@ -875,21 +677,21 @@ public function arraySort($arr, $keys, $type = 'asc') {
         if ($Page->totalPages < $p) {
             die('0');
         }
-        $list = $article->where($map)->order(array('create_time' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        $list = $Shopnews->where($map)->order(array('create_time' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $this->assign('list', $list);
         $this->assign('page', $show);
         $this->display();
     }
-	public function news_detail($article_id = 0) {
-        if ($article_id = (int) $article_id) {
-            $obj = D('article');
-            if (!$detail = $obj->find($article_id)) {
+	public function news_detail($news_id = 0) {
+        if ($news_id = (int) $news_id) {
+            $obj = D('Shopnews');
+            if (!$detail = $obj->find($news_id)) {
                 $this->error('没有该文章');
             }
 			if ($detail['audit'] != 1 ) {
             	$this->error('该文章不存在');
             }	
-			$obj->updateCount($article_id, 'views');
+			$obj->updateCount($news_id, 'views');
             $this->assign('detail', $detail);
             $this->display();
         } else {
@@ -958,8 +760,6 @@ public function arraySort($arr, $keys, $type = 'asc') {
             if (!isMobile($data['mobile'])) {
                 $this->fengmiMsg('手机格式不正确');
             }
-			
-			
             $data['create_time'] = NOW_TIME;
             $data['create_ip'] = get_client_ip();
             $obj = D('Shoprecognition');
@@ -1077,4 +877,5 @@ public function arraySort($arr, $keys, $type = 'asc') {
         }
         $this->fengmiMsg('买单订单设置完毕，即将进入付款。', U('payment/payment', array('log_id' => $logs['log_id'])));
     }
+
 }

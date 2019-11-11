@@ -72,19 +72,8 @@
 		<div class="blank-10 bg"></div>
 		
 		<ul id="pay-method" class="pay-method">
-       
 			<foreach name="payment" item="var">
-            
-                <if condition="$var['code'] eq 'money'">
-                    <if condition=" $MEMBER['money'] EGT $need_pay/100 ">
-                    	<li data-rel="<{$var.code}>" class="media media-x payment active">
-                    <else/>
-                    	<li data-rel="<{$var.code}>" class="media media-x payment">
-                	</if>
-                <else/>
-                    	<li data-rel="<{$var.code}>" class="media media-x payment">    
-                </if>
-			
+			<li data-rel="<{$var.code}>" class="media media-x payment">
 				<a class="float-left"  href="javascript:;">
 					<img src="/static/default/wap/image/pay/<{$var.mobile_logo}>">
 				</a>
@@ -100,7 +89,7 @@
 				</div>
 			</li>
 			</foreach>
-			<li data-rel="wait" class="media media-x payment" style="display:none">
+			<li data-rel="wait" class="media media-x payment">
 				<a class="float-left" href="javascript:;">
 					<img src="/static/default/wap/image/pay/dao.png">
 				</a>
@@ -116,7 +105,7 @@
 				</div>
 			</li>
 		</ul>
-		<input id="code" type="hidden" name="code" value="money" />
+		<input id="code" type="hidden" name="code" value="" />
 		
 		<div class="text-center padding-left padding-right margin-large-top">
 			<button type="submit" class="button button-big button-block bg-yellow">提交订单</button>
@@ -127,4 +116,4 @@
 </div>
     
 
-<include  file='public:footer-shop'/>       
+<include  file='public:footer'/>       

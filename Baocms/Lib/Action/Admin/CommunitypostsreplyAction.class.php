@@ -6,7 +6,7 @@ class CommunitypostsreplyAction extends CommonAction{
     
      public  function index(){
        $Postreply = D('Communityreplys');
-       import('ORG.Util.Page');// 导入分页类    www.blklube.com
+       import('ORG.Util.Page');// 导入分页类 
        $map = array();
        if ($post_id= (int) $this->_param('post_id')) {
             $map['post_id'] = $post_id;
@@ -95,7 +95,7 @@ class CommunitypostsreplyAction extends CommonAction{
 		
 		   $data['details'] = SecurityEditorHtml($data['details']);
         if(empty($data['details'])){
-            $this->baoError('评论内容不能为空2');
+            $this->baoError('回复内容不能为空2');
         }
 		
 		
@@ -107,7 +107,7 @@ class CommunitypostsreplyAction extends CommonAction{
         if($reply_id =(int) $reply_id){
             $obj = D('Communityreplys');
             if(!$detail = $obj->find($reply_id)){
-                $this->baoError('请选择要编辑的评论帖子');
+                $this->baoError('请选择要编辑的回复帖子');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -123,7 +123,7 @@ class CommunitypostsreplyAction extends CommonAction{
                 $this->display();
             }
         }else{
-            $this->baoError('请选择要编辑的评论帖子');
+            $this->baoError('请选择要编辑的回复帖子');
         }
     }
      private function editCheck(){
@@ -155,7 +155,7 @@ class CommunitypostsreplyAction extends CommonAction{
                 }                
                 $this->baoSuccess('删除成功！', U('Communitypostsreply/index'));
             }
-            $this->baoError('请选择要删除的评论帖子');
+            $this->baoError('请选择要删除的回复帖子');
          }
          
     }
@@ -180,7 +180,7 @@ class CommunitypostsreplyAction extends CommonAction{
                 }                
                 $this->baoSuccess('审核成功！', U('Communitypostsreply/index'));
             }
-            $this->baoError('请选择要审核的评论帖子');
+            $this->baoError('请选择要审核的回复帖子');
          }
          
     }

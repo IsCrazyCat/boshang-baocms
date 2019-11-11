@@ -26,7 +26,7 @@ class ZheAction extends CommonAction {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
             $this->assign('keyword', $keyword);
         }
-        //搜索二开结束
+        //搜索结束
 		$cates = D('Shopcate')->fetchAll();
         $cat = (int) $this->_param('cat');
         $cate_id = (int) $this->_param('cate_id');
@@ -93,7 +93,7 @@ class ZheAction extends CommonAction {
                 break;
         }
 		$this->assign('order', $order);
-		//搜索二开结束
+		//搜索结束
         $count = $Zhe->where($map)->count(); 
         $Page = new Page($count, 10); 
         $show = $Page->show(); 
@@ -163,7 +163,7 @@ class ZheAction extends CommonAction {
             $this->assign('catestr', $this->shopcates[$detail['cate_id']]['cate_name']);
         }
 		
-		$Zhe->updateCount($zhe_id, 'views');//更新人气
+		$Zhe->updateCount($zhe_id, 'views');//更新浏览量
 		$this->assign('shops', D('Shop')->find($detail['shop_id']));
         $this->assign('totalnum', $count);
         $this->assign('list', $list); 

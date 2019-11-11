@@ -1,11 +1,10 @@
-<php>$mobile_title='门店付款(微信支付)';</php>
 <include  file='public:header'/>   
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
 			<a class="top-addr" href="javascript:history.back();"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			门店付款(微信支付)
+			订单支付
 		</div>
 	</header>  
 <style>
@@ -35,7 +34,7 @@
 						付款缘由
 					</span>
 					<span class="float-right">
-						<{$types[$logs['type']]}>(微信支付)
+						<{$types[$logs['type']]}>
 					</span>
 				</div>
 				<div class="x12 row">
@@ -65,9 +64,6 @@
 <div class="blank-20"></div>
 <if condition = "$paytype[$logs['code']]['code'] == money">
 <script type="text/javascript" language="javascript">
-
-        
-		
     $(document).ready(function () {
         var user_pay_password = "<{$user_pay_password}>";
         if (user_pay_password == '' || user_pay_password == null) {
@@ -81,8 +77,6 @@
 		$(".add_pay_password").click(function () {
              add_pay_password();
         });
-		
-		
     })
 	//检测支付密码
 	function check_pay_password() {

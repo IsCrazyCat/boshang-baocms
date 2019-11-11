@@ -47,7 +47,7 @@ class WeixintmplModel extends CommonModel{
     }
 	
 	
-	//团购下单微信通知
+	//抢购下单微信通知
     public function weixin_notice_tuan_user($order_id,$user_id,$type){
             $Tuanorder = D('Tuanorder')->find($order_id);
 		    $Tuan = D('Tuan')->find($order['tuan_id']);
@@ -388,7 +388,7 @@ class WeixintmplModel extends CommonModel{
 		   $logs = D('Paymentlogs')->find($log_id);
 		   $config_site_url = 'http://' . $_SERVER['HTTP_HOST'] . '/user/';
 		   if($logs['type'] == 'tuan'){
-			  $type_name = '团购'; 
+			  $type_name = '抢购'; 
 			  $url = $config_site_url.'tuan/detail/order_id/'.$logs['order_id'].'/';
 		   }elseif($logs['type'] == 'ele'){
 			  $type_name = '订餐';  
@@ -400,7 +400,7 @@ class WeixintmplModel extends CommonModel{
 			  $type_name = '商城';  
 			  $url = $config_site_url.'goods/detail/order_id/'.$logs['order_id'].'/';  
 		   }elseif($logs['type'] == 'breaks'){
-			  $type_name = '门店付款';  
+			  $type_name = '优惠买单';  
 			  $url = $config_site_url.'breaks/index/';  
 		   }elseif($logs['type'] == 'hotel'){
 			  $type_name = '酒店';  
@@ -459,7 +459,7 @@ class WeixintmplModel extends CommonModel{
 			  $Tuan = D('Tuan')->find($Tuanorder['tuan_id']);
 			  $Shop = D('Shop')->find($Tuanorder['shop_id']);
 			  $Users = D('Users')->find($Tuanorder['user_id']);
-			  $type_name = '团购'; 
+			  $type_name = '抢购'; 
 			  $url = $config_site_url.'tuan/detail/order_id/'.$logs['order_id'].'/';
 			  $shop_name = $Shop['shop_name'];
 			  $order_goods = $Tuan['title'];
@@ -504,10 +504,10 @@ class WeixintmplModel extends CommonModel{
 			  $Breaksorder = D('Breaksorder')->find($logs['order_id']);
 			  $Shop = D('Shop')->find($Breaksorder['shop_id']); 
 			  $Users = D('Users')->find($Breaksorder['user_id']);
-			  $type_name = '门店付款';  
+			  $type_name = '优惠买单';  
 			  $url = $config_site_url;  
 			  $shop_name = $Shop['shop_name'];
-			  $order_goods = '门店付款';
+			  $order_goods = '优惠买单';
 			  $order_price = '买单金额：'.$Breaksorder['need_pay'].'元';
 			  $order_user_information = '买单人姓名：'.$Users['nickname'].'，买单人手机：'.$Users['mobile'];
 		   }elseif($logs['type'] == 'hotel'){

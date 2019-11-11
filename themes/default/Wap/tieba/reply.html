@@ -7,7 +7,7 @@
 			<a class="top-addr" href="<{:U('tieba/index')}>"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			评论帖子
+			回复帖子
 		</div>
 		<div class="top-share">
 		</div>
@@ -18,7 +18,7 @@
 		<input type="hidden" id="photo" name="data[photo]" value="" />
 		<div class="line border-bottom">
 			<div class="x9 form-title">
-				<span>评论：<{$detail.title}></span>
+				<span>回复：<{$detail.title}></span>
 			</div>
 			<div class="x3 text-right">
 				<button class="button bg-green margin-small-right" type="submit">发表</button>
@@ -51,9 +51,7 @@
 			server: '<{:U("app/upload/uploadify",array("model"=>"tieba"))}>',                             
 			pick: '#fileToUpload',  
 			fileNumberLimit:10,                            
-			resize: true,
-duplicate :true, //可重复上传  
-    
+			resize: true,    
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -66,7 +64,7 @@ duplicate :true, //可重复上传
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_tieba,//这里裁剪长度
-                    quality:80
+                    quality:60
                 });
             }
         });

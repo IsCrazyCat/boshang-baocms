@@ -123,27 +123,6 @@ class PaymentAction extends CommonAction {
 		$this -> display('other');
 	}
 	
-	
-	protected function gwmd_success($message, $detail) {
-		$tuanorder = D('Tuanorder') -> find($detail['order_id']);
-		if (!empty($tuanorder['branch_id'])) {
-			$branch = D('Shopbranch') -> find($tuanorder['branch_id']);
-			$addr = $branch['addr'];
-		} else {
-			$shop = D('Shop') -> find($tuanorder['shop_id']);
-			$addr = $shop['addr'];
-		}
-
-		$this -> assign('addr', $addr);
-		$tuans = D('Tuan') -> find($tuanorder['tuan_id']);
-		$this -> assign('tuans', $tuans);
-		$this -> assign('tuanorder', $tuanorder);
-		$this -> assign('message', $message);
-		$this -> assign('detail', $detail);
-		$this -> assign('paytype', D('Payment') ->getPayments());
-		$this -> display('gwmd');
-	}
-	
 	//家政支付成功
 	 protected function appoint_success($message, $detail){
         $order_id = (int) $detail['order_id'];
@@ -250,8 +229,6 @@ class PaymentAction extends CommonAction {
 				$this -> running_success('恭喜您跑腿支付成功啦！', $detail);
 			}elseif ($detail['cloud'] == 'cloud') {
 				$this->cloud_success('恭喜您云购支付成功啦！', $detail);
-			} elseif ($detail['cloud'] == 'gwmd') {
-				$this->gwmd_success('恭喜您到店扫码支付成功啦！', $detail);
 			} else {
 				$this -> other_success('恭喜您支付成功啦！', $detail);
 			}
@@ -323,110 +300,6 @@ class PaymentAction extends CommonAction {
 	public function yes($log_id) {
 		$log_id = (int)$log_id;
 		$logs = D('Paymentlogs') -> find($log_id);
-		
-		
-		$info = D('Paymentlogs')->where(" is_paid = 1  and type = 'gwmd' ")->order('log_id desc')->find();
-		
-		if ( ( $logs['type'] == 'gwmd' ) && ( $logs['ismiandan'] == 0 ) && ( $logs['log_id'] == $info['log_id'] ) ) {
-			
-				
-			    //判断金额是否在可免单范围内
-				$config = D('Setting')->fetchAll();
-				//$fanxuliehua = D('setting')->where(array('k'=>'noSingle'))->find();
-				//$fanxulieh=unserialize($fanxuliehua);
-				$is_noSingle_single = $config['noSingle']['is_noSingle_single'];
-				$min_noSingle_single = round($config['noSingle']['min_noSingle_single'],2);
-				$max_noSingle_single = round($config['noSingle']['max_noSingle_single'],2);
-				$prob_noSingle_single = round($config['noSingle']['prob_noSingle_single'],2);
-				$mymoney = round($money/100,2);
-				
-				
-				
-				if ( ($is_noSingle_single) && ( (int)$logs['create_time'] >= (int)NOW_TIME - 30  ) ) { 
-				  
-						if ( ( $mymoney >= $min_noSingle_single) && ( $mymoney <= $max_noSingle_single ) ) {
-								$suijishu=rand(1,100);
-								$gail= 100 - $prob_noSingle_single;
-						 
-							if((int)$suijishu>=(int)$gail){
-									
-									$wheres['log_id'] = array('neq', $log_id);
-									$wheres['user_id'] = array('eq', $this->uid);
-									$wheres['type'] = array('eq', 'gwmd');
-					                $loglog = D('Paymentlogs')->where($wheres)->order('create_time desc')->find();
-						            if ( (int)$loglog['create_time'] + 30 >= NOW_TIME  ) {
-							            $this ->error('请不要频繁刷新！'); 
-							            //$this->fengmiMsg('请不要频繁刷新！', U('/wap/index/index'));
-										$mylogs['log_id'] = $log_id;
-							            $mylogs['create_time'] = NOW_TIME  ;
-							            D('Paymentlogs')->save($mylogs);
-						            }
-                                    
-									$ip = get_client_ip();
-									
-	                                $addtime = strtotime(date("Y-m-d",NOW_TIME)) ;
-									
-									
-			                        $record = D('Record') ->where(array('addtime' => $addtime))->find();
-									
-									   	
-                                   
-										
-										$my_need_pay = (int)$record['fjzhong'] + (int)$logs['need_pay'] ; 
-										
-										
-										
-										if ( (int)$record['jiangchi'] >= (int)$my_need_pay  ) {
-										
-										
-			                             //$this -> error('oka'.$my_need_pay);
-											D('Record')->save(array( 'fjsl' => $record['fjsl'] + 1, 'fjzhong'=> $my_need_pay ),array( 'where' => array('addtime'=>$addtime) ));
-										
-											D('Paymentlogs')->save( array( 'ismiandan' => 1 , 'mdid' => $record['id'] ),array('where'=>array('log_id'=>$log_id)));
-											if (!($detail = D('Users')->find($logs['user_id']))) {
-												D('Users')->save(array('user_id' => $logs['user_id'], 'money' => $logs['need_pay'] + $detail['money']));
-												
-												$rank_id = D('Users')->where('user_id='.$logs['user_id'])->getField('rank_id');
-		                                        $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
-												D('Usermoneylogs')->add(array('user_id' => $logs['user_id'], 'money' => $logs['need_pay'], 'intro' => "随机免单获得", 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(),'$rankname' =>$rankname));
-											}
-											
-										
-											
-									//D('Paymentlogs')->save(array('ismiandan'=>1,'pay_time'=>NOW_TIME,'is_paid'=>1,'pay_ip' => $ip),array('where'=>array('log_id'=>$log_id)));
-						// echo "<script>alert('AAA".$logs['log_id']."BBB')</ script>";
-						 //die(0);
-								//$this->fengmiMsg($logs['log_id'], '/my/zhongjiang.htm');	
-									
-									
-									cookie('my_log_id', $log_id);
-									session('my_log_id', $log_id);
-									$my_uid = $this -> uid;
-									 cookie('my_uid', $my_uid);
-									 session('my_uid', $my_uid);
-									 //$this -> gwmd_success('恭喜您 获得随机免单!', "http://www.blklube.com/my/zhongjiang.php?log_id=".$log_id );
-									
-									 $this -> success('恭喜您获得随机免单!请稍等...', '/my/zhongjiang.php?log_id='.$log_id);
-									  header('Location:/my/zhongjiang.php?log_id='.$log_id);
-									 break;
-									 //include("/my/zhongjiang.php?log_id=".$log_id);
-									 die;
-									 exit;
-											
-											
-										
-										}  
-										
-									
-													
-							} 
-						}
-				} 
-			
-			
-			
-		} 
-		
 		switch ($logs['type']) {
 			case 'ele' :
 				$this -> ele_success('恭喜您支付成功啦！', $logs);
@@ -456,19 +329,9 @@ class PaymentAction extends CommonAction {
 			case 'pintuan' :
 				$this -> pintuan_success('恭喜您支付成功啦！', $logs);
 				break;
-			case 'gwmd' :
-			
-				$this -> gwmd_success('恭喜您到店扫码支付成功啦！', $logs);
-				break;	
-					
 			default :
-			 
-			    
-			 
-			 $this -> success('恭喜您支付成功', U('user/member/index'));
+				$this -> success('恭喜您充值成功', U('user/member/index'));
 				break;
-			 
-				
 		}
 	}
 
@@ -490,10 +353,6 @@ class PaymentAction extends CommonAction {
 		$this -> assign('paytype', D('Payment') -> getPayments());
 		$check_pay_password = D('Users')->check_pay_password($this->uid);
 		$this->assign('user_pay_password',$check_pay_password);
-		
-		
-		
-		
 		$this -> display();
 	}
 	

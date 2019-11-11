@@ -20,15 +20,12 @@ class IndexAction extends CommonAction{
         }
         $member['money'] = $member['money'] - $detail['need_pay'];
         if (D('Users')->save(array('user_id' => $this->uid, 'money' => $member['money']))) {
-			$rank_id = D('Users')->where('user_id='.$this->uid)->getField('rank_id');
-		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
             D('Usermoneylogs')->add(array(
 				'user_id' => $this->uid, 
 				'money' => -$detail['need_pay'], 
 				'create_time' => NOW_TIME, 
 				'create_ip' => get_client_ip(), 
-				'intro' => '余额支付 支付ID:' . $logs_id,
-				'rankname' => $rankname
+				'intro' => '余额支付' . $logs_id
 			));
             D('Payment')->logsPaid($logs_id);
             $this->remainMoneyNotify($detail['need_pay'], $member['money']);
@@ -51,7 +48,7 @@ class IndexAction extends CommonAction{
             //余额变动模板
             $tmpl_data = array(
 				'touser' => $openid, 
-				'url' => 'http://www.blklube.com', 
+				'url' => 'http://www.blklube.com',
 				'template_id' => $template_id, 
 				'topcolor' => '#2FBDAA', 
 				'data' => array('first' => array('value' => '尊敬的用户,您的账户余额有变动！', 'color' => '#2FBDAA'), 
@@ -74,16 +71,12 @@ class IndexAction extends CommonAction{
             $member = D('Users')->find($this->uid);
             $member['money'] += $detail['value'];
             if (D('Users')->save(array('user_id' => $this->uid, 'money' => $member['money']))) {
-				$rank_id = D('Users')->where('user_id='.$this->uid)->getField('rank_id');
-		        $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
-
                 D('Usermoneylogs')->add(array(
 					'user_id' => $this->uid, 
 					'money' => +$detail['value'], 
 					'create_time' => NOW_TIME, 
 					'create_ip' => get_client_ip(), 
-					'intro' => '代金券充值' . $detail['card_id'],
-					'rankname' => $rankname
+					'intro' => '代金券充值' . $detail['card_id']
 				));
                 $res = D('Rechargecard')->save(array('card_id' => $detail['card_id'], 'is_used' => 1));
                 if (!empty($res)) {

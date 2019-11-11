@@ -7,7 +7,7 @@ class AuditAction extends CommonAction
     {
         $Audit = D('Audit');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name'] = array('LIKE', '%' . $keyword . '%');
@@ -101,23 +101,23 @@ class AuditAction extends CommonAction
             $this->baoError('组织机构代码证为空');
         }
         $data['user_name'] = htmlspecialchars($data['user_name']);
-//        if (empty($data['user_name'])) {
-//            $this->baoError('员工姓名为空');
-//        }
+        if (empty($data['user_name'])) {
+            $this->baoError('员工姓名为空');
+        }
         $data['pic'] = htmlspecialchars($data['pic']);
-//        if (empty($data['pic'])) {
-//            $this->baoError('请上传员工身份证');
-//        }
-//        if (!isImage($data['pic'])) {
-//            $this->baoError('员工身份证图片格式不正确');
-//        }
+        if (empty($data['pic'])) {
+            $this->baoError('请上传员工身份证');
+        }
+        if (!isImage($data['pic'])) {
+            $this->baoError('员工身份证图片格式不正确');
+        }
         $data['mobile'] = htmlspecialchars($data['mobile']);
-//        if (empty($data['mobile'])) {
-//            $this->baoError('员工手机不能为空');
-//        }
-//        if (!isMobile($data['mobile'])) {
-//            $this->baoError('员工手机格式不正确');
-//        }
+        if (empty($data['mobile'])) {
+            $this->baoError('员工手机不能为空');
+        }
+        if (!isMobile($data['mobile'])) {
+            $this->baoError('员工手机格式不正确');
+        }
         $data['audit'] = 0;
         //默认不通过
         return $data;
@@ -180,23 +180,23 @@ class AuditAction extends CommonAction
             $this->baoError('组织机构代码证为空');
         }
         $data['user_name'] = htmlspecialchars($data['user_name']);
-//        if (empty($data['user_name'])) {
-//            $this->baoError('员工姓名为空');
-//        }
+        if (empty($data['user_name'])) {
+            $this->baoError('员工姓名为空');
+        }
         $data['pic'] = htmlspecialchars($data['pic']);
-//        if (empty($data['pic'])) {
-//            $this->baoError('请上传员工身份证');
-//        }
-//        if (!isImage($data['pic'])) {
-//            $this->baoError('员工身份证图片格式不正确');
-//        }
+        if (empty($data['pic'])) {
+            $this->baoError('请上传员工身份证');
+        }
+        if (!isImage($data['pic'])) {
+            $this->baoError('员工身份证图片格式不正确');
+        }
         $data['mobile'] = htmlspecialchars($data['mobile']);
-//        if (empty($data['mobile'])) {
-//            $this->baoError('员工手机不能为空');
-//        }
-//        if (!isMobile($data['mobile'])) {
-//            $this->baoError('员工手机格式不正确');
-//        }
+        if (empty($data['mobile'])) {
+            $this->baoError('员工手机不能为空');
+        }
+        if (!isMobile($data['mobile'])) {
+            $this->baoError('员工手机格式不正确');
+        }
         $data['audit'] = 0;
         //默认不通过
         return $data;

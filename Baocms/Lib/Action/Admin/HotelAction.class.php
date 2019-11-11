@@ -16,7 +16,7 @@ class HotelAction extends CommonAction {
     
     public function index() {
         $hotel = D('Hotel');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0, 'audit' => 1);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['hotel_name'] = array('LIKE', '%' . $keyword . '%');

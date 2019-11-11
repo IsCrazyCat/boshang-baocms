@@ -310,9 +310,6 @@ function getDistance($lat1, $lng1, $lat2, $lng2) {
     return $s;
 }
 
-
-
-
 function getDistanceCN($lat1, $lng1, $lat2, $lng2) {
     $s = getDistanceNone($lat1, $lng1, $lat2, $lng2);
     $s = $s / 10000;
@@ -326,12 +323,6 @@ function getDistanceCN($lat1, $lng1, $lat2, $lng2) {
     return $s;
 }
 
-
-function mygetDistance($lat1, $lng1, $lat2, $lng2) {
-    $s = getDistanceNone($lat1, $lng1, $lat2, $lng2);
-    
-    return $s;
-}
 
 //空白区域插件
 function block($id) {
@@ -619,11 +610,9 @@ function isPhone($string) {
  * @return boolean
  */
 function isMobile($string) {
-    if(preg_match('/^[1]+[1,2,3,4,5,6,7,8,9]+\d{9}$/', $string)){
-		 return true;
-	} else {
-		return false;
-	}
+    if(preg_match('/^[1]+[3,4,5,7,8,9]+\d{9}$/', $string))
+            return true;
+        return false;
     //return ctype_digit($string) && (11 == strlen($string)) && ($string[0] == 1);
 }
 
@@ -1418,54 +1407,54 @@ function getSiteUrl(){
 function p($array) {
 	dump ( $array, 1, '<pre style=font-size:14px;color:#00ae19;>', 0 );
 }
-//获取车型和商品的关联信息
-function get_car_goods($car_id){
-
-    $goods_ids = D('Cargoods')->where(array('car_id'=>$car_id,'closed'=>0))->getField('good_id',true);
-    $catesInfo = array();//类别数组-一级分类 按照类别分组统计
-    $catechildsInfo = array();//类别数组-二级分类 按照类别分组统计
-    foreach ($goods_ids as $key=>$val) {
-        $good = D('Goods')->find($val);
-
-        $catechildsInfo[$good['cate_id']][$good['goods_id']] = $good['title'];
-
-//        if(empty($catechildsInfo[$good['cate_id']])){
-//            $catechildsInfo[$good['cate_id']] = $good['goods_id'];
-//        }else{
-//            $cate_child_array = $catechildsInfo[$good['cate_id']];
-//            if(is_array($cate_child_array)){
-//                array_push($cate_child_array,$good['goods_id']);
-//            }else{
-//                $cate_child_array = array($cate_child_array,$good['goods_id']);
-//            }
-//            $catechildsInfo[$good['cate_id']]=$cate_child_array;
-//        }
-
-
+require_cache(APP_PATH.'Lib/phpqrcode/phpqrcode.php'); //引入二维码生成图片
+/**
+ * @param $model 模块+&&+类型
+ * @param $url
+ * @param int $size
+ * @return string 生成代logo的二维码
+ */
+function shoppingQrcode($model,$url,$logo_img,$size = 8){ //生成网址的二维码 返回图片地址
+    $dir = str_replace('&&','/',$model).'/';
+    $patch =BASE_PATH.'/attachs/'. 'weixin/'.$dir;
+    if(!file_exists($patch)){
+        mkdir($patch,0755,true);
     }
-    foreach ($catechildsInfo as $key=>$val){
-        $cate = D('Goodscate')->find($key);
-        $catechildsInfo[$key]['name']=$cate['cate_name'];
-        $catesInfo[$cate['parent_id']][$key]=$val;
-        $catesInfo[$cate['parent_id']][$key]['name']=$cate['cate_name'];
-
-    }
-    foreach ($catesInfo as $key=>$val){
-        $cate = D('Goodscate')->find($key);
-        $catesInfo[$key]['name']=$cate['cate_name'];
-        $cate_count = 0;
-        foreach ($val as $ckey=>$cval){
-            if($ckey == 'name'){
-                continue;
-            }
-            $catesInfo[$key][$ckey]['count'] = count($val[$ckey])-1;
-            $cate_count += count($val[$ckey])-1;
+    $file = 'weixin/'.$dir.time().'.png';
+    $fileName  =BASE_PATH.'/attachs/'.$file;
+    if(!file_exists($fileName)){
+        $level = 'L';
+        if(strstr($url,__HOST__)){
+            $data = $url;
+        }else{
+            $data =__HOST__. $url;
         }
-        $catesInfo[$key]['count'] = $cate_count;
+        QRcode::png($data, $fileName, $level, $size,2,true);
     }
+    if($logo_img){
+        $QR = imagecreatefromstring(file_get_contents(BASE_PATH.'/attachs/'.$file));
+        $logo_img = imagecreatefromstring(file_get_contents(BASE_PATH . $logo_img));
+        $QR_width = imagesx($QR);//二维码图片宽度
+        $QR_height = imagesy($QR);//二维码图片高度
+        $logo_width = imagesx($logo_img);//logo图片宽度
+        $logo_height = imagesy($logo_img);//logo图片高度
+        $logo_qr_width = $QR_width / 5;
+        $scale = $logo_width/$logo_qr_width;
+        $logo_qr_height = $logo_height/$scale;
+        $from_width = ($QR_width - $logo_qr_width) / 2;//重新组合图片并调整大小
 
-//    $result['catesInfo'] = $catesInfo;
-//    $result['catechildsInfo']=$catechildsInfo;
-
-    return $catesInfo;
+//        dst_image：新建的图片
+//        $src_image：需要载入的图片
+//        $dst_x：设定需要载入的图片在新图中的x坐标
+//        $dst_y：设定需要载入的图片在新图中的y坐标
+//        $src_x：设定载入图片要载入的区域x坐标
+//        $src_y：设定载入图片要载入的区域y坐标
+//        $dst_w：设定载入的原图的宽度（在此设置缩放）
+//        $dst_h：设定载入的原图的高度（在此设置缩放）
+//        $src_w：原图要载入的宽度
+//        $src_h：原图要载入的高度
+        imagecopyresampled($QR, $logo_img, $from_width, $from_width, 0, 0, $logo_qr_width,$logo_qr_height, $logo_width, $logo_height);//输出图片
+        imagepng($QR, $fileName);
+    }
+    return $file;
 }

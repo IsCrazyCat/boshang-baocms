@@ -42,7 +42,7 @@ class FarmAction extends CommonAction {
 
     public function noaudit(){
         $farm = D('Farm');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         $map = array('closed' => 0, 'audit' => array('IN',array(0,2)));
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['farm_name'] = array('LIKE', '%' . $keyword . '%');

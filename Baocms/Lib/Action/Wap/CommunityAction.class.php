@@ -158,7 +158,7 @@ class CommunityAction extends CommonAction{
         $this->assign('products_pay', $products_pay);
         $this->display('detail');
     }
-    //小区论坛
+    //小区贴吧
     public function tieba(){
         $community_id = (int) $this->_param('community_id');
         $community = D('Community');
@@ -183,7 +183,7 @@ class CommunityAction extends CommonAction{
         $this->assign('count', $count);
         $this->display();
     }
-    //论坛帖子加载
+    //贴吧帖子加载
     public function loadtieba(){
         $community_id = (int) $this->_param('community_id');
         $community = D('Community');
@@ -228,7 +228,7 @@ class CommunityAction extends CommonAction{
         $this->assign('linkArr', $linkArr);
         $this->display();
     }
-    //论坛帖子加载-> 首页
+    //贴吧帖子加载-> 首页
     public function loading()
     {
         $community_id = (int) $this->_param('community_id');
@@ -274,7 +274,7 @@ class CommunityAction extends CommonAction{
         $this->assign('linkArr', $linkArr);
         $this->display();
     }
-    //论坛帖子
+    //贴吧帖子
     public function tie()
     {
         $post_id = (int) $this->_get('post_id');
@@ -311,7 +311,7 @@ class CommunityAction extends CommonAction{
         $this->assign('nextpage', LinkTo('community/loadreply', array('post_id' => $tie['post_id'], 't' => NOW_TIME, 'p' => '0000')));
         $this->display();
     }
-    //论坛点赞
+    //贴吧点赞
     public function zantie()
     {
         if (empty($this->uid)) {
@@ -328,7 +328,7 @@ class CommunityAction extends CommonAction{
         echo $num;
         die;
     }
-    //论坛评论加载
+    //贴吧回复加载
     public function loadreply()
     {
         $post_id = (int) $this->_param('post_id');
@@ -356,7 +356,7 @@ class CommunityAction extends CommonAction{
         $this->assign('page', $show);
         $this->display();
     }
-    //论坛发帖
+    //贴吧发帖
     public function post()
     {
         $community_id = (int) $this->_get('community_id');
@@ -424,7 +424,7 @@ class CommunityAction extends CommonAction{
             $this->display();
         }
     }
-    //论坛发帖检测
+    //贴吧发帖检测
     private function postCheck(){
         $data = $this->checkFields($this->_post('data', false), array('title', 'details', 'gallery', 'photo'));
         $data['title'] = htmlspecialchars($data['title']);
@@ -438,7 +438,7 @@ class CommunityAction extends CommonAction{
         }
         return $data;
     }
-    //论坛评论
+    //贴吧回复
     public function reply($post_id){
         if (empty($this->uid)) {
             $this->error('登录后才能发帖！', U('passport/login'));
@@ -477,7 +477,7 @@ class CommunityAction extends CommonAction{
             $this->display();
         }
     }
-    //论坛评论检测
+    //贴吧回复检测
     public function checkReply()
     {
         $data = $this->checkFields($this->_post('data', false), array('details', 'photo'));
@@ -533,7 +533,7 @@ class CommunityAction extends CommonAction{
         $this->assign('nextpage', LinkTo('community/loadneighbor', array('community_id' => $detail['community_id'], 't' => NOW_TIME, 'p' => '0000')));
         $this->display();
     }
-    //论坛邻居加载
+    //贴吧邻居加载
     public function loadneighbor()
     {
         $community_id = (int) $this->_param('community_id');

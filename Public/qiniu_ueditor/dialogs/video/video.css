@@ -1,6 +1,6 @@
 @charset "utf-8";
-.wrapper{ width: 370px;_width:375px;margin: 10px auto; zoom:1;position: relative}
-.tabbody{height: 167px;}
+.wrapper{ width: 570px;_width:575px;margin: 10px auto; zoom:1;position: relative}
+.tabbody{height: 335px;}
 .tabbody .panel {
     position: absolute;
     width: 0;

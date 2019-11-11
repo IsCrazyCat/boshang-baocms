@@ -168,7 +168,7 @@ aside li span { position: absolute; right: 0; top: 15px; width: 0; height: 0; bo
 .right-content #lab-03,
 .right-content #lab-04,
 .right-content #lab-05 { display: none; }
-/*我的兜兜页面样式 */
+/*个人中心页面样式 */
 
 .topTitle { background: #eee; height: 44px; line-height: 54px; padding-left: 10px; font-size: 14px; color: #999; }
 .head-top { position: relative; background: #eee; height: 77px; border-bottom: solid #b7b7b7 1px; }

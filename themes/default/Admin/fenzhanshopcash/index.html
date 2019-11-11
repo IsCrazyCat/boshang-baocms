@@ -79,7 +79,7 @@
                         </td>
                         <td><{$var['gold'] / 100}> 元</td>
 						<td><if condition="!empty($var['commission'])">手续费：&yen; <{:round($var['commission']/100,2)}>元<else/>无</if></td>
-                        <td><{$var['addtime']|date='Y-m-d H:i:s', ###}></td>
+                        <td><{$var['addtime']|date='Y-m-d', ###}></td>
                         <td>
                     <if condition="$var.status eq 0">
                         未审

@@ -50,9 +50,8 @@ class ShopAction extends CommonAction{
     }
     public function about(){
         if ($this->isPost()) {
-            $data = $this->checkFields($this->_post('data', false), array('tags', 'addr', 'contact','tel','mobile', 'qq', 'business_time', 'delivery_time'));
+            $data = $this->checkFields($this->_post('data', false), array('addr', 'contact','tel','mobile', 'qq', 'business_time', 'delivery_time'));
             $data['addr'] = htmlspecialchars($data['addr']);
-			$data['tags'] = htmlspecialchars($data['tags']);
             if (empty($data['addr'])) {
                 $this->baoError('店铺地址不能为空');
             }

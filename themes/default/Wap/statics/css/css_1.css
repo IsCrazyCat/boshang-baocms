@@ -724,7 +724,7 @@ a{color:black;}
 .apply-num{/*border-right:1px solid #dedede;*/padding-left:0.14rem; /*padding-right:0.12rem;*/}
 .apply-phone{border-left:1px solid #dedede;height:0.3rem;line-height:0.3rem;margin-top:0.06rem;padding-left:0.1rem;}
 
-/*************************************我的兜兜-团购券*********************************************************/
+/*************************************个人中心-抢购券*********************************************************/
 #personal-coupon{bottom: 0.5rem; position: absolute; top: 0.9rem; width: 100%;}
 .coupon_nav li:first{border-bottom: 1px solid #dedede;}
 .send-out .coupon-list{ padding:0.1rem 0.1rem 0.05rem 0.1rem; background-color:#fff;border-top:1px solid #dedede;margin-top: 0.1rem;}
@@ -922,7 +922,7 @@ a{color:black;}
 #life .mall-form .mall-bt{color:black;font-size:0.16rem;}
 
 /**************************************community_index********************************************************/
-/*社区首页-限时团购轮播开始*/
+/*社区首页-限时抢购轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -938,7 +938,7 @@ a{color:black;}
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时团购轮播结束*/
+/*社区首页-限时抢购轮播结束*/
 .commu-top{font-size:0.15rem;border-bottom:1px solid #dedede;}
 .commu-top .commu-ig{width:0.23rem;height:0.2rem;background:url("../img/tp73.png") no-repeat;}
 .commu-ig2{width:0.23rem;height:0.2rem;background:url("../img/tp78.png") no-repeat;}
@@ -1073,7 +1073,7 @@ a{color:black;}
 .mall-our .mall-fen .ico{ display:inline-block; font-size:0; width:0.18rem; height:0.18rem; background-repeat:no-repeat; vertical-align:middle; margin-right:0.05rem;}
 .mall-our .mall-fen .ico.ico_1{background-image:url(../img/goto.png); background-position:left top; background-size:100% auto;}
 .mall-our .mall-fen .ico.ico_2{background-image:url(../img/sqlunIco.png); background-position:center top;background-size:100% auto;}
-/*团购详情-分店地址开始-新增*/
+/*抢购详情-分店地址开始-新增*/
 .fendianAddr{ border-top:0.01rem solid #e5e5e5; border-bottom:0.01rem solid #e5e5e5; background:#fff;}
 .fendianAddr_switch{ width:30%; border-right:0.01rem solid #e5e5e5; min-height:1.2rem; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
 .fendianAddr_list{ display:block; border-bottom:0.01rem solid #e5e5e5; text-align:center; font-size:0.14rem; line-height:0.4rem; height:0.4rem; overflow:hidden;}
@@ -1090,7 +1090,7 @@ a{color:black;}
 .fendianAddr_nr .btn_box .ico{display:inline-block; font-size:0; width:0.18rem; height:0.18rem; background-repeat:no-repeat; vertical-align:middle; margin-right:0.05rem;}
 .fendianAddr_nr .btn_box .ico_1{background-image:url(../img/gotoOrange.png); background-position:left center; background-size:100% auto;}
 .fendianAddr_nr .btn_box .ico_2{background-image:url(../img/telIco.png); background-position:left center; background-size:100% auto;}
-/*团购详情-分店地址结束-新增*/
+/*抢购详情-分店地址结束-新增*/
 .order-img img{width:70%;}
 .order-img{text-align:center;}
 .spread-intro del{padding-right:0.3rem;color:#666;}
@@ -1147,7 +1147,7 @@ a{color:black;}
 .commu-date{color:#666;}
 
 
-/*我的兜兜积分兑换            exchangeloading*/
+/*个人中心积分兑换            exchangeloading*/
 .des{font-size:0.16rem;width:65%;line-height:0.23rem;padding-left:0.06rem;}
 .loading-div{width:100%;margin-top:0.48rem;}
 .loading-img{width:0.93rem;}
@@ -1826,7 +1826,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .fastNews .list_box li{ height:0.3rem; line-height:0.3rem; overflow:hidden;}
 .fastNews .list_box li a{ color:#2fbdaa;}
 /*首页快报end*/
-/*首页限时团购start*/
+/*首页限时抢购start*/
 .sy_title{border-bottom:0.01rem solid #e6e6e6; border-top:0.01rem solid #e6e6e6; background:#fff; padding:0.05rem 0.1rem; overflow:hidden; line-height:0.3rem; font-size:0.16rem;}
 .sy_title .more{ font-size:0.12rem;}
 .sy_limit_buy_time{ font-size:0.12rem; color:#999; margin-left:0.12rem;}
@@ -1842,7 +1842,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .sy_limit_buy .locatLabel_switch .box a{ width:100%; display:block;}
 .sy_limit_buy .locatLabel_switch .box img{ width:100%; min-height:0.2rem;}
 .sy_limit_buy .locatLabel_switch .box p{overflow:hidden;}
-/*首页限时团购end*/
+/*首页限时抢购end*/
 /*首页特色频道start*/
 .sy_tese{ background:#fff;}
 .sy_tese .list{ display:block; float:left;}
@@ -1879,7 +1879,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .sy_recmd_list .pub_wz .nr_box{ overflow:hidden; margin-top:0.05rem; padding:0.05rem 0; border-top:0.01rem solid #e6e6e6;}
 
 /*首页推荐end*/
-/*限时团购开始*/
+/*限时抢购开始*/
 #index .limit_buy .title{ overflow:hidden; padding:0 0.1rem; line-height:0.24rem;}
 #index .limit_buy h3{ font-size:0.15rem; font-weight:normal; line-height:0.24rem; color:#2fbdaa;}
 #index .limit_buy .list_box{border-top:0.01rem solid #dedede;}
@@ -1906,7 +1906,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 #index .limit_buy .see_more{ display:block; background-color:#fff; color:#2fbdaa; text-align:center; line-height:0.4rem; border-bottom:0.01rem solid #dedede;}
 #index .limit_buy .see_more i{ display:inline-block; vertical-align:middle; margin-left:0.05rem; margin-top:-0.05rem; content:''; width:0.07rem; height:0.07rem; border-bottom:0.02rem solid #2fbdaa;border-left:0.02rem solid #2fbdaa;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-o-transform:rotate(-45deg);}
 #index .limit_buy .playPrice{ font-size:0.14rem;}
-/*限时团购结束*/
+/*限时抢购结束*/
 /*首页热门商家开始*/
 #index .hot_seller .list_box li p{ line-height:0.24rem;}
 #index .hot_seller .list_box .tag{border-radius:0.03rem; line-height:0.24rem; padding:0 0.06rem; margin-left:0.04rem; color:#fff; background-color:#eb6100; font-size:0.1rem;}
@@ -1982,8 +1982,8 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .regist-code{ position:relative;}
 .regist-code-get{ position:absolute; right:0.1rem; top:0.06rem; font-size:0.14rem; height:0.3rem; line-height:0.3rem; color:#fff; text-align:center; width:1rem; border-radius:3px; background-color:#2fbdaa; display:block;}
 .regist-code-get.on{ background-color:#999;}
-/*我的兜兜开始*/
-/*我的兜兜首页开始*/
+/*个人中心开始*/
+/*个人中心首页开始*/
 #personal{position: absolute; top: 0.5rem; bottom: 0.5rem; width: 100%;}
 .personal_info_bg{ width:100%; height:auto; background:url(../img/minecenterIco/mineinfoBg.png) no-repeat center top; background-size:cover;}
 .personal_info_bg .title{ text-align:center; font-size: 0.18rem; line-height:0.4rem; color:#fff; height:0.4rem;}
@@ -2038,9 +2038,9 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 #personal .list-box li .ico.ico_14{ background-position:left -3.25rem;}
 #personal .list-box li .num{display:inline-block; float:right; padding:0 0.1rem; line-height:0.24rem; background:#fafafa; border:0.01rem solid # dedede; color:#f41414; font-size:0.14rem; font-style:normal; border-radius:0.2rem; margin-right:0.2rem;}
 #personal .submit{ font-size:0.18rem; color:#fff; height:0.4rem; width:90%; line-height:0.4rem; background-color:#e74c3c; border-radius:0.05rem; border:none 0px; margin:0.1rem auto; display:block;}
-/*我的兜兜首页结束*/
+/*个人中心首页结束*/
 
-/*我的兜兜地址*/
+/*个人中心地址*/
 #personal .address{ padding-top:0.1rem;}
 #personal .address .list-box{ background-color:#fff; border-top:1px solid #dedede;}
 #personal .address .list-box li{ border-bottom:1px solid #dedede; padding:0.1rem; position:relative; height:0.2rem;}
@@ -2049,7 +2049,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 #personal .address .personal-add-btn{height:45px;line-height:45px;text-align:center;color:#FFFFFF;width:85%;margin:0px auto;border-radius:5px;font-size:0.24rem;background:#2fbdaa;margin-top:15px;}
 /**/
 #personal .address .address-ts{ font-size:0.14rem; line-height:0.3rem; color:#999; padding:0px 0.1rem;}
-/*我的兜兜-个人信息修改*/
+/*个人中心-个人信息修改*/
 #personal .modify{ padding-top:0.1rem; font-size:0.12rem;}
 .modify-list-box{ border-top:1px solid #dedede; background-color:#fff; margin-bottom:0.1rem;}
 .modify-list-box h3{ font-size:0.12rem; line-height:0.2rem; color:#666;}
@@ -2069,17 +2069,17 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .modify-head-upload .upload{ padding:0.1rem;}
 .modify-head-upload .upload label{ font-size:0.12rem; color:#333; position:relative; line-height:0.4rem;}
 .modify-head-upload .upload label input{ position:absolute; left:0; top:0; opacity:0; filter:alpha(opacity=0);}
-/*我的兜兜-我的信息-详情*/
+/*个人中心-我的信息-详情*/
 .my-message-details{ padding:0.1rem;}
 .my-message-details h2{ font-size:0.16rem; line-height:0.3rem; text-align:center; color:#333; border-bottom:1px solid #eee; margin-bottom:0.08rem;}
 .my-message-details p{ font-size:0.14rem; line-height:0.24rem; color:#666;}
-/*我的兜兜-提示页面*/
+/*个人中心-提示页面*/
 .prompt{padding-top:0.1rem; font-size:0.12rem; margin:0 auto; text-align:center; width:80%; margin-top:10%;}
 .prompt .img{ width:1rem; height:1rem; margin:0 auto; margin-bottom:0.1rem;}
 .prompt .img img{ width:100%; height:100%;}
 .prompt p{ font-size:0.14rem; line-height:0.24rem; color:#999;}
 .prompt .btn{ display:inline-block; width:1.2rem; height:0.3rem; line-height:0.3rem; text-align:center; color:#fff; background-color:#2fbdaa; border-radius:0.3rem; font-size:0.16rem; margin-top:0.1rem;}
-/*我的兜兜基本设置开始-新增*/
+/*个人中心基本设置开始-新增*/
 .baseSet_box{ padding:0.05rem 0; margin-top:0.1rem; border-bottom:0.01rem solid #dedede; border-top:0.01rem solid #dedede; background:#fff;}
 .baseSet_box h2{ font-size:0.16rem; line-height:0.3rem; border-bottom:0.01rem solid #dedede; padding:0 0.1rem; text-align:center; color:#333;}
 .baseSet_box .form_box{ padding:0.1rem 0.05rem;}
@@ -2090,8 +2090,8 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .baseSet_box .form_box table tr td .select_box select{width:1rem; height: 0.34rem; border: 0.01rem solid #dedede; background: #fff none;text-indent: 0.05rem; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; margin-bottom:0.05rem; margin-right:0.05rem;}
 .baseSet_box .form_box table tr td .btn_box{ text-align:center; margin:0.1rem 0;}
 .baseSet_box .form_box table tr td .btn_box .btn{border-radius: 0.03rem; background-color: #2fbdaa; font-size: 0.16rem; line-height: 0.3rem; color: #fff; padding: 0px 0.08rem; display: inline-block; border: none 0px;}
-/*我的兜兜基本设置结束-新增*/
-/*我的兜兜结束*/
+/*个人中心基本设置结束-新增*/
+/*个人中心结束*/
 
 /*榜单开始*/
 /*榜单首页*/
@@ -2441,7 +2441,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .hotSer_li a{display:block;	background-color:#fff;	border:1px solid #ccc;	text-align:center;	font-size: 0.16rem;	color: #666;	line-height: 0.34rem;	height:0.34rem;}
 /*搜索页结束*/
 
-/*社区首页-限时团购轮播开始*/
+/*社区首页-限时抢购轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -2457,7 +2457,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时团购轮播结束*/
+/*社区首页-限时抢购轮播结束*/
 
 /*商家列表页拨打电话代码开始*/
 .listBox_tag_box{ margin:0.05rem 0;}
@@ -2472,7 +2472,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .seller_tel_btn em{}
 /*商家列表页拨打电话代码开始*/
 
-/*团购专题开始*/
+/*抢购专题开始*/
 .sjqg_special_content_box{ padding:0.5rem 0px; font-size:0.14rem;}
 .sjqg_special_banner{ width:100%; height:auto;}
 .sjqg_special_banner img{ width:100%; height:auto;}
@@ -2489,7 +2489,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .sjqg_special_btn_r{ width:30%; padding-top:0.08rem;}
 .sjqg_special_btn_r .btn{ display:inline-block; background-color:#2fbdaa; color:#fff; font-size:0.14rem; height:0.22rem; line-height:0.24rem; padding:0px 0.1rem; border-radius:0.03rem;}
 .sjqg_special_list_box .img .bq{ position:absolute; left:0; top:0; width:50%; height:auto;}
-/*团购专题结束*/
+/*抢购专题结束*/
 /*******************************合并css_w样式结束*******************************/
 
 /**/
@@ -2637,8 +2637,8 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .sjComment .list .line2{font-size:0.14rem; line-height:0.20rem; color:#666; height:0.4rem;}
 /*商家点评页结束*/
 
-/*商家门店付款页面开始-新增*/
-/*商家门店付款列表*/
+/*商家优惠买单页面开始-新增*/
+/*商家优惠买单列表*/
 .youhuiCheck_list{ border-bottom:0.01rem solid #e5e5e5; border-top:0.01rem solid #e5e5e5; background:#fff; padding:0.05rem 0.1rem; position:relative;}
 .youhuiCheck_list p{ overflow:hidden; line-height:0.24rem;}
 .youhuiCheck_list .order_num{ line-height:0.3rem; margin-bottom:0.05rem;}
@@ -2646,7 +2646,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .youhuiCheck_list .addr .ico{ display:inline-block; width:0.18rem; height:0.18rem; vertical-align:middle; font-size:0; margin-right:0.05rem; background:url(../img/tp67.png) no-repeat center top; background-size:80% auto;}
 .youhuiCheck_list .wid{ min-width:40%; display:inline-block; margin-right:0.1rem;}
 .youhuiCheck_list .btn{ display:inline-block; width:0.8rem; height:0.32rem; line-height:0.32rem; text-align:center; border-radius:0.03rem; background:#ff3c00; font-size:0.16rem; color:#fff; position:absolute; right:0.1rem; top:0.05rem;}
-/*商家门店付款表单*/
+/*商家优惠买单表单*/
 .youhuiCheck{ margin:0.1rem;}
 .youhuiCheck_int{ border:0.01rem solid #e5e5e5; background:#fff; border-radius:0.05rem; line-height:0.4rem;}
 .youhuiCheck_table th{ width:1rem; border-right:0.01rem solid #e5e5e5; text-align:center; font-weight:normal;}
@@ -2654,7 +2654,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .youhuiCheck_table td input{ width:100%; height:0.4rem; border:none; background:none; text-align:right; font-size:0.14rem; color:#000;}
 .youhuiCheck_ts{ font-size:0.12rem; line-height:0.24rem;}
 .youhuiCheck .long_btn{ width:90%; display:block; margin:0.3rem auto 0.2rem; background:#ff3c00; border-radius:0.05rem; height:0.4rem; border:none; color:#fff; font-size:0.16rem;}
-/*商家门店付款页面结束-新增*/
+/*商家优惠买单页面结束-新增*/
 
 /*评价星-开始*/
 .spxq_qgpstarBg{width:0.6rem; height:0.12rem; display:inline-block; background:url(../img/star2.png) no-repeat left bottom; background-size:0.6rem auto; overflow:hidden; position:relative;}
@@ -3639,7 +3639,7 @@ footer .goodsDetail_foot {width: 100%; height: 0.34rem; background: #fff; paddin
 .zhuye-cont .wenzibl-list3 .dianjin-list .jin span{margin-left:0.02rem}
 .zhuye-cont .wenzibl-list3 .dianjin-list .tubiao2{padding: 0.11rem;background: url(../img/tribe/lun.jpg) no-repeat center top;background-size: 100% auto;font-size: 0;vertical-align: middle;font-style:normal}
 .zhuye-cont .wenzibl-list3 .dianjin-list .tubiao3{padding: 0.11rem;background: url(../img/tribe/aixin.png) no-repeat center top;background-size: 100% auto;font-size: 0;vertical-align: middle;font-style:normal}
-/*部落发表与评论*/
+/*部落发表与回复*/
 .tribe_fabu .bt{ width:100%; height:0.3rem; line-height:0.3rem; background:#fff; border:0.01rem solid #ccc; text-indent:0.1rem; margin-bottom:0.1rem;}
 .tribe_fabu .cont textarea { width: 100%;border: 0.01rem solid #ccc;background: #fff none;height: auto;min-height: 1.2rem;display: block; margin-bottom:0.1rem;}
 .tribe_fabu .appointForm_imgdup{ background:#ffffff; padding:0.1rem 0 0.1rem 0.08rem;}
@@ -3652,7 +3652,7 @@ footer .goodsDetail_foot {width: 100%; height: 0.34rem; background: #fff; paddin
 -ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background-color: #cccccc;}
 .tribe_fabu .uploader_input_img:before {width: 0.02rem;height: 0.4rem;}
 .tribe_fabu .uploader_input_img:after {width: 0.4rem;height: 0.02rem;}
-/*部落评论*/
+/*部落回复*/
 .reping-box .img_list{ overflow:hidden;}
 .reping-box .img_list li{ float:left; width:30%; height:0.5rem; overflow:hidden; margin-right:3%;}
 .reping-box .img_list li img{ width:100%; height:auto;}

@@ -17,7 +17,7 @@ class BusinessAction extends CommonAction
     {
         $Business = D('Business');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('area_id' => $this->area_id);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

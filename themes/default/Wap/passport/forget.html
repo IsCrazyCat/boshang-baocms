@@ -1,7 +1,7 @@
 <include file="public:header"/>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="javascript:history.back(-1);"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{$backurl}>"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			找回密码
@@ -16,15 +16,15 @@
 	<div class="button-toolbar">
 		<div class="button-group">
 			<a class="block button <if condition='$way eq 2'>bg-dot active</if>" href="<{:U('passport/forget',array('way'=>2))}>">通过手机</a>
-			<!--<a class="block button <if condition='$way eq 1'>bg-dot active</if>" href="<{:U('passport/forget',array('way'=>1))}>">通过邮箱</a>-->
+			<a class="block button <if condition='$way eq 1'>bg-dot active</if>" href="<{:U('passport/forget',array('way'=>1))}>">通过邮箱</a>
 		</div>
 	</div>
 </div>
 <form action="<{:U('passport/newpwd')}>" method="post" target="x-frame">
 	<if condition="$way eq 2">
-	<div class="line padding border-bottom" >
+	<div class="line padding border-bottom">
 		<span class="x3 text-gray">用户名</span>
-		<span class="x8"><input type="text" name="account" id="account" class="text-input" placeholder="一般为手机号或看会员中心登陆账号"></span>
+		<span class="x8"><input type="text" name="account" id="account" class="text-input" placeholder="请输入用户名"></span>
 	</div>
     
 	<div class="line padding border-bottom">

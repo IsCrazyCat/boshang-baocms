@@ -144,12 +144,12 @@ class SetAction extends CommonAction{
             $s_mobile = session('mobile');
             $s_code = session('code');
             if ($mobile != $s_mobile) {
-                $this->baoError('手机号码和收取验证码的手机号不一致C！');
+                $this->baoError('手机号码和收取验证码的手机号不一致！');
             }
             if ($yzm != $s_code) {
                 $this->baoError('验证码不正确');
             }
-            $data = array('user_id' => $this->uid, 'mobile' => $mobile, 'account' => $mobile);
+            $data = array('user_id' => $this->uid, 'mobile' => $mobile);
             if (D('Users')->save($data)) {
                 D('Users')->integral($this->uid, 'mobile');
                 D('Users')->prestige($this->uid, 'mobile');
@@ -171,12 +171,12 @@ class SetAction extends CommonAction{
             $s_mobile = session('mobile');
             $s_code = session('code');
             if ($mobile != $s_mobile) {
-                $this->baoError('手机号码和收取验证码的手机号不一致D！');
+                $this->baoError('手机号码和收取验证码的手机号不一致！');
             }
             if ($yzm != $s_code) {
                 $this->baoError('验证码不正确');
             }
-            $data = array('user_id' => $this->uid, 'mobile' => $mobile, 'account' => $mobile);
+            $data = array('user_id' => $this->uid, 'mobile' => $mobile);
             if (D('Users')->save($data)) {
                 $this->baoSuccess('恭喜您成功更换绑定手机号', U('set/mobile'));
             }
@@ -198,7 +198,7 @@ class SetAction extends CommonAction{
         session('mobile', $mobile);
         $randstring = session('code');
         if (empty($randstring)) {
-            $randstring = rand_string(4, 1);
+            $randstring = rand_string(6, 1);
             session('code', $randstring);
         }
         //大鱼短信

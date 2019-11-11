@@ -84,15 +84,12 @@ class ChargeAction extends CommonAction {
                 );
                 $orderId = D('Billorder')->add($arr);
                 if ($logMoney > 0) {
-					$rank_id = D('Users')->where('user_id='.$this->uid)->getField('rank_id');
-		            $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
                     D('Usermoneylogs')->add(array(
                         'user_id' => $this->uid,
                         'money' => -$logMoney,
                         'create_time' => NOW_TIME,
                         'create_ip' => get_client_ip(),
-                        'intro' => '账户余额缴费' . $billType['bill_type_name']  . ',订单ID' . $orderId,
-						'rankname' => $rankname
+                        'intro' => '账户余额缴费' . $billType['bill_type_name']  . ',订单ID' . $orderId
                     ));
                 }
                 if ($logInterest > 0) {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright ? 1998 - 2014 Tencent. All Rights Reserved. 腾讯公司 
+ * Copyright ? 1998 - 2014 Tencent. All Rights Reserved. 腾讯公司 版权所有
  */
 
 class PushService{

@@ -7,7 +7,7 @@ class AwardwinningAction extends CommonAction
     {
         $Awardwinning = D('Awardwinning');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         $award_id = (int) $this->_get('award_id');
         if ($award_id) {

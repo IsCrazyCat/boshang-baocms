@@ -5,7 +5,7 @@ class SellerAction extends CommonAction
     {
         $Shopnews = D('Shopnews');
         import('ORG.Util.Pageabc');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('audit' => 1);
         $cates = D('Shopcate')->fetchAll();
         $cat = (int) $this->_param('cat');
@@ -117,7 +117,7 @@ class SellerAction extends CommonAction
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
         if (D('Shopcomment')->add($data)) {
-            $this->fengmiSuccess('评论成功！', U('seller/detail', array('news_id' => $data['post_id'])));
+            $this->fengmiSuccess('回复成功！', U('seller/detail', array('news_id' => $data['post_id'])));
         }
     }
     /**

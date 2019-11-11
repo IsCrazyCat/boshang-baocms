@@ -7,7 +7,7 @@ class ShopAction extends CommonAction
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -54,7 +54,7 @@ class ShopAction extends CommonAction
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => 0, 'audit' => 0, 'city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -125,7 +125,7 @@ class ShopAction extends CommonAction
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -211,7 +211,7 @@ class ShopAction extends CommonAction
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            //$this->baoError('所在商圈不能为空');
+            $this->baoError('所在商圈不能为空');
         }
         $data['shop_name'] = htmlspecialchars($data['shop_name']);
         if (empty($data['shop_name'])) {
@@ -330,7 +330,7 @@ class ShopAction extends CommonAction
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            //$this->baoError('所在商圈不能为空');
+            $this->baoError('所在商圈不能为空');
         }
         $data['shop_name'] = htmlspecialchars($data['shop_name']);
         if (empty($data['shop_name'])) {
@@ -526,7 +526,7 @@ class ShopAction extends CommonAction
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => 1, 'city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');
@@ -574,7 +574,7 @@ class ShopAction extends CommonAction
     {
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => 0, 'recognition' => 0, 'city_id' => $this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name|tel'] = array('LIKE', '%' . $keyword . '%');

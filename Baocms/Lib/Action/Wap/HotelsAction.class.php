@@ -50,7 +50,7 @@ class HotelsAction extends CommonAction {
     
     public function loaddata() {
         $hotel = D('Hotel');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id);
         $linkArr = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -153,7 +153,7 @@ class HotelsAction extends CommonAction {
             $room_count = D('Hotelroom')->where(array('hotel_id'=>$hotel_id))->count();
             $this->assign('room_list',$room_list);
             $this->assign('room_count',$room_count);
-            //团购
+            //抢购
             $tuan_list = D('Tuan')->where(array('audit' => 1, 'closed' => 0,'bg_date' => array('ELT', NOW),'shop_id'=>$detail['shop_id']))->limit(3)->select();
             $this->assign('tuan_list',$tuan_list);
             $this->assign('into_time',$into_time); 

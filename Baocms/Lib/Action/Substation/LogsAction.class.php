@@ -5,7 +5,7 @@ class LogsAction extends CommonAction
     {
         $logs = D('Communityorderlogs');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array();
         if ($community_id = (int) $this->_param('community_id')) {
             $map['community_id'] = $community_id;
@@ -75,7 +75,7 @@ class LogsAction extends CommonAction
     {
         $Community = D('Community');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['name|addr|property'] = array('LIKE', '%' . $keyword . '%');

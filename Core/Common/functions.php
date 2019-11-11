@@ -460,7 +460,7 @@ function U($url='',$vars='',$suffix=true,$redirect=false,$domain=false) {
 
             }
 
-            if((!C('APP_SUB_DOMAIN_DEPLOY') || in_array(GROUP_NAME, array('Backstage','Merchant','Delivery','Distributors','App','Wuye','Substation','Weixin','Property','User','Members','Mcenter','Mobile')))  && C('APP_GROUP_LIST')) {
+            if((!C('APP_SUB_DOMAIN_DEPLOY') || in_array(GROUP_NAME, array('Backstage','Merchant','Delivery','Distributors','App','Wuye','Substation','Weixin','Property','User','Members')))  && C('APP_GROUP_LIST')) {
 
                 if(!empty($path)) {
 

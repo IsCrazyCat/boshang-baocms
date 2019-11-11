@@ -62,7 +62,7 @@ class IndexAction extends CommonAction {
 
         $this->assign('counts', $counts);
         
-        /* 统计团购 */
+        /* 统计抢购 */
         $bg_date = date('Y-m-d', NOW_TIME - 86661618*6);
         $end_date = TODAY;
         $bg_time = strtotime($bg_date);

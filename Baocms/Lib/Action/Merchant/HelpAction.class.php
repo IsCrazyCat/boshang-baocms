@@ -22,7 +22,7 @@ class HelpAction extends CommonAction {
         if(!$shop_id = $this->shop_id){
 			 $this->baoError('商家不能为空');
 		}
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
 		$map = array('shop_id' => $shop_id);
 		$obj = D('Weixin_help');
 		$pager = array();
@@ -177,7 +177,7 @@ class HelpAction extends CommonAction {
 			}
 			$map = array();
 			$map['help_id'] =$help_id;
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类
 			$count = $obj->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -249,7 +249,7 @@ class HelpAction extends CommonAction {
         }else if(!$detail = $obj->find($help_id)){
             $this->baoError('该摇一摇不存在或已经删除');
         }else{
-            import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+            import('ORG.Util.Page'); // 导入分页类
             $map = array('shop_id' => $shop_id);
             $map = array('help_id' => $help_id);
             $count = $objp->where($map)->count();
@@ -425,7 +425,7 @@ class HelpAction extends CommonAction {
 			$this->baoError('你要查看的内容不存在或已经删除');
 		}else{
 			$objl = D('Weixin_helplist');
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类
             $map = array('help_id' => $help_id);
 			$map = array('openid' => $openid);
             $count = $objl->where($map)->count();

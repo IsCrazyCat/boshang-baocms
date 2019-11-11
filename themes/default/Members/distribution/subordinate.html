@@ -14,18 +14,14 @@
                     <th>用户ID</th>
                     <th>帐户名</th>
                     <th>昵称</th>
-                    <th>等级</th>
-                    <th>mobile</th>
+                    <th>Email</th>
                 </tr>
                 <volist name="list" id="item" key="index">
                     <tr class="tgdd_nrC">
                         <td class="tgdd_nrCtd"><{$item['user_id']}></td>
                         <td class="tgdd_nrCtd"><{$item['account']}></td>
                         <td class="tgdd_nrCtd"><{$item['nickname']}></td>
-                        <php>$Userrank = D('Userrank')->find($item['rank_id']); </php>
-                   
-                        <td class="tgdd_nrCtd"><{$Userrank['rank_name']}></td>
-                        <td class="tgdd_nrCtd"><{$item['mobile']}></td>
+                        <td class="tgdd_nrCtd"><{$item['email']}></td>
                     </tr>
                 </volist>
             </table>

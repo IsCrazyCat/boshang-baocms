@@ -5,7 +5,7 @@ class BbsAction extends CommonAction
     {
         $bbs = D('Communityposts');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('community_id' => $this->community_id, 'closed' => 0);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

@@ -3,7 +3,7 @@ class TiebaAction extends CommonAction{
     protected $sharecates = array();
     public function _initialize(){
         parent::_initialize();
-        $tieba = (int) $this->_CONFIG['operation']['thread'];
+        $tieba = (int) $this->_CONFIG['operation']['tieba'];
         if ($tieba == 0) {
             $this->error('此功能已关闭');
             die;
@@ -61,14 +61,11 @@ class TiebaAction extends CommonAction{
     }
     public function loaddata(){
         $Post = D('Post');//必须审核
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类 
         $map = array('closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
         $parent_id = 0;
-		
-		$essence = $this->_param('essence', 'htmlspecialchars');
-		$order = $this->_param('order', 'htmlspecialchars');
         $cat = (int) $this->_param('cat');
-        if ((int)$cat>0) {
+        if ($cat) {
             $catids = D('Sharecate')->getChildren($cat);
             if (!empty($catids)) {
                 $map['cate_id'] = array('IN', $catids);
@@ -78,13 +75,7 @@ class TiebaAction extends CommonAction{
                 $map['cate_id'] = $cat;
             }
             $this->seodatas['cate_name'] = $this->sharecates[$cat]['cate_name'];
-        } else {
-//			$essence = 1;
-//			$order = 2;
-
-			$essence = 0;
-			//$order = 1;
-		}
+        }
         $this->assign('cat', $cat);
 		
         $this->assign('parent_id', $parent_id);
@@ -93,13 +84,13 @@ class TiebaAction extends CommonAction{
             $this->assign('keyword', $keyword);
         }
         
-		
+		$essence = $this->_param('essence', 'htmlspecialchars');
 		if($essence == 1){
 			$map['is_fine'] = 1;
 		}
 		$this->assign('essence', $essence);
 		
-		
+		$order = $this->_param('order', 'htmlspecialchars');
         $orderby = '';
         switch ($order) {
             case 2:
@@ -186,10 +177,6 @@ class TiebaAction extends CommonAction{
         $this->assign('count', $count);
         $this->seodatas['title'] = $detail['title'];
         $this->assign('nextpage', LinkTo('tieba/loadreply', array('post_id' => $detail['post_id'], 't' => NOW_TIME, 'p' => '0000')));
-		
-		
-		
-		
         $this->display();
     }
     public function zan(){
@@ -266,8 +253,7 @@ class TiebaAction extends CommonAction{
                 }
             }
         }
-        //$data['details'] = $tupian[contents] . $photo;
-		$data['details'] = $tupian[contents] ;
+        $data['details'] = $tupian[contents] . $photo;
         $data['contents'] = SecurityEditorHtml($data['contents'] . $photo);
         if (empty($data['contents'])) {
             $this->fengmiMsg('内容不能为空！');
@@ -314,8 +300,7 @@ class TiebaAction extends CommonAction{
                 }
             }
             $data['pic'] = ltrim($photo1, ',');
-            //$data['details'] = $tupian[contents] . $photo;
-            $data['details'] = $tupian[contents] ;
+            $data['details'] = $tupian[contents] . $photo;
 			
             if ($data['safecode'] != session('safecode')) {
                 $this->error('不能重复发帖哦，正在为您跳转……', U('tieba/post'));
@@ -324,7 +309,7 @@ class TiebaAction extends CommonAction{
 			$present_time = $this->msectime();//当前时间
 			$present_time_cha = $present_time - $data['safecode'];
 
-			if ($present_time_cha < 1000) {
+			if ($present_time_cha < 30000) {
 				$this->error("提交太频繁了吧？请不要灌水！");//间隔20秒才能发帖
 			}
             if (empty($data['cate_id'])) {
@@ -337,9 +322,6 @@ class TiebaAction extends CommonAction{
             }
             $this->error('操作失败！');
         } else {
-			$cat = (int) $this->_param('cat'); 
-			$this->assign('cat', $cat);
-			
             $this->assign('cate', $cate);
             $safecode = $this->msectime();
             session('safecode', $safecode);

@@ -18,7 +18,7 @@ class ExchangeAction extends CommonAction {
 	//积分兑换记录
 	public function exchangeloading() {
 		$Integralexchange = D('Integralexchange');
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类 
 		$map = array('user_id' => $this->uid);
 		$count = $Integralexchange->where($map)->count(); // 查询满足要求的总记录数 
 		$Page = new Page($count, 25); // 实例化分页类 传入总记录数和每页显示的记录数

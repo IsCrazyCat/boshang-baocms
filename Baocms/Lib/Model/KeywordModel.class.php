@@ -8,7 +8,7 @@ class KeywordModel extends CommonModel {
         $res = array(
             '0' => '不限',
             '1' => '商家',
-            '2' => '团购',
+            '2' => '抢购',
             '3' => '生活信息',
             '4' => '商品',
             '5' => '分享',

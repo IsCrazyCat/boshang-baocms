@@ -44,17 +44,15 @@
 			swf: '/static/default/webuploader/Uploader.swf',                             
 			server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 			pick: '#fileToUpload',                             
-			resize: true,
-duplicate :true, //可重复上传  
-    
-			compress : {width:width_goods,height:height_goods,quality:80,allowMagnify: false,crop: true}//裁剪       
+			resize: true,    
+			compress : {width:width_goods,height:height_goods,quality:60,allowMagnify: false,crop: true}//裁剪       
         });
         uploader.on( 'beforeFileQueued', function( file ) {
             $(".loading").show();
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_goods,//这里裁剪长度
-                    quality:80
+                    quality:60
                 });
             }
         });
@@ -96,9 +94,7 @@ duplicate :true, //可重复上传
 			server: '<{:U("app/upload/uploadify",array("model"=>"goods"))}>',                             
 			pick: '#moreToUpload',
 			fileNumberLimit:10,                    
-			resize: true,
-duplicate :true, //可重复上传  
-    
+			resize: true,    
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -112,7 +108,7 @@ duplicate :true, //可重复上传
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_tuan_pic,
-                    quality:80
+                    quality:60
                 });
             }
         });
@@ -333,11 +329,9 @@ duplicate :true, //可重复上传
                             var map = new BMap.Map("allmap");
                             var lng = "<{$lng}>";
                             var lat = "<{$lat}>";
-							var lng = "<{$CONFIG['site']['lng']}>";
-							var lat = "<{$CONFIG['site']['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("聊城");
-                                var point = new BMap.Point(115.9918900000,36.4626820000);
+                                map.centerAndZoom("合肥");
+                                var point = new BMap.Point(117.260852, 31.825717);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);

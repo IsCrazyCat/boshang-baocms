@@ -405,7 +405,7 @@ class EleAction extends CommonAction{
         }
         $Eleproduct = D('Eleproduct');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $linkArr = array();
         $map = array('closed' => 0, 'audit' => 1, 'shop_id' => $shop_id);
         $linkArr = array('shop_id' => $shop_id);
@@ -481,7 +481,7 @@ class EleAction extends CommonAction{
         }
         $shopdianping = D('Eledianping');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $linkArr = array();
         $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
         $linkArr = array('shop_id' => $shop_id);
@@ -609,7 +609,7 @@ class EleAction extends CommonAction{
     public function index(){
         date_default_timezone_set('Asia/Shanghai');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $ele = D('Ele');
         $map = array('is_open'=>1,'audit' => 1,'city_id' => $this->city_id);
         $linkArr = array();

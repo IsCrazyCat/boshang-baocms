@@ -20,18 +20,11 @@
                     <tr>
                         <td class="w50"><input type="checkbox" class="checkAll" rel="rank_id" /></td>
                         <td class="w50">ID</td>
-                        <td>晋升通道</td>
-                        <td>团队数据</td>
-                        <td>个伙数据</td>
-                        <td>一级补贴</td>
-                        <td>二级补贴</td>
-                        <td>三级补贴</td>
-                        <td>月度帮扶差旅补贴</td>
-                        <td>年度股权分红</td>
-                        <!--<td>等级样式1</td>
-                        <td>等级样式2</td>-->
+                        <td>等级名称</td>
+                        <td>等级样式1</td>
+                        <td>等级样式2</td>
                         <td>等级图标</td>
-                        <!--<td>需要<{$CONFIG.prestige.name|default='威望'}></td>--> 
+                        <td>需要<{$CONFIG.prestige.name|default='威望'}></td> 
                         <td>操作</td>
                     </tr>
                     <foreach name="list" item="var">
@@ -39,17 +32,10 @@
                             <td><input class="child_rank_id" type="checkbox" name="rank_id[]" value="<{$var.rank_id}>" /></td>
                             <td><{$var.rank_id}></td>
                             <td><{$var.rank_name}></td>
-                            <td><{$var.tuanduishuju}></td>
-                            <td><{$var.gerenshuju}></td>
-                            <td><{$var.yijibutie}>%</td>
-                            <td><{$var.erjibutie}>%</td>
-                            <td><{$var.sanjibutie}>%</td>
-                            <td><{$var.yuedubangfuchalv}></td>
-                            <td><{$var.nianduguquanfenhong}>%</td>
-                            <!--<td><{$var.icon}></td>
-                            <td><{$var.icon1}></td>-->
+                            <td><{$var.icon}></td>
+                            <td><{$var.icon1}></td>
                             <td><img src="<{:config_img($var['photo'])}>" class="w80" /></td>
-                            <!--<td><{$var.prestige}></td>-->
+                            <td><{$var.prestige}></td>
                             <td>
                                 <{:BA('userrank/edit',array("rank_id"=>$var["rank_id"]),'编辑','load','remberBtn',800,550)}>
                                 <{:BA('userrank/delete',array("rank_id"=>$var["rank_id"]),'删除','act','remberBtn')}>

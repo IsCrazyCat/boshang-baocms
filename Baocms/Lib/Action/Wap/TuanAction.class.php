@@ -2,7 +2,7 @@
 class TuanAction extends CommonAction{
     public function _initialize(){
         parent::_initialize();
-        //统计团购分类数量代码开始
+        //统计抢购分类数量代码开始
         $Tuan = D('Tuan');
         $tuancates = D('Tuancate')->fetchAll();
         foreach ($tuancates as $key => $v) {
@@ -21,7 +21,7 @@ class TuanAction extends CommonAction{
     public function main(){
         $aready = (int) $this->_param('aready');
         $this->assign('aready', $aready);
-        $this->mobile_title = '团购主页';
+        $this->mobile_title = '抢购主页';
         $this->display();
     }
     public function mainload(){
@@ -52,76 +52,26 @@ class TuanAction extends CommonAction{
     public function push(){
         $Tuan = D('Tuan');
         import('ORG.Util.Page');
-        $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', TODAY));
-        if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
-            $map['title'] = array('LIKE', '%' . $keyword . '%');
-        }
-        $cat = (int) $this->_param('cat');
-        if ($cat) {
-            $catids = D('Tuancate')->getChildren($cat);
-            if (!empty($catids)) {
-                $map['cate_id'] = array('IN', $catids);
-            } else {
-                $map['cate_id'] = $cat;
-            }
-        }
-        $area = (int) $this->_param('area');
-        if ($area) {
-            $map['area_id'] = $area;
-        }
-        $order = $this->_param('order', 'htmlspecialchars');
         $lat = addslashes(cookie('lat'));
         $lng = addslashes(cookie('lng'));
         if (empty($lat) || empty($lng)) {
             $lat = $this->city['lat'];
             $lng = $this->city['lng'];
         }
-        $orderby = '';
-        switch ($order) {
-            case 3:
-                $orderby = array('create_time' => 'desc');
-                break;
-            case 2:
-                $orderby = array('orderby' => 'asc', 'tuan_id' => 'desc');
-                break;
-            default:
-                $orderby = array('sold_num' => 'desc');
-                break;
-        }
+        $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', TODAY));
         $count = $Tuan->where($map)->count();
-        $Page = new Page($count, 10);
+        $Page = new Page($count, 3);
         $show = $Page->show();
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
         $p = $_GET[$var];
         if ($Page->totalPages < $p) {
             die('0');
         }
-        $list = $Tuan->where($map)->order($orderby)->limit($Page->firstRow . ',' . $Page->listRows)->select();
-        foreach ($list as $k => $val) {
-            if ($val['shop_id']) {
-                $shop_ids[$val['shop_id']] = $val['shop_id'];
-            }
-            $val['end_time'] = strtotime($val['end_date']) - NOW_TIME + 86400;
-            $list[$k] = $val;
+        $tuans = $Tuan->order(" (ABS(lng - '{$lng}') +  ABS(lat - '{$lat}') ) asc ")->where($map)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        foreach ($tuans as $k => $val) {
+            $tuans[$k]['d'] = getDistance($lat, $lng, $val['lat'], $val['lng']);
         }
-        if ($shop_ids) {
-            $shops = D('Shop')->itemsByIds($shop_ids);
-            $ids = array();
-            foreach ($shops as $k => $val) {
-                $shops[$k]['d'] = getDistance($lat, $lng, $val['lat'], $val['lng']);
-                $d = getDistanceNone($lat, $lng, $val['lat'], $val['lng']);
-                $ids[$d][] = $k;
-            }
-            ksort($ids);
-            $showshops = array();
-            foreach ($ids as $arr1) {
-                foreach ($arr1 as $val) {
-                    $showshops[$val] = $shops[$val];
-                }
-            }
-            $this->assign('shops', $showshops);
-        }
-        $this->assign('list', $list);
+        $this->assign('tuans', $tuans);
         $this->assign('page', $show);
         $this->display();
     }
@@ -228,19 +178,19 @@ class TuanAction extends CommonAction{
         $this->assign('tuan_id', $tuan_id);
         $this->assign('tao_arr', $tao_arr);
         if (empty($tuan_id)) {
-            $this->error('该团购信息不存在！');
+            $this->error('该抢购信息不存在！');
             die;
         }
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->error('该团购信息不存在！');
+            $this->error('该抢购信息不存在！');
             die;
         }
         if ($detail['audit'] != 1) {
-            $this->error('该团购信息还在审核中哦');
+            $this->error('该抢购信息还在审核中哦');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该团购信息不存在！');
+            $this->error('该抢购信息不存在！');
             die;
         }
         $lat = addslashes(cookie('lat'));
@@ -429,11 +379,6 @@ class TuanAction extends CommonAction{
                 }
             }
         }
-		
-		$tui_uid = 0 ;
-		$myshop = D('Shop')->find($detail['shop_id']);
-		$tui_uid = $myshop['tui_uid'];
-		
         $data = array(
 			'tuan_id' => $tuan_id, 
 			'num' => $num, 
@@ -445,8 +390,7 @@ class TuanAction extends CommonAction{
 			'mobile_fan' => $detail['mobile_fan'] * $num, 
 			'need_pay' => $detail['tuan_price'] * $num - $detail['mobile_fan'] * $num, 
 			'status' => 0, 
-			'is_mobile' => 1,
-			'tui_uid' => $tui_uid,
+			'is_mobile' => 1
 		);
         if ($order_id = D('Tuanorder')->add($data)) {
             D('Tuan')->where($where)->setDec('num', $num);//更新减掉库存
@@ -466,7 +410,7 @@ class TuanAction extends CommonAction{
             die;
         }
         if ($detail['bg_date'] > TODAY) {
-            $this->error('该团购还未开始开抢');
+            $this->error('该抢购还未开始开抢');
         }
         if ($detail['closed'] == 1 || $detail['end_date'] < TODAY) {
             $this->error('该商品已经结束');
@@ -491,7 +435,7 @@ class TuanAction extends CommonAction{
         }
         $tuan = D('Tuan')->find($order['tuan_id']);
         if (empty($tuan) || $tuan['closed'] == 1 || $tuan['end_date'] < TODAY) {
-            $this->error('该团购不存在');
+            $this->error('该抢购不存在');
             die;
         }
         $this->assign('use_integral', $tuan['use_integral'] * $order['num']);
@@ -560,7 +504,7 @@ class TuanAction extends CommonAction{
        			D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,0);
                 $this->fengmiMsg('恭喜您下单成功！', U('user/tuan/index'));
             } else {
-                $this->fengmiMsg('您已经设置过该团购为到店付了！');
+                $this->fengmiMsg('您已经设置过该抢购为到店付了！');
             }
         } else {
             $payment = D('Payment')->checkPayment($code);
@@ -620,7 +564,7 @@ class TuanAction extends CommonAction{
     public function loadindex(){
         $Tuan = D('Tuan');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', TODAY));
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

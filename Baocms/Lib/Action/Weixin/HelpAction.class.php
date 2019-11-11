@@ -61,7 +61,7 @@ class HelpAction extends CommonAction {
 				$this->assign('prizes',$prizes);
 				//$this->pagedata['prizes'] = $prizes;
 			}
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类 
 			$count = $objsn->where($filter)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -261,7 +261,7 @@ class HelpAction extends CommonAction {
 					$this->assign('prizes',$prizes);
 					//$this->pagedata['prizes'] = $prizes;
 				}
-				import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+				import('ORG.Util.Page'); // 导入分页类 
 				$count = $objsn->where($filter)->count();
 				$Page = new Page($count, 15);
 				$show = $Page->show();

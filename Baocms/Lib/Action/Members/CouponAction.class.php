@@ -6,7 +6,7 @@ class CouponAction extends CommonAction {
 
   	public function index() {
         $Coupondownload = D('Coupondownload');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('user_id' => $this->uid);
         $status = (int) $this->_param('status');
         switch ($status) {

@@ -6,7 +6,7 @@ class LifeservicedianpingAction extends CommonAction {
 
     public function index() {
         $Lifeservicedianping = D('Lifeservicedianping');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0);
        
         if ($id = (int) $this->_param('id')) {

@@ -21,7 +21,7 @@ class ShakeAction extends CommonAction {
         if(!$shop_id = $this->shop_id){
 			 $this->baoError('商家不能为空');
 		}
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类 
 		$map = array('shop_id' => $shop_id);
 		$obj = D('Weixin_shake');
 		$pager = array();
@@ -178,7 +178,7 @@ class ShakeAction extends CommonAction {
 			}
 			$map = array();
 			$map['shake_id'] =$shake_id;
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类 
 			$count = $obj->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -262,7 +262,7 @@ class ShakeAction extends CommonAction {
         }else if(!$detail = $obj->find($shake_id)){
             $this->baoError('该摇一摇不存在或已经删除');
         }else{
-            import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+            import('ORG.Util.Page'); // 导入分页类 
             $map = array('shop_id' => $shop_id);
             $map['shake_id'] = $shake_id;
             $count = $objp->where($map)->count();

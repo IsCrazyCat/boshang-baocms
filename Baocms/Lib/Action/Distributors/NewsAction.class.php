@@ -33,27 +33,20 @@ class NewsAction extends CommonAction{
     public function create(){
         if ($this->isPost()) {
             $data = $this->editCheck();
-			
-//		$data['audit'] = 1;
-//		$data['city_id'] = 7;
-//		$data['area_id'] = 2;
-			
             $data['create_time'] = NOW_TIME;
             $data['create_ip'] = get_client_ip();
             $articles = array(
 				'shop_id' => $this->shop_id, 
 				'cate_id' => $data['cate_id'], 
-//				'city_id' => $data['city_id'], 
-//				'area_id' => $data['area_id'], 
-				'city_id' => 7, 
-				'area_id' => 2, 
+				'city_id' => $data['city_id'], 
+				'area_id' => $data['area_id'], 
 				'source' => $data['source'], 
 				'title' => $data['title'], 
 				'keywords' => $data['keywords'], 
 				'profiles' => $data['profiles'], 
 				'photo' => $data['photo'], 
 				'details' => $data['details'], 
-				'audit' => 1, 
+				'audit' => 0, 
 				'create_time' => NOW_TIME, 
 				'create_ip' => get_client_ip()
 			);
@@ -83,11 +76,9 @@ class NewsAction extends CommonAction{
             $data = $this->editCheck();
             $data['article_id'] = $article_id;
 			
-			$data['audit'] = 1;
-			
-//			if (false == D('Shopnews')->update_shop_news($detail['news_id'],$data)){
-//                $this->fengmiMsg('更新商家文章失败');
-//            }
+			if (false == D('Shopnews')->update_shop_news($detail['news_id'],$data)){
+                $this->fengmiMsg('更新商家文章失败');
+            }
 				
             if (false !== $obj->save($data)) {
                 $this->fengmiMsg('更新文章成功', U('news/index'));
@@ -109,8 +100,7 @@ class NewsAction extends CommonAction{
         $data['source'] = $shop['shop_name'];
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
-			 $data['cate_id'] = 2;
-            //$this->fengmiMsg('分类不能为空');
+            $this->fengmiMsg('分类不能为空');
         }
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
@@ -119,26 +109,22 @@ class NewsAction extends CommonAction{
         $data['keywords'] = htmlspecialchars($data['keywords']);
         $data['profiles'] = SecurityEditorHtml($data['profiles']);
         if (empty($data['profiles'])) {
-			$data['profiles'] = $data['title'];
-            //$this->fengmiMsg('简介不能为空');
+            $this->fengmiMsg('简介不能为空');
         }
-//        if ($words = D('Sensitive')->checkWords($data['profiles'])) {
-//            $this->fengmiMsg('简介内容含有敏感词：' . $words);
-//        }
-		//$data['details'] = SecurityEditorHtml($data['details']);
+        if ($words = D('Sensitive')->checkWords($data['profiles'])) {
+            $this->fengmiMsg('简介内容含有敏感词：' . $words);
+        }
+		$data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->fengmiMsg('正文不能为空');
+            $this->fengmiMsg('正文不能为空1');
         }
-//        if ($words = D('Sensitive')->checkWords($data['details'])) {
-//            $this->fengmiMsg('正文含有敏感词：' . $words);
-//        }
+        if ($words = D('Sensitive')->checkWords($data['details'])) {
+            $this->fengmiMsg('正文含有敏感词：' . $words);
+        }
         $data['photo'] = htmlspecialchars($data['photo']);
-		
         if (!empty($data['photo']) && !isImage($data['photo'])) {
             $this->fengmiMsg('缩略图格式不正确');
         }
-		
-		
         return $data;
     }
     public function delete($article_id = 0){
@@ -153,8 +139,7 @@ class NewsAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'error', 'msg' => '您没有权限访问！'));
         }
         $obj = D('Article');
-        //$obj->save(array('article_id' => $article_id, 'closed' => 1));
-		$obj->delete(array('article_id' => $article_id));
+        $obj->save(array('article_id' => $article_id, 'closed' => 1));
         $this->ajaxReturn(array('status' => 'success', 'msg' => '文章删除成功', U('worker/index')));
     }
     public function child($parent_id = 0)

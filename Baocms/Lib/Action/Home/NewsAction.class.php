@@ -24,7 +24,7 @@ class NewsAction extends CommonAction
     public function index()
     {
         $Article = D('Article');
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('city_id' => $this->city_id, 'closed' => 0, 'audit' => 1);
 
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -198,9 +198,9 @@ class NewsAction extends CommonAction
             $photos = $this->_post('photos', false);
             if (!empty($photos)) {
                 D('Articlephoto')->upload_comment($comment_id, $photos);
-                //更新评论，如果是新闻用其他的
+                //更新回复，如果是新闻用其他的
             }
-            $this->ajaxReturn(array('status' => 'success', 'msg' => '评论成功！', U('news/detail', array('article_id' => $detail['post_id']))));
+            $this->ajaxReturn(array('status' => 'success', 'msg' => '回复成功！', U('news/detail', array('article_id' => $detail['post_id']))));
         } else {
             $this->ajaxReturn(array('status' => 'error', 'msg' => '操作失败'));
         }
@@ -254,7 +254,7 @@ class NewsAction extends CommonAction
         $cates = D('Articlecate')->fetchAll();
         $Article = D('Article');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('closed' => 0);
         $cat = (int) $this->_param('cat');
         $cates = D('Articlecate')->fetchAll();

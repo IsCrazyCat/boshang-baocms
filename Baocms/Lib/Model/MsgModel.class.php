@@ -7,7 +7,7 @@ class MsgModel extends CommonModel{
         'gift'      => '红包礼物',
         'movie'     => '官方动态',
         'message'   => '个人消息',
-        'coupon'    => '团购优惠',
+        'coupon'    => '抢购优惠',
     );
     
     public function getType(){

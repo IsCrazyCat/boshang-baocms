@@ -114,9 +114,7 @@
 			server: '<{:U("app/upload/uploadify",array("model"=>"running"))}>',                             
 			pick: '#moreToUpload',
 			fileNumberLimit:thumb_limt,//最多3张图               
-			resize: true,
-duplicate :true, //可重复上传  
-    
+			resize: true,    
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -130,7 +128,7 @@ duplicate :true, //可重复上传
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_running,
-                    quality:80
+                    quality:60
                 });
             }
         });

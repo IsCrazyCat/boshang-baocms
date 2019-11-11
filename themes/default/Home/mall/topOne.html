@@ -3,9 +3,9 @@
         <if condition="empty($MEMBER)">
         <div class="left">您好，欢迎访问<{$CONFIG.site.sitename}><a href="<{:u('home/passport/login')}>" class="on">登陆</a>|<a href="<{:U('passport/register')}>">注册</a>
         <else/>
-        <div class="left">欢迎 <b style="color: red;font-size:14px;"><{$MEMBER.nickname}></b> 来到<{$CONFIG.site.sitename}>&nbsp;&nbsp; <a href="<{:u('members/index/index')}>" class="maincl" >我的兜兜</a><a href="<{:u('home/passport/logout')}>" class="maincl" >退出登录</a>
+        <div class="left">欢迎 <b style="color: red;font-size:14px;"><{$MEMBER.nickname}></b> 来到<{$CONFIG.site.sitename}>&nbsp;&nbsp; <a href="<{:u('members/index/index')}>" class="maincl" >个人中心</a><a href="<{:u('home/passport/logout')}>" class="maincl" >退出登录</a>
         </if>
-        <!--<a href="#" class="topSm blackcl6"><em class="ico"></em>下载手机客户端</a>-->
+        <a href="#" class="topSm blackcl6"><em class="ico"></em>下载手机客户端</a>
     </div>
     <div class="right">
         <ul>

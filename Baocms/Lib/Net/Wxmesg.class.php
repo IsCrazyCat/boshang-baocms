@@ -8,8 +8,8 @@ class Wxmesg{
 	 */
 	static public function net($uid,$serial=null,$data=null)
 	{
-		$uid=(int)$uid;
-		//if(!$uid) throw new Exception("Uid参数不正确！");
+        $uid=(int)$uid;
+//		if(!$uid) throw new Exception("Uid参数不正确！");
 
 		$openid = D('Connect')->where("type='weixin'")->getFieldByUid($uid,'open_id'); 
 
@@ -43,33 +43,6 @@ class Wxmesg{
 			)
 		);
 	}
-	
-	 
-	 /* 在用户店铺付款后 商家微信模板消息通知 开始 */
-						
-			/*
-				{{first.DATA}}
-				订单编号：{{keyword1.DATA}}
-				下单时间：{{keyword2.DATA}}
-				{{remark.DATA}}
-			*/
-	 
-	static public function ddfkorder($data=null){//到店付款 消息通知
-		if(empty($data)) throw new Exception("微信模板消息没有数据！",1001);
-		return array(
-			'touser'       => '',
-			'url'          => $data['url'],
-			'template_id'  => '',
-			'topcolor'     => $data['topcolor'],
-			'data'		   => array(
-				'first'   =>array('value'=>	$data['first'],    'color'=>'#000000'),
-				'keyword1'=>array('value'=> $data['keyword1'],   'color'=>'#000000'), //消费金额
-				'keyword2'=>array('value'=> $data['keyword2'],  'color'=>'#000000'), //消费时间
-				'remark'  =>array('value'=> $data['remark'],   'color'=>'#000000')
-			)
-		);
-	}
-	
 	//支付成功调用全局通用，小灰灰修改
 	static public function pay($data=null){
 		if(empty($data)) throw new Exception("微信模板消息没有数据！",1002);
@@ -89,7 +62,7 @@ class Wxmesg{
 		);
 	}
 	
-	//会员提现余额变动全部封装，博商源码开发
+	//会员提现余额变动全部封装，哈土豆源码开发
 	static public function cash($data=null){
 		if(empty($data)) throw new Exception("微信模板消息没有数据！",1002);
 		return array(

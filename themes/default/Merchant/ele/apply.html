@@ -179,8 +179,8 @@
                             var lng = "<{$CONFIG['site']['lng']}>";
                             var lat = "<{$CONFIG['site']['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("聊城");
-                                var point = new BMap.Point(115.9918900000,36.4626820000);
+                                map.centerAndZoom("合肥");
+                                var point = new BMap.Point(117.260852, 31.825717);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);

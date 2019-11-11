@@ -7,7 +7,7 @@ class PostreplyAction extends CommonAction
     {
         $Postreply = D('Postreply');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         if ($post_id = (int) $this->_param('post_id')) {
             $map['post_id'] = $post_id;
@@ -85,7 +85,7 @@ class PostreplyAction extends CommonAction
         if ($reply_id = (int) $reply_id) {
             $obj = D('Postreply');
             if (!($detail = $obj->find($reply_id))) {
-                $this->baoError('请选择要编辑的评论帖子');
+                $this->baoError('请选择要编辑的回复帖子');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -100,7 +100,7 @@ class PostreplyAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要编辑的评论帖子');
+            $this->baoError('请选择要编辑的回复帖子');
         }
     }
     private function editCheck()
@@ -135,7 +135,7 @@ class PostreplyAction extends CommonAction
                 }
                 $this->baoSuccess('删除成功！', U('postreply/index'));
             }
-            $this->baoError('请选择要删除的评论帖子');
+            $this->baoError('请选择要删除的回复帖子');
         }
     }
     public function audit($reply_id = 0)
@@ -157,7 +157,7 @@ class PostreplyAction extends CommonAction
                 }
                 $this->baoSuccess('审核成功！', U('postreply/index'));
             }
-            $this->baoError('请选择要审核的评论帖子');
+            $this->baoError('请选择要审核的回复帖子');
         }
     }
 }

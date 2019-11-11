@@ -17,11 +17,11 @@ class AddressAction extends CommonAction{
             }
             $data['city'] = (int) $_POST['city'];
             if (empty($data['city'])) {
-                //$this->ajaxReturn(array('status' => 'error', 'msg' => '地区不能为空！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '地区不能为空！'));
             }
             $data['areas'] = (int) $_POST['areas'];
             if (empty($data['areas'])) {
-                //$this->ajaxReturn(array('status' => 'error', 'msg' => '商圈不能为空！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '商圈不能为空！'));
             }
             $data['addtel'] = htmlspecialchars($_POST['addtel']);
             if (empty($data['addtel'])) {

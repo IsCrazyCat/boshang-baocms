@@ -3,7 +3,7 @@ define('TODAY', date("Y-m-d")); //不要遗漏
 $dbconfigs = require  BASE_PATH.'/'.APP_NAME.'/Conf/db.php';
 $configs =  array(
     //'配置项'=>'配置值'
-    'APP_GROUP_LIST' => 'Admin,Merchant,Wap,Delivery,Distributors,App,Wuye,User,Members,Home,Substation,Weixin,Worker,Property,Mcenter,Mobile', //项目分组设定
+    'APP_GROUP_LIST' => 'Admin,Merchant,Wap,Delivery,Distributors,App,Wuye,User,Members,Home,Substation,Weixin,Worker,Property', //项目分组设定
     'DEFAULT_GROUP'  => 'Home', //默认分组
 	//Backstage后台，Merchant商家中心，Wap手机版会员，MembersPC版本会员，HomePC首页，分站Substation，物业，Property，DistributorsWAP商家，
     //SESSION 的设置

@@ -86,7 +86,7 @@
                 
                 
                   <tr>
-                  <td class="lfTdBt">发现图片：</td>
+                  <td class="lfTdBt">贴吧图片：</td>
                         <td class="rgTdBt">
                             <div>
                                 <div id="moreToUpload" >上传图片</div>
@@ -101,9 +101,7 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"thread"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true,
-duplicate :true, //可重复上传  
- 
+									resize: true, 
 									crop: false,  
 									accept: {
 										title: 'Images',
@@ -113,7 +111,7 @@ duplicate :true, //可重复上传
 									compress : {width: width_thread,height: height_thread,quality: pic_pc_quality,allowMagnify: false,crop: true}    													
 								});                                                               
 								uploader.on( 'uploadSuccess', function( file,resporse) {                                    
-								var str = '<span style="width: 150px;  float: left; margin-left: 5px; margin-top: 10px;">  <img width="150" src="' + resporse.url + '">  <input type="hidden" name="thumb[]" value="' + resporse.url + '" />    <a href="javascript:void(0);">取消</a>  </span>';                                   
+								var str = '<span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;">  <img width="150" height="100" src="' + resporse.url + '">  <input type="hidden" name="thumb[]" value="' + resporse.url + '" />    <a href="javascript:void(0);">取消</a>  </span>';                                   
 								 $(".jq_uploads_img").append(str);                                
 									 });                                                            
 								 uploader.on( 'uploadError', function( file ) {                                    
@@ -125,8 +123,8 @@ duplicate :true, //可重复上传
                              </script>
                             <div class="jq_uploads_img">
                                 <foreach  name="thumb" item="item">
-                                    <span style="width: 150px;  float: left; margin-left: 5px; margin-top: 10px;"> 
-                                        <img width="150"  src="<{:config_img($item['photo'])}>">  
+                                    <span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;"> 
+                                        <img width="150" height="100" src="<{:config_img($item['photo'])}>">  
                                         <input type="hidden" name="thumb[]" value="<{$item.photo}>" />  
                                         <a href="javascript:void(0);">取消</a>  
                                     </span>
@@ -160,7 +158,7 @@ duplicate :true, //可重复上传
                   </td>
                 </tr>
                 <tr>
-                    <td class="lfTdBt">是否推荐：</td>
+                    <td class="lfTdBt">是否精华：</td>
                     <td class="rgTdBt">
                         <input type="radio" name="data[is_fine]"  <eq name="detail.is_fine" value="1">checked="checked"</eq>  value="1" /> 是
                         <input type="radio" name="data[is_fine]" <eq name="detail.is_fine" value="0">checked="checked"</eq> value="0" /> 否

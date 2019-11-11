@@ -106,7 +106,7 @@ $counts['order_type_5_no_pay'] = (int) D('Communityorderproducts')->where(array(
 	
 	
         $this->assign('counts', $counts);
-        /* 统计团购 */
+        /* 统计抢购 */
         $bg_date = date('Y-m-d', NOW_TIME - 86400 * 6);
         $end_date = TODAY;
         $bg_time = strtotime($bg_date);

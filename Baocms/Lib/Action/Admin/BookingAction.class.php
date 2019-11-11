@@ -11,7 +11,7 @@ class BookingAction extends CommonAction {
     
     public function index() {
         $Booking = D('Booking');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         $map = array('closed' => 0, 'audit' => 1);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['shop_name'] = array('LIKE', '%' . $keyword . '%');

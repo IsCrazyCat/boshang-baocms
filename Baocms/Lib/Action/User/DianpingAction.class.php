@@ -73,10 +73,10 @@ class DianpingAction extends CommonAction{
     public function tuandianping($order_id){
         $order_id = (int) $order_id;
         if (!($detail = D('Tuanorder')->find($order_id))) {
-            $this->fengmiMsg('没有该团购');
+            $this->fengmiMsg('没有该抢购');
         } else {
             if ($detail['user_id'] != $this->uid) {
-                $this->fengmiMsg('不要评价别人的团购');
+                $this->fengmiMsg('不要评价别人的抢购');
                 die;
             }
         }
@@ -136,13 +136,13 @@ class DianpingAction extends CommonAction{
         $obj = D('Tuandianping');
         if ($this->_Post()) {
             if (!($detail = $obj->find($order_id))) {
-                $this->fengmiMsg('请选择要编辑的团购点评');
+                $this->fengmiMsg('请选择要编辑的抢购点评');
             }
             if (!($detail = $obj->find($order_id))) {
-                $this->fengmiMsg('没有该团购点评');
+                $this->fengmiMsg('没有该抢购点评');
             } else {
                 if ($detail['user_id'] != $this->uid) {
-                    $this->fengmiMsg('不要编辑别人的团购');
+                    $this->fengmiMsg('不要编辑别人的抢购');
                 }
                 if ($detail['show_date'] < '$today 00:00:00') {
                     $this->fengmiMsg('点评已过期');

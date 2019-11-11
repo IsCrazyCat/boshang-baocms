@@ -23,7 +23,7 @@ class AppointAction extends CommonAction {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
             $this->assign('keyword', $keyword);
         }
-        //搜索二开结束
+        //搜索结束
 		$cates = D('Appointcate')->fetchAll();
         $cat = (int) $this->_param('cat');
         $cate_id = (int) $this->_param('cate_id');
@@ -83,7 +83,7 @@ class AppointAction extends CommonAction {
                 break;
         }
 		$this->assign('order', $order);
-		//搜索二开结束
+		//搜索结束
         $count = $Appoint->where($map)->count(); 
         $Page = new Page($count, 10); 
         $show = $Page->show(); 
@@ -147,7 +147,7 @@ class AppointAction extends CommonAction {
             $detail['sign'] = 0;
         }
 		
-		$Appoint->updateCount($appoint_id, 'views');//更新人气
+		$Appoint->updateCount($appoint_id, 'views');//更新浏览量
 		$detail['thumb'] = unserialize($detail['thumb']);
 		
 		// 点评开始

@@ -6,7 +6,7 @@ class AddressAction extends CommonAction {
 
     public function index() {
         $Useraddr = D('Useraddr');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('user_id' => $this->uid, 'closed' => 0);
         $count = $Useraddr->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数
@@ -39,10 +39,10 @@ class AddressAction extends CommonAction {
             $this->baoError('城市不能为空');
         }
         if (empty($data['area_id'])) {
-            //$this->baoError('地区不能为空');
+            $this->baoError('地区不能为空');
         }
         if (empty($data['business_id'])) {
-            //$this->baoError('商圈不能为空');
+            $this->baoError('商圈不能为空');
         }
         $data['mobile'] = htmlspecialchars($data['mobile']);
         if (empty($data['mobile'])) {
@@ -191,11 +191,11 @@ class AddressAction extends CommonAction {
             }
             $data['area_id'] = (int) $_POST['area_id'];
             if (empty($data['area_id'])) {
-                //$this->ajaxReturn(array('status' => 'error', 'msg' => '地区不能为空！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '地区不能为空！'));
             }
             $data['business_id'] = (int) $_POST['business_id'];
             if (empty($data['business_id'])) {
-                //$this->ajaxReturn(array('status' => 'error', 'msg' => '商圈不能为空！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '商圈不能为空！'));
             }
             $data['mobile'] = htmlspecialchars($_POST['mobile']);
             if (empty($data['mobile'])) {
@@ -264,11 +264,11 @@ class AddressAction extends CommonAction {
             }
             $data['area_id'] = (int) $_POST['area_id'];
             if (empty($data['area_id'])) {
-                //$this->ajaxReturn(array('status' => 'error', 'msg' => '地区不能为空！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '地区不能为空！'));
             }
             $data['business_id'] = (int) $_POST['business_id'];
             if (empty($data['business_id'])) {
-                //$this->ajaxReturn(array('status' => 'error', 'msg' => '商圈不能为空！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '商圈不能为空！'));
             }
             $data['mobile'] = htmlspecialchars($_POST['mobile']);
             if (empty($data['mobile'])) {

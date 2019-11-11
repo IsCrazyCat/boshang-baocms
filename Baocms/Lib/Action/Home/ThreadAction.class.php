@@ -15,7 +15,7 @@ class ThreadAction extends CommonAction {
 
     public function index(){
         $Threadpost = D('Threadpost');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('audit' => 1, 'closed' => 0);
         if($thread_id = (int)$this->_param('thread_id')){
             $map['thread_id'] = $thread_id;
@@ -247,7 +247,7 @@ class ThreadAction extends CommonAction {
             }
             $this->assign('donate',$donate);
             $this->assign('dusers',D('Users')->itemsByIds($uids));
-            //评论的帖子
+            //回复的帖子
             $reply_list = D('Threadpostcomments')->where(array('post_id'=>$post_id,'type'=>array('IN',array(1,2))))->order(array('comment_id'=>'desc'))->select();
             $user_idss = $comment_idss = array();
             foreach($reply_list as $k=>$val){
@@ -388,10 +388,10 @@ class ThreadAction extends CommonAction {
                 }
                 $data['contents'] = htmlspecialchars($this->_param('contents'));
                 if(empty($data['contents'])){
-                    $this->ajaxReturn(array('status' => 'error', 'msg' => '评论内容不能为空'));
+                    $this->ajaxReturn(array('status' => 'error', 'msg' => '回复内容不能为空'));
                 }
                 if ($words = D('Sensitive')->checkWords($data['contents'])) {
-                    $this->ajaxReturn(array('status' => 'error', 'msg' => '评论内容含有敏感词：' . $words));
+                    $this->ajaxReturn(array('status' => 'error', 'msg' => '回复内容含有敏感词：' . $words));
                     
                 } 
                 $data['post_id'] = $post_id;
@@ -410,9 +410,9 @@ class ThreadAction extends CommonAction {
                     D('Threadpost')->updateCount($data['post_id'], 'reply_num');
                     D('Threadpost')->save(array('post_id' => $post_id, 'last_id' => $this->uid, 'last_time' => $data['create_time']));
 					D('Users')->prestige($this->uid, 'thread');
-                    $this->ajaxReturn(array('status' => 'success', 'msg' => '评论成功'));
+                    $this->ajaxReturn(array('status' => 'success', 'msg' => '回复成功'));
                 }else{
-                    $this->ajaxReturn(array('status' => 'error', 'msg' => '评论失败'));
+                    $this->ajaxReturn(array('status' => 'error', 'msg' => '回复失败'));
                 }
             }
         }

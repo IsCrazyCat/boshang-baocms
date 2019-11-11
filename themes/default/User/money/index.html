@@ -59,11 +59,7 @@
 <ul id="pay-method" class="pay-method">
 	<foreach name="payment" item="var">
 	<if condition="$var['code'] neq 'money'">
-		<li data-rel="<{$var.code}>" class="media media-x payment active">
-    <else/>
-    	<li data-rel="<{$var.code}>" class="media media-x payment">
-    </if>
-	<!--<li data-rel="<{$var.code}>" class="media media-x payment active">-->
+	<li data-rel="<{$var.code}>" class="media media-x payment">
 		<a class="float-left"  href="javascript:;">
 			<img src="/static/default/wap/image/pay/<{$var.mobile_logo}>">
 		</a>
@@ -78,10 +74,10 @@
 			</div>
 		</div>
 	</li>
-	
+	</if>
 	</foreach>
 </ul>
-<input id="code" type="hidden" name="code" value="weixin" />
+<input id="code" type="hidden" name="code" value="" />
 <script>
 	$("#pay-method li").click(function(){
 		var code = $(this).attr("data-rel");

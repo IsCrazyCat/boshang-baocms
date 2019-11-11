@@ -6,12 +6,12 @@ class OrderModel extends CommonModel{
     protected $types = array(
 		0 => '等待付款', 
 		1 => '等待发货', 
-		2 => '商家已发货', 
+		2 => '仓库已捡货', 
 		3 => '客户已收货', 
-//		4 => '申请退款中', //待开发
-//		5 => '已退款', //待开发
-//		6 => '申请售后中', //待开发
-//		7 => '已完成售后', //待开发
+		4 => '申请退款中', //待开发
+		5 => '已退款', //待开发
+		6 => '申请售后中', //待开发
+		7 => '已完成售后', //待开发
 		8 => '已完成配送'
 	);
 	
@@ -372,39 +372,21 @@ class OrderModel extends CommonModel{
 						}else{
 					        $money = $settlement_price + $val['express_price'];//加上运费
 						}
-						
-						
-						
-						
-						$my_pay_id = D('paymentlogs')->where(array('order_id' => $val['order_id'], 'is_paid' => 1))->getField('log_id');
-						$info .= '【平台结算】商城付款 门店收入 支付ID：'.$my_pay_id; 
-						//给商户写入资金日志
-						if ($money > 0) {
-							D('Shopmoney')->add(array(
+						$intro  = '商城购物结算：订单ID'.$val['order_id'];
+                        if ($money > 0) {
+                            D('Shopmoney')->add(array(
 								'shop_id' => $order['shop_id'], 
 								'city_id' => $shop['city_id'], 
 								'area_id' => $shop['area_id'], 
+								'order_id' => $val['order_id'], 
+								'type' => 'goods', 
 								'money' => $money, 
 								'create_time' => NOW_TIME, 
 								'create_ip' => get_client_ip(), 
-								'type' => 'goods', 
-								'order_id' => $val['order_id'], 
-								'intro' => $info,
-								'pay_id' => $my_pay_id
+								'intro' => $intro
 							));
-							$my_shop_user_id = D('shop')->where(array('shop_id' => $order['shop_id']))->getField('user_id');
-							if ( (int)$my_shop_user_id > 0 ) {
-								//给商户写入资金
-								D('Users')->myaddGold($my_shop_user_id, $moneyB, '在线购物',$goods['order_id'],$goods['shop_id'],$my_pay_id,1);
-								//平台收入
-								D('Users')->myaddptGold(   $val['order_id'],$order['shop_id'],$my_pay_id);
-							}						
-						}
-						
-						
-						
-						
-						
+                            D('Users')->Money($shop['user_id'], $money,$intro);  //写入商户余额
+                        }
                     }
                     // 购物积分奖励给买的人，这个开关在后台
                     D('Users')->gouwu($order['user_id'], $order['total_price'], '购物积分奖励');

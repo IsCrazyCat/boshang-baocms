@@ -1,72 +1,30 @@
 <volist name="list" id="item" key="index">
-	<a class="item" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>" style="margin:.5rem">	
+	<a class="item" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>">	
     
 		<img class="pic" src="<{:config_img($item['photo'])}>" />	
 		<div class="des">	
-			<h5><{:msubstr($item['shop_name'],0,10,'utf-8',false)}> &nbsp;<if condition="$item['is_renzheng'] eq 1"><span class="renzheng">认证</span></if>
+			<h5><{:msubstr($item['shop_name'],0,6,'utf-8',false)}> &nbsp;<if condition="$item['is_renzheng'] eq 1"><span class="renzheng">认证</span></if>
 				<span class="distance"><{$item.d}></span>	
 			</h5>	
 			<div class="info">	
-            
-                <span style="width:100%; float:left;" ><{:msubstr($item['tags'],0,20,'utf-8',false)}></span>
+                <if condition="!empty($item['score'])"> <!--如果价格等于0-->
+					<span class="ui-starbar"><span style="width:<{:round($item['score']*2,2)}>%"></span></span>
+                <else/>
+                	暂无评价
+                </if>
                 
-				<!--<span class="ui-starbar"><span style="width:<{:round($item['score']*2,2)}>%"></span></span>
-                <span class="renqi" style="float:right; clear:left;"><{$item['favnum']}></span>-->
-                    
+                <php>$shopyouhui = D('Shopyouhui')->where(array('shop_id'=>$item['shop_id']))->find();</php>
+                <if condition="!empty($shopyouhui)">
+                	<if condition="$shopyouhui['type_id'] EQ 0">
+                   		<span class="shopyouhui"><{$shopyouhui['discount']}>折</span>
+                    <else/>
+                    	<span class="shopyouhui">满 &yen;<{$shopyouhui['min_amount']}>元&nbsp;减 &yen;<{$shopyouhui['amount']}>元 </span>
+                    </if>
                 </if>
 			</div>	
 			<span class="addr">	
-				<{:msubstr($item['addr'],0,30,'utf-8',false)}>
+				<{:msubstr($item['addr'],0,26,'utf-8',false)}>
 			</span>
 		</div>	
 	</a>
 </volist>
-<script>
-	function bd_encrypt_A(gg_lat, gg_lon){
-		var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-		var x = gg_lon;
-		var y = gg_lat;
-		var z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
-		var theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
-		var bd_lon = z * Math.cos(theta) + 0.0065;
-		var bd_lat = z * Math.sin(theta) + 0.006;
-		var my_bd_lon = parseInt(bd_lon); 
-		if ( my_bd_lon > 1  ) {
-			setCookie('lat', bd_lat, 1); 
-			setCookie('lng', bd_lon, 1);
-			setCookie('lat_ok', bd_lat, 1); 
-			setCookie('lng_ok', bd_lon, 1);
-			dingwei('<{:U("/wap/index/dingwei",array("t"=>$nowtime,"lat"=>"'+bd_lat+'","lng"=>"'+bd_lon+'"))}>', bd_lat, bd_lon);	
-		}
-	}
-	navigator.geolocation.getCurrentPosition(function(position) {
-		bd_encrypt_A(position.coords.latitude, position.coords.longitude);
-	});
-</script>
-<script language="javascript">
-	function g()
-	{
-		var l = getCookie('reloaded').length; 
-		//alert(getCookie('reloaded'));
-		//if( (location.href.indexOf("reloaded")==-1) || (l==0) ){
-		if( location.href.indexOf("reloaded")==-1  ){	
-			location.href=location.href+"#reloaded";
-			location.reload();
-		}
-		setCookie('myd', '', 0); 
-	}
-	
-	
-     var reloaded = location.href.split('#');
-	 setCookie('reloaded', reloaded[1], 1); 
-	 
-	 //document.cookies = 'reloaded=' + reloaded[1];  
-	 //var myd = parseInt(getCookie('myd'));
-	 var myd = parseInt('<{$myd}>');
-	 if ( myd > 6500 ) {
-	 	setTimeout(g,2500);
-		setCookie('myd', '', 0);  
-	 } else {
-		setCookie('myd', '', 0);  
-	 }
-</script>

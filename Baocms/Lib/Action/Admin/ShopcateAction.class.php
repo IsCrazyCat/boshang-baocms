@@ -1,8 +1,8 @@
 <?php
 class ShopcateAction extends CommonAction
 {
-    private $create_fields = array('cate_name', 'd1', 'd2', 'd3', 'title', 'orderby', 'photo','rate');
-    private $edit_fields = array('cate_name', 'd1', 'd2', 'd3', 'title', 'orderby', 'photo','rate');
+    private $create_fields = array('cate_name', 'd1', 'd2', 'd3', 'title', 'orderby');
+    private $edit_fields = array('cate_name', 'd1', 'd2', 'd3', 'title', 'orderby');
     public function index()
     {
         $Shopcate = D('Shopcate');
@@ -57,8 +57,6 @@ class ShopcateAction extends CommonAction
         $data['d3'] = htmlspecialchars($data['d3']);
         $data['title'] = htmlspecialchars($data['title']);
         $data['orderby'] = (int) $data['orderby'];
-		$data['rate'] = (int) $data['rate'];
-		$data['photo'] = htmlspecialchars($data['photo']);
         return $data;
     }
     public function edit($cate_id = 0)
@@ -96,8 +94,6 @@ class ShopcateAction extends CommonAction
         $data['d3'] = htmlspecialchars($data['d3']);
         $data['title'] = htmlspecialchars($data['title']);
         $data['orderby'] = (int) $data['orderby'];
-		$data['rate'] = (int) $data['rate'];
-		$data['photo'] = htmlspecialchars($data['photo']);
         return $data;
     }
     public function delete($cate_id = 0)

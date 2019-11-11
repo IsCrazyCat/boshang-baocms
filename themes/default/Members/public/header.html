@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -135,15 +135,15 @@
                             <div class="indexnav_li">
                                 <ul>
                                     <li><a <if condition="$ctl eq 'order' or $ctl eq 'ele' ">class="on"</if> href="<{:U('order/index')}>">我的订单</a></li>
-                                    <li style="display:none" ><a <if condition="$ctl eq 'index' ">class="on"</if> href="<{:U('index/index')}>">我的团购券</a></li>
+                                    <li><a <if condition="$ctl eq 'index' ">class="on"</if> href="<{:U('index/index')}>">我的抢购券</a></li>
                                    
-                                    <li style="display:none" ><a <if condition="$ctl eq 'coupon' ">class="on"</if> href="<{:U('coupon/index')}>">优惠券下载</a></li>
-                                    <li style="display:none"><a <if condition="$ctl eq 'yuyue' ">class="on"</if> href="<{:U('yuyue/index')}>">我的预约</a></li>
+                                    <li><a <if condition="$ctl eq 'coupon' ">class="on"</if> href="<{:U('coupon/index')}>">优惠券下载</a></li>
+                                    <li><a <if condition="$ctl eq 'yuyue' ">class="on"</if> href="<{:U('yuyue/index')}>">我的预约</a></li>
 									<if condition="$open_appoint eq '1' ">
-                                    <li style="display:none"><a <if condition="$ctl eq 'appoint' ">class="on"</if> href="<{:U('appoint/index')}>">我的家政</a></li>
+                                    <li><a <if condition="$ctl eq 'appoint' ">class="on"</if> href="<{:U('appoint/index')}>">我的家政</a></li>
                                     </if>
 									<if condition="$open_jifen eq '1' ">
-                                    <li style="display:none"><a <if condition="$ctl eq 'exchange' ">class="on"</if> href="<{:U('exchange/index')}>">我的兑换</a></li>
+                                    <li><a <if condition="$ctl eq 'exchange' ">class="on"</if> href="<{:U('exchange/index')}>">我的兑换</a></li>
                                    </if>
 									<if condition="$open_ding eq '1' ">
                                     
@@ -224,12 +224,12 @@
 
                   <if condition="$profit eq '1' ">
                         <li class="index_nav">
-                            <h3>分享裂变</h3>
+                            <h3>分销中心</h3>
                             <div class="indexnav_li">
                                 <ul>
                                     <li><a <if condition="$act eq 'profit' ">class="on"</if> href="<{:U('distribution/profit', array('status' => 1))}>">收益统计</a></li>
-                                    <li><a <if condition="$act eq 'subordinate' ">class="on"</if> href="<{:U('distribution/subordinate')}>">我的团队</a></li>
-                                    <li><a <if condition="$act eq 'superior' ">class="on"</if> href="<{:U('distribution/superior')}>">我的推荐人</a></li>
+                                    <li><a <if condition="$act eq 'subordinate' ">class="on"</if> href="<{:U('distribution/subordinate')}>">我的下级</a></li>
+                                    <li><a <if condition="$act eq 'superior' ">class="on"</if> href="<{:U('distribution/superior')}>">我的上级</a></li>
                                     <li><a <if condition="$act eq 'qrcode' ">class="on"</if> href="<{:U('distribution/qrcode')}>">二维码</a></li>
                                     <li><a <if condition="$act eq 'poster' ">class="on"</if> href="<{:U('distribution/poster')}>">我的海报</a></li>
                                 </ul>

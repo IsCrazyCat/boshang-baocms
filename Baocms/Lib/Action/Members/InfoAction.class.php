@@ -95,8 +95,7 @@ class InfoAction extends CommonAction {
                 $this->baoError('验证码不正确');
             $data = array(
                 'user_id' => $this->uid,
-                'mobile' => $mobile,
-				'account' => $mobile
+                'mobile' => $mobile
             );
             if (D('Users')->save($data)) {
                 D('Users')->integral($this->uid, 'mobile');
@@ -118,13 +117,12 @@ class InfoAction extends CommonAction {
             $s_mobile = session('mobile');
             $s_code = session('code');
             if ($mobile != $s_mobile)
-                $this->baoError('手机号码和收取验证码的手机号不一致A！');
+                $this->baoError('手机号码和收取验证码的手机号不一致！');
             if ($yzm != $s_code)
                 $this->baoError('验证码不正确');
             $data = array(
                 'user_id' => $this->uid,
-                'mobile' => $mobile,
-				'account' => $mobile
+                'mobile' => $mobile
             );
             if (D('Users')->save($data)) {
                 $this->baoSuccess('恭喜您成功更换绑定手机号', U('members/mobile'));

@@ -6,7 +6,7 @@
         <li class="li2 li3">编辑认领</li>
     </ul>
 </div>
-<p class="attention"><span>注意：</span>就算不通过已应该评论下吧！</p>
+<p class="attention"><span>注意：</span>就算不通过已应该回复下吧！</p>
 <form target="baocms_frm" action="<{:U('shoprecognition/edit',array('recognition_id'=>$detail['recognition_id']))}>" method="post">
     <div class="mainScAdd">
         <div class="tableBox">
@@ -50,9 +50,9 @@
                 </tr>
 
                 <tr>
-                    <td class="lfTdBt">管理员评论</td>
+                    <td class="lfTdBt">管理员回复</td>
                     <td class="rgTdBt"><textarea  name="data[reply]" cols="50" rows="10" ><{$detail.reply|default=''}></textarea>
-					<code>管理员评论后，认领人可以在我的兜兜看到！</code>
+					<code>管理员回复后，认领人可以在会员中心看到！</code>
                     </td>
                 </tr>
             </table>

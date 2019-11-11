@@ -15,7 +15,7 @@ class DingdianpingAction extends CommonAction {
 		
 		
         $Tuandianping = D('Shopdingdianping');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0);
         if ($shop_id = (int) $this->_param('shop_id')) {
             $maps['shop_id'] = $shop_id;

@@ -92,7 +92,7 @@ class LifeAction extends CommonAction
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            //$this->baoError('商圈不能为空');
+            $this->baoError('商圈不能为空');
         }
         $data['user_id'] = htmlspecialchars($data['user_id']);
         if (empty($data['user_id'])) {
@@ -201,11 +201,11 @@ class LifeAction extends CommonAction
         }
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
-            //$this->baoError('地区不能为空');
+            $this->baoError('地区不能为空');
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-           // $this->baoError('商圈不能为空');
+            $this->baoError('商圈不能为空');
         }
         $data['user_id'] = htmlspecialchars($data['user_id']);
         if (empty($data['user_id'])) {

@@ -27,18 +27,8 @@
 	</div>
 </div>
 
-<div class="line tab-bar">
-	<div class="button-toolbar">
-		<div class="button-group">
-			<a class="block button " href="<{:U('User/cash/quqian1')}>" >分享补贴 <{:round($MEMBER['fxbt_ktxbt_money']/100,2)}> 转余额</a>
-			<a class="block button " href="<{:U('User/cash/quqian2')}>" >链店补贴 <{:round($MEMBER['ldbt_ktxbt_money']/100,2)}> 转余额</a>
-		</div>
-	</div>
-</div>
-
-
     <div class="line padding border-bottom">
-        <span class="x12 text-gray">当前用户：<{$MEMBER['mobile']}> <{$MEMBER['nickname']}> (<{$MEMBER['user_id']}>)</span>
+        <span class="x12 text-gray">当前用户：<{$MEMBER['account']}>（<{$MEMBER['nickname']}>）</span>
 		<span class="x12 text-gray">您当前余额：<{$money}>元</span>
         <if condition="!empty($CONFIG[cash][user_cash_commission])">
         <span class="x12 text-dot">当前提现手续费：<{$CONFIG[cash][user_cash_commission]}>%</span>

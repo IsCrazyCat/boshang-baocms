@@ -227,7 +227,7 @@ class IndexAction extends CommonAction
                 }
                 $this->weixin->response($content, 'news');
             } elseif ($type == 2) {
-                //团购
+                //抢购
                 $tuan_id = $detail['soure_id'];
                 $tuan = D('Tuan')->find($tuan_id);
                 $content[] = array($tuan['title'], $tuan['intro'], $this->getImage($tuan['photo']), __HOST__ . '/mobile/tuan/detail/tuan_id/' . $tuan_id . '.html');
@@ -295,7 +295,7 @@ class IndexAction extends CommonAction
             if ($type == 1) {
                 $shop_id = $detail['soure_id'];
                 $shop = D('Shop')->find($shop_id);
-				//扫码评论是这里
+				//扫码回复是这里
                 $content[] = array($shop['shop_name'], $shop['addr'], $this->getImage($shop['photo']), __HOST__ . '/wap/shop/detail/shop_id/' . $shop_id . '.html');
                 //file_put_contents('/www/web/bao_baocms_cn/public_html/Baocms/Lib/Action/Weixin/bbb.txt', var_export($content, true));
                 $result = D('Connect')->getConnectByOpenid('weixin', $data['data']['FromUserName']);
@@ -315,7 +315,7 @@ class IndexAction extends CommonAction
                 }
                 $this->weixin->response($content, 'news');
             } elseif ($type == 2) {
-                //团购
+                //抢购
                 $tuan_id = $detail['soure_id'];
                 $tuan = D('Tuan')->find($tuan_id);
                 $content[] = array($tuan['title'], $tuan['intro'], $this->getImage($tuan['photo']), __HOST__ . '/wap/tuan/detail/tuan_id/' . $tuan_id . '.html');

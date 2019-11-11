@@ -57,7 +57,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        建议尺寸<{$CONFIG.attachs.hotle.thumb}>
+                        <{$CONFIG.attachs.hotle.thumb}>
                     </div>
                     <script>                                            
 						var width_hotle = '<{:thumbSize($CONFIG[attachs][hotle][thumb],0)}>';                         
@@ -67,9 +67,7 @@
 						swf: '/static/default/webuploader/Uploader.swf',                             
 						server: '<{:U("app/upload/uploadify",array("model"=>"hotle"))}>',                             
 						pick: '#fileToUpload',                             
-						resize: true,
-duplicate :true, //可重复上传  
-  
+						resize: true,  
 						compress : {width: width_hotle,height: height_hotle,quality: 80,allowMagnify: false,crop: true}                       
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
@@ -98,9 +96,7 @@ duplicate :true, //可重复上传
 									server: '<{:U("app/upload/uploadify",array("model"=>"hotle"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true,
-duplicate :true, //可重复上传  
- 
+									resize: true, 
 									crop: false,  
 									compress : {width:width_hotle_pic,height:height_hotle_pic,quality: 80,allowMagnify: false,crop: true},														
 								});                                                               

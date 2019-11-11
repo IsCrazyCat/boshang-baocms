@@ -5,7 +5,7 @@ class BreaksorderModel extends CommonModel{
     protected $pk   = 'order_id';
     protected $tableName =  'breaks_order';
 	
-    //更新门店付款销售接口
+    //更新优惠买单销售接口
     public function settlement($order_id) {
         $order_id = (int) $order_id;
 		$logs = D('Paymentlogs')->where(array('type'=>breaks,'order_id'=>$order_id))->find();//支付日志
@@ -14,7 +14,7 @@ class BreaksorderModel extends CommonModel{
 		$shop = D('Shop')->find($order['shop_id']);//商家信息
 		
 		$deduction = $this->get_deduction($shop['shop_id'],$order['amount'],$order['exception']);//网站扣除金额，暂时写到购买的会员余额
-		$intro = '门店付款，支付记录ID：' . $logs['log_id'];
+		$intro = '优惠买单，支付记录ID：' . $logs['log_id'];
 		$ip = get_client_ip();//IP
 		
 		
@@ -33,16 +33,14 @@ class BreaksorderModel extends CommonModel{
 			}	
 		}
 
-		$rank_id = D('Users')->where('user_id='.$order['user_id'])->getField('rank_id');
-		$rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
+		
 		//会员买单实际支付日志
 		D('Usermoneylogs')->add(array(
           'user_id' => $order['user_id'],
           'money' => $logs['need_pay'],
           'create_time' => NOW_TIME,
           'create_ip' => $ip,
-          'intro' => $intro,
-		  'rankname' => $rankname
+          'intro' => $intro
         ));			
 					
 					
@@ -95,7 +93,7 @@ class BreaksorderModel extends CommonModel{
 				
 				if ($order_type === 2) {
 					$modelOrder = D('Breaksorder');
-					$orderTypeName = '门店付款';
+					$orderTypeName = '优惠买单';
 				}
 
 				if ($user_fuid['fuid1']) {//如果一级会员不等于空
@@ -104,8 +102,8 @@ class BreaksorderModel extends CommonModel{
 						$info1 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . $money1;
 						$fuser1 = $userModel->find($user_fuid['fuid1']);//查询会员是否存在
 						if ($fuser1) {
-							$userModel->addMoney($user_fuid['fuid1'], round($money1 * 100, 2), $info1,$shop_id, $pay_id);//写入用户金额*100
-							$userModel->addProfit($user_fuid['fuid1'], $order_type, $order_id, round($money1 * 100, 2), 1,$shop_id, $pay_id);//写入分销日志
+							$userModel->addMoney($user_fuid['fuid1'], round($money1 * 100, 2), $info1);//写入用户金额*100
+							$userModel->addProfit($user_fuid['fuid1'], $order_type, $order_id, round($money1 * 100, 2), 1);//写入分销日志
 						}
 					}
 				}
@@ -116,8 +114,8 @@ class BreaksorderModel extends CommonModel{
 						$info2 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' .$money2;
 						$fuser2 = $userModel->find($user_fuid['fuid2']);
 						if ($fuser2) {
-							$userModel->addMoney($user_fuid['fuid2'], round($money2 * 100, 2), $info2,$shop_id, $pay_id);//写入用户金额
-							$userModel->addProfit($user_fuid['fuid2'], $order_type, $order_id, round($money2 * 100, 2), 1,$shop_id, $pay_id);//写入分销日志
+							$userModel->addMoney($user_fuid['fuid2'], round($money2 * 100, 2), $info2);//写入用户金额
+							$userModel->addProfit($user_fuid['fuid2'], $order_type, $order_id, round($money2 * 100, 2), 1);//写入分销日志
 						}
 
 					}
@@ -129,8 +127,8 @@ class BreaksorderModel extends CommonModel{
 						$info3 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . $money3;
 						$fuser3 = $userModel->find($user_fuid['fuid3']);
 						if ($fuser3) {
-							$userModel->addMoney($user_fuid['fuid3'], round($money3 * 100, 2), $info3,$shop_id, $pay_id);
-							$userModel->addProfit($user_fuid['fuid3'], $order_type, $order_id, round($money3 * 100, 2), 1,$shop_id, $pay_id);
+							$userModel->addMoney($user_fuid['fuid3'], round($money3 * 100, 2), $info3);
+							$userModel->addProfit($user_fuid['fuid3'], $order_type, $order_id, round($money3 * 100, 2), 1);
 						}
 					}
 				}

@@ -54,7 +54,7 @@
       <if condition="!empty($var['reply'])">
       <dt>
          <div class="x12">
-           <span class="margin-right text-gray">物业评论：<{:bao_msubstr($var['reply'],0,10,false)}></span>
+           <span class="margin-right text-gray">物业回复：<{:bao_msubstr($var['reply'],0,10,false)}></span>
          </div>
       </dt>
       </if>
@@ -62,9 +62,9 @@
       <dl>
          <p class="text-right x12"> 
          <if condition="!empty($var['reply'])">
-         <a class="button button-small bg-gray">已评论</a>
+         <a class="button button-small bg-gray">已回复</a>
          <else/>
-         <a href="<{:U('feedback/reply',array('feed_id'=>$var['feed_id']))}>" class="button button-small bg-dot">评论</a>
+         <a href="<{:U('feedback/reply',array('feed_id'=>$var['feed_id']))}>" class="button button-small bg-dot">回复</a>
          </if>
          <a class="button button-small bg-dot" href="<{:U('wuye/feedback/detail',array('feed_id'=>$var['feed_id']))}>">详细</a>
          <a  href="javascript:void(0);" rel="<{$var.feed_id}>"  class="jquery-delete button button-small  margin-top bg-blue">删除</a>

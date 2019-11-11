@@ -240,7 +240,7 @@ class CrowdAction extends CommonAction {
         $data['rush_price'] = (int) ($data['rush_price'] * 100);
         $data['views'] = (int) $data['views'];
         if (empty($data['views'])) {
-            $this->baoError('人气不能为空');
+            $this->baoError('浏览量不能为空');
         }
 		 $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
@@ -335,7 +335,7 @@ class CrowdAction extends CommonAction {
         $data['rush_price'] = (int) ($data['rush_price'] * 100);
         $data['views'] = (int) $data['views'];
         if (empty($data['views'])) {
-            $this->baoError('人气不能为空');
+            $this->baoError('浏览量不能为空');
         }
 		 $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {

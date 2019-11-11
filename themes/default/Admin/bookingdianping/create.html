@@ -64,9 +64,7 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"shopdianping"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true,
-duplicate :true, //可重复上传  
- 
+									resize: true, 
 									crop: false,  
 									compress : {width:width_shopdianping,height:height_shopdianping,quality: 80,allowMagnify: false,crop: true},														
 								});                                                               
@@ -94,7 +92,7 @@ duplicate :true, //可重复上传
                     </tr>
 
                 <tr>
-                    <td  class="lfTdBt">商家评论：</td>
+                    <td  class="lfTdBt">商家回复：</td>
                     <td class="rgTdBt">
                         <textarea name="data[reply]" rows="5" cols="40"><{$detail.reply|default=''}></textarea>
                     </td>

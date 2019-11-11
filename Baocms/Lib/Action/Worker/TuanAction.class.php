@@ -21,7 +21,7 @@ class TuanAction extends CommonAction
     public function orderload()
     {
         $Tuanorder = D('Tuanorder');
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类
         $map = array('shop_id' => $this->shop_id, 'closed' => 0);//这里只显示 实物
         $aready = (int) $this->_param('aready');
         if ($aready == 1) {
@@ -91,14 +91,14 @@ class TuanAction extends CommonAction
                 }
             }
             if (empty($c)) {
-                $this->fengmiMsg('请输入团购券!');
+                $this->fengmiMsg('请输入抢购券!');
             }
             $obj = D('Tuancode');
             $shopmoney = D('Shopmoney');
             $return = array();
             $ip = get_client_ip();
             if (count($code) > 10) {
-                $this->fengmiMsg('一次最多验证10条团购券！');
+                $this->fengmiMsg('一次最多验证10条抢购券！');
             }
             $userobj = D('Users');
             foreach ($code as $key => $var) {
@@ -107,11 +107,11 @@ class TuanAction extends CommonAction
                     $data = $obj->find(array('where' => array('code' => $var)));
                     if (!empty($data) && $data['shop_id'] == $this->shop_id && (int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
 						
-						 //解决了多多份团购无法点评的BUG
+						 //解决了多多份抢购无法点评的BUG
                             $Tuancode_count = $obj->where(array('order_id' => $data['order_id'], 'is_used' => 0))->count();
                             if ($Tuancode_count == 1) {
                                 D('Tuanorder')->save(array('order_id' => $data['order_id'], 'status' => 8));
-                                //团购状态修改为8
+                                //抢购状态修改为8
                             }
 							
                         if ($obj->save(array(
@@ -124,7 +124,7 @@ class TuanAction extends CommonAction
                            D('Sms')->tuan_TZ_user($data['code_id']);//发短信，先发再处理逻辑
                             
                             if (!empty($data['price'])) {
-                                $data['intro'] = '团购消费' . $data['order_id'];
+                                $data['intro'] = '抢购消费' . $data['order_id'];
                                 $shop = D('Shop')->find($data['shop_id']);
                                 $shopmoney->add(array(
 									'shop_id' => $data['shop_id'], 
@@ -137,23 +137,23 @@ class TuanAction extends CommonAction
 									'order_id' => $data['order_id'], 
 									'intro' => $data['intro']
 								));
-                                D('Users')->Money($shop['user_id'], $data['settlement_price'], '商户团购资金结算:' . $data['order_id']);//商户资金增加
+                                D('Users')->Money($shop['user_id'], $data['settlement_price'], '商户抢购资金结算:' . $data['order_id']);//商户资金增加
                                 $return[$var] = $var;
-                                D('Users')->gouwu($data['user_id'], $data['price'], '团购券消费成功');
-								//团购返还积分给商家用户
+                                D('Users')->gouwu($data['user_id'], $data['price'], '抢购券消费成功');
+								//抢购返还积分给商家用户
 								if(!empty($data['real_integral'])){
 									$config = D('Setting')->fetchAll();
 									if($config['integral']['tuan_return_integral'] == 1){
-										D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '团购用户消费积分返还给商家');
+										D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '抢购用户消费积分返还给商家');
 									}
 								}
                                 $this->fengmiMsg($key . '验证成功!', U('tuan/used'));
                             } else {
-                                $this->fengmiMsg($key . '到店付团购券验证成功!', U('tuan/used'));
+                                $this->fengmiMsg($key . '到店付抢购券验证成功!', U('tuan/used'));
                             }
                         }
                     } else {
-                        $this->fengmiMsg($key . 'X该团购券无效!', U('tuan/used'));
+                        $this->fengmiMsg($key . 'X该抢购券无效!', U('tuan/used'));
                     }
                 }
             }
@@ -166,7 +166,7 @@ class TuanAction extends CommonAction
     {
         $Tuancode = D('Tuancode');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('shop_id' => $this->shop_id, 'is_used' => '1', 'worker_id' => $this->uid);
         if (strtotime($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && strtotime($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);

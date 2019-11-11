@@ -167,7 +167,7 @@
 		<div class="tab-head">
 			<ul class="tab-nav padding-left">
 				<li class="active"><a href="#tab-list">网友评论</a></li>
-				<li><a href="#tab-post">我要评论</a></li>
+				<li><a href="#tab-post">我要回复</a></li>
 			</ul>
 		</div>
 	
@@ -206,7 +206,7 @@
 						</div>
 					</div>
 					<div class="blank-10"></div>
-					<div class="form-button"><button class="button" type="submit">提交评论</button></div>
+					<div class="form-button"><button class="button" type="submit">提交回复</button></div>
 				</form>
 				<div class="blank-20"></div>
 			</div>
@@ -214,22 +214,22 @@
 	</div>
 	
 	<script>
-	//点击"评论"按钮显示或隐藏评论输入框
+	//点击"回复"按钮显示或隐藏回复输入框
 	$("body").delegate(".comment-reply","click",function(){
 		var uid = "<{$MEMBER[user_id]}>";
 		if(uid==""){
 			location.href = "<{:U('passport/login')}>";
 		}else{
-			if($(this).next().length>0){//判断出评论div已经存在,去除掉
+			if($(this).next().length>0){//判断出回复div已经存在,去除掉
 				$(this).next().remove();
-			 }else{//添加评论div
-				$(".comment-reply").next().remove();//删除已存在的所有评论div	
-				//添加当前评论div
-				var parent_id = $(this).attr("comment_id");//要评论的评论id
+			 }else{//添加回复div
+				$(".comment-reply").next().remove();//删除已存在的所有回复div	
+				//添加当前回复div
+				var parent_id = $(this).attr("comment_id");//要回复的评论id
 				
 				var divhtml = "";
-				if('off'!=$(this).attr("replyswitch")){//二级评论评论后三级评论不再提供评论功能,将关闭属性附加到"提交评论"按钮"
-					divhtml = "<form class='form margin-small' action='/wap/news/post.html'  method='post'><input type='hidden' value='"+<{$detail.article_id}>+"' name='data[post_id]' ><input type='hidden' value='"+parent_id+"' name='data[parent_id]' ><div class='div-reply-txt'><textarea name='data[content]' class='input'></textarea><div style='margin-top:5px;text-align:right;'><button class='comment-submit button' type='submit' >提交评论</button></div></div></form>";
+				if('off'!=$(this).attr("replyswitch")){//二级评论回复后三级评论不再提供回复功能,将关闭属性附加到"提交回复"按钮"
+					divhtml = "<form class='form margin-small' action='/wap/news/post.html'  method='post'><input type='hidden' value='"+<{$detail.article_id}>+"' name='data[post_id]' ><input type='hidden' value='"+parent_id+"' name='data[parent_id]' ><div class='div-reply-txt'><textarea name='data[content]' class='input'></textarea><div style='margin-top:5px;text-align:right;'><button class='comment-submit button' type='submit' >提交回复</button></div></div></form>";
 				}		 	
 				$(this).after(divhtml);
 			 }

@@ -33,19 +33,19 @@ class TuanAction extends CommonAction
         if (IS_AJAX) {
             $tuan_id = (int) $_POST['tuan_id'];
             if (empty($tuan_id)) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购不存在'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购不存在'));
             }
             if (!($detail = D('Tuan')->find($tuan_id))) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购不存在'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购不存在'));
             }
             if ($detail['audit'] != 1 || $detail['closed'] != 0 || $detail['end_date'] < TODAY) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购不存在'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购不存在'));
             }
             $orderby = (int) $_POST['orderby'];
             $obj = D('Communitytuan');
             if (!($res = $obj->where(array('tuan_id' => $tuan_id, 'community_id' => $this->community_id))->find())) {
                 if ($obj->add(array('tuan_id' => $tuan_id, 'community_id' => $this->community_id, 'orderby' => $orderby))) {
-                    $this->ajaxReturn(array('status' => 'success', 'msg' => '添加团购成功'));
+                    $this->ajaxReturn(array('status' => 'success', 'msg' => '添加抢购成功'));
                 }
             }
             $this->ajaxReturn(array('status' => 'error', 'msg' => '操作失败'));
@@ -59,13 +59,13 @@ class TuanAction extends CommonAction
         if (IS_AJAX) {
             $tuan_id = (int) $_POST['tuan_id'];
             if (empty($tuan_id)) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购不存在'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购不存在'));
             }
             if (!($detail = D('Tuan')->find($tuan_id))) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购不存在'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购不存在'));
             }
             if ($detail['audit'] != 1 || $detail['closed'] != 0 || $detail['end_date'] < TODAY) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购不存在'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购不存在'));
             }
             $obj = D('Communitytuan');
             $data = array('community_id' => $this->community_id, 'tuan_id' => $tuan_id);

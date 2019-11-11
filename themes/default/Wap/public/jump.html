@@ -11,15 +11,15 @@
 		<div class="blank-100"></div>
 		<if condition="$message neq null" >
 		<div class="alert alert-green">
-			<strong>操作成功</strong> <p><php>echo($message);</php><span class="text-dot" id="wait-time"></span>秒后自动跳转。</p>
+			<strong>操作成功2</strong> <p><php>echo($message);</php><span class="text-dot" id="wait-time"></span>秒后自动跳转。</p>
 			<a class="button bg" href="<{:U('index/index')}>">返回首页</a>
-			<!--<a class="button bg-green" href="<{$jumpUrl}>">知道啦~</a>-->
+			<a class="button bg-green" href="<{$jumpUrl}>">知道啦~</a>
 		</div>
 		<else/>
 		<div class="alert alert-red">
 			<strong>操作失败</strong> <p><php>echo($error);</php> <span class="text-dot" id="wait-time"></span>秒后自动跳转。</p>
 			<a class="button bg" href="<{:U('index/index')}>">返回首页</a>
-			<!--<a class="button bg-red" href="<{$jumpUrl}>">知道啦~</a>-->
+			<a class="button bg-red" href="<{$jumpUrl}>">知道啦~</a>
 		</div>
 		</if>
 		<div class="blank-40"></div>

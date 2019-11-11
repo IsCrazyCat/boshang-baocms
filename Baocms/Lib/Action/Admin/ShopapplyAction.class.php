@@ -6,7 +6,7 @@ class ShopapplyAction extends CommonAction
     {
         $Shopapply = D('Shopapply');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         if ($name = $this->_param('name', 'htmlspecialchars')) {
             $map['name'] = array('LIKE', '%' . $name . '%');

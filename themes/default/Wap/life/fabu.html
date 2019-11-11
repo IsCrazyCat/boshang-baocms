@@ -38,8 +38,6 @@
 			server: '<{:U("app/upload/uploadify",array("model"=>"life"))}>',                             
 			pick: '#fileToUpload',   
 			resize: true,
-duplicate :true, //可重复上传  
-
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -95,9 +93,7 @@ duplicate :true, //可重复上传
 			server: '<{:U("app/upload/uploadify",array("model"=>"lifepic"))}>',                             
 			pick: '#moreToUpload',
 			fileNumberLimit:10,//最大文件个数                        
-			resize: true,
-duplicate :true, //可重复上传  
-    
+			resize: true,    
 			accept: {
 				title: 'Images',
 				extensions: 'gif,jpg,jpeg,png',
@@ -111,7 +107,7 @@ duplicate :true, //可重复上传
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_lifepic,//这里裁剪长度
-                    quality:80
+                    quality:60
                 });
             }
         });
@@ -357,11 +353,9 @@ duplicate :true, //可重复上传
                             var map = new BMap.Map("allmap");
                             var lng = "<{$lng}>";
                             var lat = "<{$lat}>";
-							var lng = "<{$CONFIG['site']['lng']}>";
-							var lat = "<{$CONFIG['site']['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("聊城");
-                                var point = new BMap.Point(115.9918900000,36.4626820000);
+                                map.centerAndZoom("合肥");
+                                var point = new BMap.Point(117.260852, 31.825717);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);

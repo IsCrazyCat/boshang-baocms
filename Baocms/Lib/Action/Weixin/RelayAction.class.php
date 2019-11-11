@@ -57,7 +57,7 @@ class RelayAction extends CommonAction {
 				$this->assign('prizes',$prizes);
 				//$this->pagedata['prizes'] = $prizes;
 			}
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类
 			$count = $objsn->where($filter)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -67,7 +67,7 @@ class RelayAction extends CommonAction {
 				//$this->pagedata['sn_list'] = $sn_list;
 			}
 			$Page = array();
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类
 			$count = $objsn->where($filter)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();
@@ -81,7 +81,7 @@ class RelayAction extends CommonAction {
 
 			$filter['openid'] = $openid;
 			$filter['type'] = 2;
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类
 			$count = $objsn->where($filter)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();

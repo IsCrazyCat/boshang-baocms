@@ -23,7 +23,7 @@ class CommonAction extends Action{
         $this->assign('today', TODAY);
         //兼容模版的其他写法
         $this->assign('nowtime', NOW_TIME);
-        //微信关键字评论的时候需要使用以及微信对接的时候
+        //微信关键字回复的时候需要使用以及微信对接的时候
         if (strtolower(MODULE_NAME) == 'index') {
             $this->_token = $this->_get_token();
             $this->weixin = D('Weixin');

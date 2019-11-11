@@ -51,11 +51,11 @@ class TuancodeAction extends CommonAction{
                 $this->fengmiMsg('非法操作');
             }
             if ($detail['status'] != 0 || $detail['is_used'] != 0) {
-                $this->fengmiMsg('该团购券不能申请退款');
+                $this->fengmiMsg('该抢购券不能申请退款');
             }
             D('Tuanorder')->save(array('order_id' => $detail['order_id'], 'status' => 3));
             if (D('Tuancode')->save(array('code_id' => $code_id, 'status' => 1))) {
-				D('Weixintmpl')->weixin_user_refund_shop($code_id,4);//团购劵申请退款，传订单ID跟类型
+				D('Weixintmpl')->weixin_user_refund_shop($code_id,4);//抢购劵申请退款，传订单ID跟类型
                 $this->fengmiMsg('申请成功！等待网站客服处理！', U('tuancode/index'));
             }
         }
@@ -69,7 +69,7 @@ class TuancodeAction extends CommonAction{
             }
             D('Tuanorder')->save(array('order_id' => $detail['order_id'], 'status' => 1));
             if (D('Tuancode')->save(array('code_id' => $code_id, 'status' => 0))) {
-				D('Weixintmpl')->weixin_delete_order_shop($code_id,4);//团购劵取消订单，传订单ID跟类型
+				D('Weixintmpl')->weixin_delete_order_shop($code_id,4);//抢购劵取消订单，传订单ID跟类型
                 $this->fengmiMsg('取消成功，您可以正常使用了！', U('tuancode/index'));
             }
         }
@@ -78,13 +78,13 @@ class TuancodeAction extends CommonAction{
     public function weixin(){
         $code_id = $this->_get('code_id');
         if (!($detail = D('Tuancode')->find($code_id))) {
-            $this->error('没有该团购券');
+            $this->error('没有该抢购券');
         }
         if ($detail['user_id'] != $this->uid) {
-            $this->error("团购券不存在！");
+            $this->error("抢购券不存在！");
         }
         if ($detail['status'] != 0 || $detail['is_used'] != 0) {
-            $this->error('该团购券属于不可消费的状态');
+            $this->error('该抢购券属于不可消费的状态');
         }
         $url = U('worker/weixin/tuan', array('code_id' => $code_id, 't' => NOW_TIME, 'sign' => md5($code_id . C('AUTH_KEY') . NOW_TIME)));
         $token = 'tuancode_' . $code_id;
@@ -140,11 +140,11 @@ class TuancodeAction extends CommonAction{
                 $this->ajaxReturn(array('status' => 'error', 'msg' => '非法操作！'));
             }
             if ($detial['status'] == 1) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购券暂时不能删除！'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购券暂时不能删除！'));
             }
             if ($detial['status'] == 0) {
                 if ($detial['is_used'] == 0) {
-                    $this->ajaxReturn(array('status' => 'error', 'msg' => '该团购券暂时不能删除！'));
+                    $this->ajaxReturn(array('status' => 'error', 'msg' => '该抢购券暂时不能删除！'));
                 }
             }
             if (D('Tuancode')->save(array('code_id' => $code_id, 'closed' => 1))) {

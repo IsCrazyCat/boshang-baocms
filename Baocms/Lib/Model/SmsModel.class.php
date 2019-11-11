@@ -170,7 +170,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//团购劵退款短信通知
+	//抢购劵退款短信通知
 	public function tuancode_refund_user($code_id){
         	$code_id = (int) $code_id;
             $tuancode = D('Tuancode')->find($code_id);
@@ -192,7 +192,7 @@ class SmsModel extends CommonModel{
 	
 	
 	
-	//优惠劵万能通知接口1,1是用户下载优惠劵，2代表用户我的兜兜再次请求优惠劵，这个不行了，大于规则更改了报废！！！
+	//优惠劵万能通知接口1,1是用户下载优惠劵，2代表用户会员中心再次请求优惠劵，这个不行了，大于规则更改了报废！！！
 	public function sms_coupon_user($download_id,$type){
             $Coupondownload = D('Coupondownload')->find($download_id);
 			$users = D('Users')->find($Coupondownload['user_id']);
@@ -329,7 +329,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//商家团购劵验证成功后发送消息到用户手机
+	//商家抢购劵验证成功后发送消息到用户手机
     public function tuan_TZ_user($code_id){
         if (is_numeric($code_id) && ($code_id = (int) $code_id)) {
             $tuancode = D('Tuancode')->find($code_id);
@@ -365,7 +365,7 @@ class SmsModel extends CommonModel{
 			$tuan = D('Tuan')->where(array('tuan_id'=>$tuan_id))->find();
 			$tuan_title = $tuan['title'];
 		}else{
-			$tuan_title = '团购列表';	
+			$tuan_title = '抢购列表';	
 		}
 		$codestr = join(',', $code);
         //发送团购劵

@@ -8,7 +8,7 @@ class UserAction extends CommonAction
     {
         $EX = D('Usersex');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('frozen_money' => array('GT', 0));
         if ($is_no_frozen = (int) $this->_param('is_no_frozen')) {
             if ($is_no_frozen == 1) {
@@ -144,7 +144,7 @@ class UserAction extends CommonAction
     {
         $User = D('Users');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');
@@ -186,7 +186,7 @@ class UserAction extends CommonAction
     {
         $User = D('Users');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');
@@ -218,7 +218,7 @@ class UserAction extends CommonAction
     {
         $User = D('Users');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('closed' => array('IN', '0,-1'));
         if ($account = $this->_param('account', 'htmlspecialchars')) {
             $map['account'] = array('LIKE', '%' . $account . '%');
@@ -458,9 +458,7 @@ class UserAction extends CommonAction
                 $this->baoError('余额不足！');
             }
             D('Users')->save(array('user_id' => $user_id, 'money' => $detail['money'] + $money));
-			$rank_id = D('Users')->where('user_id='. $user_id)->getField('rank_id');
-		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
-            D('Usermoneylogs')->add(array('user_id' => $user_id, 'money' => $money, 'intro' => $intro, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(), 'rankname' => $rankname ));
+            D('Usermoneylogs')->add(array('user_id' => $user_id, 'money' => $money, 'intro' => $intro, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip()));
             $this->baoSuccess('操作成功', U('usermoneylogs/index'));
         } else {
             $this->assign('user_id', $user_id);

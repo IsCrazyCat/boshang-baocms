@@ -9,7 +9,7 @@ class PostAction extends CommonAction
         $list2 = $Sharecate->fetchAll();
         $Post = D('Post');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
@@ -58,13 +58,13 @@ class PostAction extends CommonAction
     private function createCheck(){
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['city_id'] = (int) $data['city_id'];
-//        if (empty($data['city_id'])) {
-//            $this->baoError('城市不能为空');
-//        }
+        if (empty($data['city_id'])) {
+            $this->baoError('城市不能为空');
+        }
         $data['area_id'] = (int) $data['area_id'];
-//        if (empty($data['area_id'])) {
-//            $this->baoError('地区不能为空');
-//        }
+        if (empty($data['area_id'])) {
+            $this->baoError('地区不能为空');
+        }
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
             $this->baoError('标题不能为空');
@@ -135,13 +135,13 @@ class PostAction extends CommonAction
     {
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['city_id'] = (int) $data['city_id'];
-//        if (empty($data['city_id'])) {
-//            $this->baoError('城市不能为空');
-//        }
+        if (empty($data['city_id'])) {
+            $this->baoError('城市不能为空');
+        }
         $data['area_id'] = (int) $data['area_id'];
-//        if (empty($data['area_id'])) {
-//            $this->baoError('地区不能为空');
-//        }
+        if (empty($data['area_id'])) {
+            $this->baoError('地区不能为空');
+        }
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
             $this->baoError('标题不能为空');

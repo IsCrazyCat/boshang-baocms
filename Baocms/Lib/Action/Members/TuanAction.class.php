@@ -26,7 +26,7 @@ class TuanAction extends CommonAction
                 $this->baoError('非法操作');
             }
             if ($detail['status'] != 0 || $detail['is_used'] != 0) {
-                $this->baoError('该团购券不能申请退款');
+                $this->baoError('该抢购券不能申请退款');
             }
             if (D('Tuancode')->save(array('code_id' => $code_id, 'status' => 1))) {
                 $this->baoSuccess('申请成功！等待网站客服处理！', U('members/ordercode'));

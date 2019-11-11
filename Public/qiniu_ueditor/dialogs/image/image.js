@@ -379,12 +379,9 @@
                 fileVal: editor.getOpt('imageFieldName'),
                 duplicate: true,
                 fileSingleSizeLimit: imageMaxSize,    // 默认 2 M
-                //compress: editor.getOpt('imageCompressEnable') ? {
-                   // width: imageCompressBorder,
-                    //height: imageCompressBorder,
-				compress: editor.getOpt('imageCompressEnable') ? {
-					width: '1' == editor.getOpt('imageCompressSide') ? imageCompressBorder : 99999,
-					height: '2' == editor.getOpt('imageCompressSide') ? imageCompressBorder : 99999,
+                compress: editor.getOpt('imageCompressEnable') ? {
+                    width: imageCompressBorder,
+                    height: imageCompressBorder,
                     // 图片质量，只有type为`image/jpeg`的时候才有效。
                     quality: 90,
                     // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
@@ -393,7 +390,7 @@
                     crop: false,
                     // 是否保留头部meta信息。
                     preserveHeaders: true,
-					compressSize: 0.1//蜂蜜源码二开
+					compressSize: 0.1//浡莱克二开
                 }:false
             });
             uploader.addButton({

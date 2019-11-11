@@ -51,7 +51,7 @@
                         <if condition="!empty($detail['use_integral'])">
                         	<span class="float-right"><{$detail.use_integral|default='0'}>积分
                         <else/>
-                        	<span class="float-right">该团购不支持积分抵扣
+                        	<span class="float-right">该抢购不支持积分抵扣
                         </if>
 					</span>
 				</div>
@@ -106,7 +106,7 @@
 				}
 				<if condition="!empty($detail['xiangou'])">
 				if (num > xiangou) {
-					 layer.msg("您购买的团购不能大于：" + xiangou + "份", function () {
+					 layer.msg("您购买的抢购不能大于：" + xiangou + "份", function () {
                             setTimeout(function () {
                                 window.location.reload(true);
                             }, 1000)

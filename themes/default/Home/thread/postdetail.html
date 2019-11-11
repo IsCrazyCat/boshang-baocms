@@ -27,7 +27,7 @@
             
         	<h1><{$detail.title}></h1>
                 
-            <p class="graycl mb20"><{$detail.create_time|date='Y-m-d H:i',###}> 查看<{$detail.views}><span class="ml10">评论<{$detail.reply_num}></span></p>
+            <p class="graycl mb20"><{$detail.create_time|date='Y-m-d H:i',###}> 查看<{$detail.views}><span class="ml10">回复<{$detail.reply_num}></span></p>
             <div class="nr">
                 <p><{:cleanhtml($detail['details'])}></p>
                 <foreach name="pics" item="item">
@@ -165,17 +165,17 @@
                         </ul>
                         <div class="evlt_bottom"><{$item.floor}>楼 <{$item.create_time|date='Y-m-d H:i',###}>
                             <if condition="$item['user_id'] neq $MEMBER['user_id']">
-                                <span class="reply"><em class="ico"></em>评论</span>
+                                <span class="reply"><em class="ico"></em>回复</span>
                             </if>
                         </div>
-                        <!--评论表单-->
+                        <!--回复表单-->
                         <div class="tribe_topic_fabiao mt10">
                             <form method="post" id="reply_form_<{$item.comment_id}>">
                                 <input type="hidden" name="reply_user_id" value="<{$item.user_id}>" />
                                 <input type="hidden" name="comment_id" value="<{$item.comment_id}>" />
                                 <input type="hidden" name="post_id" value="<{$detail.post_id}>" />
-                                <textarea name="contents" placeholder="评论<{:config_user_name($users[$item['user_id']]['nickname'])}>：" style="height:100px;"></textarea>
-                                <div><label class="mr10"><input type="radio" name="type" class="check" value="1">只评论该楼</label><label><input type="radio" checked="checked" name="type" class="check" value="2">同时显示</label></div>
+                                <textarea name="contents" placeholder="回复<{:config_user_name($users[$item['user_id']]['nickname'])}>：" style="height:100px;"></textarea>
+                                <div><label class="mr10"><input type="radio" name="type" class="check" value="1">只回复该楼</label><label><input type="radio" checked="checked" name="type" class="check" value="2">同时显示</label></div>
                                 <div class="uploadImg mt10 jq_uploads_img">
                                     <div><label class="sc_btn"><input id="logo_file_<{$item['comment_id']}>" name="logo_file" type="file" multiple="true" value="" /></label></div>
                                     <script>
@@ -193,8 +193,8 @@
                                 </div>
                             </form>
                         </div>
-                        <!--评论表单end-->
-                        <!--评论内容-->
+                        <!--回复表单end-->
+                        <!--回复内容-->
                         <div>
                             <volist name="item.replys" id="var">
                                 <div class="tribeEvlt_reply">
@@ -211,7 +211,7 @@
                                 </div>
                             </volist>
                         </div>
-                        <!--评论内容end-->
+                        <!--回复内容end-->
                     </div>
                 </div>
             </div>
@@ -253,10 +253,10 @@
    
             
             
-    <!--发帖与评论-->
+    <!--发帖与回复-->
     <div class="tribeCont_r">
         <div class="tribe_topic_fabiao"> 
-        	<h3>部落评论</h3>
+        	<h3>部落回复</h3>
                 <form method="post" id="reply_form">
                 <input type="hidden" name="post_id" value="<{$detail.post_id}>" />
                 <textarea name="contents" placeholder="请输入内容~"></textarea>
@@ -275,9 +275,7 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"thread"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true,
-duplicate :true, //可重复上传  
- 
+									resize: true, 
 									crop: false,  
 									compress : {width:width_thread,height:height_thread,quality: 80,allowMagnify: false,crop: true},														                        
 								});                                                               
@@ -310,7 +308,7 @@ duplicate :true, //可重复上传
             </form>
         </div>
     </div>
-    <!--发帖与评论end-->
+    <!--发帖与回复end-->
     <script>
 
         $(document).ready(function(){

@@ -7,7 +7,7 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>管理员在此处理商城订单分成</p>
+    <p class="attention"><span>注意：</span>管理员在此处理商城订单分成，分销/p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="right">
@@ -70,7 +70,7 @@
                 <foreach name="list" item="var">
                     <tr>
                         <td><{$var.order_id}></td>
-                        <td><{$var.account}>(UID:<{$var.user_id}>) <{$var.rank_name}> </td>
+                        <td><{$var.account}>(UID:<{$var.user_id}>)</td>
                         <td><{:round($var['total_price']/100,2)}></td>
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                         <td><{$var.create_ip}></td>

@@ -13,7 +13,7 @@ class YuyueAction extends CommonAction {
 
     public function loaddata() {
         $yuyue = D('Shopyuyue');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('user_id' => $this->uid);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

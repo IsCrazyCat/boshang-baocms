@@ -28,7 +28,7 @@ class CommunityAction extends CommonAction {
     }
 	public function tongzhi_load() {
 		$communitynews = D('Communitynews');
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
 		$map = array('user_id' => $this->uid);
 		$joined = D('Communityusers')->where($map)->order(array('join_id' => 'desc'))->select();
 		foreach ($joined as $val) {
@@ -89,7 +89,7 @@ class CommunityAction extends CommonAction {
 
 	public function feedback_load() {
 		$feedback = D('Feedback');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('closed' => 0, 'user_id' => $this->uid);
         $count = $feedback->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 5); // 实例化分页类 传入总记录数和每页显示的记录数
@@ -193,7 +193,7 @@ class CommunityAction extends CommonAction {
 		
 	public function order_load() {
 		$orders = D('Communityorder');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('user_id' => $this->uid);
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars') ) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $map['order_date'] = array(array('ELT', $end_date), array('EGT', $bg_date));

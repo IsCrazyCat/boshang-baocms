@@ -535,7 +535,7 @@ a{color:black;}
 .apply-num{/*border-right:1px solid #dedede;*/padding-left:0.14rem; /*padding-right:0.12rem;*/}
 .apply-phone{border-left:1px solid #dedede;height:0.3rem;line-height:0.3rem;margin-top:0.06rem;padding-left:0.1rem;}
 
-/*************************************personal_coupon_one我的兜兜-团购券*********************************************************/
+/*************************************personal_coupon_one个人中心-抢购券*********************************************************/
 #personal-coupon{bottom: 0.5rem; position: absolute; top: 0.9rem; width: 100%;}
 .coupon_nav li:first{border-bottom: 1px solid #dedede;}
 .send-out .coupon-list{ padding:0.1rem 0.1rem 0.05rem 0.1rem; background-color:#fff;border-top:1px solid #dedede;margin-top: 0.1rem;}
@@ -755,7 +755,7 @@ a{color:black;}
 #life .mall-form .mall-bt{color:black;font-size:0.16rem;}
 
 /**************************************community_index********************************************************/
-/*社区首页-限时团购轮播开始*/
+/*社区首页-限时抢购轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -771,7 +771,7 @@ a{color:black;}
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时团购轮播结束*/
+/*社区首页-限时抢购轮播结束*/
 .commu-top{font-size:0.15rem;border-bottom:1px solid #dedede;}
 .commu-top .commu-ig{width:0.23rem;height:0.2rem;background:url("../img/tp73.png") no-repeat;}
 .commu-ig2{width:0.23rem;height:0.2rem;background:url("../img/tp78.png") no-repeat;}
@@ -958,7 +958,7 @@ a{color:black;}
 .commu-date{color:#666;}
 
 
-/*我的兜兜积分兑换            exchangeloading*/
+/*个人中心积分兑换            exchangeloading*/
 .des{font-size:0.16rem;width:65%;line-height:0.23rem;padding-left:0.06rem;}
 .loading-div{width:100%;margin-top:0.48rem;}
 .loading-img{width:0.93rem;}
@@ -1777,7 +1777,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .regist-code{ position:relative;}
 .regist-code-get{ position:absolute; right:0.1rem; top:0.06rem; font-size:0.14rem; height:0.3rem; line-height:0.3rem; color:#fff; text-align:center; width:1rem; border-radius:3px; background-color:#ff3c3c; display:block;}
 .regist-code-get.on{ background-color:#999;}
-/*我的兜兜开始*/
+/*个人中心开始*/
 #personal{position: absolute; top: 0.5rem; bottom: 0.5rem; width: 100%;}
 #personal .info{ background-color:#f2dfcf; padding:0.2rem; height:0.6rem;}
 #personal .info-img{ width:0.6rem; height:0.6rem; position:absolute; border-radius:100%; overflow:hidden; left:0.2rem; top:0.2rem;}
@@ -1810,7 +1810,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 #personal .list-box li .i-12{ background-image:url(../img/personal_ico11.png);}
 #personal .list-box li i{background:url(../img/icon-go-grey-per.png) no-repeat right center; background-size:0.26rem 0.26rem; display: block; height: 0.26rem; position:absolute; right: 0.1rem; top: 0.08rem; width: 0.5rem; color:#f41414; font-size:0.16rem; font-style:normal; line-height:0.24rem;}
 #personal .submit{ font-size:0.18rem; color:#fff; height:0.4rem; width:90%; line-height:0.4rem; background-color:#e74c3c; border-radius:0.05rem; border:none 0px; margin:0.1rem auto; display:block;}
-/*我的兜兜地址*/
+/*个人中心地址*/
 #personal .address{ padding-top:0.1rem;}
 #personal .address .list-box{ background-color:#fff; border-top:1px solid #dedede;}
 #personal .address .list-box li{ border-bottom:1px solid #dedede; padding:0.1rem; position:relative; height:0.2rem;}
@@ -1819,7 +1819,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 #personal .address .personal-add-btn{height:45px;line-height:45px;text-align:center;color:#FFFFFF;width:85%;margin:0px auto;border-radius:5px;font-size:0.24rem;background:#ff3c3c;margin-top:15px;}
 /**/
 #personal .address .address-ts{ font-size:0.14rem; line-height:0.3rem; color:#999; padding:0px 0.1rem;}
-/*我的兜兜-个人信息修改*/
+/*个人中心-个人信息修改*/
 #personal .modify{ padding-top:0.1rem; font-size:0.12rem;}
 .modify-list-box{ border-top:1px solid #dedede; background-color:#fff; margin-bottom:0.1rem;}
 .modify-list-box h3{ font-size:0.12rem; line-height:0.2rem; color:#666;}
@@ -1839,17 +1839,17 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .modify-head-upload .upload{ padding:0.1rem;}
 .modify-head-upload .upload label{ font-size:0.12rem; color:#333; position:relative; line-height:0.4rem;}
 .modify-head-upload .upload label input{ position:absolute; left:0; top:0; opacity:0; filter:alpha(opacity=0);}
-/*我的兜兜-我的信息-详情*/
+/*个人中心-我的信息-详情*/
 .my-message-details{ padding:0.1rem;}
 .my-message-details h2{ font-size:0.16rem; line-height:0.3rem; text-align:center; color:#333; border-bottom:1px solid #eee; margin-bottom:0.08rem;}
 .my-message-details p{ font-size:0.14rem; line-height:0.24rem; color:#666;}
-/*我的兜兜-提示页面*/
+/*个人中心-提示页面*/
 .prompt{padding-top:0.1rem; font-size:0.12rem; margin:0 auto; text-align:center; width:80%; margin-top:10%;}
 .prompt .img{ width:1rem; height:1rem; margin:0 auto; margin-bottom:0.1rem;}
 .prompt .img img{ width:100%; height:100%;}
 .prompt p{ font-size:0.14rem; line-height:0.24rem; color:#999;}
 .prompt .btn{ display:inline-block; width:1.2rem; height:0.3rem; line-height:0.3rem; text-align:center; color:#fff; background-color:#ff3c3c; border-radius:0.3rem; font-size:0.16rem; margin-top:0.1rem;}
-/*我的兜兜结束*/
+/*个人中心结束*/
 
 /*榜单开始*/
 /*榜单首页*/
@@ -2203,7 +2203,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .hotSer_li a{display:block;	background-color:#fff;	border:1px solid #ccc;	text-align:center;	font-size: 0.16rem;	color: #666;	line-height: 0.34rem;	height:0.34rem;}
 /*搜索页结束*/
 
-/*社区首页-限时团购轮播开始*/
+/*社区首页-限时抢购轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -2219,14 +2219,14 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时团购轮播结束*/
+/*社区首页-限时抢购轮播结束*/
 
 /*商家列表页拨打电话代码开始*/
 .seller_tel_btn{bottom: -0.04rem;color: #666; display: block; font-size: 0.14rem;  line-height: 0.3rem;  position: absolute; right: 0.1rem;text-align: right;}
 .seller_tel_btn em{ padding:0.11rem !important; line-height:0.3rem; font-size:0; border-radius:2rem; background:#ff3c3c url(../img/icon-tel.png) no-repeat center center; background-size:60% auto; vertical-align:middle; height:0rem !important; margin-left:0.08rem;}
 /*商家列表页拨打电话代码开始*/
 
-/*团购专题开始*/
+/*抢购专题开始*/
 .sjqg_special_content_box{ padding:0.5rem 0px; font-size:0.14rem;}
 .sjqg_special_banner{ width:100%; height:auto;}
 .sjqg_special_banner img{ width:100%; height:auto;}
@@ -2243,7 +2243,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .sjqg_special_btn_r{ width:30%; padding-top:0.08rem;}
 .sjqg_special_btn_r .btn{ display:inline-block; background-color:#ff3c3c; color:#fff; font-size:0.14rem; height:0.22rem; line-height:0.24rem; padding:0px 0.1rem; border-radius:0.03rem;}
 .sjqg_special_list_box .img .bq{ position:absolute; left:0; top:0; width:50%; height:auto;}
-/*团购专题结束*/
+/*抢购专题结束*/
 /*******************************合并css_w样式结束*******************************/
 
 /**/

@@ -797,7 +797,7 @@ baidu.flash.imageUploader = baidu.flash.imageUploader || function(options){
             'changeFlashHeight'
         ]);
     /**
-     * 开始或评论上传图片
+     * 开始或回复上传图片
      * @public
      * @return {Null}
      */

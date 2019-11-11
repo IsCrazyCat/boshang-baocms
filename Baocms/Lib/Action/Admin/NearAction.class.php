@@ -62,7 +62,7 @@ class NearAction extends CommonAction
         }
         $keyword = $this->_param('keyword');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
         $p = $_GET[$var];
         //验证城市信息

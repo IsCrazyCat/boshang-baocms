@@ -24,7 +24,7 @@ class CardAction extends CommonAction {
 		$map['shop_id'] = $shop_id;
 		$weixin=$obj->where($map)->getField('shop_id');
 		$client = $this->wechat_client($shop_id);
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
 		$cardlist = $client->getcardlist($shop_id);
 		$res = json_decode($cardlist, true);
 		$arr1 = $card = array();

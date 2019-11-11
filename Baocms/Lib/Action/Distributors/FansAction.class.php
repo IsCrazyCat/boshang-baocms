@@ -6,7 +6,7 @@ class FansAction extends CommonAction
         $fans = D('Shopfavorites');
         //实例化fans模型
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $map = array('shop_id' => $this->shop_id);
         //查询条件
         if ($keyword = $this->_post('keyword', 'htmlspecialchars')) {

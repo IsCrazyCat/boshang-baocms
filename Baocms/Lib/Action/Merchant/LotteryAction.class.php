@@ -14,7 +14,7 @@ class LotteryAction extends CommonAction {
         if(!$shop_id = $this->shop_id){
 			 $this->baoError('商家不能为空');
 		}
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
 		$map = array('shop_id' => $shop_id);
 		$obj = D('Weixin_lottery');
 		$count = $obj->where($map)->count();
@@ -169,7 +169,7 @@ class LotteryAction extends CommonAction {
 			}
 			$map = array();
 			$map['lottery_id'] =$id;
-			import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+			import('ORG.Util.Page'); // 导入分页类
 			$count = $obj->where($map)->count();
 			$Page = new Page($count, 15);
 			$show = $Page->show();

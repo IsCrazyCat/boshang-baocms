@@ -53,21 +53,12 @@
 		<li>
 			<a href="javascript:;">
 				付款方式：
-				<em>
-<if condition=" $detail['code'] eq 'weixin' ">
-微信支付
-</if>
-<if condition=" $detail['code'] eq 'money' ">
-余额支付
-</if>
-<if condition=" $detail['code'] eq 'alipay' ">
-支付宝
-</if><!--<{$paytype[$detail['code']]['name']}>--></em>
+				<em><{$paytype[$detail['code']]['name']}></em>
 			</a>
 		</li>
 		<li>
 			<a href="javascript:;">
-				支付金额：
+				结算价格：
 				<em>￥<{:round($detail['need_pay']/100,2)}></em>
 			</a>
 		</li>

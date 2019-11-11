@@ -5,8 +5,7 @@ class ShopAction extends CommonAction
     public function about()
     {
         if ($this->isPost()) {
-            $data = $this->checkFields($this->_post('data', false), array('logo','tags','addr', 'contact', 'tel','mobile', 'business_time', 'delivery_time', 'is_ele_print','is_tuan_print','is_goods_print','is_ding_print','apiKey', 'mKey', 'partner', 'machine_code'));
-            $data['tags'] = htmlspecialchars($data['tags']);
+            $data = $this->checkFields($this->_post('data', false), array('addr', 'contact', 'tel','mobile', 'business_time', 'delivery_time', 'is_ele_print','is_tuan_print','is_goods_print','is_ding_print','apiKey', 'mKey', 'partner', 'machine_code'));
             $data['addr'] = htmlspecialchars($data['addr']);
             if (empty($data['addr'])) {
                 $this->fengmiMsg('店铺地址不能为空');

@@ -6,7 +6,7 @@ class DeliveryAction extends CommonAction
         $d = D('Delivery');
         // 实例化User对象
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类
         $count = $d->count();
         // 查询满足要求的总记录数
         $Page = new Page($count, 25);

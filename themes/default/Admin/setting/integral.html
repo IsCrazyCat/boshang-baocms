@@ -10,7 +10,7 @@
 .profit {text-align: center;color: #333;font-weight: bold; background: #F5F5FB;}
 .lfTdBt{width:180px;}
 </style>
-<p class="attention"><span>注意：消费抵扣积分比例不要经常修改，出现的错误概不负责！</span>需要万能积分返利联系</p>
+<p class="attention"><span>注意：消费抵扣积分比例不要经常修改，出现的错误概不负责！</span></p>
 <form  target="baocms_frm" action="<{:U('setting/integral')}>" method="post">
     <div class="mainScAdd">
         <div class="tableBox">
@@ -52,11 +52,11 @@
 			    </tr>
                 
                  <tr>
-                 <td class="lfTdBt">团购积分返还商家：</td>
+                 <td class="lfTdBt">抢购积分返还商家：</td>
                  <td class="rgTdBt">
                  <label><input type="radio" name="data[tuan_return_integral]" <eq name="CONFIG.integral.tuan_return_integral" value="1">checked="checked"</eq> value="1"/>开启</label>
                  <label><input type="radio" name="data[tuan_return_integral]" <eq name="CONFIG.integral.tuan_return_integral" value="0">checked="checked"</eq>  value="0"/>关闭</label>
-                    <code>团购验证的时候积分是否返还给商家账户，必须开启积分返还才会生效，返还比例<a style="color:#F00"><{$CONFIG.integral.return_integral}>%</a>。</code>
+                    <code>抢购验证的时候积分是否返还给商家账户，必须开启积分返还才会生效，返还比例<a style="color:#F00"><{$CONFIG.integral.return_integral}>%</a>。</code>
                   </td>
 			    </tr>
                 
@@ -72,7 +72,7 @@
                         $config = D('Setting')->fetchAll();
                         $integral_buy = $config['integral']['buy'];
                     </php>
-                <tr><td class="rgTdBt profit" colspan = "2"> 下面是积分兑换控制开关，这里控制的的是我的兜兜兑换比例，<a style="color:#F00"> <if condition="$integral_buy eq 0">
+                <tr><td class="rgTdBt profit" colspan = "2"> 下面是积分兑换控制开关，这里控制的的是会员中心兑换比例，<a style="color:#F00"> <if condition="$integral_buy eq 0">
                     	当前积分使用比例100:1
                     <elseif condition="$integral_buy eq 10" />
                     	当前积分使用比例10:1
@@ -87,7 +87,7 @@
                  <td class="rgTdBt">
                  <label><input type="radio" name="data[integral_exchange]" <eq name="CONFIG.integral.integral_exchange" value="1">checked="checked"</eq> value="1"/>开启</label>
                  <label><input type="radio" name="data[integral_exchange]" <eq name="CONFIG.integral.integral_exchange" value="0">checked="checked"</eq>  value="0"/>关闭</label>
-                    <code>开启后我的兜兜才会出现积分兑换余额的按钮，积分兑换比例跟使用比例一致，不建议经常修改
+                    <code>开启后会员中心才会出现积分兑换余额的按钮，积分兑换比例跟使用比例一致，不建议经常修改
                    
                     <a style="color:#F00">
                     <if condition="$integral_buy eq 0">
@@ -140,7 +140,7 @@
 			    </tr>
                 
                
-                <tr><td class="rgTdBt profit" colspan = "2"> 下面是各种操作奖励积分，二开请写下面！</td></tr>
+                <tr><td class="rgTdBt profit" colspan = "2"> 下面是各种操作奖励积分</td></tr>
                 
                 <tr>
                     <td class="lfTdBt">发表分享：</td>
@@ -151,10 +151,10 @@
                 </tr>
 
                 <tr>
-                    <td class="lfTdBt">评论帖子：</td>
+                    <td class="lfTdBt">回复帖子：</td>
                     <td class="rgTdBt">
                         <input type="text" name="data[reply]" value="<{$CONFIG.integral.reply}>" class="scAddTextName w150" />
-                        <code>由于评论帖子需要审核，积分会在后台审核后增加到用户账户</code>
+                        <code>由于回复帖子需要审核，积分会在后台审核后增加到用户账户</code>
                     </td>
                 </tr>
                 <tr>

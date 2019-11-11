@@ -4,31 +4,7 @@ class MoneyAction extends CommonAction{
         parent::_initialize();
 		$this->assign('types', $types = D('Shopmoney')->getType());
     }
-	//二维码名片开始
-     public function myqrcode($shop_id){
-
-        $shop_id = (int)$shop_id;
-        
-        $wx_back_url = 'http://www.blklube.com/mcenter/money/myindex/shop_id/'.$shop_id;
-        cookie('wx_back_url', $wx_back_url);
-        
-        if(empty($shop_id)){
-            $this->error('该门店不存在');
-        }
-        $detail=$shop = D('Shop')->find($shop_id);
-        
-         $users = D('users')->find($this->uid);
-         $this->assign('nickname', $users['nickname']);
-        
-        //门店二维码
-        $file = D('Weixin')->getCode($shop_id,1);
-        $this->assign('file', $file);
-        
-        $this->assign('shop',$shop);
-         $this->assign('detail',$detail);
-        $this->display();
-    }
-//二维码名片结束
+	
 
     public function sendsms(){
         $mobile = $this->_post('mobile');
@@ -36,7 +12,7 @@ class MoneyAction extends CommonAction{
             session('mobile', $mobile);
             $randstring = session('cash_code', 100);
             if (empty($randstring)) {
-                $randstring = rand_string(4, 1);
+                $randstring = rand_string(6, 1);
                 session('cash_code', $randstring);
             }
             //大鱼短信
@@ -111,7 +87,6 @@ class MoneyAction extends CommonAction{
         //统计订座
         $counts['money_day_booking_recipient'] = (int) D('Shopdingyuyue')->where(array('status' => 1, 'shop_id' => $this->shop_id))->sum('need_price');
         $this->assign('counts', $counts);
-      
         $this->display();
     }
 	//商户资金日志
@@ -141,7 +116,7 @@ class MoneyAction extends CommonAction{
             }
         }
         $money = D('Shopmoney');
-        import('ORG.Util.Page');// 导入分页类    www.blklube.com
+        import('ORG.Util.Page');// 导入分页类 
         $count = $money->where($map)->count();
         $Page = new Page($count, 10);
         $show = $Page->show();
@@ -247,15 +222,15 @@ class MoneyAction extends CommonAction{
             $yzm = $this->_post('yzm');
             $s_mobile = session('mobile');
             $cash_code = session('cash_code');
-//            if (empty($yzm)) {
-//                $this->fengmiMsg('请输入短信验证码');
-//            }
-//            if ($users['mobile'] != $s_mobile) {
-//                $this->fengmiMsg('手机号码和收取验证码的手机号不一致！');
-//            }
-//            if ($yzm != $cash_code) {
-//                $this->fengmiMsg('短信验证码不正确');
-//            }
+            if (empty($yzm)) {
+                $this->fengmiMsg('请输入短信验证码');
+            }
+            if ($users['mobile'] != $s_mobile) {
+                $this->fengmiMsg('手机号码和收取验证码的手机号不一致！');
+            }
+            if ($yzm != $cash_code) {
+                $this->fengmiMsg('短信验证码不正确');
+            }
             $data['bank_branch'] = htmlspecialchars($_POST['bank_branch']);
             $data['user_id'] = $this->uid;
 			
@@ -285,7 +260,6 @@ class MoneyAction extends CommonAction{
 			}else{
 				$intro = $shop['shop_name'].'申请提现，扣款'.round($gold/100,2).'元';
 			}
-			D('Users')->addGold($this->uid,-$gold,$intro);
 			if($cash_id = D('Userscash')->add($arr)){
 				D('Usersex')->save($data);
 				$this->fengmiMsg('恭喜，申请提现成功，请等待管理员审核', U('money/cashlogs'));

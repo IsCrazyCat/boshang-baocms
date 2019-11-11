@@ -57,7 +57,7 @@
 		if(!obj.scrollTime)obj.scrollTime=1600; //快速滑动时滑动整块内容高度的延时(即多少毫秒能从底部回到顶部)
 		if(!obj.Scroll)obj.Scroll=0; //是否显示滑动条0有1没有
 		if(!obj.ScrollWidth)obj.ScrollWidth=2; //滚动条的宽
-		if(!obj.ScrollColor)obj.ScrollColor='#777778'; //滚动条的颜色
+		if(!obj.ScrollColor)obj.ScrollColor='#777777'; //滚动条的颜色
 		if(!obj.ScrollAlpha)obj.ScrollAlpha=0.7; //滚动条透明度
 		if(!obj.ScrollBorder)obj.ScrollBorder='0'; //滚动条边框1px solid #666666
 		obj.PC=false; //是否为PC

@@ -6,7 +6,7 @@ class IndexAction extends CommonAction{
     public function main(){
         $counts = array();
         $bg_time = strtotime(TODAY);
-        //团购
+        //抢购
         $counts['tuan'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count();
         $counts['tuan_audit'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'status' => array('EGT', 0), 'audit' => 0))->count();
         $counts['tuan_order'] = (int) D('Tuanorder')->where(array('shop_id' => $this->shop_id))->count();

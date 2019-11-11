@@ -319,7 +319,7 @@ a{text-decoration:none;color:#555}
 /*重写*/
 .href{color: #36c;}
 
-/*我的兜兜-订酒店 2016-04-14*/
+/*个人中心-订酒店 2016-04-14*/
 .hotel_orddtl_box{ border:1px solid #e6e6e6; background:#fff; padding:0 20px; margin-bottom:20px;}
 .hotel_orddtl_box .title{line-height:40px; font-size:16px; padding-top:10px;}
 .hotel_orddtl_infor{ overflow:hidden; border-bottom:1px solid #e6e6e6; margin-bottom:10px; padding:10px 0;}
@@ -338,7 +338,7 @@ a{text-decoration:none;color:#555}
 .hotel_tongji .btn{ display:inline-block; width:190px; height:60px; text-align:center; line-height:60px; color:#fff; background:#ff6600; border:none; font-size:24px; vertical-align:top; margin-left:20px; border-radius:5px;}
 .hotel_ts{padding:10px  20px;background: #f8f0d8;overflow: hidden; line-height:34px; margin-bottom:20px; border:1px solid #e6e6e6; font-size:16px;}
 .hotel_ts .btn {display: inline-block;padding: 0 10px;border-radius:3px;background: #2fbdaa; border:none;color: #fff;line-height: 34px; height:34px;}
-/*我的兜兜-订酒店end 2016-04-14*/
+/*个人中心-订酒店end 2016-04-14*/
 
 .btn-success{color:#fff;background-color:#5cb85c;border-color:#4cae4c}
 .btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px}

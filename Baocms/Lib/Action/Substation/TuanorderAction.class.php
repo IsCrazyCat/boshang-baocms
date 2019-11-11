@@ -5,7 +5,7 @@ class TuanorderAction extends CommonAction
     {
         $Tuanorder = D('Tuanorder');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         if (($bg_date = $this->_param('bg_date', 'htmlspecialchars')) && ($end_date = $this->_param('end_date', 'htmlspecialchars'))) {
             $bg_time = strtotime($bg_date);
@@ -99,7 +99,7 @@ class TuanorderAction extends CommonAction
                 }
                 $this->baoSuccess('删除成功！', U('tuanorder/index'));
             }
-            $this->baoError('请选择要删除的团购订单');
+            $this->baoError('请选择要删除的抢购订单');
         }
     }
 }

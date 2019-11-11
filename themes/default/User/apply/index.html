@@ -6,14 +6,12 @@
 		<a class="top-addr" href="<{:U('wap/index/index')}>"><i class="icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
-		商家入驻
+		多城市商家入驻
 	</div>
 </header>
 <style>
 #login-input input.mapinputs{ width:48%; float:left; margin-right:5px;}
 #login-input input.mapinputs2{ width:100%; float:left; margin:10px 0px;}
-.input{border: 1px solid #999999!important; }
-.select{border: 1px solid #999999!important; }
 </style>
 <form class="fabu-form" method="post"  target="x-frame" action="<{:U('apply/index')}>">
 
@@ -33,17 +31,15 @@
 			swf: '/static/default/webuploader/Uploader.swf',                             
 			server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 			pick: '#fileToUpload',                             
-			resize: true,
-duplicate :true, //可重复上传  
-    
-			compress : {width:width_shopphoto,height:height_shopphoto,quality:80,allowMagnify: false,crop: true}//裁剪       
+			resize: true,    
+			compress : {width:width_shopphoto,height:height_shopphoto,quality:60,allowMagnify: false,crop: true}//裁剪       
         });
         uploader.on( 'beforeFileQueued', function( file ) {
             $(".loading").show();
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_shopphoto,
-                    quality:80
+                    quality:60
                 });
             }
         });
@@ -82,17 +78,15 @@ duplicate :true, //可重复上传
 			swf: '/static/default/webuploader/Uploader.swf',                             
 			server: '<{:U("app/upload/uploadify",array("model"=>"shopphoto"))}>',                             
 			pick: '#fileToUpload2',                             
-			resize: true,
-duplicate :true, //可重复上传  
-    
-			compress : {width:width_shop_logo,height:height_shop_logo,quality:80,allowMagnify: false,crop: true}//裁剪       
+			resize: true,    
+			compress : {width:width_shop_logo,height:height_shop_logo,quality:60,allowMagnify: false,crop: true}//裁剪       
         });
         uploader.on( 'beforeFileQueued', function( file ) {
             $(".loading_2").show();
             if(file.size > 1024000){
                 uploader.option( 'compress', {
                     width:width_shop_logo,//这里裁剪长度
-                    quality:80
+                    quality:60
                 });
             }
         });
@@ -124,14 +118,7 @@ duplicate :true, //可重复上传
 		</span>
 	</div>
 </div>
-<div class="row">
-    <div class="line">
-        <span class="x3">推荐人手机</span>
-        <span class="x9">
-            <input type="text" class="text-input" name="data[tui_uid]" value="<{$tui_uid}>"  />
-        </span>
-    </div>
-</div>
+
 
 
 <div class="row">
@@ -299,7 +286,7 @@ duplicate :true, //可重复上传
 
 <div class="row">
 	<div class="line">
-		<span class="x3">手机*</span>
+		<span class="x3">手机</span>
 		<span class="x9">
 			<input type="text" class="text-input" name="data[tel]"  />
 		</span>
@@ -317,7 +304,7 @@ duplicate :true, //可重复上传
 	<div class="line">
 		<span class="x3">营业时间</span>
 		<span class="x9">
-			<input type="text" class="text-input" name="data[business_time]" value="<{$detail.business_time|default='8:00-20:00'}>" />
+			<input type="text" class="text-input" name="data[business_time]" />
 		</span>
 	</div>
 </div>
@@ -327,8 +314,8 @@ duplicate :true, //可重复上传
 
 <div class="line padding border-bottom">		
         <div id="login-input">
-                        <span class="mr10"><input type="text" name="data[lng]" id="lng" value="<{$CONFIG['site']['lng']}>" class="mapinputs w100" /></span>
-                        <span><input type="text" name="data[lat]" id="lat" value="<{$CONFIG['site']['lat']}>" class="w100 mapinputs" /></span>
+                        <span class="mr10"><input type="text" name="data[lng]" id="lng" value="<{$lng|default=''}>" class="mapinputs w100" /></span>
+                        <span><input type="text" name="data[lat]" id="lat" value="<{$lat|default=''}>" class="w100 mapinputs" /></span>
                         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
                         <div class="top" style="width:100%; margin-bottom: 20px;">
                             <div id="r-result"><input type="text" id="suggestId" class="mapinputs2" size="20"  placeholder="输入地址搜索" value="" /></div>    
@@ -340,11 +327,9 @@ duplicate :true, //可重复上传
                             var map = new BMap.Map("allmap");
                             var lng = "<{$lng}>";
                             var lat = "<{$lat}>";
-							var lng = "<{$CONFIG['site']['lng']}>";
-							var lat = "<{$CONFIG['site']['lat']}>";
                             if (!lng && !lat) {
-                                map.centerAndZoom("聊城");
-                                var point = new BMap.Point(115.9918900000,36.4626820000);
+                                map.centerAndZoom("合肥");
+                                var point = new BMap.Point(117.260852, 31.825717);
                             } else {
                                 map.centerAndZoom(new BMap.Point(lng, lat), 15);
                                 var point = new BMap.Point(lng, lat);
@@ -434,7 +419,7 @@ duplicate :true, //可重复上传
 
 	<div class="container">
 		<div class="blank-30"></div>
-		<button  type="submit" class="button button-block button-big bg-dot">申请入驻</button>
+		<button  type="submit" class="button button-block button-big bg-dot">添加商家</button>
 		<div class="blank-30"></div>
 	</div>
 		

@@ -1,7 +1,7 @@
 <include file="member:head"/>
 <div class="tgdd">
     <div class="tgdd_t password_t">
-        <div class="mytitle">编辑团购“<{$tuandetails.title}>”的点评</div>
+        <div class="mytitle">编辑抢购“<{$tuandetails.title}>”的点评</div>
     </div>
     <form  target="baocms_frm" action="<{:u('members/tuandpedit',array('order_id'=>$detail['order_id']))}>" method="post">
         <div class="addAddress_nr">
@@ -42,9 +42,7 @@
 									server: '<{:U("app/upload/uploadify",array("model"=>"tuandianping"))}>',                                    
 									pick: '#moreToUpload',                                    
 									fileNumberLimit:10,                                    
-									resize: true,
-duplicate :true, //可重复上传  
- 
+									resize: true, 
 									crop: false,  
 									compress : {width:width_tuandianping,height:height_tuandianping,quality: 80,allowMagnify: false,crop: true},														                        
 								});                                                               

@@ -17,7 +17,7 @@ class ShopdingyuyueAction extends CommonAction {
 		
 			
         $Shopdingyuyue = D('Shopdingyuyue');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         if($keyword = $this->_param('keyword','htmlspecialchars')){
             $maps['name|mobile'] = array('LIKE','%'.$keyword.'%');
             $this->assign('keyword',$keyword);

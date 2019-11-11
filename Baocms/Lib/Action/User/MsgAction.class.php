@@ -7,7 +7,7 @@ class MsgAction extends CommonAction {
     public function index() {
 
         $message = D('Usermessage');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         $map['user_id'] = $this->uid;
         $map['from_id'] = $this->uid;
         $map['_logic'] = 'OR';
@@ -48,7 +48,7 @@ class MsgAction extends CommonAction {
             $this->error('用户不存在');
         }
         $message = D('Usermessage');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         $list1 = $message->where(array('user_id' => $this->uid, 'from_id' => $uid))->order(array('message_id' => 'desc'))->select();
         foreach ($list1 as $k => $val) {
             $list11[$val['message_id']] = $val;
@@ -94,12 +94,12 @@ class MsgAction extends CommonAction {
             }
             $content = htmlspecialchars($_POST['content']);
             if (empty($content)) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '请填写评论内容'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '请填写回复内容'));
             }
             if (D('Usermessage')->add(array('user_id' => $uid, 'from_id' => $this->uid, 'content' => $content, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip()))) {
-                $this->ajaxReturn(array('status' => 'success', 'msg' => '评论成功'));
+                $this->ajaxReturn(array('status' => 'success', 'msg' => '回复成功'));
             } else {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '评论失败'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '回复失败'));
             }
         }
     }

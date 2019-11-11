@@ -63,7 +63,7 @@
             <li class="left sjgl_topli sjgl_toplixl"><a target="main_frm" href="<{:U('shop/grade')}>">查看等级权限</a><span class="suxian">|</span></li>
             <li class="left sjgl_topli"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$CONFIG.site.qq}>&site=qq&menu=yes">联系客服</a><span class="suxian">|</span></li>
             <li class="left sjgl_topli">
-                <a  target="main_frm" href="<{:U('message/index')}>">消息 
+                <a  target="main_frm" href="<{:U('message/index')}>">网站通知 
                     <if condition="$msg_day gt 0">
                         <i class="tongzhi"><{$msg_day}></i>
                     </if>
@@ -94,10 +94,10 @@
                 <div class="leftNav2">
                     <ul>
                         <li><a target="main_frm" href="<{:U('shop/about')}>"><em>&nbsp;</em>基本管理</a></li>
-                        <!--<li><a  target="main_frm" href="<{:U('shop/service')}>"><em>&nbsp;</em>打印设置</a></li>-->
+                        <li><a  target="main_frm" href="<{:U('shop/service')}>"><em>&nbsp;</em>打印设置</a></li>
 						<li><a target="main_frm" href="<{:U('audit/index')}>"><em>&nbsp;</em>认证管理</a></li>
                     	<li><a  target="main_frm" href="<{:U('branch/index')}>"><em>&nbsp;</em>分店地址</a></li>
-                       <!-- <li><a  target="main_frm" href="<{:U('shopyouhui/index')}>"><em>&nbsp;</em>门店付款</a></li>-->
+                        <li><a  target="main_frm" href="<{:U('shopyouhui/index')}>"><em>&nbsp;</em>优惠买单</a></li>
                         <li><a  target="main_frm" href="<{:U('worker/index')}>"><em>&nbsp;</em>员工管理</a></li>
                         <li><a  target="main_frm" href="<{:U('shopkuaidi/index')}>"><em>&nbsp;</em>商城运费模板</a></li>
                     </ul>
@@ -105,9 +105,22 @@
             </li>
 
 
-			
+			<if condition="!empty($SHOPGRADE['is_tuan'])">
+                <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a3" target="main_frm" href="<{:U('tuan/index')}>"><em>&nbsp;</em>抢购管理</a>
+                    <div class="leftNav2">
+                        <ul>
+                            <li><a target="main_frm" href="<{:U('tuan/index')}>"><em>&nbsp;</em>抢购商品列表</a></li>
+                            <li><a target="main_frm" href="<{:U('tuan/create')}>"><em>&nbsp;</em>添加抢购</a></li>
+                            <li><a target="main_frm" href="<{:U('tuan/order')}>"><em>&nbsp;</em>抢购订单列表</a></li>
+                            <li><a target="main_frm" href="<{:U('tuan/code')}>"><em>&nbsp;</em>抢购劵列表</a></li>
+                            <li><a target="main_frm" href="<{:U('tuan/used')}>"><em>&nbsp;</em>抢购劵核销</a></li>
+                            <li><a target="main_frm" href="<{:U('tuan/usedok')}>"><em>&nbsp;</em>抢购劵验证记录</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </if>
             <if condition="!empty($SHOPGRADE['is_coupon'])">
-                <li style="display:none" class="leftMenu_li"><a class="leftMenu_a leftMenu_a10" target="main_frm" href="<{:U('coupon/index')}>"><em>&nbsp;</em>优惠劵管理</a>
+                <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a10" target="main_frm" href="<{:U('coupon/index')}>"><em>&nbsp;</em>优惠劵管理</a>
                     <div class="leftNav2">
                         <ul>
                             <li><a target="main_frm" href="<{:U('coupon/index')}>"><em>&nbsp;</em>优惠券管理</a></li>
@@ -123,7 +136,7 @@
                     <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a4" target="main_frm" href="<{:U('goods/index')}>"><em>&nbsp;</em>商城</a>
                         <div class="leftNav2">
                             <ul>
-                                <li><a target="main_frm" href="<{:U('goodsshopcate/index')}>"><em>&nbsp;</em>商家产品分类</a></li>
+                                <li><a target="main_frm" href="<{:U('goodsshopcate/index')}>"><em>&nbsp;</em>产品分类</a></li>
                                 <li><a target="main_frm" href="<{:U('goods/index')}>"><em>&nbsp;</em>出售中的商品</a></li>
                                 <li><a target="main_frm" href="<{:U('order/index')}>"><em>&nbsp;</em>全部订单列表</a></li>
                                 <eq name="SHOP.is_pei" value="1">
@@ -143,21 +156,6 @@
                     </li>
             	</if>
 			</if>
-            
-            <if condition="!empty($SHOPGRADE['is_tuan'])">
-                <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a3" target="main_frm" href="<{:U('tuan/index')}>"><em>&nbsp;</em>团购管理</a>
-                    <div class="leftNav2">
-                        <ul>
-                            <li><a target="main_frm" href="<{:U('tuan/index')}>"><em>&nbsp;</em>团购商品列表</a></li>
-                            <li><a target="main_frm" href="<{:U('tuan/create')}>"><em>&nbsp;</em>添加团购</a></li>
-                            <li><a target="main_frm" href="<{:U('tuan/order')}>"><em>&nbsp;</em>团购订单列表</a></li>
-                            <li><a target="main_frm" href="<{:U('tuan/code')}>"><em>&nbsp;</em>团购劵列表</a></li>
-                            <li><a target="main_frm" href="<{:U('tuan/used')}>"><em>&nbsp;</em>团购劵核销</a></li>
-                            <li><a target="main_frm" href="<{:U('tuan/usedok')}>"><em>&nbsp;</em>团购劵验证记录</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </if>
       
 			<if condition="!empty($SHOPGRADE['is_ele'])">
                  <if condition="!empty($waimai)"><!--如果商户开通外卖-->
@@ -287,7 +285,7 @@
                 </div>
             </li>
             
-             <li class="leftMenu_li" style="display:none"><a class="leftMenu_a leftMenu_a10" target="main_frm" href="<{:U('weixin/index')}>"><em>&nbsp;</em>营销管理</a>
+             <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a10" target="main_frm" href="<{:U('weixin/index')}>"><em>&nbsp;</em>营销管理</a>
             	<div class="leftNav2">
                     <ul>
                         <li><a target="main_frm" href="<{:U('weixin/index')}>"><em>&nbsp;</em>微信设置</a></li>
@@ -303,15 +301,14 @@
             	<div class="leftNav2">
                     <ul>  
                         <li><a target="main_frm" href="<{:U('dianping/index')}>"><em>&nbsp;</em>商家评价</a></li>
-                        
-                        <if condition="$open_mall eq '1' "> 
-                        	<li><a target="main_frm" href="<{:U('dianping/mall')}>"><em>&nbsp;</em>商城评价</a></li>
-						</if>
                         <li><a target="main_frm" href="<{:U('dianping/tuan')}>"><em>&nbsp;</em>团购评价</a></li>
-                        <!--<li><a target="main_frm" href="<{:U('dianping/waimai')}>"><em>&nbsp;</em>外卖点评</a></li>
+                        <if condition="$open_mall eq '1' "> 
+                        	<li><a target="main_frm" href="<{:U('dianping/mall')}>"><em>&nbsp;</em>商城评价价</a></li>
+						</if>
+                        <li><a target="main_frm" href="<{:U('dianping/waimai')}>"><em>&nbsp;</em>外卖点评</a></li>
 						<if condition="$open_booking eq '1' ">
                         	<li><a target="main_frm" href="<{:U('dianping/booking')}>"><em>&nbsp;</em>订座评价</a></li>
-						</if>-->
+						</if>
                     </ul>
                 </div>
             </li>
@@ -319,7 +316,7 @@
 
            <if condition="!empty($open_life)">  
                <if condition="!empty($SHOPGRADE['is_life'])">   
-                  <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a18" target="main_frm" href="<{:U('life/index')}>"><em>&nbsp;</em>生活信息</a>
+                  <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a18" target="main_frm" href="<{:U('life/index')}>"><em>&nbsp;</em>同城信息</a>
                         <div class="leftNav2">
                             <ul>
                                 <li><a target="main_frm" href="<{:U('life/index')}>"><em>&nbsp;</em>生活信息</a></li>
@@ -344,7 +341,7 @@
             <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a12" target="main_frm" href="<{:U('work/index')}>"><em>&nbsp;</em>其他</a>
             	<div class="leftNav2">
                     <ul>
-                        <li><a target="main_frm" href="<{:U('breaks/index')}>"><em>&nbsp;</em>门店付款订单</a></li>
+                        <li><a target="main_frm" href="<{:U('breaks/index')}>"><em>&nbsp;</em>优惠买单订单</a></li>
                         <li><a class="on" target="main_frm" href="<{:U('work/index')}>"><em>&nbsp;</em>人才招聘</a></li>
                         <li><a target="main_frm" href="<{:U('yuyue/index')}>"><em>&nbsp;</em>预约列表</a></li>
                         <li><a target="main_frm" href="<{:U('yuyue/used')}>"><em>&nbsp;</em>消费确认</a></li>

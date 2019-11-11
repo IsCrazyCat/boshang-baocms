@@ -196,7 +196,7 @@ class CrowdAction extends CommonAction {
 		
 		$this->assign('listcount', $listcount); 
 		$this->assign('goods_list', $goods_list); 
-		//二开开始
+		//开始
 		$Crowdcate = D('Crowdcate')->fetchAll();
         if ($Crowdcate[$detail['cate_id']]['parent_id'] == 0) {
             $this->assign('catstr', $Crowdcate[$detail['cate_id']]['cate_name']);

@@ -1,119 +1,11 @@
 <?php
 class MoneyAction extends CommonAction
 {
-	
-	
-	
-	
-    
-	public function myindex(){
-        $shop_id =  I('get.shop_id');
-        if ($shop_id) {
-			$wx_back_url = 'http://www.blklube.com/user/money/myindex/shop_id/'.$shop_id;
-			cookie('wx_back_url', $wx_back_url);
-			cookie('back_url', $wx_back_url);
-			session('backurl', $wx_back_url);
-		}
-		
-		
-		$backurl = $_SERVER['HTTP_REFERER'];
-		if (empty($this->uid)) {
-			
-			//对微信用户是否登录进行判断
-			   $is_weixin = is_weixin();
-				if ($is_weixin) {
-					 
-					  //$this->wxlogin();
-					  header('Location:' . U('/wap/passport/wxlogin/shop_id/'.$shop_id));
-					   die;
-				}
-		}	
-		
-		
-		
-		$users = D('users')->find($this->uid);
-						
-		
-        //排单返现
-		$this->assign('users',$users);
-		$this->assign('shop_id',$shop_id);
+    public function index(){
         $this->assign('payment', D('Payment')->getPayments(true));
         $this->display();
     }
-	
-	public function mymoneypay(){
-		
-		
-		
-         //后期优化
-        $money = (int) ($this->_post('money') * 100);//  *100???????????????????????????
-        $code = $this->_post('code', 'htmlspecialchars');
-		$shop_id = $this->_post('shop_id', 'htmlspecialchars');
-		$youname = $this->_post('youname', 'htmlspecialchars');
-		$youmobile = $this->_post('youmobile', 'htmlspecialchars');
-		
-		$users = D('users')->find($this->uid);
-		
-        if ($money <= 0) {
-            $this->error('请填写正确的金额！');
-        }
-
-//		$mymap = array('user_id' => $this->uid);
-//		$count = D('Shop')->where($mymap)->count(); // 查询满足要求的总记录数
-//		if ($count >= 1) {
-//			$this->error('店主不能参与活动！店主的个人返现不能提现！');	
-//		}
-        $payment = D('Payment')->checkPayment($code);
-        if (empty($payment)) {
-            $this->error('该支付方式不存在');
-        }
-		if (strlen($youname)<2) {
-            $this->error('请填写姓名！');
-        }
-		if (strlen($youmobile)<10) {
-            $this->error('请填写手机号码！');
-        }
-		if (!isMobile($youmobile)) {
-		   $this->error('手机格式不正确');
-        }
-        $logs = array('user_id' => $this->uid, 'type' => 'gwmd', 'code' => $code, 'order_id' => 0, 'need_pay' => $money, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(), 'shop_id' => $shop_id, 'youname' => $youname, 'youmobile' => $youmobile);
-        $logs['log_id'] = D('Paymentlogs')->add($logs);
-		
-		if (  strlen($users['ext0']) < 2  ) {
-			D('users')->save(array(
-			   'user_id'=>$this->uid,
-			   'ext0'=>$youname
-			));
-		}
-		if (  strlen($users['mobile']) < 10  ) {
-			D('users')->save(array(
-			   'user_id'=>$this->uid,
-			   'mobile'=> $youmobile
-			));
-		}
-		
-		 
-		$this -> assign('types', D('Payment') -> getTypes());
-		$this -> assign('paytype', D('Payment') -> getPayments());
-		$check_pay_password = D('Users')->check_pay_password($this->uid);
-		$this->assign('user_pay_password',$check_pay_password);	    
-
-		
-		
-        $this->assign('button', D('Payment')->getCode($logs));
-        $this->assign('money', $money);
-		$this->assign('shop_id', $shop_id);
-        $this->assign('logs', $logs);
-        /*判断是否免单  qiu   2019 01 15*/
-        
-        $this->display();
-    }
-	public function index(){
-        $this->assign('payment', D('Payment')->getPayments(true));
-        $this->display();
-    }
-    
-   public function moneypay(){
+    public function moneypay(){
         $money = (int) ($this->_post('money') * 100);
         $code = $this->_post('code', 'htmlspecialchars');
         if ($money <= 0) {
@@ -163,16 +55,12 @@ class MoneyAction extends CommonAction
             $member = D('Users')->find($this->uid);
             $member['money'] += $detail['value'];
             if (D('Users')->save(array('user_id' => $this->uid, 'money' => $member['money']))) {
-				
-				$rank_id = D('Users')->where('user_id='.$this->uid)->getField('rank_id');
-		        $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
                 D('Usermoneylogs')->add(array(
 					'user_id' => $this->uid, 
 					'money' => +$detail['value'], 
 					'create_time' => NOW_TIME, 
 					'create_ip' => get_client_ip(), 
-					'intro' => '代金券充值' . $detail['card_id'],
-					'rankname' => $rankname 
+					'intro' => '代金券充值' . $detail['card_id']
 				));
                 $res = D('Rechargecard')->save(array('card_id' => $detail['card_id'], 'is_used' => 1));
                 if (!empty($res)) {
@@ -240,7 +128,7 @@ class MoneyAction extends CommonAction
         session('mobile', $mobile);
         $randstring = session('code');
         if (empty($randstring)) {
-            $randstring = rand_string(4, 1);
+            $randstring = rand_string(6, 1);
             session('code', $randstring);
         }
 		//大鱼短信
@@ -348,5 +236,89 @@ class MoneyAction extends CommonAction
         }else{
              $this->display();
         }
+    }
+    /**
+     * 扫描购物二维码
+     */
+    public function scanshoppingqrcode(){
+        //判读登录状态
+        if (empty($this->uid)) {
+            header("Location: " . U("wap/passport/login"));
+            exit;
+        }
+        $shop_id = $this->_param('shop_id');
+        if(empty($shop_id)){
+            $this->error('商家信息有误，请重新扫码！');
+        }
+        $this->assign('shop',D('Shop')->find($shop_id));
+        $this->assign('users',D('Users')->find($this->uid));
+        $this->assign('payment', D('Payment')->getPayments(true));
+        $this->display();
+
+    }
+    public function scanshoppingqrcodepay(){
+
+        //后期优化
+        $pay_money = (int) ($this->_post('pay_money') * 100);//支付金额  *100 截取两位到分，暂时转换为整数 防止精度丢失
+        $pay_method = $this->_post('pay_method', 'htmlspecialchars');//支付方式
+        $shop_id = $this->_post('shop_id', 'htmlspecialchars');
+        $user_name = $this->_post('user_name', 'htmlspecialchars');
+        $user_mobile = $this->_post('user_mobile', 'htmlspecialchars');
+
+        $users = D('users')->find($this->uid);
+
+        if ($pay_money <= 0) {
+            $this->error('请填写正确的金额！');
+        }
+
+        $payment = D('Payment')->checkPayment($pay_method);
+        if (empty($payment)) {
+            $this->error('该支付方式不存在');
+        }
+        if (strlen($user_name)<2) {
+            $this->error('请填写姓名！');
+        }
+        if (strlen($user_mobile)<10) {
+            $this->error('请填写手机号码！');
+        }
+        if (!isMobile($user_mobile)) {
+            $this->error('手机格式不正确');
+        }
+        $logs = array('user_id' => $this->uid, 'type' => 'gwmd', 'code' => $pay_method, 'order_id' => 0, 'need_pay' => $pay_money, 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(), 'shop_id' => $shop_id);
+        $logs['log_id'] = D('Paymentlogs')->add($logs);
+
+        if (strlen($users['ext0']) < 2  ) {
+            D('users')->save(array(
+                'user_id'=>$this->uid,
+                'ext0'=>$user_name
+            ));
+        }
+        if (strlen($users['mobile']) < 10  ) {
+            D('users')->save(array(
+                'user_id'=>$this->uid,
+                'mobile'=> $user_mobile
+            ));
+        }
+
+        $this -> assign('types', D('Payment')->getTypes());
+        $this -> assign('paytype', D('Payment')->getPayments());
+        $check_pay_password = D('Users')->check_pay_password($this->uid);
+        $this->assign('user_pay_password',$check_pay_password);
+
+        $pay_title = '余额支付';
+        if($pay_method=='alipay'){
+            $pay_title='支付宝支付';
+        }else if($pay_method=='tenpay'){
+            $pay_title='财付通支付';
+        }else if($pay_method=='weixin'){
+            $pay_title='微信支付';
+        }
+        $this->assign('pay_title', $pay_title);
+        $this->assign('button', D('Payment')->getCode($logs));
+        $this->assign('money', $pay_money);
+        $this->assign('shop_id', $shop_id);
+        $this->assign('logs', $logs);
+
+        $this->display();
     }
 }

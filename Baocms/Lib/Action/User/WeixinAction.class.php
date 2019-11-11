@@ -31,7 +31,7 @@ class WeixinAction extends CommonAction
                 //这次更新保证了更新的结果集
                 //增加MONEY 的过程 稍后补充
                 if (!empty($data['price'])) {
-                    $data['intro'] = '团购消费' . $data['order_id'];
+                    $data['intro'] = '抢购消费' . $data['order_id'];
                     $shopmoney->add(array(
 						'shop_id' => $data['shop_id'], 
 						'city_id' => $shop['city_id'], 
@@ -43,13 +43,13 @@ class WeixinAction extends CommonAction
 						'order_id' => $data['order_id'], 
 						'intro' => $data['intro']
 					));
-                    D('Users')->Money($shop['user_id'], $data['settlement_price'], '商户团购资金结算：' . $data['order_id']);
+                    D('Users')->Money($shop['user_id'], $data['settlement_price'], '商户抢购资金结算：' . $data['order_id']);
 					
-					//团购返还积分给商家用户
+					//抢购返还积分给商家用户
 								if(!empty($data['real_integral'])){
 									$config = D('Setting')->fetchAll();
 									if($config['integral']['tuan_return_integral'] == 1){
-										D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '团购用户消费积分返还给商家');
+										D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '抢购用户消费积分返还给商家');
 									}
 								}
 								
@@ -63,7 +63,7 @@ class WeixinAction extends CommonAction
                 $order = D('Tuanorder')->find($data['order_id']);
                 $tuan = D('Tuan')->find($data['tuan_id']);
                 $integral = (int) ($order['total_price'] / 100 / $order['num']);
-                D('Users')->addIntegral($data['user_id'], $integral, '团购' . $tuan['title'] . ';订单' . $order['order_id']);
+                D('Users')->addIntegral($data['user_id'], $integral, '抢购' . $tuan['title'] . ';订单' . $order['order_id']);
             }
         } else {
             $this->error('该团购券无效或已经使用！', U('index/index'));

@@ -9,7 +9,7 @@ class CommunitypostsAction extends CommonAction {
 
 
         $Post = D('Communityposts');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
 		
 		$map_community = array('city_id' => $this->city_id);
 		$community_ids = D('Community')->where($map_community)->select();

@@ -166,7 +166,7 @@ class VillageAction extends CommonAction{
         $this->assign('detail', $detail);
         $this->display('detail');
     }
-    //社区村论坛
+    //社区村贴吧
     public function tieba()
     {
         $community_id = (int) $this->_param('village_id');
@@ -192,7 +192,7 @@ class VillageAction extends CommonAction{
         $this->assign('count', $count);
         $this->display();
     }
-    //论坛帖子加载
+    //贴吧帖子加载
     public function loadtieba()
     {
         $community_id = (int) $this->_param('village_id');
@@ -236,7 +236,7 @@ class VillageAction extends CommonAction{
         $this->assign('linkArr', $linkArr);
         $this->display();
     }
-    //论坛帖子加载-> 首页
+    //贴吧帖子加载-> 首页
     public function loading()
     {
         $community_id = (int) $this->_param('village_id');
@@ -285,7 +285,7 @@ class VillageAction extends CommonAction{
         $this->assign('page', $show);
         $this->display();
     }
-    //论坛帖子
+    //贴吧帖子
     public function tie()
     {
         $post_id = (int) $this->_param('post_id');
@@ -322,7 +322,7 @@ class VillageAction extends CommonAction{
         $this->assign('nextpage', LinkTo('village/loadreply', array('post_id' => $tie['post_id'], 't' => NOW_TIME, 'p' => '0000')));
         $this->display();
     }
-    //论坛点赞
+    //贴吧点赞
     public function zantie()
     {
         if (empty($this->uid)) {
@@ -339,7 +339,7 @@ class VillageAction extends CommonAction{
         echo $num;
         die;
     }
-    //论坛评论加载
+    //贴吧回复加载
     public function loadreply()
     {
         $post_id = (int) $this->_param('post_id');
@@ -367,7 +367,7 @@ class VillageAction extends CommonAction{
         $this->assign('page', $show);
         $this->display();
     }
-    //论坛发帖
+    //贴吧发帖
     public function post()
     {
         $community_id = (int) $this->_get('village_id');
@@ -402,7 +402,7 @@ class VillageAction extends CommonAction{
             $this->display();
         }
     }
-    //论坛发帖检测
+    //贴吧发帖检测
     private function postCheck()
     {
         $data = $this->checkFields($this->_post('data', false), array('title', 'details'));
@@ -420,7 +420,7 @@ class VillageAction extends CommonAction{
         }
         return $data;
     }
-    //论坛评论
+    //贴吧回复
     public function reply($post_id)
     {
         if (empty($this->uid)) {
@@ -452,7 +452,7 @@ class VillageAction extends CommonAction{
             $this->display();
         }
     }
-    //论坛评论检测
+    //贴吧回复检测
     public function checkReply()
     {
         $data = $this->checkFields($this->_post('data', false), array('details', 'village_id'));

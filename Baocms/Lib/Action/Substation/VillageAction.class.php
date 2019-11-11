@@ -15,7 +15,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_suggestion');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('city_id' => $this->city_id);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -42,7 +42,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_bbs');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -105,7 +105,7 @@ class VillageAction extends CommonAction
                 $this->baoError('操作失败');
             } else {
                 import('ORG.Util.Page');
-                // 导入分页类    www.blklube.com
+                // 导入分页类 
                 $map = array("post_id" => $post_id);
                 $replys = D("Villagebbsreplys");
                 $count = $replys->where($map)->count();
@@ -133,7 +133,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_notice');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -163,7 +163,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village_worker');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -190,7 +190,7 @@ class VillageAction extends CommonAction
     {
         $Village = D('Village');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array();
         //$users = $this->_param('data', false);
         $keyword = $this->_param('keyword', 'htmlspecialchars');
@@ -397,7 +397,7 @@ class VillageAction extends CommonAction
         if ($id = (int) $id) {
             $obj = D('Village_suggestion');
             if (!($detail = $obj->find($id))) {
-                $this->baoError('请选择要评论的意见');
+                $this->baoError('请选择要回复的意见');
             }
             if ($this->isPost()) {
                 $data = $this->_post('data', false);
@@ -407,15 +407,15 @@ class VillageAction extends CommonAction
                 $data['user'] = $_SESSION['admin']['username'];
                 if (false !== $obj->save($data)) {
                     //  $obj->cleanCache();
-                    $this->baoSuccess('评论成功', U('Village/suggestion', array('village_id' => $data['village_id'])));
+                    $this->baoSuccess('回复成功', U('Village/suggestion', array('village_id' => $data['village_id'])));
                 }
-                $this->baoError('评论成功');
+                $this->baoError('回复成功');
             } else {
                 $this->assign('detail', $detail);
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要评论的意见');
+            $this->baoError('请选择要回复的意见');
         }
     }
     public function notice_edit($id = 0)

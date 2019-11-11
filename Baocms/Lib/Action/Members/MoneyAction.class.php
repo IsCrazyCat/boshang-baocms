@@ -85,11 +85,7 @@ class MoneyAction extends CommonAction{
             $member['money'] += $detail['value'];
             if (D('Rechargecard')->save(array('card_id' => $detail['card_id'], 'is_used' => 1))) {
                 D('Users')->save(array('user_id' => $this->uid, 'money' => $member['money']));
-				
-				$rank_id = D('Users')->where('user_id='.$this->uid)->getField('rank_id');
-		        $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
-
-                D('Usermoneylogs')->add(array('user_id' => $this->uid, 'money' => $detail['value'], 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(), 'intro' => '代金券充值' . $detail['card_id'], 'rankname' => $rankname ));
+                D('Usermoneylogs')->add(array('user_id' => $this->uid, 'money' => $detail['value'], 'create_time' => NOW_TIME, 'create_ip' => get_client_ip(), 'intro' => '代金券充值' . $detail['card_id']));
                 D('Rechargecard')->save(array('card_id' => $detail['card_id'], 'user_id' => $this->uid, 'used_time' => NOW_TIME));
                 //微信通知
                 $this->remainMoneyNotify($detail['value'], $member['money'], 1);
@@ -145,7 +141,7 @@ class MoneyAction extends CommonAction{
         session('mobile', $mobile);
         $randstring = session('code');
         if (empty($randstring)) {
-            $randstring = rand_string(4, 1);
+            $randstring = rand_string(6, 1);
             session('code', $randstring);
         }
 		//大鱼短信
@@ -212,7 +208,7 @@ class MoneyAction extends CommonAction{
             $session_mobile = session('mobile');
             $session_code = session('code');
             if ($this->member['mobile'] != $session_mobile)
-                $this->baoError('手机号码和收取验证码的手机号不一致B！');
+                $this->baoError('手机号码和收取验证码的手机号不一致！');
             if ($yzm != $session_code){
 				$this->baoError('验证码不正确');
 			}

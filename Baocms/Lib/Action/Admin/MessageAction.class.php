@@ -6,7 +6,7 @@ class MessageAction extends CommonAction {
     public function index(){
 	
 		$Message = D('Message');
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
         $map = array('parent_id' => 0);
 		
 		 if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
@@ -55,7 +55,7 @@ class MessageAction extends CommonAction {
 		$Message->save(array('read_time'=>time(),'msg_id'=>$msg_id));
 		$this->assign('user', D('Users')->find($detail['send_id'])); // 赋值数据集
 		$this->assign('detail', $detail); // 赋值数据集
-		import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+		import('ORG.Util.Page'); // 导入分页类
         $map = array('parent_id'=>$msg_id);
         $count = $Message->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数
@@ -86,7 +86,7 @@ class MessageAction extends CommonAction {
         if ($msg_id = (int) $msg_id) {
             $obj = D('Message');
             if (!$detail = $obj->find($msg_id)) {
-                $this->baoError('请选择要编辑的邻居评论');
+                $this->baoError('请选择要编辑的邻居回复');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -100,7 +100,7 @@ class MessageAction extends CommonAction {
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要编辑的邻居评论');
+            $this->baoError('请选择要编辑的邻居回复');
         }
     }
 

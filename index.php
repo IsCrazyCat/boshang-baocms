@@ -29,7 +29,7 @@ ini_set('display_errors','On');
 error_reporting(0);
 define('APP_DEBUG', true);
 
-//定义项目名称，要修改版权的要重新定义这个名字,二开448329273
+//定义项目名称，要修改版权的要重新定义这个名字
 define('APP_NAME', 'Baocms');
 ini_set('date.timezone', 'Asia/Shanghai');
 define('TODAY', date('Y-m-d', $_SERVER['REQUEST_TIME']));

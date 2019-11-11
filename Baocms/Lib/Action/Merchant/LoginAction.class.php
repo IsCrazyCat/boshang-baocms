@@ -7,11 +7,11 @@ class  LoginAction extends CommonAction{
     public function index(){
         
         if($this->isPost()){
-//            $yzm = $this->_post('yzm');
-//            if(strtolower($yzm) != strtolower(session('verify'))){
-//                session('verify',null);
-//                $this->baoError('验证码不正确!',2000,true);
-//            }
+            $yzm = $this->_post('yzm');
+            if(strtolower($yzm) != strtolower(session('verify'))){
+                session('verify',null);
+                $this->baoError('验证码不正确!',2000,true);
+            }
             $account = $this->_post('account');
             if(empty($account)) {
                 session('verify',null);

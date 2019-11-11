@@ -6,12 +6,12 @@ class NeighborAction extends CommonAction
         $this->assign('nextpage', LinkTo('neighbor/loadneighbor', array('t' => NOW_TIME, 'community_id' => $this->community_id, 'p' => '0000')));
         $this->display();
     }
-    //论坛邻居加载
+    //贴吧邻居加载
     public function loadneighbor()
     {
         $Users = D('Communityusers');
         import('ORG.Util.Page');
-        // 导入分页类    www.blklube.com
+        // 导入分页类 
         $map = array('community_id' => $this->community_id);
         $count = $Users->where($map)->count();
         // 查询满足要求的总记录数

@@ -2,7 +2,7 @@
 class TuanorderModel extends CommonModel{
     protected $pk = 'order_id';
     protected $tableName = 'tuan_order';
-	//检测团购订单过期时间
+	//检测抢购订单过期时间
 	public function chenk_guoqi_time(){
 		$CONFIG = D('Setting')->fetchAll();
 		$guoqi_time = $CONFIG['tuan']['tuan_time']*60;
@@ -38,7 +38,7 @@ class TuanorderModel extends CommonModel{
 			}
 		}
 	}
-	//获取团购实际价格
+	//获取抢购实际价格
 	public function get_tuan_need_pay($order_id,$user_id,$type){
         $order_id = (int)$order_id;
         $order = D('Tuanorder')->find($order_id);
@@ -68,7 +68,7 @@ class TuanorderModel extends CommonModel{
 			}else{
 				$integral_price = $used;
 			}
-			//这里加上判断，就是不管你怎么样，积分兑换的金额大于团购结算价就返回失败
+			//这里加上判断，就是不管你怎么样，积分兑换的金额大于抢购结算价就返回失败
 			if($integral_price == 0 && $integral_price > ($order['total_price'] - $order['mobile_fan'])){
 				if($type ==1){
 					$order['need_pay'] = $order['total_price']; //PC不减去手机下单立减
@@ -78,7 +78,7 @@ class TuanorderModel extends CommonModel{
 				$order['use_integral'] = 0;
 			}else{//扣除成功
 			    if (empty($order['use_integral'])){
-					$intro = '团购【'.$tuan["title"].'】订单' . $order_id . '积分抵用';
+					$intro = '抢购【'.$tuan["title"].'】订单' . $order_id . '积分抵用';
 					D('Users')->addIntegral($user_id,-$canuse,$intro);
 				}
 				if($type ==1){

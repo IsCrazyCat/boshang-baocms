@@ -5,44 +5,40 @@ class MemberAction extends CommonAction{
  public function pay(){
         $logs_id = (int) $this->_get('logs_id');
         if (empty($logs_id)) {
-            $this->error('没有有效的支付A');
+            $this->error('没有有效的支付');
         }
         if (!($detail = D('Paymentlogs')->find($logs_id))) {
-            $this->error('没有有效的支付B');
+            $this->error('没有有效的支付');
         }
         if ($detail['code'] != 'money') {
-            $this->error('没有有效的支付C');
+            $this->error('没有有效的支付');
         }
         $member = D('Users')->find($this->uid);
         if ($detail['is_paid']) {
-            $this->error('没有有效的支付D');
+            $this->error('没有有效的支付');
         }
-		
-		$session_pay_password = session('session_pay_password');
-		if (!$session_pay_password) {
-            //$this->error('非法操作，付款失败');
-        }
+
+        //暂时屏蔽 正常应该添加
+//		$session_pay_password = session('session_pay_password');
+//		if (!$session_pay_password) {
+//            $this->error('非法操作，付款失败');
+//        }
 		
         if ($member['money'] < $detail['need_pay']) {
             $this->error('很抱歉您的账户余额不足', U('user/money/index'));
         }
         $member['money'] -= $detail['need_pay'];
-		
         if (D('Users')->save(array('user_id' => $this->uid, 'money' => $member['money']))) {
-			$rank_id = D('Users')->where('user_id='.$this->uid)->getField('rank_id');
-		    $rankname = D('Userrank')->where('rank_id='.$rank_id)->getField('rank_name');
             D('Usermoneylogs')->add(array(
 				'user_id' => $this->uid, 
 				'money' => -$detail['need_pay'], 
 				'create_time' => NOW_TIME, 
 				'create_ip' => get_client_ip(), 
-				'intro' => '余额支付 支付ID:' . $logs_id,
-				'rankname' => $rankname 
+				'intro' => '余额支付' . $logs_id
 			));
             D('Payment')->logsPaid($logs_id);
         }
 		session('session_pay_password', null); //销毁cookie
-		
         if ($detail['type'] == 'ele') {
             $this->ele_success('恭喜您支付成功啦！', $detail);
         } elseif ($detail['type'] == 'booking') {
@@ -58,11 +54,9 @@ class MemberAction extends CommonAction{
         }elseif ($detail['cloud'] == 'cloud') {
             $this->cloud_success('恭喜您云购支付成功啦！', $detail);
         }elseif ($detail['type'] == 'gold' || $detail['type'] == 'money') {
-            $this->success('恭喜您充值成功', U('user/member/index'));die;
-           
-	    }elseif($detail['type'] == 'gwmd'){
-            $this->success('门店付款成功', '/wap/payment/yes/log_id/'.$logs_id.'.html');die;
-        }elseif($detail['type'] == 'breaks'){
+            $this->success('恭喜您充值成功', U('user/member/index'));
+            die; 
+	    }elseif($detail['type'] == 'breaks'){
             $this->success('恭喜您买单成功', U('user/member/index'));die;
         } else {
             $this->other_success('恭喜您支付成功啦！', $detail);
@@ -130,7 +124,6 @@ class MemberAction extends CommonAction{
         $this->assign('detail', $detail);
         $this->assign('message', $message);
         $this->assign('paytype', D('Payment')->getPayments());
-		$this->assign('addr', D('Useraddr')->find($order['addr_id']));
         $this->display('goods');
     }
 	
@@ -267,7 +260,7 @@ class MemberAction extends CommonAction{
         $this->assign('lipin', D('Integralexchange')->where(array('user_id' => $this->uid, 'closed' => 0, 'audit' => 1))->count());
         $this->assign('tongzhi', D('Msg')->where(array('user_id' => $this->uid))->count());
         $this->assign('yuehui', D('Usermessage')->where(array('user_id' => $this->uid))->count());
-        //统计生活信息
+        //统计同城信息
         $this->assign('life', D('Life')->where(array('user_id' => $this->uid, 'closed' => 0, 'audit' => 1))->count());
         $this->assign('shop_yuyue', D('Shopyuyue')->where(array('user_id' => $this->uid, 'closed' => 0, 'used' => 0))->count());
         //增加结束
@@ -334,7 +327,7 @@ class MemberAction extends CommonAction{
             if ($yzm != $s_code) {
                 $this->error('验证码不正确');
             }
-            $data = array('user_id' => $this->uid, 'mobile' => $mobile, 'account' => $mobile);
+            $data = array('user_id' => $this->uid, 'mobile' => $mobile);
             if (D('Users')->save($data)) {
                 D('Users')->integral($this->uid, 'mobile');
                 $this->success('恭喜您通过手机认证', U('member/mobile'));
@@ -350,7 +343,7 @@ class MemberAction extends CommonAction{
             session('mobile', $mobile);
             $randstring = session('code');
             if (empty($randstring)) {
-                $randstring = rand_string(4, 1);
+                $randstring = rand_string(6, 1);
                 session('code', $randstring);
             }
 			//如果开启大鱼，用大鱼

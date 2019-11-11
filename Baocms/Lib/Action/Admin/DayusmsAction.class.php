@@ -38,7 +38,7 @@ class DayusmsAction extends CommonAction{
                 }
                 $this->baoSuccess('删除成功！', U('dayusms/index'));
             }
-            $this->baoError('请选择要删除的大鱼短信记录');
+            $this->baoError('请选择要删除的大于短信记录');
         }
     }
    

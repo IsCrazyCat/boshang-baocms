@@ -4,13 +4,13 @@
     <div class="navList">
         <!--<div class="navListBg">&nbsp;</div>-->
         <ul>
-            <li class="navListAll"><span class="navListAllt">全部团购分类</span>
+            <li class="navListAll"><span class="navListAllt">全部抢购分类</span>
                 <div class="shadowy navAll">
                     <include file="public:cate"/>
                 </div>
             </li>
             <li class="navLi"><a class="navA <if condition='$ctl eq tuan and $act eq index'>on</if> " href="<{:U('tuan/index')}>">首页</a></li>
-            <li class="navLi"><a class="navA <if condition='$ctl eq tuan and $act eq nearby'>on</if>" href="<{:U('tuan/nearby')}>">身边团购</a></li>
+            <li class="navLi"><a class="navA <if condition='$ctl eq tuan and $act eq nearby'>on</if>" href="<{:U('tuan/nearby')}>">身边抢购</a></li>
             <li class="navLi"><a class="navA " href="<{:U('tuan/index',array('new'=>1))}>">今日新单</a></li>
             <li class="navLi"><a class="navA" href="<{:U('tuan/index',array('hot'=>1))}>">热门疯抢</a></li>
         </ul>
@@ -96,7 +96,7 @@
                                 <p class="sy_hottjp"><{$item.intro}></p></a>
                             <p class="sy_hottjJg"><span class="left">¥<{:round($item['tuan_price']/100,2)}><del>¥<{:round($item['price']/100,2)}></del></span><span class="right">已售<{$item.sold_num}></span></p>
                             <hr style=" border:none 0px; border-bottom: 1px solid #e0e0e0; margin-top:6px;" />
-                            <p class="nearbuy_cpLiPf"><span class="left"><em></em>距离位置<span><{$item.d}></span></span><span class="right"><a target="_blank" class="sy_hottjJd" href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>">立即团购</a></span></p>
+                            <p class="nearbuy_cpLiPf"><span class="left"><em></em>距离位置<span><{$item.d}></span></span><span class="right"><a target="_blank" class="sy_hottjJd" href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>">立即抢购</a></span></p>
                             <div class="sy_sjcpBq"><if condition="$item['freebook'] eq 1"><span class="sy_sjcpBq1">免预约</span></if><if condition="$item['is_new'] eq 1"><span class="sy_sjcpBq2">新单</span></if><if condition="$item['is_hot'] eq 1"><span class="sy_sjcpBq3">热门</span></if><if condition="$item['is_chose'] eq 1"><span class="sy_sjcpBq4">精选</span></if></div>
                    
                         </div>

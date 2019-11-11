@@ -9,12 +9,10 @@
                 <div class="x12">
                     <p> 账户：<{$item['account']}></p>
                     <p> 昵称：<{$item['nickname']}></p>
-                    <php>$Userrank = D('Userrank')->find($item['rank_id']); </php>
-                    <p class="text-small"><{$Userrank['rank_name']}></p>
                     <p class="text-small">
-                    <span class="text-dot1 margin-right"> mobile：
-                      <if condition="!empty($item['mobile'])">
-                        <span class="text-dot"><{$item['mobile']}></span> 
+                    <span class="text-dot1 margin-right"> EMAIL：
+                      <if condition="!empty($item['email'])">
+                        <span class="text-dot"><{$item['email']}></span> 
                       <else/>
                         暂未设置
                       </if>  

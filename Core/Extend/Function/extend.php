@@ -55,7 +55,7 @@ function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {
  * @param string $addChars 额外字符
  * @return string
  */
-function rand_string($len=4,$type='',$addChars='') {
+function rand_string($len=6,$type='',$addChars='') {
     $str ='';
     switch($type) {
         case 0:

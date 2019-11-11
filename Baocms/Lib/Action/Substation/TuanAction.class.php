@@ -7,8 +7,8 @@
 
 class TuanAction extends CommonAction { //按逻辑  instructions  和  details 要分表出去
 
-    private $create_fields = array('shop_id', 'orderby', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'thumb', 'price', 'tuan_price', 'settlement_price','mobile_fan', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook','xiadan','xiangou', 'activity_id', 'branch_id','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv');
-    private $edit_fields = array('shop_id', 'orderby', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'thumb', 'price', 'tuan_price', 'settlement_price','mobile_fan', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook','xiadan','xiangou', 'activity_id', 'branch_id','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id','jiesuanfeilv');
+    private $create_fields = array('shop_id', 'orderby', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'thumb', 'price', 'tuan_price', 'settlement_price','mobile_fan', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook','xiadan','xiangou', 'activity_id', 'branch_id','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id');
+    private $edit_fields = array('shop_id', 'orderby', 'use_integral', 'cate_id', 'intro', 'title', 'photo', 'thumb', 'price', 'tuan_price', 'settlement_price','mobile_fan', 'num', 'sold_num', 'bg_date', 'end_date', 'fail_date', 'is_hot', 'is_new', 'is_chose', 'freebook','xiadan','xiangou', 'activity_id', 'branch_id','profit_enable','profit_rate1','profit_rate2','profit_rate3','profit_rank_id');
 
     public function _initialize() {
         parent::_initialize();
@@ -19,7 +19,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
 
     public function index() {
         $Tuan = D('Tuan');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         $map = array('closed' => 0,'city_id'=>$this->city_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
@@ -74,15 +74,9 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
         if ($this->isPost()) {
             $data = $this->createCheck();
             $obj = D('Tuan');
-			
-			$tuancate = D('tuancate')->find($data['cate_id']);
-			if ( (int)$tuancate['rate'] > 0 ) {
-				$data['jiesuanfeilv'] = $tuancate['rate']; //千分比
-			}
-			
             $details = $this->_post('details', 'SecurityEditorHtml');
             if (empty($details)) {
-                $this->baoError('团购详情不能为空');
+                $this->baoError('抢购详情不能为空');
             }
             if ($words = D('Sensitive')->checkWords($details)) {
                 $this->baoError('详细内容含有敏感词：' . $words);
@@ -116,7 +110,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
             }
             $data['thumb'] = serialize($thumb);
             if ($tuan_id = $obj->add($data)) {
-                $wei_pic = D('Weixin')->getCode($tuan_id, 2); //团购类型是2
+                $wei_pic = D('Weixin')->getCode($tuan_id, 2); //抢购类型是2
                 $obj->save(array('tuan_id' => $tuan_id, 'wei_pic' => $wei_pic));
                 D('Tuandetails')->add(array('tuan_id' => $tuan_id, 'details' => $details, 'instructions' => $instructions));
                 $this->baoSuccess('添加成功', U('tuan/index'));
@@ -139,7 +133,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
         }
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
-            $this->baoError('团购分类不能为空');
+            $this->baoError('抢购分类不能为空');
         }
 		
 		  $Tuancate = D('Tuancate')->where(array('cate_id' => $data['cate_id']))->find();
@@ -176,7 +170,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
         }
         $data['tuan_price'] = (int) ($data['tuan_price'] * 100);
         if (empty($data['tuan_price'])) {
-            $this->baoError('团购价格不能为空');
+            $this->baoError('抢购价格不能为空');
         }
         $data['settlement_price'] = (int) ($data['settlement_price'] * 100);
         if (empty($data['settlement_price'])) {
@@ -217,8 +211,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
         $data['orderby'] = (int) $data['orderby'];
-        //$data['profit_enable'] = (int) $data['profit_enable'];
-		$data['profit_enable'] = 1;
+        $data['profit_enable'] = (int) $data['profit_enable'];
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
@@ -242,7 +235,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
 		
             $obj = D('Tuan');
             if (!$detail = $obj->find($tuan_id)) {
-                $this->baoError('请选择要编辑的团购');
+                $this->baoError('请选择要编辑的抢购');
             }
             $tuan_details = D('Tuandetails')->getDetail($tuan_id);
 
@@ -250,7 +243,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
                 $data = $this->editCheck();
                 $details = $this->_post('details', 'SecurityEditorHtml');
                 if (empty($details)) {
-                    $this->baoError('团购详情不能为空');
+                    $this->baoError('抢购详情不能为空');
                 }
                 if ($words = D('Sensitive')->checkWords($details)) {
                     $this->baoError('详细内容含有敏感词：' . $words);
@@ -318,7 +311,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要编辑的团购');
+            $this->baoError('请选择要编辑的抢购');
         }
     }
 
@@ -334,7 +327,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
         }
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
-            $this->baoError('团购分类不能为空');
+            $this->baoError('抢购分类不能为空');
         }
 		
 		  $Tuancate = D('Tuancate')->where(array('cate_id' => $data['cate_id']))->find();
@@ -366,7 +359,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
             $this->baoError('市场价格不能为空');
         } $data['tuan_price'] = (int) ($data['tuan_price'] * 100);
         if (empty($data['tuan_price'])) {
-            $this->baoError('团购价格不能为空');
+            $this->baoError('抢购价格不能为空');
         }
         $data['settlement_price'] = (int) ($data['settlement_price'] * 100);
         if (empty($data['settlement_price'])) {
@@ -404,14 +397,11 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
 		$data['xiangou'] = (int) $data['xiangou'];
         $data['fail_date'] = htmlspecialchars($data['fail_date']);
         $data['orderby'] = (int) $data['orderby'];
-        //$data['profit_enable'] = (int) $data['profit_enable'];
-		$data['profit_enable'] = 1;
+        $data['profit_enable'] = (int) $data['profit_enable'];
         $data['profit_rate1'] = (int) $data['profit_rate1'];
         $data['profit_rate2'] = (int) $data['profit_rate2'];
         $data['profit_rate3'] = (int) $data['profit_rate3'];
         $data['profit_prestige'] = (int) $data['profit_prestige'];
-		
-		$data['jiesuanfeilv'] = htmlspecialchars($data['jiesuanfeilv']);
         return $data;
     }
 
@@ -440,7 +430,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
                 }
                 $this->baoSuccess('删除成功！', U('tuan/index'));
             }
-            $this->baoError('请选择要删除的团购');
+            $this->baoError('请选择要删除的抢购');
         }
     }
 
@@ -468,7 +458,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
                 }
                 $this->baoSuccess('审核成功！', U('tuan/index'));
             }
-            $this->baoError('请选择要审核的团购');
+            $this->baoError('请选择要审核的抢购');
         }
     }
 
@@ -498,7 +488,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
                 }
                 $this->baoSuccess('秒杀活动取消成功！', U('tuan/index'));
             }
-            $this->baoError('请选择要取消秒杀的团购');
+            $this->baoError('请选择要取消秒杀的抢购');
         }
     }
 

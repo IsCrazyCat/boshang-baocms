@@ -24,7 +24,7 @@ class  LifeAction extends  CommonAction{
     
     public function index(){
         $Life = D('Life');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类
         $map = array('user_id'=>  $this->uid); //分类信息是关联到UID 的 
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {
@@ -227,11 +227,11 @@ class  LifeAction extends  CommonAction{
         }
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
-            //$this->fengmiMsg('地区不能为空');
+            $this->fengmiMsg('地区不能为空');
         }
         $data['business_id'] = (int) $data['business_id'];
         if (empty($data['business_id'])) {
-            //$this->fengmiMsg('商圈不能为空');
+            $this->fengmiMsg('商圈不能为空');
         }
         $data['lng'] = htmlspecialchars(trim($data['lng']));
         $data['lat'] = htmlspecialchars(trim($data['lat']));

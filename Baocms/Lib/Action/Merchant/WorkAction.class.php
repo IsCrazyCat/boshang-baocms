@@ -2,21 +2,20 @@
 
 /****************** 版权声明 ******************************
  *
- *----------------聊城博商网络科技有限公司-----------------
- *----------------      www.blklube.com    -----------------
- *QQ:448329273  
+ *----------------合肥生活宝网络科技有限公司-----------------
+ *----------------      www.taobao.com    -----------------
+ *QQ:800026911  
  *电话:0551-63641901  
  *EMAIL：youge@baocms.com
  * 
  ***************  未经许可不得用于商业用途  ****************/
- 
 
 class  WorkAction extends CommonAction{
     private $edit_fields = array('title', 'money1', 'money2','num','intro','work_time','expir_date');
 
     public function index() {
         $Work = D('Work');
-        import('ORG.Util.Page'); // 导入分页类    www.blklube.com
+        import('ORG.Util.Page'); // 导入分页类 
         $map = array('shop_id' => $this->shop_id);
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');

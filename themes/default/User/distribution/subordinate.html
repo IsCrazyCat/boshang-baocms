@@ -4,7 +4,7 @@
 		<a class="top-addr" href="<{:U('distribution/index')}>"><i class="icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
-			裂变数据（我的团队）
+			我的下级
 		</div>
 	<div class="top-signed">
 		<include file="public:message"/>
@@ -27,7 +27,7 @@
 
 <script>
 	$(document).ready(function () {
-		loaddata('<{$nextpage}>', $("#list-media ul"), false);
+		loaddata('<{$nextpage}>', $("#list-media ul"), true);
 	});
 </script>
 

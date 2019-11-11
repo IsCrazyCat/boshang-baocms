@@ -15,12 +15,25 @@ class AuditAction extends CommonAction {
 		
         if ($this->isPost()) {
 			
-			   
+			   $photo =  $this->_post('photo', false);
+				if(count($photo) ==0){
+					$this->fengmiMsg('请上传营业执照，可以用手机拍照上传！');
+				}
+				if(!isImage($photo['0'])){
+					$this->fengmiMsg('所上传的营业执照格式不正确！');
+				}
+				$pic =  $this->_post('pic', false);
+				if(count($pic) ==0){
+					$this->fengmiMsg('请上传员工身份证，可以用手机拍照上传！');
+				}
+				if(!isImage($pic['0'])){
+					$this->fengmiMsg('所上传员工身份证格式不正确！');
+				}
 			
 			
             $data = $this->createCheck();
-//			$data['photo'] = $photo['0'];
-//			$data['pic'] = $pic['0'];
+			$data['photo'] = $photo['0'];
+			$data['pic'] = $pic['0'];
             $obj = D('Audit');
             if ($obj->add($data)) {
                 $this->fengmiMsg('添加成功', U('audit/index'));
@@ -35,21 +48,6 @@ class AuditAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['shop_id'] = $this->shop_id;
 		
-		
-		        //$photo =  $this->_post('photo', false);
-				if(count($data['photo']) ==0){
-					$this->fengmiMsg('请上传营业执照，可以用手机拍照上传！');
-				}
-				if(!isImage($data['photo'])){
-					$this->fengmiMsg('所上传的营业执照格式不正确！');
-				}
-//				$pic =  $this->_post('pic', false);
-//				if(count($pic) ==0){
-//					$this->fengmiMsg('请上传负责人身份证，可以用手机拍照上传！');
-//				}
-//				if(!isImage($pic['0'])){
-//					$this->fengmiMsg('所上传负责人身份证格式不正确！');
-//				}
 		
 		
         $data['name'] = htmlspecialchars($data['name']);
@@ -82,16 +80,19 @@ class AuditAction extends CommonAction {
         }
 		
 		$data['user_name'] = htmlspecialchars($data['user_name']);
-//        if (empty($data['user_name'])) {
-//            $this->fengmiMsg('负责人姓名为空');
-//        }
+        if (empty($data['user_name'])) {
+            $this->fengmiMsg('员工姓名为空');
+        }
+		
 		$data['mobile'] = htmlspecialchars($data['mobile']);
-//        if (empty($data['mobile'])) {
-//			$this->fengmiMsg('负责人手机不能为空');
-//        }
-//       if (!isMobile($data['mobile'])) {
-//		   $this->fengmiMsg('负责人手机格式不正确');
-//       }
+        if (empty($data['mobile'])) {
+			$this->fengmiMsg('员工手机不能为空');
+              
+        }
+       if (!isMobile($data['mobile'])) {
+		   $this->fengmiMsg('员工手机格式不正确');
+               
+       }
 	    $data['audit'] = 0;//默认不通过
 		$data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
@@ -113,11 +114,25 @@ class AuditAction extends CommonAction {
                 $this->error('该认证已被删除');
             }
             if ($this->isPost()) {
+				$photo =  $this->_post('photo', false);
+				if(count($photo) ==0){
+					$this->fengmiMsg('请上传营业执照，可以用手机拍照上传！');
+				}
+				if(!isImage($photo['0'])){
+					$this->fengmiMsg('所上传的营业执照格式不正确！');
+				}
+				$pic =  $this->_post('pic', false);
+				if(count($pic) ==0){
+					$this->fengmiMsg('请上传员工身份证，可以用手机拍照上传！');
+				}
+				if(!isImage($pic['0'])){
+					$this->fengmiMsg('所上传员工身份证格式不正确！');
+				}
 				
                 $data = $this->editCheck();
                 $data['audit_id'] = $audit_id;
-//				$data['photo'] = $photo['0'];
-//				$data['pic'] = $pic['0'];
+				$data['photo'] = $photo['0'];
+				$data['pic'] = $pic['0'];
                 if (false !== $obj->save($data)) {
                     $this->fengmiMsg('编辑操作成功', U('audit/index'));
                 }
@@ -142,22 +157,6 @@ class AuditAction extends CommonAction {
             $this->fengmiMsg('企业名称不能为空');
         }
 		
-			//$photo =  $this->_post('photo', false);
-			if(count($data['photo']) ==0){
-				$this->fengmiMsg('请上传营业执照，可以用手机拍照上传！');
-			}
-			if(!isImage($data['photo'])){
-				$this->fengmiMsg('所上传的营业执照格式不正确！');
-			}
-//				$pic =  $this->_post('pic', false);
-//				if(count($pic) ==0){
-//					$this->fengmiMsg('请上传负责人身份证，可以用手机拍照上传！');
-//				}
-//				if(!isImage($pic['0'])){
-//					$this->fengmiMsg('所上传负责人身份证格式不正确！');
-//				}
-
-		
 		
         $data['zhucehao'] = htmlspecialchars($data['zhucehao']);
         if (empty($data['zhucehao'])) {
@@ -183,19 +182,22 @@ class AuditAction extends CommonAction {
         }
 		
 		$data['user_name'] = htmlspecialchars($data['user_name']);
-//        if (empty($data['user_name'])) {
-//            $this->fengmiMsg('负责人姓名为空');
-//        }
+        if (empty($data['user_name'])) {
+            $this->fengmiMsg('员工姓名为空');
+        }
+		
+		
+		
 		
 		$data['mobile'] = htmlspecialchars($data['mobile']);
-//        if (empty($data['mobile'])) {
-//			$this->fengmiMsg('负责人手机不能为空');
-//              
-//        }
-//       if (!isMobile($data['mobile'])) {
-//		   $this->fengmiMsg('负责人手机格式不正确');
-//               
-//       }
+        if (empty($data['mobile'])) {
+			$this->fengmiMsg('员工手机不能为空');
+              
+        }
+       if (!isMobile($data['mobile'])) {
+		   $this->fengmiMsg('员工手机格式不正确');
+               
+       }
         return $data;
     }
 
