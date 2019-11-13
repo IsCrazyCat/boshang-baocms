@@ -6,20 +6,32 @@ class CarAction extends CommonAction
     public function index()
     {
         $cars = array();
-        $map['parent_id'] = 0;
+
         $map['is_open'] = '1';
         $map['closed']=0;
+        //是否最后一级的标识 不是第一次查询或者关键字查询，如果没有子类就跳转到推荐该车型的产品页
+        $flag = true;
+        if ($parent_id = $this->_param('parent_id', 'htmlspecialchars')) {
+            $map['parent_id'] = $parent_id;
+        }else{
+            $map['parent_id'] = 0;
+        }
+        $this->assign('parent_id',$parent_id);
         if ($keyword2 = $this->_param('keyword2', 'htmlspecialchars')) {
-            $map = array('name|english_name|short_name' => array('LIKE', '%' . $keyword2 . '%'));
-            $citlist = D('car')->where($map)->select();
-            $cars = $citlist;
+            $map['name|english_name|short_name'] = array('LIKE', '%' . $keyword2 . '%');
             $this->assign('keyword2', $keyword2);
+            $flag = false;
         }
 
-
         $carlists = array();
-        if(empty($cars)){
-            $cars = D('Car')->where($map)->select();
+        $cars = D('Car')->where($map)->select();
+        //当前的父类ID不为0，说明当前不是第一次进入这个页面，即当前展示的不是最顶级
+        if(!empty($parent_id)){
+            //不是搜索 并且该车系没有下属车系，则跳转推荐产品页
+           if($flag&&empty($cars)){
+               header('Location:' . U('wap/car/carInfo',array('car_id'=>$parent_id)));
+               die;
+            }
         }
 
         foreach ($cars as $val) {
@@ -37,6 +49,7 @@ class CarAction extends CommonAction
     public function vehicle()
     {
         $parent_id = $this->_param('parent_id');
+        $car_id = $this->_param('car_id');
 
         $this->assign('nextpage', LinkTo('car/loaddata', array('parent_id' => $parent_id,'p' => '0000')));
         $this->display();
@@ -46,7 +59,7 @@ class CarAction extends CommonAction
         import('ORG.Util.Page');
 
         if ($keyword2 = $this->_param('keyword2', 'htmlspecialchars')) {
-            $map = array('name|english_name|short_name' => array('LIKE', '%' . $keyword2 . '%'));
+            $map['name|english_name|short_name'] = array('LIKE', '%' . $keyword2 . '%');
             $this->assign('keyword2', $keyword2);
         }
 
@@ -151,6 +164,17 @@ class CarAction extends CommonAction
         }
         $this->assign('list', $list);
         $this->assign('page', $show);
+        $this->display();
+    }
+    public function carInfo(){
+        $car_id = $this->_param('car_id');
+        if(empty($car_id)){
+            $this->error('获取车辆信息有误，请稍后重试！');
+        }
+        $car = D('Car')->find($car_id);
+        $tags = explode(';',$car['tags']);
+
+        $this->assign('car',$car);
         $this->display();
     }
 }

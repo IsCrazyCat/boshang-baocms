@@ -76,6 +76,7 @@
             <div class="field">
                 <div class="input-group">
                     <span class="addbtn"><button type="button" class="button icon-search"></button></span>
+                    <input type="hidden" name="parent_id" value="<{$parent_id}>"/>
                     <input type="text" class="input" name="keyword2" size="50" value="<{$keyword2|default='请输入品牌名称'}>"
                            onclick="if (value == defaultValue) {value = '';this.style.color = '#000'}"
                            onBlur="if (!value) {value = defaultValue; this.style.color = '#999'}"/>
@@ -94,7 +95,7 @@
         </p>
         <volist name="item" id="var" key="i">
             <div class="more-list">
-                <a href="<{:U('car/vehicle',array('parent_id'=>$var['car_id']))}>" style="width:100%;text-align: left;padding-left: 3rem;">
+                <a href="<{:U('car/index',array('parent_id'=>$var['car_id']))}>" style="width:100%;text-align: left;padding-left: 3rem;">
                     <p><{$var.name}></p>
                 </a>
             </div>

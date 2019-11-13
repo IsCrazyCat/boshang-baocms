@@ -91,6 +91,7 @@ class TuanAction extends CommonAction{
         $this->assign('order', $order);
         $biz = D('Business')->fetchAll();
         $business = (int) $this->_param('business');
+        $tuancates = D('Tuancates')->find();
         $this->assign('business_id', $business);
         $this->assign('biz', $biz);
         $this->assign('nextpage', LinkTo('tuan/loaddata', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));

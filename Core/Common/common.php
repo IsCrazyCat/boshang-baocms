@@ -806,3 +806,4 @@ function get_car_goods($car_id){
 
     return $catesInfo;
 }
+

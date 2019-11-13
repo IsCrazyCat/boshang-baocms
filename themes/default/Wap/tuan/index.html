@@ -31,99 +31,99 @@
 		</div>
         </if>
 	</header>
-    <if condition="empty($keyword)">
-    <div id="focus" class="focus">
-			<div class="hd"><ul></ul></div>
-			<!--下面的limit="0,2"是幻灯的个数，2代表2张图，以此类推，site_id=57是你广告位的ID-->
-			<div class="bd">
-				<ul>
-					<calldata mdl="Ad" where=" closed=0 AND site_id=70 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="7200" order="orderby asc">
-						<li>
-							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a>
-						</li>
-					</calldata>
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			TouchSlide({
-				slideCell: "#focus",
-				titCell: ".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
-				mainCell: ".bd ul",
-				effect: "left",
-				autoPlay: true, //自动播放
-				autoPage: true, //自动分页
-				switchLoad: "_src", //切换加载，真实图片路径为"_src", 
-			});
-		</script>
-     </if>   
-    
-    <if condition="empty($cat) && empty($business_id) && empty($order) && empty($keyword)">
-        <ul class="cate-wrap bbOnepx">
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>1))}>" tongji_tag="m_home_job_new">
-                    <span class="cate-img" id="job"><img src="/static/default/wap/image/tuan/tuan_cate_1.png" /></span>
-                    <span class="cate-desc">美食</span>
-                </a>
-            </li>
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>34))}>" tongji_tag="m_home_house_new">
-                    <span class="cate-img" id="house"><img src="/static/default/wap/image/tuan/tuan_cate_2.png" /></span>
-                    <span class="cate-desc">娱乐</span>
-                </a>
-            </li>
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>35))}>" tongji_tag="m_home_car_new">
-                    <span class="cate-img" id="car"><img src="/static/default/wap/image/tuan/tuan_cate_3.png" /></span>
-                    <span class="cate-desc">酒店</span>
-                </a>
-            </li>
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>37))}>" tongji_tag="m_home_sale_new">
-                    <span class="cate-img" id="sale"><img src="/static/default/wap/image/tuan/tuan_cate_4.png" /></span>
-                    <span class="cate-desc">购物</span>
-                </a>
-            </li>
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>39))}>" tongji_tag="m_home_jianzhi_new">
-                    <span class="cate-img" id="jianzhi"><img src="/static/default/wap/image/tuan/tuan_cate_5.png" /></span>
-                    <span class="cate-desc">生活服务</span>
-                </a>
-            </li>
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>36))}>" tongji_tag="m_home_pets_new">
-                    <span class="cate-img" id="pets"><img src="/static/default/wap/image/tuan/tuan_cate_6.png" /></span>
-                    <span class="cate-desc">丽人</span>
-                </a>
-            </li>
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>40))}>" tongji_tag="m_home_shenghuo_new">
-                    <span class="cate-img" id="jiazheng"><img src="/static/default/wap/image/tuan/tuan_cate_7.png" /></span>
-                    <span class="cate-desc">亲子</span>
-                </a>
-            </li>
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>41))}>" tongji_tag="m_home_bendishenghuo_new">
-                    <span class="cate-img" id="shenghuo"><img src="/static/default/wap/image/tuan/tuan_cate_8.png" /></span>
-                    <span class="cate-desc">婚嫁</span>
-                </a>
-            </li>
-            
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>38))}>" tongji_tag="m_home_bendishenghuo_new">
-                    <span class="cate-img" id="shenghuo"><img src="/static/default/wap/image/tuan/tuan_cate_9.png" /></span>
-                    <span class="cate-desc">旅游</span>
-                </a>
-            </li>
-            
-            <li>
-                <a class="icon2" href="<{:U('tuan/index',array('cat'=>2))}>" tongji_tag="m_home_bendishenghuo_new">
-                    <span class="cate-img" id="shenghuo"><img src="/static/default/wap/image/tuan/tuan_cate_10.png" /></span>
-                    <span class="cate-desc">电影</span>
-                </a>
-            </li>
-        </ul>
-    </if>
+<!--    <if condition="empty($keyword)">-->
+<!--    <div id="focus" class="focus">-->
+<!--			<div class="hd"><ul></ul></div>-->
+<!--			&lt;!&ndash;下面的limit="0,2"是幻灯的个数，2代表2张图，以此类推，site_id=57是你广告位的ID&ndash;&gt;-->
+<!--			<div class="bd">-->
+<!--				<ul>-->
+<!--					<calldata mdl="Ad" where=" closed=0 AND site_id=70 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="7200" order="orderby asc">-->
+<!--						<li>-->
+<!--							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a>-->
+<!--						</li>-->
+<!--					</calldata>-->
+<!--				</ul>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		<script type="text/javascript">-->
+<!--			TouchSlide({-->
+<!--				slideCell: "#focus",-->
+<!--				titCell: ".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层-->
+<!--				mainCell: ".bd ul",-->
+<!--				effect: "left",-->
+<!--				autoPlay: true, //自动播放-->
+<!--				autoPage: true, //自动分页-->
+<!--				switchLoad: "_src", //切换加载，真实图片路径为"_src", -->
+<!--			});-->
+<!--		</script>-->
+<!--     </if>   -->
+
+<!--    <if condition="empty($cat) && empty($business_id) && empty($order) && empty($keyword)">-->
+<!--        <ul class="cate-wrap bbOnepx">-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>1))}>" tongji_tag="m_home_job_new">-->
+<!--                    <span class="cate-img" id="job"><img src="/static/default/wap/image/tuan/tuan_cate_1.png" /></span>-->
+<!--                    <span class="cate-desc">美食</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>34))}>" tongji_tag="m_home_house_new">-->
+<!--                    <span class="cate-img" id="house"><img src="/static/default/wap/image/tuan/tuan_cate_2.png" /></span>-->
+<!--                    <span class="cate-desc">娱乐</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>35))}>" tongji_tag="m_home_car_new">-->
+<!--                    <span class="cate-img" id="car"><img src="/static/default/wap/image/tuan/tuan_cate_3.png" /></span>-->
+<!--                    <span class="cate-desc">酒店</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>37))}>" tongji_tag="m_home_sale_new">-->
+<!--                    <span class="cate-img" id="sale"><img src="/static/default/wap/image/tuan/tuan_cate_4.png" /></span>-->
+<!--                    <span class="cate-desc">购物</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>39))}>" tongji_tag="m_home_jianzhi_new">-->
+<!--                    <span class="cate-img" id="jianzhi"><img src="/static/default/wap/image/tuan/tuan_cate_5.png" /></span>-->
+<!--                    <span class="cate-desc">生活服务</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>36))}>" tongji_tag="m_home_pets_new">-->
+<!--                    <span class="cate-img" id="pets"><img src="/static/default/wap/image/tuan/tuan_cate_6.png" /></span>-->
+<!--                    <span class="cate-desc">丽人</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>40))}>" tongji_tag="m_home_shenghuo_new">-->
+<!--                    <span class="cate-img" id="jiazheng"><img src="/static/default/wap/image/tuan/tuan_cate_7.png" /></span>-->
+<!--                    <span class="cate-desc">亲子</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>41))}>" tongji_tag="m_home_bendishenghuo_new">-->
+<!--                    <span class="cate-img" id="shenghuo"><img src="/static/default/wap/image/tuan/tuan_cate_8.png" /></span>-->
+<!--                    <span class="cate-desc">婚嫁</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            -->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>38))}>" tongji_tag="m_home_bendishenghuo_new">-->
+<!--                    <span class="cate-img" id="shenghuo"><img src="/static/default/wap/image/tuan/tuan_cate_9.png" /></span>-->
+<!--                    <span class="cate-desc">旅游</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            -->
+<!--            <li>-->
+<!--                <a class="icon2" href="<{:U('tuan/index',array('cat'=>2))}>" tongji_tag="m_home_bendishenghuo_new">-->
+<!--                    <span class="cate-img" id="shenghuo"><img src="/static/default/wap/image/tuan/tuan_cate_10.png" /></span>-->
+<!--                    <span class="cate-desc">电影</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </if>-->
     
     
     

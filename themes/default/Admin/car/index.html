@@ -58,9 +58,7 @@
 <!--                            </if>-->
                             <td><{$var.is_open}></td>
                             <td>
-                            <if condition="$parent_id eq 0">
                                 <{:BA('car/index',array("parent_id"=>$var["car_id"]),'查看下属系列','','remberBtn')}>
-                            </if>
                                 <{:BA('car/edit',array("car_id"=>$var["car_id"],"parent_id"=>$parent_id),'编辑','','remberBtn')}>
                                 <{:BA('car/delete',array("car_id"=>$var["car_id"],"parent_id"=>$parent_id),'删除','act','remberBtn')}>
                             </td>

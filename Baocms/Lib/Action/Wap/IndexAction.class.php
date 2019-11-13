@@ -64,6 +64,9 @@ class IndexAction extends CommonAction {
 		$this->assign('nav',$nav = D('Navigation') ->where($maps)->order(array('orderby' => 'asc'))->select());
 		$this->display();
 	}
-	
-	
+	public function ranking(){
+
+
+          $this->display();
+    }
 }

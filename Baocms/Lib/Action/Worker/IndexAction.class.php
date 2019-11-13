@@ -47,4 +47,35 @@ class IndexAction extends CommonAction{
         cookie('lng', $lng);
         die(NOW_TIME);
     }
+    /**
+     * 扫描核销码，展示使用用户信息等，
+     * 就是增加一步信息展示，无业务逻辑
+     */
+    public function scanaudit(){
+        $use_user_id = $this->_param('use_user_id');
+
+        //消费用户
+        $use_user = D('Users')->find($use_user_id);
+        $json = $_POST["snstr"];
+        $jsonarr = explode('/',$json);
+        if(!empty($json)){
+            $code_id = $jsonarr['7'];
+        }else{
+            $code_id = (int) $this->_param('code_id');
+        }
+        $tuancode = D('Tuancode')->find($code_id);
+        if(empty($tuancode)){
+            $this->error('没有找到对应的团购券信息！', U('worker/index/index'));
+        }
+        $tuan = D('tuan')->find($tuancode['tuan_id']);
+        $order = D('Tuanorder')->find($tuancode['order_id']);
+
+        $scanurl = str_replace('index/scanaudit','weixin/tuan',$_SERVER['REQUEST_URI']);
+        $this->assign('scanurl',$scanurl);
+        $this->assign('use_user',$use_user);
+        $this->assign('tuan',$tuan);
+        $this->assign('order',$order);
+
+        $this->display();
+    }
 }

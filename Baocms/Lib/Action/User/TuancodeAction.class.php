@@ -86,7 +86,7 @@ class TuancodeAction extends CommonAction{
         if ($detail['status'] != 0 || $detail['is_used'] != 0) {
             $this->error('该抢购券属于不可消费的状态');
         }
-        $url = U('worker/weixin/tuan', array('code_id' => $code_id, 't' => NOW_TIME, 'sign' => md5($code_id . C('AUTH_KEY') . NOW_TIME)));
+        $url = U('worker/weixin/tuan', array('use_user_id'=>$this->uid,'code_id' => $code_id, 't' => NOW_TIME, 'sign' => md5($code_id . C('AUTH_KEY') . NOW_TIME)));
         $token = 'tuancode_' . $code_id;
         $file = baoQrCode($token, $url);
         $this->assign('file', $file);

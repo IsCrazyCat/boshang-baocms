@@ -1,7 +1,7 @@
 <?php
 class CarAction extends CommonAction{
-    private $create_fields = array('car_id','name','short_name','english_name','is_open','parent_id','photo', 'first_letter', 'orderby');
-    private $edit_fields = array('car_id','name','short_name','english_name','is_open','parent_id','photo', 'first_letter', 'orderby');
+    private $create_fields = array('car_id','name','short_name','english_name','tags','is_open','parent_id','photo', 'first_letter', 'orderby');
+    private $edit_fields = array('car_id','name','short_name','english_name','tags','is_open','parent_id','photo', 'first_letter', 'orderby');
 
     public function index(){
         $Car = D('Car');
@@ -75,6 +75,7 @@ class CarAction extends CommonAction{
         $data['parent_id'] = htmlspecialchars($data['parent_id']);
         $data['english_name'] = htmlspecialchars($data['english_name']);
 
+        $data['tags'] = str_replace('；',';',htmlspecialchars($data['tags']));
         $data['is_open'] = (int)($data['is_open']);
 
         $data['orderby'] = (int)($data['orderby']);
@@ -132,6 +133,8 @@ class CarAction extends CommonAction{
         }
         $data['parent_id'] = htmlspecialchars($data['parent_id']);
         $data['english_name'] = htmlspecialchars($data['english_name']);
+
+        $data['tags'] = str_replace('；',';',htmlspecialchars($data['tags']));
 
         $data['is_open'] = (int)($data['is_open']);
 

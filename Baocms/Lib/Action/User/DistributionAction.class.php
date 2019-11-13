@@ -104,18 +104,28 @@ class DistributionAction extends CommonAction{
 		 
 	}
     public function qrcode(){
-        $token = 'fuid_' . $this->uid;
-        $url = U('Wap/passport/register', array('fuid' => $this->uid));
-        $file = baoQrCode($token, $url);
-        $this->assign('file', $file);
+        if (empty($this->uid)) {
+            header("Location: " . U('Wap/passport/login'));
+            die;
+        }
+        $user = D('Users')->find($this->uid);
+        if(empty($user['distribution_qrcode_url'])){
+            $this->error('您还未拥有分销二维码，请先去购物消费！',U('wap/mall/index'));
+        }
+        $this->assign('file', $user['distribution_qrcode_url']);
         $this->display();
     }
     public function poster()
     {
-        $token = 'fuid_' . $this->uid;
-        $url = U('Wap/passport/register', array('fuid' => $this->uid));
-        $file = baoQrCode($token, $url);
-        $this->assign('file', $file);
+        if (empty($this->uid)) {
+            header("Location: " . U('Wap/passport/login'));
+            die;
+        }
+        $user = D('Users')->find($this->uid);
+        if(empty($user['distribution_qrcode_url'])){
+            $this->error('您还未拥有分销二维码，请先去购物消费！',U('wap/mall/index'));
+        }
+        $this->assign('file', $user['distribution_qrcode_url']);
         $this->display();
     }
     public function superior()

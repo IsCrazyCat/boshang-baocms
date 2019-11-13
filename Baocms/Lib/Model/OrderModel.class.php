@@ -202,7 +202,7 @@ class OrderModel extends CommonModel{
 				D('Users')->addIntegral($uid,$useint_price,'商城购物扣除积分失败返回积分');//扣除积分失败积分退还
 			}
 			$total_fan_useint_price = $total - $fan - $useint_price;//判断总价-手机下单返现-积分兑换>优惠价的价格，这里后期加上返回优惠劵逻辑
-			if($total_fan_useint_price >= $coupon_price ){
+			if($total_fan_useint_price <= $coupon_price ){
 				$coupon_price  = 0;
 				D('Order')->delete_order_download_id($order['order_id']); //使用优惠劵失败，退回优惠劵
 			}

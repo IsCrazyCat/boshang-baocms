@@ -28,6 +28,7 @@ class MallAction extends CommonAction{
 		$this->assign('check_user_addr', $check_user_addr);
     }
     public function index(){
+        $car_id =  $this->_param('car_id', 'htmlspecialchars');
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         $this->assign('keyword', $keyword);
         $cat = (int) $this->_param('cat');
@@ -40,13 +41,16 @@ class MallAction extends CommonAction{
         $this->assign('cate_id', $cate_id);
         $this->assign('order', $order);
         $this->assign('cat', $cat);
-        $this->assign('nextpage', LinkTo('mall/loaddata', array('cat' => $cat, 'order' => $order, 'area' => $area, 'business' => $business, 'cate_id' => $cate_id, 'keyword' => $keyword, 'p' => '0000')));
+        $this->assign('car_id', $car_id);
+        $this->assign('nextpage', LinkTo('mall/loaddata', array('car_id'=>$car_id,'cat' => $cat, 'order' => $order, 'area' => $area, 'business' => $business, 'cate_id' => $cate_id, 'keyword' => $keyword, 'p' => '0000')));
         $this->display();
     }
    
     public function loaddata(){
         $Goods = D('Goods');
         import('ORG.Util.Page');
+        $car_id = (int) $this->_param('car_id');
+
         $area = (int) $this->_param('area');
         $order = (int) $this->_param('order');
         $business = (int) $this->_param('business');
@@ -73,6 +77,14 @@ class MallAction extends CommonAction{
             }
         }
         $map['city_id'] = $this->city_id;
+        if($car_id){
+            $goods_ids = D('Cargoods')->where(array('car_id'=>$car_id,'closed'=>0))->getField('good_id',true);
+            if(!empty($goods_ids)){
+                $map['goods_id'] = array('IN',$goods_ids);
+            }else{
+                die('0');
+            }
+        }
         $count = $Goods->where($map)->count();
         $Page = new Page($count, 10);
         $show = $Page->show();
@@ -644,7 +656,9 @@ class MallAction extends CommonAction{
 			$this->assign('coupon', $coupon = D('Coupon')->Obtain_Coupon($order_id,$this->uid));
 		}
 		//获取优惠劵ID结束
-		
+		if(is_mobile()){
+            $this->assign('mobile_fan', $ordergood['0']['mobile_fan']);
+        }
         $this->assign('citys', D('City')->fetchAll());
         $this->assign('areas', D('Area')->fetchAll());
         $this->assign('business', D('Business')->fetchAll());
@@ -885,5 +899,29 @@ class MallAction extends CommonAction{
             }
         }
         return false;
+    }
+    public function carInfo(){
+        $car_id = $this->_param('car_id');
+        if(empty($car_id)){
+            $this->error('获取车辆信息有误，请稍后重试！');
+        }
+        $car = D('Car')->find($car_id);
+
+        $this->assign('car',$car);
+
+        $keyword = $this->_param('keyword', 'htmlspecialchars');
+        $this->assign('keyword', $keyword);
+        $cat = (int) $this->_param('cat');
+        $area = (int) $this->_param('area');
+        $business = (int) $this->_param('business');
+        $cate_id = (int) $this->_param('cate_id');
+        $order = (int) $this->_param('order');
+        $this->assign('area', $area);
+        $this->assign('business', $business);
+        $this->assign('cate_id', $cate_id);
+        $this->assign('order', $order);
+        $this->assign('cat', $cat);
+        $this->assign('nextpage', LinkTo('mall/loaddata', array('car_id'=>$car_id,'cat' => $cat, 'order' => $order, 'area' => $area, 'business' => $business, 'cate_id' => $cate_id, 'keyword' => $keyword, 'p' => '0000')));
+        $this->display();
     }
 }

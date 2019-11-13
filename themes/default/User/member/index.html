@@ -115,7 +115,7 @@ p, .p {margin-bottom: 0px;}
 <!--          </ul>-->
 <!--        </dd>-->
 <!--      </dl>-->
-      
+<!--      -->
 <!--</div>-->
     
     
@@ -152,6 +152,9 @@ $user_delivery = D('Delivery')->where(array('user_id'=>$MEMBER['user_id'],'audit
 
 <div class="panel-list">
 	<ul>
+		<if condition="$open_mall eq 1">
+			<li><a href="<{:LinkTo('goods/index',array('aready'=>1))}>"><span class="icon-star-o"></span>我的订单<i class="icon-angle-right"></i></a></li>
+		</if>
 		<li>
 			<a href="<{:U('tuancode/index')}>">
 				<span class="icon-credit-card"></span>
