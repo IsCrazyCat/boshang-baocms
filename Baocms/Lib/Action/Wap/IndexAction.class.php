@@ -65,8 +65,21 @@ class IndexAction extends CommonAction {
 		$this->display();
 	}
 	public function ranking(){
-
-
-          $this->display();
+        $profit_users = D('Userprofitlogs')
+            ->field('user_id,sum(money) as money')
+            ->where(array('is_separate' =>1))
+            ->order(array('money'=>'desc'))
+            ->group('user_id')
+            ->select();
+        foreach ($profit_users as $key=>$val){
+            $info = D('Users')->find($val['user_id']);
+            $profit_users[$key]['info']=$info;
+            for ($i = 1;$i <= 3;$i++ ){
+                $map = array('closed' => 0, 'fuid' . $i => $val['user_id']);
+                $profit_users[$key]['level'.$i]=D('Users')->where($map)->count();
+            }
+        }
+        $this->assign('users',$profit_users);
+        $this->display();
     }
 }
