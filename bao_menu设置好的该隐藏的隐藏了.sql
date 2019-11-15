@@ -342,6 +342,7 @@ INSERT INTO `bao_menu` VALUES (413, '删除关键字', 'keyword/delete', 408, 10
 INSERT INTO `bao_menu` VALUES (418, '设置热门分类', 'life/hots', 338, 4, 0);
 INSERT INTO `bao_menu` VALUES (416, '外卖管理', '', 335, 3, 1);
 INSERT INTO `bao_menu` VALUES (516, '城市站点', 'city/index', 50, 1, 1);
+INSERT INTO `bao_menu` VALUES (842, '车辆设置', 'car/index', 50, 1, 1);
 INSERT INTO `bao_menu` VALUES (419, '举报信息', 'lifereport/index', 338, 20, 1);
 INSERT INTO `bao_menu` VALUES (818, '农家乐列表', NULL, 335, 6, 1);
 INSERT INTO `bao_menu` VALUES (421, '商家列表', 'ele/index', 416, 2, 1);

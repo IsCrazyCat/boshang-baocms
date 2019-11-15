@@ -175,6 +175,7 @@ class CarAction extends CommonAction
         $tags = explode(';',$car['tags']);
 
         $this->assign('car',$car);
+        $this->assign('tags',$tags);
         $this->display();
     }
 }

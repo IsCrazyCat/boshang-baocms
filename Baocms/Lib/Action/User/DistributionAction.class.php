@@ -109,10 +109,20 @@ class DistributionAction extends CommonAction{
             die;
         }
         $user = D('Users')->find($this->uid);
-        if(empty($user['distribution_qrcode_url'])){
-            $this->error('您还未拥有分销二维码，请先去购物消费！',U('wap/mall/index'));
+        $file =$user['distribution_qrcode_url'];
+        if(empty($file)){
+            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
+            if(!empty($order)){
+                //没有分销二维码，则生成二维码
+                $token = 'fuid_' . $this->uid;
+                $url = U('Wap/passport/register', array('fuid' => $this->uid));
+                $file = baoQrCode($token, $url);
+                D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
+            }else{
+                $this->error('您还未拥有分销二维码哦，请先去购物消费！',U('wap/mall/index'));
+            }
         }
-        $this->assign('file', $user['distribution_qrcode_url']);
+        $this->assign('file', $file);
         $this->display();
     }
     public function poster()
@@ -122,10 +132,20 @@ class DistributionAction extends CommonAction{
             die;
         }
         $user = D('Users')->find($this->uid);
-        if(empty($user['distribution_qrcode_url'])){
-            $this->error('您还未拥有分销二维码，请先去购物消费！',U('wap/mall/index'));
+        $file =$user['distribution_qrcode_url'];
+        if(empty($file)){
+            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
+            if(!empty($order)){
+                //没有分销二维码，则生成二维码
+                $token = 'fuid_' . $this->uid;
+                $url = U('Wap/passport/register', array('fuid' => $this->uid));
+                $file = baoQrCode($token, $url);
+                D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
+            }else{
+                $this->error('您还未拥有分销二维码哦，请先去购物消费！',U('wap/mall/index'));
+            }
         }
-        $this->assign('file', $user['distribution_qrcode_url']);
+        $this->assign('file', $file);
         $this->display();
     }
     public function superior()

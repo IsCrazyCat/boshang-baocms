@@ -80,18 +80,12 @@
             <div class="car-detail">
                 <{$car['name']}>
             </div>
-            <div class="car-detail">
-                <{$car['name']}>
-            </div>
-            <div class="car-detail">
-                <{$car['name']}>
-            </div>
-            <div class="car-detail">
-                <{$car['name']}>
-            </div>
-            <div class="car-detail">
-                <{$car['name']}>
-            </div>
+            <foreach name="tags" item="tag">
+                <div class="car-detail">
+                    <{$tag}>
+                </div>
+            </foreach>
+
         </div>
     </div>
 <!--    <if condition="empty($car['catesInfo']) neq true">-->

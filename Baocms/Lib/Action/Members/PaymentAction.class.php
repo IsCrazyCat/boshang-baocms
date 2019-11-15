@@ -48,7 +48,7 @@ class IndexAction extends CommonAction{
             //余额变动模板
             $tmpl_data = array(
 				'touser' => $openid, 
-				'url' => 'http://www.blklube.com',
+				'url' => 'http://blklube.zmkm0523.com',
 				'template_id' => $template_id, 
 				'topcolor' => '#2FBDAA', 
 				'data' => array('first' => array('value' => '尊敬的用户,您的账户余额有变动！', 'color' => '#2FBDAA'), 
