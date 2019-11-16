@@ -206,7 +206,9 @@ class ProfitAction extends CommonAction{
             $userModel = D('Users');
             $profit_rate1 = (int)$this->_CONFIG['profit']['profit_rate1'];
             if ($order['fuid1']) {
-                $money1 = round($profit_rate1 * $order['total_price'] / 100);
+//                $money1 = round($profit_rate1 * $order['total_price'] / 100);
+                //修改分销 由百分比更改为固定金额 2019-11-16
+                $money1 = $profit_rate1 * 100;
                 if ($money1 > 0) {
                     $info1 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . round($money1 / 100, 2);
                     $fuser1 = $userModel->find($order['fuid1']);
@@ -218,7 +220,9 @@ class ProfitAction extends CommonAction{
             }
             $profit_rate2 = (int)$this->_CONFIG['profit']['profit_rate2'];
             if ($order['fuid2']) {
-                $money2 = round($profit_rate2 * $order['total_price'] / 100);
+                //修改分销 由百分比更改为固定金额 2019-11-16
+//                $money2 = round($profit_rate2 * $order['total_price'] / 100);
+                $money2 = $profit_rate2 * 100;
                 if ($money2 > 0) {
                     $info2 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . round($money2 / 100, 2);
                     $fuser2 = $userModel->find($order['fuid2']);
@@ -230,7 +234,9 @@ class ProfitAction extends CommonAction{
             }
             $profit_rate3 = (int)$this->_CONFIG['profit']['profit_rate3'];
             if ($order['fuid3']) {
-                $money3 = round($profit_rate3 * $order['total_price'] / 100);
+                //修改分销 由百分比更改为固定金额 2019-11-16
+//                $money3 = round($profit_rate3 * $order['total_price'] / 100);
+                $money3 = $profit_rate3 * 100;
                 if ($money3 > 0) {
                     $info3 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . round($money3 / 100, 2);
                     $fuser3 = $userModel->find($order['fuid3']);
@@ -319,9 +325,11 @@ class ProfitAction extends CommonAction{
 			
             if ($order['fuid1']) {
 				if(!empty($profit_rate1)){
-					$money1 = round($profit_rate1 * $order['total_price'] / 100);//这一步有问题,不应该按照原价计算，后期修改
+//					$money1 = round($profit_rate1 * $order['total_price'] / 100);//这一步有问题,不应该按照原价计算，后期修改
+                    $money1 = $profit_rate1 * 100;
 					}else{
-					$money1 = round($profit_rate1_rollback * $order['total_price'] / 100);//这一步有问题，不应该按照原价计算，后期修改		
+//					$money1 = round($profit_rate1_rollback * $order['total_price'] / 100);//这一步有问题，不应该按照原价计算，后期修改
+                    $money1 = $profit_rate1_rollback * 100;
 				}
                 if ($money1 > 0) {
                     $info1 = '分成被管理员取消，' . $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . round($money1 / 100, 2);
@@ -341,8 +349,10 @@ class ProfitAction extends CommonAction{
 				
 				if(!empty($profit_rate2)){
 					$money2 = round($profit_rate2 * $order['total_price'] / 100);//这一步有问题
+                    $money2 = $profit_rate2;
 					}else{
-					$money2 = round($profit_rate2_rollback * $order['total_price'] / 100);//这一步有问题，不应该按照原价计算，后期修改		
+//					$money2 = round($profit_rate2_rollback * $order['total_price'] / 100);//这一步有问题，不应该按照原价计算，后期修改
+                    $money2 = $profit_rate2_rollback;
 				}
 
 				
@@ -360,9 +370,11 @@ class ProfitAction extends CommonAction{
             if ($order['fuid3']) {
 				
 				if(!empty($profit_rate2)){
-					$money3 = round($profit_rate3 * $order['total_price'] / 100);//这一步有问题
+//					$money3 = round($profit_rate3 * $order['total_price'] / 100);//这一步有问题
+                    $money3 = $profit_rate3;
 					}else{
-					$money3 = round($profit_rate3_rollback * $order['total_price'] / 100);//这一步有问题，不应该按照原价计算，后期修改		
+//					$money3 = round($profit_rate3_rollback * $order['total_price'] / 100);//这一步有问题，不应该按照原价计算，后期修改
+                    $money3 = $profit_rate3_rollback;
 				}
 				
         				

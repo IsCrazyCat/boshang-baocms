@@ -41,7 +41,9 @@ class UserprofitlogsModel extends CommonModel {
 				}
 				$profit_rate1 = (int)$goods['profit_rate1'];
 				if ($goods['fuid1']) {
-					$money1 = round($profit_rate1 * $goods['total_price'] / 100);
+//					$money1 = round($profit_rate1 * $goods['total_price'] / 100);
+                    //修改分销 由百分比更改为固定金额 2019-11-16
+                    $money1 = $profit_rate1 * 100;
 					if ($money1 > 0) {
 						$info1 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . round($money1 / 100, 2);
 						$fuser1 = $userModel->find($goods['fuid1']);
@@ -53,7 +55,9 @@ class UserprofitlogsModel extends CommonModel {
 				}
 				$profit_rate2 = (int)$goods['profit_rate2'];
 				if ($goods['fuid2']) {
-					$money2 = round($profit_rate2 * $goods['total_price'] / 100);
+//					$money2 = round($profit_rate2 * $goods['total_price'] / 100);
+                    //修改分销 由百分比更改为固定金额 2019-11-16
+                    $money2 = $profit_rate2 * 100;
 					if ($money2 > 0) {
 						$info2 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . round($money2 / 100, 2);
 						$fuser2 = $userModel->find($goods['fuid2']);
@@ -67,7 +71,9 @@ class UserprofitlogsModel extends CommonModel {
 				}
 				$profit_rate3 = (int)$goods['profit_rate3'];
 				if ($goods['fuid3']) {
-					$money3 = round($profit_rate3 * $goods['total_price'] / 100);
+//					$money3 = round($profit_rate3 * $goods['total_price'] / 100);
+                    //修改分销 由百分比更改为固定金额 2019-11-16
+                    $money3 = $profit_rate3 * 100;
 					if ($money3 > 0) {
 						$info3 = $orderTypeName . '订单ID:' . $order_id . ', 分成: ' . round($money3 / 100, 2);
 						$fuser3 = $userModel->find($goods['fuid3']);
