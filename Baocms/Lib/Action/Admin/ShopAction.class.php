@@ -209,7 +209,7 @@ class ShopAction extends CommonAction{
         $data['orderby'] = (int) $data['orderby'];
 		$data['panorama_url'] = htmlspecialchars($data['panorama_url']);
         $data['price'] = (int) $data['price'];
-        $data['is_pei'] = (int) $data['is_pei'];
+        $data['is_pei'] = 1; //写死为1 不开通配送功能
         $data['recognition'] = (int) $data['recognition'];
         $data['lng'] = htmlspecialchars($data['lng']);
         $data['lat'] = htmlspecialchars($data['lat']);
@@ -326,7 +326,7 @@ class ShopAction extends CommonAction{
         $data['lng'] = htmlspecialchars($data['lng']);
         $data['lat'] = htmlspecialchars($data['lat']);
         $data['price'] = (int) $data['price'];
-        $data['is_pei'] = (int) $data['is_pei'];
+        $data['is_pei'] = 1; //写死为1 不开通配送功能
         $data['apiKey'] = htmlspecialchars($data['apiKey']);
         $data['mKey'] = htmlspecialchars($data['mKey']);
         $data['partner'] = htmlspecialchars($data['partner']);

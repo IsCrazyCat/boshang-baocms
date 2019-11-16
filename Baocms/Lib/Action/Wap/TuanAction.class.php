@@ -380,6 +380,8 @@ class TuanAction extends CommonAction{
                 }
             }
         }
+
+        //优惠劵结束
         $data = array(
 			'tuan_id' => $tuan_id, 
 			'num' => $num, 
@@ -389,11 +391,20 @@ class TuanAction extends CommonAction{
 			'create_ip' => get_client_ip(), 
 			'total_price' => $detail['tuan_price'] * $num, 
 			'mobile_fan' => $detail['mobile_fan'] * $num, 
-			'need_pay' => $detail['tuan_price'] * $num - $detail['mobile_fan'] * $num, 
+			'need_pay' => $detail['tuan_price'] * $num - $detail['mobile_fan'] * $num,
 			'status' => 0, 
 			'is_mobile' => 1
 		);
         if ($order_id = D('Tuanorder')->add($data)) {
+            //添加优惠劵满减的优惠劵
+            $download_id = (int) $this->_post('download_id');
+            if(!empty($download_id)){
+                $coupon_price = D('Coupon')->Obtain_Coupon_Price_tuan($order_id,$download_id);
+                if(!empty($coupon_price)){
+                    D('TuanOrder')->save(array('order_id' =>$order_id,'download_id' =>$download_id,'need_pay' =>($detail['tuan_price'] * $num - $detail['mobile_fan'] * $num - $coupon_price)));
+                    //p(D('Order')->getLastSql()) ;die;这里有问题，后面立即处理
+                }
+            }
             D('Tuan')->where($where)->setDec('num', $num);//更新减掉库存
             $this->fengmiMsg('创建订单成功，下一步选择支付方式！', U('tuan/pay', array('order_id' => $order_id)));
             die;
@@ -417,6 +428,13 @@ class TuanAction extends CommonAction{
             $this->error('该商品已经结束');
             die;
         }
+        //如果没有优惠劵ID就去获取开始
+        if(!empty($detail['download_id'])){
+            $this->assign('download_id', $detail['download_id']);
+        }else{
+            $this->assign('coupon', $coupon = D('Coupon')->Obtain_Coupon_tuan($tuan_id,$this->uid));
+        }
+
         $detail = D('Tuan')->_format($detail);
         $this->assign('detail', $detail);
         $this->mobile_title = '支付订单';
@@ -439,6 +457,13 @@ class TuanAction extends CommonAction{
             $this->error('该抢购不存在');
             die;
         }
+        //如果没有优惠劵ID就去获取开始
+        if(!empty($order['download_id'])){
+            $this->assign('download_id', $order['download_id']);
+        }else{
+            $this->assign('coupon', $coupon = D('Coupon')->Obtain_Coupon_tuan($order_id,$this->uid));
+        }
+        //获取优惠劵ID结束
         $this->assign('use_integral', $tuan['use_integral'] * $order['num']);
         $this->assign('payment', D('Payment')->getPayments(true));
         $this->assign('tuan', $tuan);

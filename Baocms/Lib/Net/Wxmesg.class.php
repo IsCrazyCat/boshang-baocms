@@ -62,7 +62,7 @@ class Wxmesg{
 		);
 	}
 	
-	//会员提现余额变动全部封装，哈土豆源码开发
+	//会员提现余额变动全部封装
 	static public function cash($data=null){
 		if(empty($data)) throw new Exception("微信模板消息没有数据！",1002);
 		return array(

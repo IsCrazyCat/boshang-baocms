@@ -286,6 +286,7 @@ class PaymentModel extends CommonModel {
 					if($tuan_is_profit['is_profit'] == 1){
 						D('Userprofitlogs')->profitFusers(0, $logs['user_id'], $logs['order_id']);//单个抢购奖励分成和升级等级
 					}
+                    D('Coupon')->change_download_id_is_used($logs['order_id']);//如果有优惠劵就修改优惠劵的状态
 					return true;
                 } elseif ($logs['type'] == 'ele') {//餐饮订餐
                     D('Eleorder') -> save(array('order_id' => $logs['order_id'], 'status' => 1, 'is_pay' => 1));

@@ -88,6 +88,14 @@ class TuanorderModel extends CommonModel{
 				}
 				$order['use_integral'] = $used;
 			}
+            if(!empty($order['download_id'])){
+                $coupon_price = D('Coupon')->Obtain_Coupon_Price_tuan($order_id,$order['download_id']);
+                if($type ==1){
+                    $order['need_pay'] = $order['total_price'] - $coupon_price; //PC不减去手机下单立减
+                }else{
+                    $order['need_pay'] = $order['total_price'] - $order['mobile_fan'] - $coupon_price;
+                }
+            }
 			D('Tuanorder')->save(array('order_id' => $order_id, 'use_integral'=>$order['use_integral'],'need_pay' => $order['need_pay']));
 			return $order['need_pay'];
 		}

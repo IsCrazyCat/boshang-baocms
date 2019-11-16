@@ -28,7 +28,7 @@ class GoodsAction extends CommonAction {
     }
 
     public function index() {
-        $this->check_weidian();
+//        $this->check_weidian();
         $Goods = D('Goods');
         import('ORG.Util.Page'); 
         $map = array('closed' => 0, 'shop_id' => $this->shop_id, 'is_mall' => 1);

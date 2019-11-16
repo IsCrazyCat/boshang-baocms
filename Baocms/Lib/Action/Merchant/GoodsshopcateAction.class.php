@@ -15,7 +15,7 @@ class GoodsshopcateAction extends CommonAction {
     }
 
     public function index() {
-        $this->check_weidian();
+//        $this->check_weidian();
         $autocates = D('Goodsshopcate')->order(array('orderby' => 'asc'))->where(array('shop_id' => $this->shop_id))->select();
         $this->assign('autocates',$autocates);
         $this->display();

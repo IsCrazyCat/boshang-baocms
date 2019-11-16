@@ -55,6 +55,29 @@
                         </if>
 					</span>
 				</div>
+				<!--使用优惠劵逻辑开始-->
+				<if condition="!empty($coupon)">
+					<div class="x12 row border-bottom">
+						<span class="float-left">
+							优惠劵使用
+						</span>
+							<input type="hidden" name="download_id" id="download_id" value="<{$coupon['download_id']}>"
+								   checked="checked"/>
+							<span class="float-right"> 优惠劵ID：<{$coupon['download_id']}>，抵现 &yen;<{:round($coupon['reduce_price']/100,2)}>元</span>
+						</span>
+					</div>
+					<elseif condition="!empty($download_id)"/>
+					<div class="x12 row border-bottom">
+						<span class="float-left">
+							优惠劵使用
+						</span>
+						<input type="hidden" name="download_id" id="download_id" value="$download_id" checked="checked"/>
+						<span class="float-right"> 当前使用的优惠劵ID：<{$download_id}></span>
+						</span>
+					</div>
+					<else/>
+				</if>
+				<!--使用优惠劵逻辑结束-->
 				<div class="x12 row border-bottom">
 					<span class="float-left">
 						总金额

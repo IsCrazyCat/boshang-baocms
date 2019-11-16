@@ -319,7 +319,7 @@ class OrderAction extends CommonAction {
     
     
     public function picks() {
-        $this->check_weidian();
+//        $this->check_weidian();
         if(empty($this->shop['is_pei'])){
         }
         $Orderpick = D('Orderpick');
