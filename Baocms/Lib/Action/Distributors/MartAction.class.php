@@ -12,7 +12,7 @@ class MartAction extends CommonAction{
         $this->assign('autocates', $this->autocates);
     }
     public function index(){
-        $this->check_weidian();
+//        $this->check_weidian();
         $Goods = D('Goods');
         import('ORG.Util.Page');
         $map = array('closed' => 0, 'shop_id' => $this->shop_id, 'is_mall' => 1);
@@ -48,13 +48,13 @@ class MartAction extends CommonAction{
         $this->display();
     }
     public function goodscate(){
-        $this->check_weidian();
+//        $this->check_weidian();
         $autocates = D('Goodsshopcate')->order(array('orderby' => 'asc'))->where(array('shop_id' => $this->shop_id))->select();
         $this->assign('autocates', $autocates);
         $this->display();
     }
     public function all(){
-        $this->check_weidian();
+//        $this->check_weidian();
         $SHOP = D('Shop')->where(array('shop_id' => $this->shop_id))->find();
         if ($SHOP['is_pei'] != 0) {
             $this->error('您无限查看');
@@ -129,7 +129,7 @@ class MartAction extends CommonAction{
         $this->display();
     }
     public function order(){
-        $this->check_weidian();
+//        $this->check_weidian();
         if (empty($this->shop['is_pei'])) {
             $this->error('您签订的是由配送员配送！您管理不了订单！');
         }
@@ -212,7 +212,7 @@ class MartAction extends CommonAction{
         $this->display();
     }
     public function wait(){
-        $this->check_weidian();
+//        $this->check_weidian();
         if (empty($this->shop['is_pei'])) {
             $this->error('您签订的是由配送员配送！您管理不了订单！');
         }
@@ -282,7 +282,7 @@ class MartAction extends CommonAction{
         $this->display();
     }
     public function wait2(){
-        $this->check_weidian();
+//        $this->check_weidian();
         if (empty($this->shop['is_pei'])) {
             $this->error('您签订的是由配送员配送！您管理不了订单！');
         }
@@ -353,7 +353,7 @@ class MartAction extends CommonAction{
     }
     //创建发货
     public function deliver(){
-        $this->check_weidian();
+//        $this->check_weidian();
         $order_id = (int) $this->_get('order_id');
         if (!$order_id) {
             $this->fengmiMsg('参数错误');
