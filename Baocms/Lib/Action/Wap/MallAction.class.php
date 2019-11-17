@@ -102,7 +102,7 @@ class MallAction extends CommonAction{
         } elseif ($order == '4') {
             $order_arr = 'mall_price asc';
         } else {
-            $order_arr = 'orderby desc';
+            $order_arr = 'orderby asc';
         }
         $list = $Goods->where($map)->order($order_arr)->limit($Page->firstRow . ',' . $Page->listRows)->select();
         foreach ($list as $k => $val) {
