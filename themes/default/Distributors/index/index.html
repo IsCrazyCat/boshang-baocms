@@ -104,23 +104,23 @@
             </li>
         </if>
         
-        <if condition="!empty($open_mall)">
-            <if condition="!empty($SHOPGRADE['is_mall'])">
-                <li>
-                    <a href="<{:U('mart/index')}>"><span class="icon-home"></span>商城管理
-                    <font>
-                        <if condition="$counts['goods_order_two'] gt 0">
-                            已付款<{$counts['goods_order_two']}>单
-                        </if>
-                        <if condition="$counts['goods_order_one'] gt 0">
-                            ，已发货<b><{$counts['goods_order_one']}></b>单。
-                        </if>
-                    </font>
-                    <i class="icon-angle-right"></i>
-                    </a>
-                </li>
-            </if>
-        </if>
+<!--        <if condition="!empty($open_mall)">-->
+<!--            <if condition="!empty($SHOPGRADE['is_mall'])">-->
+<!--                <li>-->
+<!--                    <a href="<{:U('mart/index')}>"><span class="icon-home">商城管理</span>-->
+<!--                    <font>-->
+<!--                        <if condition="$counts['goods_order_two'] gt 0">-->
+<!--                            已付款<{$counts['goods_order_two']}>单-->
+<!--                        </if>-->
+<!--                        <if condition="$counts['goods_order_one'] gt 0">-->
+<!--&lt;!&ndash;                            已发货<b><{$counts['goods_order_one']}></b>单&ndash;&gt;-->
+<!--                        </if>-->
+<!--                    </font>-->
+<!--&lt;!&ndash;                    <i class="icon-angle-right"></i>&ndash;&gt;-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </if>-->
+<!--        </if>-->
 <!--        -->
 <!--        <li>-->
 <!--            <a href="<{:U('fans/index')}>"><span class="icon-group"></span>粉丝-->

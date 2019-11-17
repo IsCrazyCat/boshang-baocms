@@ -126,9 +126,13 @@ class ShopAction extends CommonAction{
         $order = (int) $this->_param('order');
         $lat = addslashes(cookie('lat'));
         $lng = addslashes(cookie('lng'));
+//        if (empty($lat) || empty($lng)) {
+//            $lat = $this->city['lat'];
+//            $lng = $this->city['lng'];
+//        }
         if (empty($lat) || empty($lng)) {
-            $lat = $this->city['lat'];
-            $lng = $this->city['lng'];
+            $lat = $this->_CONFIG['site']['lat'];
+            $lng = $this->_CONFIG['site']['lng'];
         }
         switch ($order) {
             case 2:
@@ -514,7 +518,8 @@ class ShopAction extends CommonAction{
         $shop_id = (int) $this->_get('shop_id');
         $tuanload = D('Tuan');
         import('ORG.Util.Page');
-        $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
+//        $map = array('closed' => 0, 'shop_id' => $shop_id, 'show_date' => array('ELT', TODAY));
+        $map = array('closed' => 0, 'show_date' => array('ELT', TODAY));
         $count = $tuanload->where($map)->count();
         $Page = new Page($count, 5);
         $show = $Page->show();
@@ -523,7 +528,7 @@ class ShopAction extends CommonAction{
         if ($Page->totalPages < $p) {
             die('0');
         }
-        $list = $tuanload->where($map)->order(array('tuan_id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        $list = $tuanload->where($map)->order(array('orderby' => 'asc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $this->assign('list', $list);
         $this->display();
         // 输出模板
@@ -548,9 +553,10 @@ class ShopAction extends CommonAction{
 		
 		//商品
 		$Goods = D('Goods');
-        $goods_map = array('shop_id' => $shop_id,'closed' => 0,'audit' => 1, 'end_date' => array('EGT', TODAY));
+//        $goods_map = array('shop_id' => $shop_id,'closed' => 0,'audit' => 1, 'end_date' => array('EGT', TODAY));
+            $goods_map = array('closed' => 0,'audit' => 1, 'end_date' => array('EGT', TODAY));
         $count = $Goods->where($goods_map)->count();
-        $list = $Goods->where($goods_map)->order(array('create_time' => 'desc'))->select();
+        $list = $Goods->where($goods_map)->order(array('orderby' => 'asc'))->select();
         $this->assign('list', $list);
 		
         $this->display();

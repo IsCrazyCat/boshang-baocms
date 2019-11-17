@@ -65,6 +65,10 @@ class IndexAction extends CommonAction {
 		$this->display();
 	}
 	public function ranking(){
+        if (empty($this->uid)) {
+            header('Location: ' . U('passport/login'));
+            die;
+        }
         $profit_users = D('Userprofitlogs')
             ->field('user_id,sum(money) as money')
             ->where(array('is_separate' =>1))
@@ -82,4 +86,9 @@ class IndexAction extends CommonAction {
         $this->assign('users',$profit_users);
         $this->display();
     }
+    public function wait(){
+        $this->error('积分商城尚未开放，敬请期待！');
+        die;
+    }
+
 }

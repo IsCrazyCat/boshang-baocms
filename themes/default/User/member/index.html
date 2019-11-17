@@ -139,8 +139,11 @@ $user_delivery = D('Delivery')->where(array('user_id'=>$MEMBER['user_id'],'audit
 <!--<if condition="!empty($user_delivery)">-->
 <!--	<li><a href="<{:U('delivery/index/index')}>"><span class="icon-bus"></span>配送员中心登录<font>（<{$user_delivery['name']}>）</font><i class="icon-angle-right"></i></a></li>-->
 <!--</if>-->
-
-<li><a href="<{:u('money/index')}>"><span class="icon-money"></span>余额充值<i class="icon-angle-right"></i></a></li>
+		<if condition="$profit eq 1"><!--如果开启分销-->
+			<li><a href="<{:U('distribution/index')}>"><span class="icon-cny"></span>营销中心<i class="icon-angle-right"></i></a></li>
+			<else/>
+		</if>
+		<li><a href="<{:u('money/index')}>"><span class="icon-money"></span>余额充值<i class="icon-angle-right"></i></a></li>
 
 	</ul>
 
@@ -158,7 +161,7 @@ $user_delivery = D('Delivery')->where(array('user_id'=>$MEMBER['user_id'],'audit
 		<li>
 			<a href="<{:U('tuancode/index')}>">
 				<span class="icon-credit-card"></span>
-				我的团购券&nbsp; 
+				我的套餐码&nbsp;
                 <if condition="$code gt 0">
                 <font>待消费：(<b><{$code}></b>)</font>
                 <else/>
@@ -270,12 +273,7 @@ $user_delivery = D('Delivery')->where(array('user_id'=>$MEMBER['user_id'],'audit
 <!--</if> -->
 <li><a href="<{:u('user/message/index')}>"><span class="icon-volume-up"></span>消息中心<i class="icon-angle-right"></i></a></li>
 
- <div class="blank-10 bg"></div>
- 
- 	   <if condition="$profit eq 1"><!--如果开启分销-->
-       <li><a href="<{:U('distribution/index')}>"><span class="icon-cny"></span>个人营销中心<i class="icon-angle-right"></i></a></li>
-       <else/>
-       </if> 
+
 <!--<if condition="$open_running eq 1">        -->
 <!--<li><a href="<{:U('running/index')}>"><span class="icon-plane"></span>我的跑腿&nbsp; <i class="icon-angle-right"></i></a></li>  -->
 <!--</if>         -->

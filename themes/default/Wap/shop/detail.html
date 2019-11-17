@@ -32,11 +32,11 @@ p, .p {margin-bottom: 0px; }
 
 <ul id="shangjia_tab">
         <li style="width:16.66666667%;"><a href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>" class="on">首页</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">抢购</a></li>
+        <li style="width:16.66666667%;"><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">套餐</a></li>
         <li style="width:16.66666667%;"><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">商品</a></li>
         <li style="width:16.66666667%;"><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>">优惠</a></li>
         <li style="width:16.66666667%;"><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>">新闻</a></li>
-        <li style="width:16.66666667%;"><a href="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">评价</a></li>
+<!--        <li style="width:16.66666667%;"><a href="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">评价</a></li>-->
 </ul>
 
  <script>
@@ -51,8 +51,10 @@ p, .p {margin-bottom: 0px; }
 		<div class="line detail-base">
 			<div class="x4">
 				<div class="pic">
-					<a href="<{:U('shop/pic',array('shop_id'=>$detail['shop_id']))}>">
-                    <img src="<{:config_img($detail['photo'])}>" /></a> 				<if condition="!empty($pic)">
+<!--					<a href="<{:U('shop/pic',array('shop_id'=>$detail['shop_id']))}>">-->
+                    <img src="<{:config_img($detail['photo'])}>" />
+<!--					</a> 				-->
+					<if condition="!empty($pic)">
                     <span class="album"><{$pic}></span>
                     <else/>
                     </if>
@@ -136,7 +138,8 @@ p, .p {margin-bottom: 0px; }
 				</div>
 				<div class="x6 text-center">
 <!--					<a href="<{:U('shop/qrcode',array('shop_id'=>$detail['shop_id']))}>"><i class="icon icon-qrcode"></i> 二维码名片</a>-->
-					<a href="<{:U('shop/shopping_qrcode',array('shop_id'=>$detail['shop_id']))}>"><i class="icon icon-qrcode"></i> 购物二维码</a>
+<!--					<a href="<{:U('shop/shopping_qrcode',array('shop_id'=>$detail['shop_id']))}>"><i class="icon icon-qrcode"></i> 购物二维码</a>-->
+						<a href="<{:U('tuan/index',array('shop_id'=>$detail['shop_id']))}>"><i class="icon icon-qrcode"></i> 购买套餐</a>
 				</div>
 			</div>
 
@@ -256,30 +259,30 @@ p, .p {margin-bottom: 0px; }
 		</div>
        </div>-->
        
-       <div class="container2">
-        <div class="panel detail-intro radius-none">
-			<div class="panel-head" onclick="location='<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>'">商家抢购 <span class="float-right icon-angle-right"></span></div>
-		    <div class="main-tuan" id="main-tuan" style="padding:0 10px;">
-            <volist name="goods" id="item">		
-	        <li>
-			<a class="line" href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" >
-				<div class="container1">
-					<img class="x3" src="<{:config_img($item['photo'])}>" />	
-					<div class="des x9">
-						<h5><{:bao_msubstr($item['title'],0,12,false)}></h5>
-						<p class="intro"><{:bao_msubstr($item['intro'],0,20,false)}></p>
-						<p class="info">
-							<span>￥ <em><{:round($item['mall_price']/100,2)}></em></span> <del>¥ <{:round($item['price']/100,2)}></del>
-							<span class="text-little float-right badge bg-yellow margin-small-top padding-right">立省<{:round($item['price']/100 - $item['mall_price']/100,2)}>元</span>
-						</p>
-					</div>
-				</div>
-			</a>
-		</li>			
-		</volist>
-     </div>
- </div>
-</div>
+<!--       <div class="container2">-->
+<!--        <div class="panel detail-intro radius-none">-->
+<!--			<div class="panel-head" onclick="location='<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>'">商家抢购 <span class="float-right icon-angle-right"></span></div>-->
+<!--		    <div class="main-tuan" id="main-tuan" style="padding:0 10px;">-->
+<!--            <volist name="goods" id="item">		-->
+<!--	        <li>-->
+<!--			<a class="line" href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" >-->
+<!--				<div class="container1">-->
+<!--					<img class="x3" src="<{:config_img($item['photo'])}>" />	-->
+<!--					<div class="des x9">-->
+<!--						<h5><{:bao_msubstr($item['title'],0,12,false)}></h5>-->
+<!--						<p class="intro"><{:bao_msubstr($item['intro'],0,20,false)}></p>-->
+<!--						<p class="info">-->
+<!--							<span>￥ <em><{:round($item['mall_price']/100,2)}></em></span> <del>¥ <{:round($item['price']/100,2)}></del>-->
+<!--							<span class="text-little float-right badge bg-yellow margin-small-top padding-right">立省<{:round($item['price']/100 - $item['mall_price']/100,2)}>元</span>-->
+<!--						</p>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</a>-->
+<!--		</li>			-->
+<!--		</volist>-->
+<!--     </div>-->
+<!-- </div>-->
+<!--</div>-->
 
 
 <div class="blank-10"></div>	

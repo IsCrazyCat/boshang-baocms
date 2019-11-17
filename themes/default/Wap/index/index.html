@@ -289,13 +289,13 @@
 			<div class="blank-10 bg"></div>
 			<div class="index-title">
 				<h4>猜您喜欢</h4>
-				<em><a href="<{:U('tuan/index')}>">更多抢购 <i class="icon-angle-right"></i></a></em>
+				<em><a href="<{:U('mall/index')}>">更多商品 <i class="icon-angle-right"></i></a></em>
 			</div>
 			<div class="line index-tuan">
 				<ul id="index-tuan">
 					<script>
 						$(document).ready(function() {
-							loaddata('<{:U("tuan/push",array("t"=>$nowtime,"p"=>"0000"))}>', $("#index-tuan"), true);
+							loaddata('<{:U("mall/push",array("t"=>$nowtime,"p"=>"0000"))}>', $("#index-tuan"), true);
 						});
 					</script>
 				</ul>

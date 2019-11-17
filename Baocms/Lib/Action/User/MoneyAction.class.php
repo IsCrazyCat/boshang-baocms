@@ -16,7 +16,7 @@ class MoneyAction extends CommonAction
         }
         $payment = D('Payment')->checkPayment($code);
         if (empty($payment)) {
-            $this->error('该支付方式不存在');
+            $this->error('该支付方式不存在'.$code );
         }
         $logs = array(
 			'user_id' => $this->uid, 

@@ -924,4 +924,31 @@ class MallAction extends CommonAction{
         $this->assign('nextpage', LinkTo('mall/loaddata', array('car_id'=>$car_id,'cat' => $cat, 'order' => $order, 'area' => $area, 'business' => $business, 'cate_id' => $cate_id, 'keyword' => $keyword, 'p' => '0000')));
         $this->display();
     }
+    public function push(){
+        $Good = D('Goods');
+        import('ORG.Util.Page');
+        $lat = addslashes(cookie('lat'));
+        $lng = addslashes(cookie('lng'));
+        if (empty($lat) || empty($lng)) {
+            $lat = $this->city['lat'];
+            $lng = $this->city['lng'];
+        }
+        $map = array('audit' => 1, 'closed' => 0, 'end_date' => array('EGT', TODAY));
+        $count = $Good->where($map)->count();
+        $Page = new Page($count, 3);
+        $show = $Page->show();
+        $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
+        $p = $_GET[$var];
+        if ($Page->totalPages < $p) {
+            die('0');
+        }
+        $map['shoplx']='53';
+        $Goods = $Good->order('orderby asc')->where($map)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+//        foreach ($Goods as $k => $val) {
+//            $Goods[$k]['d'] = getDistance($lat, $lng, $val['lat'], $val['lng']);
+//        }
+        $this->assign('goods', $Goods);
+        $this->assign('page', $show);
+        $this->display();
+    }
 }

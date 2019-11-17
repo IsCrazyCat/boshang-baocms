@@ -7,12 +7,11 @@
 				<span class="distance"><{$item.d}></span>	
 			</h5>	
 			<div class="info">	
-                <if condition="!empty($item['score'])"> <!--如果价格等于0-->
-					<span class="ui-starbar"><span style="width:<{:round($item['score']*2,2)}>%"></span></span>
-                <else/>
-                	暂无评价
-                </if>
-                
+<!--                <if condition="!empty($item['score'])"> &lt;!&ndash;如果价格等于0&ndash;&gt;-->
+<!--					<span class="ui-starbar"><span style="width:<{:round($item['score']*2,2)}>%"></span></span>-->
+<!--                <else/>-->
+<!--                	暂无评价-->
+<!--                </if>-->
                 <php>$shopyouhui = D('Shopyouhui')->where(array('shop_id'=>$item['shop_id']))->find();</php>
                 <if condition="!empty($shopyouhui)">
                 	<if condition="$shopyouhui['type_id'] EQ 0">

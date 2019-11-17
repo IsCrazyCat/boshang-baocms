@@ -165,4 +165,25 @@ class DistributionAction extends CommonAction{
         $this->assign('fuser', $fuser);
         $this->display();
     }
+
+    /**
+     * 作弊直接生成分销二维码
+     */
+    public function qrcode_bad(){
+        if (empty($this->uid)) {
+            header("Location: " . U('Wap/passport/login'));
+            die;
+        }
+        $user = D('Users')->find($this->uid);
+        $file =$user['distribution_qrcode_url'];
+        if(empty($file)){
+            //没有分销二维码，则生成二维码
+            $token = 'fuid_' . $this->uid;
+            $url = U('Wap/passport/register', array('fuid' => $this->uid));
+            $file = baoQrCode($token, $url);
+            D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
+        }
+        header("Location: " . U('User/distribution/qrcode'));
+        die;
+    }
 }

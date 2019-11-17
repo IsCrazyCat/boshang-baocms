@@ -133,7 +133,7 @@ class TuanAction extends CommonAction{
                 $orderby = array('orderby' => 'asc', 'tuan_id' => 'desc');
                 break;
             default:
-                $orderby = array('sold_num' => 'desc');
+                $orderby = array('orderby' => 'asc');
                 break;
         }
         $count = $Tuan->where($map)->count();
