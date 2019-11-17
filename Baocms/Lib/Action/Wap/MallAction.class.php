@@ -145,7 +145,7 @@ class MallAction extends CommonAction{
             $this->error('请选择产品');
         }
         if (!($detail = D('Goods')->find($goods_id))) {
-            $this->error('改商品不存在');
+            $this->error('该商品不存在');
         }
         if ($detail['closed'] != 0 || $detail['audit'] != 1) {
             $this->error('该商品不存在');

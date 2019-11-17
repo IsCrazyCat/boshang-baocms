@@ -64,7 +64,8 @@
 		<div class="blank-10 bg"></div>
 		<div class="detail-info">
 			<h1>优惠劵详情</h1>
-            <p>满减说明：满&yen;<{:round($detail['full_price']/100,2)}>元&nbsp;&nbsp;减&yen;<{:round($detail['reduce_price']/100,2)}>元</p>
+<!--            <p>满减说明：满&yen;<{:round($detail['full_price']/100,2)}>元&nbsp;&nbsp;减&yen;<{:round($detail['reduce_price']/100,2)}>元</p>-->
+			<p>满减说明：浡莱克会员减免工时费和滤芯费</p>
             <p>可领数量：<{$detail.num}>张</p>
             <p>单人可领：<{$detail.limit_num}>张</p>
             <p>剩余数量：<{$detail['num']}>张</p>
@@ -88,13 +89,13 @@
 			<p>商家地址：<{$shop.addr}></p>
 			<p>位置导航：<a href="<{:U('shop/gps',array('shop_id'=>$detail['shop_id']))}>">到这里去</a></p>
 		</div>
-		<div class="blank-10 bg"></div>
-		<div class="detail-con">
-			<div class="con-hd">使用指南</div>
-			<div class="con-bd">
-				<img src="/static/default/wap/image/coupon/method.png" />
-			</div>
-		</div>		
+<!--		<div class="blank-10 bg"></div>-->
+<!--		<div class="detail-con">-->
+<!--			<div class="con-hd">使用指南</div>-->
+<!--			<div class="con-bd">-->
+<!--				<img src="/static/default/wap/image/coupon/method.png" />-->
+<!--			</div>-->
+<!--		</div>		-->
 	</div>
 
 

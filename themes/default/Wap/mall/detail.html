@@ -252,7 +252,7 @@
      <if condition="$detail['num'] elt 0"> 
    	 <div class="buy-now "><a>暂无库存</a></div>
      <else/>
-     <div class="buy-now"><a href="javascript:" class="buy_now">立即购买</a></div>
+     <div class="buy-now"><a href="javascript:" class="buy_now" >立即购买</a></div>
      </if>
 </div>
 
@@ -289,7 +289,7 @@
                                             window.location.href=data.url;
                                         },2000);  
                                     } else {
-                                       layer.msg(data.msg);
+                                       layer.msg(data);
                                     }
                                 }, 'json');
 

@@ -37,9 +37,9 @@ class WeixinAction extends CommonAction {
 			$this->error('没有找到对应的团购券信息！', U('worker/index/index'));
 		}
 		//
-		if($data['shop_id'] != $worker['shop_id'] || $worker['tuan']!=1){
-			$this->error('您不属于该公司的授权员工，无法进行管理！', U('worker/index/index'));
-		}
+//		if($data['shop_id'] != $worker['shop_id'] || $worker['tuan']!=1){
+//			$this->error('您不属于该公司的授权员工，无法进行管理！', U('worker/index/index'));
+//		}
 		$shop = D('Shop')->find(array('where' => array('shop_id' => $data['shop_id'])));
 		if ((int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
 			

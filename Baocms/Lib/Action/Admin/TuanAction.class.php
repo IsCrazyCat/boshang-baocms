@@ -106,6 +106,10 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
             }
             $data['thumb'] = serialize($thumb);
             if ($tuan_id = $obj->add($data)) {
+                if(!empty($data['car_ids'])){
+                    //关联车辆ID
+                    $this->addCarTuan($tuan_id,$data['car_ids']);
+                }
                 $wei_pic = D('Weixin')->getCode($tuan_id, 2); //抢购类型是2
                 $obj->save(array('tuan_id' => $tuan_id, 'wei_pic' => $wei_pic));
                 D('Tuandetails')->add(array('tuan_id' => $tuan_id, 'details' => $details, 'instructions' => $instructions));
@@ -456,5 +460,14 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
             $this->baoError('请选择要取消秒杀的抢购');
         }
     }
-
+    public function addCarTuan($tuan_id,$car_ids){
+        $car_ids = explode(",",$car_ids);
+        $data['good_id'] = $tuan_id;
+        $data['create_time']=time();
+        D('Cartuan')->where(array('tuan_id'=>$tuan_id))->delete();
+        foreach ($car_ids as $key=>$id){
+            $data['car_id'] = $id;
+            D('Cartuan')->add($data);
+        }
+    }
 }

@@ -25,7 +25,7 @@ class CouponModel extends CommonModel{
 			if(!empty($coupon_download_list[0])){
 				$coupon= D('Coupon')->where(array('coupon_id'=>$coupon_download_list[0]['coupon_id'],'closed'=>0, 'expire_date' => array('EGT', TODAY)))->find();
 				if(!empty($coupon)){
-					if($order['total_price'] > $coupon['full_price']){
+					if($order['total_price'] >= $coupon['full_price']){
 						$download_id = $coupon_download_list[0]['download_id'];
 						$coupon['download_id'] = $download_id;
 						if($coupon['reduce_price'] > 0){
@@ -73,7 +73,7 @@ class CouponModel extends CommonModel{
             if(!empty($coupon_download_list[0])){
                 $coupon= D('Coupon')->where(array('coupon_id'=>$coupon_download_list[0]['coupon_id'],'closed'=>0, 'expire_date' => array('EGT', TODAY)))->find();
                 if(!empty($coupon)){
-                    if($tuan['tuan_price'] > $coupon['full_price']){
+                    if($tuan['tuan_price'] >= $coupon['full_price']){
                         $download_id = $coupon_download_list[0]['download_id'];
                         $coupon['download_id'] = $download_id;
                         if($coupon['reduce_price'] > 0){

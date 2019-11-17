@@ -79,6 +79,13 @@ class DistributionAction extends CommonAction{
 		$this->assign('level', $level);
 		$this->assign('nextpage', LinkTo('distribution/subordinateloaddata',array('level'=>$level,'t' => NOW_TIME, 'p' => '0000')));
         $this->mobile_title = '优惠买单';
+        $user = D('Users');
+        $map1 = array('closed' => 0, 'fuid1' => $this->uid);
+        $count1 = $user->where($map1)->count();
+        $map2 = array('closed' => 0, 'fuid2' => $this->uid);
+        $count2 = $user->where($map2)->count();
+        $this->assign('count1',$count1);
+        $this->assign('count2',$count2);
 		$this->display(); // 输出模板		
     }
 	
@@ -89,6 +96,7 @@ class DistributionAction extends CommonAction{
         }
         $user = D('Users');
         import('ORG.Util.Page');
+
         $map = array('closed' => 0, 'fuid' . $level => $this->uid);
         $count = $user->where($map)->count();
         $Page = new Page($count, 8);
