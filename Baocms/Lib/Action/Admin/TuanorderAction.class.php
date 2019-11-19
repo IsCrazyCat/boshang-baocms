@@ -99,7 +99,7 @@ class TuanorderAction extends CommonAction
                 }
                 $this->baoSuccess('删除成功！', U('tuanorder/index'));
             }
-            $this->baoError('请选择要删除的抢购订单');
+            $this->baoError('请选择要删除的套餐订单');
         }
     }
 }

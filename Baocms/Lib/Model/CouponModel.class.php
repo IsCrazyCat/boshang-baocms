@@ -49,7 +49,7 @@ class CouponModel extends CommonModel{
 		}
 		return false;	
 	}
-    //获取抢购用户的优惠劵返回优惠劵的详情
+    //获取套餐用户的优惠劵返回优惠劵的详情
     public function Obtain_Coupon_tuan($tuan_id,$uid){
         if(!empty($tuan_id)){
             $tuan = D('Tuan')->where(array('tuan_id'=>$tuan_id,'closed'=>0,'status'=>0))->find();//取得订单的ID
@@ -120,7 +120,7 @@ class CouponModel extends CommonModel{
 			}
 		}
 	}
-    //获取抢购满减的价格
+    //获取套餐满减的价格
     public function Obtain_Coupon_Price_tuan($tuan_order_id,$download_id){
         if(!empty($tuan_order_id)){
             $Tuanorder = D('TuanOrder')->where(array('order_id'=>$tuan_order_id,'closed'=>0))->find();//订单总额大于优惠劵的满减条件

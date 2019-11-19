@@ -62,7 +62,7 @@
         <if condition="!empty($SHOPGRADE['is_tuan'])">
             <li>
                 <a href="<{:U('tuan/order')}>"><span class="icon-tags"></span>
-                    抢购
+                    套餐
                     <font>
                         <if condition="$counts['tuan_order_code_is_used'] gt 0">
                             待验<{$counts['tuan_order_code_is_used']}>单
@@ -71,7 +71,7 @@
                             ，已验<{$counts['tuan_order_code_is_used_ture']}>单
                         </if>
                         <if condition="$counts['tuan'] gt 0">
-                            ，抢购<{$counts['tuan']}>单
+                            ，套餐<{$counts['tuan']}>单
                         </if>
                         <if condition="$counts['tuan_audit'] gt 0">
                             ，待审<b><{$counts['tuan_audit']}></b>单

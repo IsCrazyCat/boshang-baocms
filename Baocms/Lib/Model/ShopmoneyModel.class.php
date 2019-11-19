@@ -10,7 +10,7 @@ class ShopmoneyModel extends CommonModel{
         return array(
 			'goods' => '商城',
 			'appoint' => '家政',
-			'tuan' => '抢购',
+			'tuan' => '套餐',
 			'ele' => '外卖',
 			'booking'  => '订座',
 			'breaks'=>'优惠买单',

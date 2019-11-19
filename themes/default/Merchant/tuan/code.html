@@ -4,7 +4,7 @@
 </style>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">抢购</a> > <a>抢购劵列表</a></li>
+        <li><a href="#">商家管理</a> > <a href="">套餐</a> > <a>套餐劵列表</a></li>
     </ul>
 </div>
 <div class="tuan_content">
@@ -12,7 +12,7 @@
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
             <div class="left tuan_topser_l">
-            编号：<input type="text" placeholder="抢购劵密码或者编号" name="keyword" value="<{$keyword}>"  class="radius3 seleFl" />
+            编号：<input type="text" placeholder="套餐劵密码或者编号" name="keyword" value="<{$keyword}>"  class="radius3 seleFl" />
             状态：<select name="st" class="seleFl w80">
                    <option value="999">请选择</option>
                    <option <eq name="st" value="1">selected="selected"</eq>  value="1">正在退款</option>
@@ -20,7 +20,7 @@
                 </select>
             <input type="submit" style="margin-left:10px;" class="radius3 sjgl_an tuan_topbt" value="搜 索"/>
             </div>
-            <div class="right tuan_topfb_r"><a class="radius3 sjgl_an tuan_topbt" target="main_frm" href="<{:U('tuan/used')}>">抢购劵验证+</a></div>
+            <div class="right tuan_topfb_r"><a class="radius3 sjgl_an tuan_topbt" target="main_frm" href="<{:U('tuan/used')}>">套餐劵验证+</a></div>
         </div>
     </div>
     </form>
@@ -28,7 +28,7 @@
     <table class="tuan_table" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr style="background-color:#eee;">
        			<td>编号</td>
-                <td>抢购名称</td>
+                <td>套餐名称</td>
                 <td>原始订单号</td>
                 <td>验证码</td>
                 <td>下单用户</td>

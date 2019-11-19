@@ -10,7 +10,7 @@ class AdsiteModel extends CommonModel {
     public function getPlace() {
         return array(
             1 => 'PC首页',
-            2 => 'PC抢购',
+            2 => 'PC套餐',
             3 => 'PC活动',
             4 => 'PC新版家政/文章资讯',
             5 => 'PC商城',
@@ -23,7 +23,7 @@ class AdsiteModel extends CommonModel {
             12 => 'PC一元云购',
             13 => 'PC贴吧',
             14 => '手机首页',
-            15 => '手机抢购',
+            15 => '手机套餐',
             16 => '手机商家',
             17 => '手机活动',
             18 => '手机同城优购',

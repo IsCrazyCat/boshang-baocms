@@ -300,10 +300,10 @@ class DianpingAction extends CommonAction{
     public function tuandianping($order_id){
         $order_id = (int) $order_id;
         if (!($detail = D('Tuanorder')->find($order_id))) {
-            $this->baoError('没有该抢购');
+            $this->baoError('没有该套餐');
         } else {
             if ($detail['user_id'] != $this->uid) {
-                $this->baoError('不要评价别人的抢购');
+                $this->baoError('不要评价别人的套餐');
                 die;
             }
         }
@@ -365,13 +365,13 @@ class DianpingAction extends CommonAction{
         $obj = D('Tuandianping');
         if ($this->_Post()) {
             if (!($detail = $obj->find($order_id))) {
-                $this->baoError('请选择要编辑的抢购点评');
+                $this->baoError('请选择要编辑的套餐点评');
             }
             if (!($detail = $obj->find($order_id))) {
-                $this->baoError('没有该抢购点评');
+                $this->baoError('没有该套餐点评');
             } else {
                 if ($detail['user_id'] != $this->uid) {
-                    $this->baoError('不要编辑别人的抢购');
+                    $this->baoError('不要编辑别人的套餐');
                 }
                 if ($detail['show_date'] < '$today 00:00:00') {
                     $this->baoError('点评已过期');

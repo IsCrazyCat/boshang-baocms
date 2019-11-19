@@ -9,7 +9,7 @@
 			<a class="top-addr" href="<{:u('index/index')}>"><i class="icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			抢购管理
+			套餐管理
 		</div>
 		<div class="top-share">
         <a href="<{:U('tuan/create')}>" class="top-addr icon-plus"> 上单</a>
@@ -22,7 +22,7 @@
 				<div class="field">
 					<div class="input-group">
 						<span class="addbtn"><button type="button" class="button icon-search"></button></span>
-						<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="抢购名称"  />
+						<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="套餐名称"  />
 						<span class="addbtn"><button type="submit" class="button">搜索</button></span>
 					</div>
 				</div>
@@ -35,10 +35,10 @@
 <style>ul { padding-left: 0px;}</style>
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-        <li style="width: 25%;"><a href="<{:U('tuan/index')}>" class="on">正在抢购</a></li>
-        <li style="width: 25%;"><a href="<{:U('tuan/history')}>">往期抢购</a></li>
+        <li style="width: 25%;"><a href="<{:U('tuan/index')}>" class="on">正在套餐</a></li>
+        <li style="width: 25%;"><a href="<{:U('tuan/history')}>">往期套餐</a></li>
         <li style="width: 25%;"><a href="<{:U('tuan/order')}>">订单管理</a></li>
-        <li style="width: 25%;"><a href="<{:U('tuan/used')}>">抢购券</a></li>
+        <li style="width: 25%;"><a href="<{:U('tuan/used')}>">套餐码</a></li>
 </ul>
 
 
@@ -56,7 +56,7 @@
       <div class="x8">
             <p class="text-small">标题：<{$var.title}></p>
             <p class="text-small">
-               <span class="text-dot1 margin-right">抢购价：<span class="text-dot"><{$var['tuan_price']}></span>&nbsp;  
+               <span class="text-dot1 margin-right">套餐价：<span class="text-dot"><{$var['tuan_price']}></span>&nbsp;
                结算价：<{$var['settlement_price']}></span>
             </p>
             <p class="text-small">结束时间：<{$var.end_date}>  &nbsp;&nbsp; 库存：<{$var.num}>  </p>

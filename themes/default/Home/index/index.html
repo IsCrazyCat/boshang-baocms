@@ -54,7 +54,7 @@
                 });
             });
         });
-		//首页抢购部分结束
+		//首页套餐部分结束
 		$(".sy_mall_tab a").each(function (e) {
             $(this).mouseover(function (event) {
                 $(".sy_mall_tab a").removeClass("on");
@@ -161,7 +161,7 @@
         </div>
         <ul class="sy_flsx">
             <li class="bg_1">
-                <h3><em class="ico ico_1"></em>热门抢购</h3>
+                <h3><em class="ico ico_1"></em>热门套餐</h3>
             <php>$i=0;</php>
             <foreach name="tuancates" item="item">
                 <eq name="item.is_hot" value="1">
@@ -329,21 +329,21 @@
 
    
 
-   <!--首页抢购部分开始-->
+   <!--首页套餐部分开始-->
     <div class="sy_FloorBt" data="top_1" id="floor1">
-        <div class="left sy_FloorBtz"><span class="bt cl_1">热门抢购</span>
+        <div class="left sy_FloorBtz"><span class="bt cl_1">热门套餐</span>
             <span class="sy_buy_tab">
                 <php>$i=0;</php>       
                 <foreach name="tuancates" item="item2">
                     <eq name="item2.parent_id" value="0"> 
                     <php>$i++;if($i <= 8){</php>
-                    <a target="_blank" <php>if($i == 1) echo 'class="on"';</php> title="<{$item2.cate_name}>抢购" href="<{:U('tuan/index',array('cat'=>$item2['cate_id']))}>"><{$item2.cate_name}></a>
+                    <a target="_blank" <php>if($i == 1) echo 'class="on"';</php> title="<{$item2.cate_name}>套餐" href="<{:U('tuan/index',array('cat'=>$item2['cate_id']))}>"><{$item2.cate_name}></a>
                     <php>}</php>    
                     </eq>
                 </foreach>
             </span>
         </div>
-        <div class="right"><a  title="更多抢购" target="_blank" href="<{:U('tuan/index')}>">更多&gt;&gt;</a></div>
+        <div class="right"><a  title="更多套餐" target="_blank" href="<{:U('tuan/index')}>">更多&gt;&gt;</a></div>
     </div>
 
 
@@ -404,7 +404,7 @@
                              已结束
                             </if>
                             </span>                          
-                            <span class="right"><a class="sy_hottjJd" target="_blank" href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>" ><if condition="$item['end_date'] gt $today">立即抢购<else/>已结束</if></a></span></p>
+                            <span class="right"><a class="sy_hottjJd" target="_blank" href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>" ><if condition="$item['end_date'] gt $today">立即购买<else/>已结束</if></a></span></p>
 
                             <div class="sy_sjcpBq"><if condition="$item['freebook'] eq 1"><span class="sy_sjcpBq1">免预约</span></if><if condition="$item['is_new'] eq 1"><span class="sy_sjcpBq2">新单</span></if><if condition="$item['is_hot'] eq 1"><span class="sy_sjcpBq3">热门</span></if><if condition="$item['is_chose'] eq 1"><span class="sy_sjcpBq4">精选</span></if></div>
                             <div class="sy_sjcpLiDw">
@@ -418,14 +418,14 @@
                           </script>
                                     <div class="sy_sjcpDwNr" style="padding-top:10px;">
                                         <if condition="$shops[$item['shop_id']]['fans_num'] eq null">
-                                        <p><{$item.views}>人正在抢购</p>
+                                        <p><{$item.views}>人正在套餐</p>
                                         <else/>
                                         <p>此商家已有<span><{$shops[$item['shop_id']]['fans_num']}></span>个粉丝 </p>
                                         </if>
                                         <a href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>"><div class="sy_sjcpwx"  id="tuan_code_<{$item.tuan_id}>"></div></a>
                                         <div class="sy_sjcpCz">
                        <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>">商家<em>&nbsp;</em></a>
-                       <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id'],'act'=>'tuan'))}>">抢购<em>&nbsp;</em></a>
+                       <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id'],'act'=>'tuan'))}>">套餐<em>&nbsp;</em></a>
                        <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id'],'act'=>'ping'))}>">点评<em>&nbsp;</em></a>
                        <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id'],'act'=>'map'))}>"><em>&nbsp;</em></a>
                                         </div>
@@ -441,7 +441,7 @@
            </eq>
           </foreach>
    </div>             
- <!--首页抢购部分结束-->       
+ <!--首页套餐部分结束-->
 
     <!--首页商城部分开始-->
     <div class="sy_FloorBt" data="top_1" id="floor1">
@@ -451,7 +451,7 @@
                 <foreach name="goodscates" item="item3">
                     <eq name="item3.parent_id" value="0"> 
                     <php>$i++;if($i <= 10){</php>
-                    <a target="_blank" <php>if($i == 1) echo 'class="on"';</php> title="<{$item2.cate_name}>抢购" href="<{:LinkTo('mall/index',array('cat'=>$item3['cate_id']))}>"><{$item3.cate_name}></a>
+                    <a target="_blank" <php>if($i == 1) echo 'class="on"';</php> title="<{$item2.cate_name}>套餐" href="<{:LinkTo('mall/index',array('cat'=>$item3['cate_id']))}>"><{$item3.cate_name}></a>
                     <php>}</php>    
                     </eq>
                 </foreach>

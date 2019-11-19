@@ -47,7 +47,7 @@ class WeixintmplModel extends CommonModel{
     }
 	
 	
-	//抢购下单微信通知
+	//套餐下单微信通知
     public function weixin_notice_tuan_user($order_id,$user_id,$type){
             $Tuanorder = D('Tuanorder')->find($order_id);
 		    $Tuan = D('Tuan')->find($order['tuan_id']);
@@ -388,7 +388,7 @@ class WeixintmplModel extends CommonModel{
 		   $logs = D('Paymentlogs')->find($log_id);
 		   $config_site_url = 'http://' . $_SERVER['HTTP_HOST'] . '/user/';
 		   if($logs['type'] == 'tuan'){
-			  $type_name = '抢购'; 
+			  $type_name = '套餐'; 
 			  $url = $config_site_url.'tuan/detail/order_id/'.$logs['order_id'].'/';
 		   }elseif($logs['type'] == 'ele'){
 			  $type_name = '订餐';  
@@ -459,7 +459,7 @@ class WeixintmplModel extends CommonModel{
 			  $Tuan = D('Tuan')->find($Tuanorder['tuan_id']);
 			  $Shop = D('Shop')->find($Tuanorder['shop_id']);
 			  $Users = D('Users')->find($Tuanorder['user_id']);
-			  $type_name = '抢购'; 
+			  $type_name = '套餐'; 
 			  $url = $config_site_url.'tuan/detail/order_id/'.$logs['order_id'].'/';
 			  $shop_name = $Shop['shop_name'];
 			  $order_goods = $Tuan['title'];

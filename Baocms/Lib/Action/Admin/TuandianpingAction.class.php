@@ -81,10 +81,10 @@ class TuandianpingAction extends CommonAction {
         }
         $data['order_id'] = (int) $data['order_id'];
         if (empty($data['order_id'])) {
-            $this->baoError('抢购订单不能为空');
+            $this->baoError('套餐订单不能为空');
         }
         if (!$order = D('Tuanorder')->find($data['order_id'])) {
-            $this->baoError('抢购订单不存在');
+            $this->baoError('套餐订单不存在');
         }
         $data['shop_id'] = (int) $order['shop_id'];
         $data['tuan_id'] = (int) $order['tuan_id'];
@@ -120,7 +120,7 @@ class TuandianpingAction extends CommonAction {
         if ($order_id = (int) $order_id) {
             $obj = D('Tuandianping');
             if (!$detail = $obj->find($order_id)) {
-                $this->baoError('请选择要编辑的抢购点评');
+                $this->baoError('请选择要编辑的套餐点评');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();

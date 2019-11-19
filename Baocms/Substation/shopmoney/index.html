@@ -7,7 +7,7 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>如果订单是非实物订单，那么需要在商家确认抢购券消费的时候资金才会转入到商家账户</p>
+    <p class="attention"><span>注意：</span>如果订单是非实物订单，那么需要在商家确认套餐码消费的时候资金才会转入到商家账户</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
@@ -77,7 +77,7 @@
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                         <td><{$var.create_ip}></td>
                         <td>
-                        <if condition="$var['type'] eq 'tuan'">抢购
+                        <if condition="$var['type'] eq 'tuan'">套餐
                         <elseif condition="$var['type'] eq 'goods'"/>购物
                         <elseif condition="$var['type'] eq 'ele'"/>订餐
                         <elseif condition="$var['type'] eq 'breaks'"/>优惠买单

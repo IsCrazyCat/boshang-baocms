@@ -243,7 +243,7 @@ class PaymentModel extends CommonModel {
 					));
 					return true;
 
-                } elseif ($logs['type'] == 'tuan') {//抢购都是发送抢购券！
+                } elseif ($logs['type'] == 'tuan') {//套餐都是发送套餐码！
                     $member = D('Users') -> find($logs['user_id']);
 					$codes = array();
 					$obj = D('Tuancode');
@@ -284,7 +284,7 @@ class PaymentModel extends CommonModel {
 					D('Tongji') -> log(1, $logs['need_pay']);//统计//分销
 					$tuan_is_profit = D('Shop') -> find($order['shop_id']);
 					if($tuan_is_profit['is_profit'] == 1){
-						D('Userprofitlogs')->profitFusers(0, $logs['user_id'], $logs['order_id']);//单个抢购奖励分成和升级等级
+						D('Userprofitlogs')->profitFusers(0, $logs['user_id'], $logs['order_id']);//单个套餐奖励分成和升级等级
 					}
                     D('Coupon')->change_download_id_is_used($logs['order_id']);//如果有优惠劵就修改优惠劵的状态
 					return true;

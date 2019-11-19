@@ -3,7 +3,7 @@
     
 		<img class="pic" src="<{:config_img($item['photo'])}>" />	
 		<div class="des">	
-			<h5><{:msubstr($item['shop_name'],0,6,'utf-8',false)}> &nbsp;<if condition="$item['is_renzheng'] eq 1"><span class="renzheng">认证</span></if>
+			<h5><{:msubstr($item['shop_name'],0,20,'utf-8',false)}> &nbsp;<if condition="$item['is_renzheng'] eq 1"><span class="renzheng">认证</span></if>
 				<span class="distance"><{$item.d}></span>	
 			</h5>	
 			<div class="info">	

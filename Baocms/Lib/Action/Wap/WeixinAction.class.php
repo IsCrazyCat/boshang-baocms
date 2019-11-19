@@ -15,7 +15,7 @@ class WeixinAction extends CommonAction {
             $this->error('签名不正确');
         }
         if (!$data = D('Tuancode')->find($code_id)) {
-            $this->error('抢购券不存在！');
+            $this->error('套餐码不存在！');
         }
         if ((int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
             $ip = get_client_ip();
@@ -29,7 +29,7 @@ class WeixinAction extends CommonAction {
                     ));
                     $obj->save(array('code_id' => array('used_time' => NOW_TIME, 'used_ip' => $ip))); //拆分2次更新是保障并发情况下安全问题
                     $this->assign('waitSecond', 60);
-                    $this->success("该抢购券为到店付抢购券，该用户需要额外付消费款给您！", U('index/index'));
+                    $this->success("该套餐码为到店付套餐码，该用户需要额外付消费款给您！", U('index/index'));
                 } else {
                     //增加MONEY 的过程 稍后补充
                    $data['settlement_price'] =  D('Quanming')->quanming($data['user_id'],$data['settlement_price'],'tuan'); //扣去全民营销
@@ -39,12 +39,12 @@ class WeixinAction extends CommonAction {
                         'create_ip' => $ip,
                         'create_time' => NOW_TIME,
                         'order_id' => $data['order_id'],
-                        'intro' => '抢购消费'.$data['order_id'],
+                        'intro' => '套餐消费'.$data['order_id'],
                     ));
                     $shop = D('Shop')->find($data['shop_id']);
-                    D('Users')->addMoney($shop['user_id'], $data['settlement_price'], '抢购消费'.$data['order_id']);
+                    D('Users')->addMoney($shop['user_id'], $data['settlement_price'], '套餐消费'.$data['order_id']);
                     $obj->save(array('code_id' => array('used_time' => NOW_TIME, 'used_ip' => $ip))); //拆分2次更新是保障并发情况下安全问题
-                    D('Users')->gouwu($data['user_id'],$data['price'],'抢购券消费');
+                    D('Users')->gouwu($data['user_id'],$data['price'],'套餐码消费');
                     
                     $this->assign('waitSecond', 60);
                     $this->success("恭喜您成功使用了该消费券！", U('index/index'));
@@ -52,7 +52,7 @@ class WeixinAction extends CommonAction {
             }
         }
 
-        $this->error('该抢购券无效');
+        $this->error('该套餐码无效');
     }
 
 }

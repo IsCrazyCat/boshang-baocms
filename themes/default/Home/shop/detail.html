@@ -39,7 +39,7 @@
                 <li><a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>">商家介绍</a></li>
                 <li><a href="<{:U('shop/photo',array('shop_id'=>$detail['shop_id']))}>">相册</a></li>
                 <li><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">商品</a></li>
-                <li><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">抢购</a></li>
+                <li><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">套餐</a></li>
                 <li><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>">优惠劵</a></li>
                 <li><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>">新闻</a></li>
                 <li><a href="<{:U('shop/ping',array('shop_id'=>$detail['shop_id']))}>">点评</a></li>
@@ -91,7 +91,7 @@
                 </div>
               </calldata> 
               <!--商品结束--> 
-              <!--抢购开始-->
+              <!--套餐开始-->
               <calldata mdl="Tuan" where="shop_id = {$detail['shop_id']} AND audit=1 AND closed=0" limit="0,30"  cache="21600" order="tuan_id desc">
                 <div class="item big">
                    <p class="title">
@@ -100,12 +100,12 @@
                     <a class="block-link" href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>" target="_blank">
                     <img class="pic" src="<{:config_img($item['photo'])}>" title="<{$item.title}>"></a>
                     <span class="price"><em>&yen;</em><{:round($item['tuan_price']/100,2)}></span>
-                    <del class="del-price">&yen;<{:round($item['price']/100,2)}></del><i class="tag tag-tuan">抢购</i>
+                    <del class="del-price">&yen;<{:round($item['price']/100,2)}></del><i class="tag tag-tuan">套餐</i>
                     <p class="title">结束时间 : <{$item['end_date']}></p>
                     <span class="sold-count">已售 <{$item['sold_num']}></span>
                 </div>
               </calldata> 
-              <!--抢购结束--> 
+              <!--套餐结束-->
               
               <!--优惠劵开始-->
               <calldata mdl="Coupon" where="shop_id = {$detail['shop_id']} AND audit=1 AND closed=0" limit="0,30"  cache="21600" order="coupon_id desc">

@@ -80,7 +80,7 @@ class CommonAction extends Action{
         $this->assign("act", ACTION_NAME);
         $this->assign("is_weixin", IS_WEIXIN);
 		
-		D('Tuanorder')->chenk_guoqi_time();//检测抢购过期时间
+		D('Tuanorder')->chenk_guoqi_time();//检测套餐过期时间
 		
         $this->msg();
         $this->assign('profit', $profit = $this->_CONFIG['profit']['profit']);

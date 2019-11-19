@@ -43,14 +43,14 @@ class CheckAction extends CommonAction
                 }
             }
             if (empty($res)) {
-                $this->baoMsg('请输入抢购券！');
+                $this->baoMsg('请输入套餐码！');
             }
             $obj = D('Tuancode');
             $shopmoney = D('Shopmoney');
             $return = array();
             $ip = get_client_ip();
             if (count($code) > 10) {
-                $this->baoMsg("一次最多验证10条抢购券!");
+                $this->baoMsg("一次最多验证10条套餐码!");
             }
             $userobj = D('Users');
             foreach ($code as $key => $var) {
@@ -60,7 +60,7 @@ class CheckAction extends CommonAction
                     if (!empty($data) && $data['shop_id'] == $this->shop_id && ($data['branch_id'] == $this->branch_id || empty($data['branch_id'])) && (int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
                         if ($obj->save(array('code_id' => $data['code_id'], 'is_used' => 1))) {
                             if (!empty($data['price'])) {
-                                $data['intro'] = '抢购消费' . $data['order_id'];
+                                $data['intro'] = '套餐消费' . $data['order_id'];
                                 $data['settlement_price'] = D('Quanming')->quanming($data['user_id'], $data['settlement_price'], 'tuan');
                                 $shopmoney->add(array('shop_id' => $data['shop_id'], 'money' => $data['settlement_price'], 'create_ip' => $ip, 'create_time' => NOW_TIME, 'order_id' => $data['order_id'], 'intro' => $data['intro']));
                                 $return[$var] = $var;
@@ -68,11 +68,11 @@ class CheckAction extends CommonAction
                                 $userobj->gouwu($data['user_id'], $data['price'], '团购消费');
                                 echo '<script>parent.used(' . $key . ',"√验证成功",1);</script>';
                             } else {
-                                echo '<script>parent.used(' . $key . ',"√到店付抢购券验证成功",2);</script>';
+                                echo '<script>parent.used(' . $key . ',"√到店付套餐码验证成功",2);</script>';
                             }
                         }
                     } else {
-                        echo '<script>parent.used(' . $key . ',"X该抢购券无效",3);</script>';
+                        echo '<script>parent.used(' . $key . ',"X该套餐码无效",3);</script>';
                     }
                 }
             }

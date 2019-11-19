@@ -106,6 +106,7 @@ class CommonAction extends Action
         //对微信用户是否登录进行判断
 			if ($this->_CONFIG['site']['weixin'] == 1) {
 				if ($is_weixin && !empty($this->_CONFIG['weixin']['appid'])) {
+
 					if (!$this->uid && $act != 'wxstart') {
 						$state = md5(uniqid(rand(), TRUE));
 						session('state', $state);
@@ -122,7 +123,31 @@ class CommonAction extends Action
 					}
 				}
 			}
-		}
+		}else{
+		    $user = D('Users')->find($this->uid);
+            if ($this->_CONFIG['site']['weixin'] == 1) {
+                if ($is_weixin && !empty($this->_CONFIG['weixin']['appid'])) {
+                    $connect = D('Connect')->where(array('uid'=>$this->uid));
+                    if(empty($connect)){
+
+                    }
+                    if (!$this->uid && $act != 'wxstart') {
+                        $state = md5(uniqid(rand(), TRUE));
+                        session('state', $state);
+                        if (!empty($_SERVER['REQUEST_URI'])) {
+                            $backurl = $_SERVER['REQUEST_URI'];
+                        } else {
+                            $backurl = U('index/index');
+                        }
+                        session('backurl', $backurl);
+                        $login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->_CONFIG['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
+                        header("location:{$login_url}");
+                        echo $login_url;
+                        die;
+                    }
+                }
+            }
+        }
         $local = D('Near')->GetLocation();
         $this->assign('local', $local);
         $this->assign('CONFIG', $this->_CONFIG);

@@ -112,7 +112,7 @@ class OrderAction extends CommonAction{
         $order_id = I('order_id', 0, 'trim,intval');
         $obj = D('Tuanorder');
         if (!($detail = D('Tuanorder')->find($order_id))) {
-            $this->baoError('抢购不存在', U('order/index'));
+            $this->baoError('套餐不存在', U('order/index'));
         }
         if ($detail['status'] == -1) {
             $Tuancode = D('Tuancode');
@@ -121,28 +121,28 @@ class OrderAction extends CommonAction{
             $maps['status'] = array('gt', 0);
             $tuan_code_status = $Tuancode->where($maps)->select();
             if (!empty($tuan_code_is_used)) {
-                $this->baoError('已有抢购劵验证不能取消订单');
+                $this->baoError('已有套餐劵验证不能取消订单');
             } elseif (!empty($tuan_code_status)) {
-                $this->baoError('已有抢购劵申请退款不行执行此操作');
+                $this->baoError('已有套餐劵申请退款不行执行此操作');
             } else {
                 $tuan_code = $Tuancode->where(array('order_id' => $order_id, 'status' => 0, 'is_used' => 0))->select();
                 foreach ($tuan_code as $k => $value) {
                     $Tuancode->save(array('code_id' => $value['code_id'], 'closed' => 1));
                 }
                 $obj->save(array('order_id' => $order_id, 'closed' => 1));
-                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消抢购订单' . $detail['order_id'] . '积分退还');
+                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消套餐订单' . $detail['order_id'] . '积分退还');
                 //返积分
                 $this->baoSuccess('取消订单成功!', U('tuan/index'));
             }
         } elseif ($detail['status'] != 0) {
             $this->baoSuccess('状态不正确', U('order/index'));
         } elseif ($detial['closed'] == 1) {
-            $this->baoSuccess('抢购已关闭', U('order/index'));
+            $this->baoSuccess('套餐已关闭', U('order/index'));
         } elseif ($detail['user_id'] != $this->uid) {
-            $this->baoSuccess('不能操作别人的抢购', U('order/index'));
+            $this->baoSuccess('不能操作别人的套餐', U('order/index'));
         } else {
             if ($obj->save(array('order_id' => $order_id, 'closed' => 1))) {
-                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消抢购订单' . $detail['order_id'] . '积分退还');
+                D('Users')->addIntegral($detail['user_id'], $detail['use_integral'], '取消套餐订单' . $detail['order_id'] . '积分退还');
                 //返积分
                 $this->baoSuccess('取消订单成功!', U('order/index'));
             } else {

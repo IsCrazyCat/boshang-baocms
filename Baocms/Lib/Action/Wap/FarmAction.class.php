@@ -223,7 +223,7 @@ class FarmAction extends CommonAction {
             
             $package = D('FarmPackage')->where(array('farm_id'=>$detail['farm_id']))->select();
             
-            //抢购
+            //套餐
             $tuan_list = D('Tuan')->where(array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', NOW),'bg_date' => array('ELT', NOW),'shop_id'=>$detail['shop_id']))->limit(2)->select();
             
             //其它农家

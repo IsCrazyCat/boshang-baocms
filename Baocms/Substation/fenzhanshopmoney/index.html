@@ -98,7 +98,7 @@
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                         <td><{$var.create_ip}></td>
                         <td>
-                        <if condition="$var['type'] eq 'tuan'">抢购
+                        <if condition="$var['type'] eq 'tuan'">套餐
                         <elseif condition="$var['type'] eq 'goods'"/>购物
                         <elseif condition="$var['type'] eq 'ele'"/>订餐
                         <elseif condition="$var['type'] eq 'breaks'"/>优惠买单

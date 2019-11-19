@@ -46,15 +46,15 @@ class TuanAction extends CommonAction{
             $tuan_id = $id;
         }
         if (empty($tuan_id)) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该套餐信息不存在！');
             die;
         }
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该套餐信息不存在！');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该套餐信息不存在！');
             die;
         } else {
             $cate_id = (int) $detail['cate_id'];
@@ -708,7 +708,7 @@ class TuanAction extends CommonAction{
                 D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,0);
                 $this->baoSuccess('恭喜您下单成功！', U('tuan/yes', array('code' => $codestr)));
             } else {
-                $this->baoError('您已经设置过该抢购为到店付了！');
+                $this->baoError('您已经设置过该套餐为到店付了！');
             }
         } else {
             $payment = D('Payment')->checkPayment($code);
@@ -741,7 +741,7 @@ class TuanAction extends CommonAction{
     public function yes($code){
         $code = htmlspecialchars($code);
         $this->assign('waitSecond', 10);
-        $this->success('恭喜您选择了到店支付，抢购券为:<font style="color:red;">' . $code . '</font>!到店消费时出示可以享受抢购价！', U('members/index'));
+        $this->success('恭喜您选择了到店支付，套餐码为:<font style="color:red;">' . $code . '</font>!到店消费时出示可以享受套餐价！', U('members/index'));
     }
     public function pay(){
         if (empty($this->uid)) {
@@ -756,7 +756,7 @@ class TuanAction extends CommonAction{
         }
         $tuan = D('Tuan')->find($order['tuan_id']);
         if (empty($tuan) || $tuan['closed'] == 1 || $tuan['end_date'] < TODAY) {
-            $this->error('该抢购不存在');
+            $this->error('该套餐不存在');
             die;
         }
         $this->assign('use_integral', $tuan['use_integral'] * $order['num']);

@@ -222,7 +222,7 @@ class HotelsAction extends CommonAction {
             if (!empty($comment_ids)) {
                 $this->assign('pics', D('Hotelcommentpics')->where(array('comment_id' => array('IN', $comment_ids)))->select());
             }
-            //抢购
+            //套餐
             $tuan_list = D('Tuan')->where(array('audit' => 1, 'closed' => 0, 'city_id' => $this->city_id, 'end_date' => array('EGT', NOW),'bg_date' => array('ELT', NOW),'shop_id'=>$detail['shop_id']))->limit(3)->select();
             $this->assign('tuan_list',$tuan_list);
             $this->assign('list', $list); // 赋值数据集

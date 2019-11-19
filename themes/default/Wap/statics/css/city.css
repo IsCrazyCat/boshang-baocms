@@ -535,7 +535,7 @@ a{color:black;}
 .apply-num{/*border-right:1px solid #dedede;*/padding-left:0.14rem; /*padding-right:0.12rem;*/}
 .apply-phone{border-left:1px solid #dedede;height:0.3rem;line-height:0.3rem;margin-top:0.06rem;padding-left:0.1rem;}
 
-/*************************************personal_coupon_one个人中心-抢购券*********************************************************/
+/*************************************personal_coupon_one个人中心-套餐码*********************************************************/
 #personal-coupon{bottom: 0.5rem; position: absolute; top: 0.9rem; width: 100%;}
 .coupon_nav li:first{border-bottom: 1px solid #dedede;}
 .send-out .coupon-list{ padding:0.1rem 0.1rem 0.05rem 0.1rem; background-color:#fff;border-top:1px solid #dedede;margin-top: 0.1rem;}
@@ -755,7 +755,7 @@ a{color:black;}
 #life .mall-form .mall-bt{color:black;font-size:0.16rem;}
 
 /**************************************community_index********************************************************/
-/*社区首页-限时抢购轮播开始*/
+/*社区首页-限时套餐轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -771,7 +771,7 @@ a{color:black;}
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时抢购轮播结束*/
+/*社区首页-限时套餐轮播结束*/
 .commu-top{font-size:0.15rem;border-bottom:1px solid #dedede;}
 .commu-top .commu-ig{width:0.23rem;height:0.2rem;background:url("../img/tp73.png") no-repeat;}
 .commu-ig2{width:0.23rem;height:0.2rem;background:url("../img/tp78.png") no-repeat;}
@@ -2203,7 +2203,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .hotSer_li a{display:block;	background-color:#fff;	border:1px solid #ccc;	text-align:center;	font-size: 0.16rem;	color: #666;	line-height: 0.34rem;	height:0.34rem;}
 /*搜索页结束*/
 
-/*社区首页-限时抢购轮播开始*/
+/*社区首页-限时套餐轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -2219,14 +2219,14 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时抢购轮播结束*/
+/*社区首页-限时套餐轮播结束*/
 
 /*商家列表页拨打电话代码开始*/
 .seller_tel_btn{bottom: -0.04rem;color: #666; display: block; font-size: 0.14rem;  line-height: 0.3rem;  position: absolute; right: 0.1rem;text-align: right;}
 .seller_tel_btn em{ padding:0.11rem !important; line-height:0.3rem; font-size:0; border-radius:2rem; background:#ff3c3c url(../img/icon-tel.png) no-repeat center center; background-size:60% auto; vertical-align:middle; height:0rem !important; margin-left:0.08rem;}
 /*商家列表页拨打电话代码开始*/
 
-/*抢购专题开始*/
+/*套餐专题开始*/
 .sjqg_special_content_box{ padding:0.5rem 0px; font-size:0.14rem;}
 .sjqg_special_banner{ width:100%; height:auto;}
 .sjqg_special_banner img{ width:100%; height:auto;}
@@ -2243,7 +2243,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .sjqg_special_btn_r{ width:30%; padding-top:0.08rem;}
 .sjqg_special_btn_r .btn{ display:inline-block; background-color:#ff3c3c; color:#fff; font-size:0.14rem; height:0.22rem; line-height:0.24rem; padding:0px 0.1rem; border-radius:0.03rem;}
 .sjqg_special_list_box .img .bq{ position:absolute; left:0; top:0; width:50%; height:auto;}
-/*抢购专题结束*/
+/*套餐专题结束*/
 /*******************************合并css_w样式结束*******************************/
 
 /**/

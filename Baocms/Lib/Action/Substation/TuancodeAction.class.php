@@ -202,7 +202,7 @@ class TuancodeAction extends CommonAction
                 }
                 $this->baoSuccess('删除成功！', U('Tuancode/index'));
             }
-            $this->baoError('请选择要删除的抢购券');
+            $this->baoError('请选择要删除的套餐码');
         }
     }
     public function overdueing($code_id = 0){
@@ -216,10 +216,10 @@ class TuancodeAction extends CommonAction
                 if (D('Tuancode')->save(array('code_id' => $code_id, 'status' => 2))) {
                     $obj = D('Users');
                     if ($detail['real_money'] > 0) {
-                        $obj->addMoney($detail['user_id'], $detail['real_money'], '抢购券退款:' . $detail['code']);
+                        $obj->addMoney($detail['user_id'], $detail['real_money'], '套餐码退款:' . $detail['code']);
                     }
                     if ($detail['real_integral'] > 0) {
-                        $obj->addIntegral($detail['user_id'], $detail['real_integral'], '抢购券退款:' . $detail['code']);
+                        $obj->addIntegral($detail['user_id'], $detail['real_integral'], '套餐码退款:' . $detail['code']);
                     }
                 }
             }
@@ -233,10 +233,10 @@ class TuancodeAction extends CommonAction
                     if (($detail['status'] == 1 || $detail['status'] == 0) && (int) $detail['is_used'] === 0) {
                         if (D('Tuancode')->save(array('code_id' => $id, 'status' => 2))) {
                             if ($detail['real_money'] > 0) {
-                                $obj->addMoney($detail['user_id'], $detail['real_money'], '抢购券退款:' . $detail['code']);
+                                $obj->addMoney($detail['user_id'], $detail['real_money'], '套餐码退款:' . $detail['code']);
                             }
                             if ($detail['real_integral'] > 0) {
-                                $obj->addIntegral($detail['user_id'], $detail['real_integral'], '抢购券退款:' . $detail['code']);
+                                $obj->addIntegral($detail['user_id'], $detail['real_integral'], '套餐码退款:' . $detail['code']);
                             }
                         }
                     }
@@ -256,10 +256,10 @@ class TuancodeAction extends CommonAction
                     //将内容变成
                     $obj = D('Users');
                     if ($detail['real_money'] > 0) {
-                        $obj->addMoney($detail['user_id'], $detail['real_money'], '抢购券退款:' . $detail['code']);
+                        $obj->addMoney($detail['user_id'], $detail['real_money'], '套餐码退款:' . $detail['code']);
                     }
                     if ($detail['real_integral'] > 0) {
-                        $obj->addIntegral($detail['user_id'], $detail['real_integral'], '抢购券退款:' . $detail['code']);
+                        $obj->addIntegral($detail['user_id'], $detail['real_integral'], '套餐码退款:' . $detail['code']);
                     }
                 }
             }
@@ -274,10 +274,10 @@ class TuancodeAction extends CommonAction
                         if (D('Tuancode')->save(array('code_id' => $id, 'status' => 2))) {
                             //将内容变成
                             if ($detail['real_money'] > 0) {
-                                $obj->addMoney($detail['user_id'], $detail['real_money'], '抢购券退款:' . $detail['code']);
+                                $obj->addMoney($detail['user_id'], $detail['real_money'], '套餐码退款:' . $detail['code']);
                             }
                             if ($detail['real_integral'] > 0) {
-                                $obj->addIntegral($detail['user_id'], $detail['real_integral'], '抢购券退款:' . $detail['code']);
+                                $obj->addIntegral($detail['user_id'], $detail['real_integral'], '套餐码退款:' . $detail['code']);
                             }
                         }
                     }

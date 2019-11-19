@@ -5,10 +5,10 @@ class IndexAction extends CommonAction{
         $this->assign('shop_branch_audit', D('Shopbranch')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'audit' => 0))->count());
         $counts = array();
         $bg_time = strtotime(TODAY);
-        //抢购
+        //套餐
         $counts['tuan'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count(); 
         $counts['tuan_audit'] = (int) D('Tuan')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'status' => array('EGT', 0), 'audit' => 0))->count(); 
-		//待审核抢购
+		//待审核套餐
         $counts['tuan_order_code_is_used'] = (int) D('Tuancode')->where(array('shop_id' => $this->shop_id, 'is_used' => 0))->count(); 
       
         //优惠劵

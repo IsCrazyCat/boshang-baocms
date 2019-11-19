@@ -2,7 +2,7 @@
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布抢购</a></li>
+        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布套餐</a></li>
     </ul>
 </div>
 <div class="tuan_content">
@@ -15,17 +15,17 @@
         <form method="post"  action="<{:U('tuan/create')}>"  target="baocms_frm">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">抢购名称：</p></td>
+                    <td width="120"><p class="tuanfabu_t">套餐名称：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[title]" value="<{$detail.title|default=''}>" class="tuanfabu_int tuanfabu_intw1" />
                              <code>填写标题，建议20字以内</code>
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">抢购简介：</p></td>
+                    <td width="120"><p class="tuanfabu_t">套餐简介：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[intro]" value="<{$detail.intro|default=''}>" class="tuanfabu_int tuanfabu_intw3" />
-                            <code>填写抢购简介，建议30字以内</code>
+                            <code>填写套餐简介，建议30字以内</code>
                         </div></td>
                 </tr>
                 
@@ -229,7 +229,7 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">每天抢购份数:</p></td>
+                    <td width="120"><p class="tuanfabu_t">每天套餐份数:</p></td>
                     <td><div class="tuanfabu_nr">
                     	<input type="text" name="data[xiangou]" value="<{$detail.xiangou|default='0'}>" class="tuanfabu_int tuanfabu_intw2" />
 					<code>0表示不限购</code></div></td>
@@ -242,7 +242,7 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">抢购价格：</p></td>
+                    <td width="120"><p class="tuanfabu_t">套餐价格：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[tuan_price]" value="<{$detail.tuan_price|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>

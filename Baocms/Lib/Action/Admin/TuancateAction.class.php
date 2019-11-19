@@ -86,7 +86,7 @@ class TuancateAction extends CommonAction
         if ($cate_id = (int) $cate_id) {
             $obj = D('Tuancate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->baoError('请选择要编辑的抢购分类');
+                $this->baoError('请选择要编辑的套餐分类');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -101,7 +101,7 @@ class TuancateAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->baoError('请选择要编辑的抢购分类');
+            $this->baoError('请选择要编辑的套餐分类');
         }
     }
     private function editCheck()
@@ -138,7 +138,7 @@ class TuancateAction extends CommonAction
                 $obj->cleanCache();
                 $this->baoSuccess('删除成功！', U('tuancate/index'));
             }
-            $this->baoError('请选择要删除的抢购分类');
+            $this->baoError('请选择要删除的套餐分类');
         }
     }
     public function update()
@@ -157,14 +157,14 @@ class TuancateAction extends CommonAction
         if ($cate_id = (int) $cate_id) {
             $obj = D('Tuancate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->baoError('请选择要编辑的抢购分类');
+                $this->baoError('请选择要编辑的套餐分类');
             }
             $detail['is_hot'] = $detail['is_hot'] == 0 ? 1 : 0;
             $obj->save(array('cate_id' => $cate_id, 'is_hot' => $detail['is_hot']));
             $obj->cleanCache();
             $this->baoSuccess('操作成功', U('tuancate/index'));
         } else {
-            $this->baoError('请选择要编辑的抢购分类');
+            $this->baoError('请选择要编辑的套餐分类');
         }
     }
 }

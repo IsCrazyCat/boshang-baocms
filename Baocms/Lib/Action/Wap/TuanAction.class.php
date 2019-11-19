@@ -2,7 +2,7 @@
 class TuanAction extends CommonAction{
     public function _initialize(){
         parent::_initialize();
-        //统计抢购分类数量代码开始
+        //统计套餐分类数量代码开始
         $Tuan = D('Tuan');
         $tuancates = D('Tuancate')->fetchAll();
         foreach ($tuancates as $key => $v) {
@@ -21,7 +21,7 @@ class TuanAction extends CommonAction{
     public function main(){
         $aready = (int) $this->_param('aready');
         $this->assign('aready', $aready);
-        $this->mobile_title = '抢购主页';
+        $this->mobile_title = '套餐主页';
         $this->display();
     }
     public function mainload(){
@@ -179,19 +179,19 @@ class TuanAction extends CommonAction{
         $this->assign('tuan_id', $tuan_id);
         $this->assign('tao_arr', $tao_arr);
         if (empty($tuan_id)) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该套餐信息不存在！');
             die;
         }
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该套餐信息不存在！');
             die;
         }
         if ($detail['audit'] != 1) {
-            $this->error('该抢购信息还在审核中哦');
+            $this->error('该套餐信息还在审核中哦');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该抢购信息不存在！');
+            $this->error('该套餐信息不存在！');
             die;
         }
         $lat = addslashes(cookie('lat'));
@@ -422,7 +422,7 @@ class TuanAction extends CommonAction{
             die;
         }
         if ($detail['bg_date'] > TODAY) {
-            $this->error('该抢购还未开始开抢');
+            $this->error('该套餐还未开始开抢');
         }
         if ($detail['closed'] == 1 || $detail['end_date'] < TODAY) {
             $this->error('该商品已经结束');
@@ -454,7 +454,7 @@ class TuanAction extends CommonAction{
         }
         $tuan = D('Tuan')->find($order['tuan_id']);
         if (empty($tuan) || $tuan['closed'] == 1 || $tuan['end_date'] < TODAY) {
-            $this->error('该抢购不存在');
+            $this->error('该套餐不存在');
             die;
         }
         //如果没有优惠劵ID就去获取开始
@@ -530,7 +530,7 @@ class TuanAction extends CommonAction{
        			D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,0);
                 $this->fengmiMsg('恭喜您下单成功！', U('user/tuan/index'));
             } else {
-                $this->fengmiMsg('您已经设置过该抢购为到店付了！');
+                $this->fengmiMsg('您已经设置过该套餐为到店付了！');
             }
         } else {
             $payment = D('Payment')->checkPayment($code);

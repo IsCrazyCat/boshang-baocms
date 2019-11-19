@@ -724,7 +724,7 @@ a{color:black;}
 .apply-num{/*border-right:1px solid #dedede;*/padding-left:0.14rem; /*padding-right:0.12rem;*/}
 .apply-phone{border-left:1px solid #dedede;height:0.3rem;line-height:0.3rem;margin-top:0.06rem;padding-left:0.1rem;}
 
-/*************************************个人中心-抢购券*********************************************************/
+/*************************************个人中心-套餐码*********************************************************/
 #personal-coupon{bottom: 0.5rem; position: absolute; top: 0.9rem; width: 100%;}
 .coupon_nav li:first{border-bottom: 1px solid #dedede;}
 .send-out .coupon-list{ padding:0.1rem 0.1rem 0.05rem 0.1rem; background-color:#fff;border-top:1px solid #dedede;margin-top: 0.1rem;}
@@ -922,7 +922,7 @@ a{color:black;}
 #life .mall-form .mall-bt{color:black;font-size:0.16rem;}
 
 /**************************************community_index********************************************************/
-/*社区首页-限时抢购轮播开始*/
+/*社区首页-限时套餐轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -938,7 +938,7 @@ a{color:black;}
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时抢购轮播结束*/
+/*社区首页-限时套餐轮播结束*/
 .commu-top{font-size:0.15rem;border-bottom:1px solid #dedede;}
 .commu-top .commu-ig{width:0.23rem;height:0.2rem;background:url("../img/tp73.png") no-repeat;}
 .commu-ig2{width:0.23rem;height:0.2rem;background:url("../img/tp78.png") no-repeat;}
@@ -1073,7 +1073,7 @@ a{color:black;}
 .mall-our .mall-fen .ico{ display:inline-block; font-size:0; width:0.18rem; height:0.18rem; background-repeat:no-repeat; vertical-align:middle; margin-right:0.05rem;}
 .mall-our .mall-fen .ico.ico_1{background-image:url(../img/goto.png); background-position:left top; background-size:100% auto;}
 .mall-our .mall-fen .ico.ico_2{background-image:url(../img/sqlunIco.png); background-position:center top;background-size:100% auto;}
-/*抢购详情-分店地址开始-新增*/
+/*套餐详情-分店地址开始-新增*/
 .fendianAddr{ border-top:0.01rem solid #e5e5e5; border-bottom:0.01rem solid #e5e5e5; background:#fff;}
 .fendianAddr_switch{ width:30%; border-right:0.01rem solid #e5e5e5; min-height:1.2rem; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
 .fendianAddr_list{ display:block; border-bottom:0.01rem solid #e5e5e5; text-align:center; font-size:0.14rem; line-height:0.4rem; height:0.4rem; overflow:hidden;}
@@ -1090,7 +1090,7 @@ a{color:black;}
 .fendianAddr_nr .btn_box .ico{display:inline-block; font-size:0; width:0.18rem; height:0.18rem; background-repeat:no-repeat; vertical-align:middle; margin-right:0.05rem;}
 .fendianAddr_nr .btn_box .ico_1{background-image:url(../img/gotoOrange.png); background-position:left center; background-size:100% auto;}
 .fendianAddr_nr .btn_box .ico_2{background-image:url(../img/telIco.png); background-position:left center; background-size:100% auto;}
-/*抢购详情-分店地址结束-新增*/
+/*套餐详情-分店地址结束-新增*/
 .order-img img{width:70%;}
 .order-img{text-align:center;}
 .spread-intro del{padding-right:0.3rem;color:#666;}
@@ -1826,7 +1826,7 @@ header .box_search a i {background: rgba(0, 0, 0, 0) url("../img/ico_2.png") no-
 .fastNews .list_box li{ height:0.3rem; line-height:0.3rem; overflow:hidden;}
 .fastNews .list_box li a{ color:#2fbdaa;}
 /*首页快报end*/
-/*首页限时抢购start*/
+/*首页限时套餐start*/
 .sy_title{border-bottom:0.01rem solid #e6e6e6; border-top:0.01rem solid #e6e6e6; background:#fff; padding:0.05rem 0.1rem; overflow:hidden; line-height:0.3rem; font-size:0.16rem;}
 .sy_title .more{ font-size:0.12rem;}
 .sy_limit_buy_time{ font-size:0.12rem; color:#999; margin-left:0.12rem;}
@@ -1842,7 +1842,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .sy_limit_buy .locatLabel_switch .box a{ width:100%; display:block;}
 .sy_limit_buy .locatLabel_switch .box img{ width:100%; min-height:0.2rem;}
 .sy_limit_buy .locatLabel_switch .box p{overflow:hidden;}
-/*首页限时抢购end*/
+/*首页限时套餐end*/
 /*首页特色频道start*/
 .sy_tese{ background:#fff;}
 .sy_tese .list{ display:block; float:left;}
@@ -1879,7 +1879,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .sy_recmd_list .pub_wz .nr_box{ overflow:hidden; margin-top:0.05rem; padding:0.05rem 0; border-top:0.01rem solid #e6e6e6;}
 
 /*首页推荐end*/
-/*限时抢购开始*/
+/*限时套餐开始*/
 #index .limit_buy .title{ overflow:hidden; padding:0 0.1rem; line-height:0.24rem;}
 #index .limit_buy h3{ font-size:0.15rem; font-weight:normal; line-height:0.24rem; color:#2fbdaa;}
 #index .limit_buy .list_box{border-top:0.01rem solid #dedede;}
@@ -1906,7 +1906,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 #index .limit_buy .see_more{ display:block; background-color:#fff; color:#2fbdaa; text-align:center; line-height:0.4rem; border-bottom:0.01rem solid #dedede;}
 #index .limit_buy .see_more i{ display:inline-block; vertical-align:middle; margin-left:0.05rem; margin-top:-0.05rem; content:''; width:0.07rem; height:0.07rem; border-bottom:0.02rem solid #2fbdaa;border-left:0.02rem solid #2fbdaa;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-o-transform:rotate(-45deg);}
 #index .limit_buy .playPrice{ font-size:0.14rem;}
-/*限时抢购结束*/
+/*限时套餐结束*/
 /*首页热门商家开始*/
 #index .hot_seller .list_box li p{ line-height:0.24rem;}
 #index .hot_seller .list_box .tag{border-radius:0.03rem; line-height:0.24rem; padding:0 0.06rem; margin-left:0.04rem; color:#fff; background-color:#eb6100; font-size:0.1rem;}
@@ -2441,7 +2441,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .hotSer_li a{display:block;	background-color:#fff;	border:1px solid #ccc;	text-align:center;	font-size: 0.16rem;	color: #666;	line-height: 0.34rem;	height:0.34rem;}
 /*搜索页结束*/
 
-/*社区首页-限时抢购轮播开始*/
+/*社区首页-限时套餐轮播开始*/
 .seat-rank_flexslider {height: auto; position: relative; z-index:0;}
 .seat-rank_flexslider .slides {position: relative; z-index: 1; padding:0px 10px;}
 .seat-rank_flexslider .slides .sy_hotgzLi{border-bottom:none 0px;}
@@ -2457,7 +2457,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .seat-rank_flexslider .flex-direction-nav li a {cursor: pointer; display: block; overflow: hidden; position: absolute; width: 0.74rem; height:0.25rem;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-prev { display:none;}
 .seat-rank_flexslider .flex-direction-nav li a.flex-next {width: 0.74rem; height:0.25rem;}
-/*社区首页-限时抢购轮播结束*/
+/*社区首页-限时套餐轮播结束*/
 
 /*商家列表页拨打电话代码开始*/
 .listBox_tag_box{ margin:0.05rem 0;}
@@ -2472,7 +2472,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .seller_tel_btn em{}
 /*商家列表页拨打电话代码开始*/
 
-/*抢购专题开始*/
+/*套餐专题开始*/
 .sjqg_special_content_box{ padding:0.5rem 0px; font-size:0.14rem;}
 .sjqg_special_banner{ width:100%; height:auto;}
 .sjqg_special_banner img{ width:100%; height:auto;}
@@ -2489,7 +2489,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .sjqg_special_btn_r{ width:30%; padding-top:0.08rem;}
 .sjqg_special_btn_r .btn{ display:inline-block; background-color:#2fbdaa; color:#fff; font-size:0.14rem; height:0.22rem; line-height:0.24rem; padding:0px 0.1rem; border-radius:0.03rem;}
 .sjqg_special_list_box .img .bq{ position:absolute; left:0; top:0; width:50%; height:auto;}
-/*抢购专题结束*/
+/*套餐专题结束*/
 /*******************************合并css_w样式结束*******************************/
 
 /**/

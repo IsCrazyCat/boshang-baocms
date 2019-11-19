@@ -170,7 +170,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//抢购劵退款短信通知
+	//套餐劵退款短信通知
 	public function tuancode_refund_user($code_id){
         	$code_id = (int) $code_id;
             $tuancode = D('Tuancode')->find($code_id);
@@ -329,7 +329,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//商家抢购劵验证成功后发送消息到用户手机
+	//商家套餐劵验证成功后发送消息到用户手机
     public function tuan_TZ_user($code_id){
         if (is_numeric($code_id) && ($code_id = (int) $code_id)) {
             $tuancode = D('Tuancode')->find($code_id);
@@ -365,7 +365,7 @@ class SmsModel extends CommonModel{
 			$tuan = D('Tuan')->where(array('tuan_id'=>$tuan_id))->find();
 			$tuan_title = $tuan['title'];
 		}else{
-			$tuan_title = '抢购列表';	
+			$tuan_title = '套餐列表';
 		}
 		$codestr = join(',', $code);
         //发送团购劵

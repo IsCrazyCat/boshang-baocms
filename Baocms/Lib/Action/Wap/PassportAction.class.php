@@ -321,7 +321,7 @@ class PassportAction extends CommonAction{
             session('connect', $connect['connect_id']);
             // 用户数据整理
             $host = explode('.', $this->_CONFIG['site']['host']);
-            $account = uniqid() . '@' . $host[1] . '.' . $host[2];
+            $account = uniqid() . '@' .'blk.com';
             if ($data['nickname'] == '') {
                 $nickname = $data['type'] . $connect['connect_id'];
             } else {

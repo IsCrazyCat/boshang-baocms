@@ -5,7 +5,7 @@
         protected $type = array(
             goods => '商城购物',
             gold => '金块充值',
-            tuan => '抢购',
+            tuan => '套餐',
             money => '余额充值',
             ele => '外卖',
 			pintuan => '拼团',

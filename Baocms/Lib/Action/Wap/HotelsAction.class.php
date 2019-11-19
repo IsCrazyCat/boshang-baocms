@@ -153,7 +153,7 @@ class HotelsAction extends CommonAction {
             $room_count = D('Hotelroom')->where(array('hotel_id'=>$hotel_id))->count();
             $this->assign('room_list',$room_list);
             $this->assign('room_count',$room_count);
-            //抢购
+            //套餐
             $tuan_list = D('Tuan')->where(array('audit' => 1, 'closed' => 0,'bg_date' => array('ELT', NOW),'shop_id'=>$detail['shop_id']))->limit(3)->select();
             $this->assign('tuan_list',$tuan_list);
             $this->assign('into_time',$into_time); 

@@ -203,9 +203,9 @@ $(document).ready(function () {
         <div class="clear"></div>
     </div>
     <!--热门推荐结束-->
-    <!--限时抢购-->
+    <!--限时套餐-->
     <div class="mall_tit">
-    	<h2 class="left"><b class="bq">抢</b>限时抢购</h2>
+    	<h2 class="left"><b class="bq">抢</b>限时套餐</h2>
         <a href="<{:U('mall/index')}>" class="more right graycl">更多&gt;</a>
     </div>
     <div class="mall_recmd mall_buy mb20">
@@ -256,7 +256,7 @@ $(document).ready(function () {
             
             	<volist name='xianshi' id='item'>
                     <li class="list">
-                        <p class="bq_box"><span class="bq">抢购</span></p>
+                        <p class="bq_box"><span class="bq">套餐</span></p>
                         <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><img src="<{:config_img($item['photo'])}>" width="204" height="145" /></a>
                         <h3 class="overflow_clear mt10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="blackcl3"><{:bao_msubstr($item['title'],0,12,false)}></a></h3>
                         <p class="price fontcl1">￥<{$item['rush_price']/100}></p>
@@ -268,7 +268,7 @@ $(document).ready(function () {
         </div>
         <div class="clear"></div>
     </div>
-    <!--限时抢购结束-->
+    <!--限时套餐结束-->
 </div>
 <div class="mall_bggrey">
     <div class="pagewd">
