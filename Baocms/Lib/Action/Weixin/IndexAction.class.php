@@ -279,6 +279,14 @@ class IndexAction extends CommonAction
                     }
                 }
                 $this->weixin->response($content, 'news');
+            }elseif($type == 4){
+                //分销
+                $fuid = $detail['soure_id'];
+                //存入cookie 然后跳转到首页 走自动注册流程，然后注册时取出fuid，创建会员
+                cookie('fuid',$fuid);
+                //跳转
+                header('Location:' . U('wap/index/index'));
+                die;
             }
         }
     }

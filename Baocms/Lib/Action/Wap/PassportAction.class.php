@@ -284,9 +284,12 @@ class PassportAction extends CommonAction{
             if (empty($_REQUEST['code'])) {
                 $this->error('授权后才能登陆！', U('passport/login'));
             }
+
             $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' . $this->_CONFIG['weixin']['appid'] . '&secret=' . $this->_CONFIG['weixin']['appsecret'] . '&code=' . $_REQUEST['code'] . '&grant_type=authorization_code';
             $str = $curl->get($token_url);
             $params = json_decode($str, true);
+
+
             if (!empty($params['errcode'])) {
                 echo '<h3>error:</h3>' . $params['errcode'];
                 echo '<h3>msg  :</h3>' . $params['errmsg'];
@@ -311,6 +314,7 @@ class PassportAction extends CommonAction{
     //微信自动注册为用户
     private function wxconn($data) {
         $connect = D('Connect')->getConnectByOpenid($data['type'], $data['open_id']);
+ 
         if (empty($connect)) {
             $connect = $data;
             $connect['connect_id'] = D('Connect')->add($data);
@@ -337,10 +341,12 @@ class PassportAction extends CommonAction{
 				'reg_time' => NOW_TIME, 
 				'reg_ip' => get_client_ip()
 			);
+
             //注册用户资料
             if (!D('Passport')->register($user)) {
                 $this->error('创建帐号失败');
             }
+
             // 注册第三方接口
             $token = D('Passport')->getToken();
             $connect['uid'] = $token['uid'];

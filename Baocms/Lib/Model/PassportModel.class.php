@@ -303,6 +303,7 @@ class PassportModel {
                 }
             }
         }
+
         if (empty($data))
             return false;
         if ($this->isuc) { //开启了UC
@@ -351,6 +352,7 @@ class PassportModel {
                 $data['user_id'] = $obj->add($data);
             }
         } else {
+
             $data['password'] = md5($data['password']);
             $user = $obj->getUserByAccount($data['account']);
             if ($user) {

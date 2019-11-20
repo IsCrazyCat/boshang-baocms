@@ -7,10 +7,14 @@ class ExcelAction extends CommonAction {
     //读取excel数据 导入到数据库
     public function d_video()
     {
+//        $res = $this->goods_import('E:/user.xlsx', '1','xlsx');//读取excel表中的数据
 //        $res1 = $this->goods_import('E:/info.xlsx', '2','xlsx');//读取excel表中的数据
-//        $res = $this->goods_import(BASE_PATH .'/Baocms/Lib/Action/Wap/user.xlsx', '1','xlsx');//读取excel表中的数据
+//        $res2 = $this->goods_import('E:/fenxiao.xlsx', '3','xlsx');//读取excel表中的数据
+//
+
+        $res = $this->goods_import(BASE_PATH .'/Baocms/Lib/Action/Wap/user.xlsx', '1','xlsx');//读取excel表中的数据
         $res1 = $this->goods_import(BASE_PATH .'/Baocms/Lib/Action/Wap/info.xlsx', '2','xlsx');//读取excel表中的数据
-//        $res2 = $this->goods_import(BASE_PATH .'/Baocms/Lib/Action/Wap/fenxiao.xlsx', '3','xlsx');//读取excel表中的数据
+        $res2 = $this->goods_import(BASE_PATH .'/Baocms/Lib/Action/Wap/fenxiao.xlsx', '3','xlsx');//读取excel表中的数据
         exit($res1);
         die;
     }
@@ -55,15 +59,16 @@ class ExcelAction extends CommonAction {
             }
 
         }
-        $this->changetime($data);
-        return 'success';
-//        if($type==1){
-//            $r = $this->save_import($data);
-//        }else if($type==2){
-//            $r = $this->save_import2($data);
-//        }else if($type==3){
-//            $r = $this->save_import3($data);
-//        }
+
+        if($type==1){
+            $r = $this->save_import($data);
+        }else if($type==2){
+            $r = $this->save_import2($data);
+        }else if($type==3){
+            $r = $this->save_import3($data);
+        }
+//        $this->changetime($data);
+//        return 'success';
     }
     public function changetime($data){
         header("Content-Type:text/html;charset=utf-8");

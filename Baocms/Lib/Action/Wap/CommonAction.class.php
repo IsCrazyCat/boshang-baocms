@@ -54,7 +54,7 @@ class CommonAction extends Action
         define('IS_WEIXIN', $is_weixin);
         searchWordFrom();
         $this->uid = getUid();
-		
+
         if (!empty($this->uid)) {
             $member = $MEMBER = $this->member = D('Users')->find($this->uid);//客户端缓存会员数据
             $member['password'] = '';
@@ -123,31 +123,7 @@ class CommonAction extends Action
 					}
 				}
 			}
-		}else{
-		    $user = D('Users')->find($this->uid);
-            if ($this->_CONFIG['site']['weixin'] == 1) {
-                if ($is_weixin && !empty($this->_CONFIG['weixin']['appid'])) {
-                    $connect = D('Connect')->where(array('uid'=>$this->uid));
-                    if(empty($connect)){
-
-                    }
-                    if (!$this->uid && $act != 'wxstart') {
-                        $state = md5(uniqid(rand(), TRUE));
-                        session('state', $state);
-                        if (!empty($_SERVER['REQUEST_URI'])) {
-                            $backurl = $_SERVER['REQUEST_URI'];
-                        } else {
-                            $backurl = U('index/index');
-                        }
-                        session('backurl', $backurl);
-                        $login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->_CONFIG['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
-                        header("location:{$login_url}");
-                        echo $login_url;
-                        die;
-                    }
-                }
-            }
-        }
+		}
         $local = D('Near')->GetLocation();
         $this->assign('local', $local);
         $this->assign('CONFIG', $this->_CONFIG);
@@ -193,6 +169,7 @@ class CommonAction extends Action
         $this->assign('is_shop', $is_shop = D('Shop')->find(array('where' => array('user_id' => $this->uid))));
         $web_close = $this->_CONFIG['site']['web_close'];
         $web_close_title = $this->_CONFIG['site']['web_close_title'];
+
         if ($web_close == 0) {
             $this->display('public:web_close');
             die;

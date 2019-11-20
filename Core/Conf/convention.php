@@ -29,7 +29,6 @@ return  array(
     'COOKIE_PREFIX'         => '',      // Cookie前缀 避免冲突
 
 
-
     /* 默认设定 */
 
     'DEFAULT_M_LAYER'       =>  'Model', // 默认的模型层名称
