@@ -9,10 +9,12 @@ class WeixinAction extends CommonAction
         $user_id = D('Users')->where(array('user_id' => $this->uid))->getField('user_id');
         //$worker = D('Shopworker')->find($this->uid);
         $worker = D('Shopworker')->where(array('user_id' => $user_id))->find();
+        $scan_shop_id = $worker['shop_id'];
         if(empty($worker)){
-            if(!$shop = D('Shop')->where(array('user_id'=>$user_id))->find()){
+            if(!$scan_shop = D('Shop')->where(array('user_id'=>$user_id))->find()){
                 $this->error('您不属于任何一个店铺的管理人或授权员工，无权进行管理！', U('index/index'));
             }
+            $scan_shop_id = $scan_shop['shop_id'];
         }else{
             if (empty($worker['status']) || $worker['status'] != 1) {
                 $this->error('您的员工信息还处于待通过状态，无权进行操作！', U('information/worker', array('worker_id' => $worker['worker_id'])));
@@ -24,13 +26,9 @@ class WeixinAction extends CommonAction
         $obj = D('Tuancode');
         $shopmoney = D('Shopmoney');
         $data = $obj->find($code_id);
+        $data['shop_id']=$scan_shop_id;
         if (empty($data)) {
             $this->error('没有找到对应的团购券信息！', U('index/index'));
-        }
-        if(empty($worker)){
-            if(!$shop = D('Shop')->where(array('user_id'=>$user_id))->find()){
-                $this->error('您不属于任何一个店铺的管理人或授权员工，无权进行管理！', U('index/index'));
-            }
         }
         $shop = D('Shop')->find(array('where' => array('shop_id' => $data['shop_id'])));
         if ((int) $data['is_used'] == 0 && (int) $data['status'] == 0) {

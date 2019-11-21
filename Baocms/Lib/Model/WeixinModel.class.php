@@ -124,7 +124,6 @@ class WeixinModel {
     
     private function getSiteToken(){ //获取主站的TOKEN
         $cache = cache(array('type' => 'File', 'expire' => 7000));
-   
         if (!$data = $cache->get($this->token)) {
             $this->config = D('Setting')->fetchAll();
             $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .

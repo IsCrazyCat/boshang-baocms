@@ -12,15 +12,14 @@ class YuangongAction extends CommonAction {
         $scan_shop_id = 0;
         if(empty($worker)){
             if(!$scan_shop = D('Shop')->where(array('user_id'=>$user_id))->find()){
-                $scan_shop_id = $scan_shop['user_id'];
                 $this->error('您不属于任何一个店铺的管理人或授权员工，无权进行管理！', U('index/index'));
             }
+            $scan_shop_id = $scan_shop['shop_id'];
         }else{
             if(empty($worker['status']) || $worker['status'] !=1 ){
                 $this->error('您的员工信息还处于待通过状态，无权进行操作！', U('information/worker',array('worker_id'=>$worker['worker_id'])));
             }
-            $scan_shop = D('Shop')->where(array('user_id'=>$user_id))->find();
-            $scan_shop_id = $scan_shop['user_id'];
+            $scan_shop_id = $worker['shop_id'];
         }
 
         if ($this->isPost()) {
@@ -42,7 +41,7 @@ class YuangongAction extends CommonAction {
 
                 if (!empty($var)) {
                     $data = $obj->find(array('where' => array('code' => $var)));
-                    $data['shop_id'] = $scan_shop_id;
+                    $data['shop_id']=$scan_shop_id;
                     // echo '<script>alert('.$data['status'].'); < /script>';die;
                    
                     if (!empty($data) && $data['shop_id'] == $worker && (int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
