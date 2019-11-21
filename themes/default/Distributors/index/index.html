@@ -1,4 +1,39 @@
 <include file="public:header"/>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+    wx.config({
+        debug: false,
+        appId: "<{$sign.appId}>",
+        timestamp: <{$sign.timestamp}>,
+        nonceStr: "<{$sign.nonceStr}>",
+        signature: "<{$sign.signature}>",
+        jsApiList: [
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'scanQRCode',
+    ]
+    });
+
+    $(function(){
+        $('#makebtn').click(function(){
+
+            //$(this).attr("disabled",true);
+            wx.scanQRCode({
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    var snstr = res.resultStr;
+                    location.href="/worker/index/scanaudit?snstr="+snstr;
+                    // $.post("<{:U('Worker/index/scanaudit')}>",{snstr:snstr},function(data){
+                    //     alert(data.info);
+                    //     //alert("请等待商家审核通过!");
+                    // },'json');
+                }
+            });
+        })
+    })
+</script>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back"></div>
 		<div class="top-title">新版商户中心</div>
@@ -103,7 +138,7 @@
                 </a>
             </li>
         </if>
-        
+
 <!--        <if condition="!empty($open_mall)">-->
 <!--            <if condition="!empty($SHOPGRADE['is_mall'])">-->
 <!--                <li>-->
@@ -199,6 +234,13 @@
 <!--            </a>-->
 <!--        </li>-->
 <!--        -->
+
+        <li>
+            <a id="makebtn">
+                <span class="icon-newspaper-o"></span>扫一扫
+                <i class="icon-angle-right"></i>
+            </a>
+        </li>
         <li>
             <a href="<{:U('news/index')}>">
                 <span class="icon-newspaper-o"></span>文章管理

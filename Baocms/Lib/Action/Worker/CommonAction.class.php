@@ -7,6 +7,7 @@ class CommonAction extends Action{
     protected $shop = array();
     protected $shopcates = array();
     protected function _initialize(){
+
         $this->uid = getUid();
 		$passport_login = U('passport/login');
         if (!empty($this->uid)) {

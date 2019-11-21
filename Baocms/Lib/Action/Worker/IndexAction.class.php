@@ -52,14 +52,22 @@ class IndexAction extends CommonAction{
      * 就是增加一步信息展示，无业务逻辑
      */
     public function scanaudit(){
+
         $use_user_id = $this->_param('use_user_id');
 
         //消费用户
         $use_user = D('Users')->find($use_user_id);
-        $json = $_POST["snstr"];
+        $json = $this->_param('snstr');
+
         $jsonarr = explode('/',$json);
         if(!empty($json)){
-            $code_id = $jsonarr['9'];
+            for($i=0;$i<count($jsonarr);$i++){
+                $val = $jsonarr[$i];
+                if($val=='code_id'){
+                    $code_id = $jsonarr[$i+1];
+                    break;
+                }
+            }
         }else{
             $code_id = (int) $this->_param('code_id');
         }

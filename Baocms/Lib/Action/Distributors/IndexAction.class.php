@@ -67,8 +67,14 @@ class IndexAction extends CommonAction{
         $counts['money_day'] = (int) D('Shopmoney')->where(array('create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time)), 'shop_id' => $this->shop_id))->sum('money');
         //昨日总收入
         $counts['money_day_yesterday'] = (int) D('Shopmoney')->where(array('create_time' => array(array('ELT', $bg_time), array('EGT', $bg_time_yesterday)), 'shop_id' => $this->shop_id))->sum('money');
-		
-		
+
+        //这个后期封装
+        $appid = $this->_CONFIG['weixin']["appid"];
+        $appsecret = $this->_CONFIG['weixin']["appsecret"];
+        import("@/Net.Jssdk");
+        $jssdk = new JSSDK("{$appid}", "{$appsecret}");
+        $sign = $jssdk->GetSignPackage();
+        $this->assign("sign", $sign);
 		
         $this->assign('counts', $counts);
         $this->display();

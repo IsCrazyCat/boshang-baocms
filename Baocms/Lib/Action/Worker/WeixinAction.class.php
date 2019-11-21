@@ -4,22 +4,32 @@ class WeixinAction extends CommonAction {
 	public function _initialize() {
         parent::_initialize();
 		if($this->workers['tuan'] != 1){
-          $this->error('对不起，您无权限，请联系掌柜开通');
+		    $shop = D('Shop')->where(array('user_id'=>$this->workers['user_id']))->find();
+		    if(empty($shop)){
+                $this->error('对不起，您无权限，请联系掌柜开通'.$this->workers['user_id']);
+            }
         }
 		
     }
 
 
     public function tuan() {
-        
+        $this->error('$json2='.$this->_param('snstr'));
 		$json = $_POST["snstr"];
 		$jsonarr = explode('/',$json);
 		if(!empty($json)){
-			$code_id = $jsonarr['9'];
+		    for($i=0;$i<$jsonarr.count();$i++){
+		        $val = $jsonarr[$i];
+		        if($val=='code_id'){
+                    $code_id = $jsonarr[$i+1];
+                    break;
+                }
+            }
+
 		}else{
 			$code_id = (int) $this->_param('code_id');
 		}
-		
+
 		$user_id = D('Users')->where(array('user_id'=>$this->uid))->getField('user_id');
 		$worker = D('Shopworker')->where(array('user_id'=>$user_id))->find();
         $scan_shop_id = $worker['shop_id'];
