@@ -66,7 +66,8 @@ class CommonAction extends Action
                 header('Location: ' . U('passport/login'));
                 die;
             }
-        } //这里主要处理推广链接入口！如果是用户推广进来的会增加到COOKIE
+        }
+        //这里主要处理推广链接入口！如果是用户推广进来的会增加到COOKIE
         $invite = (int) $this->_get('invite');
         if (!empty($invite)) {//这里改成了获得积分
             cookie('invite_id', $invite);
@@ -103,26 +104,8 @@ class CommonAction extends Action
             D('Navigation')->navigation_click($nav_id);
         }
 		if (empty($this->uid)) {
-        //对微信用户是否登录进行判断
-			if ($this->_CONFIG['site']['weixin'] == 1) {
-				if ($is_weixin && !empty($this->_CONFIG['weixin']['appid'])) {
-
-					if (!$this->uid && $act != 'wxstart') {
-						$state = md5(uniqid(rand(), TRUE));
-						session('state', $state);
-						if (!empty($_SERVER['REQUEST_URI'])) {
-							$backurl = $_SERVER['REQUEST_URI'];
-						} else {
-							$backurl = U('index/index');
-						}
-						session('backurl', $backurl);
-						$login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $this->_CONFIG['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
-						header("location:{$login_url}");
-						echo $login_url;
-						die;
-					}
-				}
-			}
+            //对微信用户是否登录进行判断
+            wx_auto_login($this->_CONFIG,$act);
 		}
         $local = D('Near')->GetLocation();
         $this->assign('local', $local);

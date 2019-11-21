@@ -9,13 +9,20 @@ class YuangongAction extends CommonAction {
 		$user_id = D('Users')->where(array('user_id'=>$this->uid))->getField('user_id');
 		//$worker = D('Shopworker')->find($this->uid);
 		$worker = D('Shopworker')->where(array('user_id'=>$user_id))->find();
-		if(empty($worker)){
-			$this->error('您不属于任何一个店铺的授权员工，无权进行管理！', U('index/index'));
-		}
-		if(empty($worker['status']) || $worker['status'] !=1 ){
-			$this->error('您的员工信息还处于待通过状态，无权进行操作！', U('information/worker',array('worker_id'=>$worker['worker_id'])));
-		}
-		
+        $scan_shop_id = 0;
+        if(empty($worker)){
+            if(!$scan_shop = D('Shop')->where(array('user_id'=>$user_id))->find()){
+                $scan_shop_id = $scan_shop['user_id'];
+                $this->error('您不属于任何一个店铺的管理人或授权员工，无权进行管理！', U('index/index'));
+            }
+        }else{
+            if(empty($worker['status']) || $worker['status'] !=1 ){
+                $this->error('您的员工信息还处于待通过状态，无权进行操作！', U('information/worker',array('worker_id'=>$worker['worker_id'])));
+            }
+            $scan_shop = D('Shop')->where(array('user_id'=>$user_id))->find();
+            $scan_shop_id = $scan_shop['user_id'];
+        }
+
         if ($this->isPost()) {
             $code = $this->_post('code', false);
             if (empty($code)) {
@@ -35,9 +42,10 @@ class YuangongAction extends CommonAction {
 
                 if (!empty($var)) {
                     $data = $obj->find(array('where' => array('code' => $var)));
+                    $data['shop_id'] = $scan_shop_id;
                     // echo '<script>alert('.$data['status'].'); < /script>';die;
                    
-                    if (!empty($data) && $data['shop_id'] == $worker['shop_id'] && (int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
+                    if (!empty($data) && $data['shop_id'] == $worker && (int) $data['is_used'] == 0 && (int) $data['status'] == 0) {
                         if ($obj->save(array('code_id' => $data['code_id'], 'is_used' => 1))) { //这次更新保证了更新的结果集              
                             //增加MONEY 的过程 稍后补充
                             if (!empty($data['price'])) {

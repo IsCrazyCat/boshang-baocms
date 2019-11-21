@@ -312,7 +312,7 @@ class PassportAction extends CommonAction{
         }
     }
     //微信自动注册为用户
-    private function wxconn($data) {
+    public function wxconn($data) {
         $connect = D('Connect')->getConnectByOpenid($data['type'], $data['open_id']);
  
         if (empty($connect)) {

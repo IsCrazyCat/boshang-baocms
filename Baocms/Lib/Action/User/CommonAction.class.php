@@ -17,8 +17,12 @@ class CommonAction extends Action{
         searchwordfrom();
         $this->uid = (int) getuid();
         if (empty($this->uid)) {
-            header("Location: " . U("wap/passport/login"));
-            exit;
+            if($is_weixin){
+                wx_auto_login($this->_CONFIG);
+            }else{
+                header("Location: " . U("wap/passport/login"));
+                exit;
+            }
         }
         $this->member = D("Users")->find($this->uid);
 		

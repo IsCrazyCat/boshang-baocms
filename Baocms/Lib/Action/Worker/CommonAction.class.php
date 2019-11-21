@@ -17,17 +17,30 @@ class CommonAction extends Action{
                 header("Location: " . $passport_login );
                 die;
             }else{
+                $shop_id = 0;
 				$shopworker = D('Shopworker')->find(array("where" => array('user_id' => $this->uid)));
 				if (empty($shopworker)) {
-					$this->error('您还不属于任何商家的员工哦~', $passport_login );
-				}
-				if (empty($shopworker['status']) || $shopworker['status'] != 1) {
-					$this->error('您的员工信息还处于待通过状态，无权进行操作！', $passport_login );
-				}
-				$this->shop = D('Shop')->find(array("where" => array('shop_id' => $shopworker['shop_id'], 'closed' => 0, 'audit' => 1)));
-				if (empty($this->shop)) {
-					$this->error('非法操作', $passport_login);
-				}
+                    if(!$shop = D('Shop')->where(array('user_id'=>$this->uid))->find()){
+                        $this->error('您还不属于任何商家的员工哦~', $passport_login );
+                    }
+				}else{
+                    if (empty($shopworker['status']) || $shopworker['status'] != 1) {
+                        $this->error('您的员工信息还处于待通过状态，无权进行操作！', $passport_login );
+                    }
+                }
+                if(!empty($shop)){
+                    $shop_id = $shop['shop_id'];
+                }else{
+                    if(!empty($shopworker)){
+                        $shop_id = $shopworker['shop_id'];
+                    }else{
+                        if (empty($this->shop)||empty($shop_id)) {
+                            $this->error('非法操作', $passport_login);
+                        }
+                    }
+                }
+				$this->shop = D('Shop')->find(array("where" => array('shop_id' => $shop_id, 'closed' => 0, 'audit' => 1)));
+
 				$this->shop_id = $this->shop['shop_id'];//为了程序调用的时候
 				$this->assign('SHOP', $this->shop);
 				$this->assign('worker', $shopworker);//首页调用

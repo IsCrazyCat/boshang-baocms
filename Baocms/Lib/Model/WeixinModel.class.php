@@ -115,7 +115,12 @@ class WeixinModel {
 		}
         return $client;
     }
-    
+    public function wechat_client()
+    {
+        include_once BASE_PATH."/Baocms/Lib/Action/Weixin/wechat.class.php";
+        $client = new WechatClient('wxea78884ef0a0a7a3', '5f3e872e294bd51d6f0f0722952d8ce8');
+        return $client;
+    }
     
     private function getSiteToken(){ //获取主站的TOKEN
         $cache = cache(array('type' => 'File', 'expire' => 7000));

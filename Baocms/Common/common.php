@@ -1487,3 +1487,42 @@ function shoppingQrcode($model,$url,$logo_img,$size = 8){ //生成网址的二�
     }
     return $file;
 }
+function doget($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    # curl_setopt($ch, CURLOPT_HEADER, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+    if (!curl_exec($ch)) {
+        error_log(curl_error($ch));
+        $data = '';
+    } else {
+        $data = curl_multi_getcontent($ch);
+    }
+    curl_close($ch);
+    return $data;
+}
+function wx_auto_login($config,$act=''){
+    $is_weixin = is_weixin();
+    if ($config['site']['weixin'] == 1) {
+        if ($is_weixin && !empty($config['weixin']['appid'])) {
+            if ($act != 'wxstart') {
+                $state = md5(uniqid(rand(), TRUE));
+                session('state', $state);
+                if (!empty($_SERVER['REQUEST_URI'])) {
+                    $backurl = $_SERVER['REQUEST_URI'];
+                } else {
+                    $backurl = U('index/index');
+                }
+                session('backurl', $backurl);
+                $login_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' . $config['weixin']['appid'] . '&redirect_uri=' . urlencode(__HOST__ . U('passport/wxstart')) . '&response_type=code&scope=snsapi_userinfo&state=' . $state . '#wechat_redirect';
+                header("location:{$login_url}");
+                echo $login_url;
+                die;
+            }
+        }
+    }
+}

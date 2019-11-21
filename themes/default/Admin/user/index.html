@@ -111,7 +111,8 @@
                         <td>
                         余额：<{:round($var['money']/100,2)}><br/>
                         <eq name="var.is_shop" value="1"><span class="shang">商户资金：&yen; <{:round($var['gold']/100,2)}>元</span><br/></eq>
-                        积分：<{$var.integral}>&nbsp;&nbsp;<{$CONFIG.prestige.name|default='威望'}>：<{$var.prestige}>
+                         积分：<{$var.integral}>&nbsp;
+<!--                            &nbsp;<{$CONFIG.prestige.name|default='威望'}>：<{$var.prestige}>-->
                         </td>
                         <td>
                         <eq name="var.is_shop" value="1">商户冻结金：&yen; <{:round($var['frozen_gold']/100,2)}>元</eq><br/>
@@ -144,7 +145,7 @@
                         <{:BA('user/frozen_gold',array("user_id"=>$var["user_id"]),'设置商户冻结金','load','remberBtn_small_quxiao',600,350)}> 
                         </eq>
                         <{:BA('user/frozen_money',array("user_id"=>$var["user_id"]),'设置会员冻结金','load','remberBtn_small',600,350)}>      
-                        <a target="_blank" href="<{:U('user/manage',array('user_id'=>$var['user_id']))}>" class="remberBtn_small">管理用户</a>
+<!--                        <a target="_blank" href="<{:U('user/manage',array('user_id'=>$var['user_id']))}>" class="remberBtn_small">管理用户</a>-->
                     </td>
                     </tr>
                 </foreach>

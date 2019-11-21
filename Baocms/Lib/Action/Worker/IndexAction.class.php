@@ -59,7 +59,7 @@ class IndexAction extends CommonAction{
         $json = $_POST["snstr"];
         $jsonarr = explode('/',$json);
         if(!empty($json)){
-            $code_id = $jsonarr['7'];
+            $code_id = $jsonarr['9'];
         }else{
             $code_id = (int) $this->_param('code_id');
         }

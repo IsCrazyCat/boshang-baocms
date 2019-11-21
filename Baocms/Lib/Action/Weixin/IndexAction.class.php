@@ -280,13 +280,31 @@ class IndexAction extends CommonAction
                 }
                 $this->weixin->response($content, 'news');
             }elseif($type == 4){
+
                 //分销
                 $fuid = $detail['soure_id'];
                 //存入cookie 然后跳转到首页 走自动注册流程，然后注册时取出fuid，创建会员
-                cookie('fuid',$fuid);
-                //跳转
-                header('Location:' . U('wap/index/index'));
-                die;
+
+                $client = D('Weixin')->wechat_client();
+                $access_token = $client->getAccessToken();
+
+                $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=oz6Qc6OtmkWc-wM2NVd_4weH79oY&lang=zh_CN";
+
+                $res = json_decode(doget($url), true);
+
+                $wx_info = $client->getUserInfoById($data['data']['FromUserName']);
+
+                //检查用户是否注册，如果已经注册则不做任何处理
+                $data = array(
+                    'type' => 'weixin',
+                    'open_id' => $data['data']['FromUserName'],
+                    'nickname' => $wx_info['nickname'],
+                    'headimgurl' => $wx_info['headimgurl'],
+                    'fuid'=>$fuid
+                );
+
+                $test = $this->wxconn($data,$data['open_id']);
+
             }
         }
     }
@@ -369,5 +387,65 @@ class IndexAction extends CommonAction
     private function getImage($img){
 		return config_weixin_img($img);
         //return __HOST__ . '/attachs/' . $img;
+    }
+    //微信自动注册为用户
+    public function wxconn($data,$openid) {
+
+        $connect = D('Connect')->getConnectByOpenid($data['type'], $data['open_id']);
+
+        if (empty($connect)) {
+            $connect = $data;
+            $connect['connect_id'] = D('Connect')->add($data);
+        } else {
+            D('Connect')->save(array('connect_id' => $connect['connect_id'], 'token' => $data['token'], 'nickname' => $data['nickname']));
+        }
+        if (empty($connect['uid'])) {
+            session('connect', $connect['connect_id']);
+            // 用户数据整理
+            $host = explode('.', $this->_CONFIG['site']['host']);
+            $account = uniqid() . '@' .'blk.com';
+            if ($data['nickname'] == '') {
+                $nickname = $data['type'] . $connect['connect_id'];
+            } else {
+                $nickname = $data['nickname'];
+            }
+            $user = array(
+                'fuid' => $data['fuid'],
+                'account' => $account,
+                'password' => rand(10000000, 999999999),
+                'nickname' => $nickname,
+                'ext0' => $account,
+                'face' => $data['headimgurl'],
+                'token' => $data['token'],
+                'reg_time' => NOW_TIME,
+                'reg_ip' => get_client_ip()
+            );
+            //注册用户资料
+            if (!D('Passport')->register($user)) {
+                $this->error('创建帐号失败');
+            }
+
+            // 注册第三方接口
+            $token = D('Passport')->getToken();
+            $connect['uid'] = $token['uid'];
+            D('Connect')->save(array('connect_id' => $connect['connect_id'], 'uid' => $connect['uid']));// 注册成功智能跳转
+            $backurl = session('backurl');
+//            if (!empty($backurl)) {
+//                header("Location:{$backurl}");
+//            } else {
+//                header('Location:' . U('user/member/index'));
+//            }
+        } else {
+            setuid($connect['uid']);
+            session('access', $connect['connect_id']);
+            // 注册成功智能跳转
+            $backurl = session('backurl');
+//            if (!empty($backurl)) {
+//                header("Location:{$backurl}");
+//            } else {
+//                header('Location:' . U('user/member/index'));
+//            }
+        }
+        die;
     }
 }

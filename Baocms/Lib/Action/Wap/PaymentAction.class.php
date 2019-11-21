@@ -365,7 +365,7 @@ class PaymentAction extends CommonAction {
            $this->ajaxReturn(array('status' => 'error', 'msg' => '支付密码不能为空'));
         }
 		if ($Users['pay_password'] != md5(md5($pay_password)) ) {
-           $this->ajaxReturn(array('status' => 'error', 'msg' => '支付密码错误'));
+           $this->ajaxReturn(array('status' => 'error', 'msg' => 'pay='.$Users['pay_password'].'--'.md5(md5($pay_password)) ));
         }else{
            session('session_pay_password', $session_pay_password = rand_string(32, 1));
 		   $this->ajaxReturn(array('status' => 'success', 'msg' => '密码正确，点击支付按钮支付'));

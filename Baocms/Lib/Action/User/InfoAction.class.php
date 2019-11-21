@@ -103,7 +103,7 @@ class InfoAction extends CommonAction{
 			$yzm = $this->_post('yzm');
             if (empty($yzm))
                 $this->fengmiMsg('请填写正确的手机及手机收到的验证码！');
-				
+
             $session_mobile = session('mobile');
             $session_code = session('code');
             if ($yzm != $session_code){
@@ -137,7 +137,7 @@ class InfoAction extends CommonAction{
 					$this->fengmiMsg('两次支付密码输入不一致！');
 				}
 				if ($this->member['pay_password'] != md5(md5($pay_password))) {
-					$this->fengmiMsg('原支付密码不正确');
+					$this->fengmiMsg('原支付密码不正确'.$this->member['pay_password']);
 				}
 				if (D('Passport')->set_pay_password($this->member['account'], $new_pay_password)) {
 					$this->fengmiMsg('更改支付密码成功！', U('member/index'));

@@ -15,24 +15,31 @@ class WeixinAction extends CommonAction {
 		$json = $_POST["snstr"];
 		$jsonarr = explode('/',$json);
 		if(!empty($json)){
-			$code_id = $jsonarr['7'];
+			$code_id = $jsonarr['9'];
 		}else{
 			$code_id = (int) $this->_param('code_id');
 		}
 		
 		$user_id = D('Users')->where(array('user_id'=>$this->uid))->getField('user_id');
 		$worker = D('Shopworker')->where(array('user_id'=>$user_id))->find();
+		$scan_shop_id = 0;
 		if(empty($worker)){
-			$this->error('您不属于任何一个店铺的授权员工，无权进行管理！', U('index/index'));
-		}
-		if(empty($worker['status']) || $worker['status'] !=1 ){
-			$this->error('您的员工信息还处于待通过状态，无权进行操作！', U('worker/index/index'));
-		}
-		
+		    if(!$scan_shop = D('Shop')->where(array('user_id'=>$user_id))->find()){
+                $scan_shop_id = $scan_shop['user_id'];
+                $this->error('您不属于任何一个店铺的管理人或授权员工，无权进行管理！', U('index/index'));
+            }
+		}else{
+            if(empty($worker['status']) || $worker['status'] !=1 ){
+                $this->error('您的员工信息还处于待通过状态，无权进行操作！', U('worker/index/index'));
+            }
+            $scan_shop = D('Shop')->where(array('user_id'=>$user_id))->find();
+            $scan_shop_id = $scan_shop['user_id'];
+        }
 		
 		$obj = D('Tuancode');
 		$shopmoney = D('Shopmoney');
 		$data = $obj->find($code_id);
+		$data['shop_id'] = $scan_shop_id;
 		if(empty($data)){
 			$this->error('没有找到对应的团购券信息！', U('worker/index/index'));
 		}
@@ -81,7 +88,7 @@ class WeixinAction extends CommonAction {
 					}
 					$this->success('团购券'.$code_id.'消费成功！',U('worker/index/index'));
 				} else {
-					
+
 					$this->success('到店付团购券'.$code_id.'消费成功！',U('worker/index/index'));
 				}
 				D('Sms') -> tuan_TZ_user($data['order_id']);//传1个参数去发送短信
@@ -107,12 +114,15 @@ class WeixinAction extends CommonAction {
 		
 		
 		if(empty($worker)){
-			$this->error('您不属于任何一个店铺的授权员工，无权进行管理！', U('worker/index/index'));
-		}
-		if(empty($worker['status']) || $worker['status'] !=1 ){
-			$this->error('您的员工信息还处于待通过状态，无权进行操作2！', U('worker/index/index',array('worker_id'=>$worker['worker_id'])));
-		}
-		
+            if(!$shop = D('Shop')->where(array('user_id'=>$user_id))->find()){
+                $this->error('您不属于任何一个店铺的管理人或授权员工，无权进行管理！', U('index/index'));
+            }
+		}else{
+            if(empty($worker['status']) || $worker['status'] !=1 ){
+                $this->error('您的员工信息还处于待通过状态，无权进行操作！', U('worker/index/index',array('worker_id'=>$worker['worker_id'])));
+            }
+        }
+
 		$download_id = (int) $this->_param('download_id');
 		$obj = D('Coupondownload');
 		$data = $obj->find($download_id);
@@ -121,9 +131,9 @@ class WeixinAction extends CommonAction {
 			$this->error('没有找到对应的优惠券信息！', U('worker/index/index'));
 		}
 
-		if($data['shop_id'] != $worker['shop_id'] || $worker['coupon']!=1){
-			$this->error('您不属于该公司的授权员工，无法进行管理！', U('worker/index/index'));
-		}
+//		if($data['shop_id'] != $worker['shop_id'] || $worker['coupon']!=1){
+//			$this->error('您不属于该公司的授权员工，无法进行管理！', U('worker/index/index'));
+//		}
 
 		if ((int) $data['is_used'] == 0 ) {
 			$ip = get_client_ip();
