@@ -94,8 +94,9 @@ class WorkerAction extends CommonAction{
         if ($worker['shop_id'] != $this->shop_id) {
             $this->ajaxReturn(array('status' => 'error', 'msg' => '您没有权限访问！'));
         }
-        $obj = D('Shopworker');
-        $obj->save(array('worker_id' => $worker_id, 'closed' => 1));
+//        $obj = D('Shopworker');
+//        $obj->save(array('worker_id' => $worker_id, 'closed' => 1));
+        D('Shopworker')->where(array('worker_id'=>$worker_id))->delete();
         $this->ajaxReturn(array('status' => 'success', 'msg' => '员工信息删除成功', U('worker/index')));
     }
     private function editCheck(){

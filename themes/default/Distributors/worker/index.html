@@ -52,7 +52,7 @@ ul { padding-left: 0px;}
 		</div>
         <div class="x2">
         <a class="button button-small margin-top bg-dot "  href="<{:U('worker/edit',array('worker_id'=>$var['worker_id']))}>">编辑</a>
-        <a href="javascript:void(0);" rel="<{$var.worker_id}>"  class="jquery-delete button button-small  margin-top bg-blue">删除</a>
+        <a href="javascript:void(0);" href="<{:U('worker/delete',array('worker_id'=>$var['worker_id']))}>" rel="<{$var.worker_id}>"  class="jquery-delete button button-small  margin-top bg-blue">删除</a>
         </div>
 </li>
 <div class="blank-10 bg"></div>

@@ -14,7 +14,7 @@ class WeixinAction extends CommonAction {
 
 
     public function tuan() {
-        $this->error('$json2='.$this->_param('snstr'));
+
 		$json = $_POST["snstr"];
 		$jsonarr = explode('/',$json);
 		if(!empty($json)){

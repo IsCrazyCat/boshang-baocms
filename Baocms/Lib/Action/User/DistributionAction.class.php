@@ -103,6 +103,9 @@ class DistributionAction extends CommonAction{
         $show = $Page->show();
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
         $p = $_GET[$var];
+        if ($Page->totalPages < $p) {
+            die('0');
+        }
         $orderby = array('user_id' => 'DESC');
         $list = $user->where($map)->order($orderby)->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $this->assign('list', $list);
@@ -119,8 +122,8 @@ class DistributionAction extends CommonAction{
         $user = D('Users')->find($this->uid);
         $file =$user['distribution_qrcode_url'];
         if(empty($file)){
-            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
-            if(!empty($order)){
+//            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
+//            if(!empty($order)){
                 //没有分销二维码，则生成二维码
                 $token = 'fuid_' . $this->uid;
 //                $url = U('Wap/passport/register', array('fuid' => $this->uid));
@@ -131,9 +134,9 @@ class DistributionAction extends CommonAction{
                 $logo = __ROOT__.'Public/img/blk_logo.jpg';
                 $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
                 D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
-            }else{
-                $this->error('您还未拥有分销二维码哦，请先去购物消费！',U('wap/mall/index'));
-            }
+//            }else{
+//                $this->error('您还未拥有分销二维码哦，请先去购物消费！',U('wap/mall/index'));
+//            }
         }
         $this->assign('file', $file);
         $this->display();
@@ -147,8 +150,8 @@ class DistributionAction extends CommonAction{
         $user = D('Users')->find($this->uid);
         $file =$user['distribution_qrcode_url'];
         if(empty($file)){
-            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
-            if(!empty($order)){
+//            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
+//            if(!empty($order)){
                 //没有分销二维码，则生成二维码
                 $token = 'fuid_' . $this->uid;
 //                $url = U('Wap/passport/register', array('fuid' => $this->uid));
@@ -159,9 +162,9 @@ class DistributionAction extends CommonAction{
                 $logo = __ROOT__.'Public/img/blk_logo.jpg';
                 $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
                 D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
-            }else{
-                $this->error('您还未拥有分销二维码哦，请先去购物消费！',U('wap/mall/index'));
-            }
+//            }else{
+//                $this->error('您还未拥有分销二维码哦，请先去购物消费！',U('wap/mall/index'));
+//            }
         }
         $this->assign('file', $file);
         $this->display();
@@ -179,24 +182,27 @@ class DistributionAction extends CommonAction{
     /**
      * 作弊直接生成分销二维码
      */
-    public function qrcode_bad(){
-        if (empty($this->uid)) {
-            header("Location: " . U('Wap/passport/login'));
-            die;
-        }
-        $user = D('Users')->find($this->uid);
-        $file =$user['distribution_qrcode_url'];
-        $wx_qrcode_url = '';
-        //没有分销二维码，则生成二维码
-        //分销二维码 修改为微信的二维码 + logo
-        $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
-//            exit('uid='.$this->uid.'wx_qrcode_url = '.$wx_qrcode_url);
-        $token = 'fuid_' . $this->uid;
-        $logo = __ROOT__.'Public/img/blk_logo.jpg';
-        $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
-        D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
-//        header("Location: " . U('User/distribution/qrcode'));
-//        die;
-        exit(json_encode($wx_qrcode_url));
+//    public function qrcode_bad(){
+//        if (empty($this->uid)) {
+//            header("Location: " . U('Wap/passport/login'));
+//            die;
+//        }
+//        $user = D('Users')->find($this->uid);
+//        $file =$user['distribution_qrcode_url'];
+//        $wx_qrcode_url = '';
+//        //没有分销二维码，则生成二维码
+//        //分销二维码 修改为微信的二维码 + logo
+//        $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
+//        $token = 'fuid_' . $this->uid;
+//        $logo = __ROOT__.'Public/img/blk_logo.jpg';
+//        $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
+//        D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
+////        header("Location: " . U('User/distribution/qrcode'));
+////        die;
+//        exit(json_encode($wx_qrcode_url));
+//    }
+    public function test(){
+        $wx_qrcode_url = D('Weixin')->getToken();
+        exit($wx_qrcode_url);
     }
 }

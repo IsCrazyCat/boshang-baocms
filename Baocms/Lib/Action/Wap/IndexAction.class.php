@@ -108,5 +108,8 @@ class IndexAction extends CommonAction {
         $this->error('积分商城尚未开放，敬请期待！');
         die;
     }
-
+    public function test(){
+          $token =D('Weixin')->getToken();
+          exit($token);
+    }
 }

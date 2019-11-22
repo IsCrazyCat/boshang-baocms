@@ -81,10 +81,11 @@ class WeixinModel {
     }
 
     public function getToken($shop_id=0) {
+        return  $this->getSiteToken();
         
-        if(!$shop_id) return  $this->getSiteToken();
-        
-        return $this->getShopToken($shop_id);
+//        if(!$shop_id) return  $this->getSiteToken();
+//
+//        return $this->getShopToken($shop_id);
     }
     
     private function getShopToken($shop_id){ //获取商家的TOKEN
@@ -123,22 +124,39 @@ class WeixinModel {
     }
     
     private function getSiteToken(){ //获取主站的TOKEN
-        $cache = cache(array('type' => 'File', 'expire' => 7000));
-        if (!$data = $cache->get($this->token)) {
-            $this->config = D('Setting')->fetchAll();
-            $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .
-                    $this->config['weixin']['appid'] . '&secret=' .
-                    $this->config['weixin']['appsecret'];
-            //var_dump($this->config['weixin']);
-            $result = $this->curl->get($url);
-            $result = json_decode($result, true);
-            if (!empty($result['errcode'])) return;
-            $data = $result['access_token'];
-            $cache->set($this->token, $data);
-        }
-        return $data;
+        $this->config = D('Setting')->fetchAll();
+        return $this->get_access_token($this->config['weixin']['appid'],$this->config['weixin']['appsecret']);
+//        $cache = cache(array('type' => 'File', 'expire' => 7000));
+//        if (!$data = $cache->get($this->token)) {
+//            $this->config = D('Setting')->fetchAll();
+//            $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .
+//                    $this->config['weixin']['appid'] . '&secret=' .
+//                    $this->config['weixin']['appsecret'];
+//            //var_dump($this->config['weixin']);
+//            $result = $this->curl->get($url);
+//            $result = json_decode($result, true);
+//            if (!empty($result['errcode'])) return;
+//            $data = $result['access_token'];
+//            $cache->set($this->token, $data);
+//        }
+//        return $data;
     }
-    
+    private function get_access_token($appid,$appsecret){
+
+        //判断是否过了缓存期
+        $token = D('Weixinaccess')->getToken();
+        $expire_time = $token['expir_time'];
+        if($expire_time > time()){
+            return $token['access_token'];
+        }
+
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
+        $result = $this->curl->get($url);
+        $result = json_decode($result, true);
+        if (!empty($result['errcode'])) return false;
+        D('Weixinaccess')->setToken($result['access_token']);
+        return $result['access_token'];
+    }
     public function getCode($soure_id,$type){ //生成二维码
         $url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->getSiteToken();
         $str = "";
