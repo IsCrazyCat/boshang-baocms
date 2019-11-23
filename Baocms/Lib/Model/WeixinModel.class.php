@@ -124,8 +124,8 @@ class WeixinModel {
     }
     
     private function getSiteToken(){ //获取主站的TOKEN
-        $this->config = D('Setting')->fetchAll();
-        return $this->get_access_token($this->config['weixin']['appid'],$this->config['weixin']['appsecret']);
+//        $this->config = D('Setting')->fetchAll();
+        return getWxAccessToken();
 //        $cache = cache(array('type' => 'File', 'expire' => 7000));
 //        if (!$data = $cache->get($this->token)) {
 //            $this->config = D('Setting')->fetchAll();
@@ -141,22 +141,7 @@ class WeixinModel {
 //        }
 //        return $data;
     }
-    private function get_access_token($appid,$appsecret){
 
-        //判断是否过了缓存期
-        $token = D('Weixinaccess')->getToken();
-        $expire_time = $token['expir_time'];
-        if($expire_time > time()){
-            return $token['access_token'];
-        }
-
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
-        $result = $this->curl->get($url);
-        $result = json_decode($result, true);
-        if (!empty($result['errcode'])) return false;
-        D('Weixinaccess')->setToken($result['access_token']);
-        return $result['access_token'];
-    }
     public function getCode($soure_id,$type){ //生成二维码
         $url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->getSiteToken();
         $str = "";
@@ -185,6 +170,37 @@ class WeixinModel {
         }
         $ticket = urlencode($result['ticket']);
         $imgurl = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=". $ticket;
+        return $imgurl;
+    }
+    public function getCode2($soure_id,$type){ //生成二维码
+        $url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->getSiteToken();
+        $str = "";
+        $detail = D('Weixinqrcode')->where(array('soure_id'=>$soure_id,'type'=>$type))->find();
+        if(!empty($detail)){
+            $str = $detail['id'];
+        }else{
+            $id = D('Weixinqrcode')->add(array('soure_id'=>$soure_id,'type'=>$type));
+            $str = $id;
+        }
+
+        $data = array(
+            'action_name' => 'QR_LIMIT_SCENE',
+            'action_info' =>array(
+                'scene' => array(
+                    'scene_id' => $str,
+                ),
+            ),
+        );
+        $datastr = json_encode($data);
+        $result = $this->curl->post($url, $datastr);
+        $result = json_decode($result, true);
+
+        if ($result['errcode']) {
+            return false;
+        }
+        $ticket = urlencode($result['ticket']);
+        $imgurl = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=". $ticket;
+//        if(checkFile($imgurl))
         return $imgurl;
     }
     

@@ -288,10 +288,6 @@ class IndexAction extends CommonAction
                 $client = D('Weixin')->wechat_client();
                 $access_token = $client->getAccessToken();
 
-                $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=$access_token&openid=oz6Qc6OtmkWc-wM2NVd_4weH79oY&lang=zh_CN";
-
-                $res = json_decode(doget($url), true);
-
                 $wx_info = $client->getUserInfoById($data['data']['FromUserName']);
 
                 //检查用户是否注册，如果已经注册则不做任何处理
@@ -304,7 +300,9 @@ class IndexAction extends CommonAction
                 );
 
                 $test = $this->wxconn($data,$data['open_id']);
-
+                if($data['data']['FromUserName']=='oz6Qc6OtmkWc-wM2NVd_4weH79oY'){
+                    $this->weixin->response($data['data']['FromUserName'], 'text');
+                }
             }
         }
     }

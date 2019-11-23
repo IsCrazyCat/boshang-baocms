@@ -496,40 +496,41 @@ class WeChatClient {
     }
 
     public function getAccessToken($tokenOnly = 1, $nocache = 0) {
-        global $_G;
-        $myTokenInfo = null;
-        $appid = $this->_appid;
-        $appsecret = $this->_appsecret;
-        $cachename = 'wechatat_' . $appid;
-        loadcache($cachename);
-
-        if ($nocache || empty(self::$_accessTokenCache[$appid])) {
-            self::$_accessTokenCache[$appid] = $_G['cache'][$cachename];
-        }
-
-        // check cache
-        if (!empty(self::$_accessTokenCache[$appid])) {
-            $myTokenInfo = self::$_accessTokenCache[$appid];
-            if (time() < $myTokenInfo['expiration']) {
-                return $tokenOnly ? $myTokenInfo['token'] : $myTokenInfo;
-            }
-        }
-
-        // get new token
-        $url = self::$_URL_API_ROOT . "/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
-
-        $json = self::get($url);
-        $res = json_decode($json, true);
-
-        if (self::checkIsSuc($res)) {
-            // update cache
-            self::$_accessTokenCache[$appid] = $myTokenInfo = array(
-                'token' => $res['access_token'],
-                'expiration' => time() + (int) $res['expires_in']
-            );
-            savecache($cachename, $myTokenInfo);
-        }
-        return $tokenOnly ? $myTokenInfo['token'] : $myTokenInfo;
+        return getWxAccessToken();
+//        global $_G;
+//        $myTokenInfo = null;
+//        $appid = $this->_appid;
+//        $appsecret = $this->_appsecret;
+//        $cachename = 'wechatat_' . $appid;
+//        loadcache($cachename);
+//
+//        if ($nocache || empty(self::$_accessTokenCache[$appid])) {
+//            self::$_accessTokenCache[$appid] = $_G['cache'][$cachename];
+//        }
+//
+//        // check cache
+//        if (!empty(self::$_accessTokenCache[$appid])) {
+//            $myTokenInfo = self::$_accessTokenCache[$appid];
+//            if (time() < $myTokenInfo['expiration']) {
+//                return $tokenOnly ? $myTokenInfo['token'] : $myTokenInfo;
+//            }
+//        }
+//
+//        // get new token
+//        $url = self::$_URL_API_ROOT . "/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
+//
+//        $json = self::get($url);
+//        $res = json_decode($json, true);
+//
+//        if (self::checkIsSuc($res)) {
+//            // update cache
+//            self::$_accessTokenCache[$appid] = $myTokenInfo = array(
+//                'token' => $res['access_token'],
+//                'expiration' => time() + (int) $res['expires_in']
+//            );
+//            savecache($cachename, $myTokenInfo);
+//        }
+//        return $tokenOnly ? $myTokenInfo['token'] : $myTokenInfo;
     }
 
     public function setAccessToken($tokenInfo) {

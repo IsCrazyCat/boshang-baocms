@@ -124,15 +124,14 @@ class DistributionAction extends CommonAction{
         if(empty($file)){
 //            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
 //            if(!empty($order)){
-                //没有分销二维码，则生成二维码
-                $token = 'fuid_' . $this->uid;
-//                $url = U('Wap/passport/register', array('fuid' => $this->uid));
-//                $file = baoQrCode($token, $url);
                 //分销二维码 修改为微信的二维码 + logo
-                $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
-                $token = 'fuid_' . $this->uid;
-                $logo = __ROOT__.'Public/img/blk_logo.jpg';
-                $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
+//                for($i=0;$i<3;$i++){
+                    $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
+                    $token = 'fuid_' . $this->uid;
+                    $logo = __ROOT__.'Public/img/blk_logo.jpg';
+                    $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
+
+//                }
                 D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
 //            }else{
 //                $this->error('您还未拥有分销二维码哦，请先去购物消费！',U('wap/mall/index'));
@@ -152,10 +151,6 @@ class DistributionAction extends CommonAction{
         if(empty($file)){
 //            $order=D('Order')->where(array('user_id'=>$this->uid,'status'=>array('IN','1,2,8')))->find();
 //            if(!empty($order)){
-                //没有分销二维码，则生成二维码
-                $token = 'fuid_' . $this->uid;
-//                $url = U('Wap/passport/register', array('fuid' => $this->uid));
-//                $file = baoQrCode($token, $url);
                 //分销二维码 修改为微信的二维码 + logo
                 $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
                 $token = 'fuid_' . $this->uid;
@@ -182,27 +177,45 @@ class DistributionAction extends CommonAction{
     /**
      * 作弊直接生成分销二维码
      */
-//    public function qrcode_bad(){
-//        if (empty($this->uid)) {
-//            header("Location: " . U('Wap/passport/login'));
-//            die;
+    public function qrcode_bad(){
+        if (empty($this->uid)) {
+            header("Location: " . U('Wap/passport/login'));
+            die;
+        }
+//        if(!($this->uid == 1741)){
+//            exit('不是指定用户，无权限！'.$this->uid);
 //        }
-//        $user = D('Users')->find($this->uid);
-//        $file =$user['distribution_qrcode_url'];
-//        $wx_qrcode_url = '';
-//        //没有分销二维码，则生成二维码
-//        //分销二维码 修改为微信的二维码 + logo
-//        $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
-//        $token = 'fuid_' . $this->uid;
-//        $logo = __ROOT__.'Public/img/blk_logo.jpg';
-//        $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
-//        D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
-////        header("Location: " . U('User/distribution/qrcode'));
-////        die;
-//        exit(json_encode($wx_qrcode_url));
-//    }
+        $user = D('Users')->find($this->uid);
+        $file =$user['distribution_qrcode_url'];
+        $wx_qrcode_url = '';
+        //没有分销二维码，则生成二维码
+        //分销二维码 修改为微信的二维码 + logo
+        $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
+        $token = 'fuid1__' . $this->uid;
+        $logo = __ROOT__.'Public/img/blk_logo.jpg';
+        $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
+        D('Users')->save(array('user_id'=>$this->uid,'distribution_qrcode_url'=>$file));
+//        header("Location: " . U('User/distribution/qrcode'));
+//        die;
+        if(empty($wx_qrcode_url)){
+            exit($this->uid.'===='. D('Weixin')->getToken());
+        }
+        exit('success='.json_encode($wx_qrcode_url));
+    }
     public function test(){
-        $wx_qrcode_url = D('Weixin')->getToken();
-        exit($wx_qrcode_url);
+        if(checkFile($wx_qrcode_url = D('Weixin')->getCode($this->uid,4))){
+            exit(1);
+        }
+        exit(2);
+
+//        if(file_exists("")){
+//               $flag .= "头像存在";
+//        }
+//        if(file_exists()){
+//            $flag .=" ===二维码存在";
+//        }else{
+//            exit($flag .'===二维码'. $wx_qrcode_url);
+//        }
+//        exit($flag);
     }
 }
