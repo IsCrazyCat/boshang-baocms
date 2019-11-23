@@ -53,7 +53,7 @@ class IndexAction extends CommonAction{
      */
     public function scanaudit(){
 
-        $use_user_id = $this->_param('use_user_id');
+
 
         //消费用户
         $use_user = D('Users')->find($use_user_id);
@@ -65,11 +65,14 @@ class IndexAction extends CommonAction{
                 $val = $jsonarr[$i];
                 if($val=='code_id'){
                     $code_id = $jsonarr[$i+1];
-                    break;
+                }
+                if($val=='use_user_id'){
+                    $use_user_id = $this->_param('use_user_id');
                 }
             }
         }else{
             $code_id = (int) $this->_param('code_id');
+            $use_user_id = $this->_param('use_user_id');
         }
         $tuancode = D('Tuancode')->find($code_id);
         if(empty($tuancode)){
@@ -78,7 +81,8 @@ class IndexAction extends CommonAction{
         $tuan = D('tuan')->find($tuancode['tuan_id']);
         $order = D('Tuanorder')->find($tuancode['order_id']);
 
-        $scanurl = str_replace('index/scanaudit','weixin/tuan',$_SERVER['REQUEST_URI']);
+//        $scanurl = str_replace('index/scanaudit','weixin/tuan',$_SERVER['REQUEST_URI']);
+        $scanurl = __HOST__.'/worker/weixin/tuan'.'/code_id/'.$code_id.'/use_user_id/'.$use_user_id;
         $this->assign('scanurl',$scanurl);
         $this->assign('use_user',$use_user);
         $this->assign('tuan',$tuan);

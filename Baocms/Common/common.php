@@ -1549,7 +1549,9 @@ function getWxAccessToken(){
     }
 
     $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxea78884ef0a0a7a3&secret=5f3e872e294bd51d6f0f0722952d8ce8";
-    $result = $this->curl->get($url);
+    import("@/Net.Curl");
+    $curl = new Curl();
+    $result = $curl->get($url);
     $result = json_decode($result, true);
     if (!empty($result['errcode'])) return false;
     D('Weixinaccess')->setToken($result['access_token']);
