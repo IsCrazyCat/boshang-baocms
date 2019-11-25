@@ -22,7 +22,7 @@
 
 	<header class="top-fixed bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('appoint/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('appoint/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			家政服务详情
@@ -30,11 +30,11 @@
 		<div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('appoint/index')}>">
 				<input name="keyword" placeholder="输入家政的关键字"  />
-				<button type="submit" class="icon-search"></button> 
+				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 		</div>
        <div class="top-signed">
-			<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
+			<a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
 		</div>
 	</header>  
     
@@ -118,8 +118,8 @@
 		</div>
 	</div>
 			<div class="title">
-				<h1><{:bao_msubstr($detail['title'],0,20)}></h1>
-				<p><{:bao_msubstr($detail['intro'],0,40)}></p>
+				<h1><{:tu_msubstr($detail['title'],0,20)}></h1>
+				<p><{:tu_msubstr($detail['intro'],0,40)}></p>
 			</div>	
 		</div>
 </div>            
@@ -154,7 +154,7 @@
 				<span class="ui-starbar"><span style="width:<{:round($score*20,2)}>%"></span></span>
 			</div>
 			<div class="x6">
-				<span class="float-right margin-small-top"><a href="<{:U('appoint/dianping',array('appoint_id'=>$detail['appoint_id']))}>"><{$pingnum}>人评价了该家政</a> <i class="icon-angle-right"></i></span>
+				<span class="float-right margin-small-top"><a href="<{:U('appoint/dianping',array('appoint_id'=>$detail['appoint_id']))}>"><{$pingnum}>人评价了该家政</a> <i class="iconfont icon-angle-right"></i></span>
 			</div>
 		</div>
         <div class="blank-10 bg"></div>
@@ -163,7 +163,7 @@
         	<span class="left">推荐技师</span>
             <span class="float-right">
                 <a href="<{:U('appoint/worker_list',array('appoint_id'=>$detail['appoint_id']))}>">查看全部技师</a> 
-                <i class="icon-angle-right"></i>
+                <i class="iconfont icon-angle-right"></i>
             </span>
         </div>
         <div class="goods_limit_buy mb10">

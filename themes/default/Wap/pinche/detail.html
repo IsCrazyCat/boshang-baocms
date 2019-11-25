@@ -1,12 +1,13 @@
 <php>$mobile_title = $detail['title'];</php>
+
 <include  file='public:header'/>   
 <style>
-.icon-angle-right{ float:right; font-size:20px;}
+.iconfont icon-angle-right{ float:right; font-size:20px;}
 .layui-layer-molv .layui-layer-title { background-color: #F8F8F8;border-bottom: 1px solid #eee; color: #333;}
 </style> 
 	<header class="top-fixed bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('pinche/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('pinche/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			拼车详情
@@ -14,11 +15,11 @@
 		<div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('pinche/index')}>">
 				<input name="keyword" placeholder="输入拼车的关键字"  />
-				<button type="submit" class="icon-search"></button> 
+				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 		</div>
 		<div class="top-signed">
-			<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
+			<a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
 		</div>
 	</header>  
 	 <script>
@@ -32,33 +33,6 @@
 					$(".top-search").show();
 					$(".top-title").hide(200);
 				}
-			});
-			$("#search-bar li").each(function(e){
-				$(this).click(function(){
-					if($(this).hasClass("on")){
-						$(this).parent().find("li").removeClass("on");
-						$(this).removeClass("on");
-						$(".serch-bar-mask").hide();
-					}
-					else{
-						$(this).parent().find("li").removeClass("on");
-						$(this).addClass("on");
-						$(".serch-bar-mask").show();
-					}
-					$(".serch-bar-mask .serch-bar-mask-list").each(function(i){
-						if(e==i){
-							$(this).parent().find(".serch-bar-mask-list").hide();
-							$(this).show();
-						}
-						else{
-							$(this).hide();
-						}
-						$(this).find("li").click(function(){
-							$(this).parent().find("li").removeClass("on");
-							$(this).addClass("on");
-						});
-					});
-				});
 			});
 		});
 	</script>
@@ -76,7 +50,7 @@
                 <elseif condition="$detail['cate_id'] eq 4"/>
                 【货找车】
                 </if>
-            <{$areass[$detail['area_id']]['area_name']}>-<{$detail['toplace']}> 
+            <{$detail['goplace']}>-<{$detail['toplace']}> 
             <if condition="!empty($detail['middleplace'])">
                 -途经（<{$detail['middleplace']}>）
             </if>
@@ -86,16 +60,9 @@
 		<div class="blank-10 bg"></div>
 		<div class="detail-info">
 			<h1>相关信息</h1>
-            <p>出发城市-区域：<{$citys[$detail['city_id']]['name']}>-<{$areass[$detail['area_id']]['area_name']}> -> <{$detail.toplace}></p>
+            <p>出发地-目的地：<{$detail['goplace']}> -> <{$detail.toplace}></p>
             <if condition="!empty($detail['middleplace'])">
-            <p class="text-dot">途径地：<{$detail.middleplace}></p>
-            </if>
-            <if condition="!empty($detail['community_id'])">
-            <php>
-            $community =  D('Community')->where(array('community_id'=>$detail['community_id']))->find();
-            $name = $community['name'];
-            </php>
-            <p>所在小区：<a href="<{:u('Property/index',array('community_id'=>$detail['community_id']))}>"><{$name}> </a></p>
+            	<p class="text-dot">途径地：<{$detail.middleplace}></p>
             </if>
 			<p>出发时间：<{$detail.start_time}></p>
 			<p>具体时间：<{$detail.start_time_more}></p>

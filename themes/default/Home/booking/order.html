@@ -106,7 +106,17 @@
         </div>
     </if>
     <div class="hotel_tongji" id="online_pay">
-        需付定金：<span class="fontcl1">￥<span class="price"><{$detail.deposit}></span></span><a href="javascript:void(0);" id="ding_btn" class="btn">提交订单</a>
+        需付定金：<span class="fontcl1">￥<span class="price"><{$detail.deposit}></span></span>
+        
+        <if condition="$total_money">
+        	菜品总价：<span class="fontcl1">￥<span class="price"><{:round($total_money/100,1)}></span></span>
+        </if>
+        
+        <php>
+        $money = ($detail['deposit']*100) + $total_money;
+        </php>
+        实际支付：<span class="fontcl1">￥<span class="price"><{:round($money/100,1)}></span></span>
+        <a href="javascript:void(0);" id="ding_btn" class="btn">提交订单</a>
     </div>
     
   

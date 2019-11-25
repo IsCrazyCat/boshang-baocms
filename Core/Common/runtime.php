@@ -191,7 +191,7 @@ function check_runtime() {
 
         header('Content-Type:text/html; charset=utf-8');
 
-        exit('目录 [ '.RUNTIME_PATH.' ] 不可写！');
+        exit('目录 [ '.RUNTIME_PATH.' ] 不可写');
 
     }
 

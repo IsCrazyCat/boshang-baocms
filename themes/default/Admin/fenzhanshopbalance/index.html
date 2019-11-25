@@ -37,31 +37,35 @@
             <div class="clear"></div>
         </div>
 
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
                     <td class="w50"><input type="checkbox" class="checkAll" rel="user_id" /></td>
-                    <td class="w50">ID</td>
+                    <td class="w50">会员ID</td>
+                    <td>会员昵称</td>
+                    <td>商户ID</td>
                     <td>商户名称</td>
-                    <td>会员名称</td>
-                    <td>余额</td>
-                    <td>冻结余额</td>
+                    <td>会员余额</td>
+                    <td>商户资金余额</td>
+                    <td>商户资金冻结余额</td>
                     <td class="w150">操作</td>
                 </tr>
                 <foreach name="list" item="var">
                     <tr>
                         <td><input class="child_user_id" type="checkbox" name="user_id[]" value="<{$var.user_id}>" /></td>
                         <td><{$var.user_id}></td>
+                        <td><{$var.nickname}></td>
                         <php>
-                        $shop_name = D('Shop')->where(array('user_id'=>$var['user_id']))->find();
+                        	$shop = D('Shop')->where(array('user_id'=>$var['user_id']))->find();
                         </php>
-                        <td><{$shop_name['shop_name']}></td>
-                        <td><{$var.account}></td>
-                        <td><{:round($var['gold']/100,2)}></td>
-                        <td><{:round($var['frozen']/100,2)}></td>
+                        <td><{$shop['shop_id']}></td>
+                        <td><{$shop['shop_name']}></td>
+                        <td>&yen;<{:round($var['money']/100,2)}>元</td>
+                        <td>&yen;<{:round($var['gold']/100,2)}>元</td>
+                        <td style="color:#F00">&yen;<{:round($var['frozen_gold']/100,2)}>元</td>
                     <td class="w150">
-                        <{:BA('fenzhanshopbalance/frozen',array("user_id"=>$var["user_id"]),'设置冻结金','load','remberBtn',600,350)}>
+                        <{:BA('fenzhanshopbalance/frozen',array("user_id"=>$var["user_id"]),'+-冻结金','load','remberBtn',600,350)}>
                     </td>
                     </tr>
                 </foreach>

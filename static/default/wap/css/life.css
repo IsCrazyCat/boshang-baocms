@@ -23,8 +23,32 @@
 .tie-ding li{border-bottom:thin solid #eee;padding:10px;overflow:hidden;}
 .tie-ding em{float:left;margin-right:10px;font-size:12px;}
 .tie-ding span{float:right;color:#999;}
-.tie-ding a{width:80%;overflow:hidden;display:block;height:20px;line-height:20px;float:left;}
+.tie-ding a{overflow:hidden;display:block;height:20px;line-height:20px;float:left;}
 
+
+
+/*帖子列表*/
+.tie-list{background:#f5f5f5;list-style:none;}
+.tie-item {background:#fff;padding:10px;overflow:hidden;}
+.tie-item .item-head{overflow:hidden;border-bottom:thin solid #eee;position:relative;padding:5px 0;}
+.tie-item .item-head .avatar img{width:40px;height:40px;border-radius:30px;overflow:hidden;}
+.tie-item .item-head .info{float:left;font-size:12px;overflow:hidden;}
+.tie-item .item-head  span.top{ padding:0 2px;text-align:center;color:#FFF;background:#F60;margin:2px; color:#FFF !important}
+.tie-item .item-head .info span{color:#999;}
+.tie-item .item-head .title{font-size:1.5em; font-weight:bold;display:block;height:30px;overflow:hidden;line-height:30px;margin:0;overflow:hidden;}
+.tie-item .item-head .coner{width:12px;height:6px;position:absolute;bottom:0;right:20px;}
+.tie-item .item-body {padding:10px 0;}
+.tie-item .item-body .pic{overflow:hidden;width:100%;}
+.tie-item .item-body .pic img{width:99%;}
+.tie-item .item-body .gallery{width:100%;overflow:hidden;padding:0;}
+.tie-item .item-body .gallery li{float:left;border:none; list-style:none}
+.tie-item .item-body .gallery img{max-width: 90px;height: 67px;overflow: hidden;float: left;display: inline;margin-right:5px;position: relative;z-index: 1; width:auto}
+.tie-item .item-body .pic span{width:25%;float:left;display:block;}
+.tie-item .item-body .ctrl{overflow:hidden;color:#999;width:100%;text-align:right;}
+.tie-item .item-body .ctrl a{margin-left:20px;color:#4170B6;display:block;float:right;height:40px;line-height:40px;padding:0 10px;}
+.tie-item .item-foot{background:#fafafa;font-size:12px;padding:10px;}
+.tie-item .item-foot p{margin:0;height:25px;line-height:25px;overflow:hidden;}
+.tie-item .item-foot em{color:#4170B6;}
 
 .focus{ width:100%;margin:0 auto; position:relative; overflow:hidden;   }
 .focus .hd{ width:100%; height:11px; position:absolute; z-index:1; bottom:5px; text-align:center;  }
@@ -36,13 +60,13 @@
 .focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); }
 
 
-.cate-wrap{font-size:0;background-color:#fff;border-bottom:1px solid #f3f3f3;width:100%;overflow:hidden;padding-bottom:.3rem;padding-top:1.8rem}
-.cate-wrap li{box-sizing:border-box;width:25%;float:left}
+.cate-wrap{font-size:0;background-color:#fff;width:100%;overflow:hidden;padding-bottom:.3rem;padding-top:1.8rem}
+.cate-wrap li{box-sizing:border-box;width:20%;float:left}
 .icon2{color:#555;font-size:16px;text-align:center;display:block;padding:.8rem 0}
 .cate-img{background-size:6rem auto;display:inline-block}
 .cate-img img{width:3rem;height:3rem}
 .cate-desc{display:block}
-.cate-desc{padding-top:.8rem}
+.cate-desc{padding-top:.01rem}
 
 
 /* 信息列表 */
@@ -61,12 +85,12 @@
 /* 不带 */
 .mod-2 {display:-webkit-box;-webkit-box-orient:horizontal;position:relative;}
 .mod-2 h4{height:20px;line-height:20px;font-size:14px;overflow:hidden;margin:0;}
-.mod-2 h4 span{width:16px;height:16px;line-height:16px;text-align:center;color:#FFF;background:#F60;margin:2px;}
+.mod-2 h4 span{width:16px;height:16px;line-height:16px;text-align:center;color:#FFF;background:#F60;margin:2px;padding:0 2px;}
 .mod-2 a{color:#003040;}
-.mod-2 p{color:#999;font-size:12px;overflow:hidden;height:20px;margin:0;margin-top:3px;}
+.mod-2 p{color:#999;overflow:hidden;height:20px;margin:0;margin-top:3px;}
 .mod-2 .tel{width:50px;height:60px;right:5px;position:absolute;}
 .mod-2 .tel a{display:block;width:50px;height:50px;line-height:50px;text-align:center;border:1px solid #eee;border-radius:50px;background:#FAF5F5;}
-.mod-2 .tel span{margin:11px;}
+.mod-2 .tel span{margin:12px;font-size: 20px;}
 .mod-2 .tel .icon{font-size:20px;color:#0AE;}
 
 
@@ -82,7 +106,7 @@
 .detail-bd .num-col span{float:left;margin-right:10px;font-size:12px;}
 .detail-bd .num-col span em{color:#F60;font-size:16px;}
 .detail-bd .txt-col{padding:5px 0;overflow:hidden;margin-bottom:10px;}
-.detail-bd .txt-col span{width:50%;float:left;font-size:12px;color:#999;line-height:25px;}
+.detail-bd .txt-col span{width:100%;float:left;font-size:14px;color:#999;line-height:25px;}
 .detail-bd .txt-col span em{margin-left:5px;}
 .detail-bd .itr-col{border-top:thin solid #eee;padding-top:10px;}
 .detail-bd .itr-col h5{font-size:12px;}

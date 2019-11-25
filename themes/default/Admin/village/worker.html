@@ -14,13 +14,14 @@
             <div class="clear"></div>
        
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
                     <td><input type="checkbox" class="checkAll" rel="community_id" /></td>
                     <td>ID</td>
                     <td>姓名</td>
+                    <td>管理员</td>
                     <td>职务</td>
                     <td>照片</td>
                      <td>排序</td>
@@ -31,6 +32,7 @@
                         <td><input class="child_community_id" type="checkbox" name="id[]" value="<{$var.id}>" /></td>
                         <td><{$var.id}></td>
                         <td><{$var.name}></td>
+                        <td><{$users[$var['user_id']]['nickname']}>(ID:<{$var.user_id}>)</td>
                         <td><img src="<{:config_img($var['photo'])}>" width="80" height="80"/></td>
                         <td><{$var.job}></td>
                         <td><{$var.orderby}></td>

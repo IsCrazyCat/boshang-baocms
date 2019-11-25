@@ -63,9 +63,9 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 .tuan-detail .intro .container{padding:10px;}
 .tuan-detail .intro .container *{max-width:100%;}
 
-.appoint_buy_btn {position: fixed;left: 0;right: 0; bottom: 0;background: rgba(0,0,0,0.6);z-index: 10;}
-.appoint_buy_btn .appoint_buy_segment {position: relative;height:65px;line-height:65px;}
-.appoint_buy_btn .appoint_buy_segment .appoint_buy_wrapper{ padding:10px;}
+.appoint_buy_btn {position: fixed;left: 0;right: 0; bottom: 0;background: rgba(0,0,0,0.4);z-index: 10;}
+.appoint_buy_btn .appoint_buy_segment {position: relative;height:62px;line-height:65px;}
+.appoint_buy_btn .appoint_buy_segment .appoint_buy_wrapper{padding-right:10px;}
 
 .main-service a{display:block;padding:15px 10px;overflow:hidden;}
 .main-service .pic{float:left;width:40%;text-align:center;}
@@ -90,7 +90,7 @@ display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-w
 
 
 .send-form .row{overflow:hidden;border-bottom:thin solid #EEE;padding:0;}
-.send-form .icon{float:left;width:10%;text-align:center;color:#999;height:50px;line-height:60px;overflow:hidden;font-size:16px;}
+.send-form .iconfont{float:left;width:10%;text-align:center;color:#999;height:50px;line-height:60px;overflow:hidden;font-size:16px;}
 .send-form .line-input{border:none;float:left;background:#FFF;height:50px;width:90%;padding-top:12px;overflow:hidden;}
 
 /*小区搜索*/

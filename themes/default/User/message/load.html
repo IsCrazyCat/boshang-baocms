@@ -7,12 +7,12 @@
 	</div>
 	<div class="line padding">
 		<span class="x12 text-right">
-        	<a class="button button-little bg-blue" href="<{:U('message/msgshow',array('msg_id'=>$item['msg_id']))}>">详细</a>
+        	<a class="button button-little border-blue" href="<{:U('message/msgshow',array('msg_id'=>$item['msg_id']))}>">详细</a>
         <if condition="empty($item['views'])">
-        	<a class="button button-little bg-dot">未读</a>
+        	<a class="button button-little border-dot">未读</a>
         </if>
         <if condition="!empty($item['user_id'])">
-        	<a class="button button-little">私信</a>
+        	<a class="button button-little  border-yellow">私信</a>
         </if>
         <if condition="!empty($item['user_id'])">
         	<a target="x-frame" class="button button-little bg-blue" href="<{:U('message/delete',array('msg_id'=>$item['msg_id']))}>">删除</a>

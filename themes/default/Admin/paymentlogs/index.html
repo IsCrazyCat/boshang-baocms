@@ -1,4 +1,7 @@
 <include file='public:header'/>
+<style>
+.inptText {width: 92px;}
+</style>
 <div class="mainBt">
     <ul>
         <li class="li1">设置</li>
@@ -6,6 +9,17 @@
         <li class="li2 li3">支付日志</li>
     </ul>
 </div>
+<p class="attention"><span>注意：</span>新版这里可以按照支付订单类型查询日志，还可以按照付款状态等查询日志，已可以高级搜索里面按照时间查询，非常方便！</p>
+<p class="attention"><span>网站总支付资金统计：</span>
+未付款总金额：&yen;<{:round($money_is_paid_0/100,2)}>元，已付款：&yen;<{:round($money_is_paid_1/100,2)}>元
+<a style="color:#F00; font-weight:bold;">
+    <volist name='types' id='item'>
+        <if condition="$key EQ $st">
+        【<{$item}>】
+        </if>
+    </volist>
+未付款：&yen;<{:round($sum_0/100,2)}>元，已付款：&yen;<{:round($sum_1/100,2)}>元</a>
+</p>
 <div class="main-jsgl main-sc">
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
@@ -14,12 +28,51 @@
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('paymentlogs/index')}>">
                     <div class="seleHidden" id="seleHidden">
-                        <span>订单编号（支付编号）:</span>
+                    <div class="seleK">
+                     <label><span>开始时间</span><input type="text" name="bg_date" value="<{$bg_date|default=''}>"onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});" class="text"/></label>
+                        <label><span>结束时间</span><input type="text" name="end_date" value="<{$end_date|default=''}>"onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});" class="text"/></label>
+                        
+                        
+                        <label>
+                                <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>" />
+                                <input type="text" name="nickname" id="nickname"  value="<{$nickname}>"   class="text " />
+                                <a mini="select"  w="800" h="600" href="<{:U('user/select')}>" class="sumit">选择用户</a>
+                            </label>
+                            
+                            
+                      <label>
+                          <span>支付类型：</span>
+                          <select class="select w120" name="type">
+                             <option value="999">请选择类型</option>
+                             <volist name='types' id='item'>
+                                <option <if condition="$key EQ $type">selected="selected" class="red" </if>  value="<{$key}>"><{$item}></option>
+                            </volist>
+                          </select>
+                        </label>
+                        <label>
+                          <span>支付方式：</span>
+                          <select class="select w120" name="code">
+                          	  <option value="999">请选择支付方式</option>
+                              <volist name='codes' id='item'>
+                                <option <if condition="$key EQ $code">selected="selected" class="red" </if>  value="<{$key}>"><{$item}></option>
+                            </volist>
+                          </select>
+                        </label>
+                       <label>
+                          <span>付款状态：</span>
+                          <select class="select w120" name="status">
+                          	  <option value="999">请选择状态</option>
+                              <option <eq name="status" value="999">selected="selected"</eq> value="999">请选择</option>
+                              <option <eq name="status" value="0">selected="selected"</eq>  value="0">未付款</option>
+                              <option <eq name="status" value="1">selected="selected"</eq>  value="1">已付款</option>
+                          </select>
+                        </label>
+                        <span>支付编号:</span>
                         <input type="text" name="keyword" value="<{$keyword}>" class="inptText"/>
                         <input type="submit"value="搜索"class="inptButton"/>
+                        </div>
                     </div>
                 </form>
-                <a href="javascript:void(0);" class="searchG">高级搜索</a>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
@@ -28,11 +81,7 @@
             <div class="selectNr selectNr2">
                 <div class="left">
                     <div class="seleK">
-                        <label><span>开始时间</span><input type="text" name="bg_date" value="<{$bg_date|default=''}>"onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});" class="text"/></label>
-                        <label><span>结束时间</span><input type="text" name="end_date" value="<{$end_date|default=''}>"onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});" class="text"/></label>
-                        <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>"/>
-                        <input class="text" type="text" name="nickname" id="nickname" value="<{$nickname}>"/>
-                        <a mini="select" w="800" h="600" href="<{:U('user/select')}>" class="sumit">选择用户</a>
+                        
                     </div>
                 </div>
                 <div class="right">
@@ -42,7 +91,7 @@
 
         <div class="clear"></div>
     </div>
-    <form target="baocms_frm" method="post">
+    <form target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"
                    style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;">
@@ -93,15 +142,28 @@
                         <td>
                             <if condition="$var.code eq ''">
                                 <span style="color: green">未选择支付方式</span>
-                                <elseif condition="$var.code eq 'jsapi'"/><span style="color: orange">微信公众号支付</span>
-                                <elseif condition="$var.code eq 'native'"/><span style="color: blueviolet">微信扫码支付</span>
-                                <elseif condition="$var.code eq 'money'"/><span style="color:red">余额支付</span>
-                                <elseif condition="$var.code eq 'alipay'"/><span style="color: blue">支付宝支付</span>
-                                <elseif condition="$var.code eq 'chinapay'"/><span style="color: grey">银联支付</span>
-                                <elseif condition="$var.code eq 'chinabank'"/><span style="color:bisque">网银在线</span>
-                                <elseif condition="$var.code eq 'tenpay'"/><span style="color:fuchsia">财付通</span>
-                                <elseif condition="$var.code eq 'micro'"/><span style="color:darkcyan">微信刷卡支付</span>
-                                <else /><{$var.code}>
+                            <elseif condition="$var.code eq 'weixinh5'"/>
+                            	<span style="color:orange">微信H5支付</span>
+                            <elseif condition="$var.code eq 'integral'"/>
+                            	<span style="color:blueviolet">积分支付</span>
+                            <elseif condition="$var.code eq 'weixin'"/>
+                            	<span style="color:orange">微信公众号支付</span>
+                            <elseif condition="$var.code eq 'native'"/>
+                            	<span style="color:blueviolet">微信扫码支付</span>
+                            <elseif condition="$var.code eq 'money'"/>
+                            	<span style="color:red">余额支付</span>
+                            <elseif condition="$var.code eq 'alipay'"/>
+                            	<span style="color:blue">支付宝支付</span>
+                            <elseif condition="$var.code eq 'chinapay'"/>
+                            	<span style="color:grey">银联支付</span>
+                            <elseif condition="$var.code eq 'chinabank'"/>
+                            	<span style="color:bisque">网银在线</span>
+                            <elseif condition="$var.code eq 'tenpay'"/>
+                            	<span style="color:fuchsia">财付通</span>
+                            <elseif condition="$var.code eq 'micro'"/>
+                            	<span style="color:darkcyan">微信刷卡支付</span>
+                            <else/>
+                            	<{$var.code}>
                             </if>
                         </td>
                     </tr>

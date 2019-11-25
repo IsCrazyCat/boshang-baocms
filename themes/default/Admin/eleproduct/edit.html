@@ -9,7 +9,7 @@
 </div>
 <div class="mainScAdd ">
     <div class="tableBox">
-        <form target="baocms_frm" action="<{:U('eleproduct/edit',array('product_id'=>$detail['product_id']))}>" method="post">
+        <form target="x-frame" action="<{:U('eleproduct/edit',array('product_id'=>$detail['product_id']))}>" method="post">
             <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                 <tr>
                     <td class="lfTdBt">菜名：</td>
@@ -39,7 +39,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.eleproduct.thumb}>
+                        建议尺寸<{$CONFIG.attachs.eleproduct.thumb}>
                     </div>
                     <script>                                            
 						var width_eleproduct = '<{:thumbSize($CONFIG[attachs][eleproduct][thumb],0)}>';                         
@@ -63,12 +63,26 @@
                 </td>
             </tr>
             
-             <tr>
-                    <td class="lfTdBt">价格：</td>
-                    <td class="rgTdBt"><input type="text" name="data[price]" value="<{:round($detail['price']/100,2)}>" class="manageInput" />
+                <tr>
+                    <td class="lfTdBt">原价：</td>
+                    <td class="rgTdBt"><input type="text" name="data[cost_price]" value="<{:round($detail['cost_price']/100,2)}>" class="manageInput" />
+                    <code>这里的卖价，用于外卖首页新品推荐展示作用，其他不做任何使用</code>
                     </td>
                 </tr>
-           
+                <tr>
+                    <td class="lfTdBt">卖价：</td>
+                    <td class="rgTdBt"><input type="text" name="data[price]" value="<{:round($detail['price']/100,2)}>" class="manageInput" />
+                    <code>实际销售价格</code>
+                    </td>
+                </tr>
+                <if condition="$CONFIG['ele']['tableware_price_max']">
+                <tr>
+                    <td class="lfTdBt">餐具费：</td>
+                    <td class="rgTdBt"><input type="text" name="data[tableware_price]" value="<{:round($detail['tableware_price']/100,2)}>" class="manageInput" />
+                    <code>不填写客户下单时候不增加餐具费，填写后客户下单自动添加到总金额</code>
+                    </td>
+                </tr>
+           		</if>
                 
                 <tr>
                     <td class="lfTdBt">结算价格：</td>

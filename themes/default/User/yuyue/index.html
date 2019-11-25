@@ -1,16 +1,13 @@
 <include file="public:header"/>
 <style>
-.list-media-x li {
-    border-bottom: none;
-    border-top: thin solid #eee;
-}
+.list-media-x li {border-bottom: none;border-top: thin solid #eee;}
 </style>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('user/member/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
-			我的预约
+			我的商家预约
 		</div>
 	<div class="top-signed">
 		<include file="public:message"/>
@@ -19,9 +16,8 @@
 
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-        <li style="width:50%;"><a href="<{:LinkTo('yuyue/index',array('status'=>1))}>" <eq name='status' value='1'>class="on"</eq>>已使用</a></li>
-        <li style="width:50%;"><a href="<{:LinkTo('yuyue/index',array('status'=>2))}>" <eq name='status' value='2'>class="on"</eq>>未使用</a></li>
-     
+    <li class="x6"><a href="<{:LinkTo('yuyue/index',array('status'=>1))}>" <if condition="($status eq 1) || ($status eq 0)">class="on"</if> >已使用</a></li>
+    <li class="x6"><a href="<{:LinkTo('yuyue/index',array('status'=>2))}>" <eq name='status' value='2'>class="on"</eq>>未使用</a></li>
 </ul>
 
 
@@ -35,7 +31,6 @@
 <script>
 	$(document).ready(function () {
 		loaddata('<{$nextpage}>', $("#list-media ul"), true);
-		
 		$(document).on('click', ".jquery-delete", function (e) {
 			var yuyue_id = $(this).attr('rel');
 			layer.confirm('您确定要删除该预约？', {

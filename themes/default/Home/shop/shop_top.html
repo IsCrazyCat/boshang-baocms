@@ -17,7 +17,7 @@
                     title:'请选择认领理由',
                     skin: 'layui-layer-rim', //加上边框
                     area: ['360px', 'auto'], //宽高
-                    content: '<input type="text" class="donate2" name="name" placeholder="姓名" value=""><input type="text" class="donate3" name="mobil]" placeholder="手机号" value=""><input type="text" class="donate4" name="conten" placeholder="申请理由" value=""><input type="button" class="sure_das" value="确认举报"><p>认领不可取消，请慎重操作</p>',
+                    content: '<input type="text" class="donate2" name="name" placeholder="姓名" value=""><input type="text" class="donate3" name="mobil]" placeholder="手机号" value=""><input type="text" class="donate4" name="conten" placeholder="申请理由" value=""><input type="button" class="sure_das" value="确认认领"><p>认领不可取消，请慎重操作</p>',
                   });
             })
             
@@ -25,8 +25,8 @@
                var url = "<{:U('shop/recognition')}>";
                 var shop_id = "<{$detail.shop_id}>";
                 var name = $(".donate2").val();
-				var name = $(".donate3").val();
-				var name = $(".donate4").val();
+				var mobile = $(".donate3").val();
+				var content = $(".donate4").val();
                 layer.confirm('您确认要认领吗？', {
                     btn: ['是的','不了'] //按钮
                   }, function(){
@@ -73,7 +73,7 @@
                         <span class="item">营业时间 : <{$ex.business_time}></span>
                     </p>
                     <p class="expand-info J-service info-indent">
-                        <span class="info-name">商家详情 :</span><span class="item" itemprop="intro"><{:bao_msubstr(cleanhtml($ex['details']),0,108,false)}>...</span>
+                        <span class="info-name">商家详情 :</span><span class="item" itemprop="intro"><{:tu_msubstr(cleanhtml($ex['details']),0,108,false)}>...</span>
                         <a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>"><i class="icon shop_view"></i>商家详情 >></a>
                     </p>
                     <div class="action">
@@ -88,12 +88,19 @@
                         <a class="write left-action sjsy_ljzx2" rel="<{:U('shop/yuyue2',array('shop_id'=>$detail['shop_id']))}>" >
                         <i class="icon"></i>我要预约</a>
                         
-                        <a id="reservation" class="act-mod reservation nug_shop_ab_booking-a" href="<{:U('shop/ping',array('shop_id'=>$detail['shop_id']))}>"><i class="icon book"></i><span class="hd">已有 <{$totalnum}> 条评论</span><i class="icon hot"></i></a>
-                        <div class="act-mod reservation nug_shop_ab_booking-a">
-                            <i class="icon_eye"></i><span class="hd"><{$detail.view}> </span>
-                        </div>
-                        <span class="right-action">
-                        <a id="favoritemod"  target="baocms_frm"  href="<{:U('shop/favorites',array('shop_id'=>$detail['shop_id']))}>" class="favorite J-favorite" title="加入收藏"><i class="icon"></i></a>
+                       
+                       
+                       
+                        <if condition="$act eq 'detail'">
+                            <a id="reservation" class="act-mod reservation nug_shop_ab_booking-a" href="<{:U('shop/ping',array('shop_id'=>$detail['shop_id']))}>"><i class="icon book"></i><span class="hd">已有 <{$dianping_num}> 条评论</span><i class="icon hot"></i></a>
+                            <div class="act-mod reservation nug_shop_ab_booking-a">
+                                <i class="icon_eye"></i><span class="hd"><{$detail.view}> </span>
+                            </div>
+                            <span class="right-action">
+                            <a id="favoritemod"  target="x-frame"  href="<{:U('shop/favorites',array('shop_id'=>$detail['shop_id']))}>" class="favorite J-favorite" title="加入收藏"><i class="icon"></i></a>
+                        </if>
+                        
+                        
                         </span>
                     </div>
                 </div>

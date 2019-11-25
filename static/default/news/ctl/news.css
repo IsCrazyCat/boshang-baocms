@@ -502,7 +502,7 @@ background-size: 100%; }
 }
 
 
-.baodialog{
+.tudialog{
     width: 100%;
     height: 1000%;
     position: absolute;
@@ -511,7 +511,7 @@ background-size: 100%; }
     left: 0px;
 }
 
-.baodialog_bg{
+.tudialog_bg{
     width: 100%;
     height: 100%;
     background: #000;
@@ -521,7 +521,7 @@ background-size: 100%; }
     filter: Alpha(Opacity=30);
 }
 
-.baodialog_main{
+.tudialog_main{
     position: fixed;
     top: 200px;
     background: #ebebeb;
@@ -533,14 +533,14 @@ background-size: 100%; }
 }
 
 
-.baodialog_main h1{
+.tudialog_main h1{
     width: 100%;
     height: 40px;
     line-height: 40px;
     background: #0099eb;
     color: #fff;
 }
-.baodialog_main  h1 span {
+.tudialog_main  h1 span {
 float: right;
 margin-right: 10px;
 margin-top: 10px;
@@ -550,7 +550,7 @@ height: 20px;
 display: inline-block;
 background: url(../images/cancle.png) #fff no-repeat center center;
 }
-.baodialog_content{
+.tudialog_content{
     overflow-y: scroll;
     width: 100%;
     background: #fff;

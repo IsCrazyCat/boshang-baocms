@@ -1,7 +1,7 @@
 <include  file='public:header'/>   
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('running/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('running/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			跑腿详情
@@ -67,18 +67,23 @@ footer .i-5{background-position:center -.96rem}
 		</li>
 	</ul>
 </div>
-<div class="blank-10 bg"></div>
-<div class="list-media-x">
-	<ul>
-		<li class="line padding">
-            <foreach  name="thumb" item="item">
-               <div class="x4">
-                    <img style="width:90%;" src="<{:config_img($item)}>">
-                </div>
-            </foreach>
-		</li>  
-	</ul>
-</div>
+
+<if condition="$thumb">
+    <div class="blank-10 bg"></div>
+    <div class="list-media-x">
+        <ul>
+            <li class="line padding">
+                <foreach  name="thumb" item="item">
+                   <div class="x4">
+                        <img style="width:90%;" src="<{:config_img($item)}>">
+                    </div>
+                </foreach>
+            </li>  
+        </ul>
+    </div>
+</if>
+
+
 <div class="blank-10 bg"></div>
 <div class="panel-list">
 	<ul>

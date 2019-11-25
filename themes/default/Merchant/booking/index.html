@@ -18,11 +18,11 @@
         </div>
     </div>
     </form>
-     <include  file='booking:nav'/>
+    <include file='booking:nav'/>
     <table class="tuan_table" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr style="background-color:#eee;">
             <td>订单ID</td>
-            <td>大厅/包厢</td>
+            <td>大厅/房间</td>
             <td>预订人数</td>
             <td>订单金额</td>
             <td>入住人员</td>
@@ -35,7 +35,7 @@
             <tr>
                 <td><{$var.order_id}></td>
                 <td><if condition="!empty($var['room_id'])"><{$room[$var['room_id']]['name']}><else/>大厅</if></td>
-                <td><{$var.ding_num}></td>
+                <td><{$var['ding_num']|default="未选择"}></td>
                 <td>￥<{:round($var['amount']/100,1)}></td>
                 <td><{$var.name}>(<{$var.mobile}>)</td>
                 <td><{$var.ding_date}>&nbsp;<{$var.ding_time}></td>
@@ -44,6 +44,8 @@
                     	<font style="color:red;">已取消</font>
                     <elseif condition="$var['order_status'] eq 2"/>
                     	<font style="color:green;">已消费</font>
+                    <elseif condition="$var['order_status'] eq 8"/>
+                    	<font style="color:red;">店内付款</font>
                     <elseif condition="$var['order_status'] eq 1"/>
                     	已付款
                     <else/>
@@ -52,16 +54,19 @@
                 </td>
                 <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                 <td>
-                    <a class="radius3 sy_c1an" href="<{:U('booking/detail',array('order_id'=>$var['order_id']))}>">查看</a>
+                    <a class="sjgl_an tuan_topbt" href="<{:U('booking/detail',array('order_id'=>$var['order_id']))}>">查看</a>
                     <if condition="$var['order_status'] eq 1">
-                     	<a class="radius3 sy_c1an" mini="confirm" href="<{:U('booking/complete',array('order_id'=>$var['order_id']))}>">确认消费</a>
+                     	<a class="sjgl_an tuan_topbt" mini="confirm" href="<{:U('booking/complete',array('order_id'=>$var['order_id']))}>">确认消费</a>
+                    </if>
+                    <if condition="$var['order_status'] eq 8">
+                     	<a class="sjgl_an tuan_topbt" mini="confirm" href="<{:U('booking/complete',array('order_id'=>$var['order_id']))}>">确认消费</a>
                     </if>
                     <if condition="$var['order_status'] neq -1">
-                        <a class="radius3 sy_c1an" mini="confirm" href="<{:U('booking/cancel',array('order_id'=>$var['order_id']))}>">取消订单</a>
+                        <a class="sjgl_an tuan_topbt" mini="confirm" href="<{:U('booking/cancel',array('order_id'=>$var['order_id']))}>">取消订单</a>
                     </if>
                     <if condition="$var['order_status'] eq -1">
                         <if condition="$var['closed'] eq 0">
-                        	<a class="radius3 sy_c1an" mini="confirm" href="<{:U('booking/delete',array('order_id'=>$var['order_id']))}>">删除订单</a>
+                        	<a class="sjgl_an tuan_topbt" mini="confirm" href="<{:U('booking/delete',array('order_id'=>$var['order_id']))}>">删除订单</a>
                         </if>
                     </if>
             </td>

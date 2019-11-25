@@ -5,7 +5,7 @@
 <script src="/static/default/webuploader/webuploader.min.js"></script>
 <header class="top-fixed bg-yellow bg-inverse">
 <div class="top-back">
-	<a class="top-addr" href="<{:u('crowd/crowd_list',array('aready'=>1))}>"><i class="icon-angle-left"></i></a>
+	<a class="top-addr" href="<{:u('crowd/crowd_list',array('aready'=>1))}>"><i class="iconfont icon-angle-left"></i></a>
 </div>
 <div class="top-title">
 	添加众筹
@@ -311,107 +311,28 @@
 	<div class="line border-bottom">
 		<textarea class="form-content" name="data[details]" placeholder="众筹详情,建议不超过100字！"></textarea>
 	</div>
-    <div class="blank-10 bg"></div>    
     
-    <!--商家地图开始-->
-<div class="line padding border-bottom">		
-        <div id="login-input">
-                        <span class="mr10"><input type="text" name="data[lng]" id="lng" value="<{$detail.lng|default=''}>" class="mapinputs w100" /></span>
-                        <span><input type="text" name="data[lat]" id="lat" value="<{$detail.lat|default=''}>" class="w100 mapinputs" /></span>
-                        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
-                        <div class="top" style="width:100%; margin-bottom: 20px;">
-                            <div id="r-result"><input type="text" id="suggestId" class="mapinputs2" size="20"  placeholder="输入地址搜索" value="" /></div>    
-                        </div>
-                        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
-                        <div id="allmap" style="width: 100%; height:300px; padding:10px;"></div>
-                        <script type="text/javascript">
-                            // 百度地图API功能
-                            var map = new BMap.Map("allmap");
-                            var lng = "<{$lng}>";
-                            var lat = "<{$lat}>";
-                            if (!lng && !lat) {
-                                map.centerAndZoom("合肥");
-                                var point = new BMap.Point(117.260852, 31.825717);
-                            } else {
-                                map.centerAndZoom(new BMap.Point(lng, lat), 15);
-                                var point = new BMap.Point(lng, lat);
-                            }
-                            map.centerAndZoom(point, 15);
-                            var marker = new BMap.Marker(point);  // 创建标注
-                            map.clearOverlays();
-                            map.addOverlay(marker);              // 将标注添加到地图中
-                            marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-                            function showPoint(e) {
-                                document.getElementById('lat').value = e.point.lat;
-                                document.getElementById('lng').value = e.point.lng;
-                                var p = new BMap.Point(e.point.lng, e.point.lat);
-                                var mk = new BMap.Marker(p);
-                                map.clearOverlays();
-                                map.addOverlay(mk);
-                                mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-                            }
-                            map.enableScrollWheelZoom(true);
-                            map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
-                            map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));  
-                            map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_PAN})); 
-                            map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT, type: BMAP_NAVIGATION_CONTROL_ZOOM})); 
-                            map.addEventListener("click", showPoint);
-                            function G(id) {
-                                return document.getElementById(id);
-                            }
+     <!--商家地图开始-->
+   	<style>
+		.panel-list li em {float:inherit; margin-left:5px;}
+		#data_address_val{ border:none; padding:10px;idth: 100%; margin-left:5px;}
+	</style>
+      <div class="blank-10 bg"></div>
+        <input id="data_addr" type="hidden" name="data[addr]" value="<{$detail.addr|default=''}>" />
+        <input id="data_lng" type="hidden" name="data[lng]" value="<{$detail.lng|default=''}>" />
+        <input id="data_lat" type="hidden" name="data[lat]" value="<{$detail.lat|default=''}>" />
+        <div class="panel-list">
+            <ul>
+              <li>
+                 <a title="选择坐标" rel="<{:U('wap/api/maps',array('lat'=>$lat,'lng'=>$lng))}>" onclick="showWindow('90%','90%',this.rel,this.title)">
+                 详细地址：<em id="data_address" class="text-dot">点击选择</em><i class="iconfont icon-angle-right"></i>
+                 </a>
+               </li>
+            </ul>
+        </div>
+        <div class="blank-10 bg"></div>    
+    <!--商家地图结束-->
 
-                            var ac = new BMap.Autocomplete(//建立一个自动完成的对象
-                                    {"input": "suggestId"
-                                        , "location": map
-                                    });
-
-                            ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
-                                var str = "";
-                                var _value = e.fromitem.value;
-                                var value = "";
-                                if (e.fromitem.index > -1) {
-                                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
-                                }
-                                str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
-
-                                value = "";
-                                if (e.toitem.index > -1) {
-                                    _value = e.toitem.value;
-                                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
-                                }
-                                str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
-                                G("searchResultPanel").innerHTML = str;
-                            });
-
-                            var myValue;
-                            ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
-                                var _value = e.item.value;
-                                myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
-                                G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
-
-                                setPlace();
-                            });
-
-
-                            function setPlace() {
-                                map.clearOverlays();    //清除地图上所有覆盖物
-                                function myFun() {
-                                    var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-                                    map.centerAndZoom(pp, 18);
-                                    map.addOverlay(new BMap.Marker(pp));    //添加标注
-                                }
-                                var local = new BMap.LocalSearch(map, {//智能搜索
-                                    onSearchComplete: myFun
-                                });
-                                local.search(myValue);
-                            }
-
-                        </script>
-                </div>                    
-	</div>
-
-<div class="blank-10 bg"></div>    
-<!--商家地图结束-->
 
 	
 	<div class="container">

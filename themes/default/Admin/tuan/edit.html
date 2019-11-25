@@ -3,11 +3,11 @@
 <div class="mainBt">
     <ul>
         <li class="li1">商城</li>
-        <li class="li2">套餐管理</li>
+        <li class="li2">抢购管理</li>
         <li class="li2 li3">编辑</li>
     </ul>
 </div>
-<form target="baocms_frm" action="<{:U('tuan/edit',array('tuan_id'=>$detail['tuan_id']))}>" method="post">
+<form target="x-frame" action="<{:U('tuan/edit',array('tuan_id'=>$detail['tuan_id']))}>" method="post">
     <div class="mainScAdd ">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
@@ -58,17 +58,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr>
-                    <td class="lfTdBt">选择分店：</td>
-                    <td class="rgTdBt">
-                <foreach name="branch" item="item">
-                    <label style="margin-right: 10px;"><span><{$item.name}>：</span><input style="width: 20px; height: 20px;" type="checkbox" name="branch_id[]" value="<{$item.branch_id}>" <?php if(in_array($item['branch_id'],$branch_id)){?> checked="checked" <?php }?> /></label>
-                </foreach>
-                </td>
-                </tr>
-                
-                
-                
+               
                    <tr>
                     <td class="lfTdBt">缩略图：</td>
                  <td class="rgTdBt">
@@ -79,7 +69,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.tuan.thumb}>
+                        建议尺寸<{$CONFIG.attachs.tuan.thumb}>
                     </div>
                     <script>                                            
 						var width_tuan = '<{:thumbSize($CONFIG[attachs][tuan][thumb],0)}>';                         
@@ -160,7 +150,7 @@
                     </td>
                 </tr>
 				<tr>
-                    <td  class="lfTdBt">每天套餐份数：</td>
+                    <td  class="lfTdBt">每天抢购份数：</td>
                     <td class="rgTdBt"><input type="text" name="data[xiangou]" value="<{$detail.xiangou|default='0'}>" class="manageInput" />
  					<code>0表示不限购</code>
                     </td>
@@ -171,7 +161,7 @@
 
                     </td>
                 </tr><tr>
-                    <td class="lfTdBt">套餐价格：</td>
+                    <td class="lfTdBt">抢购价格：</td>
                     <td class="rgTdBt"><input type="text" name="data[tuan_price]" value="<{$detail.tuan_price|default=''}>" class="manageInput" />
                     </td>
                 </tr>
@@ -261,33 +251,6 @@
                 
                 
               
-                <tr>
-                    <td class="lfTdBt">是否分成给上级分销商：</td>
-                    <td class="rgTdBt"><input type="checkbox" name="data[profit_enable]" value='1' <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> /></td>
-                </tr>
-                <tr>
-                    <td class="lfTdBt">购买付款后等级升为：</td>
-                    <td class="rgTdBt">
-                        <select name="data[profit_rank_id]" class="seleFl w200">
-                            <option value="0">不设置</option>
-                            <foreach name="ranks" item="item">
-                                <option <eq name="item.rank_id" value="$detail.profit_rank_id">selected="selected"</eq> value="<{$item.rank_id}>"><{$item.rank_name}></option>
-                            </foreach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="lfTdBt">一级会员分成比例：</td>
-                    <td class="rgTdBt"><input type="number" min="0" max="100" name="data[profit_rate1]" value='<{$detail.profit_rate1}>' class="manageInput " />元</td>
-                </tr>
-                <tr>
-                    <td class="lfTdBt">二级会员分成比例：</td>
-                    <td class="rgTdBt"><input type="number" min="0" max="100" name="data[profit_rate2]" value='<{$detail.profit_rate2}>' class="manageInput " />元</td>
-                </tr>
-                <tr>
-                    <td class="lfTdBt">三级会员分成比例：</td>
-                    <td class="rgTdBt"><input type="number" min="0" max="100" name="data[profit_rate3]" value='<{$detail.profit_rate3}>' class="manageInput " />元</td>
-                </tr>
               
             </table>
         </div>

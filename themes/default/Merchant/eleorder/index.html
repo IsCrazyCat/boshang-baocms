@@ -58,7 +58,7 @@
             <td>订单留言</td>
      </table>
      <div class="blank-10"></div>
-        <form  target="baocms_frm" method="post">
+        <form  target="x-frame" method="post">
                 
         <foreach name="list" item="var"> 
                      
@@ -70,8 +70,9 @@
                 <span class="td_top_1">
                         <if condition="!empty($var['addr_id'])">
                         收货地址：
-                        <{$areas[$addrs[$var['addr_id']]['area_id']]['area_name']}>、
-                        <{$business[$addrs[$var['addr_id']]['business_id']]['business_name']}>、
+                        <{$citys[$addrs[$var['addr_id']]['city_id']]['name']}>--
+                        <{$areas[$addrs[$var['addr_id']]['area_id']]['area_name']}>---
+                        <{$business[$addrs[$var['addr_id']]['business_id']]['business_name']}>----
                         <{$addrs[$var['addr_id']]['addr']}>
                         <{$addrs[$var['addr_id']]['name']}>
                         <{$addrs[$var['addr_id']]['mobile']}>
@@ -117,9 +118,9 @@
                 <eq name="var.is_daofu" value="1"><span style="color:#FF0000;">货到付款</span><br/></eq>
                  <{$types[$var['status']]}>
                 <br/>
-                <a class="href" mini='confirm' href="<{:U('eleorder/queren',array('order_id'=>$var['order_id']))}>">确认订单</a><br/>  
-                <php>$is_pei = D('Shop') -> where('shop_id ='.$var['shop_id']) -> getField('is_pei');</php>
-                <eq name="is_pei" value="0">
+                <a class="href" mini='confirm' href="<{:U('eleorder/queren',array('order_id'=>$var['order_id']))}>">确认接单</a><br/>  
+                <php>$is_ele_pei = D('Shop')->where('shop_id ='.$var['shop_id'])->getField('is_ele_pei');</php>
+                <eq name="is_ele_pei" value="0">
                 	<span style="color:#09C;">配送员配送<br/></span>
                 <else/>
                 	<span>商家配送<br/></span>
@@ -127,9 +128,29 @@
                 <eq name="var.is_print" value="1">已打印<br/></eq> 
             </td>
             <td class="left8"width="10%">
-                <span>总价：&yen;<{:round($var['total_price']/100,2)}></span><br/>
                 <eq name="var.is_daofu" value="0"><span>结算价：&yen;<{:round($var['settlement_price']/100,2)}></span><br/></eq>
-                <span>含配送费：&yen;<{:round($var['logistics']/100,2)}></span><br/>
+                <span>总费用（含配）：&yen;<{:round($var['total_price']/100,2)}></span><br/>
+                <if condition="!empty($var['new_money'])">
+                   <span>-新单立减：&yen; <{:round($var['new_money']/100,2)}></span><br/>
+                </if>
+                <if condition="!empty($var['logistics_full_money'])">
+                   <span>-免配送费：&yen; <{:round($var['logistics_full_money']/100,2)}></span><br/>
+                </if>
+                <if condition="!empty($var['reduce_coupun_money'])">
+                   <span>-优惠劵抵扣：&yen; <{:round($var['reduce_coupun_money']/100,2)}></span><br/>
+                </if>
+                <if condition="!empty($var['full_reduce_price'])">
+                   <span>-满减优惠：&yen; <{:round($var['full_reduce_price']/100,2)}></span><br/>
+                </if>
+                <if condition="!empty($var['tableware_price'])">
+                   <span>+餐具费用：&yen; <{:round($var['tableware_price']/100,2)}></span><br/>
+                </if>
+                <if condition="!empty($var['logistics'])">
+                   <span>+配送费用：&yen; <{:round($var['logistics']/100,2)}></span><br/>
+                </if>
+                <if condition="!empty($var['need_pay'])">
+                   <span>=实际支付：&yen; <{:round($var['need_pay']/100,2)}></span><br/>
+                </if>
             </td>
             <td class="left9"width="9%"><{$var['message']}></td>
           </tr>

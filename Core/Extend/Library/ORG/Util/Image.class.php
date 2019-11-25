@@ -387,9 +387,9 @@ class Image
         imagerectangle($im, 0, 0, $width - 1, $height - 1, $borderColor);
         $stringColor = imagecolorallocate($im, mt_rand(0, 200), mt_rand(0, 120), mt_rand(0, 120));
         // 干扰关闭
-        /*for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) {
                     imagearc($im, mt_rand(-10, $width), mt_rand(-10, $height), mt_rand(30, 300), mt_rand(20, 200), 55, 44, $stringColor);
-         }*/
+         }
         $w = (int) ($width / $length);
         $h = $height - 20;
         for ($i = 0; $i < 30; $i++) {
@@ -400,7 +400,7 @@ class Image
         }
         Image::output($im, $type);
     }
-    static function BaoVerify($length = 4, $mode = 2, $width = 80, $height = 40, $fontsize = 16, $verifyName = 'verify', $type = 'png')
+    static function ToVerify($length = 4, $mode = 2, $width = 80, $height = 40, $fontsize = 16, $verifyName = 'verify', $type = 'png')
     {
         $width = $length * ($fontsize + 12) > $width ? $length * ($fontsize + 12) : $width;
         //间隙是10  字体大小会有上下2个点的浮动
@@ -433,7 +433,7 @@ class Image
         }
         Image::output($im, $type);
     }
-    static function Baoaward($string)
+    static function Toaward($string)
     {
         $width = 300;
         //间隙是10  字体大小会有上下2个点的浮动

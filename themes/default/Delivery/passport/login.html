@@ -1,6 +1,12 @@
-<title>第三方物流配送管理中心</title>
+<title>配送中心V3.0</title>
 <style>
 .fr1{ text-align:center;}
+.login-form .form-group .iconfont{    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    position: absolute;
+    left: 0;
+    right: auto;}
 .login-open a {color: #333 !important;}
 .container, .container-layout {padding: 0 10px !important;}
 </style>
@@ -9,7 +15,7 @@
 		<div class="top-back">
 		</div>
 		<div class="top-title">
-			第三方物流配送登录
+			物流配送中心
 		</div>
 		<div class="top-share">
 		</div>
@@ -20,7 +26,7 @@
         <div class="blank-10"></div>
             <div class="form-group">
             <div class="field field-icon">
-            <span class="icon icon-user"></span>
+            <span class="iconfont icon-iconuser"></span>
             <input class="input account" type="text" value="" name="account" placeholder="请输入物流账户">
             </div>
             </div>
@@ -28,22 +34,12 @@
       <div class="blank-10"></div>
             <div class="form-group">
 				<div class="field field-icon">
-					<span class="icon icon-key"></span>
+                <span class="iconfont icon-iconfontlock"></span>
             <input class="input password" type="password" value="" name="password" placeholder="请输入密码">
              </div>
             </div>  
             <div class="blank-10"></div>   
-             <div class="form-group">
-				<div class="field field-icon x6">
-					<span class="icon icon-lock"></span>
-          			<input class="input yzm" type="text" value="" name="yzm" placeholder="请输入验证码">
-                </div>
-                <div class="field field-icon x6">
-					 <div class="fr1">
-                     <a rel="bao_img_code" class="yzm_code" href="javascript:void(0);"><img id="bao_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" width="60" height="30" /></a><em><a rel="bao_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em>
-                     </div>
-                </div>
-            </div>
+             
        </div>
 
             <div class="blank-10"></div>
@@ -70,17 +66,10 @@
 
 <script type="text/javascript" language="javascript">
 	$(document).ready(function(){
-		var time = "<php>echo time();</php>";
-		$('.yzm_code').click(function(){
-			var l = "__ROOT__/index.php?g=app&m=verify&a=index&mt=";
-			time = time + 1;
-			$('#bao_img_code').attr('src',l+time);
-		})
 		$('.btn').click(function(){
 			var account = $('.account').val();
 			var password = $('.password').val();
-			var yzm = $('.yzm').val();
-			$.post('<{:U("passport/login")}>',{account:account,password:password,yzm:yzm},function(result){
+			$.post('<{:U("passport/login")}>',{account:account,password:password},function(result){
 				if(result.status == 'success'){
 					layer.msg(result.message);
 					setTimeout(function(){

@@ -69,6 +69,7 @@ i.desc{background-position:-20px -48px}
 .comment .price{font-size:14px;color:#f63}
 .content-wrap .shop-wrap .shop-list li .operate{position:absolute;top:10px;right:20px;height:14px;line-height:14px;margin-right:60px}
 .content-wrap .shop-wrap .shop-list li .operate a{color:#999}
+.content-wrap .shop-wrap .shop-list li .operate a.red{ background:#F00; padding:2px 5px; color:#FFF}
 .content-wrap .shop-wrap .shop-list li:hover .operate{display:block}
 .content-wrap .shop-wrap .shop-list li:hover{background-color:#fffdfb;box-shadow:0 0 10px rgba(0,0,0,.5);-webkit-box-shadow:0 0 10px rgba(0,0,0,.2)}
 .content-wrap .shop-wrap .shop-list li.shop_show{background-color:#fefaf6}

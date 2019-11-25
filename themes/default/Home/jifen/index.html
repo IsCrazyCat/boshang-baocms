@@ -33,7 +33,7 @@
             <foreach name="list" item="item">
                 <li class="jfsy_spLi">
                     <div class="jfsy_spImg"><a href="<{:U('jifen/detail',array('goods_id'=>$item['goods_id']))}>" target="_blank"><img width="230" height="176" src="<{:config_img($item['face_pic'])}>"></a></div>
-                    <p class="jfsy_spPt"><a href="<{:U('jifen/detail',array('goods_id'=>$item['goods_id']))}>" target="_blank"><{:bao_msubstr($item['title'],0,14,false)}></a></p>
+                    <p class="jfsy_spPt"><a href="<{:U('jifen/detail',array('goods_id'=>$item['goods_id']))}>" target="_blank"><{:tu_msubstr($item['title'],0,14,false)}></a></p>
                     <p class="jfsy_spP">积分:<span class="jfsy_spjf"><{$item.integral}></span><span class="jfsy_spjfjz">价值:￥<{:round($item['price'],2)}></span></p>
                     <div class="jfsy_spAk"><a href="<{:U('jifen/detail',array('goods_id'=>$item['goods_id']))}>" target="_blank" class="jfsy_spA">立即兑换</a></div>
                 </li>

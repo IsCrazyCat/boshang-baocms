@@ -1,6 +1,6 @@
 <div class="tuanfabu_tab">
  <ul>
- <if condition="$ding['is_pei'] neq 0">
+ <if condition="$SHOP['is_ele_pei'] eq 0">
    <li class="tuanfabu_tabli tabli_change <eq name="ctl" value="ele">on</eq>"><a href="<{:U('ele/index')}>">外卖设置</a></li>
    <li class="tuanfabu_tabli tabli_change <if condition="($ctl neq 'ele') AND ($act eq 'index')">on</if>"><a href="<{:U('eleorder/index')}>">确认订单</a></li>
    <li class="tuanfabu_tabli tabli_change <eq name="act" value="wait">on</eq>" ><a href="<{:U('eleorder/wait')}>">配送中</a></li>

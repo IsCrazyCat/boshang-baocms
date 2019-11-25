@@ -205,7 +205,7 @@ body { background: #f9f9f9; }
                                         <p class="left">有什么疑问想告诉项目发起人？</p>
                                         <p class="right">还可以输入<span class="num" id="limitNum">200</span>字</p>
                                     </div>
-                                     <form target="baocms_frm" action="<{:U('crowd/ask',array('goods_id'=>$detail['goods_id']))}>" method="post">
+                                     <form target="x-frame" action="<{:U('crowd/ask',array('goods_id'=>$detail['goods_id']))}>" method="post">
                                      
                                         <textarea class="dialog-textarea" name="ask_c" id="dialogTextarea" placeholder="相关问题的答复会发送到账户绑定邮箱和站内私信呦~"></textarea>
                                         <div class="dialog-submit">
@@ -249,7 +249,7 @@ body { background: #f9f9f9; }
                                         <p class="left">有什么疑问想告诉项目发起人？</p>
                                         <p class="right">还可以输入<span class="num" id="limitNum">200</span>字</p>
                                     </div>
-                                     <form target="baocms_frm" action="<{:U('crowd/ask',array('goods_id'=>$detail['goods_id']))}>" method="post">
+                                     <form target="x-frame" action="<{:U('crowd/ask',array('goods_id'=>$detail['goods_id']))}>" method="post">
                                      
                                         <textarea class="dialog-textarea" name="ask_c" id="dialogTextarea" placeholder="相关问题的答复会发送到账户绑定邮箱和站内私信呦~"></textarea>
                                         <div class="dialog-submit">
@@ -364,7 +364,7 @@ body { background: #f9f9f9; }
                                 </span></p>
                                 <p class="box-item">预计回报发送时间：<span class="font-b">项目成功结束后<span class="font-red"><{$item.fahuo}></span>天内</span></p>
                                 <p class="box-btn">
-                         <a class="btn"   target="baocms_frm" href="<{:U('crowd/buy',array('goods_id'=>$detail['goods_id'],'type_id'=>$item['type_id']))}>">支持￥<{$item['price']/100}></a>
+                         <a class="btn"   target="x-frame" href="<{:U('crowd/buy',array('goods_id'=>$detail['goods_id'],'type_id'=>$item['type_id']))}>">支持￥<{$item['price']/100}></a>
                                </p>
                             </div>
                         </div>
@@ -413,7 +413,7 @@ body { background: #f9f9f9; }
 <!--举报弹出层-->
 <div class="report_from_mask" style="bottom:0;display:none;">
     <div class="cont"> 
-    	<form target="baocms_frm" action="<{:U('crowd/report',array('goods_id'=>$detail['goods_id']))}>" method="post">
+    	<form target="x-frame" action="<{:U('crowd/report',array('goods_id'=>$detail['goods_id']))}>" method="post">
             <div class="box">
                 <input type="text" name="data[name]" placeholder="输入姓名">
                 <input type="text" name="data[mobile]" placeholder="填写您电话">

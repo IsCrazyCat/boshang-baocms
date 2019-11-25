@@ -14,8 +14,12 @@
     </ul>
     <div class="fbMain">
         <h3>基本资料</h3>
-        <form method="post" action="<{:U('shop/apply')}>" target="baocms_frm">
+        <form method="post" action="<{:U('shop/apply')}>" target="x-frame">
             <table cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <th><span class="color_r">*</span>推荐人ID：</th>
+                    <td><input type="text" name="data[user_guide_id]"  class="but"  /><p>如果您有推荐人，请填写推荐人的ID，如果有多个推荐人，请用英文,分割，比如：1,2</p></td>
+                </tr>
                 <tr>
                     <th><span class="color_r">*</span>商户名称：</th>
                     <td><input type="text" name="data[shop_name]"  class="but"  /><p>商户名称是店铺的名称，显示在店铺详情，最多20个字符</p></td>
@@ -31,7 +35,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="80" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.shoplogo.thumb}>
+                        建议尺寸<{$CONFIG.attachs.shoplogo.thumb}>
                     </div>
                     <script>                                            
 						var width_shoplogo = '<{:thumbSize($CONFIG[attachs][shoplogo][thumb],0)}>';                         
@@ -67,7 +71,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="logo_img" width="80" height="80"  src="<{:config_img($detail['logo'])}>" />
                         <a href="<{:U('setting/attachs')}>">LOGO设置</a>
-                        <{$CONFIG.attachs.shoplogo.thumb}>
+                        建议尺寸<{$CONFIG.attachs.shoplogo.thumb}>
                     </div>
                     <script>                                            
 						var width_shoplogo = '<{:thumbSize($CONFIG[attachs][shoplogo][thumb],0)}>';                         
@@ -125,6 +129,7 @@
                     </td>
                 </tr>
 
+
                 <tr>
                     <th><span class="color_r">*</span> 地区：</th>
                     <td>
@@ -137,12 +142,11 @@
                 </tr>
 
 
-
-                <script src="<{:U('app/datas/cab',array('name'=>'cityareas'))}>"></script>
-                <script>
-                                var city_id = "<{$city_id}>";
-                                var area_id = 0;
-                                var business_id = 0;
+						<script src="<{:U('app/datas/onecity',array('name'=>'cityareas'))}>"></script> 
+                       <script>
+								var city_id = <?php echo (int)$detail['city_id'];?>;
+								var area_id = <?php echo (int)$detail['area_id'];?>;
+								var business_id = <?php echo (int)$detail['business_id'];?>;
                                 $(document).ready(function () {
                                     var city_str = ' <option value="0">请选择...</option>';
                                     for (a in cityareas.city) {
@@ -153,84 +157,92 @@
                                         }
                                     }
                                     $("#city_id").html(city_str);
-
                                     $("#city_id").change(function () {
                                         if ($("#city_id").val() > 0) {
                                             city_id = $("#city_id").val();
-                                            var area_str = ' <option value="0">请选择...</option>';
-                                            for (a in cityareas.area) {
-                                                if (cityareas.area[a].city_id == city_id) {
-                                                    if (area_id == cityareas.area[a].area_id) {
-                                                        area_str += '<option selected="selected" value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-                                                    } else {
-                                                        area_str += '<option value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-                                                    }
-                                                }
-                                            }
+     										   $.ajax({
+													  type: 'POST',
+													  url: "<{:U('app/datas/twoarea')}>",
+													  data:{cid:city_id},
+													  dataType: 'json',
+													  success: function(result){
+                                                         var area_str = ' <option value="0">请选择...</option>';
+                                                        for (a in result) {
+                                                          area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';                                                        }
+                                                       $("#area_id").html(area_str);
+                                                        $("#business_id").html('<option value="0">请选择...</option>');
+													  }
+												});
                                             $("#area_id").html(area_str);
                                             $("#business_id").html('<option value="0">请选择...</option>');
                                         } else {
                                             $("#area_id").html('<option value="0">请选择...</option>');
                                             $("#business_id").html('<option value="0">请选择...</option>');
                                         }
-
                                     });
-
                                     if (city_id > 0) {
                                         var area_str = ' <option value="0">请选择...</option>';
-                                        for (a in cityareas.area) {
-                                            if (cityareas.area[a].city_id == city_id) {
-                                                if (area_id == cityareas.area[a].area_id) {
-                                                    area_str += '<option selected="selected" value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
+										$.ajax({
+										  type: 'POST',
+										  url: "<{:U('app/datas/twoarea')}>",
+										  data:{cid:city_id},
+										  dataType: 'json',
+										  success: function(result){
+                                             for (a in result) {
+                                                if (area_id == result[a].area_id) {
+                                                    area_str += '<option selected="selected" value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
                                                 } else {
-                                                    area_str += '<option value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
+                                                    area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
                                                 }
-                                            }
-                                        }
-                                        $("#area_id").html(area_str);
+                                              }
+                                             $("#area_id").html(area_str);
+											}
+										});
                                     }
-
-
                                     $("#area_id").change(function () {
                                         if ($("#area_id").val() > 0) {
                                             area_id = $("#area_id").val();
-                                            var business_str = ' <option value="0">请选择...</option>';
-                                            for (a in cityareas.business) {
-                                                if (cityareas.business[a].area_id == area_id) {
-                                                    if (business_id == cityareas.business[a].business_id) {
-                                                        business_str += '<option selected="selected" value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                    } else {
-                                                        business_str += '<option value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                    }
-                                                }
-                                            }
-                                            $("#business_id").html(business_str);
+                             					$.ajax({
+													  type: 'POST',
+													  url: "<{:U('app/datas/tbusiness')}>",
+													  data:{bid:area_id},
+													  dataType: 'json',
+													  success: function(result) {
+                                                         var business_str = ' <option value="0">请选择...</option>';
+													     for (a in result) {
+												   				business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+													     }
+												     	$("#business_id").html(business_str);
+													 }
+											       });
                                         } else {
                                             $("#business_id").html('<option value="0">请选择...</option>');
                                         }
-
                                     });
-
-                                    if (area_id > 0) {
-                                        var business_str = ' <option value="0">请选择...</option>';
-                                        for (a in cityareas.business) {
-                                            if (cityareas.business[a].area_id == area_id) {
-                                                if (business_id == cityareas.business[a].business_id) {
-                                                    business_str += '<option selected="selected" value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                } else {
-                                                    business_str += '<option value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                }
-                                            }
-                                        }
-                                        $("#business_id").html(business_str);
+                                    if (area_id > 0) {                                    
+									   $.ajax({
+										  type: 'POST',
+										  url: "<{:U('app/datas/tbusiness')}>",
+										  data:{bid:area_id},
+										  dataType: 'json',
+										  success: function(result){
+											var business_str = ' <option value="0">请选择...</option>';
+											for (a in result) {
+													if (business_id == result[a].business_id) {
+														business_str += '<option selected="selected" value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+													} else {
+													  business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+													}
+											}
+											 $("#business_id").html(business_str);
+										  }
+									   });
                                     }
                                     $("#business_id").change(function () {
                                         business_id = $(this).val();
                                     });
                                 });
                 </script> 
-
-
                 <tr>
                     <th><span class="color_r">*</span>地址：</th>
                     <td>
@@ -253,101 +265,7 @@
 
                     </td>
                 </tr>
-                <tr>
-                    <th>地图：</th>
-                    <td>
-                        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
-                        <div class="top" style="width:700px; margin-bottom: 20px;">
-                            <div id="r-result"><input type="text" id="suggestId" class="mapinputs" size="20" value="合肥" />请输入</div>    
-                        </div>
-                        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
-                        <div id="allmap" style="width: 600px; height:500px;"></div>
-                        <script type="text/javascript">
-
-                            // 百度地图API功能
-                            var map = new BMap.Map("allmap");
-                            var lng = "<{$CONFIG['site']['lng']}>";
-                            var lat = "<{$CONFIG['site']['lat']}>";
-                            if (!lng && !lat) {
-                                map.centerAndZoom("合肥");
-                                var point = new BMap.Point(117.260852, 31.825717);
-                            } else {
-                                map.centerAndZoom(new BMap.Point(lng, lat), 15);
-                                var point = new BMap.Point(lng, lat);
-                            }
-                            map.centerAndZoom(point, 15);
-                            var marker = new BMap.Marker(point);  // 创建标注
-                            map.clearOverlays();
-                            map.addOverlay(marker);              // 将标注添加到地图中
-                            marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-                            function showPoint(e) {
-                                document.getElementById('lat').value = e.point.lat;
-                                document.getElementById('lng').value = e.point.lng;
-                                var p = new BMap.Point(e.point.lng, e.point.lat);
-                                var mk = new BMap.Marker(p);
-                                map.clearOverlays();
-                                map.addOverlay(mk);
-                                mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-                            }
-                            map.enableScrollWheelZoom(true);
-                            map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
-                            map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));  //右上角，仅包含平移和缩放按钮
-                            map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_PAN}));  //左下角，仅包含平移按钮
-                            map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT, type: BMAP_NAVIGATION_CONTROL_ZOOM}));  //右下角，仅包含缩放按钮
-                            map.addEventListener("click", showPoint);
-                            function G(id) {
-                                return document.getElementById(id);
-                            }
-
-                            var ac = new BMap.Autocomplete(//建立一个自动完成的对象
-                                    {"input": "suggestId"
-                                        , "location": map
-                                    });
-
-                            ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
-                                var str = "";
-                                var _value = e.fromitem.value;
-                                var value = "";
-                                if (e.fromitem.index > -1) {
-                                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
-                                }
-                                str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
-
-                                value = "";
-                                if (e.toitem.index > -1) {
-                                    _value = e.toitem.value;
-                                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
-                                }
-                                str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
-                                G("searchResultPanel").innerHTML = str;
-                            });
-
-                            var myValue;
-                            ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
-                                var _value = e.item.value;
-                                myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
-                                G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
-
-                                setPlace();
-                            });
-
-
-                            function setPlace() {
-                                map.clearOverlays();    //清除地图上所有覆盖物
-                                function myFun() {
-                                    var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-                                    map.centerAndZoom(pp, 18);
-                                    map.addOverlay(new BMap.Marker(pp));    //添加标注
-                                }
-                                var local = new BMap.LocalSearch(map, {//智能搜索
-                                    onSearchComplete: myFun
-                                });
-                                local.search(myValue);
-                            }
-
-                        </script>
-                    </td>
-                </tr>
+               <include file="./themes/default/Home/public/maps.html" /><!--调用地图html-->
                 <tr>
                     <th><span class="color_r">*</span>电话：</th>
                     <td><input type="text" name="data[tel]" class="but"/></td>
@@ -378,7 +296,7 @@
 
                 <tr>
                     <td colspan="2">
-                        <div class="btn_box"><input type="submit" class="aniu" value="立即开店"/></div>
+                        <div class="btn_box"><input type="submit" class="aniu" value="<if condition="$CONFIG['shop']['shop_apply_prrice']">支付<{$CONFIG.shop.shop_apply_prrice}>元</if>立即入驻"/></div>
                     </td>
                 </tr>
             </table>

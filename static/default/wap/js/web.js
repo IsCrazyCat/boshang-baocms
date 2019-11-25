@@ -1,9 +1,4 @@
-/* 
- * 软件为合肥生活宝网络公司出品，未经授权许可不得使用！
- * 作者：尤哥
- * 官网：www.baocms.com
- * 邮件: 376621340@qq.com
- */
+
 $.ajaxSetup({
     cache: false
 });
@@ -15,38 +10,39 @@ function loading() {
 }
 
 function LoginSuccess() {
-    $(".baodialog").remove();
-    success('登录成功', 3000, "loginCallback()");
+    $(".tudialog").remove();
+    success('登录成功，正在为您跳转', 3000, "loginCallback()");
 }
 
 function loginCallback() {
-    $.get(BAO_ROOT + "/index.php?m=passport&a=check&mt=" + Math.random(), function (data) {
+    $.get(TU_ROOT + "/index.php?m=passport&a=check&mt=" + Math.random(), function (data) {
         $(".topOne").find('.left').html(data);
     }, 'html');
+	location.reload();
     return true;
 }
 
 function ajaxLogin() {
     lock = 0;
     layer.closeAll();
-    var boxHtml = '<div class="baodialog"></div>';
-    if ($(".baodialog").length == 0) {
+    var boxHtml = '<div class="tudialog"></div>';
+    if ($(".tudialog").length == 0) {
         $("body").append(boxHtml);
-        $(".baodialog").css('height', document.body.scrollHeight + 'px');
+        $(".tudialog").css('height', document.body.scrollHeight + 'px');
     }
-    var url = BAO_ROOT + '/index.php?g=pchome&m=passport&a=ajaxloging&t=' + Math.random();
+    var url = TU_ROOT + '/index.php?g=home&m=passport&a=ajaxloging&t=' + Math.random();
     var width = document.body.clientWidth
     $.get(url, function (data) {
 
-        $(".baodialog").html('<div class="baodialog_bg"></div>' + data);
-        var left = (width - 616) / 2;
-        var top = $(window).scrollTop() + 200;
+        $(".tudialog").html('<div class="tudialog_bg"></div>' + data);
+        var left = (width - 350) / 2;
+        var top = $(window).scrollTop() + 100;
         $(".loginPop").css({
             'left': left + 'px',
             'top': top + 'px'
         });
 
-        $(".baodialog").show();
+        $(".tudialog").show();
     }, 'html');
 
 }
@@ -55,7 +51,7 @@ function success(msg, timeout, callback) {
     layer.msg(msg);
     setTimeout(function () {
         lock = 0;
-        $(".baomsgbox").hide();
+        $(".tumsgbox").hide();
         eval(callback);
     }, timeout ? timeout : 3000);
 }
@@ -145,14 +141,14 @@ $(document).ready(function (e) {
     })
 
     $(document).on('click', '.yzm_code', function () {
-        $("#" + $(this).attr('rel')).attr('src', BAO_ROOT + '/index.php?g=app&m=verify&a=index&mt=' + Math.random());
+        $("#" + $(this).attr('rel')).attr('src', TU_ROOT + '/index.php?g=app&m=verify&a=index&mt=' + Math.random());
     });
 
     $(document).on("click", "a[mini='act']", function (e) {
         e.preventDefault();
         if (!lock) {
             //loading();
-            $("#baocms_frm").attr('src', $(this).attr('href'));
+            $("#x-frame").attr('src', $(this).attr('href'));
         }
     });
 
@@ -161,7 +157,7 @@ $(document).ready(function (e) {
         var url = $(this).attr('href');
         if (!lock) {
             layer.confirm("您确定要" + $(this).html() + "吗？", {area: '150px', btn: ['是的', '不'], shade: false}, function () {
-                $("#baocms_frm").attr('src', url);
+                $("#x-frame").attr('src', url);
             })
         }
     });
@@ -176,7 +172,7 @@ $(document).ready(function (e) {
             } else {
                 url += '?num=' + $('#' + $(this).attr('rel')).val();
             }
-            $("#baocms_frm").attr('src', url);
+            $("#x-frame").attr('src', url);
         }
     });
 
@@ -235,8 +231,8 @@ $(document).ready(function (e) {
     });
 
 
-    $(document).on("click",".bao_closed",function(){
-         $('.baodialog').hide();
+    $(document).on("click",".tu_closed",function(){
+         $('.tudialog').hide();
     })
 
 
@@ -247,10 +243,10 @@ $(document).ready(function (e) {
         var num = parseInt(val / 10);
         var num2 = 5 - num;
         for (i = 0; i < num; i++) {
-            str += '<img src="' + BAO_PUBLIC + '/images/star1.jpg"/>';
+            str += '<img src="' + TU_PUBLIC + '/images/star1.jpg"/>';
         }
         for (i = 0; i < num2; i++) {
-            str += '<img src="' + BAO_PUBLIC + '/images/star2.jpg"/>';
+            str += '<img src="' + TU_PUBLIC + '/images/star2.jpg"/>';
         }
         $(this).html(str);
     });
@@ -277,3 +273,202 @@ $(document).ready(function (e) {
 
 
 });
+
+
+ //全选
+    $(document).on("click", ".checkAll", function (e) {
+        var child = $(this).attr('rel');
+        $(".child_" + child).prop('checked', $(this).prop("checked"));
+    });
+	
+	//获取城市、地区、商圈的下拉菜单
+function get_option(){
+
+		var city_id = 0;
+		var area_id = 0;
+		var business_id = 0;
+	
+		var city_str = '<option value="0">请选择...</option>';
+		for (a in cityareas.city) {
+			if (city_id == cityareas.city[a].city_id) {
+				city_str += '<option selected="selected" value="' + cityareas.city[a].city_id + '">' + cityareas.city[a].name + '</option>';
+			} else {
+				city_str += '<option value="' + cityareas.city[a].city_id + '">' + cityareas.city[a].name + '</option>';
+			}
+		}
+
+		$("#city_id").html(city_str);
+		$("#city_id").change(function () {
+			if ($("#city_id").val() > 0) {
+			   var city_id = $("#city_id").val();
+					$.ajax({
+						  type: 'POST',
+						  url: window.CITYURL,
+						  data:{cid:city_id},
+						  dataType: 'json',
+						  success: function(result)
+						  {
+							 var area_str = ' <option value="0">请选择...</option>';
+							for (a in result) {
+							  area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';                              
+							}
+						   $("#area_id").html(area_str);
+							$("#business_id").html('<option value="0">请选择...</option>');									
+						  }
+					});
+			} else {
+				$("#area_id").html('<option value="0">请选择...</option>');
+				$("#business_id").html('<option value="0">请选择...</option>');
+			}
+		});
+
+
+
+		$("#area_id").change(function () {
+
+			if ($("#area_id").val() > 0) {
+				area_id = $("#area_id").val();
+					$.ajax({
+						  type: 'POST',
+						  url: window.BUSURL,
+						  data:{bid:area_id},
+						  dataType: 'json',
+						  success: function(result)
+						  {
+							 var business_str = ' <option value="0">请选择...</option>';
+							 for (a in result) {
+									business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+							 }
+							$("#business_id").html(business_str);
+						 }
+					   });
+			} else {
+				$("#business_id").html('<option value="0">请选择...</option>');
+			}
+		});
+
+
+		$("#business_id").change(function () {
+			business_id = $(this).val();
+		});
+
+}
+
+
+
+
+function changeCAB(c,a,b){
+	$("#city_ids").unbind('change');
+	$("#area_ids").unbind('change');
+	var city_ids = c;
+	var area_ids = a;
+	var business_ids = b;
+	var city_str = ' <option value="0">请选择...</option>';
+	for (b in cityareas.city) {
+		if (city_ids == cityareas.city[b].city_id) {
+			city_str += '<option selected="selected" value="' + cityareas.city[b].city_id + '">' + cityareas.city[b].name + '</option>';
+		} else {
+			city_str += '<option value="' + cityareas.city[b].city_id + '">' + cityareas.city[b].name + '</option>';
+		}
+	}
+	$("#city_ids").html(city_str);
+
+	$("#city_ids").change(function () {
+		if ($("#city_ids").val() > 0) {
+			city_id = $("#city_ids").val();
+			   $.ajax({
+					  type: 'POST',
+					  url: window.CITYURL,
+					  data:{cid:city_id},
+					  dataType: 'json',
+					  success: function(result)
+					  {
+						 var area_str = ' <option value="0">请选择...</option>';
+						for (a in result) {
+						  area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';                              
+						}
+					   $("#area_ids").html(area_str);
+						$("#business_ids").html('<option value="0">请选择...</option>');										
+					  }
+				});
+			$("#area_ids").html(area_str);
+			$("#business_ids").html('<option value="0">请选择...</option>');
+		} else {
+			$("#area_ids").html('<option value="0">请选择...</option>');
+			$("#business_ids").html('<option value="0">请选择...</option>');
+		}
+	});
+
+	 if (city_ids > 0) {  //编辑加载选中数据     
+		var area_str = ' <option value="0">请选择...</option>';
+		$.ajax({
+		  type: 'POST',
+		  url: window.CITYURL,
+		  data:{cid:city_ids},
+		  dataType: 'json',
+		  success: function(result)
+		  {
+			 for (a in result) {
+				if (area_ids == result[a].area_id) {
+					area_str += '<option selected="selected" value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
+				} else {
+					area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
+				}
+			  }
+			 $("#area_ids").html(area_str);
+			}
+		});
+	}
+
+
+	$("#area_ids").change(function () {
+		if ($("#area_ids").val() > 0) {
+			area_id = $("#area_ids").val();
+				$.ajax({
+					  type: 'POST',
+					  url: window.BUSURL,
+					  data:{bid:area_id},
+					  dataType: 'json',
+					  success: function(result)
+					  {
+						 var business_str = ' <option value="0">请选择...</option>';
+						 for (a in result) {
+								business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+						 }
+						$("#business_ids").html(business_str);
+					 }
+
+				   });
+		} else {
+			$("#business_ids").html('<option value="0">请选择...</option>');
+		}
+	});
+
+	if (area_ids > 0) {  //编辑加载选中数据                                 
+	   $.ajax({
+		  type: 'POST',
+		  url: window.BUSURL,
+		  data:{bid:area_ids},
+		  dataType: 'json',
+		  success: function(result)
+		  {
+			var business_str = ' <option value="0">请选择...</option>';
+			for (a in result) {
+					if (business_ids == result[a].business_id) {
+						business_str += '<option selected="selected" value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+					} else {
+					  business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+					}
+			}
+			 $("#business_ids").html(business_str);
+		  }
+
+	   });
+
+	}
+
+
+	$("#business_ids").change(function () {
+		business_ids = $(this).val();
+	});
+}

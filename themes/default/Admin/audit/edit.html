@@ -6,7 +6,7 @@
         <li class="li2 li3">编辑商家资质</li>
     </ul>
 </div>
-<form target="baocms_frm" action="<{:U('audit/edit',array('audit_id'=>$detail['audit_id']))}>" method="post">
+<form target="x-frame" action="<{:U('audit/edit',array('audit_id'=>$detail['audit_id']))}>" method="post">
     <div class="mainScAdd">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
@@ -33,7 +33,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.shop_audit.thumb}>
+                        建议尺寸<{$CONFIG.attachs.shop_audit.thumb}>
                     </div>
                     <script>                                            
 						var width_shop_audit = '<{:thumbSize($CONFIG[attachs][shop_audit][thumb],0)}>';                         
@@ -128,7 +128,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="pic_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.shop_audit.thumb}>
+                        建议尺寸<{$CONFIG.attachs.shop_audit.thumb}>
                     </div>
                     <script>                                            
 						var width_shop_audit = '<{:thumbSize($CONFIG[attachs][shop_audit][thumb],0)}>';                         

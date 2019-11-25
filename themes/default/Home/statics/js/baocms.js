@@ -206,12 +206,12 @@ $.extend({
                 $(this).parent().removeClass('checkbox-active');
             }
         });
-        $('.baocms_select').each(function () {
-            var _option_html = '<div id="baocms_select' + $(this).index() + '"';
+        $('.Tudou_select').each(function () {
+            var _option_html = '<div id="Tudou_select' + $(this).index() + '"';
             _option_html += 'style="width:' + ($(this).outerWidth() - 1) + 'px;';
             _option_html += 'top:' + ($(this).offset().top + $(this).outerHeight() + top) + 'px;';
             _option_html += 'left:' + ($(this).offset().left - 1) + 'px;"';
-            _option_html += ' class="baocms-select-option"><ul>';
+            _option_html += ' class="Tudou-select-option"><ul>';
             var ops = $(this).attr('option').split('|');
             var val = $(this).attr('value').split('|');
             for (i = 0; i < ops.length; i++)
@@ -221,11 +221,11 @@ $.extend({
             _option_html += '</ul></div>';
             $('body').append(_option_html);
         });
-        $('.baocms_select').click(function () {
+        $('.Tudou_select').click(function () {
             var obj = $(this);
             var id = obj.attr('id');
             obj.attr('tabindex', 0).focus();
-            var option = $('#baocms_select' + $(this).index());
+            var option = $('#Tudou_select' + $(this).index());
             if (option.is(':hidden'))
             {
                 option.show();
@@ -246,7 +246,7 @@ $.extend({
         }).blur(function () {
             var obj = $(this);
             setTimeout(function () {
-                $('#baocms_select' + obj.index()).hide();
+                $('#Tudou_select' + obj.index()).hide();
             }, 150);
         });
     }

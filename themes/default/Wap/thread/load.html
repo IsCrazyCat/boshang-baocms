@@ -8,7 +8,7 @@
 				<em><{:config_user_name($users[$item['user_id']]['nickname'])}></em>
 				<span class="float-right"><{$item.create_time|date="Y-m-d",###}></span>
 				<p class="title">
-					<{:bao_msubstr($item['title'],0,25)}>
+					<{:tu_msubstr($item['title'],0,25)}>
 				</p>
 			</span>
 			<span class="coner"></span>
@@ -16,7 +16,7 @@
 		<div class="item-body">
 			<a href="<{:U('thread/postdetail',array('post_id'=>$item['post_id']))}>">
                 <if condition="!empty($item['details'])">
-                	<p><{:bao_msubstr(cleanhtml($item['details']),0,100,false)}></p>
+                	<p><{:tu_msubstr(cleanhtml($item['details']),0,100,false)}></p>
                 </if>
 			</a>
            
@@ -34,8 +34,8 @@
             </if>
          
 			<div class="ctrl">
-				<a class="ctrl-zan" id="zan-<{$item.post_id}>" data="<{$item.post_id}>"><i class="icon-thumbs-up"></i> <em><{$item['zan_num']}></em></a>
-				<a class="ctrl-reply" href="<{:U('thread/postdetail',array('post_id'=>$item['post_id']))}>"><i class="icon-comments"></i> <em><{$item['reply_num']}></em></a>
+				<a class="ctrl-zan" id="zan-<{$item.post_id}>" data="<{$item.post_id}>"><i class="iconfont icon-zan"></i> <em><{$item['zan_num']}></em></a>
+				<a class="ctrl-reply" href="<{:U('thread/postdetail',array('post_id'=>$item['post_id']))}>"><i class="iconfont icon-huifu"></i> <em><{$item['reply_num']}></em></a>
 			</div>
 		</div>
 		<if condition="!empty($item['reply'])">

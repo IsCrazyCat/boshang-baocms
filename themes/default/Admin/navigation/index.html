@@ -15,12 +15,14 @@
     </ul>
 </div>
 <div class="main-cate">
-    <p class="attention"><span>注意：</span>这里管理你的导航，添加菜单成功后无法编辑类型</p>
+    <p class="attention"><span>注意：</span>这里管理你的导航，添加菜单成功后无法编辑类型，模板调用方式：<a style="color:#F00; font-weight:bold" target="_blank" href="http://www.juhucms.com/forum-37-1.html">点击查看</a> 或者访问：http://www.juhucms.com/forum-37-1.html </p>
     <div class="jsglNr">
-        <form id="cate_action" action="" target="baocms_frm" method="post">
+        <form id="cate_action" action="" target="x-frame" method="post">
             <div class="selectNr" style="border-top: 1px solid #dbdbdb;">
                 <div class="left">
                  <{:BA('navigation/create','','添加导航')}>
+                 
+                 <a <eq name='aready' value='1'>class="on"</eq> href="<{:U('navigation/index', array('aready' => 1))}>">手机底部导航</a>
                  <a <if condition="($aready eq '4') OR ($aready eq '')">class="on"</if> href="<{:U('navigation/index', array('aready' => 4))}>">电脑主导航</a>
                  <a <eq name='aready' value='2'>class="on"</eq> href="<{:U('navigation/index', array('aready' => 2))}>">手机首页导航</a>
                 </div>
@@ -59,9 +61,9 @@
                                 <td style="padding-left:10px;"><{$var.ioc}> <{$var.colour}></td>
                                 <td style="padding-left:10px;"><{$var.url}></td>
                                 <td style="text-align: center;">
-                                    <{:BA('navigation/edit',array("nav_id"=>$var["nav_id"],"status"=>$var["status"]),'编辑','','remberBtn')}>
-                                    <{:BA('navigation/delete',array("nav_id"=>$var["nav_id"],"status"=>$var["status"]),'删除','act','remberBtn')}>
-                                    <{:BA('navigation/reset',array("nav_id"=>$var["nav_id"],"status"=>$var["status"]),'重置点击量','act','remberBtn')}>
+                                    <{:BA('navigation/edit',array("nav_id"=>$var["nav_id"],"status"=>$var["status"],"aready"=>$aready),'编辑','','remberBtn')}>
+                                    <{:BA('navigation/delete',array("nav_id"=>$var["nav_id"],"status"=>$var["status"],"aready"=>$aready),'删除','act','remberBtn')}>
+                                    <{:BA('navigation/reset',array("nav_id"=>$var["nav_id"],"status"=>$var["status"],"aready"=>$aready),'重置点击量','act','remberBtn')}>
                                 </td>
                             </tr>
                     </if>

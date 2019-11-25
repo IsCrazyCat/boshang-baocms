@@ -54,7 +54,7 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -83,6 +83,7 @@
                     <td>
                     <if condition="$var['audit'] neq 1"><{:BA('threadpost/audit',array("post_id"=>$var["post_id"]),'审核','act','remberBtn')}></if>
                     <{:BA('threadpost/edit',array("post_id"=>$var["post_id"]),'编辑','','remberBtn')}>
+                    <{:BA('threadpost/comments',array("post_id"=>$var["post_id"]),'回复列表','','remberBtn')}>
                     <{:BA('threadpost/delete',array("post_id"=>$var["post_id"]),'删除','act','remberBtn')}>
                     </td>
                     </tr>

@@ -1,11 +1,20 @@
 
 <foreach name="list" item="order">
-<li class="line ">
+
+
+        
+        
+<li class="line">
         <dt>
+        
+        
         <a class="x3">订单ID：<{$order.order_id}></a>
+        
+        
         <a class="x9 text-right">下单时间：<{$order.create_time|date='Y-m-d H:i:s',###}></span> </a>
         </dt>
         
+       
       <foreach name="goods" item="good">
       <if condition="$good['order_id'] eq $order['order_id']">
   		<dd class="zhong">
@@ -33,7 +42,9 @@
                 <if condition="$order['status'] gt 0">
 	                <if condition="$order['can_use_integral'] gt 0">
 	                <p class="text-small">
-	                   <span class="text-dot1 margin-right">使用积分：<span class="text-dot"><{$pcl_totle}> 抵现：&yen;<{:round($pcl_totle/100,2)}>元</span></span>
+	                   <span class="text-dot1 margin-right">使用积分：<span class="text-dot"><{$pcl_totle}> 抵现：&yen;
+                       <{:deduction($pcl_totle)}>
+                       元</span></span>
 	                </p>
                     <else/>
                     	<span class="text-dot1 margin-right">暂不支持积分抵扣</span>
@@ -42,17 +53,20 @@
                 <if condition="$order['status'] eq 0">           
 	                <if condition="$order['can_use_integral'] gt 0">
 	                <p class="text-small">
-	                   <span class="text-dot1 margin-right">使用积分：<span class="text-dot"><{$pcl_totle}> 抵现：&yen;<{:round($pcl_totle/100,2)}>元</span></span>
+	                   <span class="text-dot1 margin-right">使用积分：<span class="text-dot"><{$pcl_totle}> 抵现：&yen;
+                       <{:deduction($pcl_totle)}>
+                       元</span></span>
 	                </p>
                     <else/>
                     	<span class="text-dot1 margin-right">暂不支持积分抵扣</span>
 	                </if>               
                 </if>
-         
           </div>
          </dd>
          </if>
 		</foreach>
+        
+         
 
         <php>
         $addarres = D('Paddress')->find($order['address_id']);
@@ -77,7 +91,24 @@
              <eq name="order.status" value="0">
              未支付
              <else/>
-             <a class="text-dot">&yen;<{:round($order['total_price']/100,2)}> + 配送费&yen;<{:round($order['express_price']/100,2)}> = &yen;<{:round($order['need_pay']/100,2)}></a> 元
+             <a class="text-dot">&yen;<{:round($order['total_price']/100,2)}> 
+                 <if condition="!empty($order['express_price'])">
+                     + 配送费： &yen;<{:round($order['express_price']/100,2)}>元
+                 </if>
+            
+                 <if condition="!empty($order['coupon_price'])">
+                   - 优惠劵抵用&yen;<{:round($order['coupon_price']/100,2)}>元
+                 </if>
+                 
+                 <if condition="!empty($order['use_integral'])">
+                   - 积分抵扣&yen;<{:deduction($order['use_integral'])}>元
+                 </if>
+                  <if condition="!empty($order['mobile_fan'])">
+                   - 手机下单立减&yen;<{:round($order['mobile_fan']/100,2)}>元
+                 </if>
+                 
+              = &yen;<{:round($order['need_pay']/100,2)}></a> 元
+                 <if condition="$order['is_change']"><b class="text-yellow">[改]</b></if> </em>
              </eq>
              </eq></span>
              </div>
@@ -93,45 +124,53 @@
 </case>
 
 <case value="1">
-    <span class="button button-small bg-dot">已付款</span>
+    <span class="button button-small border-dot">已付款</span>
     <a target="x-frame" class="button button-small bg-gray" href="<{:U('goods/refund',array('order_id'=>$order['order_id']))}>">申请退款</a>
 </case>
 <case value="4">
     <a target="x-frame" class="button button-small bg-dot" href="<{:U('goods/cancel_refund',array('order_id'=>$order['order_id']))}>">取消退款</a>
 </case>
 
-<case value="2"><a target="x-frame"  class="button button-small bg-blue" href="<{:U('goods/queren',array('order_id'=>$order['order_id']))}>">确认收货</a></case>
+<case value="2">
+	<a target="x-frame" class="button button-small bg-blue" href="<{:U('goods/queren',array('order_id'=>$order['order_id']))}>">确认收货</a>
+</case>
     <case value="8">
      <eq name="order.is_dianping" value="0">
-        	<a class="button button-small bg-blue" href="<{:U('goods/dianping',array('order_id'=>$order['order_id']))}>">我要评价</a>
+        <a class="button button-small bg-blue" href="<{:U('goods/dianping',array('order_id'=>$order['order_id']))}>">我要评价</a>
      </eq> 
      <eq name="order.is_dianping" value="1">
-        	<a class="button button-small bg-gray">已评价</a>
-     </eq>   
-        
+        <a class="button button-small border-gray">已评价</a>
+     </eq>
+     
+     <if condition="empty($order['comment'])"> 
+     	<a class="order_detail button button-small bg-blue" href="<{:U('wap/delivery/comment',array('order_id'=>$order['order_id'],'type'=>'0'))}>">点评配送员</a>  
+     </if>
+      
     </case>
 </switch>
 
 <else />
 
 <!--下面是到付的-->     
-    <span  class="button button-small bg-yellow">货到付款</span> 
+    <span  class="button button-small border-yellow">货到付款</span> 
     <if condition="$order['status'] eq 0">                    
     <a  target="x-frame" class="button button-small bg-gray" href="<{:U('goods/orderdel',array('order_id'=>$order['order_id']))}>">取消订单</a>
     <elseif condition="$order['status'] eq 2"/>  
     <a target="x-frame" class="button button-small bg-blue" href="<{:U('goods/queren',array('order_id'=>$order['order_id']))}>">确认收货</a>
-    <elseif condition="$order['status'] eq 4"/>  
-    <elseif condition="$order['status'] eq 3"/>  
+    <elseif condition="$order['status'] eq 8"/>  
          <eq name="order.is_dianping" value="0">
-                <a class="button button-small bg-blue" href="<{:U('goods/dianping',array('order_id'=>$order['order_id']))}>">我要评价</a>
+             <a class="button button-small bg-blue" href="<{:U('goods/dianping',array('order_id'=>$order['order_id']))}>">我要评价</a>
          </eq> 
          <eq name="order.is_dianping" value="1">
                 <a class="button button-small bg-gray">已评价</a>
          </eq>  
     </if>  
+    
+    
+    
                       
 </eq>      		
- <a  class="button button-small bg-blue"  href="<{:U('goods/detail',array('order_id'=>$order['order_id']))}>">详情</a>           
+ <a  class="button button-small border-blue"  href="<{:U('goods/detail',array('order_id'=>$order['order_id']))}>">详情</a>           
       </p>
       </dl>
     </li>

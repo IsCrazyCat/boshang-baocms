@@ -34,7 +34,7 @@
             </div>
         </div>
 
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -54,7 +54,6 @@
                         <td><{$var.tel}></td>
                     <td>  
                     <eq name="var.audit" value="0"> <{:BA('shopkuaidi/audit',array("kuaidi_id"=>$var["id"]),'审核','act','remberBtn')}> </eq>     
-                    <{:BA('shopkuaidi/lists',array("kuaidi_id"=>$var["id"]),'运费设置','','remberBtn')}>
                     <{:BA('shopkuaidi/edit',array("kuaidi_id"=>$var["id"]),'编辑', '','remberBtn')}>
                     <{:BA('shopkuaidi/delete',array("kuaidi_id"=>$var["id"]),'删除','act','remberBtn')}>
                     

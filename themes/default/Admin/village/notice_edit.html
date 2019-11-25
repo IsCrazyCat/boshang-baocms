@@ -5,11 +5,11 @@
         <li class="li2"><if condition='$detail[type] eq 1'>通知添加<else/>展示添加</if></li>
     </ul>
 </div>
-<form target="baocms_frm" action="<{:U('village/notice_edit',array('id'=>$detail['id']))}>" method="post">
+<form target="x-frame" action="<{:U('village/notice_edit',array('id'=>$detail['id']))}>" method="post">
     <div class="mainScAdd">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
-
+		
                  <tr>
                     <td class="lfTdBt">标题：</td>
                     <td class="rgTdBt"><input type="text" name="data[title]" value='<{$detail[title]}>' class="scAddTextName" />
@@ -18,7 +18,17 @@
                     </td>
                 </tr>    
              
-              
+                <tr>
+                    <td class="lfTdBt">管理员：</td>
+                    <td class="rgTdBt">
+                        <div class="lt">
+                            <input type="hidden" id="user_id" name="data[user_id]" value="<{$detail.user_id|default=''}>" class="manageInput" />
+                            <input class="scAddTextName sj" type="text" name="nickname" id="nickname"  value="<{$user.nickname}>" />
+                        </div>
+                        <a mini="select"  w="800" h="600" href="<{:U('user/select')}>" class="seleSj">选择管理员</a>
+                    </td>
+                </tr> 
+                
               
               <tr><td class="lfTdBt">意见内容：</td><td class="rgTdBt">
                   <script type="text/plain" id="data_context" name="data[context]" style="width:800px;height:360px;"><{$detail.context}></script>

@@ -2,19 +2,20 @@
 <div class="mainBt">
     <ul>
         <li class="li1">设置</li>
-        <li class="li2">模版管理</li>
-        <li class="li2 li3">短信模版</li>
+        <li class="li2">短信模板</li>
+        <li class="li2 li3">短信宝模版</li>
     </ul>
 </div>
 <div class="main-jsgl">
-    <p class="attention"><span>注意：</span>当只有短信模版开启的时候才会发送短信！</p>
+    <p class="attention"><span>注意：</span>这里只要是针对的短信宝接口，如果您还需要其他接口的模板请联系qq.2.86.09.9981开发，记住模板状态要开启哦！</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin: 10px 20px;">
             <div class="left">
                 <{:BA('sms/create','','添加内容')}>
+                <{:BA('smsbao/index','','短信发送记录')}>
             </div>
         </div>
-        <form target="baocms_frm" method="post">
+        <form target="x-frame" method="post">
             <div class="tableBox">
                 <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                     <tr>

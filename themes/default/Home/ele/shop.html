@@ -23,7 +23,7 @@
 <div class="nav">
     <div class="navList">
         <ul>
-            <li class="navListAll zy_navListAll"><i class="nav-bz left"></i><span class="navListAllt">全部套餐分类<em></em></span>
+            <li class="navListAll zy_navListAll"><i class="nav-bz left"></i><span class="navListAllt">全部抢购分类<em></em></span>
                 <div class="shadowy navAll">
                     <include file="public:cate"/>
                 </div>
@@ -135,7 +135,7 @@
                                 </div>                            
                                 <div class="tabNew_div3">
                                     <div class="left tabNew_p">    
-                                        <p><{:bao_msubstr($item['product_name'],0,10,false)}></p>
+                                        <p><{:tu_msubstr($item['product_name'],0,10,false)}></p>
                                         <p class="shou_num">月售<{$item.month_num}>份</p>
                                         <p>￥<{:round($item['price']/100,2)}>/份</p>
                                     </div>

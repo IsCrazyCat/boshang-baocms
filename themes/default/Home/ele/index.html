@@ -1,6 +1,6 @@
 <include file="public:header" /> 
 <include file="public:top"/>
-<script src="__TMPL__statics/js/baocms.js"></script>
+<script src="__TMPL__statics/js/Tudou.js"></script>
 <style>
     input[type="radio"],input[type="checkbox"]{border:0;position:absolute;left:-9999px;}
     .radio{float: left; margin:8px 10px 0 0; border: 1px #BDBDBD solid; width: 100px; height: 30px; line-height: 30px; text-align: center; cursor: pointer; background: #FFF;}
@@ -23,7 +23,7 @@
 <div class="nav">
     <div class="navList">
         <ul>
-            <li class="navListAll"><span class="navListAllt">全部套餐分类</span>
+            <li class="navListAll"><span class="navListAllt">全部抢购分类</span>
                 <div class="shadowy navAll">
                     <include file="public:cate"/>
                 </div>
@@ -101,19 +101,17 @@
                      <php>if($item[bsti] == 0){</php>
                     <a title="<{$item.shop_name}>" href="<{:U('ele/shop',array('shop_id'=>$item['shop_id']))}>" target="_blank"><div class="dcsy_spImg"><img src="<{:config_img($shops[$item['shop_id']]['photo'])}>" width="208" height="156" /></div>
                         <p class="dcsy_spT"><{$item.shop_name}></p>
-                        <p class="dcsy_spPf"><span class="left"><span class="spxq_qgpstarBg"><span class="spxq_qgpstar spxq_qgpstar<{$shops[$item['shop_id']]['score']}>"></span></span><{:round($shops[$item['shop_id']]['score']/10,1)}>分</span><span class="right dcsy_spDd">月售<{$item.month_num}>单</span></p>
+                        <p class="dcsy_spPf"><span class="left"><span class="spxq_qgpstarBg"><span class="spxq_qgpstar spxq_qgpstar<{:round($item['score']/2,1)}>"></span></span><{:round($item['score']/2,1)}>分</span><span class="right dcsy_spDd">月售<{$item.month_num}>单</span></p>
                         <p class="dcsy_spPf"><span class="left">起送:￥<{:round($item['since_money']/100,2)}> <span class="dcsy_spPs">配送费:￥<{:round($item['logistics']/100,2)}></span></span><span class="right"><em class="em_time"></em><{$item.distribution}>分钟</span></p>
-                        <hr style=" border:none 0px; border-bottom: 1px solid #e0e0e0; margin-top:6px;" />
-                        <p class="dcsy_spBq"><eq name="item.is_pay" value="1"><span class="dcsy_spBq2">&nbsp;</span></eq><eq name="item.is_new" value="1"><span class="dcsy_spBq3">&nbsp;</span></eq><eq name="item.is_fan" value="1"><span class="dcsy_spBq4">&nbsp;</span></eq></p>
+                       
                     </a>
                        <php>}else{</php>
                      
                      <a title="<{$item.shop_name}>" href="javascript:;"><div class="dcsy_spImg"><img src="<{:config_img($shops[$item['shop_id']]['photo'])}>" width="208" height="156" /></div>
                         <p class="dcsy_spT"><{$item.shop_name}></p>
-                        <p class="dcsy_spPf"><span class="left"><span class="spxq_qgpstarBg"><span class="spxq_qgpstar spxq_qgpstar<{$shops[$item['shop_id']]['score']}>"></span></span><{:round($shops[$item['shop_id']]['score']/10,1)}>分</span><span style=" color:#fff" class="right borderradius-2">休息中</span></p>
+                        <p class="dcsy_spPf"><span class="left"><span class="spxq_qgpstarBg"><span class="spxq_qgpstar spxq_qgpstar<{:round($item['score']/2,1)}>"></span></span><{:round($item['score']/2,1)}>分</span><span style=" color:#fff" class="right borderradius-2">休息中</span></p>
                         <p class="dcsy_spPf"><span class="left">起送:￥<{:round($item['since_money']/100,2)}> <span class="dcsy_spPs">配送费:￥<{:round($item['logistics']/100,2)}></span></span><span class="right"><em class="em_time"></em><{$item.distribution}>分钟</span></p>
-                        <hr style=" border:none 0px; border-bottom: 1px solid #e0e0e0; margin-top:6px;" />
-                        <p class="dcsy_spBq"><eq name="item.is_pay" value="1"><span class="dcsy_spBq2">&nbsp;</span></eq><eq name="item.is_new" value="1"><span class="dcsy_spBq3">&nbsp;</span></eq><eq name="item.is_fan" value="1"><span class="dcsy_spBq4">&nbsp;</span></eq></p>
+                        
                     </a>
                     
                     

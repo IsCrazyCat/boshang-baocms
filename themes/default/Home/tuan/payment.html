@@ -2,10 +2,10 @@
 <include  file='public:topOne'/>  
 <!--top END-->
 <div class="cl"></div>
-<form action="<{:U('tuan/pay2',array('order_id'=>$order['order_id']))}>" method="post" target="baocms_frm">
+<form action="<{:U('tuan/pay2',array('order_id'=>$order['order_id']))}>" method="post" target="x-frame">
     <div class="main">
         <div class="tjbox">
-            <h3 class="tjLocal" style="margin-top:20px;">购买仅需三步<code>套餐成功后，密码将发送到手机：<em> 填写手机号</em> ，凭套餐密码去商家消费。</code></h3>
+            <h3 class="tjLocal" style="margin-top:20px;">购买仅需三步<code>抢购成功后，密码将发送到手机：<em> 填写手机号</em> ，凭抢购密码去商家消费。</code></h3>
             <h3 class="biaot"><img src="__TMPL__statics/images/tj2.jpg" /></h3>
             <h3 class="paytit">确认支付金额 </h3>
             <table cellpadding="0" cellspacing="0" width="100%" class="itemSub">
@@ -17,7 +17,7 @@
                     <th width="14%">还需支付</th>
                 </tr>
                 <tr>
-                    <td class="td1"><a href="<{:U('tuan/detail',array('tuan_id'=>$tuan['tuan_id']))}>" title="<{$tuan.title}>" target="_blank"><img src="<{:config_img($tuan['photo'])}>" width="71" height="48" /></a><a href="<{:U('tuan/detail',array('tuan_id'=>$tuan['tuan_id']))}>" title="<{$tuan.intro}>" target="_blank"><{:bao_msubstr($tuan['intro'],0,50,true)}></a>
+                    <td class="td1"><a href="<{:U('tuan/detail',array('tuan_id'=>$tuan['tuan_id']))}>" title="<{$tuan.title}>" target="_blank"><img src="<{:config_img($tuan['photo'])}>" width="71" height="48" /></a><a href="<{:U('tuan/detail',array('tuan_id'=>$tuan['tuan_id']))}>" title="<{$tuan.intro}>" target="_blank"><{:tu_msubstr($tuan['intro'],0,50,true)}></a>
                         <p><a href="<{:U('tuan/detail',array('tuan_id'=>$tuan['tuan_id']))}>" title="<{$tuan.title}>" target="_blank"><{$tuan.title}></a></p>
                     </td>
                     <td><{$order.order_id}></td>

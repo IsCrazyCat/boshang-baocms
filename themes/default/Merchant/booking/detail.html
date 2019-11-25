@@ -40,7 +40,7 @@
         <div class="hotel_orddtl_infor">
         	<ul>
         	    <li class="list">订单号：<span class="fontcl2"><{$detail.order_id}></span></li>
-                    <li class="list">大厅/包厢：<span class="fontcl2"><if condition="$detail['ding_type'] eq 1">包厢<else/>大厅</if></span></li>
+                    <li class="list">大厅/房间：<span class="fontcl2"><if condition="$detail['ding_type'] eq 1">房间<else/>大厅</if></span></li>
                 <li class="list">是否点菜：<span class="fontcl2"><if condition="$detail['menu_amount'] eq 0">未点<else/>已点</if></span></li>
                 <li class="list">预订时间：<span class="fontcl2"><{$detail.ding_date}>&nbsp;<{$detail.ding_time}></span></li>
                 <li class="list">预订人数：<span class="fontcl2"><{$detail.ding_num}></span></li>
@@ -67,11 +67,11 @@
     </div>
     <if condition="!empty($room)">
         <div class="hotel_orddtl_box">
-            <div class="title mb20">包厢详情</div>
+            <div class="title mb20">房间详情</div>
             <div class="hotel_orddtl_tabl mb20">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr class="title">
-                        <th>包厢ID</th>
+                        <th>房间ID</th>
                         <th>图片</th>
                         <th>容纳人数</th>
                         <th>名称</th>

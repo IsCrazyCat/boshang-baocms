@@ -1,7 +1,9 @@
 <include  file='public:header'/> 
 <include  file='public:top'/> 
 <include  file='public:nav2'/>
+<script src="__TMPL__thread/js/jquery.SuperSlide.2.1.1.js"></script>
 <style>
+.seat_banner, .seat_flexslider .list img {height:180px;}
 .tribe_topic_list .from .tag2 {padding: 0 15px 0 15px;}
 </style>
 <div class="pagewd">
@@ -11,7 +13,7 @@
             <ul class="slides">
                 <calldata mdl="Ad" where=" bg_date ELT '{$today}' AND  city_id IN ({$city_ids}) AND end_date EGT '{$today}' AND closed=0 AND site_id=69" limit="0,5" cache="21600" order="orderby asc">
                     <li class="list"><a target="_blank" href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>1))}>">
-                    <img src="<{:config_img($item['photo'])}>" width="1200" height="400" /></a></li>
+                    <img src="<{:config_img($item['photo'])}>" width="1200" height="180" /></a></li>
 		</calldata>
             </ul>
         </div>
@@ -85,7 +87,7 @@
                         </div><!-- ulWrap End -->
                     </div><!-- bd End -->
                 </div>
-                <script src="__TMPL__tribe/js/jquery.SuperSlide.2.1.1.js"></script>
+                
 		<script type="text/javascript">
                     jQuery(".multipleColumn").slide({
                         titCell:".hd ul",
@@ -118,7 +120,7 @@
                             <foreach name="list" item="item">
                                 <li class="tribe_topic_list">
                                     <div class="topCont">
-                                            <div class="left from"><span class="tag tag2"><{$cates[$item['cate_id']]['cate_name']}><b>·</b></span><{$tribes[$item['thread_id']]['thread_name']}>主题</div>
+                                            <div class="left from"><span class="tag tag2"><{$cates[$item['cate_id']]['cate_name']}><b>·</b></span><{$Threads[$item['thread_id']]['thread_name']}>主题</div>
                                     </div>
                                     <h3 class="bt"><a target="_blank" href="<{:U('thread/postdetail',array('post_id'=>$item['post_id']))}>"><{$item.title}></a><span class="num"><{$item.reply_num}></span></h3>
                                     <P class="nr"><{:cleanhtml($item['details'])}></P>

@@ -1,6 +1,11 @@
 <include  file='public:header'/> 
 <include  file='public:top'/> 
 <include  file='public:nav2'/>
+
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+</php>
 <div class="pagewd">
     <div class="seat_banner mt10">
         <!--banner-->

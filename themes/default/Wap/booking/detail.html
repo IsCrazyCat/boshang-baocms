@@ -3,7 +3,7 @@
 <script src="/static/default/wap/other/roll.js"></script>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('booking/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('booking/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<{$detail.shop_name}>
@@ -27,8 +27,8 @@
 
         </div>
     		<div class="title">
-				<h1><{:bao_Msubstr($detail['shop_name'],0,48,false)}>  </h1>
-				<p><{:bao_Msubstr($detail['addr'],0,88,false)}></p>
+				<h1><{:tu_msubstr($detail['shop_name'],0,48,false)}>  </h1>
+				<p><{:tu_msubstr($detail['addr'],0,88,false)}></p>
 			</div>
 		</div>
 </div>            
@@ -71,7 +71,7 @@
                 <span class="x2 text-gray">导航：</span>
                 <span class="x10">
                     <a href="<{:U('shop/gps',array('shop_id'=>$detail['shop_id']))}>">地图导航到这去</a>
-                    <i class="icon-angle-right text-gray float-right"></i>
+                    <i class="iconfont icon-angle-right text-gray float-right"></i>
                 </span>
             </div>
         </div>
@@ -79,8 +79,8 @@
             <div class="line">
                 <span class="x2 text-gray">点评：</span>
                 <span class="x10">
-                    <a href="<{:U('booking/dianping',array('shop_id'=>$detail['shop_id']))}>"><em class="text-dot margin-small-right"><{$detail.comments}></em>条用户点评
-                    <i class="icon-angle-right text-gray float-right"></i>
+                    <a href="<{:U('booking/dianping',array('shop_id'=>$detail['shop_id'],'orderType'=>1,'room_id'=>0))}>"><em class="text-dot margin-small-right"><{$detail.comments}></em>条用户点评
+                    <i class="iconfont icon-angle-right text-gray float-right"></i>
                 </span>
             </div>
         </div>
@@ -92,11 +92,12 @@
                 </span>
             </div>
         </div>
+        
         <div class="padding border-bottom">
             <div class="line">
-                <span class="x2 text-gray">营业：</span>
+                <span class="x2 text-gray">定金：</span>
                 <span class="x10">
-                    <{$detail.stime}>-<{$detail.ltime}>营业，饮料区不接受预订
+                    <a>&yen; <{$detail.deposit}>元</a>
                 </span>
             </div>
         </div>
@@ -109,8 +110,8 @@
                         <div class="line">
                             <div class="x5"><img class="pic" src="<{:config_img($item['photo'])}>" style="width:90%"></div>
                             <div class="x7">
-                                <h3><{:bao_msubstr($item['title'],0,14,false)}></h3>
-                                <p class="intro"><{:bao_msubstr($item['intro'],0,28,false)}></p>
+                                <h3><{:tu_msubstr($item['title'],0,14,false)}></h3>
+                                <p class="intro"><{:tu_msubstr($item['intro'],0,28,false)}></p>
                                 <p class="info">
                                     <span class="float-left">已下载：<em class="text-yellow"><{$item.downloads}></em> 次</span>	
                                     <span class="float-right">剩余：<em class="text-yellow"><{$item.num}></em> 张</span>
@@ -128,7 +129,7 @@
                     <span class="x4 text-gray">本店特色菜</span>
                     <span class="x8 text-right" >
                         <a href="<{:U('booking/menu',array('shop_id'=>$detail['shop_id']))}>">更多特色菜&nbsp; </a>
-                        <i class="icon-angle-right text-gray float-right"></i>
+                        <i class="iconfont icon-angle-right text-gray float-right"></i>
                     </span>
                 </div>
             </div>
@@ -140,7 +141,7 @@
             </if>
        </div> 
         <footer class="footer-cart">
-            <div class="btn-long"><a href="<{:U('booking/ding',array('shop_id'=>$detail['shop_id']))}>">在线订座</a></div>
+            <div class="btn-long"><a href="<{:U('booking/ding',array('shop_id'=>$detail['shop_id'],'orderType'=>1,'room_id'=>0))}>">在线订座</a></div>
         </footer>
     
 <include file="public:footer_share"/>

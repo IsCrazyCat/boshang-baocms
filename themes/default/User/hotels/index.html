@@ -2,7 +2,7 @@
 <style>ul { padding-left: 0px;}</style>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('member/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			我的酒店
@@ -14,8 +14,11 @@
 
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-        <li style="width:50%;"><a href="<{:LinkTo('hotels/index',array('st'=>0))}>" <eq name='st' value='0'>class="on"</eq>>到店付</a></li>
-        <li style="width:50%;"><a href="<{:LinkTo('hotels/index',array('st'=>1))}>" <eq name='st' value='1'>class="on"</eq>>在线支付</a></li>
+        <li style="width:20%;"><a href="<{:LinkTo('hotels/index',array('st'=>0))}>" <eq name='st' value='0'>class="on"</eq>>到店付</a></li>
+        <li style="width:20%;"><a href="<{:LinkTo('hotels/index',array('st'=>1))}>" <eq name='st' value='1'>class="on"</eq>>在线支付</a></li>
+        <li style="width:20%;"><a href="<{:LinkTo('hotels/index',array('st'=>3))}>" <eq name='st' value='3'>class="on"</eq>>退款中</a></li>
+        <li style="width:20%;"><a href="<{:LinkTo('hotels/index',array('st'=>4))}>" <eq name='st' value='4'>class="on"</eq>>已退款</a></li>
+        <li style="width:20%;"><a href="<{:LinkTo('hotels/index',array('st'=>2))}>" <eq name='st' value='2'>class="on"</eq>>已完成</a></li>
 </ul>
 
 

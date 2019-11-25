@@ -111,15 +111,6 @@ img{max-width: 100%;}
             </if>
         </if>
         
-        <if condition="!empty($detail['area_id'])">
-            <a href="<{:U('appoint/index',array('area'=>$detail['area_id']))}>">
-            <{$areas[$detail['area_id']]['area_name']}></a>&gt;&gt;
-        </if>
-        <if condition="!empty($detail['business_id'])">
-            <a href="<{:U('appoint/index',array('area'=>$detail['area_id'],'business'=>$detail['business_id']))}>">
-            <{$bizs[$detail['business_id']]['business_name']}></a>&gt;&gt;
-        </if>
-        
         <a href="<{:U('appoint/detail',array('appoint_id'=>$detail['appoint_id']))}>"><{$detail['title']}></a>
         
         
@@ -167,6 +158,23 @@ img{max-width: 100%;}
                      <div class="total">浏览次数：<{$detail.views}>次</div>
                     </div>
                     
+                    <if condition="!empty($worker_id)">
+                    <php>
+                    	$workers = D('Appointworker')->find($worker_id);
+                    </php>
+                        <div class="product_number">
+                             <div class="total">身高：<{$workers.height}></div>
+                             <div class="total">年龄：<{$workers.age}></div>
+                             <div class="total">生肖：<{$zodiacs[$workers['zodiac']]}></div>
+                             <div class="total">星座：<{$constellatorys[$workers['constellatory']]}></div>
+                             <div class="total">文化水平：<{$workers.culture}></div>
+                             <div class="total">工作年限：<{$workers.working_age}></div>
+                             <div class="total">户籍地：<{$workers.household}></div>
+                             <div class="total">普通话水平：<{$mandarins[$workers['mandarin']]}></div>
+                        </div>
+                    </if>
+                    
+                    
                     <div class="spxq_qgjgk">
                        <span class="appoint_shop">商家：
                        <a class="shop_url" target="_blank" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">
@@ -193,7 +201,7 @@ img{max-width: 100%;}
         <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
         <div class="zy_doorSer_detail">
             <div class="right nrForm">
-                <form method="post" target="baocms_frm" action="<{:U('appoint/create',array('appoint_id'=>$detail['appoint_id']))}>">
+                <form method="post" target="x-frame" action="<{:U('appoint/create',array('appoint_id'=>$detail['appoint_id']))}>">
                     <p>服务时间</p>
                     <div class="int_box">
                         <input class="search_form_time" type="text" name="date" value="<{$today}>" onfocus="WdatePicker({minDate: '<{$tmr}>'});"  />
@@ -244,6 +252,9 @@ img{max-width: 100%;}
                          </if>
                     </if>
                  <input type="submit" class="btn" value="立即预约" />
+                 <if condition="!empty($worker_id)">
+                 	<input type="submit" class="btn" value="候选面试" />
+                 </if>
                 </form>
             </div>
         	</div>
@@ -255,7 +266,7 @@ img{max-width: 100%;}
                     <ul>
                         <li class="on">服务须知</li>
                         <if condition="!empty($appointworker)">
-                        <li>技师列表</li>
+                        	<li>技师列表</li>
                         </if>
                         <li>服务详情</li>
                         <li>购买记录</li>

@@ -35,7 +35,7 @@
             <td>实付金额</td>
      </table>
      <div class="blank-10"></div>
-        <form  target="baocms_frm" method="post">
+        <form  target="x-frame" method="post">
         
 <foreach name="list" item="order">  
 
@@ -91,6 +91,12 @@
     </td>
     <td class="left6" width="9%"><{$users[$order['user_id']]['account']}>
     <eq name="order.is_mobile" value="1"><br/><img src="/themes/default/Merchant/statics/images/mobile.png" /></eq>
+     <eq name="order.is_profit" value="1">
+    	<br/>
+        <a href="<{:U('order/profit',array('order_id'=>$order['order_id'],'order_type'=>2))}>">
+        	<img src="/themes/default/Merchant/statics/images/profit.png" />
+        </a>
+    </eq>
     </td>
     <td class="left7" width="8%">
         <eq name="order.is_daofu" value="1">货到付款<br/></eq>
@@ -99,7 +105,7 @@
         <a class="href" href="<{:U('order/detail',array('order_id'=>$order['order_id'],'type'=>wait))}>">订单详情</a>
      </td>
     <td class="left8"width="10%">
-    <span>&yen;<{:round($order['need_pay']/100,2)}></span><br/>
+    <span>&yen;<{:round($order['need_pay']/100,2)}></span><eq name="order.is_change" value="1">[改]</eq><br/>
     <span>含配送费：&yen;<{:round($order['express_price']/100,2)}></span><br/>
     </td>
   </tr>

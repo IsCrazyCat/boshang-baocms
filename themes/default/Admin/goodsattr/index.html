@@ -31,11 +31,11 @@
                 </form>
             </div>
         </div>
-		 <form  target="baocms_frm" method="post">
+		 <form  target="x-frame" method="post">
             <div class="tableBox">
                 <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                     <tr>
-                        <td class="w50"><input type="checkbox" class="checkAll" rel="goods_id" /></td>
+                        <td class="w50"><input type="checkbox" class="checkAll" rel="id" /></td>
                         <td class="w50">ID</td>
                         <td>规格类型</td>
                         <td>规格名称</td>
@@ -45,7 +45,7 @@
                     </tr>
                     <volist name="specList" id="list">
                         <tr>
-                            <td><input class="child_goods_id" type="checkbox" name="goods_id[]" value="<{$var.goods_id}>" /> </td>
+                            <td><input class="child_id" type="checkbox" name="id[]" value="<{$list.id}>" /> </td>
                             <td><{$list.id}></td>
                             <td><{$goodsTypeList[$list[type_id]][name]}></td>
                             <td><{$list.name}></td>
@@ -63,7 +63,7 @@
             </div>
             <div class="selectNr" style="margin-bottom: 0px; border-bottom: none;">
                 <div class="left">
-                    <{:BA('goods/delete','','批量删除','list','a2')}>
+                    <{:BA('Goodsattr/delGoodsSpec','','批量删除','list','a2')}>
                 </div>
             </div>
         </form>

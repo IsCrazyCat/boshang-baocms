@@ -10,15 +10,16 @@
         <link href="__TMPL__statics/css/pub.css" rel="stylesheet" type="text/css" />
         <link href="__TMPL__statics/css/main.css" rel="stylesheet" type="text/css" />
         <link href="__PUBLIC__/js/jquery-ui.css" rel="stylesheet" type="text/css" />
-        <script> var BAO_PUBLIC = '__PUBLIC__';
-            var BAO_ROOT = '__ROOT__';</script>
+        <script> var TU_PUBLIC = '__PUBLIC__';
+            var TU_ROOT = '__ROOT__';</script>
         <script src="__PUBLIC__/js/jquery.js"></script>
+        <script src="/Public/js/layer/layer.js"></script>
         <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
         <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
         <script src="__PUBLIC__/js/admin.js"></script>
     </head>
     <body>
-        <iframe id="baocms_frm" name="baocms_frm" style="display:none;"></iframe>
+        <iframe id="x-frame" name="x-frame" style="display:none;"></iframe>
         <script type="text/javascript">
             $(document).ready(function () {
                 $(".leftMenu_a").click(function () {
@@ -73,9 +74,9 @@
                 
                 <div class="t3">
                 <ul>
-                     <li><a class="jq_menu" target="_blank" href="">使用教程</a>
+                     <li><a class="jq_menu" target="_blank" href="http://www.juhucms.com/forum-37-1.html">教程</a>
                      <li><a href="<{:U('login/logout')}>" class="jq_menu">退出</a></li>
-                     <li class=" jq_menu2" ><a href="/" target="_blank" class="jq_menu">站点首页</a></li>
+                     <li class=" jq_menu2" ><a href="/" target="_blank" class="jq_menu">首页</a></li>
                 </ul>
                  </div>
                 
@@ -127,13 +128,6 @@
                 <iframe id="main_frm" name="main_frm" src="<{:U('index/main')}>" frameborder="0" width="100%" height="100%"></iframe>
             </div>
         </div>
-        <script>
-            function checkSession() {
-                return $.get('<{:U("index/check")}>', function (data) {
-                }, 'html');
-            }
-            setInterval('checkSession()', 60000);
-        </script>
   
         <include  file='public:footer'/>  
 

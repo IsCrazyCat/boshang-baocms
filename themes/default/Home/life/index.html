@@ -1,6 +1,12 @@
 <include file="public:header" /> 
 <include file="public:top"/>
 <include file="public:nav2"/>
+
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area'=>$area_id))->select();
+</php>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('.sy_flexslider').flexslider({
@@ -144,6 +150,8 @@
     </div>
     <div class="liveSearch">
         <span>
+        	<a class="fast_fabu" href="<{:U('life/pinggu')}>">购房能力评估</a>
+        	<a class="fast_fabu" href="<{:U('life/daikuan')}>">房贷计算器</a>
             <a class="fast_fabu" href="<{:U('life/fabu')}>">我要发布信息</a>
         </span>
         <div class="left liveSearchLeft">
@@ -168,12 +176,11 @@
                             <h3>
                                 <span><{$var.create_time|date='Y-m-d',###}></span>
                                 <a title="<{$var.title}>" href="<{:U('life/detail',array('life_id'=>$var['life_id']))}>" target="_blank"><{$var['title']}></a>
-                                
+                                <if condition="!empty($var['money'])"><span style="color:#F00">【需要<{:round($var['money']/100,2)}>元购买查看内容】</span></if>
                                 <if condition="!empty($var['photo'])"><em class="p">图</em></if>
                                 <if condition="!empty($var['is_shop'])"><em class="s">商</em></if>
                                 <gt name="var.urgent_date" value="$today"><em class="q">急</em></gt>
                                 <gt name="var.top_date" value="$today"><em class="d">顶</em></gt>
-                                
                             </h3>
                             <p><{$areas[$var['area_id']]['area_name']}> - <{$bizs[$var['business_id']]['business_name']}> - <{$var.addr}></p>
                         <if condition="!empty($var['num1'])">

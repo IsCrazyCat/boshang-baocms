@@ -2,7 +2,7 @@
 <include  file='public:header'/>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('news/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('news/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<{$cate[cate_name]}>
@@ -10,11 +10,11 @@
 		 <div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('news/index')}>">
 				<input name="keyword" placeholder="输入新闻的关键字"  />
-				<button type="submit" class="icon-search"></button> 
+				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 		</div>
         <div class="top-signed">
-			<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
+			<a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
 		</div>
 	</header>
 <style>
@@ -59,7 +59,7 @@
                       <source id="mp4" src="<{$detail['video']}>" type="video/mp4"> 
                 </video> 
             </if>
-            <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
+            <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> 
             <script> 
                 document.getElementById('car_audio').play(); 
                 document.addEventListener("WeixinJSBridgeReady", function () { 
@@ -70,6 +70,9 @@
 		</p>
 
 		 <p class="detail-des">
+         	<if condition="$detail['shop']['shop_id']">
+                <em class="margin-small-right border-gray text-little"><a class="text-yellow" href="<{:U('shop/detail',array('shop_id'=>$detail['shop']['shop_id']))}>">作者：<{$detail.shop.shop_name}></a></em>
+            </if>
 			<span>发布日期：<{$detail.create_time|date='Y-m-d',###}></span>
 			<span>总浏览：<{$detail.views}></span>
 		</p>
@@ -147,8 +150,8 @@
                    <img src="<{:config_img($var['photo'])}>" style="width:90%;">
                    </div>
              <div class="9">
-                <p class="text-small"><{:bao_Msubstr($var['title'],0,18)}></p>
-                <p class="text-gray" style="font-size:12px;"><{:bao_Msubstr($var['details'],0,16)}>...</p>     
+                <p class="text-small"><{:tu_msubstr($var['title'],0,18)}></p>
+                <p class="text-gray" style="font-size:12px;"><{:tu_msubstr($var['details'],0,16)}>...</p>     
                 <p class="text-small">
                   <i class="icon-commenting-o"></i> <em><{$var.views}></em>
 				  <i class="icon-clock-o"></i> <em><{$var.create_time|date='Y-m-d',###}></em>
@@ -253,6 +256,58 @@
 	
 	</script>	
    </if>
+   
+   
+   
+   <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script>
+    wx.config({
+	debug: false,
+	appId: '<{$signPackage.appId}>',
+    timestamp: '<{$signPackage.timestamp}>',
+    nonceStr: '<{$signPackage.nonceStr}>',
+    signature: '<{$signPackage.signature}>',
+	jsApiList: [
+		'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'onMenuShareQZone'
+		]
+	});
+
+wx.ready(function () {
+    wx.onMenuShareTimeline({
+            title: '<{$detail["title"]}>."推荐的文章"',
+        	link: "<{$CONFIG.site.host}><{:U('wap/news/detail',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act,'article_id'=>$detail['article_id']))}>", 
+        	imgUrl: "<{:config_weixin_img($detail['photo'])}>", 
+            success: function (){
+				layer.msg('分享成功');
+			},
+            cancel: function (){ 
+				layer.msg('分享失败');
+			}
+        });
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '<{$detail["title"]}>."推荐的文章"',
+            desc: '<{$detail["profiles"]}>',
+            link: "<{$CONFIG.site.host}><{:U('wap/news/detail',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act,'article_id'=>$detail['article_id']))}>", 
+        	imgUrl: "<{:config_weixin_img($detail['photo'])}>", 
+            type: '',
+            dataUrl: '',
+            success: function (){
+				layer.msg('分享成功');
+			},
+            cancel: function (){ 
+				layer.msg('分享失败');
+			}
+        });
+
+});
+
+</script>
     
     
 <include  file='public:footer'/> 

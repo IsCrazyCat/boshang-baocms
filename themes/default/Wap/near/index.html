@@ -3,7 +3,7 @@
         
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			附近生活
@@ -11,11 +11,11 @@
 		<div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('near/search')}>">
 				<input name="keyword" placeholder="输入搜索关键字"  />
-				<button type="submit" class="icon-search"></button> 
+				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 		</div>
 		<div class="top-signed">
-			<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
+			<a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
 		</div>
 	</header>
 	
@@ -235,7 +235,7 @@
 		</div>
 	</div>
 	<div id="allmap" style="width:100%;height:100px;"></div>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qfbt1AS4SZZvfZvSXE0A1Mx2"></script>
+	<script type="text/javascript" src="<{$CONFIG['config']['baidu_map_api']}>"></script>
 	<script>
 		$(document).ready(function () {
 			TouchSlide({ 

@@ -1,4 +1,5 @@
 <include file="public:header" />
+<script src="/themes/default/Home/statics/js/mailCompletion.js"></script>
 <style>
 .header--mini{border-bottom:2px solid <{$color}>!important;color:#666;display:block;min-width:980px}
 .header--mini .wrapper{margin:0 auto;padding:20px 0;width:980px}
@@ -94,6 +95,10 @@
                         mobile_timeout = setTimeout(BtnCount, 1000);
                     }
                 };
+				
+				
+
+
             </script>
 
 		<div class="loginBox">
@@ -140,7 +145,7 @@
 
  
 
-					<form  action="<{:U('passport/register')}>" method="post" target="baocms_frm" >
+					<form  action="<{:U('passport/register')}>" method="post" target="x-frame" >
 						<div class="loginTableBox on">
 							<table cellpadding="0" cellspacing="0" width="100%" class="loginTable">
                             <if condition="$fuser">
@@ -161,7 +166,7 @@
                                 <tr>
 									<td>
 										<input  class="loginInput2017 loginInput2018" name="sms_yzm"  id="sms_yzm"   type="text"  value="" placeholder="输入验证码" />
-										<img id="bao_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" /><em><a rel="bao_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em></td>
+										<img id="tu_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" /><em><a rel="tu_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em></td>
 								</tr>
                                 </if>
                                 <tr>
@@ -210,7 +215,7 @@
                     
                     
       <if condition="$CONFIG['register']['register_mobile'] eq 0">
-					<form  action="<{:U('passport/register')}>" method="post" target="baocms_frm"  name="register">
+					<form  action="<{:U('passport/register')}>" method="post" target="x-frame"  name="register">
 						<div class="loginTableBox">
 							<table cellpadding="0" cellspacing="0" width="100%" class="loginTable">
                             <if condition="$fuser">
@@ -226,14 +231,8 @@
 								</tr>
 								<tr>
 									<td>
-										<input name="data[password]" type="password"   id="tbPassword"  placeholder="创建密码" class="loginInput2016  ywz_zhuce_kuangwenzi1" value="" />
-                                         <div class="ywz_zhuce_huixian" id='pwdLevel_1'> </div>
-                                        <div class="ywz_zhuce_huixian" id='pwdLevel_2'> </div>
-                                        <div class="ywz_zhuce_huixian" id='pwdLevel_3'> </div>
-                                        <div class="ywz_zhuce_hongxianwenzi"> 弱</div>
-                                        <div class="ywz_zhuce_hongxianwenzi"> 中</div>
-                                        <div class="ywz_zhuce_hongxianwenzi"> 强</div>
-                                        
+										<input name="data[password]" type="password"   id="tbPassword"  placeholder="创建密码" class="loginInput2016" value="" />
+                                       
                                         
                                         <span>密码请输入<a style="color:#F00"><{$CONFIG['register']['register_password']}>-20</a>个字符</span>
 									</td>
@@ -249,7 +248,7 @@
 								<tr>
 									<td>
 										<input  class="loginInput2017" name="yzm"  type="text"  value="" placeholder="输入验证码" />
-										<img id="bao_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" /><em><a rel="bao_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em></td>
+										<img id="tu_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" /><em><a rel="tu_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em></td>
 								</tr>
                                 </if>
 								<tr>
@@ -279,6 +278,12 @@
         
 
      <script type="text/javascript">
+	 
+	    var mailCompletion = new hcMailCompletion('reg-account');
+	    mailCompletion.run();
+				
+				
+				
         $('#tbPassword').focus(function () {
             $('#pwdLevel_1').attr('class', 'ywz_zhuce_hongxian');
             $('#tbPassword').keyup();

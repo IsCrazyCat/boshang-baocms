@@ -6,7 +6,7 @@
         <li class="li2 li3">编辑活动</li>
     </ul>
 </div>
-<form target="baocms_frm" action="<{:U('activity/edit',array('activity_id'=>$detail['activity_id']))}>" method="post">
+<form target="x-frame" action="<{:U('activity/edit',array('activity_id'=>$detail['activity_id']))}>" method="post">
     <div class="mainScAdd">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
@@ -21,7 +21,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="lfTdBt">选择套餐：</td>
+                    <td class="lfTdBt">选择抢购：</td>
                     <td class="rgTdBt" > 
                         <div class="lt">
                             <select id="tuan_id" name="data[tuan_id]" class="scAddTextName manageSelect w300 sj" >
@@ -31,7 +31,7 @@
                                 </foreach>
                             </select>
                         </div>
-                        <a id="btn_tuan" href="javascript:void(0);" class="seleSj">选择商家套餐</a>
+                        <a id="btn_tuan" href="javascript:void(0);" class="seleSj">选择商家抢购</a>
                     </td>
                 </tr>
                 <script type="text/javascript" language="javascript">

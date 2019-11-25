@@ -1,7 +1,7 @@
 <include file='public:header'/>    
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('crowd/detail',array('goods_id'=>$order['goods_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('crowd/detail',array('goods_id'=>$order['goods_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			众筹支付订单
@@ -9,7 +9,7 @@
 	</header>
 
 <style>
-.icon-angle-right{ float:right; font-size:20px;}
+.iconfont icon-angle-right{ float:right; font-size:20px;}
 .padding-top {padding-top: 20px;}
 </style> 
 
@@ -36,11 +36,11 @@
             <div class="row address_bg">
             <span class="x10">
                 <input type="hidden" name="id" id="id" value="<{$useraddr['id']}>" checked="checked"/><!--应该查找默认地址-->
-                <i class="icon-user"></i> <{:bao_msubstr($useraddr['xm'],0,3,false)}> &nbsp; <i class="icon-mobile"></i> <{$useraddr.tel}> 
+                <i class="icon-user"></i> <{:tu_msubstr($useraddr['xm'],0,3,false)}> &nbsp; <i class="icon-mobile"></i> <{$useraddr.tel}> 
                 <p onclick="location='<{:U('address/addlist',array('type'=>crowd,'order_id'=>$order['order_id']))}>'">
                 <{$useraddr.area_str}> <{$useraddr.info}></p>
              </span>
-              <span class="x2" onclick="location='<{:U('address/addlist',array('type'=>crowd,'order_id'=>$order['order_id']))}>'"><i class="icon-angle-right padding-top"></i></span>
+              <span class="x2" onclick="location='<{:U('address/addlist',array('type'=>crowd,'order_id'=>$order['order_id']))}>'"><i class="iconfont icon-angle-right padding-top"></i></span>
             </div>
             <div class="blank-10 bg"></div>
         </if>
@@ -61,7 +61,7 @@
 						<{$var.name}><p>推荐已安装<{$var.name}><{$var.id}>客户端的用户使用</p>
 						</div>
 						<div class="x2">
-							<span class="radio txt txt-small radius-circle bg-green"><i class="icon-check"></i></span>
+							<span class="radio txt txt-small radius-circle bg-green"><i class="iconfont icon-qiandao1"></i></span>
 						</div>
 					</div>
 				</div>

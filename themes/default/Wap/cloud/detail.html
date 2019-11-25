@@ -3,13 +3,13 @@
 <script src="/static/default/wap/other/roll.js"></script> 
 	<header class="top-fixed bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('cloud/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('cloud/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			云购详情
 		</div>
 		<div class="top-share">
-			<a href="javascript:void(0);" id="share-btn"><i class="icon-share"></i></a>
+			<a href="javascript:void(0);" id="share-btn"><i class="iconfont icon-fabu4"></i></a>
 		</div>
 	</header>  
 	<div id="share-box" class="share-box">
@@ -59,8 +59,8 @@
 		</div>
 	</div>
 			<div class="title">
-				<h1><{:bao_msubstr($detail['title'],0,30)}></h1>
-				<p><{:bao_msubstr($detail['intro'],0,50)}></p>
+				<h1><{:tu_msubstr($detail['title'],0,30)}></h1>
+				<p><{:tu_msubstr($detail['intro'],0,50)}></p>
 			</div>	
 		</div>
 </div>            
@@ -249,14 +249,14 @@
             $('.layui-layer-btn0').css('background', '#2fbdaa');
         });
 
-        /*底部一元套餐部分*/
+        /*底部一元抢购部分*/
         $(".yiyuan_buynum_btn").click(function () {
             $(".yiyuan_buynum_mask").show();
         });
         $(".yiyuan_buynum_mask").find(".closs").click(function () {
             $(".yiyuan_buynum_mask").hide();
         });
-        /*底部一元套餐部分*/
+        /*底部一元抢购部分*/
 
     });
 </script>

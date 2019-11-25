@@ -1,25 +1,28 @@
 <include  file='public:header'/>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">系统设置</a> > <a href="<{:U('booking/room')}>">订座管理</a> > <a>订座包厢设置</a></li>
+        <li><a href="#">系统设置</a> > <a href="<{:U('booking/room')}>">订座管理</a> > <a>订座房间设置</a></li>
     </ul>
 </div>
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">包厢设置后才能被客户订包厢</div>
+            <div class="left tuan_topser_l">房间设置后才能被客户订房间</div>
         </div>
     </div> 
-    <div class="tuanfabu_tab">
+    
+      <div class="tuanfabu_tab">
         <ul>
-            <li class="tuanfabu_tabli tabli_change on"><a href="<{:U('booking/room')}>">订座包厢设置</a></li>
+        	<li class="tuanfabu_tabli tabli_change"><a href="<{:U('booking/room')}>">房间列表</a></li>
+            <li class="tuanfabu_tabli tabli_change on"><a href="<{:U('booking/roomedit',array('room_id'=>$detail['room_id']))}>">编辑房间</a></li>
         </ul>
     </div>
+    
     <div class="tabnr_change  show">
-        <form method="post"  action="<{:U('booking/roomedit',array('room_id'=>$detail['room_id']))}>" target="baocms_frm">
+        <form method="post"  action="<{:U('booking/roomedit',array('room_id'=>$detail['room_id']))}>" target="x-frame">
     	<table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="120"><p class="tuanfabu_t">包厢名称：</p></td>
+                <td width="120"><p class="tuanfabu_t">房间名称：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[name]" value="<{$detail.name|default=''}>"  class="tuanfabu_int tuanfabu_intw2" />
                  比如：华山厅，泰山厅等
@@ -43,7 +46,7 @@
             </tr>
             
              <tr>
-               <td class="lfTdBt"><p class="tuanfabu_t">包厢图片：</p></td>
+               <td class="lfTdBt"><p class="tuanfabu_t">房间图片：</p></td>
                  <td class="rgTdBt">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[photo]" value="<{$detail.photo}>" id="data_photo" />
@@ -52,7 +55,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.hoteltuan.thumb}>
+                        建议尺寸<{$CONFIG.attachs.hoteltuan.thumb}>
                     </div>
                     <script>                                            
 						var width_hotel = '<{:thumbSize($CONFIG[attachs][hotle][thumb],0)}>';                         
@@ -79,7 +82,7 @@
             
             
                 <tr>
-                  <td class="lfTdBt"><p class="tuanfabu_t">包厢组图：</p></td>
+                  <td class="lfTdBt"><p class="tuanfabu_t">房间组图：</p></td>
                         <td class="rgTdBt">
                             <div>
                                 <div id="moreToUpload" >上传图片</div>
@@ -129,19 +132,19 @@
             
             
              <tr>
-                <td width="120"><p class="tuanfabu_t">包厢说明：</p></td>
+                <td width="120"><p class="tuanfabu_t">房间说明：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[intro]" value="<{$detail.intro|default=''}>"  class="tuanfabu_int tuanfabu_intw2" />
-                 简单描述一下包厢
+                 简单描述一下房间
                 </div>
                 </td>
             </tr>
             
               <tr>
-                <td width="120"><p class="tuanfabu_t">包厢消费金额：</p></td>
+                <td width="120"><p class="tuanfabu_t">房间消费金额：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[money]" value="<{:round($detail['money']/100,2)}>"  class="tuanfabu_int tuanfabu_intw2" />
-                元； 消费满多少钱才能订包厢
+                元； 消费满多少钱才能订房间
                 </div>
                 </td>
             </tr>

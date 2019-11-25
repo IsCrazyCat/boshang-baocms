@@ -1,7 +1,7 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('coupon/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('coupon/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			我的优惠券
@@ -16,7 +16,7 @@
 <php>$shop= D('Shop')->find($detail['shop_id']);</php>
 <div class="container">
 	<div class="padding-large">
-            <img width="100%" src="__ROOT__/attachs/<{$file}>" />
+            <img width="100%" src="__ROOT__<{$file}>" />
             <p>
                 1：可以到<{$shop['shop_name']}>购物享受优惠。<br/>
                 2：到店消费的时候出示二维码。

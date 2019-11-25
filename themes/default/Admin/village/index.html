@@ -1,15 +1,16 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">社区村设置</li>
-        <li class="li2">管理</li>
+        <li class="li1">管理</li>
+        <li class="li2">智慧乡村</li>
+        <li class="li2 li3">乡村管理</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
-                <{:BA('village/create','','添加社区村')}>
+                <{:BA('village/create','','添加智慧乡村')}>
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('village/index')}>"> 
@@ -45,7 +46,7 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -55,6 +56,7 @@
                     <td>名称</td>
                     <td>所在区域</td>
                     <td>地址</td>
+                    <td>部落名称</td>
                     <td>排序</td>
                     <td>操作</td>
                 </tr>
@@ -66,17 +68,17 @@
                         <td><{$var.name}></td>
                         <td><{$var.area_name}></td>
                         <td><{$var.addr}></td>
+                        <td><{$threads[$var['thread_id']]['thread_name']|default='未设置部落'}></td>
                         <td><{$var.orderby}></td>
                         <td>
                             <{:BA('village/edit',array("village_id"=>$var["village_id"]),'编辑','','remberBtn')}>
-                               <{:BA('village/notice',array("village_id"=>$var["village_id"]),'通知以及活动管理','','remberBtn')}>
-                              <{:BA('village/worker',array("village_id"=>$var["village_id"]),'工作人员管理','','remberBtn')}>
-                               <{:BA('village/suggestion',array("village_id"=>$var["village_id"]),'意见管理','','remberBtn')}>
-                                   <{:BA('village/bbs',array("village_id"=>$var["village_id"]),'帖子管理','','remberBtn')}>
+                            <{:BA('village/enter',array("village_id"=>$var["village_id"]),'商品入驻','','remberBtn')}>
+                            <{:BA('village/notice',array("village_id"=>$var["village_id"]),'通知','','remberBtn')}>
+                            <{:BA('village/worker',array("village_id"=>$var["village_id"]),'领导班子','','remberBtn')}>
+                            <{:BA('village/suggestion',array("village_id"=>$var["village_id"]),'反馈','','remberBtn')}>
+                            <{:BA('village/bbs',array("village_id"=>$var["village_id"]),'贴吧','','remberBtn')}>
                             <{:BA('village/delete',array("village_id"=>$var["village_id"]),'删除','act','remberBtn')}>
-
                         </td>
-
                     </tr>
                 </foreach>
             </table>

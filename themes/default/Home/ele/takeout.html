@@ -20,7 +20,7 @@
     <div class="navList">
         <!--<div class="navListBg">&nbsp;</div>-->
         <ul>
-            <li class="navListAll"><span class="navListAllt">全部套餐分类</span>
+            <li class="navListAll"><span class="navListAllt">全部抢购分类</span>
                 <div class="shadowy navAll">
                     <include file="public:cate"/>
                 </div>
@@ -35,10 +35,10 @@
 <div class="content zy_content">
     <div class="locaTop locaTop_2">
         <div class="left locaTop_l">
-            <p class="locaTopP">在地图上<span>选择位置</span>，查看<span>附近套餐</span></p>
-            <if condition="empty($MEMBER)"><p class="locaTopDl">想查看之前保存位置的附近套餐。请<a href="<{:U('passport/login')}>">登录</a></p></if>
+            <p class="locaTopP">在地图上<span>选择位置</span>，查看<span>附近抢购</span></p>
+            <if condition="empty($MEMBER)"><p class="locaTopDl">想查看之前保存位置的附近抢购。请<a href="<{:U('passport/login')}>">登录</a></p></if>
         </div>
-        <div class="right locaTop_r"><span>微信扫一扫，<br />随时随地查看附近套餐</span>
+        <div class="right locaTop_r"><span>微信扫一扫，<br />随时随地查看附近抢购</span>
             <img src="<{:config_img($CONFIG['site']['wxcode'])}>" width="81" height="81" /></div>
     </div>
     <div class="locaNr">
@@ -66,9 +66,9 @@
             </div>
         </div>
         <div class="left locaNr_r">
-            <p class="locaNr_serMapP"><span class="left"><em></em>手机微信扫一扫，随时随地查看附近套餐</span><span class="right">您可以点击地图直接定位</span></p>
+            <p class="locaNr_serMapP"><span class="left"><em></em>手机微信扫一扫，随时随地查看附近抢购</span><span class="right">您可以点击地图直接定位</span></p>
             <div class="locaNr_serMap">
-                <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
+                <script type="text/javascript" src="<{$CONFIG['config']['baidu_map_api']}>"></script>
                 <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
                 <div id="allmap" style="width: 845px; height:560px;"></div>
                 <script type="text/javascript">
@@ -226,7 +226,7 @@
                                                         // 判断状态是否正确      
                                                         var s = [];
                                                         for (var i = 0; i < results.getCurrentNumPois(); i++) {
-                                                            s.push("<li class='jq_li'><input type='hidden' value='"+results.getPoi(i).address+"' /><em></em><a class='locaNr_look' rel='locaNr_look_"+i+"' href='javascript:void(0);'>查看附近套餐</a><h3>" + results.getPoi(i).title + "</h3><p>地址：" + results.getPoi(i).address + "</p></li>");
+                                                            s.push("<li class='jq_li'><input type='hidden' value='"+results.getPoi(i).address+"' /><em></em><a class='locaNr_look' rel='locaNr_look_"+i+"' href='javascript:void(0);'>查看附近抢购</a><h3>" + results.getPoi(i).title + "</h3><p>地址：" + results.getPoi(i).address + "</p></li>");
                                                         }
                                                         //var r = ["<p class='locaNr_serJg'>共有" + results.getNumPois() + "条结果</p>"];
                                                         //var p = ["<div class='x'>"+results.getPageIndex()+"</div>"];

@@ -13,31 +13,30 @@
     </div>
   </div>
   <div class="tabnr_change  show">
-    <form method="post"  action="<{:U('activity/edit',array('activity_id'=>$detail['activity_id']))}>"  target="baocms_frm">
+    <form method="post"  action="<{:U('activity/edit',array('activity_id'=>$detail['activity_id']))}>"  target="x-frame">
       <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <input type="hidden" id="shop_id" name="data[shop_id]" value="<{$detail.shop_id}>"/>
-          <td width="120"><p class="tuanfabu_t">选择套餐：</p></td>
+          <td width="120"><p class="tuanfabu_t">选择抢购：</p></td>
           <td><div class="tuanfabu_nr">
           
-              <select id="tuan_id" name="data[tuan_id]" class="tuanfabu_int tuanfabu_intw2" >
+              <select id="tuan_id" name="data[tuan_id]" class="tuanfabu_int tuanfabu_intw1" >
                 <foreach name="tuan" item="var">
                   <option value="<{$var.tuan_id}>"  <eq name="var.tuan_id" value="$detail.tuan_id">selected="selected"</eq> ><{$var.title}></option>
                 </foreach>
               </select>
-              
+             <code>如果不能选择请先添加抢购，这里可留空不选择</code>
             </div></td>
         </tr>
         <tr>
           <td width="120"><p class="tuanfabu_t">活动类型：</p></td>
           <td><div class="tuanfabu_nr">
-              <select id="cate_id" name="data[cate_id]" class="tuanfabu_int tuanfabu_intw2">
-              
+              <select id="cate_id" name="data[cate_id]" class="tuanfabu_int tuanfabu_intw1">
                 <foreach name="cates" item="var">
                   <option value="<{$var.cate_id}>"  <eq name="var.cate_id" value="$detail.cate_id">selected="selected"</eq> ><{$var.cate_name}></option>
                 </foreach>
-                
               </select>
+              <code>如果不能选择联系管理员</code>
             </div></td>
         </tr>
         <tr>
@@ -64,7 +63,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.hoteltuan.thumb}>
+                        建议尺寸<{$CONFIG.attachs.hoteltuan.thumb}>
                     </div>
                     <script>                                            
 						var width_activity = '<{:thumbSize($CONFIG[attachs][activity][thumb],0)}>';                         

@@ -31,7 +31,7 @@
 .register_tabLi span .icon--email {width: 14px;height: 11px;background-position: -846px -677px;}
 .register_tabLi span .icon--phone { width: 9px;height: 13px; background-position: -373px -706px;}
 .register_tabLi span .icon--email, .register_tabLi span .icon--phone {background-image: url(/themes/default/Pchome/statics/images/login.png);}
-
+.config_mail_from{text-decoration:none !important}
 </style>
 
 <div class="header--mini">
@@ -107,42 +107,63 @@
 								});
 
 							</script>
-						<ul>
-              
-                            
-<li class="register_tabLi <if condition='$way eq 2'>on</if>"><span><a href="<{:U('passport/forget',array('way'=>2))}>"><i class="icon icon--phone"></i>通过手机找回</a></span></li>							<li class="register_tabLi <if condition='$way eq 1'>on</if>"><span><a href="<{:U('passport/forget',array('way'=>1))}>"><i class="icon icon--email"></i>通过邮箱找回</a></span></li>
-						</ul>
+					<ul>
+                       <li class="register_tabLi <if condition='$way eq 2'>on</if>"><span><a href="<{:U('passport/forget',array('way'=>2))}>"><i class="icon icon--phone"></i>通过手机找回</a></span></li>							
+                       <li class="register_tabLi <if condition='$way eq 1'>on</if>"><span><a href="<{:U('passport/forget',array('way'=>1))}>"><i class="icon icon--email"></i>通过邮箱找回</a></span></li>
+					</ul>
 
 					</div>
 
  
 
-			<form  action="<{:U('passport/newpwd')}>" method="post" target="baocms_frm" >
                 <div class="loginTableBox on">    
-                <if condition="$way eq 2">
-				
-				<table cellpadding="0" cellspacing="0" width="100%" class="loginTable">
-                    <input type="hidden" name="way" id="way" value="2" />
-                    <tr><td><input  class="loginInput2016"  name="account" id="account"  type="text"  placeholder="用户名"  /><span>请输入用户名</span></td></tr>
-                    <tr><td><input  class="loginInput2016"  name="mobile" id="mobile"  type="text"  placeholder="手机号"  /><span>请输入您绑定的手机号码</span></td></tr>
-                    <tr><td><input  class="loginInput2017 register_input" name="scode"  type="text"  value="" placeholder="短信验证码" /><a href="javascript:void(0);" class="btn loginInput8" id="m_zcyz" style="text-decoration: none;">发送验证码</a></td></tr>
+               <if condition="$way eq 2">
+				<form  action="<{:U('passport/newpwd')}>" method="post" target="x-frame" >
+                    <table cellpadding="0" cellspacing="0" width="100%" class="loginTable">
+                        <input type="hidden" name="way" id="way" value="2" />
+                        <tr><td><input  class="loginInput2016"  name="account" id="account"  type="text"  placeholder="用户名"  /><span>请输入用户名</span></td></tr>
+                        <tr><td><input  class="loginInput2016"  name="mobile" id="mobile"  type="text"  placeholder="手机号"  /><span>请输入您绑定的手机号码</span></td></tr>
+                        <tr>
+                        <td>
+                            <input class="loginInput2017 register_input" name="scode"  type="text"  value="" placeholder="短信验证码" />
+                            <a href="javascript:void(0);" class="btn loginInput8" id="m_zcyz" style="text-decoration: none;">发送验证码</a>
+                        </td>
+                        </tr>
+                      <tr><td><input type="submit" value="短信获取新密码" class="btn loginInput7"/></td></tr>             
+                  </table>
+				</form>
 			
 
+
+
 			
+
 			<elseif condition="$way eq 1"/> 
+
 		
+			<form  action="<{:U('passport/newpassword')}>" method="post" target="x-frame" >
 			<table cellpadding="0" cellspacing="0" width="100%" class="loginTable">
-            <input type="hidden" name="way" id="way" value="1" />
-            <tr><td><input  class="loginInput2016"  name="email"   id="email" type="text"  placeholder="邮箱地址"  /><span>请输入电子邮件</span></td></tr>            <tr><td><input  class="loginInput2016"  name="account" id="account"  type="text"  placeholder="用户名"  /><span>请输入用户名</span></td></tr>
-<tr><td><input  class="loginInput2017" name="yzm"  type="text"  value="" placeholder="输入验证码" />
-<img id="bao_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" /><em><a rel="bao_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em></td></tr>
-		
-            </if> 
-                        
-             <tr><td><input type="submit" value="获取新密码" class="btn loginInput7"/></td></tr>             
+                <tr><td><a class="config_mail_from">如果收不到邮件，请将<{$CONFIG.mail.from}>添加到白名单</a></td></tr>   
+                <input type="hidden" name="way" id="way" value="1" />
+                <tr>
+                    <td>
+                    	<input  class="loginInput2016"  name="email"   id="email" type="text"  placeholder="邮箱地址"  /><span>请输入已绑定的电子邮箱</span>
+                    </td>
+                </tr>            
+                
+                <tr>
+                    <td>
+                        <input  class="loginInput2017" name="yzm"  type="text"  value="" placeholder="输入验证码" />
+                        <img id="tu_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" /><em>
+                        <a rel="tu_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em>
+                    </td>
+                </tr>
+              <tr><td><input type="submit" value="邮件获取新密码" class="btn loginInput7"/></td></tr>             
            </table>
+ 			</form>
+           </if> 
                         
-				    </form>
+         
 				</div>
 			</div>   
 		</div>

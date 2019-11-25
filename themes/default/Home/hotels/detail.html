@@ -15,7 +15,7 @@
             <li class="jq_spxq_xqBt3"><code rel="spxq_xqBt3">酒店详情</code><em></em></li>
             <li class="jq_spxq_xqBt4"><code rel="spxq_xqBt4">设施服务</code><em></em></li>
             <li class="jq_spxq_xqBt5"><code rel="spxq_xqBt5">用户评价</code><em></em></li>
-            <li class="jq_spxq_xqBt6"><code rel="spxq_xqBt6">酒店套餐</code><em></em></li>
+            <li class="jq_spxq_xqBt6"><code rel="spxq_xqBt6">酒店抢购</code><em></em></li>
         </ul>
     </div>
     <script>
@@ -106,7 +106,7 @@
             <li><code rel="spxq_xqBt3">酒店详情</code><em></em></li>
             <li><code rel="spxq_xqBt4">设施服务</code><em></em></li>
             <li><code rel="spxq_xqBt5">用户评价</code><em></em></li>
-            <li><code rel="spxq_xqBt6">酒店套餐</code><em></em></li>
+            <li><code rel="spxq_xqBt6">酒店抢购</code><em></em></li>
         </ul>
     </div>
     <!--酒店房型-->
@@ -124,7 +124,7 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
+    <script type="text/javascript" src="<{$CONFIG['config']['baidu_map_api']}>"></script>
     <div class="map_fixed">
         <div class="map_fixed_tit">
                 <span>查看地图</span>
@@ -481,7 +481,7 @@
     </div>
     
     <div class="hotel_detl_box mb20 spxq_xqBt5">
-        <div class="hotel_detl_tit">用户评价<a target="_blank" href="<{:U('member/hotels/index')}>" class="right hotel_evlt">我也要评价<em class="ico"></em></a></div>
+        <div class="hotel_detl_tit">用户评价<a target="_blank" href="<{:U('members/hotels/index')}>" class="right hotel_evlt">我也要评价<em class="ico"></em></a></div>
         <div class="hotel_detl_nr">
         	<div class="sjxq_tab">
                 <ul>
@@ -506,7 +506,7 @@
 
                                     <foreach name="pics" item="pic">
                                         <if condition="$pic['comment_id'] eq $var['comment_id']">
-                                            <li class="spxq_pjLi"><a href="javascript:void(0);" rel="__ROOT__/attachs/<{$pic.photo}>" ><img src="__ROOT__/attachs/<{$pic.photo}>" width="100" height="100" /></a></li>
+                                            <li class="spxq_pjLi"><a href="javascript:void(0);" rel="<{:config_img($pic['photo'])}>" ><img src="<{:config_img($pic['photo'])}>" width="100" height="100" /></a></li>
                                         </if>
                                     </foreach>
                                 </ul>
@@ -520,7 +520,7 @@
     </div>
     
     <div class="hotel_detl_box mb20 spxq_xqBt6">
-        <div class="hotel_detl_tit">酒店套餐<a href="<{:U('tuan/index')}>" class="right">更多套餐&gt;&gt;</a></div>
+        <div class="hotel_detl_tit">酒店抢购<a href="<{:U('tuan/index')}>" class="right">更多抢购&gt;&gt;</a></div>
         <div class="hotel_list_box">
             <ul>
                 <foreach name="tuan_list" item="item">

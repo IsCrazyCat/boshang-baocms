@@ -148,7 +148,7 @@ $(document).ready(function () {
                 <img src="<{:config_img($item['photo'])}>" width="560" height="390" />
                 <div class="pub_wz">
                     <span class="bq">新</span>
-                    <h3><{:bao_msubstr($item['title'],0,12,false)}></h3>
+                    <h3><{:tu_msubstr($item['title'],0,12,false)}></h3>
                     <h3 class="fontcl1">￥<{:round($item['mall_price']/100,2)}></h3>
                     <p>市场价：<del>￥<{:round($item['price']/100,2)}></del></p>
                     <p><span class="mr10">已售：<{$item.sold_num}></span><span class="ml10">库存：<{$item.kucun}></span></p>
@@ -163,7 +163,7 @@ $(document).ready(function () {
                      <li class="mall_new_list">
                         <div class="pub_img"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><span class="bq">新</span><img src="<{:config_img($item['photo'])}>" width="290" height="210" /></a></div>
                         <div class="pub_wz">
-                            <h3 class="overflow_clear mb10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><{:bao_msubstr($item['title'],0,12,false)}></a></h3>
+                            <h3 class="overflow_clear mb10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><{:tu_msubstr($item['title'],0,12,false)}></a></h3>
                             <p class="fontcl1 price">￥<{:round($item['mall_price']/100,2)}></p>
                             <P>市场价：<del>￥<{:round($item['price']/100,2)}></del></P>
                             <div class="box">
@@ -193,7 +193,7 @@ $(document).ready(function () {
                 <li class="list">
                     <p class="bq_box bor1"><span class="bq">推荐</span></p>
                     <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="blackcl3"><img src="<{:config_img($item['photo'])}>" width="204" height="145" /></a>
-                    <h3 class="overflow_clear mt10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="blackcl3"><{:bao_msubstr($item['title'],0,12,false)}></a></h3>
+                    <h3 class="overflow_clear mt10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="blackcl3"><{:tu_msubstr($item['title'],0,12,false)}></a></h3>
                     <p class="price fontcl1">现价：￥<{:round($item['mall_price']/100,2)}></p>
                     <p>市场价：<del>￥<{:round($item['price']/100,2)}></del></p>
                     <p class="graycl" style="overflow:hidden; margin-top:10px; font-size:12px;"><span class="left">已售：<{$item.sold_num}></span><span class="right">库存：<{$item.kucun}></span></p>
@@ -203,9 +203,9 @@ $(document).ready(function () {
         <div class="clear"></div>
     </div>
     <!--热门推荐结束-->
-    <!--限时套餐-->
+    <!--限时抢购-->
     <div class="mall_tit">
-    	<h2 class="left"><b class="bq">抢</b>限时套餐</h2>
+    	<h2 class="left"><b class="bq">抢</b>限时抢购</h2>
         <a href="<{:U('mall/index')}>" class="more right graycl">更多&gt;</a>
     </div>
     <div class="mall_recmd mall_buy mb20">
@@ -256,9 +256,9 @@ $(document).ready(function () {
             
             	<volist name='xianshi' id='item'>
                     <li class="list">
-                        <p class="bq_box"><span class="bq">套餐</span></p>
+                        <p class="bq_box"><span class="bq">抢购</span></p>
                         <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><img src="<{:config_img($item['photo'])}>" width="204" height="145" /></a>
-                        <h3 class="overflow_clear mt10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="blackcl3"><{:bao_msubstr($item['title'],0,12,false)}></a></h3>
+                        <h3 class="overflow_clear mt10"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="blackcl3"><{:tu_msubstr($item['title'],0,12,false)}></a></h3>
                         <p class="price fontcl1">￥<{$item['rush_price']/100}></p>
                         <p>市场价：<del>￥<{$item['price']/100}></del></p>
                     </li>
@@ -268,7 +268,7 @@ $(document).ready(function () {
         </div>
         <div class="clear"></div>
     </div>
-    <!--限时套餐结束-->
+    <!--限时抢购结束-->
 </div>
 <div class="mall_bggrey">
     <div class="pagewd">
@@ -283,7 +283,7 @@ $(document).ready(function () {
                      <li class="mall_list">
                         <div class="box"> 
                             <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><img src="<{:config_img($item['photo'])}>" width="278" height="190" /></a>
-                            <h3 class="overflow_clear"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><{:bao_msubstr($item['title'],0,12,false)}></a></h3>
+                            <h3 class="overflow_clear"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><{:tu_msubstr($item['title'],0,12,false)}></a></h3>
                             <p class="fontcl1">现价：<big><b>￥<{$item['mall_price']/100}></b></big><span style="margin-left:20px;">市场价：<del class="blackcl6">￥<{$item['price']/100}></del></span></p>
                             
                             <div class="btn_box"><a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" class="btn">立即购买</a></div>

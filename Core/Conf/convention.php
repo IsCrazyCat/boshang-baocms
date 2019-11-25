@@ -1,7 +1,6 @@
 <?php
 
 
-
 defined('THINK_PATH') or exit();
 
 return  array(
@@ -24,9 +23,10 @@ return  array(
 
     /* Cookie设置 */
     'COOKIE_EXPIRE'         => 0,    // Coodie有效期
-    'COOKIE_DOMAIN'         => 'blklube.zmkm0523.com',      // Cookie有效域名按照这个格式修改，修改为你的域名
+    'COOKIE_DOMAIN'         => '',      // Cookie有效域名
     'COOKIE_PATH'           => '/',     // Cookie路径
     'COOKIE_PREFIX'         => '',      // Cookie前缀 避免冲突
+
 
 
     /* 默认设定 */

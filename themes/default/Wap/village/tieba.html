@@ -1,7 +1,7 @@
 <include file='public:header'/>    
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('village/detail',array('village_id'=>$detail['village_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('village/detail',array('village_id'=>$detail['village_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<{$detail.name}>-贴吧
@@ -19,7 +19,7 @@
 			<div class="x4 text-center"><div class="logo"><img src="<{:config_img($detail['pic'])}>" /></div></div>
 			<div class="x4 text-center">
 				<div class="blank-60"></div>
-				<span class="tag-2 bg-white">评论：<{$count.reply}></span>
+				<span class="tag-2 bg-white">评论：<{$reply2}></span>
 			</div>
 		</div>
 		<div class="blank-50"></div>
@@ -55,11 +55,11 @@
 <nav class="foot-bar">
 	<div class="line">
 		<div class="x2">
-			<a class="back-icon" href="<{:U('village/detail',array('village_id'=>$detail['village_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="back-icon" href="<{:U('village/detail',array('village_id'=>$detail['village_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="x10">
 			<a class="post-icon" href="<{:U('village/post',array('village_id'=>$detail['village_id']))}>">
-				<i class="icon-pencil-square"></i>
+				<i class="iconfont icon-fabu"></i>
 				发帖子
 			</a>
 		</div>

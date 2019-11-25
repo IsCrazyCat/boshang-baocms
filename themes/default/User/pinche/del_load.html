@@ -18,7 +18,7 @@
                 $start_time = strtotime($item['start_time']);
                </php>
             <p class="text-small">出发时间：（<{:pincheTime($start_time)}>/<{$item['start_time_more']}>）</p>
-            <p class="text-small">区域：<{$citys[$item['city_id']]['name']}>-<{$areas[$item['area_id']]['area_name']}>-<{$item['toplace']}> 
+            <p class="text-small">出发地-目的地：<{$item['goplace']}> -<{$item['toplace']}> 
                 <if condition="!empty($item['middleplace'])">
                 -途经（<{$item['middleplace']}>）
                 </if>

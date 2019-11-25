@@ -1,4 +1,7 @@
 <include file='public:header'/>
+<style>
+.checkbox{ width:20px; height:20px;}
+</style>
 <div class="sjgl_lead">
     <ul>
         <li><a href="">商家</a>><a href="<{:U('shopkuaidi/index')}>">运费模板</a>><a>增加地区运费</a></li>
@@ -11,7 +14,7 @@
         </div>
     </div>
 
-    <form method="post" target="baocms_frm" action="<{:U('shopkuaidi/listcreate', array('kuaidi_id' => $kuaidi_id))}>">
+    <form method="post" target="x-frame" action="<{:U('shopkuaidi/listcreate', array('kuaidi_id' => $kuaidi_id))}>">
     	<table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td><p class="tuanfabu_t">配送名称：</td>
@@ -21,16 +24,36 @@
             
              <tr>
                <td width="120"><p class="tuanfabu_t">配送区域：</p></td>
-                    <td><div class="tuanfabu_nr">
-                            <select id="province_id" name="data[province_id]" class="tuanfabu_int tuanfabu_intw2">
-                                <option value="0">请选择</option>
-                                <foreach name="provinceList" item="var">
-                                    <option <eq name="var.id" value="$detail.province_id">selected="selected"</eq> value="<{$var.id}>"><{$var.name}></option>                
-                                </foreach>
-                            </select>
-                 </div></td>
+                    <td>
+                    
+                    
+               <foreach name="provinceList" item="var">
+               
+                <if condition="$var.upid eq 0">   
+                    <div class="tuanfabu_nr">
+                       <input type="checkbox" class="checkAll  checkbox" rel="<{$var.id}>" value="" /><b><{$var.name}></b> 
+                  
+                      <foreach name="provinceList" item="var2">
+                         <eq name="var2.upid" value="$var.id">
+                        <label style="font-size: 14px;"> <input class="child_<{$var.id}> checkbox" type="checkbox" name="id[]" <in name="var2.id" value="$ids">checked="checked" disabled="disabled" </in> value="<{$var2.id}>" /> <{$var2.name}></label>
+                        </eq>
+                      </foreach>   
+                  </div>  
+                  
+               </if>
+               
+           </foreach>   
+                 
+                 
+                 
+                 
+                 </td>
               </tr>
 
+
+			
+                
+                
 
 
 			<tr>

@@ -25,7 +25,7 @@
         </div>
         <div class="clear"></div>
         <div class="mode_dingdan">
-            <form method="post" target="baocms_frm" action="<{:U('tuan/order',array('tuan_id'=>$detail['tuan_id']))}>">
+            <form method="post" target="x-frame" action="<{:U('tuan/order',array('tuan_id'=>$detail['tuan_id']))}>">
                 <input type="hidden" name="order" value="<{$order}>"/>
                 <table class="order" width="100%"  >
                     <tr bordercolor="#ccc">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="clear"></div>
                 <if condition="!empty($MEMBER['mobile'])">
-                    <div class="admin admin-two"> 将发送套餐卷密码至手机号：<font class="fontcl2"><{$MEMBER['mobile']}></font> <a id="mobile_change" href="javascript:void(0);">更换手机号</a> </div>
+                    <div class="admin admin-two"> 将发送抢购卷密码至手机号：<font class="fontcl2"><{$MEMBER['mobile']}></font> <a id="mobile_change" href="javascript:void(0);">更换手机号</a> </div>
                     <else/>
                     <div class="admin admin-two"> 您还未绑定手机号，<a style="padding-left: 0px;" id="mobile_bind" href="javascript:void(0);">立即绑定</a> </div>
                 </if>
@@ -122,13 +122,13 @@
             });
         } else {
             if (mobile == '' || mobile == null) {
-                check_user_mobile_for_pc('<{:U("tuan/tuan/tuan_sendsms")}>', '<{:U("tuan/tuan/tuan_mobile")}>');
+                check_user_mobile_for_pc('<{:U("wap/tuan/tuan_sendsms")}>', '<{:U("wap/tuan/tuan_mobile")}>');
             }
             $("#mobile_bind").click(function () {
-                check_user_mobile_for_pc('<{:U("tuan/tuan/tuan_sendsms")}>', '<{:U("tuan/tuan/tuan_mobile")}>');
+                check_user_mobile_for_pc('<{:U("wap/tuan/tuan_sendsms")}>', '<{:U("wap/tuan/tuan_mobile")}>');
             });
             $("#mobile_change").click(function () {
-                change_user_mobile_for_pc('<{:U("mobile/tuan/tuan_sendsms")}>', '<{:U("mobile/tuan/tuan_mobile2")}>');
+                change_user_mobile_for_pc('<{:U("wap/tuan/tuan_sendsms")}>', '<{:U("wap/tuan/tuan_mobile2")}>');
             });
         }
     })

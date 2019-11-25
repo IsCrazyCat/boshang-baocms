@@ -9,16 +9,16 @@ caption, th { text-align:left; }
 h1, h2, h3, h4, h5, h6 { font-size:100%; }
 table {border-collapse:collapse;border-spacing:0;}
 select,input,label,button,textarea{margin:0;padding:0;font:normal normal normal "微软雅黑",arial,Simsun,Arial Unicode MS,Mingliu,Arial;overflow:visible;}
-//input{padding:2px 0 1px;*padding:4px 0 0;_padding:4px 0 0;_height:21px;}
+//input{padding:5px 2px 9px;*padding:1px6 8;_padding:27px;_height:1x;}
 
 /**
 * GRI主题
 */
 .gri_contrast {
     float: left;
-    margin: 0px 0px 0px;
-    line-height: 20px;
-    color: #666;
+    margin: 5px 2x 9px;
+    line-height: 16x;
+    color: #8271;
     cursor: pointer;
     font: 12px/1.5 Tahoma, Helvetica, 'SimSun', sans-serif;
 }

@@ -9,7 +9,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 
-<title>套餐码确认 - 员工确认中心</title>
+<title>抢购券确认 - 员工确认中心</title>
 
 <link href="/themes/default/Store/statics/css/style.css" rel="stylesheet" type="text/css">
 
@@ -31,9 +31,9 @@
 
 <script src="/themes/default/Store/statics/js/layer/layer.js"></script>
 
-<script> var BAO_PUBLIC = '/Public';
+<script> var TU_PUBLIC = '/Public';
 
-            var BAO_ROOT = '';</script>
+            var TU_ROOT = '';</script>
 
 <script>
 
@@ -55,12 +55,12 @@ $(function(){
 
 <body>
 
-    <iframe id="baocms_frm" name="baocms_frm" style="display:none;"></iframe>
+    <iframe id="x-frame" name="x-frame" style="display:none;"></iframe>
 
 <header>
 	<i class="left"><a href="<{:U('index/index')}>" id="icon_goback"></a></i>
-    <div class="title">套餐码确认</div>
-    <!-- i class="right"><a href="#">+发布套餐</a></i -->
+    <div class="title">抢购券确认</div>
+    <!-- i class="right"><a href="#">+发布抢购</a></i -->
 </header>
 
 <script>
@@ -84,13 +84,13 @@ $(function(){
 
 	<!-- div class="sh_buy_tab mb10">
 	    <ul>
-            <li class="on"><a href="<{:U('yuangong/ygtuan')}>">套餐码确认</a></li>
+            <li class="on"><a href="<{:U('yuangong/ygtuan')}>">抢购券确认</a></li>
             <li><a href="<{:U('yuangong/ygcoupon')}>">优惠券确认</a></li>
             <div class="clear"></div>
         </ul>
 	</div -->
     
-    <form method="post" action="<{:U('yuangong/ygtuan')}>" target="baocms_frm">
+    <form method="post" action="<{:U('yuangong/ygtuan')}>" target="x-frame">
     <div class="sh_buy_tab_box">
     	<div class="sh_buy_content">
         	<div class="sh_buy_add_btn"><input class="btn" type="button" id="add" value="新增+"></div>

@@ -10,7 +10,7 @@
 <div class="mainScAdd ">
 
     <div class="tableBox">
-        <form target="baocms_frm" action="<{:U('communityposts/edit',array('post_id'=>$detail['post_id']))}>" method="post">
+        <form target="x-frame" action="<{:U('communityposts/edit',array('post_id'=>$detail['post_id']))}>" method="post">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                 <tr>
                     <td class="lfTdBt">标题：</td>
@@ -51,7 +51,6 @@
 							<script>                                
 									var width_tieba_pic = '<{:thumbSize($CONFIG[attachs][tieba][thumb],0)}>';  //获取宽度                              
 									var height_tieba_pic = '<{:thumbSize($CONFIG[attachs][tieba][thumb],1)}>'; //获取高度 
-									var pic_pc_quality = '<{$CONFIG[attachs][pic_pc_quality][thumb]}>';  
 									var uploader = WebUploader.create({                                    
 									auto: true,                                    
 									swf: '/static/default/webuploader/Uploader.swf',                                    
@@ -65,7 +64,7 @@
 										extensions: 'gif,jpg,jpeg,png',
 										mimeTypes: 'image/*'//只永许上传JPG格式文件
 									}, 
-									compress : {width: width_tieba_pic,height: height_tieba_pic,quality: pic_pc_quality,allowMagnify: false,crop: true}    													
+									compress : {width: width_tieba_pic,height: height_tieba_pic,quality: 80,allowMagnify: false,crop: true}    													
 								});                                                               
 								uploader.on( 'uploadSuccess', function( file,resporse) {                                    
 								var str = '<span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;">  <img width="150" height="100" src="' + resporse.url + '">  <input type="hidden" name="photos[]" value="' + resporse.url + '" />    <a href="javascript:void(0);">取消</a>  </span>';                                   
@@ -80,7 +79,7 @@
                              </script>
                             <div class="jq_uploads_img">
                                 <foreach  name="photos" item="item">
-                                    <span style="width: 150px; height: 100px; float: left; margin-left: 5px; margin-top: 10px;"> 
+                                    <span style="width:200px; height:150px; float: left; margin-left: 5px; margin-top: 10px;"> 
                                         <img width="150" height="100" src="<{:config_img($item)}>">  
                                         <input type="hidden" name="photos[]" value="<{$item}>" />  
                                         <a href="javascript:void(0);">取消</a>  

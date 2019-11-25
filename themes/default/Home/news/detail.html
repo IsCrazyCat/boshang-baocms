@@ -40,9 +40,9 @@
             	<calldata mdl="Article" where="closed=0 And article_id!={$detail['article_id']}" order="views desc" limit="0,6" cache="600">
                 	<li class="list">
                 		<div class="left img"><a href="<{:U('news/detail',array('article_id'=>$item['article_id']))}>">
-                        <img src="<{:config_img($item['photo'])}>"  width="80" height="80"  /></a></div>
+                        <img src="<{:config_img($item['photo'])}>"  width="80" height="80"/></a></div>
                         <div class="wz">
-                            <p class="bt overflow_clear"><a href="<{:U('news/detail',array('article_id'=>$detail['article_id']))}>"><{$item.title}></a></p>
+                            <p class="bt overflow_clear"><a href="<{:U('news/detail',array('article_id'=>$item['article_id']))}>"><{$item.title}></a></p>
                             <p>作者：<{$item['source']}></p>
                             <p>时间：<{$item.create_time|date="Y-m-d",###}></p>
                             <p>浏览：<{$item.views}></p>

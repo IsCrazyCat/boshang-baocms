@@ -89,7 +89,7 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -103,7 +103,7 @@
                     <tr>
                         <td><input  rel="<{$var.shop_name}>"  type="radio" name="shop_id" value="<{$var.shop_id}>" /> <{$var.shop_id}></td>
                         <td><{$cates[$var['cate_id']]['cate_name']}></td>
-                        <td><{$citys[$var['city_id']]['name']}>-<{$areas[$var['area_id']]['area_name']}>-<{$business[$var['business_id']]['business_name']}></td>
+                        <td><{$var['city']['name']}>-<{$var['area']['area_name']}>-<{$var['business']['business_name']}></td>
                         <td><{$var.shop_name}></td>
                         <td><{$var.tel}></td>
                     </tr>

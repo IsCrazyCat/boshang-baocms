@@ -1278,9 +1278,9 @@ span.spxq_qgRedu{right:0;bottom:-1px;height:20px}
 .jfsy_jffz{padding:20px 0}
 .jfsy_jffzT{color:#06c1ae;font-size:24px;line-height:36px}
 .jfsy_jffz li{color:#333;font-size:20px;line-height:36px}
-.baomsgbox{min-width:100px;background:#fff;height:30px;line-height:30px;border:1px #f58505 double;position:fixed;padding:0 10px;z-index:99999;top:20%;left:45%;-webkit-box-shadow:3px 3px #a9a9a9;-moz-box-shadow:3px 3px #a9a9a9;box-shadow:3px 3px #a9a9a9;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;display:none}
-.baomsgbox img{float:left;margin-top:7px;width:16px;height:16px;display:block}
-.baomsgbox span{float:left;display:block;margin-left:5px;font-size:13px}
+.tumsgbox{min-width:100px;background:#fff;height:30px;line-height:30px;border:1px #f58505 double;position:fixed;padding:0 10px;z-index:99999;top:20%;left:45%;-webkit-box-shadow:3px 3px #a9a9a9;-moz-box-shadow:3px 3px #a9a9a9;box-shadow:3px 3px #a9a9a9;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;display:none}
+.tumsgbox img{float:left;margin-top:7px;width:16px;height:16px;display:block}
+.tumsgbox span{float:left;display:block;margin-left:5px;font-size:13px}
 .jfsy_banner{overflow:hidden;height:287px;margin-top:10px;margin-bottom:20px}
 .jfsy_flexslider{height:auto;overflow:hidden;position:relative;z-index:0}
 .jfsy_flexslider .slides{position:relative;z-index:1}
@@ -1460,8 +1460,8 @@ span.spxq_qgRedu{right:0;bottom:-1px;height:20px}
 #cart_waimai .numinput .adds,#cart_waimai .numinput .cuts{width:16px;height:20px;line-height:20px;border:1px #CCC solid;cursor:pointer}
 #cart_waimai .numinput .adds{border-left:none}
 #cart_waimai .numinput .cuts{border-right:none}
-.baodialog{width:100%;height:100%;position:absolute;display:none;z-index:1000;left:0;top:0}
-.baodialog_bg{width:100%;height:100%;overflow:hidden;background:#000;opacity:.3;-moz-opacity:.3;-webkit-opacity:.3;filter:Alpha(Opacity=30)}
+.tudialog{width:100%;height:100%;position:absolute;display:none;z-index:1000;left:0;top:0}
+.tudialog_bg{width:100%;height:100%;overflow:hidden;background:#000;opacity:.3;-moz-opacity:.3;-webkit-opacity:.3;filter:Alpha(Opacity=30)}
 
 
 .loginPop{width:380px;height:450px;border-radius:10px;border:7px solid #9b9b9b;background:#fff;position:absolute;z-index:101;top:100px;left:200px}
@@ -1512,11 +1512,11 @@ span.spxq_qgRedu{right:0;bottom:-1px;height:20px}
 .loginPop .oauth-wrapper{margin-top:20px}
 .loginPop .oauth-wrapper .title-wrapper{position:relative;margin-bottom:30px;border-bottom:1px solid #CCC;width:100%;height:0;overflow:visible}
 .loginPop .oauth-wrapper .title{position:absolute;top:-10px;left:50%;margin-left:-75px;width:150px;text-align:center;font-size:14px;font-weight:400;color:#666;background:#FFF}
-.loginPop .bao_closed {
+.loginPop .tu_closed {
     background-image: url(../images/dialog.png);
     background-repeat: no-repeat;
 }
-.loginPop .bao_closed{position: absolute;text-indent: -9999px; font-weight: 400; cursor: pointer;background-position: 0 -24px; width: 13px; height: 13px;line-height: 13px;right: 14px; margin-top:14px;}
+.loginPop .tu_closed{position: absolute;text-indent: -9999px; font-weight: 400; cursor: pointer;background-position: 0 -24px; width: 13px; height: 13px;line-height: 13px;right: 14px; margin-top:14px;}
 .loginPop .oauth-wrapper .oauth{padding-left:88px}
 .loginPop .oauth-wrapper .oauth__link{float:left;margin-right:20px;background-position:-601px -677px}
 .loginPop .oauth-wrapper .oauth__link--weibo{background-position:-691px -677px}

@@ -3,7 +3,7 @@
 	<script src="/static/default/wap/other/jquery-ui.js"></script> 
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('appoint/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('appoint/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			预约<{$cates[$detail['cate_id']]['cate_name']}>
@@ -16,31 +16,39 @@
         $cha = $MEMBER['money'] - $detail['price'];
         $Appointworker = D('Appointworker') ->find($worker_id);
     </php>
-    <div class="line padding border-bottom">
-        <if condition="$cha GT 0">
-        	<span class="x12 text-gray"><{$MEMBER['nickname']}>，您的余额：&yen;<{:round($MEMBER['money']/100,2)}>元</span>
-        <else/>
-        	<span class="x12 text-gray">您的余额不足，请<a class="button button-small bg-dot" href="<{:U('user/money/index')}>">充值</a></span>
-        </if>
-	</div>
+    
+    
+    <if condition="$orderType eq 1">
+        <div class="line padding border-bottom">
+            <if condition="$cha GT 0">
+                <span class="x12 text-gray"><{$MEMBER['nickname']}>，您的余额：&yen;<{:round($MEMBER['money']/100,2)}>元</span>
+            <else/>
+                <span class="x12 text-gray">您的余额不足，请<a class="button button-small bg-dot" href="<{:U('user/money/index')}>">充值</a></span>
+            </if>
+        </div>
+   </if>
+    
+    
+    
     <if condition="!empty($worker_id)">
         <div class="line padding border-bottom">
-           <span class="x12 text-dot">您当前已经选择：<{$Appointworker['name']}>(<{$Appointworker['office']}>)</span>
+           <span class="x12 text-dot">您当前已经选择技师：<{$Appointworker['name']}>(<{$Appointworker['office']}>)</span>
         </div>
     </if>
     <div class="blank-10 bg"></div> 
     
     
 	<div class="send-form">
-		<form method="post" action="<{:U('appoint/create',array('appoint_id'=>$detail['appoint_id']))}>"  target="x-frame">
+		<form method="post" action="<{:U('appoint/create',array('appoint_id'=>$detail['appoint_id']))}>"  id="ajaxForm">
         
             <if condition="!empty($worker_id)">
             <input type="hidden" class="line-input" id="worker_id" name="worker_id" value="<{$worker_id}>"/>
+            <input type="hidden" class="line-input" id="orderType" name="orderType" value="<{$orderType}>"/>
             </if>
               
 			<div class="row">
             	<div class="x7">
-                    <span class="icon icon-calendar" style="margin-left:8px;"></span>
+                    <span class="iconfont icon-liulan2" style="margin-left:8px;"></span>
                     <input type="text" class="line-input datepicker" id="date" name="date" size="30"  readonly="readonly"  placeholder="选择时间" />
                 </div>
                 <div class="x5">
@@ -56,7 +64,7 @@
                 <if condition="!empty($appointworker)">
                   <div class="row">
                     <div class="x12">
-                     <span class="icon icon-users"></span>
+                     <span class="iconfont icon-xingming"></span>
                           <select name="worker_id" class="line-input" >
                           <option value="">请选择技师</option>
                             <volist name='appointworker' id='item'>
@@ -75,23 +83,42 @@
             </if>     
             <!--选择技师结束-->        
 			<div class="row">
-				<span class="icon icon-map-marker"></span>
+				<span class="iconfont icon-dizhi1"></span>
 				<input type="text" class="line-input" id="addr" name="addr"  size="30"  placeholder="填写地址" />
 			</div>
 			<div class="row">
-				<span class="icon icon-user"></span>
+				<span class="iconfont icon-zhanghao2"></span>
 				<input type="text" class="line-input" id="name" name="name" placeholder="填写联系人姓名"  value="<if condition="$MEMBER.nickname neq null"><{$MEMBER.nickname}><else/></if>"/>
 			</div>
 			<div class="row">
-				<span class="icon icon-mobile"></span>
+				<span class="iconfont icon-shouji2"></span>
 				<input type="text" class="line-input" id="tel" name="tel" placeholder="填写手机号码" value="<if condition="$MEMBER.mobile neq null"><{$MEMBER.mobile}><else/></if>" />
 			</div>
 			<div class="row">
-				<span class="icon icon-pencil-square-o"></span>
+				<span class="iconfont icon-tubiao1tieba"></span>
 				<input type="text" class="line-input" id="contents" name="contents" placeholder="填写其他要求" />
 			</div>
-			<div class="blank-40"></div>
-            <div class="container text-center"><button class="button button-block button-big bg-dot" type="submit">提交订单</button></div>
+            
+            <div class="row">
+				<span class="iconfont iconfont icon-kecheng"><input type="radio" name="data[is_contract]" value="0" checked="checked"></span>
+                
+				<a class="line-input text-blue" id="contents" rel="<{:U('appoint/contract')}>" onclick="showWindow('90%','80%',this.rel,this.title)"  title="服务合同">我同意家政合同中的内容</a>
+			</div>
+            
+            
+			<div class="blank-20"></div>
+            
+            <if condition="$orderType eq 0">
+            	<div class="container text-center"><button class="button button-block button-big bg-blue" type="submit">提交订单</button></div>
+            </if>
+            
+            <if condition="$orderType eq 1">
+            	<div class="container text-center"><button class="button button-block button-big bg-dot" type="submit">提交订单</button></div>
+            </if>
+            
+            <if condition="$orderType eq 2">
+            	<div class="container text-center"><button class="button button-block button-big bg-yellow" type="submit">提交候选面试</button></div>
+            </if>
 		</form>
 	</div>
 

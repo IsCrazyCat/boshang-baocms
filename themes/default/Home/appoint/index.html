@@ -14,6 +14,10 @@
 .sy_sjcpBq span { margin-right: 2px;}
 .sy_sjcpBq span{ width:100px}
 </style>
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+</php>
 <div class="nav">
     <div class="navList">
         <ul>
@@ -86,11 +90,15 @@
                                 <li class="goods_flLi goods_flLix">&gt;</li>
                             </if>
                             <if condition="!empty($area_id)">
-                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id))}>"><{$areas[$area_id]['area_name']}><em></em></a><a href="<{:LinkTo('appoint/index',$linkArr,array('area'=>0,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
+                            <php>
+                            $Area = D('Area')->where(array('area_id'=>$area_id))->find();
+                            $Business = D('Business')->where(array('business_id'=>$business_id))->find();
+                            </php>
+                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id))}>"><{$Area['area_name']}><em></em></a><a href="<{:LinkTo('appoint/index',$linkArr,array('area'=>0,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
                                     <div class="goods_flLiLfk"><a href="<{:LinkTo('appoint/index',$linkArr,array('area'=>0))}>">全部</a>
                                         <foreach name="areas" item="item">
                                         <eq name="item.city_id" value="$city_id">
-                                            |<a <eq name="item.area_id" value="$area_id">class="on"</eq> href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$item['area_id'],'business'=>0))}>"><{$areas[$item['area_id']]['area_name']}></a>
+                                            |<a <eq name="item.area_id" value="$area_id">class="on"</eq> href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$item['area_id'],'business'=>0))}>"><{$item['area_name']}></a>
                                             </eq>
                                         </foreach>
                                     </div>
@@ -99,11 +107,11 @@
                             </if>
 
                             <if condition="!empty($business_id)">
-                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id,'business'=>$business_id))}>"><{$bizs[$business_id]['business_name']}><em></em></a><a href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
+                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id,'business'=>$business_id))}>"><{$Business['business_name']}><em></em></a><a href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
                                     <div class="goods_flLiLfk"><a href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id,'business'=>0))}>">全部</a>
                                         <foreach name="bizs" item="item">
                                             <eq name="item.area_id" value="$area_id">
-                                            |<a <eq name="item.business_id" value="$business_id">class="on"</eq> href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id,'business'=>$item['business_id']))}>"><{$bizs[$item['business_id']]['business_name']}></a>
+                                            |<a <eq name="item.business_id" value="$business_id">class="on"</eq> href="<{:LinkTo('appoint/index',$linkArr,array('area'=>$area_id,'business'=>$item['business_id']))}>"><{$item['business_name']}></a>
                                             </eq>
                                         </foreach>
                                     </div>
@@ -207,7 +215,7 @@
                             <p class="sy_hottjp"><{$item.intro}></p>
                             <p class="sy_hottjJg"><span class="left">&yen;<{:round($item['price']/100,2)}></span><span class="right">已预约<{$item.yuyue_num}></span></p>
                             <hr style=" border:none 0px; border-bottom: 1px solid #e0e0e0; margin-top:6px;" />
-                            <p class="nearbuy_cpLiPf"><span style="cursor: pointer;" title="<{$shops[$item['shop_id']]['addr']}>" class="left"><em></em><{:bao_msubstr($shops[$item['shop_id']]['addr'],0,16,false)}></span>
+                            <p class="nearbuy_cpLiPf"><span style="cursor: pointer;" title="<{$shops[$item['shop_id']]['addr']}>" class="left"><em></em><{:tu_msubstr($shops[$item['shop_id']]['addr'],0,16,false)}></span>
                             <span class="right">
                             <a class="sy_hottjJd" target="_blank" href="<{:U('appoint/detail',array('appoint_id'=>$item['appoint_id']))}>" >
                                 <if condition="$item['end_date'] elt $today">
@@ -249,7 +257,7 @@
     <div class="right zy_content_r">
         <div class="nearbuy_hotCp">
             <div class="nearbuy_hotCpT">
-                <div class="left">一周套餐热卖排行</div>
+                <div class="left">一周抢购热卖排行</div>
             </div>
             <php>
                 $cat = $cat; 

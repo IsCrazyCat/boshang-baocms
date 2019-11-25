@@ -1,4 +1,11 @@
 <include  file='public:header'/>
+
+ <style>
+.tuan_table1 td.td_left_1 {width: 20%;}
+.change_price{ margin-bottom:10px;}
+</style>
+
+
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
 <div class="sjgl_lead">
     <ul>
@@ -16,13 +23,20 @@
             状态：
             <select name="st" class="seleFl w80">
                <option value="999">请选择</option>
-               <option value="0">未付款</option>
-               <option value="1">已付款</option>
-               <option value="2">已拣货</option>
-               <option value="3">已发货</option>
-               <option value="4">退款中</option>
-               <option value="5">已退款</option>
-               <option value="8">已完成</option>
+               <option <eq name="st" value="0">selected="selected"</eq> value="0">未付款</option>
+               <option <eq name="st" value="1">selected="selected"</eq>value="1">已付款</option>
+               <option <eq name="st" value="2">selected="selected"</eq>value="2">已拣货</option>
+               <option <eq name="st" value="3">selected="selected"</eq>value="3">已发货</option>
+               <option <eq name="st" value="4">selected="selected"</eq>value="4">退款中</option>
+               <option <eq name="st" value="5">selected="selected"</eq>value="5">已退款</option>
+               <option <eq name="st" value="8">selected="selected"</eq>value="8">已完成</option>
+           </select>
+           
+           是否分销：
+            <select name="profit" class="seleFl w80">
+               <option value="999">请选择</option>
+               <option <eq name="profit" value="0">selected="selected"</eq>value="0">未分销</option>
+               <option <eq name="profit" value="1">selected="selected"</eq>value="1">已分销</option>
            </select>
                     
             <input type="submit" style="margin-left:10px;" class="radius3 sjgl_an tuan_topbt" value="搜 索"/>
@@ -46,7 +60,7 @@
             <td>评价</td>
      </table>
      <div class="blank-10"></div>
-        <form  target="baocms_frm" method="post">
+        <form  target="x-frame" method="post">
         
 <foreach name="list" item="order">  
 
@@ -103,6 +117,12 @@
     <td class="left6" width="9%">
     <{$users[$order['user_id']]['account']}>
     <eq name="order.is_mobile" value="1"><br/><img src="/themes/default/Merchant/statics/images/mobile.png" /></eq>
+    <eq name="order.is_profit" value="1">
+    	<br/>
+        <a href="<{:U('order/profit',array('order_id'=>$order['order_id'],'order_type'=>2))}>">
+        	<img src="/themes/default/Merchant/statics/images/profit.png" />
+        </a>
+    </eq>
     
     </td>
     <td class="left7" width="8%">
@@ -112,8 +132,37 @@
         <a class="href" href="<{:U('order/detail',array('order_id'=>$order['order_id'],'type'=>wait))}>">订单详情</a>
     </td>
     <td class="left8"width="10%">
-        <span>&yen;<{:round($order['need_pay']/100,2)}></span><br/>
-        <span>含配送费：&yen;<{:round($order['express_price']/100,2)}></span><br/>
+        <span style="font-weight:bold;color:#F00">实付：&yen;<{:round($order['need_pay']/100,2)}></span><eq name="order.is_change" value="1">[改]</eq><br/>
+        <if condition="!empty($order['coupon_price'])">
+           <span> -优惠劵抵用&yen;<{:round($order['coupon_price']/100,2)}>元</span><br/>
+        </if>
+        <if condition="!empty($order['use_integral'])">
+           <span> -积分抵扣&yen;<{:deduction($order['use_integral'])}>元</span><br/>
+        </if>
+        <if condition="!empty($order['mobile_fan'])">
+           <span> -手机下单立减&yen;<{:round($order['mobile_fan']/100,2)}>元</span><br/>
+        </if>         
+        <span  style="color:#00F"> +配送费：&yen;<{:round($order['express_price']/100,2)}>元</span><br/>
+        <eq name="order.is_daofu" value="1">货到付款<br/></eq>
+        
+        <eq name="order.status" value="0">
+             <div class="change_price">
+                 <input type="text" placeholder="输入价格"  id="change_<{$order.order_id}>" name="data[change_price]" value="" class="radius3 seleFl">
+                 <input  onclick="changePrice(<{$order.order_id}>)"  style="margin-left:10px;" class="radius3 sjgl_an tuan_topbt sure_express" value="确认改价">
+             </div>
+        </eq>
+        
+        <if condition="$order['status'] eq 3">
+            <a class="radius3 btn" mini='confirm' href="<{:U('order/distribution',array('order_id'=>$order['order_id']))}>">确认订单完成</a><br/>
+        </if>
+        <if condition="$order['status'] eq 2">
+            <a class="radius3 btn" mini='confirm' href="<{:U('order/distribution',array('order_id'=>$order['order_id']))}>">确认订单完成</a><br/>
+        </if>
+        <if condition="$order['status'] eq 4">
+            <a class="href"  mini='confirm' href="<{:U('order/refund',array('order_id'=>$order['order_id']))}>">确认退款</a><br/>
+        </if>
+     
+     
     </td>
     <td class="left9"width="9%"><eq name="order.is_dianping" value="1">已点评<else/>未评</eq></td>
   </tr>
@@ -135,5 +184,27 @@
 
     <{$page}>
 </div>
+
+<script>
+function changePrice(order_id){
+	var senddata = 'order_id=' + order_id + '&change_price=' + $('#change_'+order_id).val();
+	$.ajax({
+        url: "<{:U('order/changePrice')}>",
+        type: 'post',
+        data: senddata,
+        success: function(data){
+          if(data.status == 'success'){
+             layer.msg(data.msg,{icon:1});
+                setTimeout(function () {
+                  window.location.href = data.url;
+                }, 1000)
+          }else{
+            layer.msg(data.msg,{icon:2});
+          }
+        }
+	});
+}
+</script>
+
 
 <include  file='public:footer'/>

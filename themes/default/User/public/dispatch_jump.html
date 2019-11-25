@@ -1,7 +1,7 @@
 <include  file='public:header'/>     
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('user/member/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			提示信息
@@ -25,7 +25,7 @@
 		<div class="blank-40"></div>
 	</div>
 	<script> 
-		var secs = 3; //倒计时的秒数 
+		var secs = 1; //倒计时的秒数 
 		var URL ; 
 		function Load(url){ 
 			URL =url; 

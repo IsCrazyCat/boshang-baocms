@@ -99,7 +99,7 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -129,6 +129,7 @@
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                     <td>
                     <{:BA('hotel/edit',array("hotel_id"=>$var["hotel_id"]),'编辑','','remberBtn')}>
+                    <{:BA('hotel/room',array("hotel_id"=>$var["hotel_id"]),'酒店房间','','remberBtn')}>
                     <{:BA('hotel/delete',array("hotel_id"=>$var["hotel_id"]),'删除','act','remberBtn')}>
                     </td>
                     </tr>

@@ -13,7 +13,7 @@
         </div>
     </div> 
     <div class="tabnr_change show">
-    	<form target="baocms_frm" action="<{:U('eleproduct/edit',array('product_id'=>$detail['product_id']))}>" method="post">
+    	<form target="x-frame" action="<{:U('eleproduct/edit',array('product_id'=>$detail['product_id']))}>" method="post">
     	<table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="120"><p class="tuanfabu_t">菜名：</p></td>
@@ -41,8 +41,8 @@
             
             
              <tr>
-                    <td class="lfTdBt"> 缩略图：</td>
-                 <td class="rgTdBt">
+                    <td width="120"><p class="tuanfabu_t">菜品图片：</p></td>
+                 <td><div class="tuanfabu_nr">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[photo]" value="<{$detail.photo}>" id="data_photo" />
                         <div id="fileToUpload" >上传缩略图</div>
@@ -50,7 +50,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.tuan.thumb}>
+                        建议尺寸<{$CONFIG.attachs.tuan.thumb}>
                     </div>
                     <script>                                            
 						var width_eleproduct = '<{:thumbSize($CONFIG[attachs][eleproduct][thumb],0)}>';                         
@@ -71,18 +71,41 @@
 						alert('上传出错');                         
 					});                     
                     </script>
-                </td>
+                </div></td>
             </tr>
             
             
            
             <tr>
-                <td width="120"><p class="tuanfabu_t">价格：</p></td>
+                <td width="120"><p class="tuanfabu_t">原价：</p></td>
                 <td><div class="tuanfabu_nr">
-                <input type="text" name="data[price]" value="<{:round($detail['price']/100,2)}>" class="tuanfabu_int tuanfabu_intw2" />
+                <input type="text" name="data[cost_price]" value="<{:round($detail['cost_price']/100,2)}>" class="tuanfabu_int tuanfabu_intw2" />
+                <code>菜品原价，只是在前台起展示作用，无其他作用，建议填写比卖价高出30%，比如回锅肉售价20元一份，原价可填写26元以上</code>
                 </div></td>
             </tr>
-            
+             <tr>
+                <td width="120"><p class="tuanfabu_t">卖价：</p></td>
+                <td><div class="tuanfabu_nr">
+                <input type="text" name="data[price]" value="<{:round($detail['price']/100,2)}>" class="tuanfabu_int tuanfabu_intw2" />
+                <code>菜品实际销售价格</code>
+                </div></td>
+            </tr>
+            <if condition="$CONFIG['ele']['tableware_price_max']">
+                <tr>
+                    <td width="120"><p class="tuanfabu_t">餐具费：</p></td>
+                    <td><div class="tuanfabu_nr">
+                    <input type="text" name="data[tableware_price]" value="<{:round($detail['tableware_price']/100,2)}>" class="tuanfabu_int tuanfabu_intw2" />
+                    <code>
+                       <if condition="$CONFIG['ele']['tableware_price_max']">
+                          <a style="color:#F00;">餐具费最高不超过&yen; <{$CONFIG['ele']['tableware_price_max']}> 元</a>
+                       </if>
+                       <if condition="$CONFIG['ele']['tableware_price_mini']">
+                          <a style="color:#F00;">餐具费最低不低于&yen; <{$CONFIG['ele']['tableware_price_mini']}> 元</a>
+                       </if>
+                       如果系统没限制最低餐费，那么这里餐费就可以填写0或者留空，则不计算餐费，否则按照系统提示填写哦</code>
+                   </div></td>
+                </tr>
+            </if> 
             <tr>
                 <td width="120"><p class="tuanfabu_t">是否新品：</p></td>
                 <td><div class="tuanfabu_nr">

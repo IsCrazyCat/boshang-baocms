@@ -11,7 +11,7 @@
 	</if>
     </div>
 		<div class="x8">	
-			<h5><{:bao_msubstr($item['title'],0,32,false)}></h5>
+			<h5><{:tu_msubstr($item['title'],0,32,false)}></h5>
             <php>$left = $item['price'] - $item['join']; $tt = round($item['join']/$item['price']*100,2);</php>
             <div class="yiyuan_progres"><span class="yiyuan_progres_bar" style="width:<{$tt}>%;"></span></div>
 			<p class="addr"><{$item.join}>已参与</p>

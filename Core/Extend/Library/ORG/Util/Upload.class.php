@@ -201,6 +201,9 @@ class Upload {
                 $this->error = $this->uploader->getError();
             }
         }
+		
+		
+		
         if(isset($finfo)){
             finfo_close($finfo);
         }

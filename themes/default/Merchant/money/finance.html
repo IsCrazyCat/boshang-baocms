@@ -23,11 +23,11 @@
             
             <p>
                <if condition="$counts['money'] gt 0">
-               您总收入：<{:round($counts['money']/100,2)}>元，
+               您商户资金总收入【含已提现】：<{:round($counts['money']/100,2)}>元，
                </if>
-               当前余额：<span class="red"><{:round($MEMBER['gold']/100,2)}></span>元。
+               当前商户资金余额：<span class="red"><{:round($MEMBER['gold']/100,2)}></span>元。
                <if condition="!empty($MEMBER['frozen'])">
-               冻结金：<{:round($MEMBER['frozen']/100,2)}>元。
+               商户资金冻结金：<{:round($MEMBER['frozen']/100,2)}>元。
                </if>
         </p>
          </td>

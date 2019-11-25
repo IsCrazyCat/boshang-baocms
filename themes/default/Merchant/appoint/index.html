@@ -1,7 +1,7 @@
 <include file='public:header'/>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">家政</a> > <a href="<{:U('appoint/room')}>">家政设置</a></li>
+        <li><a href="#">家政</a> > <a href="<{:U('appoint/index')}>">家政项目</a></li>
     </ul>
 </div>
 <div class="tuan_content">
@@ -29,29 +29,37 @@
           <td>商家名称</td>
           <td>标题</td>
           <td>图片</td>
-          <td>定金</td>
+          <td>价格</td>
+          <td>首单减</td>
           <td>工具</td>
           <td>联系方式</td>
+          <td>过期日期</td>
+          <td>预定人数</td>
+          <td>浏览次数</td>
+          <td>技师人数</td>
+          <td>状态</td>
           <td>操作</td>
         </tr>
-        <foreach name="list" item="var">
-        
-         <td><{$var.appoint_id}></td>
-         <td><{$cates[$var['cate_id']]['cate_name']}></td>
-         <td><{$shops[$var['shop_id']]['shop_name']}></td>
-         <td><{$var.title}></td>
-         <td><img style="width:60px;" src="<{:config_img($var['photo'])}>"/></td>
-         <td>&yen;<{:round($var['price']/100,2)}>/<{$var.unit}></td>
-         <td><{$var.gongju}></td>
-         <td><{$var.user_name}>/<{$var.user_mobile}></td>
-         <td>
-   			<eq name="var.audit" value="0"> 未审 <else/> 已审核 </eq>
-            <a href="<{:U('appoint/worker',array('appoint_id'=>$var['appoint_id']))}>">技工列表</a>
-            <a href="<{:U('appoint/edit',array('appoint_id'=>$var['appoint_id']))}>">编辑</a>
-            <a href="<{:U('appoint/delete',array('appoint_id'=>$var['appoint_id']))}>">删除</a>
-                       
-         </td>
-       
+        	<foreach name="list" item="var">
+             <td><{$var.appoint_id}></td>
+             <td><{$cates[$var['cate_id']]['cate_name']}></td>
+             <td><{$shops[$var['shop_id']]['shop_name']}></td>
+             <td><{$var.title}></td>
+             <td><img style="width:60px;" src="<{:config_img($var['photo'])}>"/></td>
+             <td>&yen;<{:round($var['price']/100,2)}>元/<{$var['unit']|default='次'}></td>
+             <td style="color:#F00">&yen;<{:round($var['one_full_money']/100,2)}>元</td>
+             <td><{$var.gongju}></td>
+             <td><{$var.user_name}>/<{$var.user_mobile}></td>
+             <td><{$var.end_date}></td>
+             <td><{$var.yuyue_num}></td>
+             <td><{$var.views}></td>
+             <td><{$var.num}></td>
+             <td><if condition="$var['audit'] eq 1">已审核 <else/>未审核</if></td>
+             <td>
+                <a class="radius3 sjgl_an tuan_topbt" href="<{:U('appoint/worker',array('appoint_id'=>$var['appoint_id']))}>">技师列表</a>
+                <a class="radius3 sjgl_an tuan_topbt" href="<{:U('appoint/edit',array('appoint_id'=>$var['appoint_id']))}>">编辑</a>
+                <a class="radius3 sjgl_an tuan_topbt" href="<{:U('appoint/delete',array('appoint_id'=>$var['appoint_id']))}>">删除</a>
+             </td>
             </tr>
         </foreach>
     </table>

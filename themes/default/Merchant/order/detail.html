@@ -35,18 +35,24 @@
                 <div class="tuanfabu_nr">
                 订单金额 &yen; <{:round($detail['total_price']/100,2)}> 元 &nbsp;&nbsp;
                 
-                配送费用：<if condition="empty($detail['express_price'])">
+                + 配送费用：<if condition="empty($detail['express_price'])">
 						免邮&nbsp;&nbsp;
                         <else/>
                         &yen; <{:round($detail['express_price']/100,2)}> 元&nbsp;&nbsp;
                         </if>
                <if condition="!empty($detail['use_integral'])">
-               积分抵现： &yen;  <{:round($detail['use_integral']/100,2)}> 元&nbsp;&nbsp;
+               - 积分抵现： &yen;  <{:deduction($detail['use_integral'])}> 元&nbsp;&nbsp;
                </if>
                <if condition="!empty($detail['mobile_fan'])">
-               手机下单立减： &yen; <{:round($detail['mobile_fan']/100,2)}> 元&nbsp;&nbsp;
+               - 手机下单立减： &yen; <{:round($detail['mobile_fan']/100,2)}> 元&nbsp;&nbsp;
                </if>
-               <a style="color:#F00">实际支付： &yen; <{:round($detail['need_pay']/100,2)}> 元&nbsp;&nbsp;</a>
+               
+                <if condition="!empty($detail['coupon_price'])">
+                   <span> - 优惠劵抵用&yen;<{:round($detail['coupon_price']/100,2)}>元</span><br/>
+                </if>
+        
+        
+               <a style="color:#F00"> = 实际支付： &yen; <{:round($detail['need_pay']/100,2)}> 元&nbsp;&nbsp;<eq name="detail.is_change" value="1">[改]</eq></a>
                </div>
                </td>
             </tr>
@@ -86,7 +92,7 @@
             	<td colspan="6" class="tuanfabu_t"> 订单总价 ： <{:round($detail[need_pay]/100,2)}>元 &nbsp;&nbsp; 运费：  <{:round($detail[express_price]/100,2)}>元 &nbsp;&nbsp;&nbsp; </td>
             </tr>
             
-            <td colspan="6" class="tuanfabu_order_express"> 物流明细（<{$logistics['express_name']}>） ： </td>
+            <td colspan="6" class="tuanfabu_order_express"> 物流明细（<{$logistics['express_name']}>） ：<{$data}> </td>
             </tr>
         </table>
 
@@ -104,6 +110,11 @@
                     <a class="radius3 sjgl_an tuan_topbt"><{$types[$detail['status']]}></a>
                     </eq>
               </eq>
+              
+              
+              
+              
+              
             </div>
       
     </div> 

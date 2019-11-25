@@ -26,7 +26,9 @@
                 </form>
             </div>
         </div>
-        <form  target="baocms_frm" method="post">
+        
+        
+        <form  target="x-frame" method="post">
             <div class="tableBox">
                 <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                     <tr>
@@ -36,7 +38,11 @@
                         <td>商家</td>
                         <td>分类</td>
                         <td>缩略图</td>
-                        <td>价格</td>
+                        <td>原价</td>
+                        <td>售价</td>
+                        <if condition="$CONFIG['ele']['tableware_price_max']">
+                        	<td>餐具费</td>
+                        </if>
                         <td>结算价格</td>
                         <td>新品/热门/推荐</td>
                         <td>销量</td>
@@ -50,7 +56,9 @@
                             <td><{$shops[$var['shop_id']]['shop_name']}></td>
                             <td><{$cates[$var['cate_id']]['cate_name']}></td>
                             <td><img style="width:60px;" src="<{:config_img($var['photo'])}>"/></td>
+                            <td><{:round($var['cost_price']/100,2)}></td>
                             <td><{:round($var['price']/100,2)}></td>
+                            <td style="color:#F00"><{:round($var['tableware_price']/100,2)}></td>
                             <td><{:round($var['settlement_price']/100,2)}></td>
                             <td>
                                 <eq name="var.is_new" value="1">新品<else/>无</eq>
@@ -60,8 +68,22 @@
                         <td><{$var.sold_num}></td>
                         <td>
                             <{:BA('eleproduct/edit',array("product_id"=>$var["product_id"]),'编辑','','remberBtn')}>
+                            <eq name="var.audit" value="0"> 
+                            
+                            <{:BA('eleproduct/audit',array("product_id"=>$var["product_id"]),'审核','act','remberBtn')}>
+                            
+                            </eq>
+                            
+                            
+                            <eq name="var.closed" value="0"> 
+                            	<{:BA('eleproduct/update',array("product_id"=>$var["product_id"]),'下架','act','remberBtn')}>
+                            <else/>
+                           		<{:BA('eleproduct/update',array("product_id"=>$var["product_id"]),'上架','act','remberBtn')}>
+                            </eq>
+                            
                             <{:BA('eleproduct/delete',array("product_id"=>$var["product_id"]),'删除','act','remberBtn')}>
-                            <eq name="var.audit" value="0"> <{:BA('eleproduct/audit',array("product_id"=>$var["product_id"]),'审核','act','remberBtn')}> </eq>
+                            
+                            
                         </td>
                         </tr>
                     </foreach>
@@ -70,10 +92,7 @@
             </div>
             <div class="selectNr" style="margin-bottom: 0px; border-bottom: none;">
                 <div class="left">
-                    <{:BA('eleproduct/delete','','批量删除','list','a2')}>
-                    
-                        <{:BA('eleproduct/audit','','批量审核','list','a1')}>
-
+                       <{:BA('eleproduct/audit','','批量审核','list','a1')}>
                 </div>
             </div>
         </form>

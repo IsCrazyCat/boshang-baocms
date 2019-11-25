@@ -4,16 +4,16 @@
 .global_focus img { max-width:100%!important}
 global_focus p  img { max-width:100% !important}
 </style>
-<script src="/static/default/wap/other/roll.js"></script> 
+<script src="/static/default/wap/other/roll.js?=529"></script> 
 	<header class="top-fixed bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('activity/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('activity/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			活动详情
 		</div>
 		<div class="top-share">
-			<a href="javascript:void(0);" id="share-btn"><i class="icon-share"></i></a>
+			<a href="javascript:void(0);" id="share-btn"><i class="iconfont icon-fabu4"></i></a>
 		</div>
 	</header>  
 	<div id="share-box" class="share-box">
@@ -61,8 +61,8 @@ global_focus p  img { max-width:100% !important}
 		</div>
 	</div>
 			<div class="title">
-				<h1><{:bao_msubstr($detail['title'],0,20)}></h1>
-				<p><{:bao_msubstr($detail['intro'],0,40)}></p>
+				<h1><{:tu_msubstr($detail['title'],0,20)}></h1>
+				<p><{:tu_msubstr($detail['intro'],0,40)}></p>
 			</div>	
 		</div>
 </div>            
@@ -123,7 +123,7 @@ global_focus p  img { max-width:100% !important}
              	<{$detail.details}>
             </div>
 		</div>
-		<div class="blank-10 bg 00"></div>
+		<div class="blank-10 bg"></div>
 
 
 <include  file='public:footer'/>

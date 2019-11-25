@@ -1,24 +1,26 @@
 <include file="public:header"/>
-<style>ul { padding-left: 0px;}</style>
+<style>
+ul{padding-left:0px;}
+</style>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('user/member/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
-			我的订座
+			订座订单
 		</div>
 	<div class="top-signed">
 		<include file="public:message"/>
 	</div>
 </header>
 
-<!-- 筛选TAB -->
 <ul id="shangjia_tab">
-        <li style="width:25%;"><a href="<{:LinkTo('booking/index',array('st'=>0))}>" <eq name='st' value='0'>class="on"</eq>>待付款</a></li>
-        <li style="width:25%;"><a href="<{:LinkTo('booking/index',array('st'=>1))}>" <eq name='st' value='1'>class="on"</eq>>已付款</a></li>
-        <li style="width:25%;"><a href="<{:LinkTo('booking/index',array('st'=>2))}>" <eq name='st' value='2'>class="on"</eq>>已消费</a></li>
-        <li style="width:25%;"><a href="<{:LinkTo('booking/index',array('st'=>-1))}>" <eq name='st' value='-1'>class="on"</eq>>已退款</a></li>
-
+	<li style="width:16.66666667%;"><a href="<{:LinkTo('booking/index',array('st'=>999))}>" <eq name='st' value='999'>class="on"</eq>>全部订单</a></li>
+    <li style="width:16.66666667%;"><a href="<{:LinkTo('booking/index',array('st'=>0))}>" <eq name='st' value='0'>class="on"</eq>>待付款</a></li>
+    <li style="width:16.66666667%;"><a href="<{:LinkTo('booking/index',array('st'=>1))}>" <eq name='st' value='1'>class="on"</eq>>已付款</a></li>
+    <li style="width:16.66666667%;"><a href="<{:LinkTo('booking/index',array('st'=>8))}>" <eq name='st' value='8'>class="on"</eq>>店内支付</a></li>
+    <li style="width:16.66666667%;"><a href="<{:LinkTo('booking/index',array('st'=>2))}>" <eq name='st' value='2'>class="on"</eq>>已消费</a></li>
+    <li style="width:16.66666667%;"><a href="<{:LinkTo('booking/index',array('st'=>-1))}>" <eq name='st' value='-1'>class="on"</eq>>已退款</a></li>
 </ul>
 
 

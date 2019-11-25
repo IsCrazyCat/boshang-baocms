@@ -12,6 +12,10 @@
                 </if>
             <elseif condition="$detail['order_status'] eq -1"/>
                 订单已取消
+            <elseif condition="$detail['order_status'] eq 3"/>
+                退款中
+            <elseif condition="$detail['order_status'] eq 4"/>
+               已退款
             <else/>
                 订单已完成
                 <eq name="detail.comment_status" value="0">
@@ -31,6 +35,10 @@
                 <else/>
                     已评价
                 </eq>
+           <elseif condition="$detail['order_status'] eq 3"/>
+                退款中
+            <elseif condition="$detail['order_status'] eq 4"/>
+               已退款
             <else/>
             <if condition="$detail['room']['is_cancel'] eq 1">
                 <a mini='confirm' href="<{:U('members/hotels/cancel',array('order_id'=>$detail['order_id']))}>" class="btn right">取消订单</a>

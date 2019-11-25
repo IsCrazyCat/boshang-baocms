@@ -7,11 +7,11 @@ footer .icon{color:#fff;}
         <a id="cart_1" href="<{:U('lists/detail')}>"><i class="icon icon-clock-o"></i></a>
     </div>
     <if condition="$detail[status] eq 0">
-    	<div class="price">货到付款，等待接单</p></div>
+    	<div class="price">等待接单</p></div>
     <elseif condition="$detail[status] eq 1"/>
-    	<div class="price">已付款，等待接单</p></div>
+    	<div class="price">等待接单 &nbsp; 配送费：&yen; <{:round($detail['logistics_price']/100,2)}> 元</p></div>
     <elseif condition="$detail[status] eq 2"/>
-    	<div class="price">配送中</p></div>
+    	<div class="price">配送中 &nbsp; 配送费：&yen; <{:round($detail['logistics_price']/100,2)}> 元</p></div>
     <elseif condition="$detail[status] eq 8"/>
     	<div class="price">已完成配送</p></div>
     </if>

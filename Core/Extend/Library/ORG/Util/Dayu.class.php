@@ -31,6 +31,7 @@ class AliSms {
 			unset($param['sms_param']);
 		}
 		$param['sign'] = $this->_sign(array_merge($param));
+		//p($param);die;
 		$result = $this->_sendSms($param);
 		return $result;
 	}
@@ -68,6 +69,8 @@ class AliSms {
 		$sms_id = $this->rec_sms_id;
 		$result = $this->_send();
 		$json = json_decode($result,true);
+		
+		//p($json);die;
 		if($json!==null){
 			foreach($json as $v){
 				$json = $v;

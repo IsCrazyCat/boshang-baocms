@@ -40,9 +40,9 @@
                  <td><{$cloudgoods[$var['goods_id']]['title']}></td>
                  <td><img style="width:60px;" src="<{:config_img($cloudgoods[$var['goods_id']]['photo'])}>"/></td>
                  <td>
-                        <eq name="item.type" value="1">1元区</eq>
-                        <eq name="item.type" value="2">5元区</eq>
-                        <eq name="item.type" value="3">10元区</eq>
+                        <eq name="var.type" value="1">1元区</eq>
+                        <eq name="var.type" value="2">5元区</eq>
+                        <eq name="var.type" value="3">10元区</eq>
                  </td>
                  <td><{$var.num}></td>
                  <td>&yen;<{:round($var['money']/100,2)}></td>

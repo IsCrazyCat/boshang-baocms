@@ -1,10 +1,10 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('distribution/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('distribution/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
-			部门领导
+			我的上级
 		</div>
 	<div class="top-signed">
 		<include file="public:message"/>
@@ -30,19 +30,19 @@
 		</div>
 	<else/>
     	<div class="line detail-base">
-			<div class="x4"><div class="pic"><if condition="!empty($CONFIG['site']['logo'])">
-					<img src="<{:config_img($CONFIG['site']['logo'])}>" />
-					<else/>
-					<img src="__PUBLIC__/img/logo_03.png" />
-					</if></div></div>
+			<div class="x4">
+                <div class="pic">
+                	<img src="<{:config_img($CONFIG['site']['logo'])}>" />
+                </div>
+            </div>
 			<div class="x8">
-				<h1>浡莱克运营中心</h1>
-				<p>电话：<{$CONFIG['site']['tel']}></p>
-                <p class="text-small">QQ：<{$CONFIG['site']['qq']}></p>
-                <p class="text-small">Email：<{$CONFIG['site']['email']}></p>
+				<h1>平台方</h1>
+				<p>电话：<{$CONFIG['site']['tel']|default="平台未设置"}></p>
+                <p class="text-small">QQ：<{$CONFIG['site']['qq']|default="平台未设置"}></p>
+                <p class="text-small">Email：<{$CONFIG['site']['email']|default="平台未设置"}></p>
 			</div>
 		</div>
     </if>
 </div>
 <div class="blank-10 bg"></div>
-<include  file='distribution:footer'/>
+<include  file='public:footer'/>

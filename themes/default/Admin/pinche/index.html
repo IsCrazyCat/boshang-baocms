@@ -7,12 +7,9 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>后台只有删除功能，暂时的，后期功能逐渐增加！</p>
+    <p class="attention"><span>注意：</span>后台只有删除功能，暂时的，后期功能逐渐增加！，qq286099981</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
-            <div class="left">
-                <{:BA('pinche/create','','添加申请')}>
-            </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('pinche/index')}>">
                     <div class="seleHidden" id="seleHidden">
@@ -39,48 +36,6 @@
                             </select>
                         </label>
                         <label>
-                            <span>区域：</span>
-                             <select name="city_id" id="city_id"  class="select w100"></select>
-                            <select name="area_id" id="area_id"  class="select w100"></select>
-                        </label>
-                <script src="<{:U('app/datas/cityarea')}>"></script>
-                <script>
-                    var city_id = <?php echo (int)$city_id;?>;
-                    var area_id = <?php echo (int)$area_id;?>;
-                    function changeCity(cid){
-                        var area_str = '<option value="0">请选择.....</option>';
-                        for(a in cityareas.area){
-                           if(cityareas.area[a].city_id ==cid){
-                                if(area_id == cityareas.area[a].area_id){
-                                    area_str += '<option selected="selected" value="'+cityareas.area[a].area_id+'">'+cityareas.area[a].area_name+'</option>';
-                                }else{
-                                     area_str += '<option value="'+cityareas.area[a].area_id+'">'+cityareas.area[a].area_name+'</option>';
-                                }  
-                            }
-                        }
-                        $("#area_id").html(area_str);
-                    }
-
-                    $(document).ready(function(){
-                        var city_str = '<option value="0">请选择.....</option>';
-                        for(a in cityareas.city){
-                           if(city_id == cityareas.city[a].city_id){
-                               city_str += '<option selected="selected" value="'+cityareas.city[a].city_id+'">'+cityareas.city[a].name+'</option>';
-                           }else{
-                                city_str += '<option value="'+cityareas.city[a].city_id+'">'+cityareas.city[a].name+'</option>';
-                           }  
-                        }
-                        $("#city_id").html(city_str);
-                        if(city_id){
-                            changeCity(city_id);
-                        }
-                        $("#city_id").change(function(){
-                            city_id = $(this).val();
-                            changeCity($(this).val());
-                        });
-                    });
-                </script>
-                        <label>
                             <span>关键字:</span>
                             <input type="text" name="keyword" value="<{$keyword}>" class="inptText" />
                         </label>
@@ -93,7 +48,7 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -124,7 +79,7 @@
                             </if>
                         </td>
                         <td><{$var.start_time}>-<{$var.start_time_more}></td>
-                        <td><{$citys[$var['city_id']]['name']}>-<{$areas[$var['area_id']]['area_name']}> -> <{$var.toplace}> -> <{$var.middleplace}></td>
+                        <td><{$var.goplace}> -> <{$var.toplace}> -> <{$var.middleplace}></td>
                         <td>
 
                             <if condition="$var['cate_id'] eq 1">
@@ -140,11 +95,8 @@
                         
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                         <td class="w150">
-                              
-    
-                        <{:BA('pinche/edit',array("pinche_id"=>$var["pinche_id"]),'编辑','','remberBtn')}>
-                        <{:BA('pinche/delete',array("pinche_id"=>$var["pinche_id"]),'删除','act','remberBtn')}>
-                    </td>
+                            <{:BA('pinche/delete',array("pinche_id"=>$var["pinche_id"]),'删除','act','remberBtn')}>
+                        </td>
                     </tr>
                 </foreach>
             </table>

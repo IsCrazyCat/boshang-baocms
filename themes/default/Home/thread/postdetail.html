@@ -5,12 +5,15 @@
 <script src="/static/default/webuploader/webuploader.min.js"></script>  
 <style>
 .tribe_topic_fabiao .uploadImg {overflow: hidden;}
+.tribeDelt_nr .nr p {word-wrap: break-word;-webkit-hyphens: auto; -ms-hyphens: auto;-moz-hyphens: auto;hyphens: auto;}
+.tribeDelt_from .pub_wz .name {font-size: 16px;}
+.tribeEvlt_box .nr .evlt_nr {display: inherit}
 </style>
 <div class="pagewd">
     <!--页面位置-->
     <div class="spxq_loca"><a href="<{:U('index/index')}>">首页</a>&gt;&gt;
     <a href="<{:U('thread/index')}>">部落</a>&gt;&gt;
-    <a href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>"><{$tribe.thread_name}>部落</a>&gt;&gt;
+    <a href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>"><{$Thread.thread_name}>部落</a>&gt;&gt;
     <a href="javascript:void(0);"><{$detail.title}></a></div>
     <!--页面位置end-->
     <!--详情-->
@@ -29,10 +32,8 @@
                 
             <p class="graycl mb20"><{$detail.create_time|date='Y-m-d H:i',###}> 查看<{$detail.views}><span class="ml10">回复<{$detail.reply_num}></span></p>
             <div class="nr">
-                <p><{:cleanhtml($detail['details'])}></p>
-                <foreach name="pics" item="item">
-                    <div class="txt_center mb10"><img src="<{:config_img($item['photo'])}>" /></div>
-                </foreach>
+                <p><{$detail['details']}></p>
+          
                 <div class="share bdsharebuttonbox spxq_qgFx tongji_num" data-tag="share_1" >
                     <if condition="$detail['is_zan']">
                         <a href="javascript:void(0);"><em class="ico ico_1"></em>(<{$detail.zan_num}>)</a>

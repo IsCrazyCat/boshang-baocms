@@ -52,6 +52,10 @@
                         <div class="left goods_flList_l">地区：</div>
                         <div class="left goods_flList_r">
                             <a  class="<if condition='empty($area_id)'>on</if> goods_flListA"  title="全部地区" href="<{:LinkTo('shop/index',$linkArr,array('area'=>0,'business_id'=>0))}>">全部</a>  
+                            <php>
+                            $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+                            $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+                            </php>
                             <foreach name="areas" item="item">
                                 <eq name="item.city_id" value="$city_id">
                                 <a title="<{$item.area_name}>"  href="<{:LinkTo('shop/index',$linkArr,array('area'=>$item['area_id']))}>"  <eq name="item.area_id" value="$area_id">class="goods_flListA on"<else/>class="goods_flListA"</eq> ><{$item.area_name}></a> 
@@ -88,8 +92,8 @@
                         <php>$details = D('Shopdetails')->where(array('shop_id'=>$item['shop_id']))->find();</php>
                        <a href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>" target="_blank" title="<{$item.shop_name}>" class="pic">
                               <img class="left_transition" title="<{$item.shop_name}>" alt="<{$item.shop_name}>"  src="<{:config_img($item['photo'])}>">
-                              <if condition="!empty($details['wei_pic'])">
-                              	<img class="right_left_transition"  alt="<{$item.shop_name}>"  src="<{:config_img($details['wei_pic'])}>">
+                              <if condition="!empty($item['qrcode'])">
+                              	<img class="right_left_transition"  alt="<{$item.shop_name}>"  src="<{:config_img($item['qrcode'])}>">
                               </if>
                               <if condition="$item['is_renzheng'] eq 1"> <span class="verify"></span></if>
                         </a>
@@ -136,7 +140,7 @@
                         </p>
                        
                             <div class="intro">
-                            <{:bao_msubstr(cleanhtml($details['details']),0,58,false)}>
+                            <{:tu_msubstr(cleanhtml($details['details']),0,58,false)}>
                             </div>
                         </div>
                         <div class="message">
@@ -152,9 +156,15 @@
                         <div class="operate J_operate Hide">
                         
                         
+                		<if condition="$item['branch']">
+                        <a class="red" href="<{:U('shop/branch',array('shop_id'=>$item['shop_id']))}>" data="<{$item.shop_name}>" ><{$item.branch}> 家分店</a>
+                        <span class="line">|</span>
+                        </if>
+                        
+                        
                         <a class="sjsy_ljzx2 yuyue" rel="<{:U('shop/yuyue2',array('shop_id'=>$item['shop_id']))}>" data="<{$item.shop_name}>"  href="javascript:void(0);">我要预约</a>
                         
-                      <if condition="!empty($details['wei_pic'])">
+                      <if condition="!empty($item['qrcode'])">
                           <span class="line">|</span>
                           <a class="qrcode" rel="qrcode_mask_<{$item.shop_id}>" data="<{$item.shop_name}>"  href="javascript:void(0);">商家二维码</a>
                       </if>   
@@ -205,9 +215,9 @@
                       <a href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>"><img src="<{:config_img($item['photo'])}>" width="40" height="40"></a>
                       </div>
                         <div class="infor-name-grade">
-                        <a href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>"><{:bao_msubstr($item['shop_name'],0,10,false)}></a>
+                        <a href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>"><{:tu_msubstr($item['shop_name'],0,10,false)}></a>
                         <div class="live-stars">
-                            <div class="ten-stars"><{:bao_msubstr($item['addr'],0,10,false)}></div>
+                            <div class="ten-stars"><{:tu_msubstr($item['addr'],0,10,false)}></div>
                             <span class="ten-grade"> <{$item['tel']}></span>
                         </div>
                         </div>
@@ -240,10 +250,7 @@
 <div class="qrcode_dhPop">
     <h2><span class="qrcode_closed"></span><em id="qrcode_title">打开微信扫一扫</em></h2>
 	<div id="qrcode_img">
-    <php>
-    $wei_pic = D('Shopdetails')->where(array('shop_id'=>$item['shop_id']))->find();
-    </php>
-    <img src="<{:config_img($wei_pic['wei_pic'])}>" width="250" height="250">
+    	<img src="<{:config_img($item['qrcode'])}>" width="250" height="250">
     </div>
 </div>
 </div>
@@ -268,7 +275,7 @@
 
 <div class="mask_box dhPop_mask">
 <div class="dhPop">
-    <h2><span class="bao_closed"></span><em id="yuyue_shop_name"></em></h2>
+    <h2><span class="tu_closed"></span><em id="yuyue_shop_name"></em></h2>
     <form method="post" id="yuyue_form">
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
@@ -342,7 +349,7 @@
                 },'json')
             })
         });
-        $(".bao_closed").click(function () {
+        $(".tu_closed").click(function () {
             $(".mask_box").hide();
         });
     })

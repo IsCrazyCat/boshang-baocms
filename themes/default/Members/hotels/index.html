@@ -75,9 +75,13 @@
                     <if condition="$order['order_status'] eq 0">
                         <a class="myInfor_sx myInfor_sx_fk"  href="<{:U('home/hotels/pay',array('order_id'=>$order['order_id']))}>" target="_blank">去付款</a>
                         <elseif condition="$order[order_status] eq 1" />
-                        已付款
+                        	已付款
                         <elseif condition="$order[order_status] eq 2" />
-                        已入住
+                       	 已入住
+                        <elseif condition="$order[order_status] eq 3" />
+                       		退款中
+                        <elseif condition="$order[order_status] eq 4" />
+                        	已退款
                         <if condition="$order['comment_status'] eq 1">
                             <a class="myInfor_sx" href="javascript:void(0);">已点评</a>
                             <else/>

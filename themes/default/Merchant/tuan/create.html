@@ -2,7 +2,7 @@
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布套餐</a></li>
+        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布抢购</a></li>
     </ul>
 </div>
 <div class="tuan_content">
@@ -12,20 +12,20 @@
         </div>
     </div> 
     <div class="tabnr_change  show">
-        <form method="post"  action="<{:U('tuan/create')}>"  target="baocms_frm">
+        <form method="post"  action="<{:U('tuan/create')}>"  target="x-frame">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">套餐名称：</p></td>
+                    <td width="120"><p class="tuanfabu_t">抢购名称：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[title]" value="<{$detail.title|default=''}>" class="tuanfabu_int tuanfabu_intw1" />
                              <code>填写标题，建议20字以内</code>
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">套餐简介：</p></td>
+                    <td width="120"><p class="tuanfabu_t">抢购简介：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[intro]" value="<{$detail.intro|default=''}>" class="tuanfabu_int tuanfabu_intw3" />
-                            <code>填写套餐简介，建议30字以内</code>
+                            <code>填写抢购简介，建议30字以内</code>
                         </div></td>
                 </tr>
                 
@@ -90,21 +90,6 @@
             <tr>
             
           
-                <tr>
-                    <td width="120"><p class="tuanfabu_t">选择分店：</p></td>
-                    <td><div class="tuanfabu_nr">
-                            <select id="branch_id" name="data[branch_id]" class="tuanfabu_int tuanfabu_intw2">
-                                <option value="0">请选择</option>
-                                <foreach name="branch" item="var">
-                                    <option value="<{$var.branch_id}>"><{$var.name}></option>                
-                                </foreach>
-                            </select>
-                            <code>不选择表示多店通用，建议选择，定位更加准确</code>
-                        </div></td>
-                </tr>
-              
-              
-              
                   <tr>
                     <td class="lfTdBt"><p class="tuanfabu_t">缩略图：</p></td>
                  <td class="rgTdBt">
@@ -115,7 +100,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.tuan.thumb}>
+                        建议尺寸<{$CONFIG.attachs.tuan.thumb}>
                     </div>
                     <script>                                            
 						var width_tuan = '<{:thumbSize($CONFIG[attachs][tuan][thumb],0)}>';                         
@@ -229,7 +214,7 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">每天套餐份数:</p></td>
+                    <td width="120"><p class="tuanfabu_t">每天抢购份数:</p></td>
                     <td><div class="tuanfabu_nr">
                     	<input type="text" name="data[xiangou]" value="<{$detail.xiangou|default='0'}>" class="tuanfabu_int tuanfabu_intw2" />
 					<code>0表示不限购</code></div></td>
@@ -242,7 +227,7 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">套餐价格：</p></td>
+                    <td width="120"><p class="tuanfabu_t">抢购价格：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[tuan_price]" value="<{$detail.tuan_price|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
@@ -263,35 +248,7 @@
                         </div></td>
                 </tr>
                 
-               <!--分销单独调用开始-->
-                 <if condition="!empty($SHOP['is_profit'])">
-                 <tr>
-                    <td width="120"><p class="tuanfabu_t">分成给上级分销商：</p></td>
-                    <td><div class="tuanfabu_nr">
-                          <input type="checkbox" name="data[profit_enable]" value='1' <if condition="$detail['profit_enable'] eq 1"> checked="checked" </if> />
-                        <code> 如需分成这里必须打钩，如此商品无需分成、则不勾选、下面不填写即可</code></div></td>
-                </tr>
-                <tr>
-                    <td width="120"><p class="tuanfabu_t">一级会员分成：</p></td>
-                    <td><div class="tuanfabu_nr">
-                            <input type="text" name="data[profit_rate1]" value="<{$detail['profit_rate1']}>" class="tuanfabu_int "  /> 元
-                        <code> 这里是销售价，所以建议您留足够的利润给代理商分成，比如您产品销售100元，您拿30元分成、那么下面30元怎么样一个比例给1、2、3级分销商</code></div></td>
-                </tr>
-                <tr>
-                    <td width="120"><p class="tuanfabu_t">二级会员分成：</p></td>
-                    <td><div class="tuanfabu_nr">
-                            <input type="text" name="data[profit_rate2]" value="<{$detail['profit_rate2']}>" class="tuanfabu_int" /> 元
-                       <code> 同上</code> </div></td>
-                </tr>
-                <tr>
-                    <td width="120"><p class="tuanfabu_t">三级会员分成：</p></td>
-                    <td><div class="tuanfabu_nr">
-                            <input type="text" name="data[profit_rate3]" value="<{$detail['profit_rate3']}>" class="tuanfabu_int" /> 元
-                        <code> 同上</code></div></td>
-                </tr>
-                </if>
-                <!--分销单独调用结束-->
-                
+             
                 
                 
                 

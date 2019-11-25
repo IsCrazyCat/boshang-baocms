@@ -2,7 +2,7 @@
 <include  file='public:header'/>
    <header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<{$detail.thread_name}>
@@ -31,7 +31,7 @@
                 <div class="zhuye border_thread">
                     <ul >
                         <li class=" zhuye-list txt_center fl"><a href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>" <if condition="$act eq 'detail'">class="on"</if> >主页</a></li>
-                        <li class=" zhuye-list txt_center fl"><a href="<{:U('thread/photo',array('thread_id'=>$detail['thread_id']))}>" <if condition="$act eq 'photo'">class="on"</if> >相册</a></li>
+                        <!--<li class=" zhuye-list txt_center fl"><a href="" <if condition="$act eq 'photo'">class="on"</if> >相册</a></li>-->
                         <div class="clear"></div>
                     </ul>
                 </div>
@@ -53,23 +53,23 @@
 <nav class="foot-bar">
 	<div class="line">
 		<div class="x2">
-			<a class="left-icon" href="<{:U('thread/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="left-icon text-large" href="<{:U('index/index')}>"><i class="iconfont icon-shouye" style="font-size:20px;"></i></a>
 		</div>
 		<div class="x8">
 			<div class="line">
 				<span class="x6">
 					<a class="post-icon"  target="x-frame"  href="<{:U('thread/collect',array('thread_id'=>$detail['thread_id']))}>">
-						<i class="icon-reorder"></i>
+						<i class="iconfont icon-daohang2"></i>
 						关注
 					</a>
 				</span>
 				<span class="x6">
-					<a class="post-icon" href="<{:U('thread/fabu',array('thread_id'=>$detail['thread_id']))}>"><i class="icon-pencil-square"></i>发帖</a>
+					<a class="post-icon" href="<{:U('thread/fabu',array('thread_id'=>$detail['thread_id']))}>"><i class="iconfont icon-fabu"></i>发帖</a>
 				</span>
 			</div>
 		</div>
 		<div class="x2">
-			<a class="right-icon" href="<{:u('user/index/index')}>"><i class="icon-ellipsis-v"></i></a>
+			<a class="right-icon" href="<{:u('user/index/index')}>"><i class="iconfont icon-wo"></i></a>
 		</div>
 	</div>
 </nav>

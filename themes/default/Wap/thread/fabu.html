@@ -9,16 +9,24 @@
 </style>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('thread/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			回复帖子
+			发布帖子
 		</div>
 		<div class="top-share">
 		</div>
 	</header>
 
-	<form class="post-form" action="<{:U('thread/fabu',array('thread_id'=>$detail['thread_id']))}>" method="post" target="x-frame" >
+	<form id="ajaxForm" class="post-form" action="<{:U('thread/fabu',array('thread_id'=>$detail['thread_id']))}>" method="post"  >
+    
+     <div class="line border-bottom">
+			<div class="x12 form-title">
+				<span>当前部落： <a class="text-dot" href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>"><{$detail['thread_name']}><i class="iconfont icon-angle-right float-right"></i></a></span>
+			</div>
+	</div>
+    
+    
      <div class="line border-bottom">
 			<div class="x12 form-title">
 				<input type="text" name="title" value="" placeholder="请输入标题"  />
@@ -86,7 +94,7 @@
         });
     </script>
           <div class="container text-center">
-                <button class="button button-block button-big bg-dot" type="submit">发表</button>
+                <button class="button button-block button-big bg-yellow" type="submit">确认发表</button>
         </div>
                 
             </div>

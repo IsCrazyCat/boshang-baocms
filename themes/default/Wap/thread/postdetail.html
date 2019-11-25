@@ -2,7 +2,7 @@
 <include  file='public:header'/>
    <header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<{$detail.title}>
@@ -17,7 +17,7 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 
 	<div class="tie-from">
 		<span class="text-gray">话题来自：</span><a href="<{:U('thread/detail',array('thread_id'=>$detail['thread_id']))}>"><{$tribe.thread_name}></a>
-		<i class="float-right icon-angle-right"></i>
+		<i class="float-right iconfont icon-angle-right"></i>
 	</div>
 
 	<div class="tie-detail">
@@ -28,8 +28,17 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 				</span>
 				<span class="info x10">
 					<em><{:config_user_name($auth['nickname'])}></em>
+                    
+                    <php>
+                    $users = D('Users')->find($auth['user_id']);
+                    $brand = D('CarBrand')->find($users['carBrand_id']);
+                    </php>
+                    <if condition="!empty($brand)">
+                    	<em> <{$brand['name']}> <img src="<{:config_img($brand['photo'])}>" width="20"/></em>
+                    </if>
+                    
 					<span class="float-right"><{$detail.create_time|date="Y-m-d",###}></span>
-					<p class="title"><{:bao_msubstr($detail['title'],0,25)}></p>
+					<p class="title"><{:tu_msubstr($detail['title'],0,25)}></p>
 				</span>
 				<span class="coner"></span>
 			</div>
@@ -41,8 +50,8 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 				<p><{$content}></p>
 				<div class="blank-10"></div>
 				<div class="ctrl">
-                    <a class="ctrl-zan" id="zan_btn"><i class="icon-thumbs-up"></i><em><{$detail['zan_num']}></em></a>
-                    <a class="ctrl-reply"><i class="icon-comments"></i> <em><{$detail['reply_num']}></em></a>
+                    <a class="ctrl-zan" id="zan_btn"><i class="iconfont icon-zan"></i><em><{$detail['zan_num']}></em></a>
+                    <a class="ctrl-reply"><i class="iconfont icon-huifu"></i> <em><{$reply_num}></em></a>
 				</div>
 			</div>
 
@@ -67,20 +76,23 @@ p, .p {margin-bottom: inherit;line-height: inherit;}
 <nav class="foot-bar">
 	<div class="line">
 		<div class="x2">
-			<a class="left-icon" href="<{:U('thread/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="left-icon text-large" href="<{:U('index/index')}>"><i class="iconfont icon-shouye" style="font-size:20px;"></i></a>
 		</div>
 		<div class="x8">
 			<div class="line">
-				<span class="x12">
+				<span class="x6">
 					<a class="post-icon" href="<{:U('thread/reply',array('post_id'=>$detail['post_id']))}>">
-						<i class="icon-reorder"></i>
+						<i class="iconfont icon-daohang2"></i>
 						回复
 					</a>
+				</span>
+                <span class="x6">
+					<a class="post-icon" href="<{:U('thread/fabu',array('thread_id'=>$detail['thread_id']))}>"><i class="iconfont icon-fabu"></i>发帖</a>
 				</span>
 			</div>
 		</div>
 		<div class="x2">
-			<a class="right-icon" href="<{:u('user/index/index')}>"><i class="icon-ellipsis-v"></i></a>
+			<a class="right-icon" href="<{:u('user/index/index')}>"><i class="iconfont icon-wo"></i></a>
 		</div>
 	</div>
 </nav>

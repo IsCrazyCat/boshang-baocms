@@ -3,7 +3,7 @@
 <style>.list-media-x {margin-top: 0.0rem;}</style>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="javascript:history.back(-1);"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			家政点评
@@ -42,22 +42,45 @@
             </div>
         </div>
     </if>
-    
-    
-    
    </ul>
 </div>
-<div class="blank-10 bg"></div>	
 
-	<div class="line padding border-bottom">
+
+<div class="line padding border-bottom">
 		<div class="x3">
-			选择评分：
+			综合评价：
 		</div>
 		<div class="x9">
 			<span id="jq_star"></span>
 		</div>
 	</div>
+
+	<div class="line padding border-bottom">
+		<div class="x3">
+			<{$CONFIG['appoint']['d1']}>评价：
+		</div>
+		<div class="x9">
+			<span id="jq_star1"></span>
+		</div>
+	</div>
 	
+	<div class="line padding border-bottom">
+		<div class="x3">
+			<{$CONFIG['appoint']['d2']}>评价：
+		</div>
+		<div class="x9">
+			<span id="jq_star2"></span>
+		</div>
+	</div>
+	
+	<div class="line padding border-bottom">
+		<div class="x3">
+			<{$CONFIG['appoint']['d3']}>评价：
+		</div>
+		<div class="x9">
+			<span id="jq_star3"></span>
+		</div>
+	</div>
 <div class="blank-10 bg"></div>
 	
 	
@@ -70,6 +93,29 @@
 				starOn: 'star-on.png',
 				scoreName: 'data[score]'
 			});
+					
+			$("#jq_star1").raty({
+				numberMax: 5,
+				path: '/static/default/wap/image/',
+				starOff: 'star-off.png',
+				starOn: 'star-on.png',
+				scoreName: 'data[d1]'
+			});
+	
+			$("#jq_star2").raty({
+				numberMax: 5,
+				path: '/static/default/wap/image/',
+				starOff: 'star-off.png',
+				starOn: 'star-on.png',
+				scoreName: 'data[d2]'
+			});
+			$("#jq_star3").raty({
+				numberMax: 5,
+				path: '/static/default/wap/image/',
+				starOff: 'star-off.png',
+				starOn: 'star-on.png',
+				scoreName: 'data[d3]'
+			});
 		});
 	</script>
 	
@@ -78,7 +124,7 @@
 	
 	<div class="line padding ">
 		<div class="blank-10"></div>
-		<textarea cols="33" rows="5" name="data[contents]" placeholder="还记得这家店吗？写点评记录生活、分享体验" style="border:thin solid #eee;width:100%;resize:none;padding:10px;"></textarea>
+		<textarea cols="33" rows="5" name="data[contents]" placeholder="家政服务态度好吗？" style="border:thin solid #eee;width:100%;resize:none;padding:10px;"></textarea>
 		<div class="blank-10"></div>
 	</div>
     

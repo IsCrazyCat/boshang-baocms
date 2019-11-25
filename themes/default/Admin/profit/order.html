@@ -1,130 +1,124 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">新功能</li>
-        <li class="li2">分成管理</li>
-        <li class="li2 li3">商城订单</li>
+        <li class="li1">分销</li>
+        <li class="li2">分销管理</li>
+        <li class="li2 li3">订单列表</li>
     </ul>
 </div>
+<style>
+.seleK{height: 30px;}
+.seleK label {margin-bottom: 10px;}
+.main-sc .jsglNr .selectNr .right span{line-height:30px; height: 30px; padding-right: 0;}
+.seleK .text{height: 28px; width:120px !important;}
+.seleK .sumit{height:30px;padding-left:27px;background-position:6px center;padding-right:10px;line-height:30px}
+.main-sc .jsglNr .selectNr .right .select{height: 30px; line-height: 30px;width: 80px;margin-right:5px}
+.inptText{width: 120px; height: 28px; line-height: 30px;}
+.inptButton{height: 30px;line-height:30px;background:rgb(0, 153, 204); width:70px;text-align: center;}
+</style>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>管理员在此处理商城订单分成，分销/p>
+
+
+		
+<p class="attention"><span>注意：</span> 这里可以筛选各种订单分销记录，已可以取消分成，不过只能单笔取消，分成记录不可以删除！</p>
     <div class="jsglNr">
-        <div class="selectNr" style="margin-top: 0px; border-top:none;">
+        <div class="selectNr" style="border-top: none; margin-top: 0px;">
             <div class="right">
-                <form action="<{:U('profit/order')}>" method="post" >
+                <form method="post" action="<{:U('profit/order')}>">
                     <div class="seleHidden" id="seleHidden">
-                        <span>状态</span>
-                        <select name="status" class="selecttop w100">
-                            <option value="-1">全部</option>
-                            <option <eq name="status" value="0">selected="selected"</eq> value="0">待分成</option>
-                            <option <eq name="status" value="1">selected="selected"</eq> value="1">已分成</option>
-                            <option <eq name="status" value="2">selected="selected"</eq> value="2">已取消</option>
-                        </select>
-                        <input type="submit" value="   搜索"  class="inptButton" />
-                    </div> 
-                    <a style="display: inline-block;" href="#" class="searchG">高级搜索</a>
-                </form>
-                <div class="clear"></div>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <form>
-            <form action="<{:U('profit/order')}>"  method="post" >
-                <div class="selectNr selectNr2">
-                    <div class="left">
                         <div class="seleK">
+                        <label>
+                            <span>开始时间</span>
+                            <input type="text" name="bg_date" value="<{$bg_date|default=''}>"  onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w150" />
+                        </label>
+                        <label>
+                            <span>结束时间</span>
+                            <input type="text" name="end_date" value="<{$end_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w150" />
+                        </label>
                             <label>
-                                <span>开始时间</span>
-                                <input type="text"    name="bg_date" value="<{$bg_date|default=''}>"  onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w150" />
-                                <span>结束时间</span>
-                                <input type="text" name="end_date" value="<{$end_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w150" />
+                                <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
+                                <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
                             </label>
                             <label>
-                                <span>用户</span>
                                 <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>" />
-                                <input type="text" name="nickname" id="nickname"  value="<{$nickname}>"   class="text" />
-                                <a  href="<{:U('user/select')}>" w="800" h="600" mini="select" class="sumit">选择用户</a>
+                                <input type="text" name="nickname" id="nickname"  value="<{$nickname}>"   class="text " />
+                                <a mini="select"  w="800" h="600" href="<{:U('user/select')}>" class="sumit">选择用户</a>
                             </label>
+                            <label>
+                                <span>订单类型：</span>
+                                <select class="select w120" name="type">
+                                 <option <eq name="type" value="999">selected="selected"</eq> value="999">请选择</option>
+                                	<foreach name="types" key="key" item="item">
+                                        <option <eq name="type" value="$key">selected="selected"</eq>  value="<{$key}>"><{$item}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            <label>
+                                <span>状态：</span>
+                                <select class="select w120" name="is_separate">
+                                 <option <eq name="is_separate" value="999">selected="selected"</eq> value="999">请选择</option>
+                                	<foreach name="separates" key="key" item="item">
+                                        <option <eq name="is_separate" value="$key">selected="selected"</eq>  value="<{$key}>"><{$item}></option>
+                                    </foreach>
+                                </select>
+                            </label>
+                            
+                            <label>
+                                <span>  订单ID：</span>   
+                                <input type="text" name="log_id" value="<{$log_id|default=''}>" class="inptText" />
+                                <input type="submit" class="inptButton" value="搜索" /></label>
                         </div>
                     </div>
-                    <div class="right">
-                        <input type="submit" value="   搜索"  class="inptButton" />
-                    </div>
-            </form>
-            <div class="clear"></div>
-    </div>
-    <form  target="baocms_frm" method="post">         
-        <div class="tableBox">
-            <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
-                <tr>
-                    <td class="w50">订单ID</td>
-                    <td>用户</td>
-                    <td>金额</td>
-                    <td>创建时间</td>
-                    <td>创建IP</td>
-                    <td>订单状态</td>
-                    <td>操作状态</td>
-                    <td>操作信息</td>
-                    <td>操作</td>
-                </tr>
-                <foreach name="list" item="var">
-                    <tr>
-                        <td><{$var.order_id}></td>
-                        <td><{$var.account}>(UID:<{$var.user_id}>)</td>
-                        <td><{:round($var['total_price']/100,2)}></td>
-                        <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
-                        <td><{$var.create_ip}></td>
-                        <td>
-                            <eq name="var.status" value="0">
-                                等待付款
-                            <else />
-                                <eq name="var.status" value="-1">
-                                    到店付
-                                <else/>
-                                    已完成
-                                </eq>
-                            </eq>
-                            
-                           <br/>
-                             <php>
-                                $statuss = D('Ordergoods') -> where('order_id ='.$var['order_id']) -> find();
-                                $status = $statuss['status'];
-                             </php> 
-                            <if condition="$status eq 1"><a style="color:#f60;">【退款中】</a></if>
-                            <if condition="$status eq 3"><a style="color:#000;">【已退款】</a></if>
-                            
-                        </td>
-                        <td>
-                            <switch name="var.is_separate">
-                                <case value="0">待分成</case>
-                                <case value="1">已分成</case>
-                                <case value="2">已撤消</case>
-                                <case value="3">已取消</case>
-                            </switch>
-                        </td>
-                        <td>
-                            <eq name="var.is_separate" value="2"><del></eq>
-                            <foreach name="profitLogs[$var['order_id']]" item="v">
-                                用户ID: <{$v.user_id}>(<{$v.account}>), 分成: <{:round($v['money']/100, 2)}><br />
-                            </foreach>
-                            <eq name="var.is_separate" value="2"></del></eq>
-                        </td>
-                        <td>
-                            <if condition="$var['is_separate'] eq 0 and $var['fuid1'] gt 0">
-                                <{:BA('profit/ok',array("order_id"=>$var["order_id"], "order_type"=>1),'分成','act','remberBtn')}>
-                                <{:BA('profit/cancel',array("order_id"=>$var["order_id"], "order_type"=>1),'取消','act','remberBtn')}>
-                            <elseif condition="$var['is_separate'] eq 1" />
-                                <{:BA('profit/rollback',array("order_id"=>$var["order_id"], "order_type"=>1),'撤消','act','remberBtn')}>
-                            <else />
-                                -
-                            </if>
-                        </td>
-                    </tr>
-                </foreach>
-            </table>
-            <{$page}>
+                </form>
+            </div>
         </div>
-    </form>
+
+        <form  target="x-frame" method="post">
+            <div class="tableBox">
+                <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
+                    <tr>
+                        <td class="w50"><input type="checkbox" class="checkAll" rel="log_id" /></td>
+                        <td class="w50">ID</td>
+                        <td>用户</td>
+                        <td>商家</td>
+                        <td>金额</td>
+                        <td>类型</td>
+                        <td>原始订单ID</td>
+                        <td>状态</td>
+                        <td>时间</td>
+                        <td>分成说明</td>
+                        <td>操作</td>
+                    </tr>
+                    <foreach name="list" item="var">
+                        <tr>
+                            <td><input class="child_log_id" type="checkbox" name="log_id[]" value="<{$var.log_id}>" /></td>
+                            <td><{$var.log_id}></td>
+                            <td><{$users[$var['user_id']]['nickname']}></td>
+                            <td><{$shops[$var['shop_id']]['shop_name']|default='其他类型'}></td>
+                            <td>&yen;<{:round($var['money']/100,2)}></td>
+                            <td><{$var.type_name}></td>
+                            <td><{$var.order_id}></td>
+                            <td><{$separates[$var['is_separate']]}></td>
+                        <td><{$var.create_time|date="Y-m-d H:i:s",###}></td>
+                        <td><{$var.info}></td>
+                        <td>
+                        <eq name="var.is_separate" value="1">
+                        	<{:BA('profit/cancel',array("log_id"=>$var["log_id"]),'取消分成','act','remberBtn')}>
+                        </eq>
+             
+                        </td>
+                        </tr>
+                    </foreach>
+                </table>
+                <{$page}>
+            </div>
+            <div class="selectNr" style="margin-bottom: 0px; border-bottom: none;">
+                <div class="left">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-</div>
-<include  file='public:footer'/>  
+
+<include  file='public:footer'/>       

@@ -3,13 +3,13 @@
 	<script src="/static/default/wap/other/roll.js"></script>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<{$detail.name}>
 		</div>
 		<div class="top-signed">
-          <a href="<{:u('community/index',array('change'=>1))}>" class="top-addr icon-navicon"> 切换</a>
+          <a href="<{:u('community/index',array('change'=>1))}>" class="top-addr iconfont icon-daohang2"> 切换</a>
 		</div>
 	</header>
 
@@ -37,7 +37,7 @@
 </if>     
 
 			<div class="title">
-				<h1><{:bao_msubstr($detail['name'],0,10)}>
+				<h1><{:tu_msubstr($detail['name'],0,10)}>
                 <php>
                 $village_ids = D('Village') -> where('village_id ='.$detail['village_id']) -> find();
                 $village_name = $village_ids['name'];
@@ -47,7 +47,7 @@
              <a style="color:#FFF; font-size:12px;">（未加入社区）</a>
              </if>   
                 </h1>
-				<p><{:bao_msubstr($detail['name'],0,10)}>有业主<{$user_owner}>人，邻居<{$counts}>人。
+				<p><{:tu_msubstr($detail['name'],0,10)}>有业主<{$user_owner}>人，邻居<{$counts}>人。
                 <if condition="!empty($products_pay)">
                 <a style="color:#FFF;" href="<{:u('user/community/order')}>">您有待缴费<{$products_pay}>单</a>。
                 <else/>
@@ -69,11 +69,11 @@
 	</script>
 
 	<div class="cite-title padding border-bottom">
-		<h5><i class="icon-building"></i><{$detail.name}> </h5>
+		<h5><i class="iconfont icon-xiaoqu11"></i><{$detail.name}> </h5>
          <if condition="$isjoin neq 0">
-         <a href="<{:u('community/neighbor',array('community_id'=>$detail['community_id']))}>">找邻居 <i class="icon-angle-right"></i></a>
+         <a href="<{:u('community/neighbor',array('community_id'=>$detail['community_id']))}>">找邻居 <i class="iconfont icon-angle-right"></i></a>
          <else />
-         <a href="<{:u('community/join',array('community_id'=>$detail['community_id']))}>">加入小区 <i class="icon-angle-right"></i></a>
+         <a href="<{:u('community/join',array('community_id'=>$detail['community_id']))}>">加入小区 <i class="iconfont icon-angle-right"></i></a>
          </if>
 	</div>
 	<div class="xiaoqu-nav line">
@@ -150,49 +150,25 @@
 			</if> 
 		</div>
 
-        <div class="x3 border-right">
-         <a href="<{:u('community/tuan',array('community_id'=>$detail['community_id']))}>">
-    			<img src="/static/default/wap/image/index/app-tuan.png" />
-    			<p>小区套餐</p>
-    		</a>
-		</div>
-		<div class="x3 border-right">
-    		<a href="<{:u('community/ele',array('community_id'=>$detail['community_id']))}>">
-				<img src="/static/default/wap/image/index/app-ele.png" />
-    			<p>小区外卖</p>
-    		</a> 
-		</div>
-		<div class="x3 border-right">
-        <a href="<{:u('community/weidian',array('community_id'=>$detail['community_id']))}>">
-    			<img src="/static/default/wap/image/index/app-mart.png" />
-    			<p>小区微店</p>
-    	</a>
-		</div>
-		<div class="x3">
-    		<a href="<{:u('appoint/index')}>">
-				<img src="/static/default/wap/image/index/app-housekeeping.png" />
-    			<p>小区家政</p>
-    		</a> 
-		</div>
 	</div>
 
 	<div class="blank-10 bg"></div>
 	<div class="cite-title padding border-bottom">
-		<h5><i class="icon-bullhorn"></i> 物业通知</h5>
+		<h5><i class="iconfont icon-xiaoxi3"></i> 物业通知</h5>
 		<a href="<{:u('community/newslist',array('community_id'=>$detail['community_id']))}>">+ 更多</a>
 	</div>
 	<div class="text-list">
 		<ul>
 			<foreach name="news" item="item">
 			<li class="padding border-bottom">
-				<a href="<{:u('community/news',array('news_id'=>$item['news_id']))}>"><{:bao_Msubstr($item['title'],0,14,false)}><span><{$item.create_time|date='Y-m-d',###}></span></a>
+				<a href="<{:u('community/news',array('news_id'=>$item['news_id']))}>"><{:tu_msubstr($item['title'],0,14,false)}><span><{$item.create_time|date='Y-m-d',###}></span></a>
 			</li>
 			</foreach>
 		</ul>
 	</div>
 	<div class="blank-10 bg"></div>
 	<div class="cite-title padding border-bottom">
-		<h5><i class="icon-phone"></i>  便民电话</h5>
+		<h5><i class="iconfont icon-dianhua"></i>  便民电话</h5>
 		<a href="<{:u('community/together',array('community_id'=>$detail['community_id']))}>">+ 合作</a>
 	</div>
 	<div class="text-list">
@@ -200,8 +176,8 @@
 			<volist name="phones" id="var" key="index">
 			<li class="padding border-bottom">
 				<a class="line" title="<{$var.name}>" href="tel:<{$var.phone}>">
-					<em class="x4"><{:bao_Msubstr($var['name'],0,4,false)}></em>
-					<em class="x8"><{$var.phone}> <span><i class="icon-angle-right"></i></span></em>
+					<em class="x4"><{:tu_msubstr($var['name'],0,4,false)}></em>
+					<em class="x8"><{$var.phone}> <span><i class="iconfont icon-angle-right"></i></span></em>
 				</a> 
 			</li>
 			</volist>
@@ -209,8 +185,8 @@
 	</div>
 	<div class="blank-10 bg"></div>
 	<div class="cite-title padding border-bottom">
-		<h5><i class="icon-fire"></i>  身边套餐</h5>
-		<a href="javascript:void(0);" onclick="refresh();"><i class="icon-refresh"></i> 换一换</a>
+		<h5><i class="iconfont icon-xianshiqianggou"></i>  身边抢购</h5>
+		<a href="javascript:void(0);" onclick="refresh();"><i class="iconfont icon-iconfont10"></i> 换一换</a>
 	</div>
 	<div class="mart-flush" id="flush">
 		<div class="bd">
@@ -264,7 +240,7 @@
 	</script>
 
 	<div class="cite-title padding border-bottom">
-		<h5><i class="icon-comments"></i> 小区贴吧</h5>
+		<h5><i class="iconfont icon-tubiao1tieba1"></i> 小区贴吧</h5>
 		<a href="<{:u('community/tieba',array('community_id'=>$detail['community_id']))}>">+ 进入</a>
 	</div>
 	<div id="tie-list" class="text-list">

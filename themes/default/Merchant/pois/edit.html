@@ -12,9 +12,7 @@
         </div>
     </div> 
     <div class="tabnr_change  show">
-        <form method="post"  action="<{:U('pois/edit',array('pois_id'=>$detail['pois_id']))}>"  target="baocms_frm">
-            <js file='__PUBLIC__/js/uploadify/jquery.uploadify.min.js'/>
-            <link rel="stylesheet" href="__PUBLIC__/js/uploadify/uploadify.css">
+        <form method="post"  action="<{:U('pois/edit',array('pois_id'=>$detail['pois_id']))}>"  target="x-frame">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="120"><p class="tuanfabu_t">商家名称：</p></td>
@@ -34,7 +32,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="80" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.biz.thumb}>
+                        建议尺寸<{$CONFIG.attachs.biz.thumb}>
                     </div>
                     <script>                                            
 						var width_biz = '<{:thumbSize($CONFIG[attachs][biz][thumb],0)}>';                         
@@ -110,7 +108,7 @@
                 <tr>
                     <td width="120"><p class="tuanfabu_t">地图：</p></td>
                     <td><div class="tuanfabu_nr">
-                            <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=te1e01OcptQgwrg4SyBdPx6h"></script>
+                            <script type="text/javascript" src="<{$CONFIG['config']['baidu_map_api']}>"></script>
                             <div class="top" style="width:700px; margin-bottom: 20px;">
                                 <div id="r-result">请输入:<input type="text" id="suggestId" class="mapinputs" size="20" value="合肥" /></div>    
                             </div>

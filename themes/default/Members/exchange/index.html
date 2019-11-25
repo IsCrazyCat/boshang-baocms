@@ -30,7 +30,7 @@
         <img src="<{:config_img($goods[$var['goods_id']]['face_pic'])}>"><span></span></a>
         <div class="index__infos___A6XLq">
             <p><a href="<{:u('home/jifen/detail',array('goods_id'=>$var['goods_id']))}>" target="_blank"><span>商铺：<{$shops[$var['shop_id']]['shop_name']}></span></p>
-            <span><p><{:bao_msubstr($goods[$var['goods_id']]['title'],0,20,false)}></p></span>
+            <span><p><{:tu_msubstr($goods[$var['goods_id']]['title'],0,20,false)}></p></span>
         	</div>
 		</div>
        <!--商品展示END-->

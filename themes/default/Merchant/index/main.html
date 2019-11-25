@@ -1,5 +1,5 @@
 <include file='public:header'/>
-<script src="__PUBLIC__/js/highcharts/highcharts.js"></script>
+<script src="__PUBLIC__/js/echarts-all-3.js"></script>
 <style>
 .sy_c1Li {width: 1000px;}
 .sy_content { padding: 20px 0 40px 20px;}
@@ -9,6 +9,8 @@
 .tuan_topser_2016 span.red{ color:#F00}
 .tuan_topser_2016{color: #000;line-height: 30px;text-indent: 15px; font-size:18px;}
 .tuan_table td span.red{ color:#F00; font-size:14px;}
+.hatudou-btn{border: 1px solid #1881A4;display: inline-block;line-height: 30px;cursor: pointer;background-color: #09c;color: #fff !important; padding: 0 15px; text-indent:0px !important;}
+.tuan_topser_l strong.green {margin: 0 10px;}
 </style>
 <div class="sjgl_lead">
 	<ul>
@@ -16,174 +18,121 @@
 		</li>
 	</ul>
 </div>
+    <php>
+        $day = date("Y-m-d");
+        $dat_1 = date("Y-m-d",strtotime("-1 day"));
+        $dat_2 = date("Y-m-d",strtotime("-2 day"));
+        $dat_3 = date("Y-m-d",strtotime("-3 day"));
+        $dat_4 = date("Y-m-d",strtotime("-4 day"));
+        $dat_5 = date("Y-m-d",strtotime("-5 day"));
+        $dat_6 = date("Y-m-d",strtotime("-6 day"));
+        $Smsshop = D('Smsshop')->where(array('shop_id'=>$SHOP['shop_id'],'type'=>shop,'status'=>0))->find();
+    </php>   
+    
 <div class="sy_content">
 	<div class="radius5 tuan_top">
 		<div class="tuan_top_t">
 			<div class="left tuan_topser_l">
-				欢迎使用<strong class="green"><{$config.site.title}>商户中心</strong> , 为您的营销插上翅膀!	
-<!--				<if condition="empty($MEMBER['email'])">-->
-<!--				<i class="icon-remove red"></i> 您还没有通过邮箱认证，<a target="_blank" href="<{:u('members/set/email')}>">立刻认证</a>-->
-<!--				</if>-->
-				<if condition="empty($MEMBER['mobile'])">
-				<i class="icon-remove red"></i> 您还没有通过手机认证，<a target="_blank" href="<{:u('members/set/mobile')}>">立刻认证</a>
-				</if>
+				当前商户名称：<strong class="green"><{$SHOP.shop_name}> </strong>
+                商户类别：<strong class="green"><{$shopcates[$SHOP['cate_id']]['cate_name']}></strong>
+                城市区域：<strong class="green">区域：<{$citys[$SHOP['city_id']]['name']}> - <{$areas[$SHOP['area_id']]['area_name']}> - <{$business[$SHOP['business_id']]['business_name']}></strong>
+                <if condition="$SHOP['parent_id']">
+                    <php>$branch = D('Shop')->find($SHOP['parent_id']);</php>
+                    您的总店名称：【<{$branch.shop_name}>】
+                </if>	
 			</div>
 		</div>
+        
+         <div class="tuan_top_t">
+            <if condition="!empty($SHOP['end_date']) and ($SHOP['end_date'] neq '0000-00-00')">
+                <div class="left tuan_topser_l">
+                    商家有效期至：<strong class="green"><{$SHOP.end_date}></strong> 	
+                </div>
+            </if>
+           <if condition="!empty($SHOPGRADE['grade_name'])">
+                <div class="left tuan_topser_l" <if condition="empty($SHOP['end_date']) and ($SHOP['end_date'] eq '0000-00-00')">style="margin-left:80px;"></if>>
+                    商家等级：<strong class="green"><{$SHOPGRADE.grade_name}></strong> 
+                    <a target="main_frm" href="<{:U('shop/permission',array('grade_id'=>$SHOPGRADE['grade_id']))}>" class="hatudou-btn">查看权限</a>	
+                </div>
+           </if> 
+                
+        </div>
+        
+         <div class="tuan_top_t">
+                <div class="left tuan_topser_l">
+                    您有粉丝：<strong class="green"><{$SHOP.fans_num}> 人 </strong> 
+                    <a target="main_frm" href="<{:U('fans/index')}>" class="hatudou-btn"> 粉丝管理</a>	
+                </div>
+                <div class="left tuan_topser_l" style="margin-left:80px;">
+                    剩余短信：<strong class="green"><{$Smsshop['num']}> 条 </strong> 
+                    <a target="main_frm" href="<{:U('shop/sms')}>" class="hatudou-btn"> 购买短信</a>	
+                </div>
+        </div>
+        
+   
         <div class="tuan_top_t">
-			<div class="left tuan_topser_2016">
-				您管理的店铺：<{$SHOP.shop_name}>
-				<if condition="$counts['money'] gt 0">
-                您总收入：<{:round($counts['money']/100,2)}>元，
+			<div class="left tuan_topser_l">
+				财务信息：
+                    <if condition="$counts['money'] gt 0">
+                    您总收入：<{:round($counts['money']/100,2)}>元
+                    </if>
+                当前商户资金：
+                <span class="red"><{:round($MEMBER['gold']/100,2)}></span>元
+                <if condition="$MEMBER['gold']">
+                	<a target="main_frm" href="<{:U('money/tixian')}>" class="hatudou-btn">申请提现</a>	
                 </if>
-                当前余额：<span class="red"><{:round($MEMBER['gold']/100,2)}></span>元。
-                <if condition="!empty($MEMBER['frozen'])">
-                冻结金：<{:round($MEMBER['frozen']/100,2)}>元。
+                <if condition="$MEMBER['frozen_gold']">
+                	商户资金冻结金：<{:round($MEMBER['frozen_gold']/100,2)}>元
                 </if>
 			</div>
+            <if condition="$MEMBER['money']">
+            	<div class="left tuan_topser_l" style="margin-left:80px;">
+                    当前会员余额：<strong class="green"><{:round($MEMBER['money']/100,2)}></strong>元	
+                    <a target="_blank" href="<{:U('members/money/money')}>" class="hatudou-btn">充值</a>
+                </div>
+            </if>    
+                
 		</div>
-	</div>
-	<div class="sy_c1">
-		<ul>
-			<li class="left sy_c1Li">
-			<table class="tuan_table" width="100%" border="1" cellspacing="0" cellpadding="0">
-			<tbody>
-			<tr style="background-color:#eee;">
-				<td>项目</td>
-				<td>总数据</td>
-				<td>今日数据</td>
-				<td width="70">操作</td>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
-				<td>套餐</td>
-				<td>
-					<{$counts['tuan']}>条套餐，<span class="red"><{$counts['tuan_audit']}></span>条待审核,总<{$counts['tuan_order']}>订单
-				</td>
-				<td>
-					今日<span class="red"><{$counts['totay_tuan_order']}></span>单 ，<{$counts['tuan_order_code_is_used']}>单未验证 <{$counts['tuan_order_code_status']}>单退款中
-				</td>
-				<td>
-					<a target="main_frm" href="<{:U('tuan/index')}>">详情</a>
-				</td>
-			</tr>
-			<tr>
-				<td>优惠劵</td>
-				<td>
-					<{$counts['coupon']}>条优惠劵，<span class="red"><{$counts['coupon_audit']}></span>条待审核
-				</td>
-				<td>
-					今日<span class="red"><{$counts['totay_coupon_download']}></span>人下载，总下载：<{$counts['coupon_download']}>次，<{$counts['coupon_is_used']}>人未验证。
-				</td>
-				<td>
-					<a target="main_frm" href="<{:U('coupon/index')}>">详情</a>
-				</td>
-			</tr>
-			<if condition="$open_mall eq '1' ">
-			<if condition="!empty($wd)"><!--如果商户开通商城-->
-			<tr>
-				<td>商城</td>
-				<td>
-					<{$counts['goods']}>个商品，<span class="red"><{$counts['goods_audit']}></span>个待审核，总<{$counts['goods_order']}>个商城订单
-				</td>
-				<td>
-					今日<span class="red"><{$counts['totay_goods_order']}></span>人下单，正在配送<{$counts['goods_order_two']}>单，已完成<{$counts['goods_order_three']}>单
-				</td>
-				<td>
-					<a target="main_frm" href="<{:U('order/index')}>">详情</a>
-				</td>
-			</tr>
-			</if>
-			</if>
-<!--&lt;!&ndash;			<if condition="!empty($waimai)">&lt;!&ndash;如果商户开通外卖&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>外卖</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					<{$counts['ele']}>条外卖，<span class="red"><{$counts['ele_audit']}></span>菜品未审核&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					今日<span class="red"><{$counts['totay_ele_order']}></span>人点餐，<{$counts['ele_order']}>总外卖订单<br/>&ndash;&gt;-->
-<!--&lt;!&ndash;					<{$counts['totay_ele_order']}>单等待处理，<{$counts['totay_ele_order']}>单配送中，<{$counts['totay_ele_order']}>单配送完成。&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					<a target="main_frm" href="<{:U('order/index')}>">详情</a>&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;			</tr>&ndash;&gt;-->
-<!--&lt;!&ndash;			</if>&ndash;&gt;-->
-<!--&lt;!&ndash;            &ndash;&gt;-->
-<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>酒店</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					总<{$counts['hotel_room']}>房间&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					今日订单<span class="red"><{$counts['totay_hotel_order']}></span>单。&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					<a target="main_frm" href="<{:U('hotel/index')}>">详情</a>&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;			</tr>&ndash;&gt;-->
-<!--&lt;!&ndash;            &ndash;&gt;-->
-<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>订座</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					总<{$counts['booking_menu']}>菜单&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					今日订座订单<span class="red"><{$counts['totay_booking_order']}></span>单。&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					<a target="main_frm" href="<{:U('booking/index')}>">详情</a>&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;			</tr>&ndash;&gt;-->
-<!--&lt;!&ndash;            &ndash;&gt;-->
-<!--&lt;!&ndash;			&ndash;&gt;-->
-<!--&lt;!&ndash;			<if condition="$ding['is_biz'] neq 0">&lt;!&ndash;如果后台开通黄页&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>黄页</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					共<{$counts['biz']}>条黄页信息，<span class="red"><{$counts['biz_audit']}></span>条未审核&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					<a target="main_frm" href="<{:U('pois/index')}>">详情</a>&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;			</tr>&ndash;&gt;-->
-<!--&lt;!&ndash;		   </if>&ndash;&gt;-->
-<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>粉丝</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					总<{$counts['favorites']}>粉丝&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					今日新增粉丝<span class="red"><{$counts['totay_favorites']}></span>条&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;				<td>&ndash;&gt;-->
-<!--&lt;!&ndash;					<a target="main_frm" href="<{:U('order/index')}>">详情</a>&ndash;&gt;-->
-<!--&lt;!&ndash;				</td>&ndash;&gt;-->
-<!--&lt;!&ndash;			</tr>&ndash;&gt;-->
-<!--			<tr>-->
-<!--				<td>评价</td>-->
-<!--				<td>-->
-<!--					<if condition="$open_mall eq '1' ">商城<{$counts['goods_dianping']}>条评价，</if>外卖<{$counts['ele_dianping']}>条评价<br/>-->
-<!--                    套餐-->
-<!--					<{$counts['tuan_dianping']}>条评价<if condition="$open_ding eq '1' ">，订座<{$counts['booking_dianping']}>条评价</if>-->
-<!--				</td>-->
-<!--				<td>-->
-<!--					<if condition="$open_mall eq '1' ">今日商城<span class="red"><{$counts['totay_goods_dianping']}></span>条评价，</if>今日外卖<span class="red"><{$counts['totay_ele_dianping']}></span>条评价<br/>-->
-<!--                	今日套餐-->
-<!--					<span class="red"><{$counts['totay_tuan_dianping']}></span>条评价<if condition="$open_ding eq '1' ">，今日订座<span class="red"><{$counts['totay_booking_dianping']}></span>条评价</if>-->
-<!--				</td>-->
-<!--				<td>-->
-<!--					<a target="main_frm" href="<{:U('dianping/index')}>">详情</a>-->
-<!--				</td>-->
-<!--			</tr>-->
-			
-			</tbody>
-			</table>
-			</li>
-		</ul>
-	</div>
+        
+
+        
+        <div id="www_hatudou_com_1" style="width:750px;height:350px;"></div>
+ 
+        
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('www_hatudou_com_1'));
+        var option = {
+            title: {
+                text: '<{$SHOP.shop_name}>最近6日销售额走势图'
+            },
+            tooltip: {},
+            legend: {
+                data:['销售额']
+            },
+            xAxis: {
+                data: ["<{$day}>","<{$dat_1}>","<{$dat_2}>","<{$dat_3}>","<{$dat_4}>","<{$dat_5}>"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销售额（元）',
+                type: 'bar',
+                data: ["<{:round($m/100,2)}>", "<{:round($m_1/100,2)}>", "<{:round($m_2/100,2)}>",  "<{:round($m_3/100,2)}>", "<{:round($m_4/100,2)}>", "<{:round($m_5/100,2)}>"]
+            }]
+        };
+        myChart.setOption(option);
+    </script>
+    
+    
+        
+        
+        
+        
+         
+    
+	</div>	
 </div>
+
+
+    
+    
 <include file='public:footer'/>

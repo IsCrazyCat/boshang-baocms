@@ -2,19 +2,19 @@
 
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			服务网点
+			商家分类
 		</div>
 		<div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('shop/index')}>">
 				<input name="keyword" placeholder="输入商家的关键字"  />
-				<button type="submit" class="icon-search"></button> 
+				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 		</div>
 		<div class="top-signed">
-			<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
+			<a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
 		</div>
 	</header>
 	<script>
@@ -37,7 +37,7 @@
 			<div class="bd">
 				<ul>
 				<calldata mdl="Ad" where="closed=0 AND site_id=53 and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,5" cache="43200" order="orderby asc">
-				<li><a href="<{$item.link_url}>" target="_blank" ><img src="__ROOT__/attachs/<{$item.photo}>" /></a></li>
+				<li><a href="<{$item.link_url}>" target="_blank" ><img src="<{:config_img($item['photo']})>" /></a></li>
 				</calldata>
 				</ul>
 			</div>

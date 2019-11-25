@@ -6,7 +6,7 @@
         <li class="li2 li3">新增</li>
     </ul>
 </div>
-<form  target="baocms_frm" action="<{:U('ad/create',array('site_id'=>$site_id))}>" method="post">
+<form  target="x-frame" action="<{:U('ad/create',array('site_id'=>$site_id))}>" method="post">
     <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
         <tr>
             <td class="lfTdBt">所属广告位：</td>
@@ -61,7 +61,7 @@
 						server: '<{:U("app/upload/uploadify",array("model"=>""))}>',                             
 						pick: '#fileToUpload',                             
 						resize: true,  
-						compress : {quality: 80}                                         
+						compress : {quality: 100}                                         
 					});                                                 
 					uploader.on( 'uploadSuccess', function( file,resporse) {                             
 						$("#data_photo").val(resporse.url);                             

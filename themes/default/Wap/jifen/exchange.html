@@ -1,15 +1,17 @@
 <include  file='public:header'/>   
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		积分兑换
 	</div>
 </header>
-<script src="<{:U('app/datas/cab',array('name'=>'cityareas'))}>"></script>  <!-- 获取下拉 -->
+<script src="<{:U('app/datas/onecity',array('name'=>'cityareas'))}>"></script> 
 <script>
 	$(document).ready(function(){
+		window.CITYURL = "<{:U('app/datas/twoarea')}>";
+		window.BUSURL = "<{:U('app/datas/tbusiness')}>";
 		//添加收货地址
 		$('.add_addr').click(function(){
 			var index = layer.open({
@@ -98,7 +100,7 @@
 <div class="item-detail padding border-bottom">
 	<div class="line">
 		<div class="x3">
-			<div class="item"><img src="__ROOT__/attachs/<{:config_img($detail['face_pic'])}>" width='90%' /></div>
+			<div class="item"><img src="<{:config_img($detail['face_pic'])}>" width='90%' /></div>
 		</div>
 		<div class="x9">
 			<h5><{$detail.title}></h5>

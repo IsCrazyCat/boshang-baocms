@@ -2165,9 +2165,9 @@
              * ```
              */
             compress: {
-                width: 1600,
-                height: 1600,
-                quality: 90,
+                width: 2000,
+                height: 2000,
+                quality: 100,
                 allowMagnify: false,
                 crop: false,
                 preserveHeaders: true

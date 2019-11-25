@@ -1,6 +1,14 @@
+<include  file='public:header'/>
+<div class="mainBt">
+    <ul>
+     <li class="li1">设置</li>
+        <li class="li2">区域设置</li>
+        <li class="li2 li3">编辑区域</li>
+    </ul>
+</div>
 <div class="listBox clfx">
     <div class="menuManage">
-        <form  target="baocms_frm" action="<{:U('area/edit',array('area_id'=>$detail['area_id']))}>" method="post">
+        <form  target="x-frame" action="<{:U('area/edit',array('area_id'=>$detail['area_id']))}>" method="post">
             <div class="mainScAdd">
                 <div class="tableBox">
                     <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
@@ -21,10 +29,21 @@
                         </select>
                             </td>
                         </tr>
+                        
+                        <tr>
+                    <td class="lfTdBt">管理账户：</td>
+                    <td class="rgTdBt">
+                        <div class="lt">
+                            <input type="hidden" id="user_id" name="data[user_id]" value="<{$detail.user_id|default=''}>" class="manageInput" />
+                            <input class="scAddTextName sj" type="text" name="nickname" id="nickname"  value="<{$user.nickname}>" />
+                        </div>
+                        <a mini="select"  w="800" h="600" href="<{:U('user/select')}>" class="seleSj">选择账户</a>
+                    </td>
+                </tr> 
                         <tr>
                             <td class="lfTdBt">排序：</td>
                             <td class="rgTdBt"><input type="text" name="data[orderby]" value="<{$detail.orderby|default=''}>" class="manageInput" />
-                                <code>数字越小排序越高，需要全国城市，地区商圈数据库联系q 1-2-0  5-8-5   0-2 -2</code>
+                                <code>数字越小排序越高</code>
                             </td>
                         </tr>
                     </table>
@@ -34,3 +53,4 @@
         </form>
     </div>
 </div>
+<include  file='public:footer'/>  

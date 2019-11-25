@@ -44,7 +44,7 @@
 </script>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">其他</a> > <a href="">外卖设置</a> > <a>确认订单</a></li>
+        <li><a href="#">商城</a> > <a href="">商城订单</a> > <a>订单统计</a></li>
     </ul>
 </div>
 <div class="tuan_content">
@@ -72,13 +72,13 @@
         </php>
         <volist name="list" id="var">
             <tr id="load">
-                <td><{$i}></td>
+                <td><{$var.order_id}></td>
                 <td><{$var.type_order_id}></td>
                 <td><{$var.name}>&nbsp;|&nbsp;<{$var.mobile}>&nbsp;|&nbsp;<{$var.addr}></td>
                 <td><eq name="var.delivery_id" value="0">
                 		<span style="color:#FF0000;">该订单还未被接单!</span>
                 	<else/>
-                        <{$var.name}>&nbsp;|&nbsp;<{$var.mobile}>&nbsp;<span><img src="__TMPL__statics/images/refresh.gif" style="vertical-align:middle;display:none;cursor:pointer;" class="refresh" val="<{$var.delivery_id}>" /></span>
+                        <{$var.delivery.name}>&nbsp;|&nbsp;<{$var.delivery.mobile}>&nbsp;<span><img src="__TMPL__statics/images/refresh.gif" style="vertical-align:middle;display:none;cursor:pointer;" class="refresh" val="<{$var.delivery_id}>" /></span>
                     </eq>
                 </td>
                 <td>

@@ -3,10 +3,12 @@
     <li class="line padding">
         <div class="x12">
             <p class="text-small">编号：<{$item.order_id}>             
-              <eq name="item.type" value="0">（商城订单id：<{$item.type_order_id}>）
-              </eq>
-              <eq name="item.type" value="1">（外卖订单id：<{$item.type_order_id}>）
-              </eq><a class="icon icon-send radius-little " style=" color:#F00; padding:0px 5px;"> 距离<{$item.d}></a>
+              <eq name="item.type" value="0">（商城订单id：<{$item.type_order_id}>）</eq>
+              <eq name="item.type" value="1">（外卖订单id：<{$item.type_order_id}>）</eq>
+              <eq name="item.type" value="3">（菜市场订单id：<{$item.type_order_id}>）</eq>
+              <eq name="item.type" value="4">（便利店订单id：<{$item.type_order_id}>）</eq>
+              
+              <a class="icon icon-send radius-little " style=" color:#F00; padding:0px 5px;"> 距离<{$item.d}></a>
            </p>
     				  <!--PHP代码开始-->
                           <php>
@@ -32,6 +34,26 @@
                                     $v = $EleProduct->where('product_id ='.$val['product_id'])->getField('product_name');
                                     $new_list[$key]['t'] = $v;  
                                 }
+                            }elseif($item['type'] == 3){ //菜市场
+                                $lists = D('Marketorder')->where('order_id ='.$item['type_order_id'])->find();
+                                $t = 3;
+                                $products = D('Marketorderproduct');
+                                $new_list = $products->where('order_id ='.$lists['order_id'])->select();
+                                $product = D('Marketproduct');
+                                foreach($new_list as $key => $val){
+                                    $v = $product->where('product_id ='.$val['product_id'])->getField('product_name');
+                                    $new_list[$key]['t'] = $v;  
+                                }
+                            }elseif($item['type'] == 4){ //便利店
+                                $lists = D('Storeorder')->where('order_id ='.$item['type_order_id'])->find();
+                                $t = 4;
+                                $products = D('Storeorderproduct');
+                                $new_list = $products->where('order_id ='.$lists['order_id'])->select();
+                                $product = D('Storeproduct');
+                                foreach($new_list as $key => $val){
+                                    $v = $product->where('product_id ='.$val['product_id'])->getField('product_name');
+                                    $new_list[$key]['t'] = $v;  
+                                }
                             }
                         </php> 
                         <!--PHP代码结束-->                    
@@ -45,7 +67,7 @@
                 </tr>
                 <volist name="new_list" id="var">	
                 <tr>  
-                    <td><{:bao_msubstr($var['t'],0,18,false)}></td>
+                    <td><{:tu_msubstr($var['t'],0,18,false)}></td>
                     <td>￥<php>echo round(($var['total_price']/$var['num'])/100,2);</php></td>
                     <td> x<{$var.num}></td>
                 </tr> 
@@ -56,10 +78,13 @@
           
 		 <p class="text-small">下单时间：<{$item.create_time|date='Y-m-d H:i:s',###}> </p> 
          <p class="text-right padding-top">
+         <a class="button button-small bg-green">配送费：&yen;<{:round($item['logistics_price']/100,2)}>元</a>
          <a href="javascript:void(0);" rel="mini_delivery_ejected_<{$item.order_id}>" class="mini_delivery_btn button button-small bg-blue">配送地址</a> 
          <a href="<{:U('lists/detail',array('order_id'=>$item['order_id']))}>" class="button button-small bg-yellow">详情</a>
-         <eq name="t" value="0"><eq name="lists.is_daofu" value="1"><a href="javascript:void(0);" class="button button-small bg-yellow">货到付款</a></eq></eq>
-         <eq name="t" value="1"><eq name="lists.is_daofu" value="1"><a href="javascript:void(0);" class="button button-small bg-yellow">货到付款</a></eq></eq>
+         <eq name="t" value="0"><eq name="lists.is_daofu" value="1"><a href="javascript:void(0);" class="button button-small bg-yellow">货到付款应收<{:round($lists['need_pay']/100,2)}>元</a></eq></eq>
+         <eq name="t" value="1"><eq name="lists.is_daofu" value="1"><a href="javascript:void(0);" class="button button-small bg-yellow">货到付款应收<{:round($lists['need_pay']/100,2)}>元</a></eq></eq>
+         <eq name="t" value="3"><eq name="lists.is_daofu" value="1"><a href="javascript:void(0);" class="button button-small bg-yellow">货到付款应收<{:round($lists['need_pay']/100,2)}>元</a></eq></eq>
+         <eq name="t" value="4"><eq name="lists.is_daofu" value="1"><a href="javascript:void(0);" class="button button-small bg-yellow">货到付款应收<{:round($lists['need_pay']/100,2)}>元</a></eq></eq>
          <a href="javascript:void(0);" val="<{$item.order_id}>" class="button button-small bg-dot qiang_btn">抢单</a>
          </p>
         </div>
@@ -79,7 +104,7 @@
             <table class="table">
                 <div class="blank-10"></div>
                 <a class="text-small button-block">商家名称：<{$shops[$addr['shop_id']]['shop_name']}>-  <{$shops[$addr['shop_id']]['tel']}></a>
-                <a class="text-small button-block">商家地址：<{$shops[$addr['shop_id']]['addr']}> </a>
+                <a class="text-small button-block" href="<{:U('lists/gps',array('shop_id'=>$addr['shop_id']))}>"> 商家地址：<{$shops[$addr['shop_id']]['addr']}> <i class="iconfont icon-daohang text-blue text-default">导航到这去</i> </a>
                 <div class="blank-10 bg"></div>
                 <a class="text-small button-block">买家地址：<{$addr['addr']}> </a>
                 <a class="text-small button-block">买家姓名：<{$addr['name']}></a>

@@ -9,6 +9,7 @@
     "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 上传图片格式显示 */
     "imageCompressEnable": true, /* 是否压缩图片,默认是true */
     "imageCompressBorder": 680, /* 图片压缩最长边限制 */
+	"imageCompressSide" : 1,/*等比压缩的基准，0为按照最长边，1为按照宽度，2为按照高度 1.4.3官方版本无此参数，自行添加 */
     "imageInsertAlign": "none", /* 插入的图片浮动方式 */
     "imageUrlPrefix": "", /* 图片访问路径前缀 */
     "imagePathFormat": "/attachs/editor/{yyyy}/{mm}/{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */

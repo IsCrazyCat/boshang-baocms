@@ -1,6 +1,9 @@
 <include  file='public:header'/>  
 <include  file='public:top'/>
 <include  file='public:nav2'/>
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+</php>
 <style>
 .mask_box {z-index: 9;}
 .spxq_xqT li {margin-top: 7px;height: 50px;}
@@ -16,7 +19,7 @@
                     <img width="470" height="285" src="<{:config_img($detail['face_pic'])}>">
                 </div>
                 <div class="right spxq_qg_r hdxq_qg_r">
-                    <h3><{:bao_msubstr($detail['title'])}></h3>
+                    <h3><{:tu_msubstr($detail['title'])}></h3>
                     <p class="jfxq_pj"><span class="spxq_qgpstarBg"><span class="spxq_qgpstar spxq_qgpstar<{$shop.score}>"></span></span><{$shop.score_num}>人评价</p>
                     <div class="spxq_qgjgk"><p class="hdxq_p">积分价：<span class="jfxq_jfj" style="color:#ff0000;"><{$detail.integral}></span>
                             <span class="jfxq_scj">市场价：<del>￥<{:round($detail['price']/100,2)}></del></span></p></div>
@@ -122,8 +125,8 @@
 
 <div class="mask_box dhPop_mask" style="display:none;">
 <div class="dhPop">
-    <h2><span  class="bao_closed"></span>积分兑换</h2>
-    <form method="post" target="baocms_frm" action="<{:U('jifen/exchange',array('goods_id'=>$detail['goods_id']))}>">
+    <h2><span  class="tu_closed"></span>积分兑换</h2>
+    <form method="post" target="x-frame" action="<{:U('jifen/exchange',array('goods_id'=>$detail['goods_id']))}>">
         <table cellpadding="0" cellspacing="0" width="100%">
 
             <if condition="!empty($useraddr)">
@@ -182,11 +185,11 @@
                                 });
                             });
                         </script>
+                      
+
                         <select name="data[business_id]" id="business_id" class="dhInput">
                             <option value="0">请选择...</option>
-                            <foreach name="business" item="var">
-                                <option value="<{$var.business_id}>"><{$var.business_name}></option>
-                            </foreach>
+                          
                         </select>
                     </td>
                 </tr>
@@ -215,7 +218,7 @@
 </div>
 
 <script type="text/javascript" language="javascript">
-	$('.bao_closed').click(function(){
+	$('.tu_closed').click(function(){
 		$('.mask_box').hide();
 	})
 	

@@ -1,7 +1,7 @@
 <include file="public:header"/>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:u('community/detail',array('community_id'=>$detail['community_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:u('community/detail',array('community_id'=>$detail['community_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			附近微店
@@ -9,7 +9,10 @@
 		<div class="top-signed">
 		</div>
 	</header>
+
     
+
+
 
 <style>
 .shop-list{padding:0;list-style:none}
@@ -21,7 +24,6 @@
 
 </style>
 	<ul id="shop-list" class="shop-list"></ul>
-
 	<script>
 		$(document).ready(function () {
 			loaddata('<{$nextpage}>', $("#shop-list"), true);

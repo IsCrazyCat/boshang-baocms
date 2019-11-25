@@ -2,7 +2,7 @@
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>  
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('wuye/index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('wuye/index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			小区账单日志
@@ -29,7 +29,7 @@
 
 /*搜索框结束*/
 
-/*商户中心-套餐优惠-套餐管理-订单管理*/
+/*商户中心-抢购优惠-抢购管理-订单管理*/
 .sh_search_more_time .left{ width:49%;}
 .sh_search_more_time .right{ width:49%;}
 .sh_search_more_time .left input,.sh_search_more_time .right input, .manageSelect{ width:100%; border:1px solid #dedede;  border-radius:3px; background-color:#fff; text-indent:0.3rem; padding: 0.5rem;}
@@ -37,7 +37,7 @@
 .sh_search_more_int .center{ width:45%; position:relative; z-index:1;}
 .sh_search_more_int .right{ width:20%; text-align:right;}
 .sh_search_more_int .left input,.sh_search_more_int .center input{width:96%; border:1px solid #dedede; border-radius:3px; background-color:#fff;text-indent:0.3rem; padding: 0.5rem;}
-.sh_search_more_int .center input{ background:#fff url(../img/buy_int_ico.png) no-repeat 90% center; background-size:0.11rem 0.07rem;}
+.sh_search_more_int .center input{ background-size:0.11rem 0.07rem;}
 .sh_search_more_pull{ position:absolute; left:0;  width:96%; background-color:#fff; border:1px solid #dedede; border-top:none 0px;}
 .manageSelect option{ display:block; text-align:center; color:#666;padding: 0.8rem;}
 .sh_search_more_int .right .btn{ background-color:#2fbdaa;  border-radius:3px; color:#fff;  border:none 0px;padding: 0.55rem 0.95rem;}
@@ -104,12 +104,7 @@
  
       <dd class="zhong">
         <div class="x2">
-        
-            <?php if(strstr($users[$var['user_id']]['face'],"http")){ ?>
-            <img  style="width:90%;" src="<{$users[$var['user_id']]['face']|default='default.jpg'}>" />
-            <?php }else{ ?>
-            <img  style="width:90%;"  src="__ROOT__/attachs/<{$users[$var['user_id']]['face']|default='default.jpg'}>" />
-            <?php }?>
+            <img  style="width:90%;" src="<{:config_img($users[$var['user_id']]['face'])}>" />
          </div>
          <div class="10">
             <p class="text-gray">姓名：<{$users[$var['user_id']]['nickname']}>(<{$var.user_id}>)</p>

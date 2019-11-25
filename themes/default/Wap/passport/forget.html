@@ -1,7 +1,10 @@
 <include file="public:header"/>
+<style>
+.input {font-size: 16px;}
+</style>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{$backurl}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{$backurl}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			找回密码
@@ -12,21 +15,8 @@
 	</header>
 
 
-<div class="line tab-bar">
-	<div class="button-toolbar">
-		<div class="button-group">
-			<a class="block button <if condition='$way eq 2'>bg-dot active</if>" href="<{:U('passport/forget',array('way'=>2))}>">通过手机</a>
-			<a class="block button <if condition='$way eq 1'>bg-dot active</if>" href="<{:U('passport/forget',array('way'=>1))}>">通过邮箱</a>
-		</div>
-	</div>
-</div>
 <form action="<{:U('passport/newpwd')}>" method="post" target="x-frame">
-	<if condition="$way eq 2">
-	<div class="line padding border-bottom">
-		<span class="x3 text-gray">用户名</span>
-		<span class="x8"><input type="text" name="account" id="account" class="text-input" placeholder="请输入用户名"></span>
-	</div>
-    
+	
 	<div class="line padding border-bottom">
 		<span class="x3 text-gray">输入手机</span>
 		<span class="x5"><input type="text" name="mobile" id="mobile" class="text-input" placeholder="请输入11位手机号"></span>
@@ -44,30 +34,8 @@
 		<div class="blank-30"></div>
 		<p><span class="text-dot">小提示：</span>  请输入您认证过的手机号码，点击“<strong>获取新密码</strong>”按钮后系统会将新密码发送到您的认证手机上。</p>
 	</div>
-    
-    
-    <elseif condition="$way eq 1"/> 
-    
-    
-    
-    <div class="line padding border-bottom">
-		<span class="x3 text-gray">邮箱</span>
-		<span class="x8"><input type="text" name="email" id="email" class="text-input" placeholder="请输入邮箱"></span>
-	</div>
-    <div class="line padding border-bottom">
-		<span class="x3 text-gray">用户名</span>
-		<span class="x8"><input type="text" name="account" id="account" class="text-input" placeholder="请输入用户名"></span>
-	</div>
-    
-    <div class="line padding border-bottom">
-		<span class="x3 text-gray">验证码</span>
-		<span class="x5"><input type="text" name="yzm" id="yzm" class="text-input" placeholder="验证码"></span>
-		<span class="x4"><a href="javascript:void(0);" class="baott_yzm_getA" rel="bao_yzm_code"><img style="height:36px;" id="bao_yzm_code"  src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" /> </a></span>
-	</div>
-    </if>
 	<div class="container">
 		<div class="blank-30"></div>
-        <input type="hidden" name="way" id="way" value="<{$way}>" />
 		<button class="button button-big button-block bg-dot">获取新密码</button>
 		<div class="blank-30"></div>
 	</div>
@@ -113,7 +81,7 @@
 	//获取验证码图片的
 	 $(document).ready(function (e) {
             $(document).on('click', '.yzm_code', function () {
-                $("#" + $(this).attr('rel')).attr('src', BAO_ROOT + '/index.php?g=app&m=verify&a=index&mt=' + Math.random());
+                $("#" + $(this).attr('rel')).attr('src', TU_ROOT + '/index.php?g=app&m=verify&a=index&mt=' + Math.random());
             });
         });
 

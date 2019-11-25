@@ -10,7 +10,7 @@
 <div class="mainScAdd ">
 
     <div class="tableBox">
-        <form target="baocms_frm" action="<{:U('communitynews/edit',array('news_id'=>$detail['news_id']))}>" method="post">
+        <form target="x-frame" action="<{:U('communitynews/edit',array('news_id'=>$detail['news_id']))}>" method="post">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                 <tr>
                     <td class="lfTdBt">标题：</td>
@@ -23,16 +23,15 @@
             
                
               
-                
-                <tr>
-                    <td class="lfTdBt">小区：</td>
+                 <tr>
+                    <td class="lfTdBt">选择小区：</td>
                     <td class="rgTdBt">
                         <div class="lt">
                             <input type="hidden" id="community_id" name="data[community_id]" value="<{$detail.community_id|default=''}>" class="manageInput" />
-                            <input type="text" name="community" id="community"  value="<{$community.name}>" />
+                            <input type="text" name="community" id="community" class="scAddTextName w210"  value="<{$community.name|default=''}>" />
                         </div>
                         <a mini="select"  w="800" h="600" href="<{:U('community/select')}>" class="remberBtn">选择小区</a>
-                        <code>一定要选择哦</code>
+                        <code>小区必须选择</code>
                     </td>
                 </tr> 
               

@@ -1,5 +1,5 @@
-﻿var baolock = 1;
-var baonum = 1;
+﻿var tulock = 1;
+var tunum = 1;
 var myScroll = null;
 
 

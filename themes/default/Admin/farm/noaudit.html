@@ -7,7 +7,7 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span></p>
+    <p class="attention"><span>注意：</span>农家乐的功能暂时比较简单，后期深度优化农家乐，不过需要二开可以联系qq：286099981</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
@@ -99,7 +99,7 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -121,7 +121,7 @@
                         <td><{$var.tel}></td>
                         <td><{$var.addr}></td>
                         <td><{$var.price}></td>
-                        <td><img src="_<{:config_img($var['photo'])}>" class="w80" /></td>
+                        <td><img src="<{:config_img($var['photo'])}>" class="w80" /></td>
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                     <td>
                     <{:BA('farm/edit',array("farm_id"=>$var["farm_id"]),'编辑','','remberBtn')}>

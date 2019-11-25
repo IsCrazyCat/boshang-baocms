@@ -3,7 +3,7 @@
 ul { padding-left: 0px}</style>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('member/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			云购记录
@@ -27,7 +27,7 @@ ul { padding-left: 0px}</style>
     <div class="blank-10 bg"></div>
     <foreach name="list" item="item">
     <li class="line ">
-        <dt><a class="x4">云购编号：<{$item.goods_id}></a><a class="x8 text-right" href="<{:u('wap/shop/detail',array('shop_id'=>$shops[$item['shop_id']]['shop_id']))}>">   <{$shops[$item['shop_id']]['shop_name']}> <span class=" icon-angle-right"></span> </a></dt>
+        <dt><a class="x4">云购编号：<{$item.goods_id}></a><a class="x8 text-right" href="<{:u('wap/shop/detail',array('shop_id'=>$shops[$item['shop_id']]['shop_id']))}>">   <{$shops[$item['shop_id']]['shop_name']}> <span class=" iconfont icon-angle-right"></span> </a></dt>
         
       <dd class="zhong">
             <div class="x4">
@@ -100,7 +100,7 @@ ul { padding-left: 0px}</style>
 </foreach>
 <script>
     $(document).ready(function () {
-        /*一元套餐查看所有号码*/
+        /*一元抢购查看所有号码*/
         $(".mine_yiyuan_btn").click(function () {
             $("."+$(this).attr('rel')).show();
         });
@@ -110,7 +110,7 @@ ul { padding-left: 0px}</style>
         $(".mine_yiyuan_allnum_mask").find(".btn").click(function () {
             $("."+$(this).attr('rel')).hide();
         });
-        /*一元套餐查看所有号码*/
+        /*一元抢购查看所有号码*/
 
     });
 </script>

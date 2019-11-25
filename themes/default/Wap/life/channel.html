@@ -1,28 +1,61 @@
 <include file="public:header"/>
+
+
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $ar = D('Area')->find($area);
+</php>
+
+
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('life/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('life/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
-       <span id="str_b_node"><{$channel[$channel_id]}>信息</span>
+       <span id="str_b_node"><{$channel[$channel_id]|default="同城信息首页"}></span>
 	</div>
 	<div class="top-search" style="display:none;">
 		<form method="post" action="<{:U('life/search')}>">
 			<input name="keyword" placeholder="输入信息的关键字"  />
-			<button type="submit" class="icon-search"></button> 
+			<button type="submit" class="iconfont icon-search"></button> 
 		</form>
 	</div>
 	<div class="top-signed">
-		<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
+		<a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
 	</div>
 </header>
 
 <div id="filter2" class="filter2">
     <ul class="tab clearfix">
+      
+      
+      <if condition="!empty($channel)">
+          <li class="item">
+            <a href="javascript:void(0);">
+            
+            
+            <if condition="!empty($cat)">
+                <foreach name="cates" item="item">
+                    <eq name="item.channel_id" value="$channel_id">
+                        <if condition="$cat eq $item['cate_id']">
+                            <span id="str_b_node" style="color:#f60;"><{:tu_msubstr($item['cate_name'],0,3,false)}></span>
+                        </if>
+                    </eq>
+                </foreach>
+            <else/>
+            	<span id="str_b_node" style="color:#f60;"><{:getChannelName($channel_id)}></span>
+            </if>
+            
+            <em></em>
+            </a>
+          </li>
+      </if>
+      
+      
       <li class="item">
         <a href="javascript:void(0);">
         <if condition="!empty($area)">
-        	<span id="str_b_node" style="color:#f60;"><{$areass[$area]['area_name']}></span>
+        	<span id="str_b_node" style="color:#f60;"><{$ar['area_name']}></span>
         <else/>
             <if condition="!empty($cat)">
         		<span id="str_b_node">地区</span>
@@ -34,24 +67,8 @@
         </a>
       </li>
       
-      <if condition="!empty($channel)">
-          <li class="item">
-            <a href="javascript:void(0);">
-            <if condition="!empty($cat)">
-                <foreach name="cates" item="item">
-                    <eq name="item.channel_id" value="$channel_id">
-                        <if condition="$cat eq $item['cate_id']">
-                            <span id="str_b_node" style="color:#f60;"><{:bao_msubstr($item['cate_name'],0,3,false)}></span>
-                        </if>
-                    </eq>
-                </foreach>
-            <else/>
-            <span id="str_b_node">选择分类</span>
-            </if>
-            <em></em>
-            </a>
-          </li>
-      </if>
+      
+      
       
       <if condition="empty($cat)">
         <li class="item">
@@ -75,7 +92,7 @@
           <li class="item">
             <a href="javascript:void(0);"> 
                 <if condition="!empty($s1)">
-                	<span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select1'][$s1]['attr_name'],0,3,false)}></span>
+                	<span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select1'][$s1]['attr_name'],0,3,false)}></span>
                 <else/>
                 	<span id="str_b_node"><{$cate['select1']}></span>
                 </if><em></em>
@@ -87,7 +104,7 @@
           <li class="item">
                 <a href="javascript:void(0);"> 
                 <if condition="!empty($s2)">
-                	<span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select2'][$s2]['attr_name'],0,3,false)}></span>
+                	<span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select2'][$s2]['attr_name'],0,3,false)}></span>
                 <else/>
                 	<span id="str_b_node"><{$cate['select2']}></span>
                 </if><em></em>
@@ -99,7 +116,7 @@
           <li class="item">
             <a href="javascript:void(0);"> 
                 <if condition="!empty($s3)">
-                	<span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select3'][$s3]['attr_name'],0,3,false)}></span>
+                	<span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select3'][$s3]['attr_name'],0,3,false)}></span>
                 <else/>
                 	<span id="str_b_node"><{$cate['select3']}></span>
                 </if><em></em>
@@ -111,7 +128,7 @@
           <li class="item">
             <a href="javascript:void(0);">
                 <if condition="!empty($s4)">
-                	<span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select4'][$s4]['attr_name'],0,3,false)}></span>
+                	<span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select4'][$s4]['attr_name'],0,3,false)}></span>
                 <else/>
                 	<span id="str_b_node"><{$cate['select4']}></span>
                 </if><em></em>
@@ -123,7 +140,7 @@
           <li class="item">
             <a href="javascript:void(0);"> 
                 <if condition="!empty($s5)">
-                    <span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select5'][$s5]['attr_name'],0,3,false)}></span>
+                    <span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select5'][$s5]['attr_name'],0,3,false)}></span>
                 <else/>
                  <span id="str_b_node"><{$cate['select5']}></span>
                 </if><em></em>
@@ -132,6 +149,32 @@
       </if>
     </ul>
    
+    
+    
+    <if condition="!empty($channel)">
+     <div class="inner" style=" display:none">
+        <ul>
+       <li class="on"><a <if condition="empty($cat)">style="color:red;"</if>  href="<{:LinkTo('life/channel',$linkArr,array('cat'=>0))}>">全部分类</a></li>
+       
+       
+			<if condition="$cat || $channel_id">
+                <foreach name="cates" item="item">
+                   <eq name="item.channel_id" value="$channel_id">
+                      <li><a <eq name="cat" value="$item.cate_id"> style="color:red;"</eq> href="<{:LinkTo('life/channel',$linkArr,array('cat'=>$item['cate_id']))}>"><{$item.cate_name}></a></li>
+                   </eq>
+                </foreach>
+            <else/>
+                 <foreach name="channel" item="item">
+                    <li><a <eq name="channel_id" value="$key"> style="color:red;"</eq> href="<{:LinkTo('life/channel',$linkArr,array('channel'=>$key))}>"><{$item}></a></li>
+                </foreach>
+            </if>
+            
+            
+        </ul>
+    </div>
+    </if>
+    
+    
     <div class="inner" style=" display:none">
         <ul>
        <li><a href="<{:LinkTo('life/channel',$linkArr,array('area'=>0))}>">全部地区</a></li>
@@ -142,19 +185,6 @@
 			</volist>
         </ul>
     </div>
-    
-    <if condition="!empty($channel)">
-     <div class="inner" style=" display:none">
-        <ul>
-       <li class="on"><a <if condition="empty($cat)">style="color:red;"</if>  href="<{:LinkTo('life/channel',$linkArr,array('cat'=>0))}>">全部分类</a></li>
-			<foreach name="cates" item="item">
-               <eq name="item.channel_id" value="$channel_id">
-				<li><a <eq name="cat" value="$item.cate_id"> style="color:red;"</eq> href="<{:LinkTo('life/channel',$linkArr,array('cat'=>$item['cate_id']))}>"><{$item.cate_name}></a></li>
-			 </eq>
-            </foreach>
-        </ul>
-    </div>
-    </if>
     
     <if condition="empty($cat)">
         <div class="inner" style="display:none;">
@@ -239,11 +269,11 @@
     
    
    
-<div class="life-list" id="life-list"></div>
+<div class="tie-list" id="tie-list"></div>
 <script>
 	$(document).ready(function () {
 		showFilter({ibox:'filter2',content1:'parent_container',content2:'inner_container',fullbg:'fullbg'});
-		loaddata('<{$nextpage}>', $("#life-list"), true);
+		loaddata('<{$nextpage}>', $("#tie-list"), true);
 		$("#search-btn").click(function(){
 			if($(".top-search").css("display")=='block'){
 				$(".top-search").hide();
@@ -255,12 +285,18 @@
 			}
 		});
 	});
+	function popUpPic(id){
+		layer.photos({
+			photos: '#layer-photos-demo-'+id,
+			shift: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+		}); 
+	}
 </script>
 
  
 <div class="mall-cart">
-		<a href="<{:u('wap/life/release')}>">
-		<div class="round radius-circle"><div class="badge-corner"><i class="icon-pencil-square-o"></i></div></div>
+		<a href="<{:U('life/fabu',array('channel_id'=>$channel_id,'cate_id'=>$cat))}>">
+		<div class="round radius-circle"><div class="badge-corner"><i class="iconfont icon-fabu"></i></div></div>
 		</a>
 	</div>
 <include file="public:footer"/>

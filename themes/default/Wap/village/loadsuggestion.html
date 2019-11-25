@@ -1,7 +1,7 @@
 <foreach name="list" item="item">
 	<li class="padding border-bottom">
 		<li class="padding border-bottom">
-                           <{:bao_Msubstr($item['title'],0,14,false)}><if condition="$item.person neq ''">--意见人：<{$item.person}></if><span><{$item.addtime|date='Y-m-d',###}></span>
+                           <{:tu_msubstr($item['title'],0,14,false)}><if condition="$item.person neq ''">--意见人：<{$item.person}></if><span><{$item.addtime|date='Y-m-d',###}></span>
 			</li>
                         <li class="padding border-bottom" style="color:red;margin-left: 20px">
                           意见内容:<{$item['context']}>

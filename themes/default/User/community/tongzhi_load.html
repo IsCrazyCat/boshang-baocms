@@ -5,7 +5,7 @@
 			<p>
 				<a class="title" href="<{:u('user/community/newsdetail',array('news_id'=>$var['news_id']))}>">
 				
-					<{:bao_Msubstr($var['title'],0,30,true )}>
+					<{:tu_msubstr($var['title'],0,30,true )}>
 				</a>
 			</p>
 			<p class="text-gray">所属小区：<{$communitys[$var['community_id']]['name']}></p>

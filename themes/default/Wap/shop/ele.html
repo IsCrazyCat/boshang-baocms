@@ -8,7 +8,7 @@
 
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id'],'type'=>1))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id'],'type'=>1))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<{$detail.shop_name}>
@@ -88,7 +88,7 @@ body{background: #f8f8f8;}
         <ul>
             <li class="active" rel="all" style="border-top:0.1rem solid #dedede;"><a href="javascript:void(0);">全部分类</a></li>
             <foreach name="cates" item="item">
-                <li rel="cate_<{$item.cate_id}>"><a href="javascript:void(0);"><{:bao_msubstr($item['cate_name'],0,4,false)}></a></li>
+                <li rel="cate_<{$item.cate_id}>"><a href="javascript:void(0);"><{:tu_msubstr($item['cate_name'],0,4,false)}></a></li>
             </foreach>
         </ul>
     </div>
@@ -103,8 +103,8 @@ body{background: #f8f8f8;}
                                 <img  url="<{:config_img($var['photo'])}>" src="<{:config_img($var['photo'])}>">
                             </div>
                             <div class="list-content">
-                                <p class="overflow_clear"><h5><{:bao_msubstr($var['product_name'],0,10,false)}></h5></p>
-                                <h1 style="display:none" class="salenum"><{:bao_msubstr($var['desc'],0,56,false)}>...</h1>
+                                <p class="overflow_clear"><h5><{:tu_msubstr($var['product_name'],0,10,false)}></h5></p>
+                                <h1 style="display:none" class="salenum"><{:tu_msubstr($var['desc'],0,56,false)}>...</h1>
                                 <p class="price fontcl2">
                                     <span class="unit_price">&yen;<{:round($var['price']/100,2)}></span><em>元</em>
                                     <span class="fontc3">月售：<{$var.sold_num}>份</span>

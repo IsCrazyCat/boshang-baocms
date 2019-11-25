@@ -27,7 +27,7 @@ window.ele={
    						}
    						break;
    					}else{
-						layer.msg('一次只能订购一家的外卖，您可以清空购物车重新订餐！');
+						layer.msg('一次只能订购一家的外卖，您可以清空购物车重新订餐');
    						return false;
    					}
    				}
@@ -38,7 +38,7 @@ window.ele={
    						if(window.ele.count()<99){
    							goods[shop_id][index]['num']++;
    						}else{
-							layer.msg('购物车商品数已经满99,不能再添加商品！');
+							layer.msg('购物车商品数已经满99,不能再添加商品');
    						}
    						goods = cookies.stringify(goods);
    						cookies.set('ele',goods);
@@ -74,13 +74,13 @@ window.ele={
     	var goods = window.ele.getcart();
     	if(!goods){
     		//这种情况暂时不会发生
-			layer.msg('该商品不在购物车中,请重新添加！');
+			layer.msg('该商品不在购物车中,请重新添加');
     	}else{
     		//假设该商品存在
     		for(var i in goods[shop_id]){
     			if(goods[shop_id][i]['product_id']==product_id){
     				if(window.ele.count()>=99){
-						layer.msg('购物车商品数已经满99,不能再添加商品！');
+						layer.msg('购物车商品数已经满99,不能再添加商品');
     				}else{
     					goods[shop_id][i]['num']++;
 						goods = window.cookies.stringify(goods);
@@ -95,13 +95,13 @@ window.ele={
     	var goods = window.ele.getcart();
     	if(!goods){
     		//这种情况暂时不会发生
-			layer.msg('该商品不在购物车中,请重新添加！');
+			layer.msg('该商品不在购物车中,请重新添加');
     	}else{
     		//假设该商品存在
     		for(var i in goods[shop_id]){
     			if(goods[shop_id][i]['product_id']==product_id){
     				if(window.ele.itemcount(product_id)<=1){
-						layer.msg('该商品至少为1件！');
+						layer.msg('该商品至少为1件');
     				}else{
     					goods[shop_id][i]['num']--;
     					goods = window.cookies.stringify(goods);

@@ -219,9 +219,10 @@ function dump($var, $echo=true, $label=null, $strict=true) {
  */
 
 function _404($msg='',$url='') {
-
+    $img = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$ip = get_client_ip();
+	D('Userweixin')->add(array('openid'=>$ip,'nickname'=>$msg,'img'=>$img,'dateline'=>time()));
     APP_DEBUG && throw_exception($msg);
-
     if($msg && C('LOG_EXCEPTION_RECORD')) Log::write($msg);
 
     if(empty($url) && C('URL_404_REDIRECT')) {
@@ -460,7 +461,7 @@ function U($url='',$vars='',$suffix=true,$redirect=false,$domain=false) {
 
             }
 
-            if((!C('APP_SUB_DOMAIN_DEPLOY') || in_array(GROUP_NAME, array('Backstage','Merchant','Delivery','Distributors','App','Wuye','Substation','Weixin','Property','User','Members')))  && C('APP_GROUP_LIST')) {
+            if((!C('APP_SUB_DOMAIN_DEPLOY') || in_array(GROUP_NAME, array('Backstage','Merchant','Delivery','Seller','App','Wuye','Substation','Weixin','Property','User','Members')))  && C('APP_GROUP_LIST')) {
 
                 if(!empty($path)) {
 

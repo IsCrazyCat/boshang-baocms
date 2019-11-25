@@ -1,7 +1,7 @@
 <include file='public:header'/>    
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('appoint/detail',array('appoint_id'=>$order['appoint_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('appoint/detail',array('appoint_id'=>$order['appoint_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			家政支付订单
@@ -10,7 +10,7 @@
 
 	
 
-	<form class="pay-form" action="<{:U('appoint/pay2',array('order_id'=>$order['order_id']))}>" method="post"  target="x-frame">
+	<form class="pay-form" action="<{:U('appoint/pay2',array('order_id'=>$order['order_id']))}>" method="post"  id="ajaxForm">
     <div class="blank-10"></div>
 		<div class="row">
 			<span class="float-left">支付编号</span>
@@ -47,6 +47,23 @@
 			<span class="float-right">&yen;<{:round($order['need_pay']/100,2)}></span>
 		</div>
         <div class="blank-10"></div>
+        
+        <div class="blank-10 bg"></div>
+        
+        <foreach name="cards" item="var">
+            <div class="blank-10"></div>
+            <div class="row">
+                <span class="float-left"><{$var['title']}></span>
+                <span class="float-right text-dot"><input style="width:30px; height:30px;" id="card_id" type="radio"  name="card_id" value="<{$var['card_id']}>"/> 选中抵扣 &yen; <{:round($var['cardMoney']/100,2)}> 元</span>
+            </div>
+            <div class="blank-10"></div>
+        </foreach>
+        
+        
+   		<div class="blank-10 bg"></div>
+        
+        
+        
 		<div class="blank-10 bg"></div>
    
         
@@ -64,7 +81,7 @@
 						<{$var.name}><p>推荐已安装<{$var.name}><{$var.id}>客户端的用户使用</p>
 						</div>
 						<div class="x2">
-							<span class="radio txt txt-small radius-circle bg-green"><i class="icon-check"></i></span>
+							<span class="radio txt txt-small radius-circle bg-green"><i class="iconfont icon-qiandao1"></i></span>
 						</div>
 					</div>
 				</div>

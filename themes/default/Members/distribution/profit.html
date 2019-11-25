@@ -13,24 +13,17 @@
                 <th>订单类型</th>
                 <th>订单ID</th>
                 <th>分成金额</th>
+                <th>分成说明</th>
                 <th>分成时间</th>
             </tr>
             <foreach name="list" item="item">
                 <tr class="tgdd_nrC">
-                    <td class="tgdd_nrCtd">
-                    
-                    <if condition="$item['order_type'] eq 0">
-                    团购
-                    <elseif condition="$item['order_type'] eq 1"/>
-                    商城
-                    <elseif condition="$item['order_type'] eq 2"/>
-                    优惠买单
-                    </if>
-                    </td>
+                    <td class="tgdd_nrCtd"><{$item.type_name}></td>
                     <td class="tgdd_nrCtd"><{$item['order_id']}></td>
                     <td style="text-align:center;" width="220"><div class="tgdd_tw bullionLog_ye">
                             <div class="lef"><a class="myChange_sp" href="javascript:void(0);"><{:round($item['money']/100, 2)}></a></div>
                         </div></td>
+                    <td class="tgdd_nrCtd"><{$item['info']}></td>
                     <td class="tgdd_nrCtd bullionLog_td"><{$item.create_time|date='Y-m-d H:i:s',###}></td>
                 </tr>
             </foreach>

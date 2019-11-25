@@ -25,10 +25,15 @@
             <td>菜名</td>
             <td>分类</td>
             <td>缩略图</td>
-            <td>价格</td>
+            <td>原价</td>
+            <td>卖价</td>
+            <if condition="$CONFIG['ele']['tableware_price_max']">
+            <td>餐具费</td>
+            </if> 
             <td>是否新品</td>
             <td>是否热门</td>
             <td>是否推荐</td>
+            <td>状态</td>
             <td>操作</td>
         </tr>
         <foreach name="list" item="var">
@@ -36,7 +41,11 @@
                 <td><{$var.product_name}></td>
                 <td><{$cates[$var['cate_id']]['cate_name']}></td>
                 <td><img src="<{:config_img($var['photo'])}>" width="60" height="60" class="w80" style="margin: 10px auto;" /></td>
-                <td><{:round($var['price']/100,2)}></td>
+                <td>&yen;<{:round($var['cost_price']/100,2)}>元</td>
+                <td>&yen;<{:round($var['price']/100,2)}>元</td>
+                <if condition="$CONFIG['ele']['tableware_price_max']">
+                <td style="color:#F00">&yen;<{:round($var['tableware_price']/100,2)}>元</td>
+                </if> 
                 <td><eq name="var.is_new" value="1">新品<else/>无</eq></td>
             <td>
             <eq name="var.is_hot" value="1">热门<else/>无</eq>
@@ -45,7 +54,15 @@
             <eq name="var.is_tuijian" value="1">推荐<else/>无</eq>
             </td>
             <td>
+            <eq name="var.audit" value="1">已审核<else/>未审核</eq>
+            </td>
+            <td>
                 <a href="<{:U('eleproduct/edit',array('product_id'=>$var['product_id']))}>">编辑</a>
+                <eq name="var.closed" value="0"> 
+                   <a mini='confirm' href="<{:U('eleproduct/update',array('product_id'=>$var['product_id']))}>">下架</a>
+                <else/>
+                    <a mini='confirm' href="<{:U('eleproduct/update',array('product_id'=>$var['product_id']))}>">上架</a>
+                </eq>
                 <a mini='confirm' href="<{:U('eleproduct/delete',array('product_id'=>$var['product_id']))}>">删除</a>
             </td>
             </tr>

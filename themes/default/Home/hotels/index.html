@@ -6,6 +6,10 @@
 </style>
 <script type="text/javascript" src="__TMPL__statics/js/dateRange.js"></script>
 <link rel="stylesheet" type="text/css" href="__TMPL__statics/css/dateRange.css"/>
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+</php>
 <!--主体内容-->
 <div class="pagewd">
 	<!--搜索-->
@@ -264,7 +268,7 @@
     </div>
     <!--酒店列表结束-->
 </div>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
+<script type="text/javascript" src="<{$CONFIG['config']['baidu_map_api']}>"></script>
     <div class="map_fixed">
         <div class="map_fixed_tit">
                 <span>查看地图</span>

@@ -7,6 +7,14 @@
         <li class="li2 li3">通知列表</li>
     </ul>
 </div>
+<style>
+.seleK label {margin-right:0px;}
+.main-sc .jsglNr .selectNr .right span{ padding-right:0px;}
+.w150 {width:120px !important;}
+.seleK .sumit {padding-right:10px;}
+.inptText, .seleK .text {width:120px;}
+.tips{color: #fff; background: #1ca290; border-radius:2px; font-size:12px; padding:0 5px;}
+</style>
 <div class="main-jsgl main-sc">
     <p class="attention"><span>注意：</span>物业管理员增加的通知需要在这里审核！否则不显示。</p>
     <div class="jsglNr">
@@ -17,14 +25,21 @@
             <div class="right">
                 <form method="post" action="<{:U('communitynews/index')}>">
                     <div class="seleHidden" id="seleHidden">
-                       
-                      
-                        <span>  关键字：</span>   <input type="text" name="keyword" value="<{$keyword|default=''}>" class="inptText" /><input type="submit" class="inptButton" value="  搜索" />
+                       <div class="seleK"> 
+                      <label>
+                            <span>选择小区</span>
+                            <input type="hidden" id="community_id" name="community_id" value="<{$community_id|default=''}>"/>
+                            <input type="text"   id="name" name="name" value="<{$name}>" class="text w150" />
+                            <a style="margin-right: 5px;"  href="<{:U('community/select')}>" mini='select' w='800' h='600' class="sumit">选择小区</a>
+                        </label>
+                        <span>  关键字：</span>   <input type="text" name="keyword" value="<{$keyword|default=''}>" class="inptText" />
+                        <input type="submit" class="inptButton" value="  搜索" />
+                    </div>
                     </div>
                 </form>
             </div>
         </div>
-        <form  target="baocms_frm" method="post">
+        <form  target="x-frame" method="post">
             <div class="tableBox">
                 <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                     <tr>
@@ -39,14 +54,10 @@
                         
                         <td>操作</td>
                     </tr>
-					
                     <foreach name="list" item="var">
                     <php>
-                    $community_id = $var['community_id'];
-                    $communitys = D('Community')->find($community_id);
-					$user_id = $communitys['user_id'];
-                    $user = D('Users')->find($user_id);
-      
+                        $Community = D('Community')->where(array('community_id' => $var['community_id']))->find();
+                        $user = D('Users')->find($Community['user_id']);
                     </php>
 					
                         <tr>
@@ -56,17 +67,13 @@
                             <td> <{$var.title}></td>
                            
                             <td><{$user['nickname']}>(<{$user['user_id']}>)</td>
-                            <td><a class="tips" rel="<{$var.intro}>" style="color: #fff; background: #1ca290; padding: 0px 5px; border-radius:0px; margin-left: 10px; display: inline-block;  height: 20px; line-height: 20px;" href="javascript:void(0)">查看内容</a></td>
-                            <td><a class="tips" rel="<{$var.details}>" style="color: #fff; background: #1ca290; padding: 0px 5px; border-radius:0px; margin-left: 10px; display: inline-block; height: 20px; line-height: 20px;" href="javascript:void(0)">查看回复</a></td>
+                            <td><a class="tips" rel="<{$var.intro}>"  href="javascript:void(0)">查看内容</a></td>
+                            <td><a class="tips" rel="<{$var.details}>"  href="javascript:void(0)">查看回复</a></td>
                             <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
-                            
-                           
                         <td>
                            <eq name="var.audit" value="0"> <{:BA('communitynews/audit',array("news_id"=>$var["news_id"]),'审核','act','remberBtn')}> </eq>
                             <{:BA('communitynews/edit',array("news_id"=>$var["news_id"]),'编辑','','remberBtn')}>
                             <{:BA('communitynews/delete',array("news_id"=>$var["news_id"]),'删除','act','remberBtn')}>
-                           
-
                         </td>
                         </tr>
                     </foreach>
@@ -83,7 +90,6 @@
     </div>
       <script>
        $(document).ready(function (e) {
-    
 			$(".tips").click(function () {
 				var tipnr = $(this).attr('rel');
 				layer.tips(tipnr, $(this), {

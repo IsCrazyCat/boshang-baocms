@@ -40,10 +40,10 @@
                     <p class="permission_right">可上传商品数量： <{$detail['is_mall_num']}></p> 
                 </td>
                 <td class="border-right_1px">
-                    <p class="permission_left">套餐权限：
+                    <p class="permission_left">抢购权限：
                     	<if condition="!empty($detail['is_tuan'])"><a class="red">有</a><else/>无</if>
                     </p>  
-                    <p class="permission_right">可上传套餐数量： <{$detail['is_tuan_num']}></p>
+                    <p class="permission_right">可上传抢购数量： <{$detail['is_tuan_num']}></p> 
                 </td>
             </tr>
             <tr>
@@ -117,11 +117,78 @@
                 </td>
             </tr>
              <tr>
+             
+             	<td class="border-right_1px">
+                    <p class="permission_left">菜市场权限：
+                    	<if condition="!empty($detail['is_market'])"><a class="red">有</a><else/>无</if>
+                    </p>  
+                    <p class="permission_right">可上传菜市场商品数量： <{$detail['is_market_num']}></p> 
+                </td>
+                
                 <td class="border-right_1px">
+                    <p class="permission_left">便利店权限：
+                    	<if condition="!empty($detail['is_store'])"><a class="red">有</a><else/>无</if>
+                    </p>  
+                    <p class="permission_right">可上传便利店商品数量： <{$detail['is_store_num']}></p> 
+                </td>
+               
+                <td class="border-right_1px"></td>
+            </tr>
+            
+            <tr>
+            
+            	<td class="border-right_1px">
                     <p class="permission_left">云购权限：
                     	<if condition="!empty($detail['is_cloud'])"><a class="red">有</a><else/>无</if>
                     </p>  
                     <p class="permission_right">可上传云购数量： <{$detail['is_cloud_num']}></p> 
+                </td>
+                
+                <td class="border-right_1px">
+                    <p class="permission_left">商家预约权限：
+                    	<if condition="!empty($detail['is_book'])"><a class="red">有</a><else/>无</if>
+                    </p>  
+                    <p class="permission_right">可上传预约数量【无效值】： <{$detail['is_book_num']}></p> 
+                </td>
+                <td class="border-right_1px"></td>
+            </tr>
+            
+            <tr>
+                <td class="border-right_1px">
+                    <p class="permission_left">股权权限：
+                    	<if condition="!empty($detail['is_stock'])"><a class="red">有</a><else/>无</if>
+                    </p>  
+                    <p class="permission_right">可上传股权数量【无效值】： <{$detail['is_stock_num']}></p> 
+                </td>
+                <td class="border-right_1px"></td>
+            </tr>
+            
+            <tr>
+                <td class="border-right_1px">
+                    <p class="permission_left">教育权限：
+                    	<if condition="!empty($detail['is_edu'])"><a class="red">有</a><else/>无</if>
+                    </p>  
+                    <p class="permission_right">可上传课程数量： <{$detail['is_edu_num']}></p> 
+                </td>
+                <td class="border-right_1px"></td>
+            </tr>
+            
+            <tr>
+                <td class="border-right_1px">
+                    <p class="permission_left">五折卡权限：
+                    	<if condition="!empty($detail['is_zhe'])"><a class="red">有</a><else/>无</if>
+                    </p>  
+                    <p class="permission_right">可上传五折卡数量【无效值】： <{$detail['is_zhe_num']}></p> 
+                </td>
+                <td class="border-right_1px"></td>
+            </tr>
+            
+            <tr>
+                <td class="border-right_1px">
+                    <p class="permission_left">ktv权限：
+                    	<if condition="!empty($detail['is_ktv'])"><a class="red">有</a><else/>无</if>
+                    </p>  
+                    <p class="permission_right">可上传ktv数量【无效值】： <{$detail['is_ktv_num']}></p> 
                 </td>
                 <td class="border-right_1px"></td>
             </tr>

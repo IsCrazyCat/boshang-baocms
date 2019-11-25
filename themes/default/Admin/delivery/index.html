@@ -33,17 +33,24 @@
 
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
                     <td class="w50"><input type="checkbox" class="checkAll" rel="user_id" /></td>
                     <td class="w50">ID</td>
                     <td>登录帐号</td>
+                    <td>会员ID</td>
+                    <td>会员昵称</td>
                     <td>姓名</td>
                     <td>手机</td>
                     <td>地址</td>
                     <td>身份证</td>
+                    <td>短信通知</td>
+                    <td>微信通知</td>
+                    <td>语音通知</td>
+                    <td>配送统计</td>
+                    <td>累计收入</td>
                     <td>申请时间</td>
                     <td>操作</td>
                 </tr>
@@ -51,15 +58,25 @@
                     <tr>
                         <td><input class="child_id" type="checkbox" name="id[]" value="<{$var.id}>" /></td>
                         <td><{$var.id}></td>
-                        <td><a href="<{:U('delivery/lists',array('id'=>$var['id']))}>"><{$users[$var['user_id']]['nickname']}> (<{$var.user_id}>)</a></td>
+                        <td><{$users[$var['user_id']]['account']}></a></td>
+                        <td><{$var.user_id}></td>
+                        <td><{$users[$var['user_id']]['nickname']}></td>
                         <td><{$var.name}></td>
                         <td><{$var.mobile}></td>
                         <td><{$var.addr}></td>
-                        <td><img src="<{:config_img($var['photo'])}>" class="w80" /></td>
+                        <td><img src="<{:config_img($var['photo'])}>" class="w80"/></td>
+                        <td><eq name="var.is_sms" value="1">开启<else/>关闭</eq></td>
+                        <td><eq name="var.is_weixin" value="1">开启<else/>关闭</eq></td>
+                        <td><eq name="var.is_music" value="1">开启<else/>关闭</eq></td>
+                        <td> 配送中 <{$var.order.ing}> 单，已完成<{$var.order.end}>单</td>
+                        <td style="color:#F00"> &yen; <{:round($var['price']/100,2)}>元</td>
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                         <td>
                         	<eq name="var.audit" value="0"> <{:BA('delivery/audit',array("id"=>$var["id"]),'审核','act','remberBtn')}> </eq>
-                            <eq name="var.audit" value="1"><{:BA('delivery/lists',array("id"=>$var["id"]),'配送记录','','remberBtn')}></eq>
+                            <eq name="var.audit" value="1">
+                                <{:BA('delivery/lists',array("id"=>$var["id"]),'配送记录','','remberBtn')}>
+                                <{:BA('delivery/finance',array("user_id"=>$var["user_id"]),'财务记录','','remberBtn')}>
+                            </eq>
                             <{:BA('delivery/edit',array("id"=>$var["id"]),'编辑','','remberBtn')}>
                        	 	<{:BA('delivery/delete',array("id"=>$var["id"]),'删除','act','remberBtn')}>
                             

@@ -1,13 +1,21 @@
 <include file="public:header" /> 
 <include file="public:top"/>
 <include file="public:nav2"/>
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+</php>
+
 <style>
+.sy_sjcpBq{position: inherit; left:0px;}
 .yhsy_syLiNr {background-color: #EFEFEF;}
 .yhsy_syLiNr .left p{ padding:0 5px;}
 .yhsy_syLiWx canvas{width: 102px;height: 102px;margin: 0px auto;padding: 10px;background: #fff;}
 .sy_sjcpBq span {width: 215px;}
 .goods_flList .stycate {height: 30px;line-height: 30px;}
 </style>
+
+
 <div class="yhsy_banner">
     <script type="text/javascript">
         $(document).ready(function () {
@@ -120,7 +128,7 @@
                                 <div class="yhsy_syLiBg"></div>
                             </div>
                         </div 
-                    </div>
+                    ></div>
                     <if condition="!empty($item['full_price'])">
                         <div class="sy_sjcpBq">
                             <span class="sy_sjcpBq3">满&yen;<{:round($item['full_price']/100,2)}>元&nbsp;减&yen;<{:round($item['reduce_price']/100,2)}>元</span>

@@ -74,9 +74,9 @@ body{padding:0px 0 20px 0;margin:0;}
 .remberBtn{display: inline-block;margin-left: 5px;margin-top: 5px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;background: #09F;color: #fff;padding:0px 10px;height: 30px;line-height: 30px;}
 .remberBtn:hover{color: #fff;}
 .remberBigBtn{display: inline-block;margin-left: 5px;margin-top: 5px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;background: #09F;color: #fff;padding: 0px 10px;line-height: 30px;font-size: 16px !important;line-height: 50px;color: #FFF;background-color: #ff5a00;background-image: none;width: 100px;border:0px;cursor: pointer;text-align: center;}
-.fengmiMsgbox{min-width: 100px;max-width: 200px;background: #fff;height: 30px;line-height: 30px;border: 1px #f58505 double;position: fixed;padding: 0 10px;z-index: 100000;top: 20%;left: 45%;-webkit-box-shadow: 3px 3px #a9a9a9 ;-moz-box-shadow: 3px 3px #a9a9a9;box-shadow: 3px 3px #a9a9a9 ;-moz-border-radius: 5px;/* Gecko browsers*/-webkit-border-radius: 5px;/* Webkit browsers*/border-radius:5px;/* W3C syntax*/display: none;}
-.fengmiMsgbox img{float: left;margin-top: 7px;width: 16px;height: 16px;display: block;}
-.fengmiMsgbox span{float: left;display: block;margin-left: 5px;font-size: 13px;}
+.tuMsgbox{min-width: 100px;max-width: 200px;background: #fff;height: 30px;line-height: 30px;border: 1px #f58505 double;position: fixed;padding: 0 10px;z-index: 100000;top: 20%;left: 45%;-webkit-box-shadow: 3px 3px #a9a9a9 ;-moz-box-shadow: 3px 3px #a9a9a9;box-shadow: 3px 3px #a9a9a9 ;-moz-border-radius: 5px;/* Gecko browsers*/-webkit-border-radius: 5px;/* Webkit browsers*/border-radius:5px;/* W3C syntax*/display: none;}
+.tuMsgbox img{float: left;margin-top: 7px;width: 16px;height: 16px;display: block;}
+.tuMsgbox span{float: left;display: block;margin-left: 5px;font-size: 13px;}
 .w50{width: 50px !important;}
 .w100{width: 100px !important;}
 .w120{width: 120px !important;}

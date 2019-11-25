@@ -46,7 +46,7 @@ img {font-size: 0px; border: none;}
 }
 </style>
 <body>
-<iframe id="baocms_frm" name="baocms_frm" style="display:none;"></iframe>
+<iframe id="x-frame" name="x-frame" style="display:none;"></iframe>
 <div class="font_top_box">
     <div class="font_top">还差一步，您就可以使用<{$types[$connect['type']]}>快捷登录了</div>
 </div>
@@ -78,7 +78,7 @@ img {font-size: 0px; border: none;}
                 </script>
         <div class="font_zw_font">
             <div id="cp1" style="display:none;">
-                <form  action="<{:U('passport/register')}>" id="register_frm" method="post" target="baocms_frm">
+                <form  action="<{:U('passport/register')}>" id="register_frm" method="post" target="x-frame">
                     <table width="0" border="0">
                         <tr>
                             <td colspan="2"><p class="ts">为您创造一个新账户，与<{$types[$connect['type']]}>账户绑定</p></td>
@@ -113,7 +113,7 @@ img {font-size: 0px; border: none;}
                 </form>
             </div>
             <div id="cp2" >
-                <form id="login_frm"  action="<{:U('passport/login')}>" method="post" target="baocms_frm">
+                <form id="login_frm"  action="<{:U('passport/login')}>" method="post" target="x-frame">
                     <table width="0" border="0">
                         <tr>
                             <td colspan="2"><p class="ts">如果您已有账户可以直接与<{$types[$connect['type']]}>账户绑定</p></td>

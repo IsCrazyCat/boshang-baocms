@@ -1,7 +1,7 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('information/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('information/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			修改昵称
@@ -23,7 +23,7 @@
 </div>
 <div class="container">
 	<div class="blank-10"></div>
-	<p class="text-small text-dot">昵称不能与别人重复！</p>
+	<p class="text-small text-dot">昵称需要检测通过才能修改，不能与别人重复！</p>
 	<form target="x-frame" id="nick-form" method="post" action="<{:U('info/nickname')}>">
 	<input type="hidden" id="status" value="0" />
 	<div class="blank-20"></div>
@@ -31,12 +31,12 @@
 		<div class="field">
 			<div class="input-group">
 				<input type="text" id="nickname" class="input" name="nickname" size="50" value="" placeholder="请输入昵称" />
-<!--				<span id="check-nick" class="addbtn"><button type="button" class="button">检测</button></span>-->
+				<span id="check-nick" class="addbtn"><button type="button" class="button">检测</button></span>
 			</div>
 		</div>
 	</div>
 	<div class="blank-30"></div>
-	<button id="" type="submit" class="button button-block button-big bg-dot text-center">立即使用</button>
+	<button id="check-form" type="button" class="button button-block button-big bg-dot text-center">立即使用</button>
 	</form>
 </div>
 

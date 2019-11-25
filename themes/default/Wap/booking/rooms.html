@@ -2,7 +2,7 @@
 <script src="__TMPL__statics/js/jscookie.js"></script>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('booking/ding',array('shop_id'=>$shop_id))}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('booking/ding',array('shop_id'=>$shop_id))}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		包厢详情
@@ -18,7 +18,7 @@
                          <li class="x6">
                             <a class="room-item" href="javascript:;" rel="<{$item.room_id}>" data="<{$v['is_yuyue']}>">
                             <img src="<{:config_img($item['photo'])}>" width="100%" height="100%" />
-                            <p onclick="location='<{:U('booking/room_detail',array('room_id'=>$item['room_id']))}>'"><{$item.name}> <i class="icon-angle-right float-right text-large"></i></p>
+                            <p onclick="location='<{:U('booking/room_detail',array('room_id'=>$item['room_id']))}>'"><{$item.name}> <i class="iconfont icon-angle-right float-right text-large"></i></p>
                             <if condition="$item['is_yuyue'] eq 1">
                             <span class="status man">约满</span>
                             <else />

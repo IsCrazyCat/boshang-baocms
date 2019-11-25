@@ -2,7 +2,7 @@
 <script src="__TMPL__statics/js/jscookie.js"></script>
  	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('hotels/detail',array('hotel_id'=>$hotel['hotel_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('hotels/detail',array('hotel_id'=>$hotel['hotel_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			订单提交
@@ -20,7 +20,7 @@ body{ font-family: "MICROSOFT YAHEI";}
         <div class="infor">
         	<h3><{$hotel.hotel_name}><span class="bq">团</span></h3>
                 <p class="black9">入住：<span id="ft"><{$into_time}></span><span class="ml25">离店：<span id="tt"><{$out_time}></span><span class="ml25">共：<span id="night_num"></span>晚</span></p>
-                <p class="black9">酒店房型：<{$roomtype[$detail['type']]}><if condition="$detail.is_zc">-有早餐</if></p>
+                <p class="black9">酒店房型：<{$roomtype[$detail['type']]}><if condition="$detail.is_zc eq 1">-有早餐</if></p>
         </div>
         <div class="box">
         	<p class="left">单价</p>
@@ -55,7 +55,7 @@ body{ font-family: "MICROSOFT YAHEI";}
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <th>入住人</th>
-                        <td><input type="text" id="realname" placeholder="请输入真实姓名"></td>
+                        <td><input type="text" id="realname" placeholder="请输入真实姓名" value="<if condition="$MEMBER.nickname neq null"><{$MEMBER.nickname}></if>"></td>
                     </tr>
                 </table>
             </div>
@@ -65,7 +65,7 @@ body{ font-family: "MICROSOFT YAHEI";}
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <th>手机号</th>
-                        <td><input type="text" id="mobile" placeholder="请输入手机号码"></td>
+                        <td><input type="text" id="mobile" placeholder="请输入手机号码" value="<if condition="$MEMBER.mobile neq null"><{$MEMBER.mobile}></if>"></td>
                     </tr>
                 </table>
             </div>
@@ -80,33 +80,25 @@ body{ font-family: "MICROSOFT YAHEI";}
                 </table>
             </div>
         </div>
-        <!--<div class="box mb10">
-        	<p class="left">收据</p>
-           	<p class="right">不需要收据<span class="checkbox_int ml25"><input type="checkbox"></span></p>
-            <div class="clear"></div>
-            <script>
-		$(document).ready(function() {
-                    $(".checkbox_int").click(function(){
-                        if($(this).hasClass("on")){
-                            $(this).removeClass("on");
-                            $(this).parents(".box").find(".ts_box").hide();
-                        }else{
-                            $(this).addClass("on");
-                            $(this).parents(".box").find(".ts_box").show();
-                        }
-                    });
-                });
-            </script>
-            <p class="black9 ts_box" style="display:none;">代理商无法开具纸质发票，只提供电子收据，预订成功后通过电子邮件发送。</p>
-        </div>-->
         <p class="box mb10">不可退：<span class="black9">订单确认后不可取消或变更。如未入住，扣除全部费用。</span></p>
         <p class="box mb10">预订说明：<span class="black9">办理入住时间：14:00    办理退房时间：12:00</span></p>
         <div class="hotel_payWay mb10">
             <ul>
-                <label><li class="list"><div class="box"><span class="radioBox_int mr25 on" rel="online_pay"><input type="radio" name="online_pay" value="1" checked="checked"></span>在线支付</div></li></label>
-                <label><li class="list"><div class="box"><span class="radioBox_int mr25" rel="dao_pay"><input type="radio" name="online_pay" value="0"></span>到店付</div></li></label>
-            </ul>
             
+            
+               
+                
+                
+                
+            <php>
+            	$shop = D('Shop')->find($hotel['shop_id']);
+            </php>
+            <eq name="shop.is_hotel_pay" value="1">
+             	<label><li class="list"><div class="box"><span class="radioBox_int mr25 on" rel="online_pay"><input type="radio" name="online_pay" value="1" checked="checked"></span>在线支付</div></li></label>
+            </eq>
+                <label><li class="list"><div class="box"><span class="radioBox_int mr25" rel="dao_pay"><input type="radio" name="online_pay" value="0"></span>到店付</div></li></label>
+                
+            </ul>
             
             <script>
                 $(document).ready(function() {
@@ -142,8 +134,6 @@ body{ font-family: "MICROSOFT YAHEI";}
             function changetotal(num,night_num) {
                 $("#jqtotal").html(Math.round(price * num * night_num*100)/100);
             }
-
-
             var stime = $("#ft").html();
             var ltime = $("#tt").html();
             var night_num = get_night(stime,ltime) ||0;
@@ -151,8 +141,6 @@ body{ font-family: "MICROSOFT YAHEI";}
             var total = Math.round(price * num * night_num*100)/100 ||0;
             $("#night_num").html(night_num);
             $("#jqtotal").html(total);
-
-
             // + - 房间数量
             $(".jia").click(function () {
                 var night_num = $("#night_num").html();

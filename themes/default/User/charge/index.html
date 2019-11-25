@@ -1,7 +1,7 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('/mobile/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('/mobile/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		缴费站
@@ -100,13 +100,13 @@
 			$("form").submit( function () {
 				<volist name="fields" id="v">
 				if ($.trim($('#<{$v}>').val()).length == 0) {
-					alert('请输入<{$fieldLabels[$v]}>！');
+					alert('请输入<{$fieldLabels[$v]}>');
 					$('#<{$v}>').focus();
 					return false;
 				}
 				</volist>
 				if ($.trim($('#sum').val()).length == 0) {
-					alert('请输入缴费金额！');
+					alert('请输入缴费金额');
 					$('#sum').focus();
 					return false;
 				}

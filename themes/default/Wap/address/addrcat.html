@@ -2,7 +2,7 @@
 <script src="/static/pintuan/common.js" type="text/javascript"></script>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="javascript:history.go(-1)"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="javascript:history.go(-1)"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		添加收货地址
@@ -112,10 +112,9 @@
 
 function getCity(){
   var province = $("#province").val();
-  alert(province);
   $.ajax({
         type: "GET",
-        url: "<{$CONFIG.site.host}>/wap/pintuan/city/upid/"+province,
+        url: "<{$CONFIG.site.host}>/wap/address/city/upid/"+province,
         dataType : "jsonp",
         jsonpCallback:"jsonpCallback",
         cache : false,
@@ -134,7 +133,7 @@ function getArea(){
   var city = $("#city").val();
   $.ajax({
         type: "GET",
-        url: "<{$CONFIG.site.host}>/wap/pintuan/city/upid/"+city,
+        url: "<{$CONFIG.site.host}>/wap/address/city/upid/"+city,
         dataType : "jsonp",
         jsonpCallback:"jsonpCallback",
         cache : false,

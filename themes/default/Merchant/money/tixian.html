@@ -14,7 +14,7 @@
    <include  file='money:nav'/> 
     <div class="tabnr_change  show">
         <p class="magin-top">
-		电脑端已经停止提现，提现请登录手机端提现，网址：<a href="<{$CONFIG.site.host}>/distributors"><{$CONFIG.site.host}>/distributors</a> 
+		电脑端已经停止提现，提现请登录手机端提现，网址：<a href="<{$CONFIG.site.host}>/seller"><{$CONFIG.site.host}>/seller</a> 
         </p>
         <div class="money_tixian"  id="money_tixian">
         <p class="magin-sao">手机扫一扫</p>
@@ -22,7 +22,7 @@
     </div> 
      <script type="text/javascript">
           $(function () {
-             var str = "<{$CONFIG.site.host}>/distributors";
+             var str = "<{$CONFIG.site.host}>/seller";
              $("#money_tixian").empty();
              $('#money_tixian').qrcode(str);
            })

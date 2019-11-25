@@ -34,7 +34,7 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <form  target="baocms_frm" method="post">
+        <form  target="x-frame" method="post">
             <div class="tableBox">
                 <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                     <tr>
@@ -53,7 +53,11 @@
                             <td><input class="child_yh_id" type="checkbox" name="yh_id[]" value="<{$var.yh_id}>" /></td>
                             <td><{$var.yh_id}></td>
                             <td><{$shops[$var['shop_id']]['shop_name']}></td>
-                            <td><eq name="var.type_id" value="0">折扣：<{$var.discount}>折<else/>满&yen;<{$var.min_amount}>减&yen;<{$var.amount}></eq></td>
+                            <td>
+                                <eq name="var.type_id" value="0">折扣：<{$var.discount}>折</eq>
+                                <eq name="var.type_id" value="2">未设置优惠</eq>
+                                <eq name="var.type_id" value="1">满&yen;<{$var.min_amount}>减&yen;<{$var.amount}></eq>
+                            </td>
                             <td>
                             
                                 <eq name="var.type_id" value="0">

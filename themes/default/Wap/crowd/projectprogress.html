@@ -9,10 +9,10 @@ body {background-color: #f0efed;}
 <link rel="stylesheet" type="text/css" href="/static/default/wap/css/crowd_detail.css">
 	<header class="top-fixed bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('crowd/detail',array('goods_id'=>$detail['goods_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('crowd/detail',array('goods_id'=>$detail['goods_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			<{:bao_msubstr($detail['title'],0,8)}>
+			<{:tu_msubstr($detail['title'],0,8)}>
 		</div>
        <div class="top-signed">
 		</div>

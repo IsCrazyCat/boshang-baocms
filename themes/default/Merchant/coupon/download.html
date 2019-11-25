@@ -21,6 +21,7 @@
     <table class="tuan_table" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr style="background-color:#eee;">
             <td>优惠券</td>
+            <td>优惠劵验证码</td>
             <td>用户手机</td>
             <td>创建时间</td>
             <td>创建IP</td>
@@ -29,6 +30,7 @@
         <foreach name="list" item="var">
             <tr>
                 <td style="height: 36px;"><{$coupons[$var['coupon_id']]['title']}></td>
+                <td><{$var.code}></td>
                 <td><{$var.mobile}></td>
                 <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                 <td><{$var.create_ip_area}><{$var.create_ip}></td>

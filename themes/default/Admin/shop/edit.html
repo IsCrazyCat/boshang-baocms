@@ -8,7 +8,7 @@
 </div>
 <p class="attention"><span>说明：</span> 请注意显示商家万能代码的时候建议多审核下</p>
 
-<form  target="baocms_frm" action="<{:U('shop/edit',array('shop_id'=>$detail['shop_id']))}>" method="post">
+<form  target="x-frame" action="<{:U('shop/edit',array('shop_id'=>$detail['shop_id']))}>" method="post">
     <div class="mainScAdd">
         <div class="tableBox">
             <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
@@ -20,6 +20,7 @@
                             <input class="scAddTextName w210 sj" type="text" name="nickname" id="nickname"  value="<{$user.nickname}>" />
                         </div>
                         <a mini="select"  w="800" h="600" href="<{:U('user/select')}>" class="seleSj">选择用户</a>
+                        <code>注意：中途更换会员商户资金并不会转移，请手动修改商家管理员的商户资金，当然我们不建议亲中途更换会员ID，请见谅！</code>
                     </td>
                 </tr>    <tr>
 
@@ -63,7 +64,7 @@
                     </td>
                 </tr>
                
-                 <script src="<{:U('app/datas/cab',array('name'=>'cityareas'))}>"></script> 
+                <script src="<{:U('app/datas/onecity',array('name'=>'cityareas'))}>"></script> 
                        <script>
 								var city_id = <?php echo (int)$detail['city_id'];?>;
 								var area_id = <?php echo (int)$detail['area_id'];?>;
@@ -78,76 +79,86 @@
                                         }
                                     }
                                     $("#city_id").html(city_str);
-
                                     $("#city_id").change(function () {
                                         if ($("#city_id").val() > 0) {
                                             city_id = $("#city_id").val();
-                                            var area_str = ' <option value="0">请选择...</option>';
-                                            for (a in cityareas.area) {
-                                                if (cityareas.area[a].city_id == city_id) {
-                                                    if (area_id == cityareas.area[a].area_id) {
-                                                        area_str += '<option selected="selected" value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-                                                    } else {
-                                                        area_str += '<option value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-                                                    }
-                                                }
-                                            }
+     										   $.ajax({
+													  type: 'POST',
+													  url: "<{:U('app/datas/twoarea')}>",
+													  data:{cid:city_id},
+													  dataType: 'json',
+													  success: function(result){
+                                                         var area_str = ' <option value="0">请选择...</option>';
+                                                        for (a in result) {
+                                                          area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';                                                        }
+                                                       $("#area_id").html(area_str);
+                                                        $("#business_id").html('<option value="0">请选择...</option>');
+													  }
+												});
                                             $("#area_id").html(area_str);
                                             $("#business_id").html('<option value="0">请选择...</option>');
                                         } else {
                                             $("#area_id").html('<option value="0">请选择...</option>');
                                             $("#business_id").html('<option value="0">请选择...</option>');
                                         }
-
                                     });
-
                                     if (city_id > 0) {
                                         var area_str = ' <option value="0">请选择...</option>';
-                                        for (a in cityareas.area) {
-                                            if (cityareas.area[a].city_id == city_id) {
-                                                if (area_id == cityareas.area[a].area_id) {
-                                                    area_str += '<option selected="selected" value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
+										$.ajax({
+										  type: 'POST',
+										  url: "<{:U('app/datas/twoarea')}>",
+										  data:{cid:city_id},
+										  dataType: 'json',
+										  success: function(result){
+                                             for (a in result) {
+                                                if (area_id == result[a].area_id) {
+                                                    area_str += '<option selected="selected" value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
                                                 } else {
-                                                    area_str += '<option value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
+                                                    area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
                                                 }
-                                            }
-                                        }
-                                        $("#area_id").html(area_str);
+                                              }
+                                             $("#area_id").html(area_str);
+											}
+										});
                                     }
-
-
                                     $("#area_id").change(function () {
                                         if ($("#area_id").val() > 0) {
                                             area_id = $("#area_id").val();
-                                            var business_str = ' <option value="0">请选择...</option>';
-                                            for (a in cityareas.business) {
-                                                if (cityareas.business[a].area_id == area_id) {
-                                                    if (business_id == cityareas.business[a].business_id) {
-                                                        business_str += '<option selected="selected" value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                    } else {
-                                                        business_str += '<option value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                    }
-                                                }
-                                            }
-                                            $("#business_id").html(business_str);
+                             					$.ajax({
+													  type: 'POST',
+													  url: "<{:U('app/datas/tbusiness')}>",
+													  data:{bid:area_id},
+													  dataType: 'json',
+													  success: function(result) {
+                                                         var business_str = ' <option value="0">请选择...</option>';
+													     for (a in result) {
+												   				business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+													     }
+												     	$("#business_id").html(business_str);
+													 }
+											       });
                                         } else {
                                             $("#business_id").html('<option value="0">请选择...</option>');
                                         }
-
                                     });
-
-                                    if (area_id > 0) {
-                                        var business_str = ' <option value="0">请选择...</option>';
-                                        for (a in cityareas.business) {
-                                            if (cityareas.business[a].area_id == area_id) {
-                                                if (business_id == cityareas.business[a].business_id) {
-                                                    business_str += '<option selected="selected" value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                } else {
-                                                    business_str += '<option value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-                                                }
-                                            }
-                                        }
-                                        $("#business_id").html(business_str);
+                                    if (area_id > 0) {                                    
+									   $.ajax({
+										  type: 'POST',
+										  url: "<{:U('app/datas/tbusiness')}>",
+										  data:{bid:area_id},
+										  dataType: 'json',
+										  success: function(result){
+											var business_str = ' <option value="0">请选择...</option>';
+											for (a in result) {
+													if (business_id == result[a].business_id) {
+														business_str += '<option selected="selected" value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+													} else {
+													  business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+													}
+											}
+											 $("#business_id").html(business_str);
+										  }
+									   });
                                     }
                                     $("#business_id").change(function () {
                                         business_id = $(this).val();
@@ -158,6 +169,7 @@
              <tr>
                     <td class="lfTdBt">商铺名称：</td>
                     <td class="rgTdBt"><input type="text" name="data[shop_name]" value="<{$detail.shop_name|default=''}>" class="scAddTextName w210" />
+                    <code>商家名称，建议不超过6字</code>
                     </td>
                 </tr>
                
@@ -171,7 +183,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="logo_img" width="120" height="80"  src="<{:config_img($detail['logo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.shoplogo.thumb}>
+                        建议尺寸<{$CONFIG.attachs.shoplogo.thumb}>
                     </div>
                     <script>                                            
 						var width_shoplogo = '<{:thumbSize($CONFIG[attachs][shoplogo][thumb],0)}>';                         
@@ -207,7 +219,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.shopphoto.thumb}>
+                        建议尺寸<{$CONFIG.attachs.shopphoto.thumb}>
                     </div>
                     <script>                                            
 						var width_shopphoto = '<{:thumbSize($CONFIG[attachs][shopphoto][thumb],0)}>';                         
@@ -278,7 +290,23 @@
                 <code>例如8:00-19：00</code>
             </td>
 
-        </tr><tr>
+        </tr>
+        
+        <tr>
+            <td class="lfTdBt">配送费：</td>
+            <td class="rgTdBt"><input type="text" name="data[express_price]" value="<{:round($detail['express_price']/100,2)}>" class="scAddTextName w210" />
+            <code>单位：元，商城开启第三方配送模式下面有效，开启后，如果当前商品免邮或者没有获取到配送费的时候这里的费用结算给配送员，费用从结算费用中扣除，必须大于=3元</code>
+            </td>
+        </tr>
+        
+         <tr>
+            <td class="lfTdBt">结算佣金：</td>
+            <td class="rgTdBt"><input type="text" name="data[commission]" value="<{:round($detail['commission']/100,2)}>" class="scAddTextName w80" />%
+            <code>用于商城，酒店结算，这里设置百分比，比如设置3就是扣除3%，如果填写0则免佣金，免佣金模式下分销如果选择差价分成模式则失败，但是这里必须填写</code>
+            </td>
+        </tr>
+        
+        <tr>
             <td class="lfTdBt">固定排名：</td>
             <td class="rgTdBt"><input type="text" name="data[orderby]" value="<{$detail.orderby|default='100'}>" class="scAddTextName w210" />
                 <code>1就是固定排名在第一位，一般建议不需要设置这个值！</code>
@@ -332,6 +360,24 @@
 
 
        
+        <tr>
+              <td class="lfTdBt">是否开启抢购在线支付</td>
+              <td class="rgTdBt">
+              <input type="radio" name="data[is_tuan_pay]" value="0" <if condition="$detail[is_tuan_pay] eq 0">checked="checked"</if> />关闭
+			  <input type="radio" name="data[is_tuan_pay]" value="1" <if condition="$detail[is_tuan_pay] eq 1">checked="checked"</if> />开启
+              <code>抢购模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>
+              </td>
+        </tr>
+        
+        <tr>
+              <td class="lfTdBt">是否开启酒店在线支付</td>
+              <td class="rgTdBt">
+              <input type="radio" name="data[is_hotel_pay]" value="0" <if condition="$detail[is_hotel_pay] eq 0">checked="checked"</if> />关闭
+			  <input type="radio" name="data[is_hotel_pay]" value="1" <if condition="$detail[is_hotel_pay] eq 1">checked="checked"</if> />开启
+              <code>酒店模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>
+              </td>
+        </tr>
+
         
 
         <tr>
@@ -395,11 +441,11 @@
           </tr>
           
           <tr>
-              <td class="lfTdBt">套餐打印</td>
+              <td class="lfTdBt">抢购打印</td>
               <td class="rgTdBt">
                  <input type="radio" name="data[is_tuan_print]" value="1" <if condition="$detail[is_tuan_print] eq 1">checked="checked"</if> />开启
 				<input type="radio" name="data[is_tuan_print]" value="0" <if condition="$detail[is_tuan_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印套餐订单</code>
+                <code>开启状态才能打印抢购订单</code>
                </td>
           </tr>
           
@@ -429,6 +475,15 @@
                 <code>开启状态才能打印家政订单</code>
                </td>
           </tr>
+          
+     
+                
+                <tr>
+                    <td class="lfTdBt">有效期截止：</td>
+                    <td class="rgTdBt"><input type="text" name="data[end_date]" value="<{$detail.end_date}>" onfocus="WdatePicker();"  class="inputData" />
+
+                    </td>
+                </tr>
         
 
              <tr><td class="lfTdBt">商家介绍：</td><td class="rgTdBt">
@@ -439,11 +494,11 @@
                   <script type="text/javascript" charset="utf-8" src="__PUBLIC__/qiniu_ueditor/ueditor.all.min.js"></script>
                   <script type="text/javascript" src="__PUBLIC__/qiniu_ueditor/lang/zh-cn/zh-cn.js"></script>
 				  <script>
-                        um = UE.getEditor('details', {
+                        um = UE.getEditor('details',{
                             lang: 'zh-cn',
-                            toolbars:[['fullscreen', 'source', 'undo', 'redo', 'bold', 'italic', 'underline', 'fontborder', 'backcolor', 'fontsize']],  
+                            	toolbars:[['fullscreen','source','link','undo','redo','bold','italic','underline','fontborder','backcolor','fontsize']],  
                             });
-                   </script> 
+                </script> 
         
 
     </table>

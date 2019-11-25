@@ -88,7 +88,7 @@
         </volist>
         <div class="cl"></div>
         <div class="pages"><{$page}></div>
-        <form id="dianping_frm" target="baocms_frm" method="post" action="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">
+        <form id="dianping_frm" target="x-frame" method="post" action="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">
             <div class="dp_bottom" id="dp_bottom">
                 <if condition="empty($MEMBER)">
                     <div class="mydianping">
@@ -104,7 +104,7 @@
                         <a class="tjt_btn" href="#"> + 添加图片</a>
                         <span class="notice">最多可以添加5张照片,文件大小2M以内</span>
                         <span class="shangchuan">
-                            <input name="bao_file" id="bao_file" type="file" />
+                            <input name="tu_file" id="tu_file" type="file" />
                         </span>		
                     </p>
                     <script type="text/javascript" src="__TMPL__statics/js/ajaxfileupload.js"></script>
@@ -114,15 +114,15 @@
                                 $.ajaxFileUpload({
                                     url:'<{:U("app/upload/upload",array("model"=>"dianping"))}>',
                                     type:'post',
-                                    fileElementId:'bao_file',
+                                    fileElementId:'tu_file',
                                     dataType:'text',
                                     secureuri: false, //一般设置为false
                                     success:function(data,status){
                                         $(".loading").hide();
                                         var str = '<div class="photo"><img width="75" height="75"  src="__ROOT__/attachs/'+data+'">  <input type="hidden" name="data[photo]" value="'+data+'" /><a href="javascript:void(0);">[删除]</a></div>';         
                                         $("#jq_photo_list").append(str);
-                                        $("#bao_file").unbind('change');
-                                            $("#bao_file").change(function () {
+                                        $("#tu_file").unbind('change');
+                                            $("#tu_file").change(function () {
                                             ajaxupload();
                                             });
                                     }
@@ -131,7 +131,7 @@
                         
                         
                         $(document).ready(function(){
-                            $("#bao_file").change(function(){
+                            $("#tu_file").change(function(){
                                  ajaxupload();
                             });
                             $(document).on("click","#jq_photo_list  a",function(){
@@ -202,7 +202,7 @@
         <div class="sj">
             <h3>商家地图</h3>
             <div class="sjRbox">
-                <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
+                <script type="text/javascript" src="<{$CONFIG['config']['baidu_map_api']}>"></script>
                 <div id="allmap" style="width:250px; height:275px;"></div>
                 <script type="text/javascript">
                     // 百度地图API功能

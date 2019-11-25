@@ -1,7 +1,10 @@
 <include file="public:header"/>
+<style>
+.input {font-size: 16px;}
+</style>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			用户注册
@@ -15,7 +18,7 @@
             <if condition="$fuser">
                 <div class="line padding border-bottom">
                     <span class="x3"><label>推荐人</label></span>
-                    <span class="x9"><{$fuser['nickname']}><input type="hidden" name="fuid" value="<{$fuser['user_id']}>"  readonly="readonly"/></span>
+                    <span class="x9"><{$fuser['nickname']}><input type="hidden" name="fuid" value="<{$fuser['user_id']}>" /></span>
                 </div>
             </if>
 			<div class="line padding border-bottom">
@@ -26,7 +29,7 @@
 			<div class="line padding border-bottom">
 				<span class="x3"><label>图片验证：</label></span>
 				<span class="x4"><input id="sms_yzm" type="text" class="text-input" name="sms_yzm" placeholder="图片验证码"></span>
-				<span class="x5"><a rel="bao_img_code" class="yzm_code" href="javascript:void(0);"><img id="bao_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" width="60" height="30" /></a><em><a rel="bao_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></span>
+				<span class="x5"><a rel="tu_img_code" class="yzm_code" href="javascript:void(0);"><img id="tu_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" width="60" height="30" /></a><em><a rel="tu_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></span>
 			</div>
 			</if>
 
@@ -70,7 +73,7 @@
 			$('.yzm_code').click(function(){
 				var l = "__ROOT__/index.php?g=app&m=verify&a=index&mt=";
 				time = time + 1;
-				$('#bao_img_code').attr('src',l+time);
+				$('#tu_img_code').attr('src',l+time);
 			})
 		
             $("#m_zcyz").click(function () {
@@ -97,7 +100,7 @@
                                 BtnCount();
                             } else {
                                 mobile_lock = 0;
-                                layer.msg(data, function(){
+                                layer.msg('请检查必填项是否填写，或者该手机已经存在', function(){
 								});
                             }
                         }

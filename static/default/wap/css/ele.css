@@ -92,7 +92,7 @@ footer .i-5{background-position:center -.96rem}
 #ele .cate .i-5{background-image:url(../img/icon-4.png)}
 #ele .cate p{font-size:.16rem;margin-top:.05rem;color:#333}
 .frame-set-left{width:25%; background-color: #f8f8f8;position:absolute;top:0;left:0;height:100%;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;border-right: 1px solid #E8E8E8;}
-.frame-set-left li{cursor:pointer;height:2.5rem;line-height:2.5rem; border-bottom: 1px solid #E8E8E8;}
+.frame-set-left li{cursor:pointer;height: auto;line-height:2.5rem; border-bottom: 1px solid #E8E8E8;}
 .frame-set-left li a{display:block;color:#333;padding:0 .8rem;font-size:12px}
 .frame-set-left .active{background:#FFF;}
 .frame-set-left .active a{color:#ff6900}
@@ -195,3 +195,5 @@ footer #jq_total{width:auto}
 .coupon-list .item .intro{line-height:20px;color:#999;margin:5px 0;overflow:hidden;font-size:12px}
 .coupon-list .item .info{line-height:20px;height:20px;color:#999;padding:5px 0;border-top:thin dotted #eee;font-size:12px}
 .coupon-list .item .info7 img{width:60px;height:60px;padding:.34rem}
+
+.address_bg {background: url("../image/mall/address_bg.png") left top repeat-x;background-size: auto 83px;height: 85px;overflow: hidden;padding: 15px;color: #999999;border-bottom: 1px solid #f1dbb8;border-top: 1px solid #f1dbb8;}

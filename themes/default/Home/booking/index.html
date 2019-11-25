@@ -1,6 +1,13 @@
 <include  file='public:header'/> 
 <include  file='public:top'/> 
 <include  file='public:nav2'/>
+
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+</php>
+
+
 <div class="pagewd">
     <div class="seat_banner mt10">
         <!--banner-->
@@ -114,7 +121,7 @@
                         <li class="seat_goodsList">
                             <div class="pub_img"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>">
                             <img src="<{:config_img($item['photo'])}>" />
-                                <p><{:bao_msubstr($item[addr],0,15)}></p></a>
+                                <p><{:tu_msubstr($item[addr],0,15)}></p></a>
                             </div>
                             <div class="pub_wz">
                                 <h3 class="overflow_clear"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>"><{$item.shop_name}></a></h3>
@@ -136,7 +143,7 @@
                     <li class="seat_goodsList">
                         <div class="pub_img"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>">
                         <img src="<{:config_img($item['photo'])}>" />
-                            <p><{:bao_msubstr($item[addr],0,15)}></p></a>
+                            <p><{:tu_msubstr($item[addr],0,15)}></p></a>
                         </div>
                         <div class="pub_wz">
                             <h3 class="overflow_clear"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>"><{$item.shop_name}></a></h3>
@@ -156,7 +163,7 @@
             	<calldata mdl="Booking" where="audit = 1 AND closed=0 AND city_id=$city_id" limit="0,4" cache="21600" order="score desc">
                     <li class="seat_goodsList">
                         <div class="pub_img"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>"><img src="__ROOT__/attachs/<{$item['photo']}>" />
-                            <p><{:bao_msubstr($item[addr],0,15)}></p></a>
+                            <p><{:tu_msubstr($item[addr],0,15)}></p></a>
                         </div>
                         <div class="pub_wz">
                             <h3 class="overflow_clear"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>"><{$item.shop_name}></a></h3>
@@ -177,7 +184,7 @@
                     <li class="seat_goodsList">
                         <div class="pub_img"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>">
                         <img src="<{:config_img($item['photo'])}>" />
-                            <p><{:bao_msubstr($item[addr],0,15)}></p></a>
+                            <p><{:tu_msubstr($item[addr],0,15)}></p></a>
                         </div>
                         <div class="pub_wz">
                             <h3 class="overflow_clear"><a target="_blank" href="<{:U('booking/detail',array('shop_id'=>$item['shop_id']))}>"><{$item.shop_name}></a></h3>

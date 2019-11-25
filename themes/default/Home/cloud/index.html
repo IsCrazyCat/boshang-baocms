@@ -1,6 +1,12 @@
 <include  file='public:header'/>  
 <include  file='public:top'/>
 <include  file='public:nav'/>
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+</php>
+
+
 <div class="banner mb20" style="width: 1200px; margin: 0px auto;">
 <script type="text/javascript">
         $(document).ready(function () {
@@ -82,7 +88,7 @@
                     </div>
                 </div>
                     <a target="_blank" href="<{:U('cloud/detail',array('goods_id'=>$item['goods_id']))}>" class="btn">立即夺宝</a>
-                <div class="closs"><p>已结束，欢迎下次套餐</p></div>
+                <div class="closs"><p>已结束，欢迎下次抢购</p></div>
            	</li>
             </foreach>
         </ul>

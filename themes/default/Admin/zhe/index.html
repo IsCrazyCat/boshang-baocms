@@ -16,9 +16,17 @@
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('zhe/index')}>">
                     <div class="seleHidden" id="seleHidden">
-                        <span>关键字(电话或商户名称)</span>
+                    <div class="seleK">
+                    <span>选择商家：</span>
+                    <label>
+                        <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
+                        <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
+                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                    </label>
+                        <span>五折卡名称</span>
                         <input type="text" name="keyword" value="<{$keyword}>" class="inptText" /><input type="submit" value="   搜索"  class="inptButton" />
                     </div> 
+                    </div>
                 </form>
                 <a href="javascript:void(0);" class="searchG">高级搜索</a>
                 <div class="clear"></div>
@@ -44,6 +52,11 @@
                                     </eq>
                                 </foreach>
                             </select>
+                        </label>
+                        <label>
+                                <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
+                                <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
                         </label>
                         <label>
                             <span>区域：</span>
@@ -99,33 +112,44 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
                     <td class="w50"><input type="checkbox" class="checkAll" rel="zhe_id" /></td>
                     <td class="w50">ID</td>
                     <td>名称</td>
+                    <td>所属商家</td>
+                    <td>图片</td>
                     <td>分类</td>
                     <td>人数</td>
                     <td>限额</td>
-                    <td>图片</td>					
+                    <td>积分返还</td>
+                    <td>浏览量</td>
+                    <td>热度值</td>					
                     <td>入住时间</td>
+                    <td>状态</td>
                     <td>操作</td>
                 </tr>
                 <foreach name="list" item="var">
                     <tr>
                         <td><input class="child_zhe_id" type="checkbox" name="zhe_id[]" value="<{$var.zhe_id}>" /></td>
                         <td><{$var.zhe_id}></td>
-                        <td><{$var.zhe_name}>(商家ID:<{$var.shop_id}>)</td>
+                        <td><{$var.zhe_name}></td>
+                        <td><{$shops[$var['shop_id']]['shop_name']}></td>
+                        <td><img src="<{:config_img($var['photo'])}>" class="w80" /></td>
                         <td><{$cates[$var['cate_id']]['cate_name']}></td>
                         <td><{$var.person}></td>
                         <td><{$var.limit}></td>
-                        <td><img src="<{:config_img($var['photo'])}>" class="w80" /></td>
+                        <td><{$var.credit}></td>
+                        <td><{$var.views}></td>
+                        <td><{$var.index}></td>
+                        <td><eq name="var.audit" value="0">未审核<else/>已审核</eq></td>
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                     <td>
                     <{:BA('zhe/edit',array("zhe_id"=>$var["zhe_id"]),'编辑','','remberBtn')}>
                     <{:BA('zhe/delete',array("zhe_id"=>$var["zhe_id"]),'删除','act','remberBtn')}>
+                    <eq name="var.audit" value="0"> <{:BA('zhe/audit',array("zhe_id"=>$var["zhe_id"]),'审核','act','remberBtn')}> </eq>
                     </td>
                     </tr>
                 </foreach>

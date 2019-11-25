@@ -51,9 +51,9 @@ input[type="radio"],input[type="checkbox"]{border:0;position:absolute;left:-9999
 .radio-active{border-color: #2FBCAC; border-width: 2px; width: 98px; height: 28px; background: url(../images/seat/icon.png) no-repeat 80px -427px #FFF;}
 .checkbox{float: left; width: 20px; height: 20px; background-image:url(../images/seat/icon.png); background-repeat: no-repeat; background-position: -36px -43px; margin-right: 10px;}
 .checkbox-active{background-position: -36px -75px;}
-.baocms-select-option{position: absolute; background: #FFF; border: 1px #DBDBDB solid; z-index: 999; display: none;}
-.baocms-select-option li{font-size: 12px; padding:0 5px; height: 25px; line-height: 25px; color: #666; cursor: default;}
-.baocms-select-option li:hover{background-color: #F2F2F2;}
+.Tudou-select-option{position: absolute; background: #FFF; border: 1px #DBDBDB solid; z-index: 999; display: none;}
+.Tudou-select-option li{font-size: 12px; padding:0 5px; height: 25px; line-height: 25px; color: #666; cursor: default;}
+.Tudou-select-option li:hover{background-color: #F2F2F2;}
 /* 订座专属样式 */
 #seat em{font-style: normal; font-weight: normal; font-size: 14px; color: #666; margin-left: 10px;}
 #seat i{background-image: url(../images/seat/icon.png); background-repeat: no-repeat;}

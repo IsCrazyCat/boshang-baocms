@@ -31,7 +31,8 @@
 .gray-block,.listA-box,.stepBox{border-bottom-width:1px}
 .footer,.logo-wrap{border-top-width:1px}
 .F-con-3,.brandBox{border-left-width:1px}
-.B-left,.border,.brand-list,.infoBox,.tabRank, .loginBox{border:1px solid #e5e5e5}
+.B-left,.border,.brand-list,.infoBox{border:1px solid #e5e5e5}
+.tabRank, .loginBox{border:1px solid #FFF}
 .borderTB0{border-top-width:0;border-bottom-width:0}
 .brand-list li{border-left-width:1px;border-bottom-width:1px}
 .brand-list{border-bottom:0}
@@ -41,7 +42,7 @@
 .B-left{width:186px;border:1px solid #E5E5E5}
 .B-mid{width:750px;margin-left:10px}
 .B-right{width:230px;overflow:hidden}
-.homeloginbox{width:211px; margin-top:10px;}
+.homeloginbox{width:211px;}
 .logo-wrap{margin-top:0}
 .loginBox{height:70px;background:#fff;width: 208px;padding-top: 10px !important;}
 .loginBox .avatar{float:left;width:70px;text-align:center;position:relative}
@@ -152,7 +153,7 @@
 .tabRank .hd h3 a{display:block;color:#666;line-height:34px}
 .tabRank .hd h3.on{background-color:#fff;border-bottom:1px solid #f70;color:#000}
 .tabRank .hd h3.on a{color:#000}
-.tabRank .bd{clear:both;height:150px;overflow:hidden}
+.tabRank .bd{clear:both;height:167px;overflow:hidden}
 .superior{background:#f8f8f8;border:#ddd 1px solid;border-top:#06C1AE 2px solid;margin-top:-1px}
 .superboxior{width:70px;text-align:center;padding:15px 3px}
 .superboxior:first-child{width:50px}
@@ -164,7 +165,7 @@
 .settledin a{background:#f8f8f8;border:#ddd 1px solid;display:block;width:103.5px;height:42px;line-height:42px;text-align:center;margin:0;margin-top:-1px;color:#333;font-size:14px;font-family:"微软雅黑"}
 .settledin a:hover{color:#f60}
 .lastcb{margin-left:-1px!important}
-.ghlsmesstab{margin-top:-1px;border:#ddd 1px solid;height:66px}
+.ghlsmesstab{margin-top:-1px;height:66px; background:#fff;}
 .ghlsmesstab dt span{width:104px;text-align:center;display:block;float:left;line-height:34px;background:#f8f8f8;border:#ddd 1px solid;margin-top:-1px;border-left:none}
 .ghlsmesstab dt span.mylsnobod{border-right:none}
 .ghlsmesstab dt span.on{background:#fff;border-bottom:#fff 1px solid;line-height:32px;border-top:#F60 2px solid}
@@ -261,3 +262,69 @@
 .desktop .ls_rightylrx_r{display:none}
 .desktop .ls_xgccpchaokleb_r dd{margin-right:25px}
 
+
+
+
+
+.inforWrap {
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 20px;
+}.heTabs .hd h3,.heTabs .hd .tabs li,.fixed_menu li a  { background:url(http://www.hy0743.cn/template/pc/main/default/images/index8/index_sp_2017.png) no-repeat 0 0;}
+.heTabs .hd { position:relative; z-index:1; border-bottom:1px solid #ff9501;}
+.heTabs .hd h3 { padding-left:40px; font-size:16px; background-position:-370px -34px; font-weight:normal; line-height:42px;}
+.heTabs .hd h3 .tit_fu { font-style:italic; color:#ff9501; font-size:16px;}
+
+.heTabs .hd .tabs { position:absolute; top:0; right:0; line-height:38px; border-left:1px solid #eee; border-right:1px solid #eee;}
+.heTabs .hd .tabs li { float:left; border-top:1px solid #eee; background-position:100% 14px;}
+.heTabs .hd .tabs li a { display:block; padding:0 22px; font-size:14px; border-top:2px solid #fff; height:39px; line-height:39px;}
+.heTabs .hd .tabs .selected { border:1px solid #ff9501; border-bottom:0 none; background:none;}
+.heTabs .hd .tabs .selected a { color:#ff9501; border-color:#ff9501; height:40px; background-color:#fff;}
+.heTabs .hd .tabs .selected a:hover { color:#ff9501; text-decoration:none; cursor:default;}
+.heTabs .hd .tabs li:last-child { background:none;}
+.liveCon { margin-top:0;}
+.liveCon .picList { float:left; width:390px; overflow:hidden;}
+.liveCon .picList ul { width:405px;}
+.liveCon .picList li { float:left; position:relative; z-index:1; *zoom:1; margin-top:15px; width:185px; margin-right:14px;}
+.liveCon .picList li img { width:185px; height:140px; vertical-align:top; border-radius:10px;}
+.liveCon .picList li .title { position:absolute; bottom:0; left:0; right:0; padding:0 6px; font-size:14px; line-height:30px; height:30px; background-color:rgba(0,0,0,.7); _background-color:#fff; color:#fff; text-align:center; overflow:hidden; border-bottom-left-radius:10px; border-bottom-right-radius:10px;}
+.liveCon .picList li .title a { color:#fff;}
+.liveCon .picList li .title a:hover { color:#fff;}
+.conn .conn_list ul li a:hover,
+/*文字描述*/
+.liveCon { margin-top:0;}
+.conn{
+	height: 308px;
+	float:right; width:800px; margin-top:10px;
+}
+.conn .conn_list{
+	width: 388px;
+	height: auto;
+}
+.conn .conn_list ul li{
+	width: 100%;
+	line-height: 30px;
+	float: left;
+}
+.conn .conn_list ul li b{
+	color: #f78115;
+	font-size: 14px;
+	font-weight: normal;
+	margin-right: 5px;
+	float: left;
+}
+.conn .conn_list ul li a{
+	font-size: 14px;
+	color: #6b6b6b;
+	float: left;
+}
+.conn .conn_list ul li span{
+	color: #b7b7b7;
+	font-size: 14px;
+	float: right;
+}.touban {}
+.touban li { width:325px; float:left; position:relative; z-index:1; *zoom:1; background-position:-494px -228px; padding:0 60px 0 0; line-height:28px; height:28px; font-size:14px; overflow:hidden; vertical-align:middle; _display:inline; margin:0 10px 0 5px;}
+.touban .gray { color:#f78115;}.touban .gray:hover { color:#d00;}
+.touban li em { padding-left:8px; font-size:11px; color:#999; position:absolute; right:12px; width:120px; top:0; text-align:right;}
+.touban li img { vertical-align:middle;}

@@ -1,21 +1,15 @@
 <include file="public:header"/>
 <div class="content_right">  
 <div class="tgdd">
-
-
    <div class="tgdd_t password_t">
         <ul>
-            <li class="on"><a href="<{:U('life/index')}>">分类信息列表</a></li>
-            <li><a href="<{:U('shopdingyue/base')}>">订阅设置</a></li>
-            <li><a href="<{:U('shopdingyue/index')}>">我的订阅</a></li>
-            <li><a href="<{:U('sms/index')}>">购买短信</a></li>
+            <li class="on"><a href="<{:U('life/index')}>">信息列表</a></li>
             <li><a href="<{:U('money/money')}>">余额充值</a></li>
             <a style="display: inline-block; float: right; margin-right: 10px;" class="myInfor_sx" href="<{:u('home/life/fabu')}>">发布信息</a>
         </ul>
     </div>
-    
 
-    
+
     <div class="tgdd_nr">
        <div class="blank-20"></div>
      <table class="tuan_table3" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -36,22 +30,21 @@
   </tr>
   <tr>
     <td class="td_left_1"> 
+
     
+
     <table class="tuan_table2" width="100%" border="0">
       <tbody><tr class="tr_left_1">
-      
         <td class="left1">
        <{$var.title}>
         </td>
         <td class="left2">
-       
         </td>
         <td class="left3"><{$cates[$var['cate_id']]['cate_name']}> </td>
-       
       </tr>
-     
     </tbody></table>    
     </td>
+
     <td class="left7" width="15%">
     <{$areas[$var['area_id']]['area_name']}>-
     <{$business[$var['business_id']]['business_name']}>
@@ -80,6 +73,8 @@
                     <a mini='confirm' class="myInfor_sx" href="<{:U('life/lifeflush',array('life_id'=>$var['life_id']))}>">免费刷新</a> 
                 </p>
 
+
+
     </td>
     <td class="left9" width="15%">
    <eq name="var.audit" value="0">
@@ -91,7 +86,6 @@
    <a  href="<{:U('life/del',array('life_id'=>$var['life_id']))}>" mini="confirm">删除</a>
     </td>
   </tr>
- 
 </tbody>
 </table>
 <br/> 

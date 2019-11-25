@@ -9,11 +9,31 @@
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
             <div class="left tuan_topser_l">
-                <if condition="$detail['order_status'] eq -1"><font style="color:red;">已取消</font><elseif condition="$detail['order_status'] eq 2"/><font style="color:green;">已完成</font><elseif condition="$detail['order_status'] eq 1"/>已付款<else/>待处理</if>
+                <if condition="$detail['order_status'] eq -1">
+                	<font style="color:red;">已取消</font>
+                <elseif condition="$detail['order_status'] eq 2"/>
+                	<font style="color:green;">已完成</font>
+                <elseif condition="$detail['order_status'] eq 1"/>
+                	已付款
+                <elseif condition="$detail['order_status'] eq 3"/>
+                	退款中
+                <elseif condition="$detail['order_status'] eq 4"/>
+                	已退款
+                <else/>
+                	待处理
+                </if>
             </div>
-             <if condition="$detail['order_status'] eq 1 or ($detail['online_pay'] eq 0 and $detail['order_status'] eq 0)"><a class="btn right" mini="confirm" href="<{:U('hotel/complete',array('order_id'=>$detail['order_id']))}>">完成订单</a></if>
-                <if condition="$detail['order_status'] neq -1"><a class="btn right" mini="confirm" href="<{:U('hotel/cancel',array('order_id'=>$detail['order_id']))}>">取消订单</a></if>
-                <if condition="$detail['order_status'] eq -1"><if condition="$detail['closed'] eq 0"><a class="btn right" mini="confirm" href="<{:U('hotel/delete',array('order_id'=>$detail['order_id']))}>">删除订单</a></if></if>
+             <if condition="$detail['order_status'] eq 1 or ($detail['online_pay'] eq 0 and $detail['order_status'] eq 0)">
+             	<a class="btn right" mini="confirm" href="<{:U('hotel/complete',array('order_id'=>$detail['order_id']))}>">完成订单</a>
+             </if>
+                <if condition="$detail['order_status'] neq -1">
+                	<a class="btn right" mini="confirm" href="<{:U('hotel/cancel',array('order_id'=>$detail['order_id']))}>">取消订单</a>
+                </if>
+                <if condition="$detail['order_status'] eq -1">
+                    <if condition="$detail['closed'] eq 0">
+                    	<a class="btn right" mini="confirm" href="<{:U('hotel/delete',array('order_id'=>$detail['order_id']))}>">删除订单</a>
+                    </if>
+                </if>
         </div>
     </div>
     <div class="hotel_orddtl_box">

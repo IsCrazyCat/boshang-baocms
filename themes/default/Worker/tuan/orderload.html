@@ -8,9 +8,9 @@
             <img style="width:90%;" src="<{:config_img($tuans[$item['tuan_id']]['photo'])}>"></a>
         </div>
         <div class="x8">
-            <p><a href="<{:U('tuan/detail',array('order_id'=>$item['order_id']))}>"><{:bao_Msubstr($tuans[$item['tuan_id']]['title'],0,16)}></a> </p>
+            <p><a href="<{:U('tuan/detail',array('order_id'=>$item['order_id']))}>"><{:tu_msubstr($tuans[$item['tuan_id']]['title'],0,16)}></a> </p>
             <p class="text-small">
-				<span class="text-dot1 margin-right"><{:bao_Msubstr($tuans[$item['tuan_id']]['intro'],0,20)}><a class="text-dot1" href="<{:u('wap/tuan/detail',array('tuan_id'=>$item['tuan_id']))}>">[详细]</a></span>
+				<span class="text-dot1 margin-right"><{:tu_msubstr($tuans[$item['tuan_id']]['intro'],0,20)}><a class="text-dot1" href="<{:u('wap/tuan/detail',array('tuan_id'=>$item['tuan_id']))}>">[详细]</a></span>
 			</p>
          </div>
 

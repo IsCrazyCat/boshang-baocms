@@ -10,8 +10,15 @@
             <div class="left tuan_topser_l">注意：亲，您给粉丝所加的积分必须不大于自己的积分额！</div>
         </div>
     </div>
-
-    <form method="post" target="baocms_frm" action="<{:U('fans/add',array('user_id'=>$user['user_id']))}>">
+    
+	<div class="tuanfabu_tab">
+        <ul>
+             <li class="tuanfabu_tabli  on"><a href="<{:U('fans/index')}>">粉丝管理</a></li>
+             <li class="tuanfabu_tabli"><a href="<{:U('news/index')}>">推送文章</a></li>
+             <li class="tuanfabu_tabli"><a href="<{:U('news/create')}>">新增文章</a></li>
+        </ul>
+    </div> 
+    <form method="post" target="x-frame" action="<{:U('fans/add',array('user_id'=>$user['user_id']))}>">
 		
     	<table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>

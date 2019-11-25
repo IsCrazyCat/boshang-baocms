@@ -2,6 +2,12 @@
 <include file="mall:top"/>
 <include file="public:nav2"/>
 
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+    $bizs = D('Business')->where(array('area_id'=>$area_id))->select();
+    $Area = D('Area')->where(array('area_id'=>$area_id))->find();
+    $Business = D('Business')->where(array('business_id'=>$business_id))->find();
+</php>
 
 <div class="content zy_content">
 <!--删选开始-->
@@ -54,7 +60,7 @@
                                 <li class="goods_flLi goods_flLix">&gt;</li>
                             </if>
                             <if condition="!empty($area_id)">
-                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('crowd/index',$linkArr,array('area'=>$area_id))}>"><{$areas[$area_id]['area_name']}><em></em></a><a href="<{:LinkTo('crowd/index',$linkArr,array('area'=>0,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
+                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('crowd/index',$linkArr,array('area'=>$area_id))}>"><{$Area['area_name']}><em></em></a><a href="<{:LinkTo('crowd/index',$linkArr,array('area'=>0,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
                                     <div class="goods_flLiLfk"><a href="<{:LinkTo('crowd/index',$linkArr,array('area'=>0))}>">全部</a>
                                         <foreach name="areas" item="item">
                                         <eq name="item.city_id" value="$city_id">
@@ -67,7 +73,7 @@
                             </if>
 
                             <if condition="!empty($business_id)">
-                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('crowd/index',$linkArr,array('area'=>$area_id,'business'=>$business_id))}>"><{$bizs[$business_id]['business_name']}><em></em></a><a href="<{:LinkTo('crowd/index',$linkArr,array('area'=>$area_id,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
+                                <li class="goods_flLi goods_flLiLf"><a class="goods_flLiA" href="<{:LinkTo('crowd/index',$linkArr,array('area'=>$area_id,'business'=>$business_id))}>"><{$Business['business_name']}><em></em></a><a href="<{:LinkTo('crowd/index',$linkArr,array('area'=>$area_id,'business'=>0))}>" class="goods_flLiFl">ｘ</a>
                                     <div class="goods_flLiLfk"><a href="<{:LinkTo('crowd/index',$linkArr,array('area'=>$area_id,'business'=>0))}>">全部</a>
                                         <foreach name="bizs" item="item">
                                             <eq name="item.area_id" value="$area_id">

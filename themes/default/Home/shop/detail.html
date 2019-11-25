@@ -36,10 +36,11 @@
         <div class="shop-type c2016">
             <ul>
                 <li class="a"><a href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">首页</a></li>
+                <li><a href="<{:U('shop/branch',array('shop_id'=>$detail['shop_id']))}>">商家分店</a></li>
                 <li><a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>">商家介绍</a></li>
                 <li><a href="<{:U('shop/photo',array('shop_id'=>$detail['shop_id']))}>">相册</a></li>
                 <li><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">商品</a></li>
-                <li><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">套餐</a></li>
+                <li><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">抢购</a></li>
                 <li><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>">优惠劵</a></li>
                 <li><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>">新闻</a></li>
                 <li><a href="<{:U('shop/ping',array('shop_id'=>$detail['shop_id']))}>">点评</a></li>
@@ -91,7 +92,7 @@
                 </div>
               </calldata> 
               <!--商品结束--> 
-              <!--套餐开始-->
+              <!--抢购开始-->
               <calldata mdl="Tuan" where="shop_id = {$detail['shop_id']} AND audit=1 AND closed=0" limit="0,30"  cache="21600" order="tuan_id desc">
                 <div class="item big">
                    <p class="title">
@@ -100,12 +101,12 @@
                     <a class="block-link" href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>" target="_blank">
                     <img class="pic" src="<{:config_img($item['photo'])}>" title="<{$item.title}>"></a>
                     <span class="price"><em>&yen;</em><{:round($item['tuan_price']/100,2)}></span>
-                    <del class="del-price">&yen;<{:round($item['price']/100,2)}></del><i class="tag tag-tuan">套餐</i>
+                    <del class="del-price">&yen;<{:round($item['price']/100,2)}></del><i class="tag tag-tuan">抢购</i>
                     <p class="title">结束时间 : <{$item['end_date']}></p>
                     <span class="sold-count">已售 <{$item['sold_num']}></span>
                 </div>
               </calldata> 
-              <!--套餐结束-->
+              <!--抢购结束--> 
               
               <!--优惠劵开始-->
               <calldata mdl="Coupon" where="shop_id = {$detail['shop_id']} AND audit=1 AND closed=0" limit="0,30"  cache="21600" order="coupon_id desc">
@@ -146,7 +147,7 @@
         </div>
         <div id="comment" class="mod comment">
             <h2 class="mod-title c2016 J-tab">
-                <a class="item current" data-type="default"><span>商家</span>点评(共有<{$totalnum}>人参与点评)<span class="sub-title"></span></a>
+                <a class="item current" data-type="default"><span>商家</span>点评(共有<{$dianping_num}>人参与点评)<span class="sub-title"></span></a>
                 <span class="y">
                 <a href="<{:U('shop/ping',array('shop_id'=>$detail['shop_id']))}>" class="star-current">更多»</a>
                 </span>
@@ -191,7 +192,7 @@
                 </h2>
                    <div class="bm">
                         <div class="bm_c">
-                        <form id="ping-form" class="form-auto"  target="baocms_frm" method="post" action="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">
+                        <form id="ping-form" class="form-auto"  target="x-frame" method="post" action="<{:U('shop/dianping',array('shop_id'=>$detail['shop_id']))}>">
                         <if condition="!empty($MEMBER)">
                         <div class="frm-pic uploadImg jq_uploads_imgs">
 								<a class="button input-file" href="javascript:void(0);" id="moreToUpload"> + 添加图片 </a>

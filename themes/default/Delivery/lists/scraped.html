@@ -1,7 +1,7 @@
 <include file="public:header"/>
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			<div class="line tab-bar">
@@ -17,11 +17,11 @@
 		<div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('lists/scraped')}>">
 				<input name="keyword" placeholder="输入商家的关键字"  />
-				<button type="submit" class="icon-search"></button> 
+				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 		</div>
 		<div class="top-signed">
-			<a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a>
+			<a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
 		</div>
 	</header>
 
@@ -31,13 +31,15 @@
       <li class="item">
         <a href="javascript:void(0);"> 
         <if condition="empty($type)">
-        <span id="str_e_node">全部订单</span>
+        	<span id="str_e_node">全部订单</span>
         <elseif condition="$type eq 1"/>
-        <span id="str_b_node" style="color:#f60;">外卖订单</span>
+        	<span id="str_b_node" style="color:#f60;">外卖订单</span>
         <elseif condition="$type eq 2"/>
-        <span id="str_b_node" style="color:#f60;">商城订单</span>
+        	<span id="str_b_node" style="color:#f60;">商城订单</span>
         <elseif condition="$type eq 3"/>
-        <span id="str_b_node" style="color:#f60;">全部订单</span>
+        	<span id="str_b_node" style="color:#f60;">菜市场订单</span>
+        <elseif condition="$type eq 4"/>
+        	<span id="str_b_node" style="color:#f60;">便利店订单</span>
         </if>
         <em></em>
         </a>
@@ -58,13 +60,13 @@
       <li class="item">
         <a href="javascript:void(0);">
         <if condition="empty($order)">
-        <span id="str_e_node">选择排序</span>
+        	<span id="str_e_node">选择排序</span>
         <elseif condition="$order eq 1"/>
-        <span id="str_b_node" style="color:#f60;">距离排序</span>
+        	<span id="str_b_node" style="color:#f60;">距离排序</span>
         <elseif condition="$order eq 2"/>
-        <span id="str_b_node" style="color:#f60;">时间排序</span>
+        	<span id="str_b_node" style="color:#f60;">时间排序</span>
         <elseif condition="$order eq 3"/>
-        <span id="str_b_node" style="color:#f60;">默认排序</span>
+       	 	<span id="str_b_node" style="color:#f60;">默认排序</span>
         </if>
         <em></em>
         </a>
@@ -73,9 +75,11 @@
     
      <div class="inner" style="display:none;">
               <ul>
-              <li><a <if condition="empty($type)"> style="color:red;"</if> href="<{:LinkTo('lists/scraped')}>">全部订单</a></li>
-                <li><a <if condition="$type eq 1"> style="color:red;"</if> href="<{:LinkTo('lists/scraped',array('type'=>1,'area_id'=>$area_id,'business_id'=>$business_id,'order'=>$order))}>">外卖订单</a></li>
+              <li><a <if condition="empty($type)">style="color:red;"</if> href="<{:LinkTo('lists/scraped')}>">全部订单</a></li>
+                <li><a <if condition="$type eq 1">style="color:red;"</if> href="<{:LinkTo('lists/scraped',array('type'=>1,'area_id'=>$area_id,'business_id'=>$business_id,'order'=>$order))}>">外卖订单</a></li>
                 <li><a <if condition="$type eq 2">style="color:red;"</if> href="<{:LinkTo('lists/scraped',array('type'=>2,'area_id'=>$area_id,'business_id'=>$business_id,'order'=>$order))}>">商城订单</a></li>
+                <li><a <if condition="$type eq 3">style="color:red;"</if> href="<{:LinkTo('lists/scraped',array('type'=>3,'area'=>$area_id,'business'=>$business_id,'order'=>$order))}>">菜市场订单</a></li>
+                <li><a <if condition="$type eq 4">style="color:red;"</if> href="<{:LinkTo('lists/scraped',array('type'=>4,'area'=>$area_id,'business'=>$business_id,'order'=>$order))}>">便利店订单</a></li>
             </ul>
       </div>
     

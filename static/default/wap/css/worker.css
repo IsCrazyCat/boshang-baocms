@@ -161,7 +161,13 @@
 .panel-list ul{padding:0;list-style:none}
 .panel-list li{overflow:hidden;border-bottom:thin solid #eee}
 .panel-list li i{float:right;color:#999}
-.panel-list li span{float:left;width:30px;text-align:center;color:#999;font-size:16px}
+.panel-list li span{float: left;
+    width: 30px;
+    text-align: center;
+    color: #999;
+    font-size: 20px;
+    line-height: 48px;
+    height: 50px;}
 .panel-list li a{display:block;padding:0 10px;height:50px;line-height:50px;width:100%}
 .panel-list li em{float:right}
 .panel-list li font{color:#BDBDBD;font-size:12px}
@@ -244,9 +250,8 @@ li{list-style-type:none}
 .sh_buy_upload_btn .btn{position:absolute;left:0;top:0;opacity:0;filter:alpha(opacity=0)}
 .sh_buy_upload_img{padding:.1rem;text-align:center}
 .sh_buy_upload_img p{font-size:.14rem;line-height:.24rem;color:#999}
-.Upload-img{overflow:hidden;height:auto;padding:.1rem}
-.Upload-img .list-img{width:1rem;float:left;padding-right:.1rem;padding-bottom:.1rem;background:url(../img/longding1.gif) no-repeat .25rem .35rem;background-size:.5rem .5rem;text-align:center}
-.Upload-img .list-img a{font-size:.14rem;line-height:.24rem;color:#2fbdaa}
+
+
 .sh_buy_fabu_p{font-size:.14rem;line-height:.24rem;color:#333;padding:0 .1rem}
 .sh_buy_fabu_check{padding:.1rem}
 .sh_buy_fabu_check .left{font-size:.14rem;line-height:.3rem;color:#999}
@@ -274,3 +279,17 @@ li{list-style-type:none}
 .sh_waimai_order_nr li .left{width:60%}
 .sh_waimai_order_price{border-top:1px solid #dedede;padding:.05rem}
 .sh_waimai_order_price div{font-size:.14rem;color:#666;line-height:.24rem}
+
+.xiaoqu-search1 {padding: 15px;background: #fafafa;border-bottom: thin solid #eee;margin-top: 2rem;}
+.sh_search_more_time .left{ width:49%;}
+.sh_search_more_time .right{ width:49%;}
+.sh_search_more_time .left input,.sh_search_more_time .right input{ width:100%; border:1px solid #dedede;  border-radius:3px; background-color:#fff; text-indent:0.3rem; padding: 0.5rem;}
+.sh_search_more_int .left{ width:35%;}
+.sh_search_more_int .center{ width:45%; position:relative; z-index:1;}
+.sh_search_more_int .right{ width:20%; text-align:right;}
+.sh_search_more_int .left input,.sh_search_more_int .center input{width:96%; border:1px solid #dedede; border-radius:3px; background-color:#fff;text-indent:0.3rem; padding: 0.5rem;}
+.sh_search_more_int .center input{ background:#fff url(../img/buy_int_ico.png) no-repeat 90% center; background-size:0.11rem 0.07rem;}
+.sh_search_more_pull{ position:absolute; left:0;  width:96%; background-color:#fff; border:1px solid #dedede; border-top:none 0px;}
+.sh_search_more_pull li{ display:block; text-align:center; color:#666;padding: 0.8rem;}
+.sh_search_more_pull li.on{background: #06C1AE; color:#fff;}
+.sh_search_more_int .right .btn{ background-color:#2fbdaa;  border-radius:3px; color:#fff;  border:none 0px;padding: 0.55rem 0.95rem;}

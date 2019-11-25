@@ -7,11 +7,21 @@
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">商家资讯发布要在后台审核之后才能显示在前台 </div>
+            <div class="left tuan_topser_l">商家资讯编辑后要在后台审核之后才能显示在前台 </div>
         </div>
     </div> 
+    
+    <div class="tuanfabu_tab">
+        <ul>
+             <li class="tuanfabu_tabli"><a href="<{:U('fans/index')}>">粉丝管理</a></li>
+             <li class="tuanfabu_tabli  on"><a href="<{:U('news/index')}>">推送文章</a></li>
+             <li class="tuanfabu_tabli "><a href="<{:U('news/create')}>">新增文章</a></li>
+        </ul>
+    </div>
+    
+    
     <div class="tabnr_change  show">
-    	<form method="post"  action="<{:U('news/edit',array('news_id'=>$detail['news_id']))}>"  target="baocms_frm">
+    	<form method="post"  action="<{:U('news/edit',array('news_id'=>$detail['news_id']))}>"  target="x-frame">
 
     	<table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -79,7 +89,7 @@
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
                         <a href="<{:U('setting/attachs')}>">缩略图设置</a>
-                        <{$CONFIG.attachs.shopnews.thumb}>
+                        建议尺寸<{$CONFIG.attachs.shopnews.thumb}>
                     </div>
                     <script>                                            
 						var width_shopnews = '<{:thumbSize($CONFIG[attachs][shopnews][thumb],0)}>';                         

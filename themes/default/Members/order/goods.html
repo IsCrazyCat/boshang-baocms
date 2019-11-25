@@ -125,33 +125,35 @@
     <td class="left8" width="20%">
     
     <eq name="order.is_daofu" value="0">
-     	<span>实付金额：<{:round($order['need_pay']/100,2)}></span>
+     	<span>实付：<{:round($order['need_pay']/100,2)}>元</span>
       	<if condition="!empty($order['express_price'])">
       	<br/>
-      	<span>配送费用：<{:round($order['express_price']/100,2)}></span>
+      	<span>配送费用：<{:round($order['express_price']/100,2)}>元</span>
       	</if>
     <else/>
         <php>
         $daofu_price = $order['need_pay'] + $order['express_price'];
         </php>
-        <a>到付应付款：<{:round($daofu_price/100,2)}></a><br/>
+        <a>到付应付款：<{:round($daofu_price/100,2)}>元</a><br/>
     	<a>订单金额：<{:round($order['need_pay']/100,2)}> 
             <if condition="!empty($order['express_price'])">
-            	<br/> + 配送费用：<{:round($order['express_price']/100,2)}>
+            	<br/> + 配送费用：<{:round($order['express_price']/100,2)}>元<br/>
             </if>
         </a>
     </eq>
      
       
       <if condition="$order['mobile_fan'] gt 0">
-      手机优惠：<{:round($order['mobile_fan']/100,2)}>元
+     <br/> -手机优惠：<{:round($order['mobile_fan']/100,2)}>元<br/>
       </if>
-      <br/>
+      
       <if condition="$order['use_integral'] gt 0">
-      使用积分：<{$order['use_integral']}> <br/>
-      抵扣现金：<{:round($order['use_integral']/100,2)}>元
+      使用积分：<{$order['use_integral']}>
+      -抵扣现金：<{:deduction($order['use_integral'])}>元<br/>
       </if>           
-
+	<if condition="!empty($order['coupon_price'])">
+       - 优惠劵抵用&yen;<{:round($order['coupon_price']/100,2)}>元<br/>
+    </if>
     </td>
     <td class="left9" width="15%">
       <if condition="$order['is_daofu']==1"><!--如果是货到付款-->

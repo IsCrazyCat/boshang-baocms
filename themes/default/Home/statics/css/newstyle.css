@@ -292,9 +292,9 @@ body{background-color:#fff}
 .tgdd_tw .lef a{font-size:12px;line-height:18px;color:#666}
 .tgdd_tw .lef p{font-size:12px;line-height:18px;color:#999}
 .tgdd_tw .lef .myChange_sp{color:#da000a}
-.baomsgbox{min-width:100px;background:#fff;height:30px;line-height:30px;border:1px #f58505 double;position:fixed;padding:0 10px;z-index:99999;top:20%;left:45%;-webkit-box-shadow:3px 3px #a9a9a9;-moz-box-shadow:3px 3px #a9a9a9;box-shadow:3px 3px #a9a9a9;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;display:none}
-.baomsgbox img{float:left;margin-top:7px;width:16px;height:16px;display:block}
-.baomsgbox span{float:left;display:block;margin-left:5px;font-size:13px}
+.tumsgbox{min-width:100px;background:#fff;height:30px;line-height:30px;border:1px #f58505 double;position:fixed;padding:0 10px;z-index:99999;top:20%;left:45%;-webkit-box-shadow:3px 3px #a9a9a9;-moz-box-shadow:3px 3px #a9a9a9;box-shadow:3px 3px #a9a9a9;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;display:none}
+.tumsgbox img{float:left;margin-top:7px;width:16px;height:16px;display:block}
+.tumsgbox span{float:left;display:block;margin-left:5px;font-size:13px}
 //搜索框 .search_form{height:30px;padding:10px 10px 0;margin-top:10px;border-top-width:1px;border-top-style:solid;border-top-color:#eee}
 .search_form_wz{font-size:14px;line-height:30px;color:#666;margin-right:6px}
 .search_form_time{width:150px;height:28px;border:solid 1px #ccc;margin-right:10px;background-image:none;background:0 0;background:#fff}

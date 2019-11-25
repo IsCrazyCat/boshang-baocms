@@ -1,7 +1,7 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			配送订单详情
@@ -77,7 +77,7 @@
 				<img style="width:90%;" src="<{:config_img($var['photo'])}>" />
 			</div>
 			<div class="x9">
-				<p><{:bao_msubstr($var['title'],0,18,false)}></p>
+				<p><{:tu_msubstr($var['title'],0,18,false)}></p>
 				<p class="text-small padding-top">小计：<span class="text-dot">&yen; <php>echo round(($var['total_price']/$var['num'])/100,2);</php> x <{$var.num}> </span></p>
 			</div>
 		</li> 
@@ -86,21 +86,18 @@
 </div>
 
 
+
 <div class="blank-10 bg"></div>
 <div class="panel-list">
 	<ul>
-    <if condition="$detail['type'] eq 1">
-   		<li><a href="javascript:;">收货姓名：<em><{$addrs['name']}></em></a></li>
-		<li><a href="tel:<{$addrs['mobile']}>">手机号码：<em><{$addrs['mobile']}></em></a></li>
-		<li><a href="javascript:;">配送地址：<small class="text-small margin-left text-gray"> <{$addrs['addr']}></small></a></li>
-    <else/>
-   		<li><a href="javascript:;">收货姓名：<em><{$addarres['xm']}></em></a></li>
-		<li><a href="javascript:;">手机号码：<em><{$addarres.tel}></em></a></li>
-		<li><a href="javascript:;">配送地址：<small class="text-small margin-left text-gray"> <{$addarres.area_str}> <{$addarres.info }></small></a></li>
-    </if>
+   		<li><a href="javascript:;">收货姓名：<em><{$detail['name']}></em></a></li>
+		<li><a href="tel:<{$addrs['mobile']}>">手机号码：<em><{$detail['mobile']}></em></a></li>
+        <li><a>收货地址：<em><{$detail['addr']}></em></a></li>
+       
 	</ul>
 </div>
 		
+        
 
 <div class="blank-10 bg"></div>
 <div class="panel-list">

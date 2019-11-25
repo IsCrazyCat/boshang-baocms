@@ -1,12 +1,39 @@
 <include  file='public:header'/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		积分兑换
 	</div>
 </header>
+
+
+    <!--广告位开始-->
+     	<div id="tudou-slide" class="tudou-slide">
+			<div class="hd"><ul></ul></div>
+			<div class="bd">
+				<ul>
+					<calldata mdl="Ad" where=" closed=0 AND site_id=80 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="7200" order="orderby asc">
+						<li><a href="<{:U('wap/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a></li>
+					</calldata>
+				</ul>
+			</div>
+		</div>
+        <script>
+			TouchSlide({
+				slideCell: "#tudou-slide",
+				titCell: ".hd ul",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+				autoPage: true,
+				switchLoad: "_src",
+			});
+		</script>
+    <!--广告位END-->  
+    
+    
 
 <!-- 筛选TAB -->
 <ul class="line line-cate">

@@ -1,37 +1,49 @@
 <include file='public:header'/>    
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			云购列表
 		</div>
         <div class="top-share">
-			<a href="javascript:void(0);" id="share-btn"><i class="icon-share"></i></a>
+			<a href="javascript:void(0);" id=""><i class="iconfont icon-fabu4"></i></a>
 		</div>
-        
 	</header>
+    
+    
+        <!--广告位开始-->
+     	<div id="tudou-slide" class="tudou-slide">
+			<div class="hd"><ul></ul></div>
+			<div class="bd">
+				<ul>
+					<calldata mdl="Ad" where=" closed=0 AND site_id=82 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="7200" order="orderby asc">
+						<li><a href="<{:U('wap/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a></li>
+					</calldata>
+				</ul>
+			</div>
+		</div>
+        <script>
+			TouchSlide({
+				slideCell: "#tudou-slide",
+				titCell: ".hd ul",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+				autoPage: true,
+				switchLoad: "_src",
+			});
+		</script>
+    <!--广告位END-->  
+    
+    
 	
 <style>
 .button-big {padding:3px;  font-size: 12px;line-height: 12px;}
 .x6 {padding: 0 15px;}
 .detail-base span.album {font-size: 12px;color: #FFF; margin-right: 1px;position: absolute;right: 10%;bottom: 0;width:90%;height: 20px;line-height: 20px;text-align: center;background: #06c1ae;}
 </style>     
-<div id="share-box" class="share-box">
-		<div class="dialog-mask"></div>
-			<ul class="line">
-				<li class="-mob-share-weibo x3"><img src="/static/default/wap/image/share/share-weibo.png" /><p>新浪微博</p></li>
-				<li class="-mob-share-tencentweibo x3"><img src="/static/default/wap/image/share/share-twb.png" /><p>腾讯微博</p></li>
-				<li class="-mob-share-qzone x3"><img src="/static/default/wap/image/share/share-qzone.png" /><p>QQ空间</p></li>
-				
-				<li class="-mob-share-qq x3"><img src="/static/default/wap/image/share/share-py.png" /><p>QQ好友</p></li>
-				<li class="-mob-share-weixin x3"><img src="/static/default/wap/image/share/share-weixin.png" /><p>微信</p></li>
-				<li class="-mob-share-renren x3"><img src="/static/default/wap/image/share/share-renren.png" /><p>人人网</p></li>
-				<li class="-mob-share-kaixin x3"><img src="/static/default/wap/image/share/share-kaixin.png" /><p>开心网</p></li>
-				<li id="mui-card-close" class="mui-card-close x3"><img src="/static/default/wap/image/share/share-close.png" /><p>关闭</p></li>
-			</ul>
-		<script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=890ab8bbdb3c"></script>
-	</div>
+
 	<script>
 		$(document).ready(function () {
 			$("#share-box").hide();

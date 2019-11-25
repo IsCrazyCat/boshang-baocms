@@ -8,5 +8,6 @@
         <if condition="!empty($CONFIG[cash][is_transfer])">
 			<li <if condition="$act eq 'transfer'">class="on"</if> ><a href="<{:U('money/transfer')}>" >给好友转账</a></li>
         </if>
+        <li <if condition="$act eq 'integral'">class="on"</if> ><a href="<{:U('money/integral')}>" >积分转账</a></li>
 	</ul>
 </div>

@@ -1,7 +1,7 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('life/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('life/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		发布生活信息
@@ -11,11 +11,11 @@
 
 <div class="container">
 		<div class="blank-10"></div>
-		<p><span class="text-dot">小提示：</span> 选择下面的分类即可发布信息！</p>
+		<p><span class="text-dot">小提示：</span> 选择下面的分类即可发布信息</p>
 </div>
 <div class="blank-10 bg"></div>   
  <style>
- .index-cate .cate-name span { margin-left:0px;}
+ .index-cate .cate-name span { margin-left:0px; color:#999}
  </style>  
 <div id="index-cate" class="index-cate">
 	<php>$ii = 0;</php>
@@ -49,7 +49,31 @@
 	</ul>
 	</volist>
 </div>
-
+<script>
+		$(function(){
+			$("#search-btn").click(function(){
+				if($(".top-search").css("display")=='block'){
+					$(".top-search").hide();
+					$(".top-title").show(200);
+				}
+				else{
+					$(".top-search").show();
+					$(".top-title").hide(200);
+				}
+			});
+			$("#index-cate .cate-more").click(function(){
+				$(this).parent().children().find(".more-content").toggle();
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$(this).children().find("span").html("展开更多");
+				}
+				else{
+					$(this).addClass("active");
+					$(this).children().find("span").html("点击收起");
+				}
+			});
+		});
+	</script>
 
     
     

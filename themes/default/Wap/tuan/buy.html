@@ -1,7 +1,7 @@
 <include file='public:header'/>   
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('tuan/detail',array('tuan_id'=>$detail['tuan_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('tuan/detail',array('tuan_id'=>$detail['tuan_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			提交订单
@@ -51,33 +51,10 @@
                         <if condition="!empty($detail['use_integral'])">
                         	<span class="float-right"><{$detail.use_integral|default='0'}>积分
                         <else/>
-                        	<span class="float-right">该套餐不支持积分抵扣
+                        	<span class="float-right">该抢购不支持积分抵扣
                         </if>
 					</span>
 				</div>
-				<!--使用优惠劵逻辑开始-->
-				<if condition="!empty($coupon)">
-					<div class="x12 row border-bottom">
-						<span class="float-left">
-							优惠劵使用
-						</span>
-							<input type="hidden" name="download_id" id="download_id" value="<{$coupon['download_id']}>"
-								   checked="checked"/>
-							<span class="float-right"> 优惠劵ID：<{$coupon['download_id']}>，抵现 &yen;<{:round($coupon['reduce_price']/100,2)}>元</span>
-						</span>
-					</div>
-					<elseif condition="!empty($download_id)"/>
-					<div class="x12 row border-bottom">
-						<span class="float-left">
-							优惠劵使用
-						</span>
-						<input type="hidden" name="download_id" id="download_id" value="$download_id" checked="checked"/>
-						<span class="float-right"> 当前使用的优惠劵ID：<{$download_id}></span>
-						</span>
-					</div>
-					<else/>
-				</if>
-				<!--使用优惠劵逻辑结束-->
 				<div class="x12 row border-bottom">
 					<span class="float-left">
 						总金额
@@ -129,7 +106,7 @@
 				}
 				<if condition="!empty($detail['xiangou'])">
 				if (num > xiangou) {
-					 layer.msg("您购买的套餐不能大于：" + xiangou + "份", function () {
+					 layer.msg("您购买的抢购不能大于：" + xiangou + "份", function () {
                             setTimeout(function () {
                                 window.location.reload(true);
                             }, 1000)

@@ -32,7 +32,7 @@
         
       
 
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -47,7 +47,20 @@
                 <foreach name="list" item="var">
                     <tr>
                         <td><{$var.order_id}></td>
-                        <td><eq name="var.type" value="0">商城</eq><eq name="var.type" value="1">外卖</eq></td>
+                        <td>
+                         		<eq name="var['type']" value="0">
+                                    商城订单
+                                </eq>
+                           		<eq name="var['type']" value="1">
+                                    外卖订单
+                                </eq>
+                                <eq name="var['type']" value="3">
+                                    菜市场订单
+                                </eq>
+                                <eq name="var['type']" value="4">
+                                    便利店订单
+                                </eq>
+                        </td>
                         <td><{$var.type_order_id}></td>
                         <td><{$var.shop_name}></td>
                         <td><{$var.name}>，<{$var.mobile}>，<{$var.addr}></td>

@@ -1,7 +1,7 @@
 <include file='public:header'/>    
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('mall/index',array('cat'=>$detail['cate_id']))}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('mall/index',array('cat'=>$detail['cate_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
 			订单设定
@@ -24,7 +24,7 @@
     </script>
     
 <style>
-.icon-angle-right{ float:right; font-size:20px;}
+.iconfont icon-angle-right{ float:right; font-size:20px;}
 </style>    
 	<form class="pay-form" action="<{:U('mall/paycode2',array('log_id'=>$logs['log_id']))}>" method="post" target="x-frame">
 		<div class="row">
@@ -37,10 +37,10 @@
         <div class="blank-10 bg"></div>
 		<div class="row address_bg">
         <span class="x10">
-			<i class="icon-user"></i> <{:bao_msubstr($defaultAddress['xm'],0,3,false)}> &nbsp; <i class="icon-mobile"></i> <{$defaultAddress.tel}> 
+			<i class="icon-wo iconfont"></i> <{:tu_msubstr($defaultAddress['xm'],0,3,false)}> &nbsp; <i class="iconfont icon-phone-line"></i> <{$defaultAddress.tel}> 
             <p onclick="location='<{$changeAddressUrl}>'"><{$defaultAddress.area_str}> <{$defaultAddress.info}></p>
          </span>
-          <span class="x2" onclick="location='<{$changeAddressUrl}>'"><i class="icon-angle-right padding-top"></i></span>
+          <span class="x2" onclick="location='<{$changeAddressUrl}>'"><i class="iconfont icon-angle-right padding-top"></i></span>
 		</div>
 		
 		<div class="blank-10 bg"></div>
@@ -57,27 +57,27 @@
 						<{$var.name}><p>推荐已安装<{$var.name}><{$var.id}>客户端的用户使用</p>
 						</div>
 						<div class="x2">
-							<span class="radio txt txt-small radius-circle bg-green"><i class="icon-check"></i></span>
+							<span class="radio txt txt-small radius-circle bg-green"><i class="iconfont icon-qiandao1"></i></span>
 						</div>
 					</div>
 				</div>
 			</li>
 			</foreach>
-<!--			<li data-rel="wait" class="media media-x payment">-->
-<!--				<a class="float-left" href="javascript:;">-->
-<!--					<img src="/static/default/wap/image/pay/dao.png">-->
-<!--				</a>-->
-<!--				<div class="media-body">-->
-<!--					<div class="line">-->
-<!--						<div class="x10">-->
-<!--						货到付款<p>如果您没有网银，可以到店付</p>-->
-<!--						</div>-->
-<!--						<div class="x2">-->
-<!--							<span class="radio txt txt-small radius-circle bg-green"><i class="icon-check"></i></span>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</li>-->
+			<li data-rel="wait" class="media media-x payment">
+				<a class="float-left" href="javascript:;">
+					<img src="/static/default/wap/image/pay/dao.png">
+				</a>
+				<div class="media-body">
+					<div class="line">
+						<div class="x10">
+						货到付款<p>如果您没有网银，可以到店付</p>
+						</div>
+						<div class="x2">
+							<span class="radio txt txt-small radius-circle bg-green"><i class="iconfont icon-qiandao1"></i></span>
+						</div>
+					</div>
+				</div>
+			</li>
 		</ul>
 		<input id="code" type="hidden" name="code" value="" />
 		

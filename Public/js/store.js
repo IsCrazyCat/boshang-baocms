@@ -1,51 +1,46 @@
-/* 
- * 软件为合肥生活宝网络公司出品，未经授权许可不得使用！
- * 作者：尤哥
- * 官网：www.baocms.com
- * 邮件: 376621340@qq.com
- */
+
 var lock = 0;
 function loading() {
-    var boxHtml = '<div class="baomsgbox"></div>';
+    var boxHtml = '<div class="tumsgbox"></div>';
 
-    $(".baomsgbox").css('top', '300px');
-    if ($(".baomsgbox").length == 0) {
+    $(".tumsgbox").css('top', '300px');
+    if ($(".tumsgbox").length == 0) {
         $("body").append(boxHtml);
     }
-    $(".baomsgbox").html('<img src="' + BAO_PUBLIC + '/images/loading.gif" /><span  style=" color: blue;">正在加载中...</span>');
-    $(".baomsgbox").show();
+    $(".tumsgbox").html('<img src="' + BAO_PUBLIC + '/images/loading.gif" /><span  style=" color: blue;">正在加载中...</span>');
+    $(".tumsgbox").show();
     lock = 1;
 }
 
 
 
 function success(msg, timeout, callback) {
-    var boxHtml = '<div class="baomsgbox"></div>';
-    if ($(".baomsgbox").length == 0) {
+    var boxHtml = '<div class="tumsgbox"></div>';
+    if ($(".tumsgbox").length == 0) {
         $("body").append(boxHtml);
     }
-    $(".baomsgbox").html('<img src="' + BAO_PUBLIC + '/images/right.gif" /><span  style=" color: green;">' + msg + '</span>');
+    $(".tumsgbox").html('<img src="' + BAO_PUBLIC + '/images/right.gif" /><span  style=" color: green;">' + msg + '</span>');
     setTimeout(function () {
         lock = 0;
-        $(".baomsgbox").hide();
+        $(".tumsgbox").hide();
         eval(callback);
     }, timeout ? timeout : 3000);
 }
 function error(msg, timeout, callback) {
-    var boxHtml = '<div class="baomsgbox"></div>';
-    if ($(".baomsgbox").length == 0) {
+    var boxHtml = '<div class="tumsgbox"></div>';
+    if ($(".tumsgbox").length == 0) {
         $("body").append(boxHtml);
     }
-    $(".baomsgbox").html('<img src="' + BAO_PUBLIC + '/images/wrong.gif" /><span  style=" color: red;">' + msg + '</span>');
+    $(".tumsgbox").html('<img src="' + BAO_PUBLIC + '/images/wrong.gif" /><span  style=" color: red;">' + msg + '</span>');
     setTimeout(function () {
         lock = 0;
-        $(".baomsgbox").hide();
+        $(".tumsgbox").hide();
         eval(callback);
     }, timeout ? timeout : 3000);
 }
 
 function hidde() {
-    $(".baomsgbox").hide();
+    $(".tumsgbox").hide();
     lock = 0;
 }
 
@@ -107,7 +102,7 @@ $(document).ready(function (e) {
         if (!lock) {
             if (confirm("您确定要" + $(this).html())) {
                 loading();
-                $("#baocms_frm").attr('src', $(this).attr('href'));
+                $("#x-frame").attr('src', $(this).attr('href'));
             }
         }
     });

@@ -1,41 +1,4 @@
 //JQUERY 模拟手机上拉下拉效果
-/*
-程序说明：
-1、用于兼容苹果/安卓的上拖下拽的手机效果;
-2、开发者龙啸VS猪猪 QQ：182382857;
-3、PC端通用，但是PC端使用时需注意要把content的onclick事件单独处理，因为PC端不支持滑屏事件，如这样使用[
-	var Top=0;
-	function PcSetOclick(n){ //从第N个开始加载
-		for(i=n;i<$('.content .Scroll_Element ul li').size();++i){
-			var on=$('.content .Scroll_Element ul li:eq('+i+')').attr('onclick');
-			$('.content .Scroll_Element ul li:eq('+i+')').removeAttr('onclick');
-			$('.content .Scroll_Element ul li:eq('+i+')').attr('onclick-data',on);
-		}
-		$('.content .Scroll_Element ul li').on('mousedown',function(){Top=$('.content .Scroll_Element').scrollTop();});
-		$('.content .Scroll_Element ul li').on('mouseup',function(){
-			var t=$('.content .Scroll_Element').scrollTop();
-			//alert(t+' '+Top);
-			if(t==Top && ( parseInt($('.content .Scroll_Element').css('margin-top'))==0 && parseInt($('.content .Scroll_Element_top').css('margin-top'))==0 ) ){ //此时才执行方法 当滚动条未动 且 上下拖动未发生变化时才执行
-				eval($(this).attr('onclick-data'));
-			}
-		});
-	}
-	try{ //判断设备是否支持滑动事件
-		document.createEvent("TouchEvent"); 
-	}catch(e){ //不支持滑屏事件时才执行
-		PcSetOclick(0); //从第一个开始加载
-	}
-];
-4、必须先加载JQUERY 再加载 funcion.js 再加载 diyScroll.js;
-5、具体程序是怎么执行的，请看默认配置。
-
-例子：
-	$('.content').Frame({type:[1,1],background:'#760202',color:'#fca6a6',topfunc:'reFresh()',botfunc:'loadData()'}); //上拉/下拉 刷新/加载 页面效果
-	$('.content').Frame({type:[0,1],background:'#760202',color:'#fca6a6',topfunc:'reFresh()',botfunc:'loadData()'}); //上拉/下拉 只弹动/加载 页面效果
-	$('.content').Frame({type:[1,0],background:'#760202',color:'#fca6a6',topfunc:'reFresh()',botfunc:'loadData()'}); //上拉/下拉 刷新/只弹动 页面效果
-	$('.content').Frame({type:[0,0],background:'#760202',color:'#fca6a6',topfunc:'reFresh()',botfunc:'loadData()'}); //上拉/下拉 只弹动/只弹动 页面效果
-备注：程序内部所有时间单位都为毫秒
-*/
 
 	$.fn.Frame=function(obj){
 		//默认配置

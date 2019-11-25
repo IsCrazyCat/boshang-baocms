@@ -1,7 +1,7 @@
 <include file='public:header'/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('favorites/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('favorites/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		<{$detail.shop_name}>
@@ -23,7 +23,7 @@
 			<a href="<{:U('favorites/read',array('news_id'=>$val['news_id']))}>"><div class="pic"><img src="<{:config_img($val['photo'])}>"  /></div>
 				<h5><{:msubstr($val['title'],0,18)}></h5>
 				<p><{$val.create_time|date='Y-m-d',###}></p>
-				<p><{:bao_Msubstr($val['details'],0,60)}></p>
+				<p><{:tu_msubstr($val['details'],0,60)}></p>
 			</a>
 		</div>
 	</div>

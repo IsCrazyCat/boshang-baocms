@@ -1,5 +1,74 @@
 var niulock = 1;
 var niunum = 1;
+var map;
+var geoc;
+
+
+//GET请求执行结果，带load
+$(function () {
+	$('body').on('click','#www-hatudou-com-url-btn',function (){
+		showLoader();
+        var $url = this.href;
+        $.get($url, function (data){
+            if (data.code==1) {
+				hideLoader();
+                layer.msg(data.msg, function(){
+					location.href = data.url;
+				});
+            }else{
+				hideLoader();
+                layer.msg(data.msg);
+				setTimeout(function (){
+					lock = 0;
+				},3000);
+            }
+        }, "json");
+        return false;
+    });
+});
+
+//哈土豆添加弹窗编辑,傻逼来抄袭
+function showWindow(width,hight,url,title){
+	layer.open({
+	  type: 2,
+	  title:title,
+	  area:[width,hight],
+	  fixed: false, 
+	  maxmin: true,
+	  content: url
+	});
+}
+
+//图片弹窗
+function popUpPic(id){
+	layer.photos({
+		photos: '#layer-photos-demo-'+id,
+		shift: 5 //0-6鐨勯€夋嫨锛屾寚瀹氬脊鍑哄浘鐗囧姩鐢荤被鍨嬶紝榛樿闅忔満
+	}); 
+}
+
+
+// 哈土豆添加ajaxForm
+$(function () {
+    $('#ajaxForm').ajaxForm({
+        success: complete, // 这是提交后的方法
+        dataType: 'json'
+    });
+});
+
+//哈土豆添加ajaxForm失败不跳转
+function complete(data) {
+    if (data.code == 1) {
+		layer.msg(data.msg, function(){
+			location.href = data.url;
+		});
+    } else {
+		layer.msg(data.msg);
+		setTimeout(function () {
+			lock = 0;
+		},3000);
+    }
+}
 
 function getLocation(){
 	navigator.geolocation.getCurrentPosition(Local);
@@ -26,8 +95,10 @@ function Local(position) {
 };
 
 
+
+
 function showLoader(msg) {
-	layer.load();
+	layer.load(2);
 }
 
 function hideLoader(){
@@ -40,14 +111,43 @@ function ajaxLogin(){
 	window.location.href = "/wap/passport/login.html"; 
 }
 
-function loaddata(page, obj, sc) {
-    var link = page.replace('0000', niunum);
-    showLoader('正在加载中....');
+//信息,跳转地址,时间
+function boxmsg(msg, url, timeout, callback){ 
+	showLoader();
+    layer.msg(msg);
+	hideLoader();
+    if(url){
+        setTimeout(function(){
+            window.location.href = url;
+        }, timeout ? timeout : 3000);
+    }else if (url === 0){
+        setTimeout(function () {
+            location.reload(true);
+        }, timeout ? timeout : 3000);
+    }else{
+        eval(callback);
+    }
 
+}
+
+
+
+
+function loaddata(page, obj, sc) {
+	
+    var link = page.replace('0000', niunum);
+
+    showLoader('正在加载中....');
+	var html = '<div class="blank-10"></div><div class="container" style="text-align: center;"><a class="text-center">没有更多内容</a></div>';
     $.get(link, function (data) {
         if (data != 0) {
             obj.append(data);
-        }
+        }else{
+			obj.append(html);
+			niulock = 0;
+        	hideLoader();
+			return;
+		}
         niulock = 0;
         hideLoader();
     }, 'html');
@@ -56,9 +156,12 @@ function loaddata(page, obj, sc) {
 			var wh = $(window).scrollTop();
 			var xh = $(document).height() - $(window).height() - 70;
             if (!niulock && wh >= xh ) {
+			
                 niulock = 1;
                 niunum++;
+			
                 var link = page.replace('0000', niunum);
+         
                 showLoader('正在加载中....');
 				var timeout = setTimeout(function(){
 					niulock = 0;
@@ -185,10 +288,10 @@ function check_user_mobile(url1,url2){
 function change_user_mobile(url1,url2){
 	layer.open({
 		type: 1,
-		title:'请绑定手机后操作',
+		title:'更换手机号',
 		skin: 'layer-ext-demo', //加上边框
 		area: ['90%', '300px'], //宽高
-		content: '<div class="padding-big">手机号<br /><input name="mobile" id="mobile" type="text" size="13" class="input input-auto" /> <button class="button margin-top bg-yellow" type="button" id="jq_send">获取验证码</button><br /><div class="blank-10"></div>验证码<br /><input  class="input input-auto" size="10"  name="yzm" id="yzm" type="text" /> 输入验证码<br><div class="blank-20"></div><input type="submit" value="立刻认证" class="button bg-yellow"  id="go_mobile" /></div>'
+		content: '<div class="padding-big">手机号<br /><input name="mobile" id="mobile" type="text" size="13" class="input input-auto" /><button class="button margin-top bg-yellow" type="button" id="jq_send">获取验证码</button><br /><div class="blank-10"></div>验证码<br /><input  class="input input-auto" size="10"  name="yzm" id="yzm" type="text" /> 输入验证码<br><div class="blank-20"></div><input type="submit" value="立刻认证" class="button bg-yellow"  id="go_mobile" /></div>'
 	});
 	//获取验证码
 	var mobile_timeout;
@@ -250,6 +353,7 @@ function change_user_mobile(url1,url2){
 }
 
 //获取城市、地区、商圈的下拉菜单
+//获取城市、地区、商圈的下拉菜单
 function get_option(){
 
 		var city_id = 0;
@@ -266,77 +370,56 @@ function get_option(){
 		}
 
 		$("#city_id").html(city_str);
-
 		$("#city_id").change(function () {
 			if ($("#city_id").val() > 0) {
-				city_id = $("#city_id").val();
-				var area_str = ' <option value="0">请选择...</option>';
-				for (a in cityareas.area) {
-					if (cityareas.area[a].city_id == city_id) {
-						if (area_id == cityareas.area[a].area_id) {
-							area_str += '<option selected="selected" value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-						} else {
-							area_str += '<option value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-						}
-					}
-				}
-				$("#area_id").html(area_str);
-				$("#business_id").html('<option value="0">请选择...</option>');
+			   var city_id = $("#city_id").val();
+					$.ajax({
+						  type: 'POST',
+						  url: window.CITYURL,
+						  data:{cid:city_id},
+						  dataType: 'json',
+						  success: function(result)
+						  {
+							 var area_str = ' <option value="0">请选择...</option>';
+							for (a in result) {
+							  area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';                              
+							}
+						   $("#area_id").html(area_str);
+							$("#business_id").html('<option value="0">请选择...</option>');									
+						  }
+					});
 			} else {
 				$("#area_id").html('<option value="0">请选择...</option>');
 				$("#business_id").html('<option value="0">请选择...</option>');
 			}
-
 		});
 
-		if (city_id > 0) {
-			var area_str = ' <option value="0">请选择...</option>';
-			for (a in cityareas.area) {
-				if (cityareas.area[a].city_id == city_id) {
-					if (area_id == cityareas.area[a].area_id) {
-						area_str += '<option selected="selected" value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-					} else {
-						area_str += '<option value="' + cityareas.area[a].area_id + '">' + cityareas.area[a].area_name + '</option>';
-					}
-				}
-			}
-			$("#area_id").html(area_str);
-		}
 
 
 		$("#area_id").change(function () {
+
 			if ($("#area_id").val() > 0) {
 				area_id = $("#area_id").val();
-				var business_str = ' <option value="0">请选择...</option>';
-				for (a in cityareas.business) {
-					if (cityareas.business[a].area_id == area_id) {
-						if (business_id == cityareas.business[a].business_id) {
-							business_str += '<option selected="selected" value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-						} else {
-							business_str += '<option value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-						}
-					}
-				}
-				$("#business_id").html(business_str);
+					$.ajax({
+						  type: 'POST',
+						  url: window.BUSURL,
+						  data:{bid:area_id},
+						  dataType: 'json',
+						  success: function(result)
+						  {
+							 var business_str = ' <option value="0">请选择...</option>';
+							 for (a in result) {
+									business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+							 }
+							$("#business_id").html(business_str);
+						 }
+					   });
 			} else {
 				$("#business_id").html('<option value="0">请选择...</option>');
 			}
-
 		});
 
-		if (area_id > 0) {
-			var business_str = ' <option value="0">请选择...</option>';
-			for (a in cityareas.business) {
-				if (cityareas.business[a].area_id == area_id) {
-					if (business_id == cityareas.business[a].business_id) {
-						business_str += '<option selected="selected" value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-					} else {
-						business_str += '<option value="' + cityareas.business[a].business_id + '">' + cityareas.business[a].business_name + '</option>';
-					}
-				}
-			}
-			$("#business_id").html(business_str);
-		}
+
 		$("#business_id").change(function () {
 			business_id = $(this).val();
 		});
@@ -364,77 +447,99 @@ function changeCAB(c,a,b){
 
 	$("#city_ids").change(function () {
 		if ($("#city_ids").val() > 0) {
-			city_ids = $("#city_ids").val();
-			var area_str = ' <option value="0">请选择...</option>';
-			for (b in cityareas.area) {
-				if (cityareas.area[b].city_id == city_ids) {
-					if (area_ids == cityareas.area[b].area_id) {
-						area_str += '<option selected="selected" value="' + cityareas.area[b].area_id + '">' + cityareas.area[b].area_name + '</option>';
-					} else {
-						area_str += '<option value="' + cityareas.area[b].area_id + '">' + cityareas.area[b].area_name + '</option>';
-					}
-				}
-			}
-	   
+			city_id = $("#city_ids").val();
+			   $.ajax({
+					  type: 'POST',
+					  url: window.CITYURL,
+					  data:{cid:city_id},
+					  dataType: 'json',
+					  success: function(result)
+					  {
+						 var area_str = ' <option value="0">请选择...</option>';
+						for (a in result) {
+						  area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';                              
+						}
+					   $("#area_ids").html(area_str);
+						$("#business_ids").html('<option value="0">请选择...</option>');										
+					  }
+				});
 			$("#area_ids").html(area_str);
 			$("#business_ids").html('<option value="0">请选择...</option>');
-		  
-			
 		} else {
 			$("#area_ids").html('<option value="0">请选择...</option>');
 			$("#business_ids").html('<option value="0">请选择...</option>');
 		}
-
 	});
 
-	if (city_ids > 0) {
+	 if (city_ids > 0) {  //编辑加载选中数据     
 		var area_str = ' <option value="0">请选择...</option>';
-		for (b in cityareas.area) {
-			if (cityareas.area[b].city_id == city_ids) {
-				if (area_ids == cityareas.area[b].area_id) {
-					area_str += '<option selected="selected" value="' + cityareas.area[b].area_id + '">' + cityareas.area[b].area_name + '</option>';
+		$.ajax({
+		  type: 'POST',
+		  url: window.CITYURL,
+		  data:{cid:city_ids},
+		  dataType: 'json',
+		  success: function(result)
+		  {
+			 for (a in result) {
+				if (area_ids == result[a].area_id) {
+					area_str += '<option selected="selected" value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
 				} else {
-					area_str += '<option value="' + cityareas.area[b].area_id + '">' + cityareas.area[b].area_name + '</option>';
+					area_str += '<option value="' + result[a].area_id + '">' + result[a].area_name + '</option>';
 				}
+			  }
+			 $("#area_ids").html(area_str);
 			}
-		}
-		$("#area_ids").html(area_str);
+		});
 	}
 
 
 	$("#area_ids").change(function () {
 		if ($("#area_ids").val() > 0) {
-			area_ids = $("#area_ids").val();
-			var business_str = ' <option value="0">请选择...</option>';
-			for (b in cityareas.business) {
-				if (cityareas.business[b].area_id == area_ids) {
-					if (business_ids == cityareas.business[b].business_id) {
-						business_str += '<option selected="selected" value="' + cityareas.business[b].business_id + '">' + cityareas.business[b].business_name + '</option>';
-					} else {
-						business_str += '<option value="' + cityareas.business[b].business_id + '">' + cityareas.business[b].business_name + '</option>';
-					}
-				}
-			}
-			$("#business_ids").html(business_str);
+			area_id = $("#area_ids").val();
+				$.ajax({
+					  type: 'POST',
+					  url: window.BUSURL,
+					  data:{bid:area_id},
+					  dataType: 'json',
+					  success: function(result)
+					  {
+						 var business_str = ' <option value="0">请选择...</option>';
+						 for (a in result) {
+								business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+						 }
+						$("#business_ids").html(business_str);
+					 }
+
+				   });
 		} else {
 			$("#business_ids").html('<option value="0">请选择...</option>');
 		}
-
 	});
 
-	if (area_ids > 0) {
-		var business_str = ' <option value="0">请选择...</option>';
-		for (b in cityareas.business) {
-			if (cityareas.business[b].area_id == area_ids) {
-				if (business_ids == cityareas.business[b].business_id) {
-					business_str += '<option selected="selected" value="' + cityareas.business[b].business_id + '">' + cityareas.business[b].business_name + '</option>';
-				} else {
-					business_str += '<option value="' + cityareas.business[b].business_id + '">' + cityareas.business[b].business_name + '</option>';
-				}
+	if (area_ids > 0) {  //编辑加载选中数据                                 
+	   $.ajax({
+		  type: 'POST',
+		  url: window.BUSURL,
+		  data:{bid:area_ids},
+		  dataType: 'json',
+		  success: function(result)
+		  {
+			var business_str = ' <option value="0">请选择...</option>';
+			for (a in result) {
+					if (business_ids == result[a].business_id) {
+						business_str += '<option selected="selected" value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+					} else {
+					  business_str += '<option value="' + result[a].business_id + '">' + result[a].business_name + '</option>';
+					}
 			}
-		}
-		$("#business_ids").html(business_str);
+			 $("#business_ids").html(business_str);
+		  }
+
+	   });
+
 	}
+
+
 	$("#business_ids").change(function () {
 		business_ids = $(this).val();
 	});
@@ -442,21 +547,8 @@ function changeCAB(c,a,b){
 
 
 
-function boxmsg(msg, url, timeout, callback) { //信息,跳转地址,时间
-    layer.msg(msg);
-    if (url) {
-        setTimeout(function () {
-            window.location.href = url;
-        }, timeout ? timeout : 3000);
-    } else if (url === 0) {
-        setTimeout(function () {
-            location.reload(true);
-        }, timeout ? timeout : 3000);
-    } else {
-        eval(callback);
-    }
 
-}
+
 
 function boxopen(msg, close, style) {
     layer.open({
@@ -472,9 +564,9 @@ function boxopen(msg, close, style) {
 function get_night(stime,ltime){
     var  aDate,  oDate1,  oDate2,  iDays  
     aDate  =  stime.split("-")  
-    oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    
-    aDate  =  ltime.split("-")  
-    oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])  
-    iDays  =  parseInt(Math.abs(oDate1  -  oDate2)  /  1000  /  60  /  60  /24)    
+	s1 = new Date(stime.replace(/-/g, "/"));
+	s2 = new Date(ltime.replace(/-/g, "/"));
+	var days = s2.getTime() - s1.getTime();
+	var iDays = parseInt(days / (1000 * 60 * 60 * 24));
     return  iDays  
 }

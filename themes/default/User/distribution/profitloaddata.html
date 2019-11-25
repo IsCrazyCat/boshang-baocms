@@ -7,32 +7,25 @@
         
           <dd class="zhong">
                 <div class="x12">
-                    <p>
-                    分成类型：
-                    <if condition="$item['order_type'] eq 0">
-                    团购
-                    <elseif condition="$item['order_type'] eq 1"/>
-                    商城
-                    <elseif condition="$item['order_type'] eq 2"/>
-                    优惠买单
-                    </if>
-                    
-                    </p>
+                    <p>分成类型：<{$item.type_name}></p>
                     <p class="text-small">
                         <span class="text-dot1 margin-right">
-                        收益金额：<span class="text-dot">&yen;<{:round($item['money']/100,2)}>元 </span> 
+                        	收益金额：<span class="text-dot">&yen;<{:round($item['money']/100,2)}>元 </span> 
                         </span>
                         <span class="text-dot1 margin-right">
-                        <if condition="$item['order_type'] eq 0">
-                        团购
-                        <elseif condition="$item['order_type'] eq 1"/>
-                        商城
-                        <elseif condition="$item['order_type'] eq 2"/>
-                        优惠买单
-                        </if>
-                        订单ID：<span class="text-dot"><{$item.order_id}></span> 
+                            <if condition="$item['order_id']">
+                                <{$item.type_name}>
+                                原始订单ID：<span class="text-dot"><{$item.order_id}></span> 
+                            </if>
                         </span>
                     </p>
+                    <if condition="$item['shop_id']">
+                    	<p class="text-small">来自商家：<span class="text-dot margin-right"><{$shops[$item['shop_id']]['shop_name']|default='其他类型'}></span></p>
+                    </if>
+                    <if condition="$item['info']">
+                    	<p class="text-small">分成说明：<span class="text-dot1 margin-right"><{$item.info}></span></p>
+                    </if>
+                    
               </div>
           </dd>
     </li>

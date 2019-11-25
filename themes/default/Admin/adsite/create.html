@@ -7,11 +7,11 @@
     </ul>
 </div>
 
-<p class="attention"><span>注意：</span>添加前，以及模板调用方法看：<a href="http://www.fengmiyuanma.com/10237.html" target="_blank">http://www.fengmiyuanma.com/10237.html</a></p>
+<p class="attention"><span>注意：</span>添加前，以及模板调用方法看：<a href="http://www.juhucms.com/forum-37-1.html" target="_blank">http://www.juhucms.com/forum-37-1.html</a></p>
 
 
 <div class="mainScAdd">
-	<form  target="baocms_frm" action="<{:U('adsite/create')}>" method="post">
+	<form  target="x-frame" action="<{:U('adsite/create')}>" method="post">
 		<div class="tableBox">
        
             <table class="table table-hover">
@@ -52,6 +52,14 @@
                         </select>
                     </td>
                 </tr>
+                
+                <tr>
+                    <td class="lfTdBt">广告位售价：</td>
+                    <td class="rgTdBt"><input type="text" name="data[site_price]" value="<{$detail.site_price|default=''}>" class="manageInput w80" />
+                    <code>这里是一天的售价，必须为整数，不支持小数点</code>
+                    </td>
+                </tr> 
+                
             </table>
 		</div>
 		<div class="smtQr"><input type="submit" value="确认添加" class="smtQrIpt" /></div>

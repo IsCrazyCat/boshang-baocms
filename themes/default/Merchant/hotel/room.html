@@ -20,6 +20,7 @@
         <ul>
             <li class="tuanfabu_tabli on"><a href="<{:U('hotel/room')}>">酒店房间</a></li>
             <li class="tuanfabu_tabli"><a href="<{:U('hotel/index')}>">酒店订单</a></li>
+            <li class="tuanfabu_tabli"><a href="<{:U('hotel/set_hotel')}>">酒店设置</a></li>
         </ul>
     </div> 
     <table class="tuan_table" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -47,8 +48,9 @@
                 <td><eq name="var.is_cancel" value="1">可以<else/>不可以</eq></td>
                 <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                 <td>
-                <a class="radius3 sy_c1an" href="<{:U('hotel/editroom',array('room_id'=>$var['room_id']))}>">编辑</a>
-            </td>
+                    <a class="radius3 sy_c1an" mini="confirm" href="<{:U('hotel/deleteroom',array('room_id'=>$var['room_id']))}>">删除房间</a>
+                    <a class="radius3 sy_c1an" href="<{:U('hotel/editroom',array('room_id'=>$var['room_id']))}>">编辑</a>
+                </td>
             </tr>
         </foreach>
     </table>

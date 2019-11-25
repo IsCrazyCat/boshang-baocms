@@ -1,7 +1,7 @@
 <title>商家员工管理中心V2.01</title>
 <script>
-	var BAO_PUBLIC = '__PUBLIC__';
-	var BAO_ROOT = '__ROOT__';
+	var TU_PUBLIC = '__PUBLIC__';
+	var TU_ROOT = '__ROOT__';
 </script>
 <style>
 .fr1{ text-align:center;}
@@ -24,7 +24,6 @@
         <div class="blank-10"></div>
             <div class="form-group">
             <div class="field field-icon">
-            <span class="icon icon-user"></span>
             <input class="input account" type="text" value="" name="account" placeholder="请输入店员账户">
             </div>
             </div>
@@ -32,19 +31,17 @@
       <div class="blank-10"></div>
             <div class="form-group">
 				<div class="field field-icon">
-					<span class="icon icon-key"></span>
             <input class="input password" type="password" value="" name="password" placeholder="请输入店员密码">
              </div>
             </div>  
             <div class="blank-10"></div>             
             <div class="form-group">
 				<div class="field field-icon x6">
-					<span class="icon icon-lock"></span>
           			<input class="input yzm" type="text" value="" name="yzm" placeholder="请输入验证码">
                 </div>
                 <div class="field field-icon x6">
 					 <div class="fr1">
-                    <a rel="bao_img_code" class="yzm_code" href="javascript:void(0);"><img id="bao_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" width="75" height="36" /></a><em><a rel="bao_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em>
+                    <a rel="tu_img_code" class="yzm_code" href="javascript:void(0);"><img id="tu_img_code" src="__ROOT__/index.php?g=app&m=verify&a=index&mt=<{:time()}>" width="75" height="36" /></a><em><a rel="tu_img_code" class="yzm_code" href="javascript:void(0);">换一张</a></em>
                      </div>
                 </div>
             </div>
@@ -73,7 +70,7 @@
 		$('.yzm_code').click(function(){
 			var l = "__ROOT__/index.php?g=app&m=verify&a=index&mt=";
 			time = time + 1;
-			$('#bao_img_code').attr('src',l+time);
+			$('#tu_img_code').attr('src',l+time);
 		})
 		$('.btn').click(function(){
 			var account = $('.account').val();

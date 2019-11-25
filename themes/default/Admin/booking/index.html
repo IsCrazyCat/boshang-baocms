@@ -83,7 +83,7 @@
         </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
@@ -108,6 +108,13 @@
                         <td><{$var.price}></td>
                         <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                     <td>
+                    
+                    <if condition="$var.audit eq 0">
+                    	<{:BA('booking/audit',array("shop_id"=>$var["shop_id"]),'审核','act','remberBtn')}>
+                    </if>
+                    <if condition="$var.audit eq ''">
+                    	<{:BA('booking/audit',array("shop_id"=>$var["shop_id"]),'审核','act','remberBtn')}>
+                    </if>
                     <{:BA('booking/edit',array("shop_id"=>$var["shop_id"]),'编辑','','remberBtn')}>
                     <{:BA('booking/delete',array("shop_id"=>$var["shop_id"]),'删除','act','remberBtn')}>
                     </td>

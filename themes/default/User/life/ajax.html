@@ -28,6 +28,29 @@
 	</div>
 </div>
 </if>
+
+<if condition="!empty($cate['text4'])"> 
+<div class="row">
+	<div class="line">
+		<span class="x3"><{$cate.text4}></span>
+		<span class="x9">
+			<input type="text" class="text-input" name="data[text4]" value="<{$detail.text4|default=''}>" />
+		</span>
+	</div>
+</div>
+</if>
+<if condition="!empty($cate['text5'])"> 
+<div class="row">
+	<div class="line">
+		<span class="x3"><{$cate.text5}></span>
+		<span class="x9">
+			<input type="text" class="text-input" name="data[text5]" value="<{$detail.text5|default=''}>" />
+		</span>
+	</div>
+</div>
+</if>
+
+
 <if condition="!empty($cate['num1'])"> 
 <div class="row">
 	<div class="line">
@@ -117,7 +140,7 @@
 	<div class="line">
 		<span class="x3"><{$cate.select5}></span>
 		<span class="x9">
-			<select name="data[select4]" class="text-select">
+			<select name="data[select5]" class="text-select">
 			<foreach name="attrs" item="item">
                <eq name="item.type" value="select5">
                <option value="<{$item.attr_id}>"  <eq name="detail.select5" value="$item.attr_id">selected="selected"</eq>  ><{$item.attr_name}></option>
@@ -128,3 +151,14 @@
 	</div>
 </div>
 </if>
+
+	<div class="row">
+		<div class="line">
+			<span class="x3">标签：</span>
+			<span class="x9">
+                 <foreach name="tags" item="var">
+                     <label><input class="tag" type="checkbox" name="tag[]" value="<{$var['tag_id']}>" /><{$var['tag_name']}></label>
+                 </foreach>   
+			</span>
+		</div>
+	</div>

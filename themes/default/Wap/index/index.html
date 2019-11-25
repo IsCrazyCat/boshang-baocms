@@ -1,303 +1,422 @@
-<if condition="!empty($CONFIG[other][wap_index_addr])">
- <include file="index:lbs_addr" />
-<else/>
- <include file="public:header" />
-</if>
-<script src="/static/default/wap/other/roll.js"></script>
-<script src="__TMPL__statics/js/jquery.flexslider-min.js" type="text/javascript" charset="utf-8"></script>
-<script src="__TMPL__statics/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<include file="public:header"/>
+
+
+<!--<include file="index:ad"/>-->
+<include file="index:ad"/>
+
+<script src="/static/default/wap/js/jquery.flexslider-min.js" type="text/javascript"></script>
+
 <style>
-.top-fixed .top-search{margin: 0 0 0 27%;}
-.top-fixed .top-search { width:48%}
-.top-fixed .top-search input {border-radius: 0px;}
+    .focus-banner-bottom {
+        display: -webkit-box;
+        height: 3px
+    }
+
+    .focus-banner-bottom li {
+        width: 20%;
+        display: block;
+        -moz-box-flex: 1;
+        -webkit-box-flex: 1;
+        box-flex: 1
+    }
+    .index-items li{
+        list-style-type: none;
+        margin: 0 .2rem;
+        position: relative;
+        clear: both;
+        overflow: hidden;
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+    .index-items li .item-image {
+        padding: .3rem .3rem;
+        float: left;
+        width: 25%;
+        height: auto;
+        position: relative;
+    }
+    .item-image img {
+        display: block;
+        height: 3rem;
+    }
+    .item-image img {
+        border-radius: 0.22rem;
+        margin-top: .3rem;
+        margin-left: 0.25rem;
+        width: 100%;
+        object-fit: cover;
+    }
+    .index-items li .item-inner {
+        float: left;
+        width: 70%;
+        position: relative;
+    }
+    .item-inner {
+        font-size: .9rem;
+        border-bottom: 1px #f1f1f1 solid;
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+        margin-left: 12px;
+    }
+    .index-items li .item-inner .item-price-row {
+        overflow: hidden;
+        vertical-align: middle;
+        margin-top: .1rem;
+    }
+    .index-items li .item-inner .index-item-title {
+        color: #282828;
+        font-size: 0.75rem;
+    }
+    .index-items li .item-inner p {
+        margin: 0;
+    }
+    .item-inner .item-price-row .item-number {
+        float: left;
+        line-height: 1.35rem;
+    }
+    .item-inner .item-price-row p {
+        font-size: .425rem;
+        color: #939393;
+        vertical-align: middle;
+        line-height: 1.0rem;
+    }
+    .text-filter {
+        white-space: nowrap;
+        width: 65%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .index-items li .item-inner .item-price-row {
+        overflow: hidden;
+        vertical-align: middle;
+        margin-top: .1rem;
+    }
 </style>
-<header class="top-fixed bg-yellow bg-inverse">
-			<div class="top-local">
-				<a href="<{:U('city/index')}>" class="top-addr">
-					<{:bao_msubstr($city_name,0,4,false)}><i class="icon-angle-down"></i></a>
-			</div>
-			<div class="top-search">
-				<form method="post" action="<{:U('all/index')}>">
-					<input name="keyword" placeholder="<{$CONFIG[other][wap_search_title]}>" />
-					<button type="submit" class="icon-search"></button>
-				</form>
-			</div>
-<!--			<div class="top-signed">-->
-<!--				<a id="search-btn" href="<{:u('wap/sign/signed')}>"><i class="icon-star-half-o"></i> 签到</a>-->
-<!--			</div>-->
-		</header>
-		
-		<div id="focus" class="focus">
-			<div class="hd"><ul></ul></div>
-			<!--下面的limit="0,2"是幻灯的个数，2代表2张图，以此类推，site_id=57是你广告位的ID-->
-			<div class="bd">
-				<ul>
-					<calldata mdl="Ad" where=" closed=0 AND site_id=57 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,3" cache="7200" order="orderby asc">
-						<li>
-							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>" /></a>
-						</li>
-					</calldata>
-				</ul>
-			</div>
-		</div>
-		<script type="text/javascript">
-			TouchSlide({
-				slideCell: "#focus",
-				titCell: ".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
-				mainCell: ".bd ul",
-				effect: "left",
-				autoPlay: true, //自动播放
-				autoPage: true, //自动分页
-				switchLoad: "_src", //切换加载，真实图片路径为"_src", 
-			});
-		</script>
 
-<!--		<section class="invote index_house">-->
-<!--			<a href="<{:U('community/index')}>"><img src="/static/default/wap/image/house.png">我的社区服务</a>-->
-<!--		</section>-->
-        <div id="index" class="page-center-box">
-       
+<header class="top-fixed bg-yellow bg-inverse header">
+    <div class="top-local">
+        <a href="<{:U('city/index')}>" class="top-addr">
+            <i class="icon-daohang iconfont"></i><{:tu_msubstr($city_name,0,4,false)}></a>
+    </div>
+    <div class="top-search" style="display:none;">
+        <form method="post" action="<{:U('all/index')}>">
+            <input name="keyword" placeholder="<{$CONFIG[other][wap_search_title]|default='输入关键字'}>"/>
+            <button type="submit" class="iconfont icon-search"></button>
+        </form>
+    </div>
+    <div class="top-signed">
+        <a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-search"></i></a>
+    </div>
+</header>
 
-        <if condition="$CONFIG[other][wap_navigation] eq 1">
-        <script>
-          $(document).ready(function () {
-             $('.navigation_index_cate').flexslider({
+<div id="focus" class="focus">
+    <div class="hd">
+        <ul></ul>
+    </div>
+    <div class="bd">
+        <ul>
+            <calldata mdl="Ad"
+                      where=" closed=0 AND site_id=57 AND city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' "
+                      limit="0,3" cache="7200" order="orderby asc">
+                <li>
+                    <a href="<{:U('wap/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img
+                            src="<{:config_img($item['photo'])}>"/></a>
+                </li>
+            </calldata>
+        </ul>
+        <div class="focus-banner-bottom">
+            <li class="bg-dot"></li>
+            <li class="bg-mix"></li>
+            <li class="bg-yellow"></li>
+            <li class="bg-blue"></li>
+            <li class="bg-gray"></li>
+        </div>
+    </div>
+</div>
+
+<div class="blank-10 bg"></div>
+<div id="jin-app-block-102" class="bg-white border-bottom cl">
+    <div class="jin-home-kx cl"><span class="k-new bg-red text-white">早知道</span>
+        <div id="index-notice" style="height:22px;line-height:22px;overflow:hidden;">
+            <ul class="clear">
+                <li class="bd clear">
+                    <a>今天：<{$today}></a>
+                    <foreach name="news" item="item">
+                        <a href="<{:U('news/detail',array('article_id'=>$item['article_id']))}>">
+                            <dt><{:tu_msubstr($item['title'],0,20,false)}></dt>
+                        </a>
+                    </foreach>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#search-btn").click(function () {
+                if ($(".top-search").css("display") == 'block') {
+                    $(".top-search").hide();
+                    $(".top-title").show(200);
+                } else {
+                    $(".top-search").show();
+                    $(".top-title").hide(200);
+                }
+            });
+        });
+
+        $(window).scroll(function () {
+            if (($(".top-fixed").length > 0)) {
+                if (($(this).scrollTop() > 0) && ($(window).width() > 100)) {
+                    $("header").removeClass("header");
+                    $("#search-btn").addClass("search-btn");
+                    $("#home-follow-public").addClass("home-follow-public-none");
+                    $("#home-follow-public").show(200);
+                } else {
+                    $("#home-follow-public").hide(200);
+                    $("header").addClass("header");
+                    $("#search-btn").removeClass("search-btn");
+                }
+            }
+            ;
+        });
+
+        function closeDiv() {
+            var p = $("#home-follow-public").css("display");
+            if (typeof (p) == "undefined" || p == "" || p == "block") {
+                $("#home-follow-public").css("display", "none");
+            } else {
+                $("#home-follow-public").css("display", "block");
+            }
+        }
+
+        $(document).ready(function () {
+            $('.navigation_index_cate').flexslider({
                 directionNav: true,
                 pauseOnAction: false,
-             });
-          });
-        </script>
-        <div class="banner_navigation">
-                <div class="navigation_index_cate"> 
+            });
+            $('.flexslider_cate').flexslider({
+                directionNav: true,
+                pauseOnAction: false,
+            });
+        });
+        TouchSlide({slideCell: "#index-notice", autoPlay: true, effect: "leftLoop", interTime: 3000});
+        TouchSlide({
+            slideCell: "#focus",
+            titCell: ".hd ul",
+            mainCell: ".bd ul",
+            effect: "left",
+            autoPlay: true,
+            autoPage: true,
+            switchLoad: "_src",
+        });
+    </script>
+
+
+    <div id="index" class="page-center-box">
+
+        <if condition="$CONFIG[other][wap_navigation] eq 1">
+            <div class="banner_navigation">
+                <div class="navigation_index_cate">
                     <ul class="slides">
                         <volist name='nav' id='item'>
-                            <if condition="$i%8 eq 1">
+                            <if condition="$i%10 eq 1">
                                 <li class="list">
                                     <ul class="cate">
                                         <li>
-                                            <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>"><img src="<{:config_img($item['photo'])}>">
+                                            <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>"><img
+                                                    src="<{:config_img($item['photo'])}>">
                                                 <p><{$item.nav_name}></p></a>
                                         </li>
-                                        <elseif condition="$i%8 eq 0"/>        
+                                        <elseif condition="$i%10 eq 0"/>
 
                                         <li>
-                                            <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>"><img src="<{:config_img($item['photo'])}>">
+                                            <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>"><img
+                                                    src="<{:config_img($item['photo'])}>">
                                                 <p><{$item.nav_name}></p></a>
                                         </li>
                                     </ul>
                                 </li>
                                 <else/>
                                 <li>
-                                    <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>"><img src="<{:config_img($item['photo'])}>">
+                                    <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>"><img
+                                            src="<{:config_img($item['photo'])}>">
                                         <p><{$item.nav_name}></p></a>
                                 </li>
                             </if>
                         </volist>
-                    </ul>  
+                    </ul>
                 </div>
             </div>
-        <else/>
-			<script>
-				$(document).ready(function() {
-					$('.flexslider_cate').flexslider({
-						directionNav: true,
-						pauseOnAction: false,
-					});
-				});
-			</script>
-			<div class="banner mb10">
-				<div class="flexslider_cate">
-					<ul class="slides">
-						<volist name='nav' id='item'>
-							<if condition="$i%8 eq 1">
-								<li class="list">
-									<ul class="cate">
-										<li>
-											<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
-												<div class="icon <{$item.ioc}> <{$item.colour}>"></div>
-												<p>
-													<{$item.nav_name}>
-												</p>
-											</a>
-										</li>
-										<elseif condition="$i%8 eq 0" />
-										<li>
-											<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
-												<div class="icon <{$item.ioc}> <{$item.colour}>"></div>
-												<p>
-													<{$item.nav_name}>
-												</p>
-											</a>
-										</li>
-									</ul>
-								</li>
-								<else/>
-								<li>
-									<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
-										<div class="icon <{$item.ioc}> <{$item.colour}>"></div>
-										<p>
-											<{$item.nav_name}>
-										</p>
-									</a>
-								</li>
-							</if>
-						</volist>
-					</ul>
-				</div>
-                </if>
-			</div>
-  
-         
-         <!--下一段开始-->   
-          
-            <div class="goods_title">
-            <span class="left">最新商品</span></div>
-            <div class="goods_limit_buy mb10">
-            	<div class="locatLabel_switch swiper-container5">
-                    <div class="swiper-wrapper">
-						<calldata mdl="Goods" where="audit =1 AND closed=0 AND city_id = $city_id AND end_date EGT '{$today}'" order="orderby asc,sold_num desc" limit="0,10" cache="600">                        
-                        <div class="box swiper-slide">
-                            <a href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>"><img src="<{:config_img($item['photo'])}>" width="" height="">
-                            <p class="txt_center overflow_clear"><{:bao_msubstr($item['title'],0,4,false)}></p>
-                            <p class="txt_center fontcl1">&yen;<{$item['price']/100}></p></a> 
-                        </div>
-                         </calldata>
+            <else/>
+
+            <div class="banner mb10">
+                <div class="flexslider_cate">
+                    <ul class="slides">
+                        <volist name='nav' id='item'>
+                            <if condition="$i%10 eq 1">
+                                <li class="list">
+                                    <ul class="cate">
+                                        <li>
+                                            <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
+                                                <div class="iconfont <{$item.ioc}> <{$item.colour}>"></div>
+                                                <p>
+                                                    <{$item.nav_name}>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <elseif condition="$i%10 eq 0"/>
+                                        <li>
+                                            <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
+                                                <div class="iconfont <{$item.ioc}> <{$item.colour}>"></div>
+                                                <p>
+                                                    <{$item.nav_name}>
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <else/>
+                                <li>
+                                    <a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
+                                        <div class="iconfont <{$item.ioc}> <{$item.colour}>"></div>
+                                        <p>
+                                            <{$item.nav_name}>
+                                        </p>
+                                    </a>
+                                </li>
+                            </if>
+                        </volist>
+                    </ul>
+                </div>
+        </if>
+    </div>
+
+
+    <div class="blank-10 bg"></div>
+
+    <ul class="index-items" id="index-joblist">
+        <div>
+            <img src="/static/default/wap/image/index/index-hot-job.png" style="width:60%;margin-left:20%;margin-top:20px;margin-bottom: 20px "/>
+        </div>
+        <foreach name="hot_jobs" item="v" index="index">
+            <li>
+                <a href="<{:U('Mobile/Job/jobInfo',array('job_id'=>$v.job_id))}>"
+                   class="item-link external item-content">
+                    <div class="item-image">
+<!--                        <img src="<{$v.job_img_url}>" width="100%">-->
+                        <img src="/static/default/wap/image/index/joblogo.jpg" width="100%">
                     </div>
-                </div>
-                
-		         <script>
-                    var swiper = new Swiper('.swiper-container5', {
-                        pagination: '.swiper-pagination5',
-                        slidesPerView: 3,
-                        paginationClickable: true,
-                        spaceBetween: 10,
-						autoplay: 3000,
-                        freeMode: true
-                    });
-                </script>
-            </div>
-            <!--首页限时套餐结束-->
-<!--			<div class="index-ads">-->
-<!--				<div class="line border-bottom border-top">-->
-<!--					<div class="x5 ad-1">-->
-<!--						<calldata mdl="Ad" where=" closed=0 AND site_id=62 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
-<!--							<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
-<!--						</calldata>-->
-<!--					</div>-->
-<!--					<div class="x7 border-left">-->
-<!--						<div class="line">-->
-<!--							<div class="x12 border-bottom ad-2">-->
-<!--								<calldata mdl="Ad" where=" closed=0 AND site_id=63 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
-<!--									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
-<!--								</calldata>-->
-<!--							</div>-->
-<!--							<div class="x6 border-right ad-3">-->
-<!--								<calldata mdl="Ad" where=" closed=0 AND site_id=64 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
-<!--									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
-<!--								</calldata>-->
-<!--							</div>-->
-<!--							<div class="x6 ad-3">-->
-<!--								<calldata mdl="Ad" where=" closed=0 AND site_id=65 AND  city_id IN ({$city_ids}) and bg_date ELT '{$today}' AND end_date EGT '{$today}' " limit="0,1" cache="600" order="orderby asc">-->
-<!--									<a href="<{:U('app/ad/click',array('ad_id'=>$item['ad_id'],'aready'=>2))}>"><img src="<{:config_img($item['photo'])}>"></a>-->
-<!--								</calldata>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-			<div class="blank-10 bg" style="border-bottom: thin solid #eee;">
-			</div>
-			<div class="tab index-tab" data-toggle="click">
-				<div class="tab-head">
-					<ul class="tab-nav line">
-                        <li class="x4 active"><a href="#tab-active">今日资讯</a></li>
-						<li class="x4"><a href="#tab-shop">附近商家</a></li>
-<!--						<li class="x4"><a href="#tab-coupon">附近小区</a></li>-->
-					</ul>
-				</div>
-				<div class="tab-body">
-                  <div class="tab-panel active" id="tab-active">
-						<ul class="index-tuan">
-							<volist name="news" id="item" key="index">
-								<div class="container1" onclick="location='<{:U('news/detail',array('article_id'=>
-						$item['article_id']))}>'">
-									<img class="x2" src="<{:config_img($item['photo'])}>">
-									<div class="des x8">
-										<h5><{:bao_msubstr($item['title'],0,14,false)}></h5>
-										<p class="info"><span>作者：<{$item.source}></span></p>
-									</div>
-									<div class="des x2">
-										<div class="intro2">
-											<{$item.views}>
-										</div>
-									</div>
-								</div>
-							</volist>
-						</ul>
-						<div class="more">
-							<a href="<{:U('news/index')}>">查看更多资讯</a>
-						</div>
-					</div>
-                    
-                    
-					<div class="tab-panel" id="tab-shop">
-						<ul class="line index-tuan">
-							<volist name="shoplist" id="item" key="index">
-								<div class="container1" onclick="location='<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>'">
-									<img class="x2" src="<{:config_img($item['photo'])}>">
-									<div class="des x10">
-				<php>$business = D('Business') -> where('business_id ='.$item['business_id']) -> find(); $business_name = $business['business_name'];</php>
-										<h5><{:bao_msubstr($item['shop_name'],0,10,false)}>
-                                        	<a style="color:#999; margin-left:10px;"><{$business_name}>商圈 &nbsp;<{$item.d}></a>
-                                        </h5>
-										<p class="intro">地址：<{:bao_msubstr($item[ 'addr'],0,12,false)}></p>
-									</div>
-								</div>
-							</volist>
-						</ul>
-						<div class="more">
-							<a href="<{:U('shop/index')}>">查看更多商家</a>
-						</div>
-					</div>
-					<div class="tab-panel" id="tab-coupon">
-						<ul class="index-tuan">
-							<volist name="community" id="item" key="index">
-								<div class="container1" onclick="location='<{:U('community/detail',array('community_id'=>
-						$item['community_id']))}>'">
-									<img class="x2" src="<{:config_img($item['pic'])}>">
-									<div class="des x8">
-										<h5><{:bao_msubstr($item['name'],0,10,false)}></h5>
-										<p class="intro">地址：<{:bao_msubstr($item[ 'addr'],0,12,false)}></p>
-									</div>
-									<div class="des x2">
-										<div class="intro2" style="width: auto; padding:0 3px;"><{$item.d}></div>
-									</div>
-								</div>
-							</volist>
-						</ul>
-						<div class="more">
-							<a href="<{:U('community/index')}>">查看更多小区</a>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			<div class="blank-10"></div>
+                    <div class="item-inner noneImges">
+                        <div class="item-price-row">
+                            <p class="item-number index-item-title text-filter" title="<{$v.job_name}>">
+                                <{$v.job_name}>
+                            </p>
+                        </div>
+                        <p class="index-item-subtitle">
+                            <{$v.job_tags}>
+                        </p>
+                        <div class="item-price-row">
+                            <p class="price-price">
+                                <span><{$v.job_price_month}></span>
+                                <{$v.job_price_month_unit}>
+                            </p>
+                        </div>
+                        <div class="item-amount">
+                            <if condition = "$v.is_recruit eq 0">
+                                <p class="stop-mark">已停招</p>
+                                <else/>
+                                <p class=" hot-mark ">
+                                    <if condition="$v.show_price_type lt 2">
+                                        工价
+                                        <else/>
+                                        补贴
+                                    </if>
+                                </p>
+                            </if>
+                            <if condition="$v.show_price_type eq 0">
+                                <p><{$v.job_price_hour}><{$v.job_price_hour_unit}></p>
+                                <elseif condition="$v.show_price_type eq 1">
+                                    <p><{$v.job_price_day}><{$v.job_price_day_unit}></p>
+                                </elseif>
+                                <elseif condition="$v.show_price_type eq 2">
+                                    <p><{$v.job_subsidy_hour}><{$v.job_subsidy_hour_unit}></p>
+                                </elseif>
+                                <elseif condition="$v.show_price_type eq 3">
+                                    <p><{$v.job_subsidy_day}><{$v.job_subsidy_day_unit}></p>
+                                </elseif>
+                                <elseif condition="$v.show_price_type eq 4">
+                                    <p><{$v.job_subsidy_month}><{$v.job_subsidy_month_unit}></p>
+                                </elseif>
+                                <else/>
+                                <p><{$v.job_price_hour}><{$v.job_price_hour_unit}></p>
+                            </if>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </foreach>
 
-			
+    </ul>
 
-			<div class="blank-10 bg"></div>
-			<div class="index-title">
-				<h4>猜您喜欢</h4>
-				<em><a href="<{:U('mall/index')}>">更多商品 <i class="icon-angle-right"></i></a></em>
-			</div>
-			<div class="line index-tuan">
-				<ul id="index-tuan">
-					<script>
-						$(document).ready(function() {
-							loaddata('<{:U("mall/push",array("t"=>$nowtime,"p"=>"0000"))}>', $("#index-tuan"), true);
-						});
-					</script>
-				</ul>
-			</div>
-<include file="public:footer" />
+    <div class="www-hatudou-com-join">
+        <ul>
+            <a class="button button-block button-big bg-yellow text-center"
+               href="<{:U('mall/index',array('order'=>5))}>">查看更多商品 <i class="iconfont icon-angle-right"></i></a>
+        </ul>
+    </div>
+    <div class="blank-10"></div>
+    <div class="blank-10 bg"></div>
+
+
+    <include file="public:footer"/>
+
+
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+    <script>
+        wx.config({
+            debug: false,
+            appId: '<{$signPackage.appId}>',
+            timestamp: '<{$signPackage.timestamp}>',
+            nonceStr: '<{$signPackage.nonceStr}>',
+            signature: '<{$signPackage.signature}>',
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ]
+        });
+
+        wx.ready(function () {
+            wx.onMenuShareTimeline({
+                title: '<{$CONFIG.site.title}>',
+                link: "<{$CONFIG.site.description}>",
+                imgUrl: "<{:config_weixin_img($CONFIG['site']['logo'])}>",
+                success: function () {
+                    layer.msg('分享成功');
+                },
+                cancel: function () {
+                    layer.msg('分享失败');
+                }
+            });
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title: '<{$CONFIG.site.title}>',
+                desc: '<{$CONFIG.site.description}>',
+                link: "<{$CONFIG.site.host}>",
+                imgUrl: "<{:config_weixin_img($CONFIG['site']['logo'])}>",
+                type: '',
+                dataUrl: '',
+                success: function () {
+                    layer.msg('分享成功');
+                },
+                cancel: function () {
+                    layer.msg('分享失败');
+                }
+            });
+        });
+
+
+    </script>

@@ -50,12 +50,12 @@ body {padding:0;}
     <div class="home-new-list-top">
 <div class="home_card_portrait">
     <a class="j_home_card_portrait_link home_card_portrait_link" href="javascript:void(0)">
-    <img src="<{:config_img($user_face['face'])}>" alt="" class="home_card_portrait_pic"></a>
+    <img src="<{:config_img($DELIVERY['face'])}>" alt="" class="home_card_portrait_pic"></a>
 </div>
 <div class="home_card_info">
 <span class="home_card_uname">
-    <a class="home_card_uname_link" href="<{:U('set/index')}>"><{$user_Delivery.name}></a>
-     <a class="home-new-list_level">ID：<{$user_Delivery.id}></a>
+    <a class="home_card_uname_link" href="<{:U('set/index')}>"><{$DELIVERY.name}></a>
+     <a class="home-new-list_level">ID：<{$DELIVERY.id}></a>
 </span>
 <div style="home-ranking">
     <span class="home-small_text">您还有<{$ing}>单未配送完成！</span>
@@ -79,15 +79,18 @@ body {padding:0;}
 <div class="blank-10 bg"></div>
 <div class="panel-list">
 	<ul>
-        <li><a href="<{:U('lists/scraped')}>">抢新单：网站目前有（<{$new}>）单待抢配！<i class="icon-angle-right"></i></a></li>
-        <li><a href="<{:U('lists/distribution')}>"></span>配送中：您目前有（<{$ing}>）单在配送中！<i class="icon-angle-right"></i></a></li>
-        <li><a href="<{:U('lists/finished')}>"></span>您已完成：（<{$ed}>）单<i class="icon-angle-right"></i></a></li>
+        <li><a href="<{:U('lists/scraped')}>">抢新单：网站目前有（<{$new}>）单待抢配！<i class="iconfont icon-angle-right"></i></a></li>
+        <li><a href="<{:U('lists/distribution')}>"></span>配送中：您目前有（<{$ing}>）单在配送中！<i class="iconfont icon-angle-right"></i></a></li>
+        <li><a href="<{:U('lists/finished')}>"></span>您已完成：（<{$ed}>）单<i class="iconfont icon-angle-right"></i></a></li>
         <li><a href="<{:U('message/index')}>"></span>通知管理
             <if condition="$msg gt 0">
             	<font style="color:#F00">未读：(<b><{$msg}></b>)</font>
             </if> 
-        <i class="icon-angle-right"></i></a></li>
-        <li><a href="<{:U('set/index')}>"></span>基本设置<i class="icon-angle-right"></i></a></li>
+        <i class="iconfont icon-angle-right"></i></a></li>
+        <li><a href="<{:U('set/index')}>"></span>基本设置<i class="iconfont icon-angle-right"></i></a></li>
+        <li><a href="<{:U('wap/delivery/lists',array('id'=>$DELIVERY['id']))}>"></span> 评价管理<i class="iconfont icon-angle-right"></i></a></li>
+        <li><a href="<{:U('wap/delivery/delivery',array('id'=>$DELIVERY['id']))}>"></span> 个人首页<i class="iconfont icon-angle-right"></i></a></li>
+        
 	</ul>
 </div>
 <div class="blank-10"></div>

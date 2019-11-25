@@ -1,5 +1,5 @@
 
-.baomsgbox{
+.tumsgbox{
     min-width: 100px;
  
     background: #fff;
@@ -18,13 +18,13 @@
     border-radius:5px;            /* W3C syntax */
     display: none;
 }
-.baomsgbox img{
+.tumsgbox img{
     float: left;
     margin-top: 7px;
     width: 16px; height: 16px;
     display: block;
 }
-.baomsgbox span{
+.tumsgbox span{
     float: left;
     display: block;
     margin-left: 5px;

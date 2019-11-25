@@ -1,59 +1,44 @@
 <include  file='public:header'/>
+<style>
+.main-jsgl .jsglNr table tr td {height:20px;padding-top:7px;line-height:20px;padding-bottom:7px;}
+</style>
 <div class="main-jsgl main-sc">
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="right">    
                 <form class="search_form" method="post" action="<{:U('user/select',array('id'=>$id,'show'=>$show))}>">
                     <div class="seleHidden" id="seleHidden">
-                        <span>昵称</span>
-                        <input type="text" name="nickname" value="<{$nickname}>" class="inptText" /><input type="submit" value="   搜索"  class="inptButton" />
+                        <span>UID/账户/昵称/手机号/邮箱</span>
+                        <input type="text" name="keyword" value="<{$keyword}>" class="inptText" />
+                        <input type="submit" value="   搜索"  class="inptButton" />
                     </div> 
                 </form>
-                <a href="javascript:void(0);" class="searchG">高级搜索</a>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
         </div>
-        <form method="post" action="<{:U('user/select',array('id'=>$id,'show'=>$show))}>">
             <div class="selectNr selectNr2">
                 <div class="left">
                     <div class="seleK">
-                        <label>
-                            <span>账户</span>
-                            <input type="text" name="account" value="<{$account}>" class="inptText w100" />
-                        </label>
-                        <label>
-                            <span>昵称</span>
-                            <input type="text" name="nickname" value="<{$nickname}>" class="inptText w100" />
-                        </label>
-                        <label>
-                            <span>扩展字段</span>
-                            <input type="text" name="ext0" value="<{$ext0}>" class="inptText w100" />
-                        </label>
-
                     </div>
                 </div>
-                <div class="right">
-                    <input type="submit" value="   搜索"  class="inptButton" />
-                </div>
-        </form>
         <div class="clear"></div>
     </div>
-    <form  target="baocms_frm" method="post">
+    <form  target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                 <tr>
                     <td class="w50">ID</td>
                     <td>账户</td>
                     <td>昵称</td>
-                    <td>扩展字段</td>
+                    <td>手机</td>
                 </tr>
                 <foreach name="list" item="var">
                     <tr>
                         <td><input type="radio" name="user_id"   rel="<{$var.nickname}>" value="<{$var.user_id}>" /><{$var.user_id}></td>
                         <td><{$var.account}></td>
                         <td><{$var.nickname}></td>
-                        <td><{$var.ext0}></td>
+                        <td><{$var.mobile}></td>
                     </tr>
                 </foreach>
             </table>

@@ -1,8 +1,9 @@
 <include  file='public:header'/>   
-
+<link rel="stylesheet" type="text/css" href="/static/default/webuploader/webuploader.css">
+<script src="/static/default/webuploader/webuploader.min.js"></script>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('wuye/ad/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('ad/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		添加广告
@@ -48,7 +49,7 @@
         //上传成功替换页面图片
         uploader.on( 'uploadSuccess', function( file,resporse) {
             $(".loading").hide();
-            var str = '<img src="'+resporse.url+'"><input type="hidden" name="data[photo]" value="' + resporse.url + '" />';
+            var str = '<img src="'+resporse.url+'"><input type="hidden" name="photo" value="' + resporse.url + '" />';
             $(".jq_photo").show().html(str);
         });
         //上传失败提醒

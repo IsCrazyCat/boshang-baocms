@@ -1,6 +1,10 @@
-<include  file='public:header'/>   <header class="top-fixed bg-yellow bg-inverse">
+<include  file='public:header'/>   
+<php>
+    $areas = D('Area')->where(array('city_id'=>$city_id))->select();
+</php>
+<header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('life/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('life/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		<{$cate.cate_name}>
@@ -8,12 +12,12 @@
     <div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('life/search')}>">
 				<input name="keyword" placeholder="输入关键字"  />
-				<button type="submit" class="icon-search"></button> 
+				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 	</div>
 	<div class="top-share">
-        <a id="search-btn" href="javascript:void(0);"><i class="icon-search"></i></a> 
-		<a href="<{:U('life/fabu',array('cat'=>$_GET['cat']))}>" class="share-btn"><i class="icon-pencil-square-o"></i></a>
+        <a id="search-btn" href="javascript:void(0);"><i class="iconfont icon-phone-line"></i></a> 
+		<a href="<{:U('life/fabu',array('cat'=>$_GET['cat']))}>" class="share-btn"><i class="iconfont icon-fabu"></i></a>
 	</div>
 </header>
 
@@ -79,7 +83,7 @@
       <li class="item">
         <a href="javascript:void(0);">
         <if condition="!empty($s1)">
-        <span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select1'][$s1]['attr_name'],0,3,false)}></span>
+        <span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select1'][$s1]['attr_name'],0,3,false)}></span>
         <else/>
         <span id="str_b_node"><{$cate['select1']}></span>
         </if>
@@ -91,7 +95,7 @@
       <li class="item">
         <a href="javascript:void(0);"> 
         <if condition="!empty($s2)">
-        <span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select2'][$s2]['attr_name'],0,3,false)}></span>
+        <span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select2'][$s2]['attr_name'],0,3,false)}></span>
         <else/>
         <span id="str_b_node"><{$cate['select2']}></span>
         </if><em></em>
@@ -103,7 +107,7 @@
       <li class="item">
         <a href="javascript:void(0);"> 
         <if condition="!empty($s3)">
-        <span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select3'][$s3]['attr_name'],0,3,false)}></span>
+        <span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select3'][$s3]['attr_name'],0,3,false)}></span>
         <else/>
         <span id="str_b_node"><{$cate['select3']}></span>
         </if><em></em>
@@ -115,7 +119,7 @@
       <li class="item">
         <a href="javascript:void(0);">
         <if condition="!empty($s4)">
-        <span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select4'][$s4]['attr_name'],0,3,false)}></span>
+        <span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select4'][$s4]['attr_name'],0,3,false)}></span>
         <else/>
         <span id="str_b_node"><{$cate['select4']}></span>
         </if><em></em>
@@ -127,7 +131,7 @@
       <li class="item">
         <a href="javascript:void(0);"> 
         <if condition="!empty($s5)">
-        <span id="str_b_node" style="color:#f60;"><{:bao_msubstr($attrs['select5'][$s5]['attr_name'],0,3,false)}></span>
+        <span id="str_b_node" style="color:#f60;"><{:tu_msubstr($attrs['select5'][$s5]['attr_name'],0,3,false)}></span>
         <else/>
         <span id="str_b_node"><{$cate['select5']}></span>
         </if><em></em>
@@ -210,17 +214,17 @@
 
 
 
-<div class="life-list" id="life-list"></div>
+<div class="tie-list" id="tie-list"></div>
 <script>
 	$(document).ready(function () {
 		showFilter({ibox:'filter2',content1:'parent_container',content2:'inner_container',fullbg:'fullbg'});
-		loaddata('<{$nextpage}>', $("#life-list"), true);
+		loaddata('<{$nextpage}>', $("#tie-list"), true);
 	});
 </script>
 
 <div class="mall-cart">
 		<a href="<{:u('wap/life/release')}>">
-		<div class="round radius-circle"><div class="badge-corner"><i class="icon-pencil-square-o"></i></div></div>
+		<div class="round radius-circle"><div class="badge-corner"><i class="iconfont icon-fabu"></i></div></div>
 		</a>
 	</div>
 <include file="public:footer"/>

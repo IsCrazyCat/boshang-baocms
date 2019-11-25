@@ -51,6 +51,7 @@ class Log {
      * @return void
      */
     static function record($message,$level=self::ERR,$record=false) {
+		
         if($record || false !== strpos(C('LOG_LEVEL'),$level)) {
             self::$log[] =   "{$level}: {$message}\r\n";
         }
@@ -66,6 +67,7 @@ class Log {
      * @return void
      */
     static function save($type='',$destination='',$extra='') {
+		return true;
         if(empty(self::$log)) return ;
         $type = $type?$type:C('LOG_TYPE');
         if(self::FILE == $type) { // 文件方式记录日志信息
@@ -97,6 +99,7 @@ class Log {
      * @return void
      */
     static function write($message,$level=self::ERR,$type='',$destination='',$extra='') {
+		
         $now = date(self::$format);
         $type = $type?$type:C('LOG_TYPE');
         if(self::FILE == $type) { // 文件方式记录日志

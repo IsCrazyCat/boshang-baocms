@@ -23,19 +23,22 @@
 .zy_content { padding-top: 0px;}
 .spxq_xqgm_l h3 {margin-bottom: 1px; }
 .spxq_xqgm_l .spxq_xqjj { margin-bottom: 10px;}
-
+.zy_content_l{width: 960px;}
+.spxq_slider .sy_hotgzLi {
+    height: inherit;
+}
 </style>
 <div class="nav">
     <div class="navList">
         <!--<div class="navListBg">&nbsp;</div>-->
         <ul>
-            <li class="navListAll"><span class="navListAllt">全部套餐分类</span>
+            <li class="navListAll"><span class="navListAllt">全部抢购分类</span>
                 <div class="shadowy navAll">
                     <include file="public:cate"/>
                 </div>
             </li>
             <li class="navLi"><a class="navA <if condition='$ctl eq tuan and $act eq index'>on</if> " href="<{:U('tuan/index')}>">首页</a></li>
-            <li class="navLi"><a class="navA <if condition='$ctl eq tuan and $act eq nearby'>on</if>" href="<{:U('tuan/nearby')}>">身边套餐</a></li>
+            <li class="navLi"><a class="navA <if condition='$ctl eq tuan and $act eq nearby'>on</if>" href="<{:U('tuan/nearby')}>">身边抢购</a></li>
             <li class="navLi"><a class="navA " href="<{:U('tuan/index',array('new'=>1))}>">今日新单</a></li>
             <li class="navLi"><a class="navA" href="<{:U('tuan/index',array('hot'=>1))}>">热门疯抢</a></li>
         </ul>
@@ -47,14 +50,13 @@
             <li class="jq_spxq_xqBt1 on"><code rel="spxq_xqBt1">商家位置</code><em></em></li>
             <li class="jq_spxq_xqBt2"><code rel="spxq_xqBt2">购买须知</code><em></em></li>
             <li class="jq_spxq_xqBt3"><code rel="spxq_xqBt3">本单详情</code><em></em></li>
-            <li class="jq_spxq_xqBt4"><code rel="spxq_xqBt4">商家介绍</code><em></em></li>
-            <li class="jq_spxq_xqBt5"><code rel="spxq_xqBt5">用户评价(<{$counts}>)</code><em></em></li>
+            <li class="jq_spxq_xqBt4"><code rel="spxq_xqBt4">用户评价(<{$counts}>)</code><em></em></li>
         </ul>
         <div style="float:right;">
         <if condition="$detail.num lt 1 ">
        <a style="height:31px; line-height:31px;font-size:16px;width:100px;margin-top:3px;"class="spxq_qgjjKq ">卖光了</a>
         <else/>
-       <a style="height:31px; line-height:31px;font-size:16px;width:100px;margin-top:3px;" mini='tuan' rel="jq_num" class="spxq_qgjjKq spxq_qgjjLq" href="<{:U('tuan/buy',array('tuan_id'=>$detail['tuan_id']))}>">立即购买</a>
+       <a style="height:31px; line-height:31px;font-size:16px;width:100px;margin-top:3px;" mini='tuan' rel="jq_num" class="spxq_qgjjKq spxq_qgjjLq" href="<{:U('tuan/buy',array('tuan_id'=>$detail['tuan_id']))}>">立即抢购</a>
        </if>
         
         
@@ -96,7 +98,7 @@
     <if condition="!empty($MEMBER) and empty($MEMBER['password'])"><div class="spxq_setTs">您尚未设置登录密码，赶快去<a href="<{:u('members/index/index')}>">设置密码</a>吧！<div class="spxq_setTsG">ｘ</div></div></if>
     <div class="spxq_loca">
     <a href="<{:U('index/index')}>">首页</a>&gt;&gt;
-    <a href="<{:U('tuan/index')}>">套餐</a>&gt;&gt;
+    <a href="<{:U('tuan/index')}>">抢购</a>&gt;&gt;
     <if condition="!empty($return_column_value['catstr'])">
             <if condition="empty($return_column_value['catestr'])">
                 <a href="<{:U('tuan/index',array('cat'=>$detail['cate_id']))}>"><{$return_column_value['catstr']}></a>&gt;&gt;
@@ -105,12 +107,6 @@
                 <a href="<{:U('tuan/index',array('cat'=>$return_column_value['cat'],'cate_id'=>$detail['cate_id']))}>"><{$return_column_value['catestr']}></a>&gt;&gt;
             </if>
      </if>
-    
-    <if condition="!empty($detail['area_id'])">
-    	<a href="<{:U('tuan/index',array('area'=>$detail['area_id']))}>"><{$areas[$detail['area_id']]['area_name']}></a>&gt;&gt;</if>
-    <if condition="!empty($detail['business_id'])">
-    	<a href="<{:U('tuan/index',array('area'=>$detail['area_id'],'business'=>$detail['business_id']))}>"><{$bizs[$detail['business_id']]['business_name']}></a>&gt;&gt;
-    </if>
     	<{$detail['title']}>
     </div>
     <div class="spxq_xqgm">
@@ -167,7 +163,7 @@
                     $discount = round(($detail['tuan_price']/$detail['price'])*10,1);
                 </php>
                 <div class="right spxq_qg_r">
-                    <div class="spxq_qgjgk"><span class="detail_spxq_qg_tit">套餐价</span><span class="spxq_qgjg"><small>￥</small><b><{$detail['tuan_price']}></b><del>￥<{$detail['price']}></del></span><span class="spxq_qgjgz"><{$discount}>折</span></div>
+                    <div class="spxq_qgjgk"><span class="detail_spxq_qg_tit">抢购价</span><span class="spxq_qgjg"><small>￥</small><b><{$detail['tuan_price']}></b><del>￥<{$detail['price']}></del></span><span class="spxq_qgjgz"><{$discount}>折</span></div>
                     <div class="spxq_qgjgk">
                         <span class="spxq_qgps">已售<span class="spxq_qgsnum"><{$detail['sold_num']}></span></span>
                         <span class="spxq_qgps"><{$counts}>人已评价</span>
@@ -271,16 +267,21 @@
                         </script>
                         <else/>
                         <div class="spxq_qgjgk">
-                             <span class="detail_spxq_qg_tit">有效期</span><span>截止到<{$detail.end_date}>
-                             
-                             
-                            <if condition="!empty($detail['use_integral'])">
-                            &nbsp;&nbsp;&nbsp;&nbsp;可使用积分：<{$detail['use_integral']}> &nbsp;抵现：<a style="color:#F00"><{:round($detail['use_integral']/100,2)}></a>元</span>
-                            </if>
+                           <span class="detail_spxq_qg_tit">有效期</span><span>截止到<{$detail.end_date}>
+                           
+                           
+                            <if condition="$detail['use_integral']">
+                            	&nbsp;&nbsp;&nbsp;&nbsp;可使用积分：<{$detail['use_integral']}> 
+                                &nbsp;抵现：<a style="color:#F00"> <{:getUseIntegral($detail['use_integral'],$type = 'tuan',$detail['tuan_id'])}></a>元</span>
+                           </if>
                              
                              </span>
                         </div>
                     </if>
+                    
+                    
+                    
+                    
                     <if condition="!empty($tao_arr)">
                         <div class="spxq_qgjgk"><span class="detail_spxq_qg_tit">套餐</span>
                             <php>$i=0;</php>
@@ -319,12 +320,12 @@
                         <if condition="$detail['bg_date'] gt $today">
                         <a class="spxq_qgjjKq" href="javascript:void(0);">即将开抢</a>
                         <elseif condition="$detail['end_date'] lt $today" />
-                        <a class="spxq_qgjjKq" href="javascript:void(0);">套餐结束</a>
+                        <a class="spxq_qgjjKq" href="javascript:void(0);">抢购结束</a>
                         <elseif condition="($detail['end_date'] gt $today) AND ($detail['bg_date'] lt $today)" />
                           <if condition="empty($detail['num'])">
                            <a class="spxq_qgjjKq">卖光了</a>
                            <else/>
-                          <a mini='tuan' rel="jq_num" class="spxq_qgjjKq spxq_qgjjLq" href="<{:U('tuan/buy',array('tuan_id'=>$detail['tuan_id']))}>">立即购买</a>                           </if>
+                          <a mini='tuan' rel="jq_num" class="spxq_qgjjKq spxq_qgjjLq" href="<{:U('tuan/buy',array('tuan_id'=>$detail['tuan_id']))}>">立即抢购</a>                           </if>
                         </if>
                         <!--逻辑结束-->
                         
@@ -379,173 +380,16 @@
         <div class="left zy_content_l">
             <div class="spxq_xqT">
                 <ul>
-                    <li class="on"><code rel="spxq_xqBt1">商家位置</code><em></em></li>
+                    <li class="on"><code rel="spxq_xqBt1">商家介绍</code><em></em></li>
                     <li><code rel="spxq_xqBt2">购买须知</code><em></em></li>
                     <li><code rel="spxq_xqBt3">本单详情</code><em></em></li>
-                    <li><code rel="spxq_xqBt4">商家介绍</code><em></em></li>
-                    <li><code rel="spxq_xqBt5">用户评价(<{$counts}>)</code><em></em></li>
+                    <li><code rel="spxq_xqBt4">用户评价(<{$counts}>)</code><em></em></li>
                 </ul>
             </div>
-            <div class="spxq_xqBt1">
-                <div class="spxq_xqBt">店铺地图</div>
-                <div class="spxq_xqNr">
-                    <div class="left spxq_xqMap_l">
-                        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7b92b3afff29988b6d4dbf9a00698ed8"></script>
-                        <div id="allmap" style="width:384px; height:300px;"></div>
-                        <div class="map_icon">
-                                <img src="__TMPL__statics/images/mapIco.png" />
-                        </div>
-                        <div class="map_fixed">
-                                <div class="map_fixed_tit">
-                                        <span>查看地图</span>
-                                 <a href="javascript:;" title="关闭" class="close">×</a> 
-                                </div>
-                                <div class="map_fixed_box">
-                                        <div id="allmap2" style="width:700px; height:430px;"></div>
-                                </div>
-                                <p class="zhu">注：地图位置坐标仅供参考，具体情况以实际道路标识信息为准</p>
-                        </div>
-                        <script type="text/javascript">
-                            // 百度地图API功能
-                            var map = new BMap.Map("allmap");
-                            map.centerAndZoom(new BMap.Point("<{$detail.lng}>", "<{$detail.lat}>"), 15);
-                            var point = new BMap.Point("<{$detail.lng}>", "<{$detail.lat}>");
-                            map.centerAndZoom(point, 15);
-                            var marker = new BMap.Marker(point); // 创建标注
-                            map.clearOverlays();
-                            map.addOverlay(marker); // 将标注添加到地图中
-                            marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-                            map.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
-                        </script>
-                    </div>
-                    <div class="left spxq_xqMap_r">
-                        <script>
-                            $(function () {
-                                $(".spxq_xqMapList li").each(function (e) {
-                                    $(this).click(function () {
-                                        $(".spxq_xqMapList li").removeClass("on");
-                                        $(this).addClass("on");
-                                        $(".spxq_xqMapListNr").each(function (i) {
-                                            if (e == i) {
-                                                $(".spxq_xqMapListNr").hide();
-                                                $(this).show();
-                                            }
-                                            else {
-                                                $(this).hide();
-                                            }
-                                        });
-                                    });
-
-                                });
-                            });
-							
-                            jQuery(document).ready(function($) {
-                                    $('.spxq_xqMap_l .map_icon').click(function(){
-                                        $('.map_fixed').show();
-                                           var map2 = new BMap.Map("allmap2");
-                                            map2.centerAndZoom(new BMap.Point("<{$detail.lng}>", "<{$detail.lat}>"), 17);
-                                            var point2 = new BMap.Point("<{$detail.lng}>", "<{$detail.lat}>");
-                                            map2.centerAndZoom(point2, 17);
-                                            var marker2 = new BMap.Marker(point2); // 创建标注
-                                            map2.clearOverlays();
-                                            map2.addOverlay(marker2); // 将标注添加到地图中
-                                            marker2.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-                                            map2.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
-                                    })
-                                    $('.map_fixed .close').click(function(){
-                                            $('.map_fixed').fadeOut(100);
-                                    })
-                            })
-
-                        </script>	
-                        <div class="left spxq_xqMapList">
-                        <ul>
-                            <php>$i=0;</php>
-                            <foreach name="lists" item="item">
-                                <php>$i++;if($i<=5){</php>
-                                <li id="li_<{$i}>" <if condition="$i eq 1">class="on"</if> ><{$item.name}></li>
-                                <php>}else{</php>
-                                <li id="li_<{$i}>" style="display:none;"><{$item.name}></li>
-                                <php>}</php>
-                            </foreach>
-                        </ul>
-                    </div>
-                    <div class="left" style="width:356px;">
-                        <php>$i=0;</php>
-                        <foreach name="lists" item="item">
-                            <php>$i++;if($i<=5){</php>
-                            <div class="spxq_xqMapListNr" id="detail_<{$i}>" <if condition="$i eq 1"> style="display:block;"</if> >
-                                <table width="100%" class="spxq_table" border="0" cellspacing="0" cellpadding="0">
-                                    <tr>
-                                        <td colspan="2"><p class="spxq_xqMapT"><{$shop.shop_name}>（<{$item.name}>）</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="50"><p class="spxq_tabT">评价：</p></td>
-                                        <td><a class="" href="javascript:void(0);"><{$item.score_num}>人评价</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><p class="spxq_tabT">地址：</p></td>
-                                        <td><p class="spxq_xqMapWz"><{$item.addr}></p></td>
-                                    </tr>
-                                    <tr>
-                                        <td><p class="spxq_tabT">电话：</p></td>
-                                        <td><p class="spxq_xqMapWz"><{$item.telephone}></P></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <php>}else{</php>
-                            <div class="spxq_xqMapListNr" style="display:none;" id="detail_<{$i}>">
-                                <table width="100%" class="spxq_table" border="0" cellspacing="0" cellpadding="0">
-                                    <tr>
-                                        <td colspan="2"><p class="spxq_xqMapT"><{$shop.shop_name}>（<{$item.name}>）</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td width="50"><p class="spxq_tabT">评价：</p></td>
-                                        <td><a class="" href="javascript:void(0);"><{$item.score_num}>人评价</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><p class="spxq_tabT">地址：</p></td>
-                                        <td><p class="spxq_xqMapWz"><{$item.addr}></p></td>
-                                    </tr>
-                                    <tr>
-                                        <td><p class="spxq_tabT">电话：</p></td>
-                                        <td><p class="spxq_xqMapWz"><{$item.telephone}></P></td>
-                                    </tr>
-                                </table>
-
-                            </div>
-                            <php>}</php>
-                        </foreach>
-                    </div>
-
-                </div>
-                <div id='setpage'></div>
+			<div id="shop" class="spxq_xqBt1">
+                <div class="spxq_xqBt spxq_xqBt1">商家介绍</div>
+                <div class="spxq_xqNr"><{$ex.details}></div>
             </div>
-            </div>
-            <script type="text/javascript">
-                var totalpage, pagesize, cpage, count, curcount, outstr, total;
-                total = "<{$count}>";
-                cpage = 1;
-                totalpage = "<{$counts}>";
-                pagesize = 5;
-                outstr = "";
-                function gotopage(target) {
-                    var big_val = target * 5;
-                    var small_val = big_val - 4;
-                    $('.spxq_xqMapList ul li').hide();
-                    $('.spxq_xqMapListNr').hide();
-                    $('.spxq_xqMapList ul li').removeClass('on');
-                    for (var i = small_val; i <= big_val; i++) {
-                        $('#li_' + i).show();
-                        $('#li_' + small_val).addClass('on');
-                        $('#detail_' + small_val).show();
-                    }
-                    cpage = target;        //把页面计数定位到第几页 
-                    setpage();
-                    //reloadpage(target);    //调用显示页面函数显示第几页,这个功能是用在页面内容用ajax载入的情况 
-                }
-                setpage();    //调用分页 
-            </script>
             <div class="spxq_xqBt2">
                 <div class="spxq_xqBt">购买须知</div>
                 <div class="spxq_xqNr"><{$tuandetail.instructions}></div>
@@ -554,11 +398,7 @@
                 <div class="spxq_xqBt">本单详情</div>
                 <div class="spxq_xqNr"><{$tuandetail.details}></div>
             </div>
-            <div id="shop" class="spxq_xqBt4">
-                <div class="spxq_xqBt spxq_xqBt4">商家介绍</div>
-                <div class="spxq_xqNr"><{$ex.details}></div>
-            </div>
-            <div class="spxq_xqBt5">
+            <div class="spxq_xqBt4">
                 <div class="spxq_xqBt">
                     <div class="left">用户评价(<{$counts}>)</div>
                     <div class="right spxq_xqBt_r">我买过本单，<a class="spxq_pjAn" href="<{:u('members/order/noindex')}>">我要评价</a></div>
@@ -596,7 +436,7 @@
                         </div>
                     </ul>
                 </div>
- 
+		   </div>
     </div>
     
     <div class="right zy_content_r">
@@ -632,7 +472,7 @@
                                 arr = result.likes;
                                 
                                 $.each(arr, function (n, value) {
-									var thisurl = BAO_ROOT + '/tuan/detail/tuan_id/';
+									var thisurl = TU_ROOT + '/tuan/detail/tuan_id/';
                                     var url = thisurl+value.tuan_id+'.html';
                                     res += '<li><div class=sy_hottjList><a target=_blank href="'+url+'"><img src=__ROOT__/attachs/' + value.photo + ' width=180 height=115 />';
                                     res += '<p class=sy_hottjbt>' + value.title + '</p>';

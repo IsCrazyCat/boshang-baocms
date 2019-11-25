@@ -28,28 +28,12 @@
                         </label>
                     </div> 
                 </form>
-                <a href="javascript:void(0);" class="searchG">高级搜索</a>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
         </div>
-        <form method="post" action="<{:U('fenzhanshopcash/index')}>">
-            <div class="selectNr selectNr2">
-                <div class="left">
-                    <div class="seleK">
-                        <label>
-                            <span>账户</span>
-                            <input type="text" name="account" value="<{$account}>" class="inptText" />
-                        </label>
-                    </div>
-                </div>
-                <div class="right">
-                    <input type="submit" value="   搜索"  class="inptButton" />
-                </div>
-        </form>
-        <div class="clear"></div>
-    </div>
-    <form target="baocms_frm" method="post">
+        
+    <form target="x-frame" method="post">
         <div class="tableBox">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
                <if condition="!empty($list)">
@@ -63,9 +47,7 @@
                     <td>提现日期</td>
                     <td>状态</td>
                 </tr>
-                <else/>
-				抱歉，暂时没有数据，请点击上面的城市试试！~~
-                </if>
+               
                 <foreach name="list" item="var">
                     <tr>
                         <td><input class="child_cash_id" type="checkbox" name="cash_id[]" value="<{$var.cash_id}>" <?php if ($var['status'] != 0){echo 'disabled="disabled"';}?> /></td>

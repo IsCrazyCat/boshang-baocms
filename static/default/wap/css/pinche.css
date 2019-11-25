@@ -54,13 +54,13 @@
 
 /* 信息列表 */
 .coupon-list {list-style:none;padding:0;}
-.coupon-list li{background:#FFF;padding:10px;border-bottom:thin solid #eee;}
+.coupon-list li{background:#FFF;padding:10px;}
 .coupon-list .flex{-webkit-box-flex:1;}
 /* 带图 */
 
 
 .mod-1 h4{height:20px;line-height:20px;font-size:12px;overflow:hidden;margin:0;}
-.mod-1 a{color:#003040;}
+.mod-1 h4 span.title, .mod-2 h4 span.title, .mod-3 h4 span.title, .mod-4 h4 span.title{float: left;width: auto;height:16px;line-height:16px; padding:1px 2px;text-align:center;color:#FFF;background:#77b36f;margin:2px;    border-radius: 3px;}
 .mod-1 p{color:#999;font-size:12px;overflow:hidden;height:20px;margin:0;margin-top:3px;}
 .mod-1 em{color:#f60;font-size:18px;float:left;vertical-align:bottom;height:20px;}
 .mod-1 i{color:#f60;font-size:12px;float:left;font-style:normal;margin-top:3px;}

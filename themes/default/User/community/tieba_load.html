@@ -3,26 +3,20 @@
 		<div class="x12">
 			<p>
 				<a class="title" href="<{:u('wap/community/tie',array('post_id'=>$item['post_id']))}>">
-					<{:bao_Msubstr($item['title'],0,40,true )}>
+					<{:tu_msubstr($item['title'],0,40,false )}>
 				</a>
 			</p>
-			<p class="text-gray">发布时间：<{$item.create_time|date='H:i',###}></p>
-			<p class="text-gray">作者：<{$users[$item['user_id']]['nickname']}>&nbsp;&nbsp;</p>
-
+			<p class="text-gray text-small">发布时间：<{$item.create_time|date='Y-m-d H:i',###}></p>
+			<p class="text-gray text-small">作者：<{$users[$item['user_id']]['nickname']}>&nbsp;&nbsp;</p>
+			<p class="text-gray text-small">点击：<{$item.views}>&nbsp;&nbsp;回复：<{$item.reply_num}></p>
 		</div>
 	</div>
 	<div class="line padding">
-		<span class="x2"><em class="text-dot"><{$item.reply_num}></em>回复</span>
-		<span class="x3">点击：<{$item.views}></span>
-        <span class="x5">状态：
-        <if condition="$item[audit] eq 0">
-        <a class="button button-small bg-blue">未审核</a>
-        <else/>
-        <a class="button button-small bg-dot">已审核</a>
-        </if>
+		<span class="x12 text-right">
+            <eq name="item.audit" value="0"> <a class="button button-small bg-blue">未审核</a></eq>
+            <eq name="item.audit" value="1"> <a class="button button-small bg-yellow">已审核</a></eq>
+            <a href="<{:u('community/tiebadelete',array('post_id'=>$item['post_id']))}>"  class="jquery-delete button button-small bg-dot">删除</a>
         </span>
-		<span class="x2 text-right">
-        <a href="<{:u('user/community/tiebadelete',array('post_id'=>$item['post_id']))}>"  class="jquery-delete button button-small bg-dot">删除</a>
 	</div>
 	<div class="blank-10 bg"></div>
 </foreach>

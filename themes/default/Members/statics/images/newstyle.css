@@ -148,7 +148,7 @@ a{text-decoration: none; color: #555;}
 
 
 
-/***********************************团购管理-正在套餐结束*******************************/
+/***********************************团购管理-正在抢购结束*******************************/
 
 .tuanfabu_int{ border:solid 1px #d5d5d5; height:34px; line-height:32px; font-size:16px; text-indent:10px; color:#999; background:none;}
 
@@ -1026,7 +1026,7 @@ a{text-decoration: none; color: #555;}
 
 /**************分页结束******************/
 
-/*************************用户中心的套餐订单end**********************/
+/*************************用户中心的抢购订单end**********************/
 
 
 
@@ -1102,7 +1102,7 @@ a{text-decoration: none; color: #555;}
 
 /***********弹出层提示**********/
 
-.baomsgbox{
+.tumsgbox{
 
     min-width: 100px;
 
@@ -1138,7 +1138,7 @@ a{text-decoration: none; color: #555;}
 
 }
 
-.baomsgbox img{
+.tumsgbox img{
 
     float: left;
 
@@ -1150,7 +1150,7 @@ a{text-decoration: none; color: #555;}
 
 }
 
-.baomsgbox span{
+.tumsgbox span{
 
     float: left;
 

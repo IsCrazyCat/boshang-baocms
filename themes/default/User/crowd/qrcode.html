@@ -1,7 +1,7 @@
 <include file="public:header"/>
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:u('crowd/detail',array('order_id'=>$detail['order_id']))}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:u('crowd/detail',array('order_id'=>$detail['order_id']))}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">我的众筹劵</div>
 	<div class="top-signed">
@@ -14,7 +14,7 @@
 
  <div class="container">           
 	<div class="padding-large">
-            <img width="100%" src="__ROOT__/attachs/<{$file}>" />
+            <img width="100%" src="__ROOT__<{$file}>" />
             <p>该众筹券价值为: <span class="text-dot"><{:round($detail['price']/100,2)}> 元</span> </p>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <include  file='public:header'/>   
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('index/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 	<div class="top-title">
 		配送员资料设置
@@ -30,17 +30,17 @@
 	<ul>
 		<li>
             <a target="x-frame"  href="<{:U('set/sms',array('id'=>$detail['id']))}>">短信通知状态： &nbsp;&nbsp;<if condition="$detail['is_sms'] eq 1">开启<else/>关闭</if>
-            <i class="icon-angle-right"></i>
+            <i class="iconfont icon-angle-right"></i>
             </a>
         </li>
 		<li>
             <a target="x-frame"  href="<{:U('set/weixin',array('id'=>$detail['id']))}>">微信通知状态：&nbsp;&nbsp;<if condition="$detail['is_weixin'] eq 1">开启<else/>关闭</if>
-            <i class="icon-angle-right"></i>
+            <i class="iconfont icon-angle-right"></i>
             </a>
         </li>
         <li>
             <a target="x-frame"  href="<{:U('set/music',array('id'=>$detail['id']))}>">语音通知状态：&nbsp;&nbsp;<if condition="$detail['is_music'] eq 1">开启<else/>关闭</if>
-            <i class="icon-angle-right"></i>
+            <i class="iconfont icon-angle-right"></i>
             </a>
         </li>
 	</ul>

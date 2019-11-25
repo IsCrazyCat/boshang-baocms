@@ -1,7 +1,7 @@
 <include  file='public:header'/>   
 <header class="top-fixed bg-yellow bg-inverse">
 	<div class="top-back">
-		<a class="top-addr" href="<{:U('tuan/index')}>"><i class="icon-angle-left"></i></a>
+		<a class="top-addr" href="<{:U('tuan/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
 			订单详情
@@ -67,7 +67,7 @@
 		<li>
 			<a href="javascript:;">
 				使用积分：<{$detail['use_integral']}> 分
-				<em  class="text-dot">&nbsp; &nbsp;&nbsp;抵现：&yen; <{:round($detail['use_integral']/100,2)}> 元</em>
+				<em  class="text-dot">&nbsp; &nbsp;&nbsp;抵现：&yen; <{:deduction($detail['use_integral'])}>元</em>
 			</a>
 		</li>
         </if>

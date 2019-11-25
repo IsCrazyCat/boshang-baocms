@@ -2,13 +2,21 @@
 <include file='public:header'/>  
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>  
 <script src="__TMPL__statics/js/jscookie.js"></script>
-<script src="/static/default/wap/other/roll.js"></script>
+
+<style>
+.hotels_buy_btn {position:fixed;left:0;right: 0; bottom: 0;background: rgba(0,0,0,0.4);z-index: 10;}
+.hotels_buy_btn .hotels_buy_segment{position: relative;height:62px;line-height:65px;}
+.hotels_buy_btn .hotels_buy_segment .hotels_buy_wrapper{padding:10px;}
+</style>
+
+
+
 	<header class="top-fixed bg-yellow bg-inverse">
 		<div class="top-back">
-			<a class="top-addr" href="<{:U('hotels/index')}>"><i class="icon-angle-left"></i></a>
+			<a class="top-addr" href="<{:U('hotels/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			<{:bao_Msubstr($detail['hotel_name'],0,8,false)}>
+			<{:tu_msubstr($detail['hotel_name'],0,8,false)}>
 		</div>
 		<div class="top-signed">
 		</div>
@@ -29,8 +37,8 @@
 
         </div>
     		<div class="title">
-				<h1><{:bao_Msubstr($detail['hotel_name'],0,12,false)}>  </h1>
-				<p><{:bao_Msubstr($detail['addr'],0,28,false)}></p>
+				<h1><{:tu_msubstr($detail['hotel_name'],0,12,false)}>  </h1>
+				<p><{:tu_msubstr($detail['addr'],0,28,false)}></p>
 			</div>
 		</div>
 </div>            
@@ -54,9 +62,9 @@
 	<div class="tuan-detail">
         <div class="line info">
 			<div class="x12">
-           		<php>$s = round($detail['score']/$detail['comments'],1);$sc = $s*20;</php>
+           		<php>$s = round($score,1);$sc = $s*20;</php>
                 <span class="ui-starbar" style="margin-top:5px;"><span style="width:<{$sc}>%"></span></span>
-                <a class="float-right"><{$detail.comments}>人评价&nbsp;<i class="icon-angle-right text-gray float-right"></i></a>
+                <a href="<{:U('hotels/dianping',array('hotel_id'=>$detail['hotel_id']))}>" class="float-right"><{$comments_num}>人评价&nbsp;<i class="iconfont icon-angle-right text-gray float-right"></i></a>
 			</div> 
 		</div>
 		<div class="blank-10 bg"></div>
@@ -77,7 +85,7 @@
         </div>
         <div class="padding border-bottom">
             <div class="line">
-                <span class="x10 text-gray">酒店入住：7点以后&nbsp;&nbsp;离店时间：13:00以前</span>
+                <span class="x10 text-gray">酒店入住<{$detail.in_time}>以后    离店时间：<{$detail.out_time}>以前</span>
                 <span class="x2">
                    <if condition="$detail['is_zc'] eq 1">
                   	 膳食安排：免早餐&nbsp;&nbsp;免中餐&nbsp;&nbsp;免晚餐
@@ -131,7 +139,7 @@
         <if condition="!empty($tuan_list)">
             <div class="blank-10 bg"></div>
             <div class="padding border-bottom">
-                 <div class="line"><span class="x12 text-gray ">本店套餐</span></div>
+                 <div class="line"><span class="x12 text-gray ">本店抢购</span></div>
             </div>
             <div class="main-tuan">
                 <foreach name="tuan_list" item="item">
@@ -141,9 +149,9 @@
                         <div class="container">
                             <img class="x4" src="<{:config_img($item['photo'])}>">	
                             <div class="des x8">
-                                <h5><{:bao_msubstr($item['title'],0,18)}></h5>
+                                <h5><{:tu_msubstr($item['title'],0,18)}></h5>
                                 <p class="intro">
-                                    <{:bao_msubstr($item['intro'],0,28)}></p>
+                                    <{:tu_msubstr($item['intro'],0,28)}></p>
                                 <p class="info">
                                     <span>￥ <em><{:round($item['tuan_price']/100,2)}></em></span> <del>￥<{:round($item['price']/100,2)}></del>
                                     <span class="text-little float-right badge bg-gray margin-small-top">已售：<{$item.sold_num}></span>
@@ -165,10 +173,10 @@
         function get_night(stime,ltime){
             var  aDate,  oDate1,  oDate2,  iDays  
             aDate  =  stime.split("-")  
-            oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    //转换为12-18-2006格式  
-            aDate  =  ltime.split("-")  
-            oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])  
-            iDays  =  parseInt(Math.abs(oDate1  -  oDate2)  /  1000  /  60  /  60  /24)    //把相差的毫秒数转换为天数  
+			s1 = new Date(stime.replace(/-/g, "/"));
+			s2 = new Date(ltime.replace(/-/g, "/"));
+			var days = s2.getTime() - s1.getTime();
+			var iDays = parseInt(days / (1000 * 60 * 60 * 24));
             return  iDays  
         }
     
@@ -179,9 +187,9 @@
             if(ltime&&stime){
                 if(ltime <= stime){
                     layer.msg('选择时间不正确');
-                    //return false;
                 }
                 var night_num =  get_night(stime,ltime);
+					
                 $("#night_num").html(night_num);
             }
             
@@ -205,14 +213,26 @@
             })
             
         })
-        function SetCookie(name, value)//两个参数，一个是cookie的名子，一个是值
-            {
-                var Days = 30; //此 cookie 将被保存 30天
-                var exp = new Date();    //new Date("December 31, 9998");
+        function SetCookie(name, value){
+                var Days = 30; 
+                var exp = new Date();
                 exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
                 document.cookie = name + "=" + value + ";expires=" + exp.toGMTString() +";path=/";
-            }
+       }
     </script>
+    
+    <div class="blank-40"></div>
+    <div class="blank-40"></div>
+    <div class="blank-20"></div>
+    
+    <section class="hotels_buy_btn">
+            <div class="hotels_buy_segment">
+                <div class="hotels_buy_wrapper text-center">
+                	<a class="button button-big button-block bg-yellow" href="<{:U('hotels/room',array('hotel_id'=>$detail['hotel_id']))}>">选择房型</a>
+                </div>
+            </div>
+   </section>
+        
 
 	<include file="public:footer_share"/>
 
