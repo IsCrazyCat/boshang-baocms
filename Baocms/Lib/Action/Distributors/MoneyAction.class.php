@@ -261,6 +261,7 @@ class MoneyAction extends CommonAction{
 				$intro = $shop['shop_name'].'申请提现，扣款'.round($gold/100,2).'元';
 			}
 			if($cash_id = D('Userscash')->add($arr)){
+                D('Users')->Money($this->uid, -$gold, $intro);
 				D('Usersex')->save($data);
 				$this->fengmiMsg('恭喜，申请提现成功，请等待管理员审核', U('money/cashlogs'));
 			}else{
