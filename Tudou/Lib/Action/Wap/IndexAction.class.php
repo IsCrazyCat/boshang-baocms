@@ -5,7 +5,7 @@ class IndexAction extends CommonAction {
 
       public function index(){
 
-          $hot_jobs = D("Job")->where(["is_hot"=>'1','is_able'=>1])->order("job_order ASC")->select();
+          $hot_jobs = D("Job")->where(["is_hot"=>'1','is_able'=>1])->limit(5)->order("job_order ASC")->select();
 
           $this->assign('hot_jobs',$hot_jobs);//热门工作
 
@@ -13,24 +13,6 @@ class IndexAction extends CommonAction {
         $this->assign('news', $news = D('Article')->where(array( 'closed' => 0, 'audit' => 1))->order(array('create_time' => 'desc'))->limit(0, 5)->select());
 		$maps = array('status' => 2,'closed'=>0);
 		$this->assign('nav',$nav = D('Navigation') ->where($maps)->order(array('orderby' => 'asc'))->select());
-		$bg_time = strtotime(TODAY);
-		$this->assign('sign_day', $sign_day = (int) D('Usersign')->where(array('user_id' => $this->uid, 'create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time))))->count());
-		$this->assign('goods',$goods = D('Goods')->where(array('audit' => 1, 'closed' => 0, 'end_date' => array('EGT', TODAY)))->order(array('top_time' =>'desc','orderby' =>'asc'))->limit(0,8)->select());
-
-		//根据类型筛选分类
-		$arr = D('navCate')->where(array('type'=>2))->order(array('cate_id' => 'asc'))->select();//得到总分类
-		$cate_ids = array();
-		foreach($arr as $k =>$v){
-			$cate_ids[] = $v['cate_id'];
-		}
-		$arrs = D('navCate')->where(array('parent_id'=>array('IN',$cate_ids)))->order(array('cate_id' => 'asc'))->select();//筛选一级数组
-		$cate_ids2 = array();
-		foreach($arrs as $kk =>$vv){
-			$cate_ids2[] = $vv['cate_id'];
-		}
-		$arrs2 = D('navCate')->where(array('parent_id'=>array('IN',$cate_ids2)))->order(array('cate_id' => 'asc'))->select();//筛选二级分类
-		$lists = $arrs2;
-		$this->assign('nav2',$lists );
 		
         $this->display();
     }

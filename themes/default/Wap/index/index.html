@@ -19,14 +19,20 @@
         -webkit-box-flex: 1;
         box-flex: 1
     }
+    .index-items{
+        background: #efeff4;
+    }
+    .index-items p{
+        margin:0px;
+        padding:0px;
+    }
     .index-items li{
         list-style-type: none;
         margin: 0 .2rem;
         position: relative;
         clear: both;
         overflow: hidden;
-        display: list-item;
-        text-align: -webkit-match-parent;
+        background: #FFF;
     }
     .index-items li .item-image {
         padding: .3rem .3rem;
@@ -35,9 +41,17 @@
         height: auto;
         position: relative;
     }
+
+    .items-tag img{
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
     .item-image img {
         display: block;
-        height: 3rem;
+        height: 4rem;
     }
     .item-image img {
         border-radius: 0.22rem;
@@ -46,33 +60,60 @@
         width: 100%;
         object-fit: cover;
     }
-    .index-items li .item-inner {
-        float: left;
-        width: 70%;
-        position: relative;
-    }
-    .item-inner {
-        font-size: .9rem;
+    .item-inner{
+        width:70%;
+        margin-left:30%;
+        margin-top:2%;
         border-bottom: 1px #f1f1f1 solid;
-        padding-top: .3rem;
-        padding-bottom: .3rem;
-        margin-left: 12px;
     }
-    .index-items li .item-inner .item-price-row {
+    .item-amount{
+        position: absolute;
+        text-align: center;
+        font-size: .6rem;
+        width: 3.8rem;
+        height: 2.5rem;
+        line-height: 1.25rem;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-40%);
+    }
+    .item-inner .item-amount p:first-child {
+        background: #0894ec;
+        color: #FFF;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+    .item-inner .item-amount p:last-child {
+        font-size: .6rem;
+        color: #fd9f2d;
+        border-left: 1px solid #fd9f2d;
+        border-right: 1px solid #fd9f2d;
+        border-bottom: 1px solid #fd9f2d;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+    .item-inner .item-amount p {
+        height: 1.0rem;
+        line-height: 1.0rem;
+    }
+    .hot-mark {
+        background: #fd9f2d !important;
+    }
+    .stop-mark {
+        background: #859199 !important;
+        border: 1px solid #859199;
+    }
+    .item-number{
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .index-item-subtitle {
+        font-size: .5rem;
+        line-height: 1.5rem;
+        height: 1.5rem;
+        color: #626262;
+        width: 65%;
         overflow: hidden;
-        vertical-align: middle;
-        margin-top: .1rem;
-    }
-    .index-items li .item-inner .index-item-title {
-        color: #282828;
-        font-size: 0.75rem;
-    }
-    .index-items li .item-inner p {
-        margin: 0;
-    }
-    .item-inner .item-price-row .item-number {
-        float: left;
-        line-height: 1.35rem;
     }
     .item-inner .item-price-row p {
         font-size: .425rem;
@@ -80,17 +121,13 @@
         vertical-align: middle;
         line-height: 1.0rem;
     }
-    .text-filter {
-        white-space: nowrap;
-        width: 65%;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .item-inner .item-price-row .price-price span {
+        font-size: .9rem;
+        color: #fd9f2d;
+        margin-top: 5px;
+        font-weight: bold;
     }
-    .index-items li .item-inner .item-price-row {
-        overflow: hidden;
-        vertical-align: middle;
-        margin-top: .1rem;
-    }
+
 </style>
 
 <header class="top-fixed bg-yellow bg-inverse header">
@@ -291,24 +328,20 @@
         </if>
     </div>
 
-
-    <div class="blank-10 bg"></div>
-
     <ul class="index-items" id="index-joblist">
-        <div>
-            <img src="/static/default/wap/image/index/index-hot-job.png" style="width:60%;margin-left:20%;margin-top:20px;margin-bottom: 20px "/>
+        <div class="items-tag">
+            <img src="/static/default/wap/image/index/index-hot-job.png" />
         </div>
         <foreach name="hot_jobs" item="v" index="index">
             <li>
-                <a href="<{:U('Mobile/Job/jobInfo',array('job_id'=>$v.job_id))}>"
-                   class="item-link external item-content">
+                <a href="<{:U('wap/Job/detail',array('job_id'=>$v.job_id))}>"
+                   class="">
                     <div class="item-image">
-<!--                        <img src="<{$v.job_img_url}>" width="100%">-->
                         <img src="/static/default/wap/image/index/joblogo.jpg" width="100%">
                     </div>
-                    <div class="item-inner noneImges">
-                        <div class="item-price-row">
-                            <p class="item-number index-item-title text-filter" title="<{$v.job_name}>">
+                    <div class="item-inner">
+                        <div>
+                            <p class="item-number" title="<{$v.job_name}>">
                                 <{$v.job_name}>
                             </p>
                         </div>
@@ -316,7 +349,7 @@
                             <{$v.job_tags}>
                         </p>
                         <div class="item-price-row">
-                            <p class="price-price">
+                            <p class="price-price" style="padding-bottom: 10px">
                                 <span><{$v.job_price_month}></span>
                                 <{$v.job_price_month_unit}>
                             </p>
@@ -325,7 +358,7 @@
                             <if condition = "$v.is_recruit eq 0">
                                 <p class="stop-mark">已停招</p>
                                 <else/>
-                                <p class=" hot-mark ">
+                                <p class="hot-mark ">
                                     <if condition="$v.show_price_type lt 2">
                                         工价
                                         <else/>
@@ -335,18 +368,14 @@
                             </if>
                             <if condition="$v.show_price_type eq 0">
                                 <p><{$v.job_price_hour}><{$v.job_price_hour_unit}></p>
-                                <elseif condition="$v.show_price_type eq 1">
-                                    <p><{$v.job_price_day}><{$v.job_price_day_unit}></p>
-                                </elseif>
-                                <elseif condition="$v.show_price_type eq 2">
-                                    <p><{$v.job_subsidy_hour}><{$v.job_subsidy_hour_unit}></p>
-                                </elseif>
-                                <elseif condition="$v.show_price_type eq 3">
-                                    <p><{$v.job_subsidy_day}><{$v.job_subsidy_day_unit}></p>
-                                </elseif>
-                                <elseif condition="$v.show_price_type eq 4">
-                                    <p><{$v.job_subsidy_month}><{$v.job_subsidy_month_unit}></p>
-                                </elseif>
+                                <elseif condition="$v.show_price_type eq 1"/>
+                                <p><{$v.job_price_day}><{$v.job_price_day_unit}></p>
+                                <elseif condition="$v.show_price_type eq 2"/>
+                                <p><{$v.job_subsidy_hour}><{$v.job_subsidy_hour_unit}></p>
+                                <elseif condition="$v.show_price_type eq 3"/>
+                                <p><{$v.job_subsidy_day}><{$v.job_subsidy_day_unit}></p>
+                                <elseif condition="$v.show_price_type eq 4"/>
+                                <p><{$v.job_subsidy_month}><{$v.job_subsidy_month_unit}></p>
                                 <else/>
                                 <p><{$v.job_price_hour}><{$v.job_price_hour_unit}></p>
                             </if>
@@ -355,18 +384,15 @@
                 </a>
             </li>
         </foreach>
-
     </ul>
 
-    <div class="www-hatudou-com-join">
+    <div style="margin-top: 15px;width: 80%;margin-left: 10%;">
         <ul>
             <a class="button button-block button-big bg-yellow text-center"
-               href="<{:U('mall/index',array('order'=>5))}>">查看更多商品 <i class="iconfont icon-angle-right"></i></a>
+               href="<{:U('job/index')}>">查看更多工作 <i class="iconfont icon-angle-right"></i></a>
         </ul>
     </div>
     <div class="blank-10"></div>
-    <div class="blank-10 bg"></div>
-
 
     <include file="public:footer"/>
 
