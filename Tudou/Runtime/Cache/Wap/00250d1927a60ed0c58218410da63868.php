@@ -136,7 +136,7 @@
                                 <?php if(is_array($desc_all)): foreach($desc_all as $key=>$desc): if($key < 5): ?><p>
                                             <br>
                                         </p>
-                                        <?php if(is_array($$desc)): foreach($$desc as $key=>$v): ?><p>
+                                        <?php if(is_array($desc)): foreach($desc as $key=>$v): ?><p>
                                                 <?php if($v["is_strong"] == 1): ?><b><?php endif; ?>
                                                 <?php if($v["content_index"] == 1): echo ($key); ?>、<?php endif; ?>
                                                 <?php if($v["content_title"] != ''): echo ($v["content_title"]); ?>：<?php endif; ?>
@@ -154,7 +154,7 @@
                                 <?php if(is_array($desc_all)): foreach($desc_all as $key=>$desc): if($key == 5): ?><p>
                                             <br>
                                         </p>
-                                        <?php if(is_array($$desc)): foreach($$desc as $key=>$v): ?><p>
+                                        <?php if(is_array($desc)): foreach($desc as $key=>$v): ?><p>
                                                 <?php if($v["is_strong"] == 1): ?><b><?php endif; ?>
                                                 <?php if($v["content_index"] == 1): echo ($key); ?>、<?php endif; ?>
                                                 <?php if($v["content_title"] != ''): echo ($v["content_title"]); ?>：<?php endif; ?>
@@ -172,7 +172,7 @@
                                 <?php if(is_array($desc_all)): foreach($desc_all as $key=>$desc): if($key == 6): ?><p>
                                             <br>
                                         </p>
-                                        <?php if(is_array($$desc)): foreach($$desc as $key=>$v): ?><p>
+                                        <?php if(is_array($desc)): foreach($desc as $key=>$v): ?><p>
                                                 <?php if($v["is_strong"] == 1): ?><b><?php endif; ?>
                                                 <?php if($v["content_index"] == 1): echo ($key); ?>、<?php endif; ?>
                                                 <?php if($v["content_title"] != ''): echo ($v["content_title"]); ?>：<?php endif; ?>
@@ -190,7 +190,7 @@
                                 <?php if(is_array($desc_all)): foreach($desc_all as $key=>$desc): if($key == 7): ?><p>
                                             <br>
                                         </p>
-                                        <?php if(is_array($$desc)): foreach($$desc as $key=>$v): ?><p>
+                                        <?php if(is_array($desc)): foreach($desc as $key=>$v): ?><p>
                                                 <?php if($v["is_strong"] == 1): ?><b><?php endif; ?>
                                                 <?php if($v["content_index"] == 1): echo ($key); ?>、<?php endif; ?>
                                                 <?php if($v["content_title"] != ''): echo ($v["content_title"]); ?>：<?php endif; ?>
@@ -245,9 +245,9 @@
                         <div class="card-header-color">平台温馨提示</div>
                         <div class="card-content">
                             <div class="card-content-inner">
-                                <?php if(is_array($desc_all)): foreach($desc_all as $key=>$desc): if($key == 9): if(is_array($$desc)): foreach($$desc as $key=>$v): ?><p>
+                                <?php if(is_array($desc_all)): foreach($desc_all as $key=>$desc): if($key == 9): if(is_array($desc)): foreach($desc as $index=>$v): ?><p>
                                                 <?php if($v["is_strong"] == 1): ?><b><?php endif; ?>
-                                                <?php if($v["content_index"] == 1): echo ($index); ?>、<?php endif; ?>
+                                                <?php if($v["content_index"] == 1): echo ($index+1); ?>、<?php endif; ?>
                                                 <?php if($v["content_title"] != ''): echo ($v["content_title"]); ?>：<?php endif; ?>
                                                 <?php echo ($v["content"]); ?>
                                                 <?php if($v["is_strong"] == 1): ?></b><?php endif; ?>
@@ -299,14 +299,14 @@
 <!--            </div>-->
 
             <div id="register">
-                <a href="{:U('Mobile/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'))}>">
+                <a href="<?php echo U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'));?>">
                     <div><?php echo ($bottom_price); ?></div>
                     免费报名
                 </a>
             </div>
 
             <div id="confirmSpell">
-                <a href="{:U('Mobile/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'))}>">
+                <a href="<?php echo U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'));?>">
                     <div><?php echo ($bottom_price_vip); ?></div>
                     VIP拿高价
                 </a>
@@ -321,8 +321,8 @@
 
 <div class="nav-index-foat risk">
     <p class="nav-index-text">
-        <a href="{:U('Mobile/Index/vipRouter')}>" class="external">
-            <img src="__STATIC__/images/niuzhi/vip-img.png" style="width:1.2rem;height:1.2rem"><br>VIP</a>
+        <a href="<?php echo U('wap/job/vipRouter');?>" class="external">
+            <img src="/static/default/wap/image/index/vip-img.png" style="width:1.2rem;height:1.2rem"><br>VIP</a>
     </p>
 </div>
 
@@ -378,16 +378,7 @@
     </div>
 </div>
 
-<script src="__STATIC__/js/niuzhi/hm.js"></script>
-<script src="__STATIC__/js/niuzhi/zepto.min.js" charset="utf-8"></script>
-<script src="__STATIC__/js/niuzhi/sm.min.js" charset="utf-8"></script>
-<script src="__STATIC__/js/niuzhi/jsbridge-mini.js"></script>
-<script src="__STATIC__/js/niuzhi/oojs.js"></script>
-<script src="__STATIC__/js/niuzhi/swiper-4.2.6.min.js"></script>
-<script src="__STATIC__/js/niuzhi/layer.js"></script>
-<script src="__STATIC__/js/niuzhi/jobDetails.js"></script>
-<script src="__STATIC__/js/niuzhi/freeConsultation.js"></script>
-<script src="__STATIC__/js/niuzhi/webTrafficaStatistics.js"></script>
+
 <script>
     UVSetCookie("scrollTopFlag", "true", null);
     var jobName = $("#jobName").val();
@@ -396,11 +387,7 @@
         location.href = "http://www.zhaopin.com/index.php/Mobile/Job/jobInfo/job_id/"+jobid+".html";
     }
 </script>
-<script type="text/javascript" src="__STATIC__/js/niuzhi/console.print.logo.js"></script>
-<script src="__STATIC__/js/niuzhi/jweixin-1.2.0.js"></script>
-<script src="__STATIC__/js/niuzhi/wechat-share.js"></script>
-<script src="__STATIC__/js/niuzhi/autoEjectMpQrcode.js"></script>
-<script src="__STATIC__/js/niuzhi/autoEjectBindMobile.js"></script>
+
 
 </body>
 </html>

@@ -148,7 +148,7 @@
                                         <p>
                                             <br>
                                         </p>
-                                        <foreach name="$desc" item="v" key="key">
+                                        <foreach name="desc" item="v" key="key">
                                             <p>
                                                 <if condition="$v.is_strong eq 1"><b></if>
                                                 <if condition="$v.content_index eq 1"><{$key}>、</if>
@@ -172,7 +172,7 @@
                                         <p>
                                             <br>
                                         </p>
-                                        <foreach name="$desc" item="v" key="key">
+                                        <foreach name="desc" item="v" key="key">
                                             <p>
                                                 <if condition="$v.is_strong eq 1"><b></if>
                                                 <if condition="$v.content_index eq 1"><{$key}>、</if>
@@ -196,7 +196,7 @@
                                         <p>
                                             <br>
                                         </p>
-                                        <foreach name="$desc" item="v" key="key">
+                                        <foreach name="desc" item="v" key="key">
                                             <p>
                                                 <if condition="$v.is_strong eq 1"><b></if>
                                                 <if condition="$v.content_index eq 1"><{$key}>、</if>
@@ -220,7 +220,7 @@
                                         <p>
                                             <br>
                                         </p>
-                                        <foreach name="$desc" item="v" key="key">
+                                        <foreach name="desc" item="v" key="key">
                                             <p>
                                                 <if condition="$v.is_strong eq 1"><b></if>
                                                 <if condition="$v.content_index eq 1"><{$key}>、</if>
@@ -281,10 +281,10 @@
                             <div class="card-content-inner">
                                 <foreach name="desc_all" item="desc" key="key">
                                     <if condition="$key eq 9">
-                                        <foreach name="$desc" item="v" index="index">
+                                        <foreach name="desc" item="v" key="index">
                                             <p>
                                                 <if condition="$v.is_strong eq 1"><b></if>
-                                                <if condition="$v.content_index eq 1"><{$index}>、</if>
+                                                <if condition="$v.content_index eq 1"><{$index+1}>、</if>
                                                 <if condition="$v.content_title neq ''"><{$v.content_title}>：</if>
                                                 <{$v.content}>
                                                 <if condition="$v.is_strong eq 1"></b></if>
@@ -341,14 +341,14 @@
 <!--            </div>-->
 
             <div id="register">
-                <a href="{:U('Mobile/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'))}>">
+                <a href="<{:U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'))}>">
                     <div><{$bottom_price}></div>
                     免费报名
                 </a>
             </div>
 
             <div id="confirmSpell">
-                <a href="{:U('Mobile/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'))}>">
+                <a href="<{:U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'))}>">
                     <div><{$bottom_price_vip}></div>
                     VIP拿高价
                 </a>
@@ -363,8 +363,8 @@
 
 <div class="nav-index-foat risk">
     <p class="nav-index-text">
-        <a href="{:U('Mobile/Index/vipRouter')}>" class="external">
-            <img src="__STATIC__/images/niuzhi/vip-img.png" style="width:1.2rem;height:1.2rem"><br>VIP</a>
+        <a href="<{:U('wap/job/vipRouter')}>" class="external">
+            <img src="/static/default/wap/image/index/vip-img.png" style="width:1.2rem;height:1.2rem"><br>VIP</a>
     </p>
 </div>
 
@@ -420,16 +420,7 @@
     </div>
 </div>
 
-<script src="__STATIC__/js/niuzhi/hm.js"></script>
-<script src="__STATIC__/js/niuzhi/zepto.min.js" charset="utf-8"></script>
-<script src="__STATIC__/js/niuzhi/sm.min.js" charset="utf-8"></script>
-<script src="__STATIC__/js/niuzhi/jsbridge-mini.js"></script>
-<script src="__STATIC__/js/niuzhi/oojs.js"></script>
-<script src="__STATIC__/js/niuzhi/swiper-4.2.6.min.js"></script>
-<script src="__STATIC__/js/niuzhi/layer.js"></script>
-<script src="__STATIC__/js/niuzhi/jobDetails.js"></script>
-<script src="__STATIC__/js/niuzhi/freeConsultation.js"></script>
-<script src="__STATIC__/js/niuzhi/webTrafficaStatistics.js"></script>
+
 <script>
     UVSetCookie("scrollTopFlag", "true", null);
     var jobName = $("#jobName").val();
@@ -438,11 +429,7 @@
         location.href = "http://www.zhaopin.com/index.php/Mobile/Job/jobInfo/job_id/"+jobid+".html";
     }
 </script>
-<script type="text/javascript" src="__STATIC__/js/niuzhi/console.print.logo.js"></script>
-<script src="__STATIC__/js/niuzhi/jweixin-1.2.0.js"></script>
-<script src="__STATIC__/js/niuzhi/wechat-share.js"></script>
-<script src="__STATIC__/js/niuzhi/autoEjectMpQrcode.js"></script>
-<script src="__STATIC__/js/niuzhi/autoEjectBindMobile.js"></script>
+
 
 </body>
 </html>

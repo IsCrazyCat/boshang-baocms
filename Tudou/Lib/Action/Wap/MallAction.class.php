@@ -123,146 +123,146 @@ class MallAction extends CommonAction{
     public function loaddata(){
         $Goods = D('Goods');
         import('ORG.Util.Page');
-      
+
         $area = (int) $this->_param('area');
         if($area){
             $map['area_id'] = $area;
-			$this->assign('area', $area);
-			$linkArr['area'] = $area;
+            $this->assign('area', $area);
+            $linkArr['area'] = $area;
         }
-		
-		
-		$business = (int) $this->_param('business');
+
+
+        $business = (int) $this->_param('business');
         if($business){
             $map['business_id'] = $business;
-			$this->assign('business', $business);
-			$linkArr['business'] = $business;
+            $this->assign('business', $business);
+            $linkArr['business'] = $business;
         }
-		
-   
-		
-		$shop_id = (int) $this->_param('shop_id');
+
+
+
+        $shop_id = (int) $this->_param('shop_id');
         if($shop_id){
             $map['shop_id'] = $shop_id;
-			$this->assign('shop_id', $shop_id);
-			$linkArr['shop_id'] = $shop_id;
+            $this->assign('shop_id', $shop_id);
+            $linkArr['shop_id'] = $shop_id;
         }
-		
-		$user_id = (int) $this->_param('user_id');
+
+        $user_id = (int) $this->_param('user_id');
         if($user_id){
-			$this->assign('user_id', $user_id);
-			$linkArr['user_id'] = $user_id;
+            $this->assign('user_id', $user_id);
+            $linkArr['user_id'] = $user_id;
         }
-		
-		$type = (int) $this->_param('type');
+
+        $type = (int) $this->_param('type');
         if($type){
-			$this->assign('type', $type);
-			$linkArr['type'] = $type;
+            $this->assign('type', $type);
+            $linkArr['type'] = $type;
         }
-		
+
         $map['audit'] = 1;
         $map['closed'] = 0;
         $map['end_date'] = array('egt', TODAY);
-		$map['city_id'] = $this->city_id;
-		
-		
+//		$map['city_id'] = $this->city_id;
+
+
         if($keyword = $this->_param('keyword', 'htmlspecialchars')){
             $map['title|intro'] = array('LIKE', '%' . $keyword . '%');
-			$this->assign('keyword', $keyword);
-			$linkArr['keyword'] = $keyword;
+            $this->assign('keyword', $keyword);
+            $linkArr['keyword'] = $keyword;
         }
-		
-		
-		//开始组装数组
-		$query_string  = explode ('/',$_SERVER["QUERY_STRING"]);
-		$arr = array();
-		foreach($query_string as $key=>$values){
-			if(strstr( $values , 'values_' ) !== false){
-				array_push($arr, $values);
-			}
-		}
-		
-		foreach($arr as $k=>$v){
-			$arr[$v] = $this->_param($v,'htmlspecialchars');
-			$query[$v] = $arr[$v];
-			$this->assign('query',$query);
-			$linkArr[$v] = $arr[$v];
-		}
-		
-		$array = array();
-		foreach($query as $kk=>$vv){
-			$explode = explode('_',$kk); 
-			$array[$kk]['attr_id'] = $explode['1'];
-			$array[$kk]['attr_value'] = $vv;
-		}
-		foreach($array as $val){
+
+
+        //开始组装数组
+        $query_string  = explode ('/',$_SERVER["QUERY_STRING"]);
+        $arr = array();
+        foreach($query_string as $key=>$values){
+            if(strstr( $values , 'values_' ) !== false){
+                array_push($arr, $values);
+            }
+        }
+
+        foreach($arr as $k=>$v){
+            $arr[$v] = $this->_param($v,'htmlspecialchars');
+            $query[$v] = $arr[$v];
+            $this->assign('query',$query);
+            $linkArr[$v] = $arr[$v];
+        }
+
+        $array = array();
+        foreach($query as $kk=>$vv){
+            $explode = explode('_',$kk);
+            $array[$kk]['attr_id'] = $explode['1'];
+            $array[$kk]['attr_value'] = $vv;
+        }
+        foreach($array as $val){
             $attr_values[$val['attr_value']] = $val['attr_value'];
         }
 
-		$maps['attr_value']  = array('IN',$attr_values);
-		//$TpGoodsAttr = M('TpGoodsAttr')->where($map)->group('attr_value')->select();
-		$TpGoodsAttr = M('TpGoodsAttr')->where($maps)->select();
-		
-		
-		
-		$result= array();
-		foreach($TpGoodsAttr as $key => $info){
-		 	$result[$info['goods_id']][] = $info;
-		}
-		
-		foreach($result as $kkk => $vvv){
-			foreach($vvv as $k2 => $v2){
-				$attr_valuess[$kkk][$k2] = $v2['attr_value'];
-			}
+        $maps['attr_value']  = array('IN',$attr_values);
+        //$TpGoodsAttr = M('TpGoodsAttr')->where($map)->group('attr_value')->select();
+        $TpGoodsAttr = M('TpGoodsAttr')->where($maps)->select();
+
+
+
+        $result= array();
+        foreach($TpGoodsAttr as $key => $info){
+            $result[$info['goods_id']][] = $info;
         }
-		
-		$implode = implode('_',$attr_values);
-		
-		foreach($attr_valuess as $k3 => $v3){
-			$implodes = implode('_',$v3);
-			if($implodes != $implode){
-				unset($attr_valuess[$k3]);
-			}
+
+        foreach($result as $kkk => $vvv){
+            foreach($vvv as $k2 => $v2){
+                $attr_valuess[$kkk][$k2] = $v2['attr_value'];
+            }
         }
-		
-		
-		foreach($attr_valuess as $k4 => $v4){
+
+        $implode = implode('_',$attr_values);
+
+        foreach($attr_valuess as $k3 => $v3){
+            $implodes = implode('_',$v3);
+            if($implodes != $implode){
+                unset($attr_valuess[$k3]);
+            }
+        }
+
+
+        foreach($attr_valuess as $k4 => $v4){
             $goods_ids[$k4] = $k4;
         }
-		if($array){
-			$map['goods_id'] = array('IN',$goods_ids);
-		}
-		//多属性搜索结束
-		
-		
-		
-		$cate_id = (int) $this->_param('cate_id');
-		$cat = (int) $this->_param('cat');
+        if($array){
+            $map['goods_id'] = array('IN',$goods_ids);
+        }
+        //多属性搜索结束
+
+
+
+        $cate_id = (int) $this->_param('cate_id');
+        $cat = (int) $this->_param('cat');
         if($cate_id){
-			if($cate_id){
-				if(empty($array)){
-					$map['cate_id'] = $cate_id;
-				}
-				$linkArr['cate_id'] = $cate_id;
-				$this->assign('TpGoodsAttribute',$TpGoodsAttribute = $this->getTpGoodsAttributes($cate_id));
-			}
+            if($cate_id){
+                if(empty($array)){
+                    $map['cate_id'] = $cate_id;
+                }
+                $linkArr['cate_id'] = $cate_id;
+//				$this->assign('TpGoodsAttribute',$TpGoodsAttribute = $this->getTpGoodsAttributes($cate_id));
+            }
         }else{
-			$catids = D('Goodscate')->getChildren($cat);
-			$this->assign('TpGoodsAttribute',$TpGoodsAttribute = $this->getTpGoodsAttributes($cat));
+            $catids = D('Goodscate')->getChildren($cat);
+//			$this->assign('TpGoodsAttribute',$TpGoodsAttribute = $this->getTpGoodsAttributes($cat));
             if(!empty($catids)){
-				if(empty($array)){
-					$map['cate_id'] = array('IN', $catids);
-				}
+                if(empty($array)){
+                    $map['cate_id'] = array('IN', $catids);
+                }
             }else{
                 $map['cate_id'] = $cate_id;
-				$linkArr['cate_id'] = $cate_id;
-				
+                $linkArr['cate_id'] = $cate_id;
+
             }
-			
-		}
-		$this->assign('cat', $cat);
-		$this->assign('cate_id', $cate_id);
-	
+
+        }
+        $this->assign('cat', $cat);
+        $this->assign('cate_id', $cate_id);
+
         $count = $Goods->where($map)->count();
         $Page = new Page($count, 10);
         $show = $Page->show();
@@ -271,15 +271,15 @@ class MallAction extends CommonAction{
         if ($Page->totalPages < $p) {
             die('0');
         }
-		
-		$lat = addslashes(cookie('lat'));
+
+        $lat = addslashes(cookie('lat'));
         $lng = addslashes(cookie('lng'));
         if(empty($lat) || empty($lng)){
             $lat = $this->city['lat'];
             $lng = $this->city['lng'];
         }
-		
-		$order = $this->_param('order', 'htmlspecialchars');
+
+        $order = $this->_param('order', 'htmlspecialchars');
         switch($order){
             case '1':
                 $orderby = array('create_time' => 'asc');
@@ -293,27 +293,31 @@ class MallAction extends CommonAction{
             case '4':
                 $orderby = array('mall_price' => 'asc');
                 break;
-			case '5':
+            case '5':
                 $orderby = array('top_time' => 'desc','orderby' =>'asc');
                 break;
-			default:
+            default:
                 $orderby = array('create_time' => 'asc');
                 break;
         }
-		
-		
-		
+
+
+
         $list = $Goods->where($map)->order($orderby)->limit($Page->firstRow . ',' . $Page->listRows)->select();
         foreach ($list as $k => $val){
             if($val['shop_id']) {
                 $shop_ids[$val['shop_id']] = $val['shop_id'];
             }
-			$Shop = D('Shop')->find($val['shop_id']);
-			$val['d'] = getDistance($lat, $lng, $Shop['lat'], $Shop['lng']);
+            $Shop = D('Shop')->find($val['shop_id']);
+            $val['d'] = getDistance($lat, $lng, $Shop['lat'], $Shop['lng']);
             $list[$k] = $val;
         }
-        $this->assign('list', $list);
+        $hot_jobs = D("Job")->where(["is_hot"=>'1','is_able'=>1])->limit(5)->order("job_order ASC")->select();
+
+
+        $this->assign('list', $hot_jobs);
         $this->assign('page', $show);
+
         $this->display();
     }
     //商品收藏
