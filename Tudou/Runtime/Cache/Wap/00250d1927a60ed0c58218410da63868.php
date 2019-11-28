@@ -299,14 +299,14 @@
 <!--            </div>-->
 
             <div id="register">
-                <a href="<?php echo U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'));?>">
+                <a href="<?php echo U('user/Job/jobSign',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'));?>">
                     <div><?php echo ($bottom_price); ?></div>
                     免费报名
                 </a>
             </div>
 
             <div id="confirmSpell">
-                <a href="<?php echo U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'));?>">
+                <a href="<?php echo U('user/Job/jobSign',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'));?>">
                     <div><?php echo ($bottom_price_vip); ?></div>
                     VIP拿高价
                 </a>

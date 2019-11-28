@@ -361,7 +361,5 @@ class JobAction extends CommonAction{
     public function vipRouter(){
         $this->display();
     }
-    public function jobRegister(){
-        $this->display();
-    }
+
 }

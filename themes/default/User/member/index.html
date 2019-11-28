@@ -68,25 +68,33 @@ header.user-center-header:after{position:absolute;bottom:21px;left:0;z-index:0;w
     </div>
 </header>
 
-
-<div class="user-block-top">
-	<h2><a href="#">常用菜单</a></h2>
+<div class="user-block-top margin-top">
+    <h2><a href="<{:U('goods/index',array('aready'=>'999'))}>" class="float-right text-little">全部报名工作</a>我的工作</h2>
     <ul class="x12">
-    	<if condition="$CONFIG['operation']['mall']">
-        	<li><a href="<{:LinkTo('goods/index',array('aready'=>1))}>"><i class="iconfont icon-27"></i>购物</a></li>
-        </if> 
-        <if condition="$CONFIG['operation']['ele']">
-        	<li><a href="<{:U('eleorder/index')}>"><i class="iconfont icon-waimai1"></i>外卖</a></li>
-        </if> 
-        <if condition="$CONFIG['operation']['book']"> 
-        	<li><a href="<{:U('book/index')}>"><i class="iconfont icon-book"></i>订座</a></li>
-        </if> 
-        <if condition="$CONFIG['operation']['appoint']"> 
-        	<li><a href="<{:U('appoint/index')}>"><i class="iconfont icon-jiazhengfuwu"></i>家政</a></li>
-        </if> 
-        <li><a href="<{:U('breaks/index')}>"><i class="iconfont icon-maidan"></i>买单</a></li>
+        <li><a href="<{:U('goods/index',array('aready'=>'0'))}>"><i class="iconfont icon-daifukuan1"></i>已报名</a></li>
+        <li><a href="<{:U('goods/index',array('aready'=>'1'))}>"><i class="iconfont icon-tubiao5"></i>报名中</a></li>
+        <li><a href="<{:U('goods/index',array('aready'=>'3'))}>"><i class="iconfont icon-tuikuan1"></i>已拒绝</a></li>
+        <li><a href="<{:U('goods/index',array('aready'=>'8'))}>"><i class="iconfont icon-vip-dianping"></i>待评价</a></li>
     </ul>
 </div>
+<!--<div class="user-block-top">-->
+<!--	<h2><a href="#">常用菜单</a></h2>-->
+<!--    <ul class="x12">-->
+<!--    	<if condition="$CONFIG['operation']['mall']">-->
+<!--        	<li><a href="<{:LinkTo('goods/index',array('aready'=>1))}>"><i class="iconfont icon-27"></i>购物</a></li>-->
+<!--        </if> -->
+<!--        <if condition="$CONFIG['operation']['ele']">-->
+<!--        	<li><a href="<{:U('eleorder/index')}>"><i class="iconfont icon-waimai1"></i>外卖</a></li>-->
+<!--        </if> -->
+<!--        <if condition="$CONFIG['operation']['book']"> -->
+<!--        	<li><a href="<{:U('book/index')}>"><i class="iconfont icon-book"></i>订座</a></li>-->
+<!--        </if> -->
+<!--        <if condition="$CONFIG['operation']['appoint']"> -->
+<!--        	<li><a href="<{:U('appoint/index')}>"><i class="iconfont icon-jiazhengfuwu"></i>家政</a></li>-->
+<!--        </if> -->
+<!--        <li><a href="<{:U('breaks/index')}>"><i class="iconfont icon-maidan"></i>买单</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
 
 
 
@@ -107,28 +115,28 @@ header.user-center-header:after{position:absolute;bottom:21px;left:0;z-index:0;w
 
 
 
-<div class="user-block-top margin-top">
-    <h2><a href="<{:U('eleorder/index',array('aready'=>'999'))}>" class="float-right text-little">全部外卖订单</a>我的外卖</h2>
-    <ul class="x12">
-        <li><a href="<{:U('eleorder/index',array('aready'=>'0'))}>"><i class="iconfont icon-daifukuan1"></i>待付款</a></li>
-        <li><a href="<{:U('eleorder/index',array('aready'=>'1'))}>"><i class="iconfont icon-daifukuan2"></i>已付款</a></li>
-        <li><a href="<{:U('eleorder/index',array('aready'=>'3'))}>"><i class="iconfont icon-tuikuan1"></i>退款中</a></li>
-        <li><a href="<{:U('eleorder/index',array('aready'=>'2'))}>"><i class="iconfont icon-peisong"></i>已配送</a></li>
-        <li><a href="<{:U('eleorder/index',array('aready'=>'8'))}>"><i class="iconfont icon-kecheng"></i>已完成</a></li>
-    </ul>
-</div>
+<!--<div class="user-block-top margin-top">-->
+<!--    <h2><a href="<{:U('eleorder/index',array('aready'=>'999'))}>" class="float-right text-little">全部外卖订单</a>我的外卖</h2>-->
+<!--    <ul class="x12">-->
+<!--        <li><a href="<{:U('eleorder/index',array('aready'=>'0'))}>"><i class="iconfont icon-daifukuan1"></i>待付款</a></li>-->
+<!--        <li><a href="<{:U('eleorder/index',array('aready'=>'1'))}>"><i class="iconfont icon-daifukuan2"></i>已付款</a></li>-->
+<!--        <li><a href="<{:U('eleorder/index',array('aready'=>'3'))}>"><i class="iconfont icon-tuikuan1"></i>退款中</a></li>-->
+<!--        <li><a href="<{:U('eleorder/index',array('aready'=>'2'))}>"><i class="iconfont icon-peisong"></i>已配送</a></li>-->
+<!--        <li><a href="<{:U('eleorder/index',array('aready'=>'8'))}>"><i class="iconfont icon-kecheng"></i>已完成</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
 
 
-<div class="user-block-top margin-top">
-    <h2><a href="<{:U('goods/index',array('aready'=>'999'))}>" class="float-right text-little">全部商城订单</a>我的商城</h2>
-    <ul class="x12">
-        <li><a href="<{:U('goods/index',array('aready'=>'0'))}>"><i class="iconfont icon-daifukuan1"></i>待付款</a></li>
-        <li><a href="<{:U('goods/index',array('aready'=>'1'))}>"><i class="iconfont icon-tubiao5"></i>待发货</a></li>
-        <li><a href="<{:U('goods/index',array('aready'=>'3'))}>"><i class="iconfont icon-tuikuan1"></i>退款中</a></li>
-        <li><a href="<{:U('goods/index',array('aready'=>'2'))}>"><i class="iconfont icon-peisong"></i>已配送</a></li>
-        <li><a href="<{:U('goods/index',array('aready'=>'8'))}>"><i class="iconfont icon-vip-dianping"></i>待评价</a></li>
-    </ul>
-</div>
+<!--<div class="user-block-top margin-top">-->
+<!--    <h2><a href="<{:U('goods/index',array('aready'=>'999'))}>" class="float-right text-little">全部商城订单</a>我的商城</h2>-->
+<!--    <ul class="x12">-->
+<!--        <li><a href="<{:U('goods/index',array('aready'=>'0'))}>"><i class="iconfont icon-daifukuan1"></i>待付款</a></li>-->
+<!--        <li><a href="<{:U('goods/index',array('aready'=>'1'))}>"><i class="iconfont icon-tubiao5"></i>待发货</a></li>-->
+<!--        <li><a href="<{:U('goods/index',array('aready'=>'3'))}>"><i class="iconfont icon-tuikuan1"></i>退款中</a></li>-->
+<!--        <li><a href="<{:U('goods/index',array('aready'=>'2'))}>"><i class="iconfont icon-peisong"></i>已配送</a></li>-->
+<!--        <li><a href="<{:U('goods/index',array('aready'=>'8'))}>"><i class="iconfont icon-vip-dianping"></i>待评价</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
 
  <php>
     $worker = D('Shopworker')->where(array('user_id'=>$MEMBER['user_id']))->find();
@@ -136,119 +144,119 @@ header.user-center-header:after{position:absolute;bottom:21px;left:0;z-index:0;w
     $config = D('Setting')->fetchAll();
  </php>
 
-<div class="user-block-top margin-top">
-    <h2><a href="<{:U('eleorder/index')}>">常用操作</a></h2>
-    <div class="user-panel-list">
-        <ul>
-        
-            <if condition="$shop">
-                <li><a href="<{:U('seller/index/index')}>"><span class="iconfont icon-shangjia2"></span><p>管理商家</p></a></li>
-            </if>
-            <if condition="$user_delivery">
-                <li><a href="<{:U('delivery/index/index')}>"><span class="iconfont icon-trlogonline"></span><p>配送员</p></a></li>
-            </if>
-            <if condition="$worker">
-                <li><a class="text-yellow"  href="<{:U('worker/index/index')}>"><span class="iconfont icon-iconuser text-yellow"></span><p>店员管理</p></a></li>
-            </if>
-            <li><a href="<{:U('money/index')}>"><span class="iconfont icon-chongzhi3"></span><p>余额充值</p></a></li>
-            <li><a href="<{:U('guide/index')}>"><span class="iconfont icon-zhongchou1"></span><p>城市合伙人</p></a></li>
-            
-            <if condition="$CONFIG['config']['is_buy_user_rank']">
-                <li><a href="<{:U('information/buy')}>"><span class="iconfont icon-chongzhi1"></span><p>购买会员等级</p></a></li>
-            </if>
-            
-           <if condition="$CONFIG['operation']['tuan']"> 
-                <li><a href="<{:U('tuancode/index')}>"><span class="iconfont icon-qianggou1"></span><p>抢购券</p></a></li>
-                <li><a href="<{:U('tuan/index')}>"><span class="iconfont icon-qianggou3"></span><p>抢购订单</p></a></li>
-           </if> 
-            
-           
-            
-            <if condition="$CONFIG['operation']['zhe']">
-                <li><a href="<{:U('member/zhe')}>"><span class="iconfont icon-youhui"></span><p>五折卡</p></a></li>
-            </if>
-            <if condition="$CONFIG['operation']['appoint']">
-            	<li><a class="text-dot"  href="<{:U('appoint/card')}>"><span class="iconfont icon-wodeyouhuijuan text-dot"></span><p>家政优惠卡</p></a></li>
-            </if>
-            
-            <if condition="$CONFIG['profit']['profit']"> 
-                <li><a class="text-yellow" href="<{:U('distribution/index')}>"><span class="iconfont icon-xianjinfencheng text-yellow"></span><p>分成</p></a></li>
-            </if> 
-            
-            
-            
-            <if condition="$CONFIG['operation']['running']">       
-                <li><a href="<{:U('running/index')}>"><span class="iconfont icon-trlogonline"></span><p>跑腿</p></a></li>  
-            </if> 
-            <if condition="$CONFIG['operation']['ktv']">
-                <li><a href="<{:U('ktv/index')}>"><span class="iconfont icon-ktv3"></span><p>KTV</p></a></li> 
-            </if>
-            
-            <if condition="$CONFIG['operation']['market']">
-                <li><a href="<{:U('market/index')}>"><span class="iconfont icon-ktv3"></span><p>菜市场</p></a></li> 
-            </if>
-            
-            <if condition="$CONFIG['operation']['store']">
-                <li><a href="<{:U('store/index')}>"><span class="iconfont icon-fenleixinxi"></span><p>便利店</p></a></li> 
-            </if>
-            
-            
-            <if condition="$CONFIG['operation']['hotels']">
-                <li><a href="<{:U('hotels/index')}>"><span class="iconfont icon-jiudian1"></span><p>酒店</p></a></li>      
-            </if>
-            <if condition="$CONFIG['operation']['edu']">
-                <li><a href="<{:U('edu/index')}>"><span class="iconfont icon-kecheng"></span><p>课程</p></a></li>  
-            </if>
-            <if condition="$CONFIG['operation']['village']">
-                <if condition="$CONFIG['village']['user_is_show']">
-                    <li><a href="<{:U('village/index')}>"><span class="iconfont icon-nostalgia"></span><p>乡村</p></a></li>  
-                </if>      
-            </if>
-            <if condition="$CONFIG['operation']['life']">        
-                <li><a href="<{:U('life/index')}>"><span class="iconfont icon-fenleixinxi"></span><p>同城信息</p></a></li>  
-            </if> 
-            <if condition="$CONFIG['operation']['thread']">        
-                <li><a href="<{:U('thread/index')}>"><span class="iconfont icon-tubiao1tieba1"></span><p>贴吧</p></a></li>  
-            </if>  
-            <if condition="$CONFIG['operation']['stock']"> 
-                <li><a href="<{:U('stock/index')}>"><span class="iconfont iconfont icon-chongzhi1"></span><p>股权订单</p></a></li>
-            </if> 
-            
-            <if condition="$CONFIG['operation']['ktv']"> 
-                <li><a href="<{:U('ktv/index')}>"><span class="iconfont icon-yiyuanyungou-"></span><p>KTV订单</p></a></li>
-            </if> 
-            
-            <if condition="$CONFIG['operation']['cloud']"> 
-                <li><a href="<{:U('cloud/index')}>"><span class="iconfont icon-yiyuanyungou-"></span><p>一元云购</p></a></li>
-            </if> 
-            
-            <if condition="$CONFIG['operation']['crowd']">
-                <li><a href="<{:U('crowd/index',array('aready'=>1))}>"><span class="iconfont icon-zhongchou1"></span><p>众筹</p></a></li>   
-            </if>
-            
-            <if condition="$CONFIG['operation']['pinche']">
-                <li><a href="<{:U('pinche/index')}>"><span class="iconfont icon-pin"></span><p>拼车</p></a></li>        
-            </if>
-            
-            <if condition="$CONFIG['operation']['community']">
-                <li><a href="<{:U('community/index')}>"><span class="iconfont icon-wodexiaoqu1"></span><p>小区</p></a></li>        
-            </if>
-      
-    
-            <if condition="$CONFIG['operation']['jifen']">   
-                <li><a href="<{:U('exchange/index')}>"><span class="iconfont icon-lipin4"></span><p>礼品</p> </a></li>
-            </if> 
-            
-            <if condition="$CONFIG['operation']['coupon']"> 
-                <li><a href="<{:U('coupon/index')}>"><span class="iconfont icon-wodeyouhuijuan"></span><p>优惠券</p></a></li>
-            </if> 
-            <li><a class="text-blue" href="<{:U('user/message/index')}>"><span class="iconfont icon-xiaoxi3 text-blue"></span><p>消息</p></a></li>
-            <li><a href="<{:U('favorites/index')}>"><span class="iconfont icon-fill85"></span><p>收藏</p></a></li> 
-            <li><a href="<{:U('yuyue/index',array('status'=>1))}>"><span class="iconfont icon-yuyue1"></span><p>预约</p></a></li>
-            
-        </ul>
-    </div>
-</div>
+<!--<div class="user-block-top margin-top">-->
+<!--    <h2><a href="<{:U('eleorder/index')}>">常用操作</a></h2>-->
+<!--    <div class="user-panel-list">-->
+<!--        <ul>-->
+<!--        -->
+<!--            <if condition="$shop">-->
+<!--                <li><a href="<{:U('seller/index/index')}>"><span class="iconfont icon-shangjia2"></span><p>管理商家</p></a></li>-->
+<!--            </if>-->
+<!--            <if condition="$user_delivery">-->
+<!--                <li><a href="<{:U('delivery/index/index')}>"><span class="iconfont icon-trlogonline"></span><p>配送员</p></a></li>-->
+<!--            </if>-->
+<!--            <if condition="$worker">-->
+<!--                <li><a class="text-yellow"  href="<{:U('worker/index/index')}>"><span class="iconfont icon-iconuser text-yellow"></span><p>店员管理</p></a></li>-->
+<!--            </if>-->
+<!--            <li><a href="<{:U('money/index')}>"><span class="iconfont icon-chongzhi3"></span><p>余额充值</p></a></li>-->
+<!--            <li><a href="<{:U('guide/index')}>"><span class="iconfont icon-zhongchou1"></span><p>城市合伙人</p></a></li>-->
+<!--            -->
+<!--            <if condition="$CONFIG['config']['is_buy_user_rank']">-->
+<!--                <li><a href="<{:U('information/buy')}>"><span class="iconfont icon-chongzhi1"></span><p>购买会员等级</p></a></li>-->
+<!--            </if>-->
+<!--            -->
+<!--           <if condition="$CONFIG['operation']['tuan']"> -->
+<!--                <li><a href="<{:U('tuancode/index')}>"><span class="iconfont icon-qianggou1"></span><p>抢购券</p></a></li>-->
+<!--                <li><a href="<{:U('tuan/index')}>"><span class="iconfont icon-qianggou3"></span><p>抢购订单</p></a></li>-->
+<!--           </if> -->
+<!--            -->
+<!--           -->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['zhe']">-->
+<!--                <li><a href="<{:U('member/zhe')}>"><span class="iconfont icon-youhui"></span><p>五折卡</p></a></li>-->
+<!--            </if>-->
+<!--            <if condition="$CONFIG['operation']['appoint']">-->
+<!--            	<li><a class="text-dot"  href="<{:U('appoint/card')}>"><span class="iconfont icon-wodeyouhuijuan text-dot"></span><p>家政优惠卡</p></a></li>-->
+<!--            </if>-->
+<!--            -->
+<!--            <if condition="$CONFIG['profit']['profit']"> -->
+<!--                <li><a class="text-yellow" href="<{:U('distribution/index')}>"><span class="iconfont icon-xianjinfencheng text-yellow"></span><p>分成</p></a></li>-->
+<!--            </if> -->
+<!--            -->
+<!--            -->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['running']">       -->
+<!--                <li><a href="<{:U('running/index')}>"><span class="iconfont icon-trlogonline"></span><p>跑腿</p></a></li>  -->
+<!--            </if> -->
+<!--            <if condition="$CONFIG['operation']['ktv']">-->
+<!--                <li><a href="<{:U('ktv/index')}>"><span class="iconfont icon-ktv3"></span><p>KTV</p></a></li> -->
+<!--            </if>-->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['market']">-->
+<!--                <li><a href="<{:U('market/index')}>"><span class="iconfont icon-ktv3"></span><p>菜市场</p></a></li> -->
+<!--            </if>-->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['store']">-->
+<!--                <li><a href="<{:U('store/index')}>"><span class="iconfont icon-fenleixinxi"></span><p>便利店</p></a></li> -->
+<!--            </if>-->
+<!--            -->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['hotels']">-->
+<!--                <li><a href="<{:U('hotels/index')}>"><span class="iconfont icon-jiudian1"></span><p>酒店</p></a></li>      -->
+<!--            </if>-->
+<!--            <if condition="$CONFIG['operation']['edu']">-->
+<!--                <li><a href="<{:U('edu/index')}>"><span class="iconfont icon-kecheng"></span><p>课程</p></a></li>  -->
+<!--            </if>-->
+<!--            <if condition="$CONFIG['operation']['village']">-->
+<!--                <if condition="$CONFIG['village']['user_is_show']">-->
+<!--                    <li><a href="<{:U('village/index')}>"><span class="iconfont icon-nostalgia"></span><p>乡村</p></a></li>  -->
+<!--                </if>      -->
+<!--            </if>-->
+<!--            <if condition="$CONFIG['operation']['life']">        -->
+<!--                <li><a href="<{:U('life/index')}>"><span class="iconfont icon-fenleixinxi"></span><p>同城信息</p></a></li>  -->
+<!--            </if> -->
+<!--            <if condition="$CONFIG['operation']['thread']">        -->
+<!--                <li><a href="<{:U('thread/index')}>"><span class="iconfont icon-tubiao1tieba1"></span><p>贴吧</p></a></li>  -->
+<!--            </if>  -->
+<!--            <if condition="$CONFIG['operation']['stock']"> -->
+<!--                <li><a href="<{:U('stock/index')}>"><span class="iconfont iconfont icon-chongzhi1"></span><p>股权订单</p></a></li>-->
+<!--            </if> -->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['ktv']"> -->
+<!--                <li><a href="<{:U('ktv/index')}>"><span class="iconfont icon-yiyuanyungou-"></span><p>KTV订单</p></a></li>-->
+<!--            </if> -->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['cloud']"> -->
+<!--                <li><a href="<{:U('cloud/index')}>"><span class="iconfont icon-yiyuanyungou-"></span><p>一元云购</p></a></li>-->
+<!--            </if> -->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['crowd']">-->
+<!--                <li><a href="<{:U('crowd/index',array('aready'=>1))}>"><span class="iconfont icon-zhongchou1"></span><p>众筹</p></a></li>   -->
+<!--            </if>-->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['pinche']">-->
+<!--                <li><a href="<{:U('pinche/index')}>"><span class="iconfont icon-pin"></span><p>拼车</p></a></li>        -->
+<!--            </if>-->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['community']">-->
+<!--                <li><a href="<{:U('community/index')}>"><span class="iconfont icon-wodexiaoqu1"></span><p>小区</p></a></li>        -->
+<!--            </if>-->
+<!--      -->
+<!--    -->
+<!--            <if condition="$CONFIG['operation']['jifen']">   -->
+<!--                <li><a href="<{:U('exchange/index')}>"><span class="iconfont icon-lipin4"></span><p>礼品</p> </a></li>-->
+<!--            </if> -->
+<!--            -->
+<!--            <if condition="$CONFIG['operation']['coupon']"> -->
+<!--                <li><a href="<{:U('coupon/index')}>"><span class="iconfont icon-wodeyouhuijuan"></span><p>优惠券</p></a></li>-->
+<!--            </if> -->
+<!--            <li><a class="text-blue" href="<{:U('user/message/index')}>"><span class="iconfont icon-xiaoxi3 text-blue"></span><p>消息</p></a></li>-->
+<!--            <li><a href="<{:U('favorites/index')}>"><span class="iconfont icon-fill85"></span><p>收藏</p></a></li> -->
+<!--            <li><a href="<{:U('yuyue/index',array('status'=>1))}>"><span class="iconfont icon-yuyue1"></span><p>预约</p></a></li>-->
+<!--            -->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <div class="blank-10"></div>

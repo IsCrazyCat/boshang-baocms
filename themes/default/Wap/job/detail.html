@@ -341,14 +341,14 @@
 <!--            </div>-->
 
             <div id="register">
-                <a href="<{:U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'))}>">
+                <a href="<{:U('user/Job/jobSign',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'0'))}>">
                     <div><{$bottom_price}></div>
                     免费报名
                 </a>
             </div>
 
             <div id="confirmSpell">
-                <a href="<{:U('wap/Job/jobRegister',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'))}>">
+                <a href="<{:U('user/Job/jobSign',array('job_id'=>$job_info.job_id,'vip_sign_up'=>'1'))}>">
                     <div><{$bottom_price_vip}></div>
                     VIP拿高价
                 </a>

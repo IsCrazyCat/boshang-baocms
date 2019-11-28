@@ -2,8 +2,8 @@
 
 class GoodsAction extends CommonAction {
 
-    private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
-    private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
 	
 	
     public function _initialize(){
@@ -161,24 +161,40 @@ class GoodsAction extends CommonAction {
 		if (!D('Goods')->check_add_use_integral($data['use_integral'],$data['mall_price'])){
             $this->tuError(D('Goods')->getError(), 3000, true);
         }
-		$data['views'] = (int) $data['views'];
-      	$data['instructions'] = SecurityEditorHtml($data['instructions']);
+        $data['views'] = (int) $data['views'];
+        $data['instructions'] = SecurityEditorHtml($data['instructions']);
         if($words = D('Sensitive')->checkWords($data['instructions'])) {
-            $this->tuError('购买须知含有敏感词：' . $words);
-        } 
-		$data['details'] = SecurityEditorHtml($data['details']);
-        if(empty($data['details'])){
-            $this->tuError('商品详情不能为空');
+            $this->tuError('平台补贴含有敏感词：' . $words);
         }
-        if($words = D('Sensitive')->checkWords($data['details'])){
-            $this->tuError('商品详情含有敏感词：' . $words);
-        } 
-		$data['end_date'] = htmlspecialchars($data['end_date']);
+
+        $data['salary'] = SecurityEditorHtml($data['salary']);
+        if(empty($data['salary'])){
+            $this->tuError('薪资待遇不能为空');
+        }
+        if($words = D('Sensitive')->checkWords($data['salary'])) {
+            $this->tuError('薪资待遇含有敏感词：' . $words);
+        }
+        $data['enroll'] = SecurityEditorHtml($data['enroll']);
+        if(empty($data['enroll'])){
+            $this->tuError('录用条件不能为空');
+        }
+        if($words = D('Sensitive')->checkWords($data['enroll'])) {
+            $this->tuError('录用条件含有敏感词：' . $words);
+        }
+        $data['explain'] = SecurityEditorHtml($data['explain']);
+        if(empty($data['explain'])){
+            $this->tuError('岗位介绍不能为空');
+        }
+        if($words = D('Sensitive')->checkWords($data['explain'])) {
+            $this->tuError('岗位介绍含有敏感词：' . $words);
+        }
+
+        $data['end_date'] = htmlspecialchars($data['end_date']);
         if(empty($data['end_date'])){
-           $this->tuError('过期时间不能为空');
+            $this->tuError('截止日期不能为空');
         }
         if(!isDate($data['end_date'])){
-           $this->tuError('过期时间格式不正确');
+            $this->tuError('截止日期格式不正确');
         }
 		$data['is_vs1'] = (int) $data['is_vs1'];
 		$data['is_vs2'] = (int) $data['is_vs2'];
@@ -293,13 +309,13 @@ class GoodsAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['title'] = htmlspecialchars($data['title']);
         if(empty($data['title'])) {
-            $this->tuError('产品名称不能为空');
+            $this->tuError('工作名称不能为空');
 		}
 		$data['intro'] = htmlspecialchars($data['intro']);
 		$data['guige'] = htmlspecialchars($data['guige']);
 		$data['num'] = (int) $data['num'];
         if (empty($data['num'])) {
-            $this->tuError('库存不能为空');
+            $this->tuError('报名人数不能为空');
         } 
 		$data['is_reight'] = (int) $data['is_reight'];
 		$data['weight'] = (int) $data['weight'];
@@ -348,11 +364,11 @@ class GoodsAction extends CommonAction {
         } 
         $data['price'] = (int) ($data['price'] * 100);
         if(empty($data['price'])) {
-            $this->tuError('市场价格不能为空');
+            $this->tuError('普通薪资不能为空');
         } 
         $data['mall_price'] = (int) ($data['mall_price'] * 100);
         if(empty($data['mall_price'])) {
-            $this->tuError('商城价格不能为空');
+            $this->tuError('VIP薪资不能为空');
         }
         $data['mobile_fan'] = (int) ($data['mobile_fan'] * 100);
 		$data['use_integral'] = (int) $data['use_integral'];
@@ -362,21 +378,37 @@ class GoodsAction extends CommonAction {
         $data['views'] = (int) $data['views'];
 		$data['instructions'] = SecurityEditorHtml($data['instructions']);
         if($words = D('Sensitive')->checkWords($data['instructions'])) {
-            $this->tuError('购买须知含有敏感词：' . $words);
+            $this->tuError('平台补贴含有敏感词：' . $words);
         } 
-		$data['details'] = SecurityEditorHtml($data['details']);
-        if(empty($data['details'])){
-            $this->tuError('商品详情不能为空');
+
+        $data['salary'] = SecurityEditorHtml($data['salary']);
+        if(empty($data['salary'])){
+            $this->tuError('薪资待遇不能为空');
         }
-        if($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品详情含有敏感词：' . $words);
+        if($words = D('Sensitive')->checkWords($data['salary'])) {
+            $this->tuError('薪资待遇含有敏感词：' . $words);
         }
+        $data['enroll'] = SecurityEditorHtml($data['enroll']);
+        if(empty($data['enroll'])){
+            $this->tuError('录用条件不能为空');
+        }
+        if($words = D('Sensitive')->checkWords($data['enroll'])) {
+            $this->tuError('录用条件含有敏感词：' . $words);
+        }
+        $data['explain'] = SecurityEditorHtml($data['explain']);
+        if(empty($data['explain'])){
+            $this->tuError('岗位介绍不能为空');
+        }
+        if($words = D('Sensitive')->checkWords($data['explain'])) {
+            $this->tuError('岗位介绍含有敏感词：' . $words);
+        }
+
 		$data['end_date'] = htmlspecialchars($data['end_date']);
         if(empty($data['end_date'])){
-            $this->tuError('过期时间不能为空');
+            $this->tuError('截止日期不能为空');
         }
         if(!isDate($data['end_date'])){
-            $this->tuError('过期时间格式不正确');
+            $this->tuError('截止日期格式不正确');
         }
 		$data['is_vs1'] = (int) $data['is_vs1'];
 		$data['is_vs2'] = (int) $data['is_vs2'];
