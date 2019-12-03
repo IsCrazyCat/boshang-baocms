@@ -9,7 +9,7 @@ class TuanAction extends CommonAction
         $branch = D('Shopbranch')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'audit' => 1))->select();
         $this->assign('branch', $branch);
         if ($this->workers['tuan'] != 1) {
-            $this->error('对不起，您无权限，请联系掌柜开通');
+            $this->error('对不起，您无权限，请联系掌柜开通！！！');
         }
     }
     public function order(){
