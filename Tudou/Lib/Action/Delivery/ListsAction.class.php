@@ -230,7 +230,7 @@ class ListsAction extends CommonAction {
 			
 			if($detail['type'] == 0){ 
                $Order = D('Order');
-               $lists = $Order ->where('order_id ='.$detail['type_order_id']) -> find();//商品
+               $lists = $Order ->where('order_id ='.$detail['type_order_id']) -> find();//工作
                $t = 0;
                $OrderGoods = D('OrderGoods');
                $new_list = $OrderGoods -> where('order_id ='.$lists['order_id']) ->  select();

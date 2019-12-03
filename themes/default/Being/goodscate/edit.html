@@ -10,15 +10,15 @@
                 </tr>
                 
                 <tr>
-                    <td class="lfTdBt">商品类别：</td>
+                    <td class="lfTdBt">工作类别：</td>
                       <td class="rgTdBt">
                           <select id="star" name="data[type_id]" class="seleFl w210">
-                              <option value="">=选择商品类型=</option>
+                              <option value="">=选择工作类型=</option>
                                 <volist name="goodstypes" id="var" key='index'>
                                     <option <eq name="detail.type_id" value="$var.id">selected='selected'</eq> value="<{$var.id}>"><{$var.name}></option>
                                 </volist>
                            </select>
-                        <code>这里对应的是商品类型的ID，这里一级分类跟二级分类建议填写一致，同时影响编辑或者添加商品的时候筛选属性功能</code>
+                        <code>这里对应的是工作类型的ID，这里一级分类跟二级分类建议填写一致，同时影响编辑或者添加工作的时候筛选属性功能</code>
                      </td>
                  </tr>
                 

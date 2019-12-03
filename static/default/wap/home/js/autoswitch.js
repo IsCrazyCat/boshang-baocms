@@ -7,7 +7,7 @@ window.switch = {
     getcart: function () {
         with (window) {
             if (!cookies.isset('ele')) {
-                //购物车没商品
+                //购物车没工作
                 return false;
             }
             var goods = cookies.get('ele');

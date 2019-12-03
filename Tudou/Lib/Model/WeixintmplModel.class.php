@@ -103,7 +103,7 @@ class WeixintmplModel extends CommonModel{
                 'topcolor'  => '#F55555',
                 'first'     => $status,
                 'remark'    => '更多信息,请登录'.$config['site']['sitename'].',将为您提供更多信息服务！',
-                'order_name'=> $order_name, //商品名称
+                'order_name'=> $order_name, //工作名称
 				'order_id' => $order_id, //订单ID
 				'delivery_user_name' => $delivery['name'],//配送员姓名
 				'delivery_user_mobile' => $delivery['mobile'], //配送员电话
@@ -379,7 +379,7 @@ class WeixintmplModel extends CommonModel{
             include_once 'Tudou/Lib/Net/Wxmesg.class.php';
             $notice_data = array(
 				'url' => $config['site']['host'] . '/user/exchange/index.html', 
-				'first' => '亲,您成功兑换积分商品!', 
+				'first' => '亲,您成功兑换积分工作!', 
 				'remark' => '详情请登录-' . $config['site']['host'], 'order_id' => $exchange_id, 
 				'title' => $goods['title'], 
 				'num' => '1',
@@ -401,7 +401,7 @@ class WeixintmplModel extends CommonModel{
            $_data_order_notice = array(
 				'url' => $config['site']['host'] . '/seller/', 
 				'topcolor' => '#F55555', 
-				'first' => '积分兑换商品通知', 
+				'first' => '积分兑换工作通知', 
 				'remark' => '尊敬的【'.$Shop['shop_name'].'】，您有一笔新兑换订单！', 
 				'order_id' => $exchange_id, 
 				'order_goods' => $goods['title'], 

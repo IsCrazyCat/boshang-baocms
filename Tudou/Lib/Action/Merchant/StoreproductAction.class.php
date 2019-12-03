@@ -63,11 +63,11 @@ class StoreproductAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuError('商品名不能为空');
+            $this->tuError('工作名不能为空');
         }
         $data['desc'] = htmlspecialchars($data['desc']);
         if (empty($data['desc'])) {
-            $this->tuError('商品介绍不能为空');
+            $this->tuError('工作介绍不能为空');
         }
         $data['shop_id'] = $this->shop_id;
 		
@@ -120,10 +120,10 @@ class StoreproductAction extends CommonAction{
         if ($product_id = (int) $product_id) {
             $obj = D('Storeproduct');
             if (!($detail = $obj->find($product_id))) {
-                $this->tuError('请选择要编辑的商品管理');
+                $this->tuError('请选择要编辑的工作管理');
             }
             if ($detail['shop_id'] != $this->shop_id) {
-                $this->tuError('请不要操作其他商家的商品管理');
+                $this->tuError('请不要操作其他商家的工作管理');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -139,7 +139,7 @@ class StoreproductAction extends CommonAction{
                 $this->display();
             }
         }else{
-            $this->tuError('请选择要编辑的商品管理');
+            $this->tuError('请选择要编辑的工作管理');
         }
     }
 	
@@ -148,11 +148,11 @@ class StoreproductAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuError('商品名不能为空');
+            $this->tuError('工作名不能为空');
         }
         $data['desc'] = htmlspecialchars($data['desc']);
         if (empty($data['desc'])) {
-            $this->tuError('商品介绍不能为空');
+            $this->tuError('工作介绍不能为空');
         }
 		
         $data['cate_id'] = (int) $data['cate_id'];
@@ -195,12 +195,12 @@ class StoreproductAction extends CommonAction{
         if (is_numeric($product_id) && ($product_id = (int) $product_id)) {
             $obj = D('Storeproduct');
             if (!($detail = $obj->where(array('shop_id' => $this->shop_id, 'product_id' => $product_id))->find())) {
-                $this->tuError('请选择要删除的商品管理');
+                $this->tuError('请选择要删除的工作管理');
             }
             D('Storecate')->updateNum($detail['cate_id']);
             $obj->save(array('product_id' => $product_id, 'closed' => 1));
             $this->tuSuccess('删除成功', U('storeproduct/index'));
         }
-        $this->tuError('请选择要删除的商品管理');
+        $this->tuError('请选择要删除的工作管理');
     }
 }

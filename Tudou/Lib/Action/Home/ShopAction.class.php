@@ -875,7 +875,7 @@ class ShopAction extends CommonAction{
         $this->assign('detail', $detail);
         $this->display();
     }
-    //商品
+    //工作
     public function goods(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {

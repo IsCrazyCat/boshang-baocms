@@ -38,7 +38,7 @@ class SellerAction extends CommonAction {
 		$this->assign('users', $Users);
 		$this->assign('detail', $detail);
 		
-		//置顶商品
+		//置顶工作
 		$goods_top = D('SellerGoods')->where(array('user_id'=>$user_id,'type_id' =>1,'is_top' =>1,'closed' =>0))->order(array('create_time' =>'desc'))->limit(0, 5)->select();
 		foreach($goods_top as $k => $val){
             if($Goods = D('Goods')->find($val['id'])){
@@ -47,7 +47,7 @@ class SellerAction extends CommonAction {
         }
         $this->assign('goods_top', $goods_top);
 		
-		//推荐商品
+		//推荐工作
 		$goods_tuijian = D('SellerGoods')->where(array('user_id'=>$user_id,'type_id' =>1,'is_tuijian' =>1,'closed' =>0))->order(array('create_time' =>'desc'))->limit(0, 5)->select();
 		foreach($goods_tuijian as $k => $val){
             if($Goods = D('Goods')->find($val['id'])){
@@ -195,7 +195,7 @@ class SellerAction extends CommonAction {
 	 }
 	
 	
-	 //商品首页
+	 //工作首页
 	 public function goods($user_id){
 		$user_id = (int) $this->_param('user_id');
 		if(!($Users = D('Users')->find($user_id))){
@@ -222,7 +222,7 @@ class SellerAction extends CommonAction {
 		 
 	 }
 	
-	 //商品详情页
+	 //工作详情页
 	 public function loaddata(){
         $obj = D('SellerGoods');
         import('ORG.Util.Page');
@@ -279,7 +279,7 @@ class SellerAction extends CommonAction {
         $this->display();
     }
 	
-	 //删除商品
+	 //删除工作
 	 public function delete($user_id,$goods_id){
 		$user_id = (int) $this->_param('user_id');
         $goods_id = (int) $this->_param('goods_id');
@@ -298,7 +298,7 @@ class SellerAction extends CommonAction {
     }
 	
 	
-	 //添加商品
+	 //添加工作
 	 public function create($user_id = 0,$type_id,$id){
 		$user_id = (int) $this->_param('user_id');
         $type_id = (int) $this->_param('type_id');
@@ -312,15 +312,15 @@ class SellerAction extends CommonAction {
 		
 		if($type_id == 1){
 			if(!($Goods = D('Goods')->find($id))){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商品不存在'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'工作不存在'));
 			}
 			if($Goods['closed'] != 0){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商品已被删除'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'工作已被删除'));
 			}
 			if($Goods['audit'] != 1){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商品未审核'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'工作未审核'));
 			}
-			$intro = '商品';
+			$intro = '工作';
 		}elseif($type_id == 2){
 			if(!($Tuan = D('Tuan')->find($id))){
 				$this->ajaxReturn(array('code'=>'0','msg'=>'抢购不存在'));
@@ -388,7 +388,7 @@ class SellerAction extends CommonAction {
 		$intro = '取消置顶成功';
         if($res['is_top'] == 0){
            $data['is_top'] = 1;
-		   $intro = '添加商品置顶成功';
+		   $intro = '添加工作置顶成功';
         }
 		if($obj->save($data)){
 			$this->ajaxReturn(array('code'=>'1','msg'=>$intro,'url'=>U('seller/goods',array('user_id'=>$user_id))));
@@ -432,7 +432,7 @@ class SellerAction extends CommonAction {
 			$this->ajaxReturn(array('code'=>'0','msg'=>'不存在'));
         }
 		if($detail['closed']== 1){
-			$this->ajaxReturn(array('code'=>'0','msg'=>'商品已删除'));
+			$this->ajaxReturn(array('code'=>'0','msg'=>'工作已删除'));
         }
 		if($detail['user_id'] != $this->uid){
             $this->ajaxReturn(array('code'=>'0','msg'=>'请不要非法操作'));
@@ -443,15 +443,15 @@ class SellerAction extends CommonAction {
 		
 		if($detail['type_id']== 1){
 			if(!($Goods = D('Goods')->find($detail['id']))){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商品不存在'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'工作不存在'));
 			}
 			if($Goods['closed'] != 0){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商品已被删除'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'工作已被删除'));
 			}
 			if($Goods['audit'] != 1){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商品未审核'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'工作未审核'));
 			}
-			$msg .='商品名称【'.$Goods['title'].'】<br>'; 
+			$msg .='工作名称【'.$Goods['title'].'】<br>'; 
 			$msg .='1级分成比例【'.$config['profit']['goods_profit_rate1'].'%】，预计分成【'.round($config['profit']['goods_profit_rate1'] * $Goods['mall_price']/10000,2).'】元<br>'; 
 			$msg .='2级分成比例【'.$config['profit']['goods_profit_rate2'].'%】，预计分成【'.round($config['profit']['goods_profit_rate2'] * $Goods['mall_price']/10000,2).'】元<br>'; 
 			$msg .='3级分成比例【'.$config['profit']['goods_profit_rate3'].'%】，预计分成【'.round($config['profit']['goods_profit_rate3'] * $Goods['mall_price']/10000,2).'】元<br>'; 

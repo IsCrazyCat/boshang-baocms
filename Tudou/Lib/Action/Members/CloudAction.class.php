@@ -131,10 +131,10 @@ class CloudAction extends CommonAction{
         $obj = D("Cloudgoods");
         $cloudlogs = D( "Cloudlogs" );
         if ( !( $detail = $obj->find( $goods_id ) ) ){
-            $this->error( "没有该商品" );
+            $this->error( "没有该工作" );
         }
         if ( $detail['closed'] != 0 || $detail['audit'] != 1 ){
-            $this->error( "没有该商品" );
+            $this->error( "没有该工作" );
         }
         $list = $cloudlogs->where(array("goods_id" => $goods_id))->order(array( "log_id" => "asc" ))->select();
         $lists = $obj->get_datas( $list );

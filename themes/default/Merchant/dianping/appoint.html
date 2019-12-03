@@ -35,7 +35,7 @@
         <php>
         $Appoint = D('Appoint')-> find($var['appoint_id']);
         </php> 
-         <!--商品展示开始-->
+         <!--工作展示开始-->
         <div class="index__production___yfP3y" >
         <a target="_blank"  href="<{:U('home/appoint/detail',array('appoint_id'=>$var['appoint_id']))}>" class="index__pic___TScfk" >
         <img src="<{:config_img($Appoint['photo'])}>" ><span></span></a>
@@ -43,7 +43,7 @@
             <p><a href="<{:U('home/appoint/detail',array('appoint_id'=>$var['appoint_id']))}>" target="_blank" ><span><{$Appoint['title']}></span></a></p>
         	</div>
 		</div>
-       <!--商品展示END-->
+       <!--工作展示END-->
         </td>
         <td class="td_dianping_9" colspan="2">
         点评内容：<{$var.contents}>

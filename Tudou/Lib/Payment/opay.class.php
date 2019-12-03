@@ -31,7 +31,7 @@ class opay
         $obj->Send['ChoosePayment']     = PaymentMethod::Credit ;     
 		
 	//p($obj->Send);die;
-        //訂單的商品資料
+        //訂單的工作資料
         array_push($obj->Send['Items'], array(
 			'Name' => $logs['subject'], 
 			'Price' => $logs['logs_amount'],
@@ -64,7 +64,7 @@ class opay
         $obj->SendExtend['TaxType'] = TaxType::Dutiable;
         $obj->SendExtend['CustomerAddr'] = '台北市南港區三重路19-2號5樓D棟';
         $obj->SendExtend['InvoiceItems'] = array();
-        // 將商品加入電子發票商品列表陣列
+        // 將工作加入電子發票工作列表陣列
         foreach ($obj->Send['Items'] as $info)
         {
             array_push($obj->SendExtend['InvoiceItems'],array('Name' => $info['Name'],'Count' =>

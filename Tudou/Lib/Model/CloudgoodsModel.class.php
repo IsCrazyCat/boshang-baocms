@@ -62,7 +62,7 @@ class CloudgoodsModel extends CommonModel{
     public function pay_cloud($goods_id, $user_id, $num,$log_id){
 		$obj = D('Cloudlogs');
         $detail = $this->find($goods_id);
-        if (false !== D('Users')->addMoney($user_id, -$num * 100, '云购商品' . $detail['title'] . '购买，扣费成功')) {
+        if (false !== D('Users')->addMoney($user_id, -$num * 100, '云购工作' . $detail['title'] . '购买，扣费成功')) {
 			if($log_id){
 				if ($obj->save(array('log_id' => $log_id, 'status' => '1'))) {
 					$new_num = $detail['join'] + $num;//增加已云购的数量
@@ -152,7 +152,7 @@ class CloudgoodsModel extends CommonModel{
 		))){
             if(!empty($detail['shop_id'])){
                 $shops = D('Shop')->find($detail['shop_id']);
-				$intro = '云购商品编号' . $detail['goods_id'].'卖出结算金额'.round($detail['settlement_price']/100,2).'元';
+				$intro = '云购工作编号' . $detail['goods_id'].'卖出结算金额'.round($detail['settlement_price']/100,2).'元';
 					D('Shopmoney')->add(array(
 						'shop_id' => $shops['shop_id'], 
 						'city_id' => $shops['city_id'], 

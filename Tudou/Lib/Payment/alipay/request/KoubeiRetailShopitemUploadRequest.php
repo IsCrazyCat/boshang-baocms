@@ -8,7 +8,7 @@
 class KoubeiRetailShopitemUploadRequest
 {
 	/** 
-	 * isv 回传的门店商品信息上传接口
+	 * isv 回传的门店工作信息上传接口
 	 **/
 	private $bizContent;
 

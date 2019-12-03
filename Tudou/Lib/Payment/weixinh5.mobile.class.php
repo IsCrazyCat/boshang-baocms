@@ -14,7 +14,7 @@ class weixinh5{
 		$config = D('Setting')->fetchAll();
 		require_once "weixin/wechatH5Pay.php";
 		$wechatAppPay = new wechatAppPay($payment['appid'],$payment['mchid'], $payment['notify_url'],$payment['appkey']);
-		$params['body'] = $logs['subject']; //商品描述
+		$params['body'] = $logs['subject']; //工作描述
         $params['out_trade_no'] = $logs['logs_id'].'-'.time();  //自定义的订单号
         $params['total_fee'] = $logs['logs_amount'] *100;    //订单金额 只能为整数 单位为分
         $params['trade_type'] = 'MWEB';   //交易类型 JSAPI | NATIVE | APP | WAP 

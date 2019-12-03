@@ -338,7 +338,7 @@ class TuanAction extends CommonAction{
 							$this->tuError('ID【'.$val['id'].'】错误');
 						}
 						if($Tuan['shop_id'] != $this->shop_id) {
-							$this->tuError('ID【'.$val['id'].'】不属于您的抢购商品');
+							$this->tuError('ID【'.$val['id'].'】不属于您的抢购工作');
 						}
                         $obj->add(array('tuan_id' => $tuan_id, 'id' => $val['id'], 'name' => $val['name']));
                     }
@@ -452,7 +452,7 @@ class TuanAction extends CommonAction{
 		
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
-            $this->tuError('商品名称不能为空');
+            $this->tuError('工作名称不能为空');
         }
         $data['intro'] = htmlspecialchars($data['intro']);
         if (empty($data['intro'])) {

@@ -112,7 +112,7 @@ class UserprofitlogsModel extends CommonModel{
 					if($type == 'goods' && $goods_profit['profit_enable'] == 1 && ($goods_profit['profit_rate1']*100) > 1){
 						$money1 = round($goods_profit['profit_rate1'] * $money / 100);
 						$rate1 = $goods_profit['profit_rate1'];
-						$info1 = $this->_type[$type]. '商城订单ID:' . $order_id . ', 一级分成: ' . round($money1 / 100, 2).'商品独立分成比例【'.$rate1.'】%，分成类型【'.$this->_profit_price_type[$config['profit']['profit_price_type']].'】';
+						$info1 = $this->_type[$type]. '商城订单ID:' . $order_id . ', 一级分成: ' . round($money1 / 100, 2).'工作独立分成比例【'.$rate1.'】%，分成类型【'.$this->_profit_price_type[$config['profit']['profit_price_type']].'】';
 					}elseif($type == 'goods'){
 						$money1 = round($config['profit']['goods_profit_rate1'] * $money / 100);
 						$rate1 = $config['profit']['goods_profit_rate1'];
@@ -155,7 +155,7 @@ class UserprofitlogsModel extends CommonModel{
 					if($type == 'goods' && $goods_profit['profit_enable'] == 1 && ($goods_profit['profit_rate2']*100) > 1){
 						$money2 = round($goods_profit['profit_rate2'] * $money / 100);
 						$rate2 = $goods_profit['profit_rate2'];
-						$info2 = $this->_type[$type]. '订单ID:' . $order_id . ', 二级分成: ' . round($money2/ 100, 2).'商品独立分成比例【'.$rate2.'】%，分成类型【'.$this->_profit_price_type[$config['profit']['profit_price_type']].'】';
+						$info2 = $this->_type[$type]. '订单ID:' . $order_id . ', 二级分成: ' . round($money2/ 100, 2).'工作独立分成比例【'.$rate2.'】%，分成类型【'.$this->_profit_price_type[$config['profit']['profit_price_type']].'】';
 					}elseif($type == 'goods'){
 						$money2 = round($config['profit']['goods_profit_rate2'] * $money / 100);
 						$rate2 = $config['profit']['goods_profit_rate2'];
@@ -196,7 +196,7 @@ class UserprofitlogsModel extends CommonModel{
 					if($type == 'goods' && $goods_profit['profit_enable'] == 1 && ($goods_profit['profit_rate3']*100) > 1){
 						$money3 = round($goods_profit['profit_rate3'] * $money / 100);
 						$rate3 = $goods_profit['profit_rate3'];
-						$info3 = $this->_type[$type]. '订单ID:' . $order_id . ', 三级分成: ' . round($money3/ 100, 2).'商品独立分成比例【'.$rate3.'】%，分成类型【'.$this->_profit_price_type[$config['profit']['profit_price_type']].'】';
+						$info3 = $this->_type[$type]. '订单ID:' . $order_id . ', 三级分成: ' . round($money3/ 100, 2).'工作独立分成比例【'.$rate3.'】%，分成类型【'.$this->_profit_price_type[$config['profit']['profit_price_type']].'】';
 					}elseif($type == 'goods'){
 						$money3 = round($config['profit']['goods_profit_rate3'] * $money / 100);
 						$rate3 = $config['profit']['goods_profit_rate3'];

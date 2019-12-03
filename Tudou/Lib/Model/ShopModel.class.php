@@ -28,19 +28,19 @@ class ShopModel extends CommonModel{
 	public function shop_audit($shop_id){
 		$config = D('Setting')->fetchAll();
 		if($detail = $this->find($shop_id)){
-			if(empty($detail['express_price'])){
-				$this->error = '配送费必须设置，请点击编辑设置后再审核';
-				return false;
-			}elseif($detail['express_price'] < 10 ){
-				$this->error = '配送费必须大于0.1元';
-				return false;
-			}elseif($detail['commission'] < 0){
-				$this->error = '结算佣金不能为空，请点击编辑设后置再审核';
-				return false;
-			}elseif($detail['commission'] >= 10000){
-				$this->error = '结算佣金设置错误';
-				return false;
-			}else{
+//			if(empty($detail['express_price'])){
+//				$this->error = '配送费必须设置，请点击编辑设置后再审核';
+//				return false;
+//			}elseif($detail['express_price'] < 10 ){
+//				$this->error = '配送费必须大于0.1元';
+//				return false;
+//			}elseif($detail['commission'] < 0){
+//				$this->error = '结算佣金不能为空，请点击编辑设后置再审核';
+//				return false;
+//			}elseif($detail['commission'] >= 10000){
+//				$this->error = '结算佣金设置错误';
+//				return false;
+//			}else{
 				if($config['sms_shop']['shop_audit_sms']){
 					if(!D('Smsshop')->where(array('type'=>'shop','shop_id'=>$shop_id))->find()){
 						$data = array();
@@ -63,7 +63,7 @@ class ShopModel extends CommonModel{
 				}else{
 					return true;
 				}
-			}
+//			}
 		}else{
 			$this->error = '商家不存在';
 			return false;

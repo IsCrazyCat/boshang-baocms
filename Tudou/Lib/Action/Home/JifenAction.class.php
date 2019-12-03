@@ -61,10 +61,10 @@ class JifenAction extends CommonAction{
     public function detail($goods_id){
         $goods_id = (int) $goods_id;
         if (!($detail = D('Integralgoods')->find($goods_id))) {
-            $this->error('该积分商品不存在或者已经下架');
+            $this->error('该积分工作不存在或者已经下架');
         }
         if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-            $this->error('该积分商品不存在或者已经下架');
+            $this->error('该积分工作不存在或者已经下架');
         }
         $this->assign('shop', D('Shop')->find($detail['shop_id']));
         $sd = D('ShopDetails');
@@ -88,20 +88,20 @@ class JifenAction extends CommonAction{
         }
         $goods_id = (int) $goods_id;
         if (!($detail = D('Integralgoods')->find($goods_id))) {
-            $this->tuError('该积分商品不存在或者已经下架');
+            $this->tuError('该积分工作不存在或者已经下架');
         }
         if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-            $this->tuError('该积分商品不存在或者已经下架');
+            $this->tuError('该积分工作不存在或者已经下架');
         }
 		
 		$user_exchange = D('Integralexchange')->where(array('user_id'=>$this->uid,'goods_id'=>$goods_id))->count();
 			if ($detail['limit_num'] < $user_exchange) {
-                $this->tuError('此商品每人限制兑换'.$detail['limit_num'].'份');
+                $this->tuError('此工作每人限制兑换'.$detail['limit_num'].'份');
         }
 			
         if ($this->isPost()) {
             if ($detail['num'] <= 0) {
-                $this->tuError('该商品已经兑换完了');
+                $this->tuError('该工作已经兑换完了');
             }
             $addr_id = (int) $this->_post('addr_id');
             if (empty($addr_id)) {
@@ -140,7 +140,7 @@ class JifenAction extends CommonAction{
             }
             $member = D('Users')->find($this->uid);
             if ($member['integral'] < $detail['integral']) {
-                $this->tuError('您的积分不足！该商品您兑换不了');
+                $this->tuError('您的积分不足！该工作您兑换不了');
             }
             $ip = get_client_ip();
             if (D('Users')->save(array('user_id' => $this->uid, 'integral' => $member['integral'] - $detail['integral']))) {

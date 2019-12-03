@@ -10,28 +10,37 @@ class GoodsAction extends CommonAction{
     public function index(){
         $aready = (int) $this->_param('aready');
         $this->assign('aready', $aready);
+        if($goods_id = $this->_param('goods_id')){
+            $map['goods_id']=$goods_id;
+        }
+        $this->assign('goods_id', $goods_id);
         $this->display();
         // 输出模板
     }
     public function goodsloaddata(){
-        $Order = D('Order');
+        $apply = D('jobApply');
         import('ORG.Util.Page');
-        $map = array('closed' => 0, 'user_id' => $this->uid);
-		
+        $map = array('closed' => 0,'cancal'=>1, 'user_id' => $this->uid);
+        if($goods_id = $this->_param('goods_id')){
+            $map['goods_id']=$goods_id;
+        }
 		
 		$aready = I('aready', '', 'trim,intval');
 		if($aready == 999){
-			$map['status'] = array('in',array(0,1,2,3,4,5,6,7,8));
+			$map['audit'] = array('in',array(0,1,2));
+            $map['cancal'] = array('in',array(0,1));
 		}elseif($aready == 0 || $aready == ''){
-			$map['status'] = 0;
-		}else{
-			$map['status'] = $aready;
+			$map['audit'] = 0;
+		}else if($aready==3){
+            $map['cancal'] = 0;
+        }else{
+			$map['audit'] = $aready;
 		}
 		$this->assign('aready', $aready);
 		
 		
 		
-        $count = $Order->where($map)->count();
+        $count = $apply->where($map)->count();
         $Page = new Page($count, 10);
         $show = $Page->show();
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
@@ -39,38 +48,15 @@ class GoodsAction extends CommonAction{
         if ($Page->totalPages < $p) {
             die('0');
         }
-        $list = $Order->where($map)->order(array('order_id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
-        $user_ids = $order_ids = $addr_ids = array();
+        $list = $apply->where($map)->order(array('id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
+
         foreach ($list as $key => $val) {
-            $user_ids[$val['user_id']] = $val['user_id'];
-            $order_ids[$val['order_id']] = $val['order_id'];
-            $addr_ids[$val['addr_id']] = $val['addr_id'];
-			if($delivery_order = D('DeliveryOrder')->where(array('type_order_id'=>$val['order_id'],'type'=>0,'closed'=>0))->find()){
-				$comment = D('DeliveryComment')->where(array('order_id'=>$delivery_order['order_id'],'type'=>0,'delivery_id'=>$delivery_order['delivery_id']))->find();//配送订单点评
-                $list[$key]['delivery_order'] = $delivery_order;
-			    $list[$key]['comment'] = $comment;
-            }
+            $good = D('Goods')->find($val['goods_id']);
+            $shop = D('Shop')->find($good['shop_id']);
+            $list[$key]['good'] = $good;
+            $list[$key]['shop'] = $shop;
         }
-		
-		
-		
-        if (!empty($order_ids)) {
-            $goods = D('Ordergoods')->where(array('order_id' => array('IN', $order_ids)))->select();
-            $goods_ids = $shop_ids = array();
-            foreach ($goods as $val) {
-                $goods_ids[$val['goods_id']] = $val['goods_id'];
-                $shop_ids[$val['shop_id']] = $val['shop_id'];
-            }
-            $this->assign('goods', $goods);
-            $this->assign('products', D('Goods')->itemsByIds($goods_ids));
-            $this->assign('shops', D('Shop')->itemsByIds($shop_ids));
-        }
-        $this->assign('addrs', D('Useraddr')->itemsByIds($addr_ids));
-        $this->assign('areas', D('Area')->fetchAll());
-        $this->assign('business', D('Business')->fetchAll());
-        $this->assign('users', D('Users')->itemsByIds($user_ids));
-        $this->assign('types', D('Order')->getType());
-        $this->assign('goodtypes', D('Order')->getType());
+
         $this->assign('list', $list);
         $this->assign('page', $show);
         $this->display();
@@ -300,5 +286,8 @@ class GoodsAction extends CommonAction{
             $this->assign("goods", $goods);
             $this->display();
         }
+    }
+    public function myJob(){
+        $this->display();
     }
 }

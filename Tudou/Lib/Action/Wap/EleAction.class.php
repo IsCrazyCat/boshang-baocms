@@ -335,7 +335,7 @@ class EleAction extends CommonAction{
 			$settlement_price  += ($product['settlement_price'] * $val['num'])+($product['tableware_price'] * $val['num']);//结算价格 = 菜品结算价+餐盒费
         }
         if (count($shops) > 1) {
-            $this->tuMsg('您购买的商品是2个商户的');
+            $this->tuMsg('您购买的工作是2个商户的');
         }
         if (empty($shop_id)) {
             $this->tuMsg('商家不存在');

@@ -17,13 +17,13 @@ class StockModel extends CommonModel{
     public function get_order_id($stock_id, $user_id, $num){
 		$CONFIG = D('Setting')->fetchAll();
 		if(!$detail = $this->find($stock_id)){
-			$this->error = '你所购买的股权商品不存在';
+			$this->error = '你所购买的股权工作不存在';
 			return false;
 		}elseif($detail['closed'] == 1){
-			$this->error = '你所购买的股权商品被删除';
+			$this->error = '你所购买的股权工作被删除';
 			return false;
 		}elseif($detail['num'] <= 0){
-			$this->error = '你所购买的股权商品已售空';
+			$this->error = '你所购买的股权工作已售空';
 			return false;
 		}elseif($num > $detail['num']){
 			$this->error = '少买一点吧，当前剩余库存'.$detail['num'];
@@ -90,10 +90,10 @@ class StockModel extends CommonModel{
 		$CONFIG = D('Setting')->fetchAll();
         $detail = $this->find($stock_id);
 		$order = D('Stockorder')->find($order_id);
-        if (false !== D('Users')->addMoney($user_id, -$order['need_pay_price'], '股权商品' . $detail['title'] . '购买，扣费成功')) {
+        if (false !== D('Users')->addMoney($user_id, -$order['need_pay_price'], '股权工作' . $detail['title'] . '购买，扣费成功')) {
 			if($order_id){
 				if (D('Stockorder')->save(array('order_id' => $order_id, 'status' => '1'))){
-					D('Users')->addPrestige($user_id,-$order['prestige'],'股权商品' . $detail['title'] . '扣除分红积分');
+					D('Users')->addPrestige($user_id,-$order['prestige'],'股权工作' . $detail['title'] . '扣除分红积分');
 					$this->save_stock_num($order['stock_id'],$order['num']);
 					$settlement_price = (int)(($order['need_pay_price']*$CONFIG['stock']['settlement'])/100);
 					D('Shopmoney')->insertData($order_id,$id ='0',$order['shop_id'],$settlement_price,$type ='stock','股权订单结算');//股权结算给商家

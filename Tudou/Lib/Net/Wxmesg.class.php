@@ -41,7 +41,7 @@ class Wxmesg{
 			'data' => array(
 				'first'   =>array('value'=>	$data['first'],    'color'=>'#000000'),
 				'keyword1'=>array('value'=> $data['orderNum'], 'color'=>'#000000'), //订单号
-				'keyword2'=>array('value'=> $data['goodsName'],'color'=>'#000000'), //商品名称
+				'keyword2'=>array('value'=> $data['goodsName'],'color'=>'#000000'), //工作名称
 				'keyword3'=>array('value'=> $data['buyNum'],   'color'=>'#000000'), //订购数量
 				'keyword4'=>array('value'=> $data['money'],    'color'=>'#000000'), //订单金额
 				'keyword5'=>array('value'=> $data['payType'],  'color'=>'#000000'), //付款方式
@@ -112,7 +112,7 @@ class Wxmesg{
 				'first'   => array( 'value'=> $data['first'],  'color'=>'#000000' ),
 				'keyword1'=> array( 'value'=> $data['order'],  'color'=>'#000000' ),//订单号
 				'keyword2'=> array( 'value'=> $data['amount'], 'color'=>'#000000' ),//订单金额
-				'keyword3'=> array( 'value'=> $data['info'],   'color'=>'#000000' ),//商品信息
+				'keyword3'=> array( 'value'=> $data['info'],   'color'=>'#000000' ),//工作信息
 				'remark'  => array( 'value'=> $data['remark'], 'color'=>'#000000' )
 			)
 		);
@@ -128,7 +128,7 @@ class Wxmesg{
 			'data'=> array(
 				'first'   => array( 'value'=> $data['first'],  'color'=>'#000000' ),
 				'keyword1'=> array( 'value'=> $data['order_id'],  'color'=>'#000000' ),//订单号
-				'keyword2'=> array( 'value'=> $data['title'], 'color'=>'#000000' ),//商品名称
+				'keyword2'=> array( 'value'=> $data['title'], 'color'=>'#000000' ),//工作名称
 				'keyword3'=> array( 'value'=> $data['num'],   'color'=>'#000000' ),//订购数量
 				'keyword4'=> array( 'value'=> $data['price'],   'color'=>'#000000' ),//订单总额
 				'keyword5'=> array( 'value'=> $data['pay_type'],   'color'=>'#000000' ),//付款方式
@@ -185,7 +185,7 @@ class Wxmesg{
 			'topcolor' => $data['topcolor'],
 			'data'	=> array(
 				'first'   =>array('value'=> $data['first'],       'color'=>'#000000'),
-				'keyword1'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //商品名称
+				'keyword1'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //工作名称
 				'keyword2'=>array('value'=> $data['orderno'], 'color'=>'#000000'), //订单编号
 				'keyword3'=>array('value'=> $data['pintuannum'], 'color'=>'#000000'), //拼团人数
 				'remark'  =>array('value'=> $data['remark'],      'color'=>'#000000')
@@ -203,7 +203,7 @@ class Wxmesg{
 			'data'=> array(
 				'first'   =>array('value'=> $data['first'],       'color'=>'#000000'),
 				'keyword1'=>array('value'=> $data['payprice'], 'color'=>'#000000'), //订单金额
-				'keyword2'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //商品名称
+				'keyword2'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //工作名称
 				'keyword3'=>array('value'=> $data['dizhi'], 'color'=>'#000000'), //收货地址
 				'remark'  =>array('value'=> $data['remark'],      'color'=>'#000000')
 			)
@@ -219,7 +219,7 @@ class Wxmesg{
 			'topcolor' => $data['topcolor'],
 			'data' => array(
 				'first'   =>array('value'=> $data['first'],       'color'=>'#000000'),
-				'keyword1'=>array('value'=> $data['payprice'], 'color'=>'#000000'), //商品名称
+				'keyword1'=>array('value'=> $data['payprice'], 'color'=>'#000000'), //工作名称
 				'keyword2'=>array('value'=> $data['orderno'], 'color'=>'#000000'), //订单编号
 				'remark'  =>array('value'=> $data['remark'],      'color'=>'#000000')
 			)
@@ -236,7 +236,7 @@ class Wxmesg{
 			'data'=> array(
 				'first'  =>array('value'=> $data['first'],       'color'=>'#000000'),
 				'keyword1'=>array('value'=> $data['payprice'], 'color'=>'#000000'), //订单金额
-				'keyword2'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //商品名称
+				'keyword2'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //工作名称
 				'keyword3'=>array('value'=> $data['orderno'], 'color'=>'#000000'), //订单编号
 				'remark'  =>array('value'=> $data['remark'],      'color'=>'#000000')
 			)
@@ -266,7 +266,7 @@ class Wxmesg{
 			'topcolor' => $data['topcolor'],
 			'data'	=> array(
 				'first'   =>array('value'=> $data['first'],       'color'=>'#000000'),
-				'keyword1'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //商品名称
+				'keyword1'=>array('value'=> $data['goodsName'], 'color'=>'#000000'), //工作名称
 				'keyword2'=>array('value'=> $data['kuaidi'], 'color'=>'#000000'), //快递名称
 				'keyword3'=>array('value'=> $data['kuaididanhao'], 'color'=>'#000000'), //快递名称
 				'keyword4'=>array('value'=> $data['dizhi'],       'color'=>'#000000'), //收货地址

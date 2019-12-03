@@ -580,7 +580,7 @@ class Send extends Aio
         //檢查參數
         $arParameters = self::$PaymentObj->check_string($arParameters);
         
-        //檢查商品
+        //檢查工作
         $arParameters = self::$PaymentObj->check_goods($arParameters);
 
         //檢查各付款方式的額外參數&電子發票參數
@@ -1138,7 +1138,7 @@ Abstract class Verification
         // 字軌類別 InvType(不可為空)
         if (!array_key_exists('InvType', $arExtend)) array_push($arErrors, "InvType is required.");
 
-        //商品相關整理
+        //工作相關整理
         if(!array_key_exists('InvoiceItems', $arExtend)){
             array_push($arErrors, "Invoice Goods information not found.");
         }else{
@@ -1256,7 +1256,7 @@ class allPay_CVS extends Verification
         return $arExtend ;
     }
 
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $szItemName = '';
@@ -1330,7 +1330,7 @@ class allPay_ATM extends Verification
         return $arExtend ;
     }
 
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $szItemName = '';
@@ -1400,7 +1400,7 @@ class allPay_WebATM extends Verification
         }
         return $arExtend ;
     }
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $arErrors   = array();
@@ -1482,7 +1482,7 @@ class allPay_Alipay extends Verification
         }
         return $arExtend ;
     }
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $arErrors           = array();
@@ -1570,7 +1570,7 @@ class allPay_Tenpay extends Verification
         }
         return $arExtend ;
     }
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $szItemName = '';
@@ -1644,7 +1644,7 @@ class allPay_Credit extends Verification
         }
         return $arExtend ;
     }
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $arErrors   = array();
@@ -1698,7 +1698,7 @@ class allPay_TopUpUsed extends Verification
     function filter_string($arExtend = array(),$InvoiceMark = ''){
         return $arExtend ;
     }
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $arErrors   = array();
@@ -1751,7 +1751,7 @@ class allPay_ALL extends Verification
     function filter_string($arExtend = array(),$InvoiceMark = ''){
         return $arExtend ;
     }
-    //檢查商品
+    //檢查工作
     function check_goods($arParameters = array()){
         // 檢查產品名稱。
         $arErrors           = array();

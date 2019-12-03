@@ -32,10 +32,10 @@ class chinapay
                 "merAbbr"            =>  $merAbbr,                     //商户名称
                 "acqCode"            =>  '',
                 "merCode"            =>  '',
-                "commodityUrl"       =>  '',                           //商品url
-                "commodityName"      =>  $logs['subject'] ,                           //商品名字
-                "commodityUnitPrice" =>  '',                           //商品单价
-                "commodityQuantity"  =>  '',                           //商品数量
+                "commodityUrl"       =>  '',                           //工作url
+                "commodityName"      =>  $logs['subject'] ,                           //工作名字
+                "commodityUnitPrice" =>  '',                           //工作单价
+                "commodityQuantity"  =>  '',                           //工作数量
                 "commodityDiscount"  =>  '',
                 "transferFee"        =>  '',
                 "orderNumber"        =>  $logsNumber,                 //订单号，必须唯一

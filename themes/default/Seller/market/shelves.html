@@ -4,7 +4,7 @@
 			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			商家商品
+			商家工作
 		</div>
 		<div class="top-share">
 			<a href="<{:u('market/create2')}>" class="top-addr icon-plus"> 增加</a>
@@ -25,8 +25,8 @@
 </style>
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-        <li style="width: 50%;"><a href="<{:U('market/index')}>">出售中的商品</a></li>
-        <li style="width: 50%;"><a href="<{:U('market/shelves')}>" class="on">已下架的商品</a></li>
+        <li style="width: 50%;"><a href="<{:U('market/index')}>">出售中的工作</a></li>
+        <li style="width: 50%;"><a href="<{:U('market/shelves')}>" class="on">已下架的工作</a></li>
 </ul>   
 
 
@@ -36,7 +36,7 @@
 				<div class="field">
 					<div class="input-group">
 						<span class="addbtn"><button type="button" class="button iconfont icon-search"></button></span>
-						<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="商品昵称"  />
+						<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="工作昵称"  />
 						<span class="addbtn"><button type="submit" class="button">搜索</button></span>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
         <div class="x7"><a href="javascript:void(0);" class="item fix hightitem">	
 			</a><h5><a href="javascript:void(0);" class="item fix hightitem"><{$var.product_name}></a></h5>	
 			<p class="addr">所属分类：<{$cates[$var['cate_id']]['cate_name']}></p>
-            <p class="addr">商品价格：￥<{:round($var['price']/100,2)}></p>
+            <p class="addr">工作价格：￥<{:round($var['price']/100,2)}></p>
             <if condition="!empty($var['desc'])">
             <p class="addr">简介：<{:tu_msubstr($var['desc'],0,14,false)}></p>
             </if>
@@ -79,7 +79,7 @@
 	$(document).ready(function () {
 		$(document).on('click', ".jquery-delete", function (e) {
 			var product_id = $(this).attr('rel');
-			layer.confirm('您确定要上架销售该商品？', {
+			layer.confirm('您确定要上架销售该工作？', {
 				skin: 'layer-ext-demo', 
 				area: ['50%', 'auto'], //宽高
 				btn: ['是的', '不'], //按钮

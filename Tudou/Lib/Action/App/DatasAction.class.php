@@ -97,7 +97,7 @@ class  DatasAction extends  CommonAction{
         $this->stringify($data);
     }
     
-	public function cates(){ //店铺团购商品
+	public function cates(){ //店铺团购工作
 		$data = array();
 		$data['shopcates'] = D('Shopcate')->fetchAll();
 		$data['tuancates'] = D('Tuancate')->fetchAll();

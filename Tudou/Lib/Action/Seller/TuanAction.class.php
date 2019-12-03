@@ -223,7 +223,7 @@ class TuanAction extends CommonAction{
      
         $data['title'] = htmlspecialchars($data['title']);
         if(empty($data['title'])){
-            $this->tuMsg('商品名称不能为空');
+            $this->tuMsg('工作名称不能为空');
         }
         $data['intro'] = htmlspecialchars($data['intro']);
         if(empty($data['intro'])){

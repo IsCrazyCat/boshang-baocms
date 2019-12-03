@@ -13,7 +13,7 @@ class AlipayAcquireCreateandpayRequest
 	private $alipayCaRequest;
 	
 	/** 
-	 * 对一笔交易的具体描述信息。如果是多种商品，请将商品描述字符串累加传给body。
+	 * 对一笔交易的具体描述信息。如果是多种工作，请将工作描述字符串累加传给body。
 	 **/
 	private $body;
 	
@@ -75,7 +75,7 @@ bar_code：条码，等同barcode
 	private $formatType;
 	
 	/** 
-	 * 描述商品明细信息，json格式，具体请参见“4.3 商品明细说明”。
+	 * 描述工作明细信息，json格式，具体请参见“4.3 工作明细说明”。
 	 **/
 	private $goodsDetail;
 	
@@ -114,13 +114,13 @@ m-分钟，h-小时，d-天，1c-当天（无论交易何时创建，都在0点�
 	private $outTradeNo;
 	
 	/** 
-	 * 订单中商品的单价。
+	 * 订单中工作的单价。
 如果请求时传入本参数，则必须满足total_fee=price×quantity的条件。
 	 **/
 	private $price;
 	
 	/** 
-	 * 订单中商品的数量。
+	 * 订单中工作的数量。
 如果请求时传入本参数，则必须满足total_fee=price×quantity的条件。
 	 **/
 	private $quantity;
@@ -154,12 +154,12 @@ m-分钟，h-小时，d-天，1c-当天（无论交易何时创建，都在0点�
 	private $sellerId;
 	
 	/** 
-	 * 收银台页面上，商品展示的超链接。
+	 * 收银台页面上，工作展示的超链接。
 	 **/
 	private $showUrl;
 	
 	/** 
-	 * 商品的标题/交易标题/订单标题/订单关键字等。
+	 * 工作的标题/交易标题/订单标题/订单关键字等。
 该参数最长为128个汉字。
 	 **/
 	private $subject;

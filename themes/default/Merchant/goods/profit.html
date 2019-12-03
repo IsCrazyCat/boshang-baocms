@@ -1,20 +1,20 @@
 <include  file='public:header'/>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>编辑商品</a></li>
+        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>编辑工作</a></li>
     </ul>
 </div>
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">商家发布的商品要在后台审核之后才能显示在前台</div>
+            <div class="left tuan_topser_l">商家发布的工作要在后台审核之后才能显示在前台</div>
         </div>
     </div> 
     
     <div class="tuanfabu_tab">
       <ul>
-      	<li class="tuanfabu_tabli"><a href="<{:U('goods/index')}>">商品列表</a></li>
-      	<li class="tuanfabu_tabli"><a href="<{:U('goods/edit',array('goods_id'=>$detail['goods_id']))}>">编辑商品</a></li>
+      	<li class="tuanfabu_tabli"><a href="<{:U('goods/index')}>">工作列表</a></li>
+      	<li class="tuanfabu_tabli"><a href="<{:U('goods/edit',array('goods_id'=>$detail['goods_id']))}>">编辑工作</a></li>
         <if condition="$SHOP['is_profit'] eq '1'">
         <li class="tuanfabu_tabli on"><a href="<{:U('goods/profit',array('goods_id'=>$detail['goods_id']))}>">设置分销</a></li>
         </if>

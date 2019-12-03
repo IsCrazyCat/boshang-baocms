@@ -8,7 +8,7 @@
 class KoubeiItemExtitemUpdateRequest
 {
 	/** 
-	 * 商品修改接口
+	 * 工作修改接口
 	 **/
 	private $bizContent;
 

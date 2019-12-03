@@ -2,8 +2,8 @@
 
 class GoodsAction extends CommonAction {
 
-    private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
-    private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
 	
 	
     public function _initialize(){
@@ -71,15 +71,15 @@ class GoodsAction extends CommonAction {
                     D('Goodsphoto')->upload($goods_id, $photos);
                 }
                 
-				$this->shuxin($goods_id);//更新商品库存
-				$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新商品属性
+				$this->shuxin($goods_id);//更新工作库存
+				$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新工作属性
 				
                 $this->tuSuccess('添加成功', U('goods/index'));
             }
             $this->tuError('操作失败');
         }else{
             $this->assign('cates', D('Goodscate')->fetchAll());
-			$this->assign('goodsInfo',D('Goods')->where('goods_id='.I('GET.id',0))->find());  // 商品详情   
+			$this->assign('goodsInfo',D('Goods')->where('goods_id='.I('GET.id',0))->find());  // 工作详情   
 			$this->assign('goodsType',M("TpGoodsType")->select());
 			$this->assign('goodscategory', D('TpGoodsCategory')->select());
             $this->display();
@@ -103,21 +103,21 @@ class GoodsAction extends CommonAction {
 		$data['guige'] = htmlspecialchars($data['guige']);
 		$data['num'] = (int) $data['num'];
         if(empty($data['num'])) {
-            $this->tuError('库存不能为空');
+            $this->tuError('招聘人数不能为空');
         } 
 		$data['is_reight'] = (int) $data['is_reight'];
 		$data['weight'] = (int) $data['weight'];
-		if($data['is_reight'] == 1){
-			if (empty($data['weight'])){
-             	$this->tuError('重量不能为空');
-			}
-        }
+//		if($data['is_reight'] == 1){
+//			if (empty($data['weight'])){
+//             	$this->tuError('重量不能为空');
+//			}
+//        }
 		$data['kuaidi_id'] = (int) $data['kuaidi_id'];
-		if($data['is_reight'] == 1){
-			if (empty($data['kuaidi_id'])) {
-				$this->tuError('运费模板不能为空');
-			}
-		}	
+//		if($data['is_reight'] == 1){
+//			if (empty($data['kuaidi_id'])) {
+//				$this->tuError('运费模板不能为空');
+//			}
+//		}
         $data['shop_id'] = (int) $data['shop_id'];
         if(empty($data['shop_id'])){
             $this->tuError('商家不能为空');
@@ -150,17 +150,22 @@ class GoodsAction extends CommonAction {
         } 
 		$data['price'] = (int) ($data['price'] * 100);
         if(empty($data['price'])){
-            $this->tuError('市场价格不能为空');
+            $this->tuError('普通薪资不能为空');
         } 
 		$data['mall_price'] = (int) ($data['mall_price'] * 100);
         if(empty($data['mall_price'])){
-            $this->tuError('商城价格不能为空');
-        } 
+            $this->tuError('VIP薪资不能为空');
+        }
+        $data['price_unit'] = $data['price_unit'];
+        $data['price_month'] = $data['price_month'];
+        if(empty($data['price_month'])){
+            $this->tuError('月薪资不能为空');
+        }
         $data['mobile_fan'] = (int) ($data['mobile_fan'] * 100);
 		$data['use_integral'] = (int) $data['use_integral'];
-		if (!D('Goods')->check_add_use_integral($data['use_integral'],$data['mall_price'])){
-            $this->tuError(D('Goods')->getError(), 3000, true);
-        }
+//		if (!D('Goods')->check_add_use_integral($data['use_integral'],$data['mall_price'])){
+//            $this->tuError(D('Goods')->getError(), 3000, true);
+//        }
         $data['views'] = (int) $data['views'];
         $data['instructions'] = SecurityEditorHtml($data['instructions']);
         if($words = D('Sensitive')->checkWords($data['instructions'])) {
@@ -216,7 +221,7 @@ class GoodsAction extends CommonAction {
 	//编辑或者添加分销通用
 	public function profit($goods_id){  
 		if(!$detail = M('Goods')->find($goods_id)){
-            $this->error('请选择要编辑的商品');
+            $this->error('请选择要编辑的工作');
         }
 		if(!$shop = M('Shop')->find($detail['shop_id'])){
             $this->error('商家不存在');
@@ -260,7 +265,7 @@ class GoodsAction extends CommonAction {
         if($goods_id = (int) $goods_id){
             $obj = D('Goods');
             if(!$detail = $obj->find($goods_id)){
-                $this->tuError('请选择要编辑的商品');
+                $this->tuError('请选择要编辑的工作');
             }
             if($this->isPost()){
                 $data = $this->editCheck();
@@ -280,8 +285,8 @@ class GoodsAction extends CommonAction {
                         D('Goodsphoto')->upload($goods_id, $photos);
                     }
                      
-					$this->shuxin($goods_id);//更新商品库存
-					$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新商品属性
+					$this->shuxin($goods_id);//更新工作库存
+					$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新工作属性
 					 
                     $this->tuSuccess('操作成功', U('goods/index'));
                 }
@@ -301,7 +306,7 @@ class GoodsAction extends CommonAction {
                 $this->display();
             }
         }else{
-            $this->tuError('请选择要编辑的商品');
+            $this->tuError('请选择要编辑的工作');
         }
     }
 
@@ -369,6 +374,11 @@ class GoodsAction extends CommonAction {
         $data['mall_price'] = (int) ($data['mall_price'] * 100);
         if(empty($data['mall_price'])) {
             $this->tuError('VIP薪资不能为空');
+        }
+        $data['price_unit'] = $data['price_unit'];
+        $data['price_month'] = $data['price_month'];
+        if(empty($data['price_month'])){
+            $this->tuError('月薪资不能为空');
         }
         $data['mobile_fan'] = (int) ($data['mobile_fan'] * 100);
 		$data['use_integral'] = (int) $data['use_integral'];
@@ -441,23 +451,23 @@ class GoodsAction extends CommonAction {
         }
     }
 
-	//商品上架下架
+	//工作上架下架
     public function update($goods_id = 0){
         if($goods_id = (int) $goods_id){
 			if(!($detail = D('Goods')->find($goods_id))){
-				$this->tuError('请选择要操作的商品');
+				$this->tuError('请选择要操作的工作');
 			}
 			$data = array('closed' =>0,'goods_id' => $goods_id);
-			$intro = '上架商品成功';
+			$intro = '上架工作成功';
 			if($detail['closed'] == 0){
 				$data['closed'] = 1;
-				$intro = '下架商品成功';
+				$intro = '下架工作成功';
 			}
 			if(D('Goods')->save($data)){
 				$this->tuSuccess($intro, U('goods/index'));
 			}
         }else{
-            $this->tuError('请选择要操作的商品');
+            $this->tuError('请选择要操作的工作');
         }
     }
 
@@ -475,7 +485,7 @@ class GoodsAction extends CommonAction {
                 }
                 $this->tuSuccess('审核成功！'.$error.'条失败', U('goods/index'));
             }
-            $this->tuError('请选择要审核的商品');
+            $this->tuError('请选择要审核的工作');
         }
     }
 	
@@ -500,7 +510,7 @@ class GoodsAction extends CommonAction {
 
     }
      /**
-     * 动态获取商品规格选择框 根据不同的数据返回不同的选择框
+     * 动态获取工作规格选择框 根据不同的数据返回不同的选择框
      */
     public function ajaxGetSpecSelect(){
         $goods_id = $_GET['goods_id'] ? $_GET['goods_id'] : 0;
@@ -520,7 +530,7 @@ class GoodsAction extends CommonAction {
     }    
 
      /**
-     * 动态获取商品规格输入框 根据不同的数据返回不同的输入框
+     * 动态获取工作规格输入框 根据不同的数据返回不同的输入框
      */    
     public function ajaxGetSpecInput(){     
          
@@ -531,7 +541,7 @@ class GoodsAction extends CommonAction {
 
      /**
      * 获取 规格的 笛卡尔积
-     * @param $goods_id 商品 id     
+     * @param $goods_id 工作 id     
      * @param $spec_arr 笛卡尔积
      * @return string 返回表格字符串
      */
@@ -586,7 +596,7 @@ class GoodsAction extends CommonAction {
 	
 	
 	
-	//动态获取商品属性入框根据不同的数据返回不同的输入框类型
+	//动态获取工作属性入框根据不同的数据返回不同的输入框类型
     public function ajaxGetAttrInput(){
 		$goods_id = $_REQUEST['goods_id'] ? $_REQUEST['goods_id'] : 0;
 		$type_id = $_REQUEST['type_id'] ? $_REQUEST['type_id'] : 0;
@@ -596,9 +606,9 @@ class GoodsAction extends CommonAction {
 	
 	
 	  /**
-     * 动态获取商品属性输入框 根据不同的数据返回不同的输入框类型
-     * @param int $goods_id 商品id
-     * @param int $type_id 商品属性类型id
+     * 动态获取工作属性输入框 根据不同的数据返回不同的输入框类型
+     * @param int $goods_id 工作id
+     * @param int $type_id 工作属性类型id
      */
     public function getAttrInput($goods_id,$type_id){
 		
@@ -656,8 +666,8 @@ class GoodsAction extends CommonAction {
     /**
      * 获取 tp_goods_attr 表中指定 goods_id  指定 attr_id  或者 指定 goods_attr_id 的值 可是字符串 可是数组
      * @param int $goods_attr_id tp_goods_attr表id
-     * @param int $goods_id 商品id
-     * @param int $attr_id 商品属性id
+     * @param int $goods_id 工作id
+     * @param int $attr_id 工作属性id
      * @return array 返回数组
      */
     public function getGoodsAttrVal($goods_attr_id = 0 ,$goods_id = 0, $attr_id = 0)
@@ -670,9 +680,9 @@ class GoodsAction extends CommonAction {
 	
 	
 	 /**
-     *  给指定商品添加属性 或修改属性 更新到 tp_goods_attr
-     * @param int $goods_id  商品id
-     * @param int $goods_type  商品类型id
+     *  给指定工作添加属性 或修改属性 更新到 tp_goods_attr
+     * @param int $goods_id  工作id
+     * @param int $goods_type  工作类型id
      */
     public function saveGoodsAttr($goods_id,$goods_type){  
      

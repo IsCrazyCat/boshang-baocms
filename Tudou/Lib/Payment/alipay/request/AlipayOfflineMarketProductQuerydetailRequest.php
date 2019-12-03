@@ -8,7 +8,7 @@
 class AlipayOfflineMarketProductQuerydetailRequest
 {
 	/** 
-	 * 通过该接口可以查询商户录入的指定商品详细信息
+	 * 通过该接口可以查询商户录入的指定工作详细信息
 	 **/
 	private $bizContent;
 

@@ -93,7 +93,7 @@
 .hatudou_booking_mask .cont, .hatudou_booking_mask .cont {height:9rem;margin: 0.6rem 0;overflow-y: scroll;}
 .hatudou_booking_mask .list,.hatudou_booking_mask .list{display:block;width:6.5rem;margin:0 auto;text-align:center;height:2.0rem;line-height:2.0rem;background:#daecea;margin-bottom:.12rem;font-size:14px;color:#666}
 
-/*商品列表*/
+/*工作列表*/
 .item-list{list-style:none;padding:0 10px;}
 .item-list li{padding:10px 0;border-bottom:thin solid #eee;position:relative;}
 .item-list h5{font-size:12px;}

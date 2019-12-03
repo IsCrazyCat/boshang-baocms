@@ -134,7 +134,7 @@ class WeixinmsgModel extends CommonModel{
 				'url' => $url, 
 				'first' => $first, 
 				'remark' => $remark, 
-				'title' => $title, //商品名称
+				'title' => $title, //工作名称
 				'price' => $price , //价格
 				'status' => $status,//状态
 			);

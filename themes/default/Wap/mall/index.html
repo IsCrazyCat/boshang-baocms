@@ -164,7 +164,7 @@
 
 		<div class="top-search" style="<if condition="empty($keyword)">display:none;</if>">
 			<form method="post" action="<{:LinkTo('mall/index',$linkArr,array('keyword'=>'0'))}>">
-				<input name="keyword" placeholder="<{$keyword|default='输入商品的关键字'}>"  />
+				<input name="keyword" placeholder="<{$keyword|default='输入工作的关键字'}>"  />
 				<button type="submit" class="iconfont icon-search"></button>
 			</form>
 		</div>
@@ -315,26 +315,15 @@
             <elseif condition="$order eq 1"/>
             	<span id="str_b_node" style="color:#f60;">时间排序</span>
             <elseif condition="$order eq 2"/>
-           	    <span id="str_b_node" style="color:#f60;">销量排序</span>
+           	    <span id="str_b_node" style="color:#f60;">报名人数排序</span>
             <elseif condition="$order eq 3"/>
            	    <span id="str_b_node" style="color:#f60;">价格最高</span>
             <elseif condition="$order eq 4"/>
            	    <span id="str_b_node" style="color:#f60;">价格最低</span>
-            <elseif condition="$order eq 5"/>
-           	    <span id="str_b_node" style="color:#f60;">置顶商品</span>
             </if>
         <em></em>
         </a>
       </li>
-
-      <if condition="!empty($cat) or !empty($cate_id)">
-          <li class="item">
-                <a href="javascript:void(0);">
-                     <span id="str_b_node">筛选属性</span>
-                    <em></em>
-                </a>
-          </li>
-      </if>
 
 
     </ul>
@@ -392,45 +381,12 @@
        <ul>
           <li><a <if condition="empty($order)"> style="color:red;"</if> href="<{:LinkTo('mall/index',$linkArr,array('order'=>'0'))}>">默认排序</a></li>
           <li><a <if condition="$order eq 1"> style="color:red;"</if> href="<{:LinkTo('mall/index',$linkArr,array('order'=>'1'))}>">时间排序</a></li>
-          <li><a <if condition="$order eq 2">style="color:red;"</if> href="<{:LinkTo('mall/index',$linkArr,array('order'=>'2'))}>">销量排序</a></li>
+          <li><a <if condition="$order eq 2">style="color:red;"</if> href="<{:LinkTo('mall/index',$linkArr,array('order'=>'2'))}>">报名人数排序</a></li>
           <li><a <if condition="$order eq 3">style="color:red;"</if> href="<{:LinkTo('mall/index',$linkArr,array('order'=>'3'))}>">价格最高</a></li>
           <li><a <if condition="$order eq 4">style="color:red;"</if> href="<{:LinkTo('mall/index',$linkArr,array('order'=>'4'))}>">价格最低</a></li>
       </ul>
    </div>
 
-
-   	<div class="inner" style=" display:none">
-      <ul id="inner2">
-       <li class="item"><a style="color:#F00" class="rights" href="<{:LinkTo('mall/index',array('cat'=>$cat,'cate_id'=>$cate_id))}>">重新筛选</a></li>
-       <foreach name="TpGoodsAttribute" item="item">
-            <li><a class="rights hasUlLink" title="<{$item.attr_name}>" href="javascript:void(0);>"><{$item.attr_name}></a>
-               <ul id="items0">
-
-                <php>
-                       $attr_id = trim($item['attr_id']);
-                       $v3 = 'values_'.$attr_id;
-                       $v2 = trim($v3);
-               </php>
-
-               <li><a <if condition="empty($query[$v2])">style="color:#F00"</if> href="<{:LinkTo('mall/index',$linkArr,array('attr_id'=>$attr_id,$v2=>'0'))}>">全部属性</a></li>
-                <foreach name="item['attr_values']" item="item2" k="k2">
-                    <php>
-                                	$value = trim($item2);
-                                    $attr_id = trim($item['attr_id']);
-                                    $val2 = 'values_'.$attr_id;
-
-                                    foreach($query as $kkk=>$vvv){
-                                    	$querys[]= trim($vvv);
-                                    }
-                                    $item3 = trim($item2);
-                     </php>
-                     <li><a <?php if(in_array($item3,$querys)){?> style="color:#F00" <?php }?>href="<{:LinkTo('mall/index',$linkArr,array('attr_id'=>$attr_id,$val2=>$value))}>"> <{$item2}></a>
-                </foreach>
-               </ul>
-             </li>
-        </foreach>
-      </ul>
-    </div>
 
 
 
@@ -447,11 +403,6 @@
 		<ul class="index-items" id="index-joblist"></ul>
 	</div>
 
-	<div class="mall-cart">
-		<a href="<{:U('mall/cart')}>">
-		<div class="round radius-circle"><div class="badge-corner"><i class="iconfont icon-yunzhi2gouwuche"></i><span class="badge bg-red"><{$cartnum}></span></div></div>
-		</a>
-	</div>
 
     <script>
         $(document).ready(function () {

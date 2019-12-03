@@ -1345,15 +1345,15 @@ function compareArr($array,$val){
 }
 
 /**
- * 刷新商品库存, 如果商品有设置规格库存, 则商品总库存 等于 所有规格库存相加
- * @param type $goods_id  商品id
+ * 刷新工作库存, 如果工作有设置规格库存, 则工作总库存 等于 所有规格库存相加
+ * @param type $goods_id  工作id
  */
 function refresh_stock($goods_id){
     $count = M("TpSpecGoodsPrice")->where("goods_id = $goods_id")->count();
     if($count == 0) return false; // 没有使用规格方式 没必要更改总库存
 
     $store_count = M("TpSpecGoodsPrice")->where("goods_id = $goods_id")->sum('store_count');
-    M("Goods")->where("goods_id = $goods_id")->save(array('num'=>$store_count)); // 更新商品的总库存
+    M("Goods")->where("goods_id = $goods_id")->save(array('num'=>$store_count)); // 更新工作的总库存
 }
 
 

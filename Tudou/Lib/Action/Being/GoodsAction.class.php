@@ -165,10 +165,10 @@ class GoodsAction extends CommonAction {
             $this->tuError('购买须知含有敏感词：' . $words);
         } $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品详情不能为空');
+            $this->tuError('工作详情不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品详情含有敏感词：' . $words);
+            $this->tuError('工作详情含有敏感词：' . $words);
         } $data['end_date'] = htmlspecialchars($data['end_date']);
         if (empty($data['end_date'])) {
             $this->tuError('过期时间不能为空');
@@ -208,7 +208,7 @@ class GoodsAction extends CommonAction {
         }
             $obj = D('Goods');
             if (!$detail = $obj->find($goods_id)) {
-                $this->tuError('请选择要编辑的商品');
+                $this->tuError('请选择要编辑的工作');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -241,7 +241,7 @@ class GoodsAction extends CommonAction {
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商品');
+            $this->tuError('请选择要编辑的工作');
         }
     }
 
@@ -336,10 +336,10 @@ class GoodsAction extends CommonAction {
             $this->tuError('购买须知含有敏感词：' . $words);
         } $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品详情不能为空');
+            $this->tuError('工作详情不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品详情含有敏感词：' . $words);
+            $this->tuError('工作详情含有敏感词：' . $words);
         } $data['end_date'] = htmlspecialchars($data['end_date']);
         if (empty($data['end_date'])) {
             $this->tuError('过期时间不能为空');
@@ -420,7 +420,7 @@ class GoodsAction extends CommonAction {
                 }
                 $this->tuSuccess('审核成功！'.$error.'条失败', U('goods/index'));
             }
-            $this->tuError('请选择要审核的商品');
+            $this->tuError('请选择要审核的工作');
         }
     }
 }

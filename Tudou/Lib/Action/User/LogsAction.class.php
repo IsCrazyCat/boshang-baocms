@@ -41,10 +41,10 @@ class LogsAction extends CommonAction{
     }
 	
 	 public function integral_data(){
-        $Userintegrallogs = D('Userintegrallogs');
+        $subsidyMoneyLogs = D('subsidyMoney');
         import('ORG.Util.Page');
         $map = array('user_id' => $this->uid);
-        $count = $Userintegrallogs->where($map)->count();
+        $count = $subsidyMoneyLogs->where($map)->count();
         $Page = new Page($count, 16);
         $show = $Page->show();
 		
@@ -55,7 +55,7 @@ class LogsAction extends CommonAction{
         }
 		
 		
-        $list = $Userintegrallogs->where($map)->order(array('log_id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        $list = $subsidyMoneyLogs->where($map)->order(array('money_id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $this->assign('list', $list);
         $this->assign('page', $show);
         $this->display();

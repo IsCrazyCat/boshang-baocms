@@ -8,7 +8,7 @@
 class KoubeiRetailShopitemModifyRequest
 {
 	/** 
-	 * isv 回传的门店商品信更新接口
+	 * isv 回传的门店工作信更新接口
 	 **/
 	private $bizContent;
 

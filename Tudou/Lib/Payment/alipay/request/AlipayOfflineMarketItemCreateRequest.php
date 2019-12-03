@@ -8,7 +8,7 @@
 class AlipayOfflineMarketItemCreateRequest
 {
 	/** 
-	 * 系统商需要通过该接口在口碑平台帮助商户创建商品。
+	 * 系统商需要通过该接口在口碑平台帮助商户创建工作。
 	 **/
 	private $bizContent;
 

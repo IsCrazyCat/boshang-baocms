@@ -339,7 +339,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return array_key_exists('nonce_str', $this->values);
     }
     /**
-     * 设置商品或支付单简要描述
+     * 设置工作或支付单简要描述
      * @param string $value 
      **/
     public function SetBody($value)
@@ -347,7 +347,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         $this->values['body'] = $value;
     }
     /**
-     * 获取商品或支付单简要描述的值
+     * 获取工作或支付单简要描述的值
      * @return 值
      **/
     public function GetBody()
@@ -355,7 +355,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return $this->values['body'];
     }
     /**
-     * 判断商品或支付单简要描述是否存在
+     * 判断工作或支付单简要描述是否存在
      * @return true 或 false
      **/
     public function IsBodySet()
@@ -363,7 +363,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return array_key_exists('body', $this->values);
     }
     /**
-     * 设置商品名称明细列表
+     * 设置工作名称明细列表
      * @param string $value 
      **/
     public function SetDetail($value)
@@ -371,7 +371,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         $this->values['detail'] = $value;
     }
     /**
-     * 获取商品名称明细列表的值
+     * 获取工作名称明细列表的值
      * @return 值
      **/
     public function GetDetail()
@@ -379,7 +379,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return $this->values['detail'];
     }
     /**
-     * 判断商品名称明细列表是否存在
+     * 判断工作名称明细列表是否存在
      * @return true 或 false
      **/
     public function IsDetailSet()
@@ -556,7 +556,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return array_key_exists('time_expire', $this->values);
     }
     /**
-     * 设置商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠
+     * 设置工作标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠
      * @param string $value 
      **/
     public function SetGoods_tag($value)
@@ -564,7 +564,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         $this->values['goods_tag'] = $value;
     }
     /**
-     * 获取商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠的值
+     * 获取工作标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠的值
      * @return 值
      **/
     public function GetGoods_tag()
@@ -572,7 +572,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return $this->values['goods_tag'];
     }
     /**
-     * 判断商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠是否存在
+     * 判断工作标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠是否存在
      * @return true 或 false
      **/
     public function IsGoods_tagSet()
@@ -628,7 +628,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return array_key_exists('trade_type', $this->values);
     }
     /**
-     * 设置trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。
+     * 设置trade_type=NATIVE，此参数必传。此id为二维码中包含的工作ID，商户自行定义。
      * @param string $value 
      **/
     public function SetProduct_id($value)
@@ -636,7 +636,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         $this->values['product_id'] = $value;
     }
     /**
-     * 获取trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。的值
+     * 获取trade_type=NATIVE，此参数必传。此id为二维码中包含的工作ID，商户自行定义。的值
      * @return 值
      **/
     public function GetProduct_id()
@@ -644,7 +644,7 @@ class WxPayUnifiedOrder extends WxPayDataBase
         return $this->values['product_id'];
     }
     /**
-     * 判断trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。是否存在
+     * 判断trade_type=NATIVE，此参数必传。此id为二维码中包含的工作ID，商户自行定义。是否存在
      * @return true 或 false
      **/
     public function IsProduct_idSet()
@@ -2093,7 +2093,7 @@ class WxPayMicroPay extends WxPayDataBase
         return array_key_exists('nonce_str', $this->values);
     }
     /**
-     * 设置商品或支付单简要描述
+     * 设置工作或支付单简要描述
      * @param string $value 
      **/
     public function SetBody($value)
@@ -2101,7 +2101,7 @@ class WxPayMicroPay extends WxPayDataBase
         $this->values['body'] = $value;
     }
     /**
-     * 获取商品或支付单简要描述的值
+     * 获取工作或支付单简要描述的值
      * @return 值
      **/
     public function GetBody()
@@ -2109,7 +2109,7 @@ class WxPayMicroPay extends WxPayDataBase
         return $this->values['body'];
     }
     /**
-     * 判断商品或支付单简要描述是否存在
+     * 判断工作或支付单简要描述是否存在
      * @return true 或 false
      **/
     public function IsBodySet()
@@ -2117,7 +2117,7 @@ class WxPayMicroPay extends WxPayDataBase
         return array_key_exists('body', $this->values);
     }
     /**
-     * 设置商品名称明细列表
+     * 设置工作名称明细列表
      * @param string $value 
      **/
     public function SetDetail($value)
@@ -2125,7 +2125,7 @@ class WxPayMicroPay extends WxPayDataBase
         $this->values['detail'] = $value;
     }
     /**
-     * 获取商品名称明细列表的值
+     * 获取工作名称明细列表的值
      * @return 值
      **/
     public function GetDetail()
@@ -2133,7 +2133,7 @@ class WxPayMicroPay extends WxPayDataBase
         return $this->values['detail'];
     }
     /**
-     * 判断商品名称明细列表是否存在
+     * 判断工作名称明细列表是否存在
      * @return true 或 false
      **/
     public function IsDetailSet()
@@ -2309,7 +2309,7 @@ class WxPayMicroPay extends WxPayDataBase
         return array_key_exists('time_expire', $this->values);
     }
     /**
-     * 设置商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠
+     * 设置工作标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠
      * @param string $value 
      **/
     public function SetGoods_tag($value)
@@ -2317,7 +2317,7 @@ class WxPayMicroPay extends WxPayDataBase
         $this->values['goods_tag'] = $value;
     }
     /**
-     * 获取商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠的值
+     * 获取工作标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠的值
      * @return 值
      **/
     public function GetGoods_tag()
@@ -2325,7 +2325,7 @@ class WxPayMicroPay extends WxPayDataBase
         return $this->values['goods_tag'];
     }
     /**
-     * 判断商品标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠是否存在
+     * 判断工作标记，代金券或立减优惠功能的参数，说明详见代金券或立减优惠是否存在
      * @return true 或 false
      **/
     public function IsGoods_tagSet()
@@ -2744,7 +2744,7 @@ class WxPayBizPayUrl extends WxPayDataBase
         return array_key_exists('nonce_str', $this->values);
     }
     /**
-     * 设置商品ID
+     * 设置工作ID
      * @param string $value 
      **/
     public function SetProduct_id($value)
@@ -2752,7 +2752,7 @@ class WxPayBizPayUrl extends WxPayDataBase
         $this->values['product_id'] = $value;
     }
     /**
-     * 获取商品ID的值
+     * 获取工作ID的值
      * @return 值
      **/
     public function GetProduct_id()
@@ -2760,7 +2760,7 @@ class WxPayBizPayUrl extends WxPayDataBase
         return $this->values['product_id'];
     }
     /**
-     * 判断商品ID是否存在
+     * 判断工作ID是否存在
      * @return true 或 false
      **/
     public function IsProduct_idSet()

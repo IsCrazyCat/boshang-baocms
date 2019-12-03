@@ -1,7 +1,7 @@
 <include  file='public:header'/>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>商城商品</a></li>
+        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>商城工作</a></li>
     </ul>
 </div>
 <div class="tuan_content">
@@ -9,24 +9,24 @@
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
             <div class="left tuan_topser_l">
-            商品名称：<input type="text" class="radius3 tuan_topser"  name="keyword" value="<{$keyword}>" />
+            工作名称：<input type="text" class="radius3 tuan_topser"  name="keyword" value="<{$keyword}>" />
             <input type="submit" style="margin-left:10px;" class="radius3 sjgl_an tuan_topbt" value="搜 索"/>
             </div>
-            <div class="right tuan_topfb_r"><a class="radius3 sjgl_an tuan_topbt" target="main_frm" href="<{:U('goods/create')}>">发布商品+</a></div>
+            <div class="right tuan_topfb_r"><a class="radius3 sjgl_an tuan_topbt" target="main_frm" href="<{:U('goods/create')}>">发布工作+</a></div>
         </div>
     </div>
     </form>
    <include file='order:nav'/><!--引入导航-->    
     <table class="tuan_table" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr style="background-color:#eee;">
-        	<td>商品ID</td>
-            <td>商品名称</td>
-            <td>商品图片</td>
+        	<td>工作ID</td>
+            <td>工作名称</td>
+            <td>工作图片</td>
             <td>发布商家</td>
             <td>市场价格</td>
             <td>商城价格</td>
             <td>可使用积分数</td>
-            <td>商品重量</td>
+            <td>工作重量</td>
             <td>是否免邮</td>
             <td>售出数量</td>
             <td>浏览量</td>
@@ -102,7 +102,7 @@
            var url = "<{:U('goods/goods_top')}>";
            var goods_id = id;
            var type = $("input[name='type']:checked").val();
-           layer.confirm('您确认要推广此商品吗？', {
+           layer.confirm('您确认要推广此工作吗？', {
                btn: ['是的','不了']
            }, function(){
               $.post(url,{goods_id:goods_id,type:type},function(data){

@@ -19,8 +19,8 @@
      <div class="serch-bar-mask" id="cate_menu" style="display:none;top:50px;">
 		<div class="serch-bar-mask-list">
 			<ul>
-            <li><a href="<{:u('goods/create')}>">添加商品</a></li>
-            <li><a href="<{:u('mart/goodscate')}>">添加商品分类</a></li>
+            <li><a href="<{:u('goods/create')}>">添加工作</a></li>
+            <li><a href="<{:u('mart/goodscate')}>">添加工作分类</a></li>
 			</ul>
 		</div>
 	</div>
@@ -84,7 +84,7 @@
  <style>ul { padding-left: 0px;}</style>
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-        <li style="width: 25%;"><a href="<{:U('mart/index')}>">商城商品</a></li>
+        <li style="width: 25%;"><a href="<{:U('mart/index')}>">商城工作</a></li>
         <li style="width: 25%;"><a href="<{:U('mart/order')}>" class="on">全部订单</a></li>
         <li style="width: 25%;"><a href="<{:U('mart/wait')}>">付款订单</a></li>
         <li style="width: 25%;"><a href="<{:U('mart/wait2')}>">货到付款</a></li>
@@ -97,7 +97,7 @@
     <li class="line" <eq name="order.is_daofu" value="1">style="background:#FFF4F4;" </eq> >
       <dt><a class="x3">订单ID：<{$order.order_id}></a><a class="x9 text-right">交易时间：<{$order.create_time|date='Y-m-d H:i:s',###}> </a></dt>
     <foreach name="goods" item="good">
-    <eq name="good.order_id" value="$order.order_id"> <!--循环商品开始-->
+    <eq name="good.order_id" value="$order.order_id"> <!--循环工作开始-->
       <dd class="zhong">
         <div class="x2">
                <img src="<{:config_img($products[$good['goods_id']]['photo'])}>"  style="width:90%;">
@@ -113,7 +113,7 @@
       </dd>
       </eq>
     </foreach>
-     <!--循环商品开始--> 
+     <!--循环工作开始-->
       <!--如果不是到付就显示--> 
       <eq name="order.is_daofu" value="0">         
       <dt>

@@ -23,7 +23,7 @@ class paypal{
 		// 告诉paypal，我的（商城的商户）Paypal账号，就是这钱是付给谁的 
 		$arr['business']= $payment['paypal_ec_username'];
 		// 用户将会在Paypal的支付页面看到购买的是什么东西，只做显示，没有什么特殊用途，
-		// 如果是多件商品，则直接告诉用户，只支付某个订单就可以了 
+		// 如果是多件工作，则直接告诉用户，只支付某个订单就可以了 
 		$arr['item_name']= $logs['subject'];
 		$arr['amount']	= $logs['logs_amount']; // 告诉Paypal，我要收多少钱 
 		// 告诉Paypal，我要用什么货币。这里需要注意的是，由于汇率问题，

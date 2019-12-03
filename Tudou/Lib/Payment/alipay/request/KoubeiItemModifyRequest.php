@@ -8,7 +8,7 @@
 class KoubeiItemModifyRequest
 {
 	/** 
-	 * 商品修改
+	 * 工作修改
 	 **/
 	private $bizContent;
 

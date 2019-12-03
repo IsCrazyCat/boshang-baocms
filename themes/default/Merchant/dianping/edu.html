@@ -33,7 +33,7 @@
       <tr class="tr_dianping_2">
         <td class="td_dianping_12" colspan="2">
         <php>$Educourse = D('Educourse') ->find($var['course_id']);</php> 
-         <!--商品展示开始-->
+         <!--工作展示开始-->
         <div class="index__production___yfP3y" >
         <a target="_blank"  href="<{:U('home/edu_course/detail',array('course_id'=>$Educourse['course_id']))}>" class="index__pic___TScfk" >
         <img src="<{:config_img($Educourse['photo'])}>" ><span></span></a>
@@ -41,7 +41,7 @@
             <p ><a href="<{:U('home/edu_course/detail',array('course_id'=>$Educourse['course_id']))}>" target="_blank" ><span><{$Educourse['title']}></span></a></p>
         	</div>
 		</div>
-       <!--商品展示END-->
+       <!--工作展示END-->
         </td>
         <td class="td_dianping_9" colspan="2">
         点评内容：<{$var.content}>

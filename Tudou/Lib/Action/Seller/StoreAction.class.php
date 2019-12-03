@@ -116,10 +116,10 @@ class StoreAction extends CommonAction{
             if ($cate_id) {
                 $obj = D('Storecate');
                 if(!($detail = $obj->find($cate_id))){
-                    $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的商品分类'));
+                    $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的工作分类'));
                 }
                 if($detail['shop_id'] != $this->shop_id){
-                    $this->ajaxReturn(array('status' => 'error', 'message' => '请不要操作其他商家的商品分类'));
+                    $this->ajaxReturn(array('status' => 'error', 'message' => '请不要操作其他商家的工作分类'));
                 }
                 $cate_name = I('cate_name', '', 'trim,htmlspecialchars');
                 if(empty($cate_name)){
@@ -131,7 +131,7 @@ class StoreAction extends CommonAction{
                 }
                 $this->ajaxReturn(array('status' => 'error', 'message' => '操作失败'));
             }else{
-                $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的商品分类'));
+                $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的工作分类'));
             }
         }
     }
@@ -365,7 +365,7 @@ class StoreAction extends CommonAction{
     }
 	
 	
-    //下架商品
+    //下架工作
     public function delete($product_id = 0){
         $product_id = (int) $product_id;
         if(empty($product_id)){
@@ -373,14 +373,14 @@ class StoreAction extends CommonAction{
         }
         $obj = D('Storeproduct');
         if (!($detail = $obj->where(array('shop_id' => $this->shop_id, 'product_id' => $product_id))->find())) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择要下架的商品管理！'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择要下架的工作管理！'));
         }
         D('Storecate')->updateNum($detail['cate_id']);
         $obj->save(array('product_id' => $product_id, 'closed' => 1));
         $this->ajaxReturn(array('status' => 'success', 'msg' => '下架成功', U('store/shelves')));
     }
 	
-    //上架商品
+    //上架工作
     public function updates($product_id = 0){
         $product_id = (int) $product_id;
         if (empty($product_id)) {
@@ -388,7 +388,7 @@ class StoreAction extends CommonAction{
         }
         $obj = D('Storeproduct');
         if (!($detail = $obj->where(array('shop_id' => $this->shop_id, 'product_id' => $product_id))->find())) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择要上架的商品管理！'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择要上架的工作管理！'));
         }
         D('Storecate')->updateNum($detail['cate_id']);
         $obj->save(array('product_id' => $product_id, 'closed' => 0));
@@ -439,11 +439,11 @@ class StoreAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuMsg('商品名不能为空');
+            $this->tuMsg('工作名不能为空');
         }
         $data['desc'] = htmlspecialchars($data['desc']);
         if (empty($data['desc'])) {
-            $this->tuMsg('商品介绍不能为空');
+            $this->tuMsg('工作介绍不能为空');
         }
         $data['shop_id'] = $this->shop_id;
 		
@@ -494,10 +494,10 @@ class StoreAction extends CommonAction{
         if ($product_id = (int) $product_id) {
             $obj = D('Storeproduct');
             if (!($detail = $obj->find($product_id))) {
-                $this->error('请选择要编辑的商品管理');
+                $this->error('请选择要编辑的工作管理');
             }
             if ($detail['shop_id'] != $this->shop_id) {
-                $this->error('请不要操作其他商家的商品管理');
+                $this->error('请不要操作其他商家的工作管理');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -513,18 +513,18 @@ class StoreAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->error('请选择要编辑的商品管理');
+            $this->error('请选择要编辑的工作管理');
         }
     }
     private function editCheck(){
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuMsg('商品名不能为空');
+            $this->tuMsg('工作名不能为空');
         }
         $data['desc'] = htmlspecialchars($data['desc']);
         if (empty($data['desc'])) {
-            $this->tuMsg('商品介绍不能为空');
+            $this->tuMsg('工作介绍不能为空');
         }
 		
         $data['cate_id'] = (int) $data['cate_id'];

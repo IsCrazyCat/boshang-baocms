@@ -8,7 +8,7 @@
 class AlipayOfflineMarketProductBatchqueryRequest
 {
 	/** 
-	 * 通过该接口可以查询商户录入的所有商品编号
+	 * 通过该接口可以查询商户录入的所有工作编号
 	 **/
 	private $bizContent;
 

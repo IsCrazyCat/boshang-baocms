@@ -60,8 +60,8 @@
 <div class="content zy_content">
     <div class="spxq_xqT spxq_xqT2">
         <ul>
-            <li class="jq_spxq_xqBt1 on"><code rel="spxq_xqBt1">商品详情</code><em></em></li>
-            <li class="jq_spxq_xqBt2"><code rel="spxq_xqBt1">商品属性</code><em></em></li>
+            <li class="jq_spxq_xqBt1 on"><code rel="spxq_xqBt1">工作详情</code><em></em></li>
+            <li class="jq_spxq_xqBt2"><code rel="spxq_xqBt1">工作属性</code><em></em></li>
             <li class="jq_spxq_xqBt3"><code rel="spxq_xqBt2">购买须知</code><em></em></li>
             <li class="jq_spxq_xqBt4"><code rel="spxq_xqBt3">用户评价(<{$totalnum}>)</code><em></em></li>
         </ul>
@@ -214,7 +214,7 @@
                         <span style="height: 30px; line-height: 30px;">商家：<a style=" font-size: 18px; font-weight: bold;" target="_blank" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>"><{$shop.shop_name}></a></span>
 
                     </div>
-			<!--商品多属性-->
+			<!--工作多属性-->
                       <div class="pro-promotions-area">
                           <table class="promotions-tab he40-tr-td" width="100%" border="0" cellspacing="0" cellpadding="0">
                           <foreach name="filter_spec" item="v" key="k" > 
@@ -254,7 +254,7 @@
                       
 
                   
-<!--商品多属性 end-->
+<!--工作多属性 end-->
 
 
                     <script>
@@ -389,8 +389,8 @@
         <div class="left zy_content_l">
             <div class="spxq_xqT">
                 <ul>
-                    <li class="on"><code rel="spxq_xqBt1">商品详情</code><em></em></li>
-					<li><code rel="spxq_xqBt2">商品属性</code><em></em></li>
+                    <li class="on"><code rel="spxq_xqBt1">工作详情</code><em></em></li>
+					<li><code rel="spxq_xqBt2">工作属性</code><em></em></li>
                     <li><code rel="spxq_xqBt3">购买须知</code><em></em></li>
                     <li><code rel="spxq_xqBt4">用户评价(<{$totalnum}>)</code><em></em></li>
                 </ul>
@@ -408,12 +408,12 @@
             </script>
 
             <div class="spxq_xqBt1">
-                <div class="spxq_xqBt">商品详情</div>
+                <div class="spxq_xqBt">工作详情</div>
                 <div class="spxq_xqNr"><{$detail.details}></div>
             </div>
             
             <div class="spxq_xqBt2">
-                <div class="spxq_xqBt">商品属性</div>
+                <div class="spxq_xqBt">工作属性</div>
                 <div class="spxq_xqNr">
                      <foreach name="goods_attr_list" item="v" key="k">
                         <p><{$goods_attribute[$v[attr_id]]}> : <{$v[attr_value]}></p>
@@ -430,7 +430,7 @@
             <div class="spxq_xqBt4">
                 <div class="spxq_xqBt">
                     <div class="left">用户评价(<{$totalnum}>)</div>
-                    <div class="right spxq_xqBt_r">我买过此商品，<a class="spxq_pjAn" href="<{:u('members/order/goods')}>">我要评价</a></div>
+                    <div class="right spxq_xqBt_r">我买过此工作，<a class="spxq_pjAn" href="<{:u('members/order/goods')}>">我要评价</a></div>
                 </div>
                 <div class="spxq_xqNr">
                     <ul>
@@ -540,7 +540,7 @@
 
 <script>
 $(document).ready(function(){   
-    // 更新商品价格
+    // 更新工作价格
    get_goods_price();
 });
 
@@ -552,7 +552,7 @@ function switch_spec(spec)
     $(spec).siblings('input').trigger('click');  // 让隐藏的 单选按钮选中
     $(spec).parent().parent().parent().parent().find("div.sku").removeClass('sku-bo-blo'); //   清空勾选图标
     $(spec).parent().addClass('sku-bo-blo'); // 当前 加上勾选图标               
-    // 更新商品价格
+    // 更新工作价格
     get_goods_price();                          
 }
 // 用作 sort 排序用
@@ -560,14 +560,14 @@ function sortNumber(a,b)
 { 
     return a - b; 
 } 
- /*** 查询商品价格**/  
+ /*** 查询工作价格**/
  function get_goods_price()
  {     
  	     
     
-  var goods_price = <{$goods["mall_price"] }>; // 商品起始价
+  var goods_price = <{$goods["mall_price"] }>; // 工作起始价
   //这个先保留了
- var store_count = <{$detail['num']}>; // 商品起始库存   
+ var store_count = <{$detail['num']}>; // 工作起始库存
 
     var spec_goods_price =<{$spec_goods_price}>;  // 规格 对应 价格 库存表   //alert(spec_goods_price['28_100']['price']);    
     // 如果有属性选择项

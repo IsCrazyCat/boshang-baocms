@@ -19,7 +19,7 @@
         </if>
         <div class="top-search" style="<if condition="empty($keyword)">display:none;</if>">
            <form method="post" action="<{:U('market/shop',array('shop_id'=>$detail['shop_id']))}>">
-              <input name="keyword" value="<{$keyword|default=''}>" <if condition="empty($keyword)">placeholder="<{$keyword|default='请输入商品关键字'}>"</if>  />
+              <input name="keyword" value="<{$keyword|default=''}>" <if condition="empty($keyword)">placeholder="<{$keyword|default='请输入工作关键字'}>"</if>  />
               <input id="keyword" type="hidden" name="shop_id" value="<{$detail['shop_id']}>" />
               <button type="submit" class="iconfont icon-search"></button> 
            </form>
@@ -311,7 +311,7 @@ body{background: #f8f8f8;}
 		_wraper.dialog({title: title, closeBtn: true});
 		}
 
-		//添加弹出的商品到购物车
+		//添加弹出的工作到购物车
 		function addcart(o){
 			var data = {},did = $(o).attr('did'), shop_id = "<{$_GET['shop_id']}>";
 			data['product_id'] = $(o).attr('did');

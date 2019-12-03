@@ -234,7 +234,7 @@ class ShopAction extends CommonAction{
            $data['create_ip'] = get_client_ip();
            if(D('VillageEnter')->add($data)){
 			   if($data['type'] == 1){
-				  $this->tuSuccess('商品申请入驻乡村成功', U('goods/index')); 
+				  $this->tuSuccess('工作申请入驻乡村成功', U('goods/index'));
 			   }else{
 				  $this->tuSuccess('抢购申请入驻乡村成功', U('tuan/index')); 
 			   }

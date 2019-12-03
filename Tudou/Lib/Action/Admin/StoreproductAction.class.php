@@ -57,7 +57,7 @@ class StoreproductAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuError('商品不能为空');
+            $this->tuError('工作不能为空');
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
@@ -98,7 +98,7 @@ class StoreproductAction extends CommonAction{
         if ($product_id = (int) $product_id) {
             $obj = D('Storeproduct');
             if (!($detail = $obj->find($product_id))) {
-                $this->tuError('请选择要编辑的商品管理');
+                $this->tuError('请选择要编辑的工作管理');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -113,14 +113,14 @@ class StoreproductAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商品管理');
+            $this->tuError('请选择要编辑的工作管理');
         }
     }
     private function editCheck(){
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuError('商品不能为空');
+            $this->tuError('工作不能为空');
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
@@ -176,7 +176,7 @@ class StoreproductAction extends CommonAction{
                 }
                 $this->tuSuccess('删除成功', U('storeproduct/index'));
             }
-            $this->tuError('请选择要删除的商品管理');
+            $this->tuError('请选择要删除的工作管理');
         }
     }
     public function audit($product_id = 0)
@@ -196,7 +196,7 @@ class StoreproductAction extends CommonAction{
                 }
                 $this->tuSuccess('审核成功', U('storeproduct/index'));
             }
-            $this->tuError('请选择要审核的商品');
+            $this->tuError('请选择要审核的工作');
         }
     }
 }

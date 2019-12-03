@@ -371,7 +371,7 @@ class EleorderModel extends CommonModel {
 	}
 
 	
-	//订单导出获取订单的商品信息
+	//订单导出获取订单的工作信息
 	public function get_export_ele_order_product($order_id) {	
    	  $Eleorderproduct = D('Eleorderproduct')->where(array('order_id'=>$order_id))->select();
 	  foreach ($Eleorderproduct as $k => $v) {

@@ -23,17 +23,17 @@
 	   </if>
     </style>   
         
-    <if condition="empty($SHOP)">
-    	<if condition="$ctl eq index"><a href="<{:U('user/apply/index')}>"> 入驻商家</a></if>
-    	<if condition="$ctl eq shop"><a href="<{:U('user/apply/index')}>"> 入驻商家</a></if>
-        <if condition="$ctl eq ele"><a href="<{:U('user/apply/index')}>"> 入驻外卖频道</a></if>
-        <if condition="$ctl eq coupon"><a href="<{:U('user/apply/index')}>"> 我要发布优惠券</a></if>
-        <if condition="$ctl eq farm"><a href="<{:U('user/apply/index')}>"> 入驻农家乐</a></if>
-        <if condition="$ctl eq market"><a href="<{:U('user/apply/index')}>"> 入驻菜市场乐</a></if>
-        <if condition="$ctl eq store"><a href="<{:U('user/apply/index')}>"> 入驻便利店</a></if>
-        <if condition="$ctl eq mall"><a href="<{:U('user/apply/index')}>"> 我要发布商品</a></if>
-        
-    </if>
+<!--    <if condition="empty($SHOP)">-->
+<!--    	<if condition="$ctl eq index"><a href="<{:U('user/apply/index')}>"> 入驻商家</a></if>-->
+<!--    	<if condition="$ctl eq shop"><a href="<{:U('user/apply/index')}>"> 入驻商家</a></if>-->
+<!--        <if condition="$ctl eq ele"><a href="<{:U('user/apply/index')}>"> 入驻外卖频道</a></if>-->
+<!--        <if condition="$ctl eq coupon"><a href="<{:U('user/apply/index')}>"> 我要发布优惠券</a></if>-->
+<!--        <if condition="$ctl eq farm"><a href="<{:U('user/apply/index')}>"> 入驻农家乐</a></if>-->
+<!--        <if condition="$ctl eq market"><a href="<{:U('user/apply/index')}>"> 入驻菜市场乐</a></if>-->
+<!--        <if condition="$ctl eq store"><a href="<{:U('user/apply/index')}>"> 入驻便利店</a></if>-->
+<!--        <if condition="$ctl eq mall"><a href="<{:U('user/apply/index')}>"> 我要发布工作</a></if>-->
+<!--        -->
+<!--    </if>-->
     
     <if condition="$MEMBER['user_id']">
     	<a href="<{:U('user/member/index')}>" title="个人中心">个人中心</a>

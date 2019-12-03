@@ -7,7 +7,18 @@ class UsersauxAction extends CommonAction{
             header("Location:" . U('passport/login'));
             die;
         }
+
         if ($this->isPost()) {
+            if($detail = D('Usersaux')->find($this->uid)){
+                if($detail['audit']==0||$detail['audit']==''){
+                    $status = 1;//审核中
+                    $this->tuMsg('实名认证审核中，请耐心等待');
+                }else{
+                    $status = 2;//已认证
+                    $this->tuMsg('您已实名认证，无需重复认证');
+                }
+
+            }
             $data = $this->createCheck();
             $obj = D('Usersaux');
             if ($user_id = $obj->add($data)) {
@@ -16,9 +27,19 @@ class UsersauxAction extends CommonAction{
 				$this->tuMsg('申请失败');
 			}
         } else {
+            $detail = D('Usersaux')->find($this->uid);
+            if(empty($detail)){
+                $status = 0; //未认证
+            }else{
+                if($detail['audit']==0||$detail['audit']==''){
+                    $status = 1;//审核中
+                }else{
+                    $status = 2;//已认证
+                }
+            }
+
+            $this->assign("status",$status);
 			$this->assign('detail',$detail = D('Usersaux')->find($this->uid));
-			$this->assign('citys', D('City')->fetchAll());
-            $this->assign('business', D('Business')->fetchAll());
             $this->display();
         }
     }
@@ -27,12 +48,7 @@ class UsersauxAction extends CommonAction{
 		$data['user_id'] = $this->uid;
 		$data['guide_id'] = (int) $data['guide_id'];
         $data['card_photo'] = htmlspecialchars($data['card_photo']);
-        if (empty($data['card_photo'])) {
-            $this->tuMsg('请上传身份证');
-        }
-        if (!isImage($data['card_photo'])) {
-            $this->tuMsg('身份证格式不正确');
-        }
+
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {
             $this->tuMsg('真实名字不能为空');
@@ -50,50 +66,50 @@ class UsersauxAction extends CommonAction{
             $this->tuMsg('手机号码格式不正确');
         }
 		
-        $data['city_id'] = (int) $data['city_id'];
-        if (empty($data['city_id'])) {
-            $this->tuMsg('城市不能为空');
-        }
-        $data['area_id'] = (int) $data['area_id'];
-        if (empty($data['area_id'])) {
-            $this->tuMsg('地区不能为空');
-        }
-        $data['business_id'] = (int) $data['business_id'];
-        if (empty($data['business_id'])) {
-            $this->tuMsg('商圈不能为空');
-        }
+//        $data['city_id'] = (int) $data['city_id'];
+//        if (empty($data['city_id'])) {
+//            $this->tuMsg('城市不能为空');
+//        }
+//        $data['area_id'] = (int) $data['area_id'];
+//        if (empty($data['area_id'])) {
+//            $this->tuMsg('地区不能为空');
+//        }
+//        $data['business_id'] = (int) $data['business_id'];
+//        if (empty($data['business_id'])) {
+//            $this->tuMsg('商圈不能为空');
+//        }
+//
+//
+//		$data['team_id'] = (int) $data['team_id'];
+//        if (empty($data['team_id'])) {
+//            $this->tuMsg('队伍不能为空');
+//        }
+//        $data['jury_id'] = (int) $data['jury_id'];
+//        if (empty($data['jury_id'])) {
+//            $this->tuMsg('团队不能为空');
+//        }
+//        $data['group_id'] = (int) $data['group_id'];
+//        if (empty($data['group_id'])) {
+//            $this->tuMsg('群不能为空');
+//        }
+//
 		
-		
-		$data['team_id'] = (int) $data['team_id'];
-        if (empty($data['team_id'])) {
-            $this->tuMsg('队伍不能为空');
-        }
-        $data['jury_id'] = (int) $data['jury_id'];
-        if (empty($data['jury_id'])) {
-            $this->tuMsg('团队不能为空');
-        }
-        $data['group_id'] = (int) $data['group_id'];
-        if (empty($data['group_id'])) {
-            $this->tuMsg('群不能为空');
-        }
-		
-		
-		$city = D('City')->find($data['city_id']);
-		$area = D('Area')->find($data['area_id']);
-		$Busines = D('Business')->find($data['business_id']);
-		$data['addr_str'] = $city['name'] . " " . $area['area_name'] . " " . $Busines['business_name'];
-        $data['addr_info'] = htmlspecialchars($data['addr_info']);
-        if (empty($data['addr_info'])) {
-            $this->tuMsg('详细地址不能为空');
-        }
-		$data['guarantor_name'] = htmlspecialchars($data['guarantor_name']);
-        if (empty($data['guarantor_name'])) {
-            $this->tuMsg('担保人姓名不能为空');
-        }
-		$data['guarantor_mobile'] = htmlspecialchars($data['guarantor_mobile']);
-        if (empty($data['guarantor_mobile'])) {
-            $this->tuMsg('担保人电话不能为空');
-        }
+//		$city = D('City')->find($data['city_id']);
+//		$area = D('Area')->find($data['area_id']);
+//		$Busines = D('Business')->find($data['business_id']);
+//		$data['addr_str'] = $city['name'] . " " . $area['area_name'] . " " . $Busines['business_name'];
+//        $data['addr_info'] = htmlspecialchars($data['addr_info']);
+//        if (empty($data['addr_info'])) {
+//            $this->tuMsg('详细地址不能为空');
+//        }
+//		$data['guarantor_name'] = htmlspecialchars($data['guarantor_name']);
+//        if (empty($data['guarantor_name'])) {
+//            $this->tuMsg('担保人姓名不能为空');
+//        }
+//		$data['guarantor_mobile'] = htmlspecialchars($data['guarantor_mobile']);
+//        if (empty($data['guarantor_mobile'])) {
+//            $this->tuMsg('担保人电话不能为空');
+//        }
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
         return $data;

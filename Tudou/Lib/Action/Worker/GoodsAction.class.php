@@ -164,7 +164,7 @@ class GoodsAction extends CommonAction{
         } else {
             $this->assign('cates', D('Goodscate')->fetchAll());
 			$this->assign('kuaidi', D('Pkuaidi')->where(array('shop_id'=>$this->shop_id,'type'=>goods))->select());
-			$this->assign('goodsInfo',D('Goods')->where('goods_id='.I('GET.id',0))->find());  // 商品详情   
+			$this->assign('goodsInfo',D('Goods')->where('goods_id='.I('GET.id',0))->find());  // 工作详情   
             $this->assign('goodsType',M("TpGoodsType")->select());
             $this->display();
         }
@@ -241,10 +241,10 @@ class GoodsAction extends CommonAction{
         }
         $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuMsg('商品详情不能为空');
+            $this->tuMsg('工作详情不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuMsg('商品详情含有敏感词：' . $words);
+            $this->tuMsg('工作详情含有敏感词：' . $words);
         }
         $data['end_date'] = htmlspecialchars($data['end_date']);
         if (empty($data['end_date'])) {
@@ -281,7 +281,7 @@ class GoodsAction extends CommonAction{
         if ($goods_id = (int) $goods_id) {
             $obj = D('Goods');
             if (!($detail = $obj->find($goods_id))) {
-                $this->error('请选择要编辑的商品');
+                $this->error('请选择要编辑的工作');
             }
             if ($detail['shop_id'] != $this->shop_id) {
                 $this->error('请不要试图越权操作其他人的内容');
@@ -304,7 +304,7 @@ class GoodsAction extends CommonAction{
 					if (!empty($photos)) {
 						D('Goodsphoto')->upload($goods_id, $photos);
 					}
-					$this->shuxin($goods_id);//编辑商品属性
+					$this->shuxin($goods_id);//编辑工作属性
                     $this->tuMsg('编辑成功，请联系管理员审核', U('mart/index'));
                 }
                 $this->tuMsg('操作失败');
@@ -312,7 +312,7 @@ class GoodsAction extends CommonAction{
 				
 				
 				$goodsInfo=D('Goods')->where('goods_id='.I('GET.goods_id',0))->find();
-				$this->assign('goodsInfo',$goodsInfo);  // 商品详情   
+				$this->assign('goodsInfo',$goodsInfo);  // 工作详情   
 				$this->assign('goodsType',M("TpGoodsType")->select());
 			 
 			 
@@ -326,7 +326,7 @@ class GoodsAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->error('请选择要编辑的商品');
+            $this->error('请选择要编辑的工作');
         }
     }
     private function editCheck(){
@@ -461,19 +461,19 @@ class GoodsAction extends CommonAction{
 	
 	
 	public function shuxin($goods_id){
-                 // 商品规格价钱处理
+                 // 工作规格价钱处理
          if($_POST['item'])
          {
              $spec = M('TpSpec')->getField('id,name'); // 规格表
              $specItem = M('TpSpecItem')->getField('id,item');//规格项
                           
-             $specGoodsPrice = M("TpSpecGoodsPrice"); // 实例化 商品规格 价格对象
+             $specGoodsPrice = M("TpSpecGoodsPrice"); // 实例化 工作规格 价格对象
              $specGoodsPrice->where('goods_id = '.$goods_id)->delete(); // 删除原有的价格规格对象
              foreach($_POST['item'] as $k => $v)
              {
                    // 批量添加数据
                    $v['price'] = trim($v['price']);
-                   $store_count = $v['store_count'] = trim($v['store_count']); // 记录商品总库存
+                   $store_count = $v['store_count'] = trim($v['store_count']); // 记录工作总库存
                    $v['bar_code'] = trim($v['bar_code']);
                    $dataList[] = array('goods_id'=>$goods_id,'key'=>$k,'key_name'=>$v['key_name'],'price'=>$v['price'],'store_count'=>$v['store_count'],'bar_code'=>$v['bar_code']);                                      
              }             
@@ -482,11 +482,11 @@ class GoodsAction extends CommonAction{
          }   
          
 
-         refresh_stock($goods_id); // 刷新商品库存
+         refresh_stock($goods_id); // 刷新工作库存
 
     }
      /**
-     * 动态获取商品规格选择框 根据不同的数据返回不同的选择框
+     * 动态获取工作规格选择框 根据不同的数据返回不同的选择框
      */
     public function ajaxGetSpecSelect(){
         $goods_id = $_GET['goods_id'] ? $_GET['goods_id'] : 0;
@@ -503,7 +503,7 @@ class GoodsAction extends CommonAction{
         $items_id = M('TpSpecGoodsPrice')->where('goods_id = '.$goods_id)->getField("GROUP_CONCAT(`key` SEPARATOR '_') AS items_id");
         $items_ids = explode('_', $items_id);       
         
-        // 获取商品规格图片                
+        // 获取工作规格图片                
         if($goods_id)
         {
            $specImageList = M('TpSpecImage')->where("goods_id = $goods_id")->getField('spec_image_id,src');                 
@@ -516,7 +516,7 @@ class GoodsAction extends CommonAction{
     }    
 
      /**
-     * 动态获取商品规格输入框 根据不同的数据返回不同的输入框
+     * 动态获取工作规格输入框 根据不同的数据返回不同的输入框
      */    
     public function ajaxGetSpecInput(){     
          
@@ -527,7 +527,7 @@ class GoodsAction extends CommonAction{
 
      /**
      * 获取 规格的 笛卡尔积
-     * @param $goods_id 商品 id     
+     * @param $goods_id 工作 id     
      * @param $spec_arr 笛卡尔积
      * @return string 返回表格字符串
      */

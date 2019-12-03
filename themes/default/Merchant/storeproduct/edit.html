@@ -2,20 +2,20 @@
 
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">其他</a> > <a href="">便利店设置</a> > <a>商品管理</a></li>
+        <li><a href="#">其他</a> > <a href="">便利店设置</a> > <a>工作管理</a></li>
     </ul>
 </div>
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">商家添加商品</div>
+            <div class="left tuan_topser_l">商家添加工作</div>
         </div>
     </div> 
     <div class="tabnr_change show">
     	<form target="x-frame" action="<{:U('storeproduct/edit',array('product_id'=>$detail['product_id']))}>" method="post">
     	<table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="120"><p class="tuanfabu_t">商品名称：</p></td>
+                <td width="120"><p class="tuanfabu_t">工作名称：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[product_name]" value="<{$detail.product_name|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
                 </div></td>
@@ -77,7 +77,7 @@
             
             
             <tr>
-                    <td width="120"><p class="tuanfabu_t">商品图片：</p></td>
+                    <td width="120"><p class="tuanfabu_t">工作图片：</p></td>
                  <td><div class="tuanfabu_nr">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[photo]" value="<{$detail.photo}>" id="data_photo" />
@@ -116,14 +116,14 @@
                 <td width="120"><p class="tuanfabu_t">原价：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[cost_price]" value="<{:round($detail['cost_price']/100,2)}>" class="tuanfabu_int tuanfabu_intw2" />
-                <code>商品原价，只是在前台起展示作用，无其他作用，建议填写比卖价高出30%，比如回锅肉售价20元一份，原价可填写26元以上</code>
+                <code>工作原价，只是在前台起展示作用，无其他作用，建议填写比卖价高出30%，比如回锅肉售价20元一份，原价可填写26元以上</code>
                 </div></td>
             </tr>
              <tr>
                 <td width="120"><p class="tuanfabu_t">卖价：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[price]" value="<{:round($detail['price']/100,2)}>" class="tuanfabu_int tuanfabu_intw2" />
-                <code>商品实际销售价格</code>
+                <code>工作实际销售价格</code>
                 </div></td>
             </tr>
             <if condition="$CONFIG['store']['tableware_price_max']">

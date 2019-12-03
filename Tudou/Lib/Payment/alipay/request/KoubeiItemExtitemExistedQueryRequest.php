@@ -8,7 +8,7 @@
 class KoubeiItemExtitemExistedQueryRequest
 {
 	/** 
-	 * 查询商品编码对应的商品是否存在
+	 * 查询工作编码对应的工作是否存在
 	 **/
 	private $bizContent;
 

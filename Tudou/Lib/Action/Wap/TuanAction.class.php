@@ -241,10 +241,10 @@ class TuanAction extends CommonAction{
 		}
 		$tuan_id = I('tuan_id', 0, 'trim,intval');
         if(!($detail = D('Tuan')->find($tuan_id))){
-			$this->ajaxReturn(array('status' => 'error', 'msg' => '该商品不存在'));
+			$this->ajaxReturn(array('status' => 'error', 'msg' => '该工作不存在'));
         }
         if($detail['closed'] == 1 || $detail['end_date'] < TODAY){
-			$this->ajaxReturn(array('status' => 'error', 'msg' => '该商品已经结束'));
+			$this->ajaxReturn(array('status' => 'error', 'msg' => '该工作已经结束'));
         }
 		$num = I('num2',0,'trim,intval');
 		
@@ -265,7 +265,7 @@ class TuanAction extends CommonAction{
             $where['tuan_id'] = $tuan_id;
             $xdinfo = D('Tuanorder')->where($where)->order('order_id desc')->Field('order_id')->find();
             if($xdinfo){
-				$this->ajaxReturn(array('status' => 'error', 'msg' => '该商品只允许购买一次'));
+				$this->ajaxReturn(array('status' => 'error', 'msg' => '该工作只允许购买一次'));
             }
         }
         if($detail['xiangou'] > 0){
@@ -282,7 +282,7 @@ class TuanAction extends CommonAction{
                 if($val['create_time'] >= $day_start && $val['create_time'] <= $day_end){
                     $order_num += $val['num'] + $num;
                     if($order_num > $detail['xiangou']){
-						$this->ajaxReturn(array('status' => 'error', 'msg' => '该商品每天每人限购' . $detail['xiangou'] . '份'));
+						$this->ajaxReturn(array('status' => 'error', 'msg' => '该工作每天每人限购' . $detail['xiangou'] . '份'));
                     }
                 }
             }
@@ -408,7 +408,7 @@ class TuanAction extends CommonAction{
                     $obj->add($insert);
                 }
                 D('Tuan')->updateCount($tuan['tuan_id'], 'sold_num');//更新卖出产品
-				D('Sms')->sms_tuan_user($this->uid,$order['order_id']);//团购商品通知用户
+				D('Sms')->sms_tuan_user($this->uid,$order['order_id']);//团购工作通知用户
                 D('Users')->prestige($this->uid, 'tuan');
                 D('Sms')->tuanTZshop($tuan['shop_id']);
        			D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,0);

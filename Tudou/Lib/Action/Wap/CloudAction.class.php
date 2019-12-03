@@ -73,7 +73,7 @@ class CloudAction extends CommonAction{
         $goods_id = (int) $_POST['goods_id'];
         $detail = D('Cloudgoods')->find($goods_id);
         if (empty($detail)) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该云购商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该云购工作不存在'));
         }
         $obj = D('Cloudgoods');
         $logs = D('Cloudlogs');
@@ -113,10 +113,10 @@ class CloudAction extends CommonAction{
         if ($goods_id = (int) $goods_id) {
             $obj = D('Cloudgoods');
             if (!($detail = $obj->find($goods_id))) {
-                $this->error('没有该商品');
+                $this->error('没有该工作');
             }
             if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-                $this->error('没有该商品');
+                $this->error('没有该工作');
             }
             $thumb = unserialize($detail['thumb']);
             $this->assign('thumb', $thumb);
@@ -142,7 +142,7 @@ class CloudAction extends CommonAction{
             $this->assign('detail', $detail);
             $this->display();
         } else {
-            $this->error('没有该商品');
+            $this->error('没有该工作');
         }
     }
 	

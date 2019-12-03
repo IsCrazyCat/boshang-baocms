@@ -8,7 +8,7 @@
 class KoubeiItemStateRequest
 {
 	/** 
-	 * 商品操作接口
+	 * 工作操作接口
 	 **/
 	private $bizContent;
 

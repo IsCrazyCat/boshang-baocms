@@ -266,7 +266,7 @@ function collect_store(fav_id,jstype,jsobj){
         }
     });
 }
-//收藏商品js
+//收藏工作js
 function collect_goods(fav_id,jstype,jsobj){
     $.get('index.php?act=index&op=login', function(result){
         if(result=='0'){
@@ -315,9 +315,9 @@ function load_cart_information(){
 		          	html+="<td class='price'><p>&yen;"+data[i]['price']+"×"+data[i]['num']+"</p><p><a href='javascript:void(0)' onClick='drop_topcart_item("+data[i]['storeid']+","+data[i]['specid']+");' style='color: #999;'>删除</a></p></td>";
 		          	html+="</tr>";
 		        }
-	         	html+="<tr><td colspan='3' class='no-border'><span class='all'>共<strong class='goods_num'>"+result.goods_all_num+"</strong>种商品   金额总计：<strong id='cart_amount'>&yen;"+result.goods_all_price+"</strong></span><span class='button' ><a href='"+SITEURL+"/index.php?act=cart' target='_top' title='结算商品' style='color: #FFF;' >结算商品</a></span></td></tr>";
+	         	html+="<tr><td colspan='3' class='no-border'><span class='all'>共<strong class='goods_num'>"+result.goods_all_num+"</strong>种工作   金额总计：<strong id='cart_amount'>&yen;"+result.goods_all_price+"</strong></span><span class='button' ><a href='"+SITEURL+"/index.php?act=cart' target='_top' title='结算工作' style='color: #FFF;' >结算工作</a></span></td></tr>";
 	      }else{
-	      	html="<div class='no-order'><span>您的购物车中暂无商品，赶快选择心爱的商品吧！</span><a href='"+SITEURL+"/index.php?act=cart' class='button' target='_top' title='查看购物车' style=' color: #FFF;' >查看购物车</a></div>";
+	      	html="<div class='no-order'><span>您的购物车中暂无工作，赶快选择心爱的工作吧！</span><a href='"+SITEURL+"/index.php?act=cart' class='button' target='_top' title='查看购物车' style=' color: #FFF;' >查看购物车</a></div>";
 	        }
 	        $("#top_cartlist").html(html);
 	   }
@@ -335,13 +335,13 @@ function drop_topcart_item(store_id, spec_id){
             if(result.quantity == 0){
             	$('.goods_num').html('0');
             	var html = '';
-            	html="<div class='no-order'><span>您的购物车中暂无商品，赶快选择心爱的商品吧！</span><a href='"+SITEURL+"/index.php?act=cart' class='button' target='_top' title='查看购物车' style=' color: #FFF;' >查看购物车</a></div>";
+            	html="<div class='no-order'><span>您的购物车中暂无工作，赶快选择心爱的工作吧！</span><a href='"+SITEURL+"/index.php?act=cart' class='button' target='_top' title='查看购物车' style=' color: #FFF;' >查看购物车</a></div>";
             	$("#top_cartlist").html(html);
             }
             else{
                 tr.remove();        //移除
                 amount_span.html(price_format(result.amount));  //刷新总费用
-                cart_goods_kinds.html(result.quantity);       //刷新商品种类
+                cart_goods_kinds.html(result.quantity);       //刷新工作种类
             }
         }else{
             alert(result.msg);

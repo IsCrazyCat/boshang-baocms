@@ -20,13 +20,13 @@ class OperateAction extends CommonAction
         //抢购退款中
         //商城
         $counts['goods'] = (int) D('Goods')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count();
-        //总商品
+        //总工作
         $counts['goods_audit'] = (int) D('Goods')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'audit' => 0))->count();
-        //待审核商品
+        //待审核工作
         $counts['goods_order'] = (int) D('Order')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count();
-        //总商品清单
+        //总工作清单
         $counts['totay_goods_order'] = (int) D('Order')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time)), 'status' => array('EGT', 0)))->count();
-        //今日商品订单
+        //今日工作订单
         $counts['goods_order_one'] = (int) D('Order')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'status' => 1))->count();
         //1代表已经付
         $counts['goods_order_two'] = (int) D('Order')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'status' => 2))->count();

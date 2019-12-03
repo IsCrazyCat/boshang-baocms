@@ -8,7 +8,7 @@
 class KoubeiItemBatchqueryRequest
 {
 	/** 
-	 * 口碑商品查询
+	 * 口碑工作查询
 	 **/
 	private $bizContent;
 

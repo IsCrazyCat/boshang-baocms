@@ -128,10 +128,10 @@ class CloudgoodsAction extends CommonAction
         }
         $data['details'] = securityeditorhtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品详情不能为空');
+            $this->tuError('工作详情不能为空');
         }
         if ($words = d('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品详情含有敏感词：' . $words);
+            $this->tuError('工作详情含有敏感词：' . $words);
         }
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
@@ -143,10 +143,10 @@ class CloudgoodsAction extends CommonAction
         $obj = d('Cloudgoods');
         $goods_id = (int) $goods_id;
         if (empty($goods_id)) {
-            $this->error('请选择要参拍的商品');
+            $this->error('请选择要参拍的工作');
         }
         if (!($detail = $obj->find($goods_id))) {
-            $this->error('请选择要参拍的商品');
+            $this->error('请选择要参拍的工作');
         }
         if ($this->isPost()) {
             $data = $this->editCheck();
@@ -190,7 +190,7 @@ class CloudgoodsAction extends CommonAction
 			
             $obj = d('Cloudgoods');
             if (!($detail = $obj->find($goods_id))) {
-                $this->error('请选择要编辑的商品');
+                $this->error('请选择要编辑的工作');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -217,7 +217,7 @@ class CloudgoodsAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->error('请选择要编辑的商品');
+            $this->error('请选择要编辑的工作');
         }
     }
     private function editCheck()
@@ -277,10 +277,10 @@ class CloudgoodsAction extends CommonAction
         }
         $data['details'] = securityeditorhtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品详情不能为空');
+            $this->tuError('工作详情不能为空');
         }
         if ($words = d('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品详情含有敏感词：' . $words);
+            $this->tuError('工作详情含有敏感词：' . $words);
         }
         return $data;
     }
@@ -310,7 +310,7 @@ class CloudgoodsAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', u('cloudgoods/index'));
             }
-            $this->tuError('请选择要删除的商品');
+            $this->tuError('请选择要删除的工作');
         }
     }
     public function audit($goods_id = 0)
@@ -348,7 +348,7 @@ class CloudgoodsAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功！' . $error . '条失败', u('cloudgoods/index'));
             }
-            $this->tuError('请选择要审核的商品');
+            $this->tuError('请选择要审核的工作');
         }
     }
 }

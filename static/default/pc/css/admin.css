@@ -190,7 +190,7 @@ body{padding:0px 0 20px 0;margin:0;}
 .smtQrIpt{font-size: 16px !important;line-height: 40px;color: #FFF;background:#09F;background-image: none;width: 120px;border-top-width: 0px;border-right-width: 0px;border-bottom-width: 0px;border-left-width: 0px;border-top-style: none;border-right-style: none;border-bottom-style: none;border-left-style: none;cursor: pointer;font-family: "微软雅黑" !important;}
 .cancel{margin-top:20px;}
 
-/*商城商品类别*/
+/*商城工作类别*/
 .main-cate .jsglNr .title{height: 48px;font-size: 16px;line-height: 48px;padding-left: 20px;font-family: "宋体";color: #808080;background-color: #fbfbfb;border: 1px solid #dbdbdb;}
 .main-cate .jsglNr .selectNr{height:60px;background-color: #FFF;}
 .main-cate .jsglNr .selectNr .left{/*height: 40px;*/background-color: #FFF;}

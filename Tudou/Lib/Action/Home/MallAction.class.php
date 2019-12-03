@@ -587,8 +587,8 @@ class MallAction extends CommonAction{
             $num = (int) ($counts / 5) + 1;
         }
   
-        //商品多属性      
-        $filter_spec = $this->get_spec($goods_id); //获取商品规格参数        
+        //工作多属性
+        $filter_spec = $this->get_spec($goods_id); //获取工作规格参数
         $goodsss=M('Goods')->find($goods_id);
         $goodsss[mall_price]=$goodsss[mall_price]/100;
         $spec_goods_price  = M('TpSpecGoodsPrice')->where("goods_id = $goods_id")->getField("key,price,store_count"); // 规格 对应 价格 库存表
@@ -644,9 +644,9 @@ class MallAction extends CommonAction{
     }
     
   
-   //获取商品规格
+   //获取工作规格
    public function get_spec($goods_id){
-        //商品规格 价钱 库存表 找出 所有 规格项id
+        //工作规格 价钱 库存表 找出 所有 规格项id
         $keys = M('TpSpecGoodsPrice')->where("goods_id = $goods_id")->getField("GROUP_CONCAT(`key` SEPARATOR '_') ");
         $filter_spec = array();
    
@@ -691,13 +691,13 @@ class MallAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择产品'));
         }
         if (!($detail = D('Goods')->find($goods_id))) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作不存在'));
         }
         if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作不存在'));
         }
         if ($detail['end_date'] < TODAY) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品已经过期，暂时不能购买'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作已经过期，暂时不能购买'));
         }
         if ($detail['num'] <= 0) {
             $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！没有库存了！'));
@@ -719,9 +719,9 @@ class MallAction extends CommonAction{
         	 $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该规格库存不足了，少买点吧！'));
         }
         if ($detail['num'] <= $num) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该商品只剩' . $detail['num'] . '件了，少买点吧！'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该工作只剩' . $detail['num'] . '件了，少买点吧！'));
         }
-        $goods_spec_v = $goods_id.'|'.$spec_key; //重新组合那个 商品id和那个啥规格键
+        $goods_spec_v = $goods_id.'|'.$spec_key; //重新组合那个 工作id和那个啥规格键
             if (isset($goods_spec[$goods_spec_v])) {
 	            $goods_spec[$goods_spec_v] += $num;
 	        } else {
@@ -737,13 +737,13 @@ class MallAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择产品'));
         }
         if (!($detail = D('Goods')->find($goods_id))) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作不存在'));
         }
         if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作不存在'));
         }
         if ($detail['end_date'] < TODAY) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品已经过期，暂时不能购买'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作已经过期，暂时不能购买'));
         }
         if ($detail['num'] <= 0) {
             $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！没有库存了！'));
@@ -765,9 +765,9 @@ class MallAction extends CommonAction{
         	 $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该规格库存不足了，少买点吧！'));
          }
         if ($detail['num'] <= $num) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该商品只剩' . $detail['num'] . '件了，少买点吧！'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该工作只剩' . $detail['num'] . '件了，少买点吧！'));
         }
-        $goods_spec_v = $goods_id.'|'.$spec_key; //重新组合那个 商品id和那个啥规格键
+        $goods_spec_v = $goods_id.'|'.$spec_key; //重新组合那个 工作id和那个啥规格键
             if (isset($goods_spec[$goods_spec_v])) {
 	            $goods_spec[$goods_spec_v] += $num;
 	        } else {
@@ -784,13 +784,13 @@ class MallAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择产品'));
         }
         if (!($detail = D('Goods')->find($goods_id))) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作不存在'));
         }
         if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作不存在'));
         }
         if ($detail['end_date'] < TODAY) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品已经过期，暂时不能购买'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作已经过期，暂时不能购买'));
         }
         if ($detail['num'] <= 0) {
             $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！没有库存了！'));
@@ -812,9 +812,9 @@ class MallAction extends CommonAction{
         	    $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该规格库存不足了，少买点吧！'));
         	}
         if ($detail['num'] <= $num) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该商品只剩' . $detail['num'] . '件了，少买点吧！'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '亲！该工作只剩' . $detail['num'] . '件了，少买点吧！'));
         }
-        $goods_spec_v = $goods_id.'|'.$spec_key; //重新组合那个 商品id和那个啥规格键
+        $goods_spec_v = $goods_id.'|'.$spec_key; //重新组合那个 工作id和那个啥规格键
             if (isset($goods_spec[$goods_spec_v])) {
 	            $goods_spec[$goods_spec_v] += $num;
 	        } else {
@@ -888,7 +888,7 @@ class MallAction extends CommonAction{
             if ($val['closed'] != 0 || $val['audit'] != 1 || $val['end_date'] < TODAY) {
                 unset($goods[$key]);
             }         
-	        //把这个商品的规格存进数组
+	        //把这个工作的规格存进数组
             $goods[$k][$key][sky]=$spec_arr[$k][1]; //把后面的规格存进来
             $goods[$k][$key]['goods_spec'] = $spec_keys[$k];//整个存一下
             if(!empty($goods[$k][$key][sky])){
@@ -911,12 +911,12 @@ class MallAction extends CommonAction{
         $is_spec_stock = is_spec_stock($val[goods_id],$val[sky],$num[$val['goods_spec']]);
        	if(!$is_spec_stock){
        	 	$spec_one_num =  get_one_spec_stock($val[goods_id],$val[sky]);
-       	 	$msg = '亲！规格为<' . $val['key_name']. '>的商品库存不够了,只剩' .  $spec_one_num . '件了！';	
+       	 	$msg = '亲！规格为<' . $val['key_name']. '>的工作库存不够了,只剩' .  $spec_one_num . '件了！';
        	    $this->ajaxReturn(array('status' => 'error', 'msg' => $msg));
         }
 		
 	    if ($val['num'] < $num[$val['goods_spec']]) {
-	      	$msg ='亲！商品<' . $val['title'] . '>库存不够了,只剩' . $val['num'] . '件了！';
+	      	$msg ='亲！工作<' . $val['title'] . '>库存不够了,只剩' . $val['num'] . '件了！';
         	$this->ajaxReturn(array('status' => 'error', 'msg' => $msg));
 	    }
 	   }
@@ -990,7 +990,7 @@ class MallAction extends CommonAction{
             if ($val['closed'] != 0 || $val['audit'] != 1 || $val['end_date'] < TODAY) {
                 unset($goods[$key]);
             }
-            //把这个商品的规格存进数组
+            //把这个工作的规格存进数组
             $goods[$k][$key][sky]=$spec_arr[$k][1]; //把后面的规格存进来 148_150
              $goods[$k][$key]['goods_spec'] = $spec_keys[$k];//整个存一下
             if(!empty($goods[$k][$key][sky])){
@@ -1012,11 +1012,11 @@ class MallAction extends CommonAction{
          $is_spec_stock = is_spec_stock($val[goods_id],$val[sky],$num[$val['goods_spec']]);
        	 if(!$is_spec_stock){
        	 	$spec_one_num =  get_one_spec_stock($val[goods_id],$val[sky]);
-        	    $this->tuError('亲！规格为<' . $val['key_name']. '>的商品库存不够了,只剩' . $spec_one_num . '件了');
+        	    $this->tuError('亲！规格为<' . $val['key_name']. '>的工作库存不够了,只剩' . $spec_one_num . '件了');
         	}
 		
 	        if ($val['num'] < $num[$val['goods_spec']]) {
-	            $this->tuError('亲！商品<' . $val['title'] . '>库存不够了,只剩' . $val['num'] . '件了');
+	            $this->tuError('亲！工作<' . $val['title'] . '>库存不够了,只剩' . $val['num'] . '件了');
 	        }
 	   }
 	   
@@ -1033,7 +1033,7 @@ class MallAction extends CommonAction{
 				$price = $val['mall_price'] * $num[$val['goods_id']];
 				$dan_price = $val['mall_price'] * $num[$val['goods_id']];//总费用
 				$use_price = $val['use_integral'] * $num[$val['goods_id']];//积分抵现多少钱
-				//返回单个商品运费
+				//返回单个工作运费
 				$order_express_price = D('Ordergoods')->calculation_express_price($this->uid, $val['kuaidi_id'], $num[$val['goods_id']], $val['goods_id'],1);
 				$need_pay = $dan_price - $use_price;//实际支付金额
 				$js_price = $val['settlement_price'] * $num[$val['goods_id']];
@@ -1307,10 +1307,10 @@ class MallAction extends CommonAction{
          $is_spec_stock = is_spec_stock($v[goods_id],$v[key],$v['num']);
        	 if(!$is_spec_stock){
        	 	$spec_one_num =  get_one_spec_stock($v[goods_id],$v[key]);
-        	     $this->tuError('亲！规格为<' . $v['key_name']. '>的商品库存不够了,只剩' . $spec_one_num . '件了');
+        	     $this->tuError('亲！规格为<' . $v['key_name']. '>的工作库存不够了,只剩' . $spec_one_num . '件了');
         	}
             if ($goods_num['num'] < $v['num']) {
-                $this->tuSuccess('商品ID' . $v['goods_id'] . '库存不足无法付款', U('home/mall/index'));
+                $this->tuSuccess('工作ID' . $v['goods_id'] . '库存不足无法付款', U('home/mall/index'));
             }
         }
         return false;

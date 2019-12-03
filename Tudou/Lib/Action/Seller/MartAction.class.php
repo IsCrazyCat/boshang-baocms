@@ -444,13 +444,13 @@ class MartAction extends CommonAction{
         $goods_id = (int) $goods_id;
         $obj = D('Goods');
         if (empty($goods_id)) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品信息不存在！'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作信息不存在！'));
         }
         if (!($detail = D('Goods')->find($goods_id))) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品信息不存在！'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作信息不存在！'));
         }
         if ($detail['shop_id'] != $this->shop_id) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '不要操作别人的商品'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '不要操作别人的工作'));
         }
         $obj->save(array('goods_id' => $goods_id, 'closed' => 1));
         $this->ajaxReturn(array('status' => 'success', 'msg' => '恭喜您删除成功'));

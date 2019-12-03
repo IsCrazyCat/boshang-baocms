@@ -295,9 +295,24 @@
              <td class="rgTdBt"><input type="text" name="data[price]" value="<{$detail.price|default=''}>" class="manageInput" />
 
             </td>
-        </tr><tr>
+        </tr>
+        <tr>
             <td class="lfTdBt">VIP薪资：</td>
              <td class="rgTdBt"><input type="text" name="data[mall_price]" value="<{$detail.mall_price|default=''}>" class="manageInput" />
+
+            </td>
+        </tr>
+        <tr>
+            <td class="lfTdBt">薪资单位：</td>
+            <td class="rgTdBt"><input type="text" name="data[price_unit]"
+                                      value="<{$detail.price_unit|default='元/小时'}>" class="manageInput"/>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="lfTdBt">每月薪资：</td>
+            <td class="rgTdBt"><input type="text" name="data[price_month]"
+                                      value="<{$detail.price_month}>" class="manageInput"/>
 
             </td>
         </tr>

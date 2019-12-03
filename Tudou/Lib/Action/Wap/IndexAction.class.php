@@ -7,8 +7,8 @@ class IndexAction extends CommonAction {
 
 //          $hot_jobs = D("Job")->where(["is_hot"=>'1','is_able'=>1])->limit(5)->order("job_order ASC")->select();
 //          $this->assign('hot_jobs',$hot_jobs);//热门工作
-        $goods = D('Goods')->where(array('audti'=>1,'closed'=>0))->limit(8)->select();
-        $this->assign('hot_jobs',$goods);
+        $goods = D('Goods')->where(array('audti'=>1,'closed'=>0,'end_date' =>  array('EGT', TODAY)))->limit(8)->select();
+        $this->assign('goods',$goods);
         $this->assign('news', $news = D('Article')->where(array( 'closed' => 0, 'audit' => 1))->order(array('create_time' => 'desc'))->limit(0, 5)->select());
 		$maps = array('status' => 2,'closed'=>0);
 		$this->assign('nav',$nav = D('Navigation') ->where($maps)->order(array('orderby' => 'asc'))->select());

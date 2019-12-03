@@ -149,19 +149,19 @@
                     <td class="w50"><input type="checkbox" class="checkAll" rel="shop_id" /></td>
                     <td class="w50">ID</td>
                     <td>商家名称</td>
-                    <td>商家OGO</td>
+                    <td>商家LOGO</td>
                     <td>商家电话</td>
                     <td>管理者昵称</td>
                     <td>商家地区</td>
                     <td>商铺分类</td>
-                    <td>商铺等级</td>
-                    <td>默认配送费</td>
-                    <td>结算佣金</td>
-                    <td>商家短信数量</td>
-                    <td>粉丝数量</td>
-                    <td>点赞数量</td>
+<!--                    <td>商铺等级</td>-->
+<!--                    <td>默认配送费</td>-->
+<!--                    <td>结算佣金</td>-->
+<!--                    <td>商家短信数量</td>-->
+<!--                    <td>粉丝数量</td>-->
+<!--                    <td>点赞数量</td>-->
                     <td>入住时间</td>
-                    <td>已付入住费用</td>
+<!--                    <td>已付入住费用</td>-->
                     <td>到期时间</td>
                     <td class="w200">操作</td>
                 </tr>
@@ -177,20 +177,20 @@
                         <{$var['city']['name']}>-<{$var['area']['area_name']}>-<{$var['business']['business_name']}>
                         </td>
                         <td><{$cates[$var['cate_id']]['cate_name']}></td>
-                        <td><if condition="!empty($var['grade_id'])"><{$grade[$var['grade_id']]['grade_name']}><else/>暂无等级</if></td>    
-                        <td style="color:#00F">&yen;<{:round($var['express_price']/100,2)}>元</td>
-                        <td style="color:#F00">
-                            <if condition="$var['commission'] eq 0">
-                                未设置佣金
-                            <else/>
-                                <{:round($var['commission']/100,2)}>%
-                            </if>
-                        </td>
-                        <td style="color:#F00"><{$var.sms}>条</td>
-                        <td><{$var.fans_num}></td>
-                        <td><{$var.zan_num}></td>
+<!--                        <td><if condition="!empty($var['grade_id'])"><{$grade[$var['grade_id']]['grade_name']}><else/>暂无等级</if></td>    -->
+<!--                        <td style="color:#00F">&yen;<{:round($var['express_price']/100,2)}>元</td>-->
+<!--                        <td style="color:#F00">-->
+<!--                            <if condition="$var['commission'] eq 0">-->
+<!--                                未设置佣金-->
+<!--                            <else/>-->
+<!--                                <{:round($var['commission']/100,2)}>%-->
+<!--                            </if>-->
+<!--                        </td>-->
+<!--                        <td style="color:#F00"><{$var.sms}>条</td>-->
+<!--                        <td><{$var.fans_num}></td>-->
+<!--                        <td><{$var.zan_num}></td>-->
                         <td><{$var.create_time|date='Y-m-d',###}></td>
-                        <td style="color:#F00">&yen;<{:round($var['shop_apply_prrice']/100,2)}> 元</td>
+<!--                        <td style="color:#F00">&yen;<{:round($var['shop_apply_prrice']/100,2)}> 元</td>-->
                         <td><{$var.end_date}></td>
                         
                         <td class="w150">
@@ -201,63 +201,63 @@
                             </eq> 
                             
                             
-                            <eq name="var.is_ele_pei" value="0">
-                              <{:BA('shop/is_ele_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通外卖配送','act','remberBtn_small')}>
-                            <else/>
-                              <{:BA('shop/is_ele_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消外卖配送','act','remberBtn_small_quxiao')}>
-                            </eq> 
+<!--                            <eq name="var.is_ele_pei" value="0">-->
+<!--                              <{:BA('shop/is_ele_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通外卖配送','act','remberBtn_small')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/is_ele_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消外卖配送','act','remberBtn_small_quxiao')}>-->
+<!--                            </eq> -->
                             
-                            <eq name="var.is_market_pei" value="0">
-                              <{:BA('shop/is_market_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通菜市场配送','act','remberBtn_small')}>
-                            <else/>
-                              <{:BA('shop/is_market_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消菜市场配送','act','remberBtn_small_quxiao')}>
-                            </eq> 
+<!--                            <eq name="var.is_market_pei" value="0">-->
+<!--                              <{:BA('shop/is_market_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通菜市场配送','act','remberBtn_small')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/is_market_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消菜市场配送','act','remberBtn_small_quxiao')}>-->
+<!--                            </eq> -->
                             
-                            <eq name="var.is_store_pei" value="0">
-                              <{:BA('shop/is_store_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通便利店配送','act','remberBtn_small')}>
-                            <else/>
-                              <{:BA('shop/is_store_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消便利店配送','act','remberBtn_small_quxiao')}>
-                            </eq> 
-                            
-                            <eq name="var.is_goods_pei" value="0">
-                              <{:BA('shop/is_goods_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通商城配送','act','remberBtn_small')}>
-                            <else/>
-                              <{:BA('shop/is_goods_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消商城配送','act','remberBtn_small_quxiao')}>
-                            </eq> 
-                            
-                            <eq name="var.is_goods_backers" value="0">
-                              <{:BA('shop/is_goods_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通商城推手','act','remberBtn_small')}>
-                            <else/>
-                              <{:BA('shop/is_goods_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'关闭商城推手','act','remberBtn_small_quxiao')}>
-                            </eq> 
-                            
-                           <eq name="var.is_ele_backers" value="0">
-                              <{:BA('shop/is_ele_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通外卖推手','act','remberBtn_small')}>
-                            <else/>
-                              <{:BA('shop/is_ele_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'关闭外卖推手','act','remberBtn_small_quxiao')}>
-                            </eq> 
-                            
-                           <eq name="var.is_biz" value="1">
-                              <{:BA('shop/biz',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消黄页','act','remberBtn_small_quxiao')}>
-                            <else/>
-                              <{:BA('shop/biz',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通黄页','act','remberBtn_small')}>
-                            </eq> 
-                            
-                            <eq name="var.is_online" value="0">
-                              <{:BA('shop/online',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通农村电商','act','remberBtn_small')}>
-                            <else/>
-                              <{:BA('shop/online',array("shop_id"=>$var["shop_id"],'p'=>$p),'关闭农村电商','act','remberBtn_small_quxiao')}>
-                            </eq>  
-                            
-                            <eq name="var.is_profit" value="1">
-                              <{:BA('shop/profit',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消分销','act','remberBtn_small_quxiao')}>
-                            <else/>
-                              <{:BA('shop/profit',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通分销','act','remberBtn_small')}>
-                            </eq>                 
+<!--                            <eq name="var.is_store_pei" value="0">-->
+<!--                              <{:BA('shop/is_store_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通便利店配送','act','remberBtn_small')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/is_store_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消便利店配送','act','remberBtn_small_quxiao')}>-->
+<!--                            </eq> -->
+<!--                            -->
+<!--                            <eq name="var.is_goods_pei" value="0">-->
+<!--                              <{:BA('shop/is_goods_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通商城配送','act','remberBtn_small')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/is_goods_pei',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消商城配送','act','remberBtn_small_quxiao')}>-->
+<!--                            </eq> -->
+<!--                            -->
+<!--                            <eq name="var.is_goods_backers" value="0">-->
+<!--                              <{:BA('shop/is_goods_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通商城推手','act','remberBtn_small')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/is_goods_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'关闭商城推手','act','remberBtn_small_quxiao')}>-->
+<!--                            </eq> -->
+<!--                            -->
+<!--                           <eq name="var.is_ele_backers" value="0">-->
+<!--                              <{:BA('shop/is_ele_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通外卖推手','act','remberBtn_small')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/is_ele_backers',array("shop_id"=>$var["shop_id"],'p'=>$p),'关闭外卖推手','act','remberBtn_small_quxiao')}>-->
+<!--                            </eq> -->
+<!--                            -->
+<!--                           <eq name="var.is_biz" value="1">-->
+<!--                              <{:BA('shop/biz',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消黄页','act','remberBtn_small_quxiao')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/biz',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通黄页','act','remberBtn_small')}>-->
+<!--                            </eq> -->
+<!--                            -->
+<!--                            <eq name="var.is_online" value="0">-->
+<!--                              <{:BA('shop/online',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通农村电商','act','remberBtn_small')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/online',array("shop_id"=>$var["shop_id"],'p'=>$p),'关闭农村电商','act','remberBtn_small_quxiao')}>-->
+<!--                            </eq>  -->
+<!--                            -->
+<!--                            <eq name="var.is_profit" value="1">-->
+<!--                              <{:BA('shop/profit',array("shop_id"=>$var["shop_id"],'p'=>$p),'取消分销','act','remberBtn_small_quxiao')}>-->
+<!--                            <else/>-->
+<!--                              <{:BA('shop/profit',array("shop_id"=>$var["shop_id"],'p'=>$p),'开通分销','act','remberBtn_small')}>-->
+<!--                            </eq>                 -->
         
                             <{:BA('shop/edit',array("shop_id"=>$var["shop_id"],'p'=>$p),'编辑','','remberBtn_small')}>
                             <{:BA('shop/delete',array("shop_id"=>$var["shop_id"],'p'=>$p),'删除','act','remberBtn_small_quxiao')}>
-                            <a target="_blank" class="remberBtn_small" href="<{:U('shop/login',array('shop_id'=>$var['shop_id']))}>">管理</a>
+<!--                            <a target="_blank" class="remberBtn_small" href="<{:U('shop/login',array('shop_id'=>$var['shop_id']))}>">管理</a>-->
                         </td>
                     </tr>
                 </foreach>

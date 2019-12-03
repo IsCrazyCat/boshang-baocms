@@ -8,7 +8,7 @@
 class KoubeiItemExtitemQueryRequest
 {
 	/** 
-	 * 单个商品查询接口
+	 * 单个工作查询接口
 	 **/
 	private $bizContent;
 

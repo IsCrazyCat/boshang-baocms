@@ -99,7 +99,7 @@
 </div>
 <script>
     document.getElementById('share-btn').onclick = function (ev2) {
-        location.href = '/zshare';
+        location.href = "<{:U('wap/api/qrcode', array('fuid'=>$MEMBER['user_id']))}>";
     };
 </script>
 </body>

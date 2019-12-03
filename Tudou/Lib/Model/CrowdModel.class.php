@@ -51,7 +51,7 @@ class CrowdModel extends CommonModel{
 		$Crowd = D('Crowd');
 		$Crowdtype = D('Crowdtype');
 		$Crowdlist = D('Crowdlist');
-		$detail = $Crowd->find($order['goods_id']);//商品信息		
+		$detail = $Crowd->find($order['goods_id']);//工作信息		
 		
 		if($detail['ltime'] <= TODAY){
 			 return false;//时间错误，这里要修正

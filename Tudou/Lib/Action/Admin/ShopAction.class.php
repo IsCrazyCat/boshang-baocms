@@ -359,9 +359,9 @@ class ShopAction extends CommonAction{
             $this->tuError('分类不能为空');
         }
 		$data['grade_id'] = (int) $data['grade_id'];
-        if(empty($data['grade_id'])){
-            $this->tuError('商家等级不能为空');
-        }
+//        if(empty($data['grade_id'])){
+//            $this->tuError('商家等级不能为空');
+//        }
         $data['city_id'] = (int) $data['city_id'];
         $data['area_id'] = (int) $data['area_id'];
         if(empty($data['area_id'])){
@@ -474,9 +474,9 @@ class ShopAction extends CommonAction{
             $this->tuError('分类不能为空');
         }
 		$data['grade_id'] = (int) $data['grade_id'];
-        if (empty($data['grade_id'])) {
-            $this->tuError('商家等级不能为空');
-        }
+//        if (empty($data['grade_id'])) {
+//            $this->tuError('商家等级不能为空');
+//        }
         $data['city_id'] = (int) $data['city_id'];
         $data['area_id'] = (int) $data['area_id'];
         if (empty($data['area_id'])) {
@@ -518,19 +518,19 @@ class ShopAction extends CommonAction{
         $data['near'] = htmlspecialchars($data['near']);
         $data['business_time'] = htmlspecialchars($data['business_time']);
 		$data['express_price'] = (int) ($data['express_price']*100);
-		if (empty($data['express_price'])) {
-            $this->tuError('配送费必须设置');
-        }
-		if ($data['express_price'] < 10) {
-            $this->tuError('配送费必须大于0.1元');
-        }
+//		if (empty($data['express_price'])) {
+//            $this->tuError('配送费必须设置');
+//        }
+//		if ($data['express_price'] < 10) {
+//            $this->tuError('配送费必须大于0.1元');
+//        }
 		$data['commission'] = (int) ($data['commission']*100);
-		if($data['commission'] < 0) {
-            $this->tuError('结算佣金不能小于0可以等于0');
-        }
-		if($data['commission'] >= 10000 ){
-            $this->tuError('结算佣金设置错误');
-        }
+//		if($data['commission'] < 0) {
+//            $this->tuError('结算佣金不能小于0可以等于0');
+//        }
+//		if($data['commission'] >= 10000 ){
+//            $this->tuError('结算佣金设置错误');
+//        }
         $data['orderby'] = (int) $data['orderby'];
 		$data['panorama_url'] = htmlspecialchars($data['panorama_url']);
         $data['lng'] = htmlspecialchars($data['lng']);

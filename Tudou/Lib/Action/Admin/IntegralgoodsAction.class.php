@@ -77,10 +77,10 @@ class IntegralgoodsAction extends CommonAction
         $data['exchange_num'] = (int) $data['exchange_num'];
         $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品介绍不能为空');
+            $this->tuError('工作介绍不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品介绍含有敏感词：' . $words);
+            $this->tuError('工作介绍含有敏感词：' . $words);
         }
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
@@ -91,7 +91,7 @@ class IntegralgoodsAction extends CommonAction
         if ($goods_id = (int) $goods_id) {
             $obj = D('Integralgoods');
             if (!($detail = $obj->find($goods_id))) {
-                $this->tuError('请选择要编辑的积分商品');
+                $this->tuError('请选择要编辑的积分工作');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -106,7 +106,7 @@ class IntegralgoodsAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的积分商品');
+            $this->tuError('请选择要编辑的积分工作');
         }
     }
     private function editCheck(){
@@ -141,10 +141,10 @@ class IntegralgoodsAction extends CommonAction
         $data['exchange_num'] = (int) $data['exchange_num'];
         $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品介绍不能为空');
+            $this->tuError('工作介绍不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品介绍含有敏感词：' . $words);
+            $this->tuError('工作介绍含有敏感词：' . $words);
         }
         $data['create_time'] = NOW_TIME;
         $data['create_ip'] = get_client_ip();
@@ -165,7 +165,7 @@ class IntegralgoodsAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('integralgoods/index'));
             }
-            $this->tuError('请选择要删除的积分商品');
+            $this->tuError('请选择要删除的积分工作');
         }
     }
     public function audit($goods_id = 0){
@@ -182,7 +182,7 @@ class IntegralgoodsAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('integralgoods/index'));
             }
-            $this->tuError('请选择要审核的积分商品');
+            $this->tuError('请选择要审核的积分工作');
         }
     }
 }

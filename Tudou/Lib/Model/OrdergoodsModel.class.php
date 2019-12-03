@@ -26,7 +26,7 @@ class OrdergoodsModel extends CommonModel {
     }
 	
 	
-   //第一次更新商品运费
+   //第一次更新工作运费
    public function calculation_express_price($uid,$kuaidi_id,$num,$goods_id,$pc_order) {
 		$obj = D('Paddress');
 		$addressCount = $obj->where(array('user_id' => $uid)) -> count();//统计客户的收货地址
@@ -46,7 +46,7 @@ class OrdergoodsModel extends CommonModel {
 			    $detail = $obj->where(array('user_id' => $uid,'default' => 1))->find();//找到默认地址
 			}
 		}
-	   return $this->replace_add_express_price($uid,$detail['id'],$num,$goods_id); //获得运费，会员id，地址id，商品数量，商品id
+	   return $this->replace_add_express_price($uid,$detail['id'],$num,$goods_id); //获得运费，会员id，地址id，工作数量，工作id
     }
 	
 	 //商城万能打印接口
@@ -71,7 +71,7 @@ class OrdergoodsModel extends CommonModel {
 	}
 	
 	
-   //商城合并付款新运费，跟单个商品付款不重复，二开：286、099、981
+   //商城合并付款新运费，跟单个工作付款不重复，二开：286、099、981
    public function merge_update_express_price($uid,$type,$log_id,$address_id) {
 	    $log_id = (int)$log_id;
 		$Paymentlogs = D('Paymentlogs')->where(array('log_id'=>$log_id))->find();
@@ -136,14 +136,14 @@ class OrdergoodsModel extends CommonModel {
 			 $replace_order_express_price = $this->replace_add_express_price($uid,$address_id,$v['num'],$v['goods_id']);
 			 $Ordergoods->save(array('express_price' => $replace_order_express_price,'update_time'=>NOW_TIME), array('where' => array('id' => $v['id']))); 
 		   }
-		   $total_express_price = $Ordergoods->where('order_id =' . $order_id)->sum('express_price');//统计单个商品总运费
+		   $total_express_price = $Ordergoods->where('order_id =' . $order_id)->sum('express_price');//统计单个工作总运费
 		   //更新总表运费
 		   D('Order')->save(array('express_price' => $total_express_price,'address_id' => $address_id), array('where' => array('order_id' => $order_id))); 
 		}
 		return true; 
     }
 	
-	//更换地址更新商品运费
+	//更换地址更新工作运费
    public function replace_add_express_price($uid,$id,$num,$goods_id){
 	   
 	   $Paddress = D('Paddress')->where(array('user_id' => $uid, 'id' => $id))->find();
@@ -158,7 +158,7 @@ class OrdergoodsModel extends CommonModel {
 				
 				 if($num == 1){
 					$reduce = $detail['weight'] - 1000;
-					if($reduce >= 1){//如果大于1KG，只收首重费，比如商品重量1200g-1000g=200g
+					if($reduce >= 1){//如果大于1KG，只收首重费，比如工作重量1200g-1000g=200g
 						$weight = $detail['weight'] - 1000; //返回200g
 					}else{
 						$weight = 0; //返回0g
@@ -178,7 +178,7 @@ class OrdergoodsModel extends CommonModel {
 				return 0; //没找到运费
 			}
 	   }
-	   return 0; //商品不开启配送费
+	   return 0; //工作不开启配送费
     }
 	
 }

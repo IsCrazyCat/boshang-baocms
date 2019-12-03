@@ -4,7 +4,7 @@ class GoodsAction extends CommonAction{
 	
 	
 	
-	//商品列表
+	//工作列表
 	public function StoreGoodList(){
 		$shop_id = I('store_id','','trim');
 		$obj = D('Goods');
@@ -28,7 +28,7 @@ class GoodsAction extends CommonAction{
         exit($json_str); 
 	}
 	
-	//获取商品列表图片开始
+	//获取工作列表图片开始
 	public function getGoodsPics($goods_id){
 		$list = D('Goodsphoto')->getPics($goods_id);
 		foreach($list as $k => $val){
@@ -41,7 +41,7 @@ class GoodsAction extends CommonAction{
 	
 	
 	public function getSpec($goods_id){
-		$list = M('TpSpecGoodsPrice')->where(array('goods_id'=>$goods_id))->select(); //获取商品规格参数     
+		$list = M('TpSpecGoodsPrice')->where(array('goods_id'=>$goods_id))->select(); //获取工作规格参数     
         foreach($list as $k => $val){
 			$list[$k]['spec_id'] = $val['key'];
 			$list[$k]['spec_name'] = $val['key_name'];
@@ -49,7 +49,7 @@ class GoodsAction extends CommonAction{
         return $list;
    }
 	
-	//商品详情
+	//工作详情
 	public function GoodInfo(){
 		$goods_id = I('id','','trim');
 		$detail = D('Goods')->find($goods_id);
@@ -59,7 +59,7 @@ class GoodsAction extends CommonAction{
 		$detail['lb_imgs'] = config_weixin_img($detail['photo']);			
 		$detail['imgs'] = $this->getGoodsPics($detail['goods_id']);
 		$detail['detail'] = cleanhtml($detail['details']);
-		$res = $this->getSpec($goods_id); //获取商品规格参数     
+		$res = $this->getSpec($goods_id); //获取工作规格参数     
 		$data['good'] = $detail;
 	    $data['spec'] = $res ;
 	    echo json_encode($data);
@@ -143,7 +143,7 @@ class GoodsAction extends CommonAction{
       	pdo_update('zhtc_store',array('wallet +='=>$order['money']));
       	$data['store_id']=$order['store_id'];
       	$data['money']=$order['money'];
-      	$data['note']='商品订单';
+      	$data['note']='工作订单';
       	$data['type']=1;
         $data['time']=date("Y-m-d H:i:s");
         pdo_insert('zhtc_store_wallet',$data);

@@ -359,7 +359,7 @@ class MarketorderModel extends CommonModel {
 	}
 
 	
-	//订单导出获取订单的商品信息
+	//订单导出获取订单的工作信息
 	public function get_export_market_order_product($order_id) {	
    	  $Marketorderproduct = D('Marketorderproduct')->where(array('order_id'=>$order_id))->select();
 	  foreach ($Marketorderproduct as $k => $v) {

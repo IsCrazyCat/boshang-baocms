@@ -9,7 +9,7 @@
 <div class="top-back">
 	<a class="top-addr" href="<{:u('mart/index')}>"><i class="iconfont icon-angle-left"></i></a>
 </div>
-<div class="top-title">编辑商品</div>
+<div class="top-title">编辑工作</div>
 <div class="top-share">
 	<a href="<{:u('mart/goodscate')}>" class="top-addr icon-plus">+分类</a>
 </div>
@@ -170,7 +170,7 @@ table{background-color:transparent}
 	<div class="blank-10 bg border-top"></div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">商品名称：</span>
+			<span class="x3">工作名称：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[title]" value="<{$detail.title|default=''}>" />
 			</span>
@@ -186,7 +186,7 @@ table{background-color:transparent}
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">商品库存：</span>
+			<span class="x3">工作库存：</span>
 			<span class="x9">
 			<input type="text" class="text-input" name="data[num]" value="<{$detail.num|default=''}>" />
 			</span>
@@ -208,9 +208,9 @@ table{background-color:transparent}
 	</div>
 	<div class="row">
 		<div class="line">
-			<span class="x3">商品重量：</span>
+			<span class="x3">工作重量：</span>
 			<span class="x9">
-			<input type="text" placeholder="商品克数" class="text-input" name="data[weight]" value="<{$detail.weight|default=''}>" />
+			<input type="text" placeholder="工作克数" class="text-input" name="data[weight]" value="<{$detail.weight|default=''}>" />
 			</span>
 		</div>
 	</div>
@@ -230,7 +230,7 @@ table{background-color:transparent}
 	<!--二开结束-->
 	<div class="row">
 		<div class="line">
-			<span class="x3">商品分类</span>
+			<span class="x3">工作分类</span>
 			<span class="x4">
 			<select name="parent_id" id="parent_id" class="text-select">
 				<option value="0" selected="selected">请选择</option>
@@ -296,10 +296,10 @@ table{background-color:transparent}
     
     <div class="row">
 		<div class="line">
-			<span class="x3">商品规格：</span>
+			<span class="x3">工作规格：</span>
 			<span class="x9">
 			<select name="data[shoplx]" id="spec_type" class="form-control text-input" style="width:250px;">
-                <option value="0">选择商品规格</option>
+                <option value="0">选择工作规格</option>
                    <foreach name="goodsType" item="vo" key="k" >
                    <option value="<{$vo.id}>"<if condition="$goodsInfo[shoplx] eq $vo[id]"> selected="selected" </if> ><{$vo.name}></option>
                    </foreach>                                        
@@ -317,15 +317,15 @@ table{background-color:transparent}
     
      <div class="row">
 		<div class="line">
-			<span class="x12">商品属性：</span>
+			<span class="x12">工作属性：</span>
 			<span class="x12">
             
             <table class="table table-bordered" id="goods_attr_table">                                
                 <tr>
-                        <td>商品属性:</td>
+                        <td>工作属性:</td>
                         <td>                                        
                           <select name="goods_type" id="goods_type" class="form-control spec_type">
-                                <option value="0">选择商品属性</option>
+                                <option value="0">选择工作属性</option>
                                 <foreach name="goodsType" item="vo" key="k">
                                    <option value="<{$vo.id}>" <if condition="$goodsInfo[goods_type] eq $vo[id]"> selected="selected" </if> ><{$vo.name}></option>
                                 </foreach>                                      
@@ -429,7 +429,7 @@ table{background-color:transparent}
 
 	<div class="blank-10 bg"></div>
 	<div class="line border-bottom">
-		<textarea class="form-content1" name="data[details]" placeholder="添加商品详情，建议不超过200字，如需上传文章详情图，请到使用电脑编辑！"><{$detail.details}></textarea>
+		<textarea class="form-content1" name="data[details]" placeholder="添加工作详情，建议不超过200字，如需上传文章详情图，请到使用电脑编辑！"><{$detail.details}></textarea>
 	</div>
 	<div class="blank-10 bg"></div>
     
@@ -438,7 +438,7 @@ table{background-color:transparent}
 	<div class="container">
 		<div class="blank-30">
 		</div>
-		<button type="submit" class="button button-block button-big bg-dot">修改商品</button>
+		<button type="submit" class="button button-block button-big bg-dot">修改工作</button>
 		<div class="blank-30">
 		</div>
 	</div>

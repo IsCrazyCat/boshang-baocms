@@ -136,7 +136,7 @@
             <i class="icon-daohang iconfont"></i><{:tu_msubstr($city_name,0,4,false)}></a>
     </div>
     <div class="top-search" style="display:none;">
-        <form method="post" action="<{:U('all/index')}>">
+        <form method="post" action="<{:U('wap/mall/index')}>">
             <input name="keyword" placeholder="<{$CONFIG[other][wap_search_title]|default='输入关键字'}>"/>
             <button type="submit" class="iconfont icon-search"></button>
         </form>
@@ -173,20 +173,20 @@
 
 <div class="blank-10 bg"></div>
 <div id="jin-app-block-102" class="bg-white border-bottom cl">
-    <div class="jin-home-kx cl"><span class="k-new bg-red text-white">早知道</span>
-        <div id="index-notice" style="height:22px;line-height:22px;overflow:hidden;">
-            <ul class="clear">
-                <li class="bd clear">
-                    <a>今天：<{$today}></a>
-                    <foreach name="news" item="item">
-                        <a href="<{:U('news/detail',array('article_id'=>$item['article_id']))}>">
-                            <dt><{:tu_msubstr($item['title'],0,20,false)}></dt>
-                        </a>
-                    </foreach>
-                </li>
-            </ul>
-        </div>
-    </div>
+<!--    <div class="jin-home-kx cl"><span class="k-new bg-red text-white">早知道</span>-->
+<!--        <div id="index-notice" style="height:22px;line-height:22px;overflow:hidden;">-->
+<!--            <ul class="clear">-->
+<!--                <li class="bd clear">-->
+<!--                    <a>今天：<{$today}></a>-->
+<!--                    <foreach name="news" item="item">-->
+<!--                        <a href="<{:U('news/detail',array('article_id'=>$item['article_id']))}>">-->
+<!--                            <dt><{:tu_msubstr($item['title'],0,20,false)}></dt>-->
+<!--                        </a>-->
+<!--                    </foreach>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <script type="text/javascript">
         $(function () {
@@ -332,53 +332,37 @@
         <div class="items-tag">
             <img src="/static/default/wap/image/index/index-hot-job.png" />
         </div>
-        <foreach name="hot_jobs" item="v" index="index">
+        <foreach name="goods" item="v" index="index">
             <li>
-                <a href="<{:U('wap/Job/detail',array('job_id'=>$v.job_id))}>"
+                <a href="<{:U('wap/mall/detail',array('goods_id'=>$v['goods_id']))}>"
                    class="">
                     <div class="item-image">
-                        <img src="/static/default/wap/image/index/joblogo.jpg" width="100%">
+                        <img src="<{$v['photo']}>" width="100%">
                     </div>
                     <div class="item-inner">
                         <div>
-                            <p class="item-number" title="<{$v.job_name}>">
-                                <{$v.job_name}>
+                            <p class="item-number" title="<{$v.title}>">
+                                <{$v.title}>
                             </p>
                         </div>
                         <p class="index-item-subtitle">
-                            <{$v.job_tags}>
+                            <{$v.guige}>
                         </p>
                         <div class="item-price-row">
                             <p class="price-price" style="padding-bottom: 10px">
-                                <span><{$v.job_price_month}></span>
-                                <{$v.job_price_month_unit}>
+                                <span><{$v.price_month}></span>
+                                元/月
                             </p>
                         </div>
                         <div class="item-amount">
-                            <if condition = "$v.is_recruit eq 0">
-                                <p class="stop-mark">已停招</p>
-                                <else/>
-                                <p class="hot-mark ">
-                                    <if condition="$v.show_price_type lt 2">
-                                        工价
-                                        <else/>
-                                        补贴
-                                    </if>
-                                </p>
-                            </if>
-                            <if condition="$v.show_price_type eq 0">
-                                <p><{$v.job_price_hour}><{$v.job_price_hour_unit}></p>
-                                <elseif condition="$v.show_price_type eq 1"/>
-                                <p><{$v.job_price_day}><{$v.job_price_day_unit}></p>
-                                <elseif condition="$v.show_price_type eq 2"/>
-                                <p><{$v.job_subsidy_hour}><{$v.job_subsidy_hour_unit}></p>
-                                <elseif condition="$v.show_price_type eq 3"/>
-                                <p><{$v.job_subsidy_day}><{$v.job_subsidy_day_unit}></p>
-                                <elseif condition="$v.show_price_type eq 4"/>
-                                <p><{$v.job_subsidy_month}><{$v.job_subsidy_month_unit}></p>
-                                <else/>
-                                <p><{$v.job_price_hour}><{$v.job_price_hour_unit}></p>
-                            </if>
+                            <p class="hot-mark ">
+                                <if condition="$v.show_price_type lt 2">
+                                    工价
+                                    <else/>
+                                    补贴
+                                </if>
+                            </p>
+                            <p><{:round($v['price']/100,2)}><{$v['price_unit']}></p>
                         </div>
                     </div>
                 </a>
@@ -389,7 +373,7 @@
     <div style="margin-top: 15px;width: 80%;margin-left: 10%;">
         <ul>
             <a class="button button-block button-big bg-yellow text-center"
-               href="<{:U('job/index')}>">查看更多工作 <i class="iconfont icon-angle-right"></i></a>
+               href="<{:U('wap/mall/index')}>">查看更多工作 <i class="iconfont icon-angle-right"></i></a>
         </ul>
     </div>
     <div class="blank-10"></div>

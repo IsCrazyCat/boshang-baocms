@@ -67,7 +67,7 @@ class TuantopAction extends CommonAction { //按逻辑  instructions  和  detai
             if ($top_date = $this->_param('top_date', 'htmlspecialchars')) {
 				
 				if($top_date > $detail['end_date']){
-           		  	 $this->tuError('置顶时间不得大于商品结束时间');
+           		  	 $this->tuError('置顶时间不得大于工作结束时间');
             	}
 			
                 $data = array('tuan_id' => $tuan_id, 'top_date' => $top_date);
@@ -108,7 +108,7 @@ class TuantopAction extends CommonAction { //按逻辑  instructions  和  detai
         }
 		
 		if($top_date > $detail['end_date']){
-           $this->tuError('置顶时间不得大于商品结束时间');
+           $this->tuError('置顶时间不得大于工作结束时间');
         }else{
 			D('Tuan')->save(array('top_date'=>$top_date,'tuan_id'=>$tuan_id));
 			$this->tuSuccess('操作成功',U('tuantop/index'));	

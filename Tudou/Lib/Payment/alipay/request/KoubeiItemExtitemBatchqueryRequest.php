@@ -8,7 +8,7 @@
 class KoubeiItemExtitemBatchqueryRequest
 {
 	/** 
-	 * 商品列表查询接口
+	 * 工作列表查询接口
 	 **/
 	private $bizContent;
 

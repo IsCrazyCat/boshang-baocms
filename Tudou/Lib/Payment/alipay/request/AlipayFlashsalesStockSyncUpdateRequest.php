@@ -8,7 +8,7 @@
 class AlipayFlashsalesStockSyncUpdateRequest
 {
 	/** 
-	 * 商户的商品id
+	 * 商户的工作id
 	 **/
 	private $outProductId;
 	

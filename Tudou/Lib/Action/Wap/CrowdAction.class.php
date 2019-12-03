@@ -298,7 +298,7 @@ class CrowdAction extends CommonAction {
         }
 		$goods_id = (int) $goods_id;
         if (!$detail = D('Crowd')->find($goods_id)) {
-            $this->tuMsg('该商品不存在');
+            $this->tuMsg('该工作不存在');
         }
 		$data['uid'] = $this->uid;
 		$data['goods_id'] = $goods_id;
@@ -344,7 +344,7 @@ class CrowdAction extends CommonAction {
         }
 		$goods_id = (int) $goods_id;
         if (!$detail = D('Crowd')->find($goods_id)) {
-            $this->tuMsg('该商品不存在');
+            $this->tuMsg('该工作不存在');
         }
 		$data['uid'] = $this->uid;
 		$data['goods_id'] = $goods_id;

@@ -19,7 +19,7 @@ window.ele = {
             if (!cookies.isset('ele')) {
                 datas['num'] = 1;
                 goods = {};
-                //shop_id对应很多商品
+                //shop_id对应很多工作
                 goods[shop_id] = [];
                 goods[shop_id][0] = datas;
                 goods = cookies.stringify(goods);
@@ -37,7 +37,7 @@ window.ele = {
                 if(!goods[shop_id]){
                     datas['num'] = 0;
                     goods = {};
-                    //shop_id对应很多商品
+                    //shop_id对应很多工作
                     goods[shop_id] = [];
                     goods[shop_id][0] = datas;
                  
@@ -63,12 +63,12 @@ window.ele = {
                 }
                 //该店存在
                 if (is_in) {
-                    //商品存在
+                    //工作存在
                     if (is_here) {
                         if (window.ele.count() < 99) {
                             goods[shop_id][index]['num']++;
                         } else {
-                            layer.msg('购物车商品数已经满99,不能再添加商品');
+                            layer.msg('购物车工作数已经满99,不能再添加工作');
                         }
                         goods = cookies.stringify(goods);
                         cookies.set('ele', goods);
@@ -91,7 +91,7 @@ window.ele = {
     getcart: function () {
         with (window) {
             if (!cookies.isset('ele')) {
-                //购物车没商品
+                //购物车没工作
                 return false;
             }
             var goods = cookies.get('ele');
@@ -103,13 +103,13 @@ window.ele = {
         var goods = window.ele.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.ele.count() >= 99) {
-                        layer.msg('购物车商品数已经满99,不能再添加商品');
+                        layer.msg('购物车工作数已经满99,不能再添加工作');
                     } else {
                         goods[shop_id][i]['num']++;
                         goods = window.cookies.stringify(goods);
@@ -124,9 +124,9 @@ window.ele = {
         var goods = window.ele.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.ele.itemcount(product_id) <= 0) {
@@ -147,9 +147,9 @@ window.ele = {
         var goods = window.ele.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.ele.itemcount(product_id) <= 0) {
@@ -244,7 +244,7 @@ window.market = {
             if (!cookies.isset('market')) {
                 datas['num'] = 1;
                 goods = {};
-                //shop_id对应很多商品
+                //shop_id对应很多工作
                 goods[shop_id] = [];
                 goods[shop_id][0] = datas;
                 goods = cookies.stringify(goods);
@@ -262,7 +262,7 @@ window.market = {
                 if(!goods[shop_id]){
                     datas['num'] = 0;
                     goods = {};
-                    //shop_id对应很多商品
+                    //shop_id对应很多工作
                     goods[shop_id] = [];
                     goods[shop_id][0] = datas;
                  
@@ -288,12 +288,12 @@ window.market = {
                 }
                 //该店存在
                 if (is_in) {
-                    //商品存在
+                    //工作存在
                     if (is_here) {
                         if (window.market.count() < 99) {
                             goods[shop_id][index]['num']++;
                         } else {
-                            layer.msg('购物车商品数已经满99,不能再添加商品');
+                            layer.msg('购物车工作数已经满99,不能再添加工作');
                         }
                         goods = cookies.stringify(goods);
                         cookies.set('market', goods);
@@ -316,7 +316,7 @@ window.market = {
     getcart: function () {
         with (window) {
             if (!cookies.isset('market')) {
-                //购物车没商品
+                //购物车没工作
                 return false;
             }
             var goods = cookies.get('market');
@@ -328,13 +328,13 @@ window.market = {
         var goods = window.market.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.market.count() >= 99) {
-                        layer.msg('购物车商品数已经满99,不能再添加商品');
+                        layer.msg('购物车工作数已经满99,不能再添加工作');
                     } else {
                         goods[shop_id][i]['num']++;
                         goods = window.cookies.stringify(goods);
@@ -349,9 +349,9 @@ window.market = {
         var goods = window.market.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.market.itemcount(product_id) <= 0) {
@@ -372,9 +372,9 @@ window.market = {
         var goods = window.market.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.market.itemcount(product_id) <= 0) {
@@ -472,7 +472,7 @@ window.store = {
             if (!cookies.isset('store')) {
                 datas['num'] = 1;
                 goods = {};
-                //shop_id对应很多商品
+                //shop_id对应很多工作
                 goods[shop_id] = [];
                 goods[shop_id][0] = datas;
                 goods = cookies.stringify(goods);
@@ -490,7 +490,7 @@ window.store = {
                 if(!goods[shop_id]){
                     datas['num'] = 0;
                     goods = {};
-                    //shop_id对应很多商品
+                    //shop_id对应很多工作
                     goods[shop_id] = [];
                     goods[shop_id][0] = datas;
                  
@@ -516,12 +516,12 @@ window.store = {
                 }
                 //该店存在
                 if (is_in) {
-                    //商品存在
+                    //工作存在
                     if (is_here) {
                         if (window.store.count() < 99) {
                             goods[shop_id][index]['num']++;
                         } else {
-                            layer.msg('购物车商品数已经满99,不能再添加商品');
+                            layer.msg('购物车工作数已经满99,不能再添加工作');
                         }
                         goods = cookies.stringify(goods);
                         cookies.set('store', goods);
@@ -544,7 +544,7 @@ window.store = {
     getcart: function () {
         with (window) {
             if (!cookies.isset('store')) {
-                //购物车没商品
+                //购物车没工作
                 return false;
             }
             var goods = cookies.get('store');
@@ -556,13 +556,13 @@ window.store = {
         var goods = window.store.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.store.count() >= 99) {
-                        layer.msg('购物车商品数已经满99,不能再添加商品');
+                        layer.msg('购物车工作数已经满99,不能再添加工作');
                     } else {
                         goods[shop_id][i]['num']++;
                         goods = window.cookies.stringify(goods);
@@ -577,9 +577,9 @@ window.store = {
         var goods = window.store.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.store.itemcount(product_id) <= 0) {
@@ -600,9 +600,9 @@ window.store = {
         var goods = window.store.getcart();
         if (!goods) {
             //这种情况暂时不会发生
-            layer.msg('该商品不在购物车中,请重新添加');
+            layer.msg('该工作不在购物车中,请重新添加');
         } else {
-            //假设该商品存在
+            //假设该工作存在
             for (var i in goods[shop_id]) {
                 if (goods[shop_id][i]['product_id'] == product_id) {
                     if (window.store.itemcount(product_id) <= 0) {

@@ -13,7 +13,7 @@ class CashAction extends CommonAction{
 		}elseif($detail['is_lock'] == 1){
 			$this->error('您的账户已被锁，暂时无法提现');
 		}
-		$Connect = D('Connect')->where(array('uid' => $this->uid,'type'=>weixin,))->find();
+		$Connect = D('Connect')->where(array('uid' => $this->uid,'type'=>'weixin',))->find();
         $shop = D('Shop')->where(array('user_id' => $this->uid))->find();
 		
         if($shop == ''){
@@ -75,12 +75,12 @@ class CashAction extends CommonAction{
 			
 			
 			if(empty($Connect['open_id'])){
-				if($code == weixin){
+				if($code == 'weixin'){
 					$this->tuMsg('您非微信登录，暂时不能选择微信提现方式');
 				}
 			}
 			
-			if($code == weixin){
+			if($code == 'weixin'){
 				 if (!($data['re_user_name'] = htmlspecialchars($_POST['re_user_name']))) {
 					$this->tuMsg('请填写真实姓名');
 				}

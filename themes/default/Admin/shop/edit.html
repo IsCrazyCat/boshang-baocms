@@ -41,18 +41,18 @@
                     </td>
                 </tr>   
                 
-                <tr>
-                    <td class="lfTdBt">商家等级：</td>
-                    <td class="rgTdBt">
-                       <select id="grade_id" name="data[grade_id]" class="seleFl w210">
-                       <option value="0">请选择...</option>
-                        <foreach name="grades" item="var">
-                         <option value="<{$var.grade_id}>"  <eq name="var.grade_id" value="$detail.grade_id">selected="selected"</eq> ><{$var.grade_name}></option>                
-                        </foreach>
-                        </select>
-                        <code>商家等级必须选择，如果没有等级显示去》》》商家》》》商家等级管理》》》添加等级》》》添加后才来添加商家</code>
-                    </td>
-                </tr>   
+<!--                <tr>-->
+<!--                    <td class="lfTdBt">商家等级：</td>-->
+<!--                    <td class="rgTdBt">-->
+<!--                       <select id="grade_id" name="data[grade_id]" class="seleFl w210">-->
+<!--                       <option value="0">请选择...</option>-->
+<!--                        <foreach name="grades" item="var">-->
+<!--                         <option value="<{$var.grade_id}>"  <eq name="var.grade_id" value="$detail.grade_id">selected="selected"</eq> ><{$var.grade_name}></option>                -->
+<!--                        </foreach>-->
+<!--                        </select>-->
+<!--                        <code>商家等级必须选择，如果没有等级显示去》》》商家》》》商家等级管理》》》添加等级》》》添加后才来添加商家</code>-->
+<!--                    </td>-->
+<!--                </tr>   -->
                  
                    <tr>
                     <td class="lfTdBt">所在区域：</td>
@@ -276,13 +276,13 @@
         </tr>
 
 
-        <tr>
-            <td class="lfTdBt">等待配送时间：</td>
-            <td class="rgTdBt">
-                <label><input type="text" class="scAddTextName w210"  name="data[delivery_time]" value="<{$ex.delivery_time|default='30'}>" />分钟</label>
-                <code>自主配送则不用填</code>
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <td class="lfTdBt">等待配送时间：</td>-->
+<!--            <td class="rgTdBt">-->
+<!--                <label><input type="text" class="scAddTextName w210"  name="data[delivery_time]" value="<{$ex.delivery_time|default='30'}>" />分钟</label>-->
+<!--                <code>自主配送则不用填</code>-->
+<!--            </td>-->
+<!--        </tr>-->
 
        <tr>
             <td class="lfTdBt">营业时间：</td>
@@ -292,47 +292,47 @@
 
         </tr>
         
-        <tr>
-            <td class="lfTdBt">配送费：</td>
-            <td class="rgTdBt"><input type="text" name="data[express_price]" value="<{:round($detail['express_price']/100,2)}>" class="scAddTextName w210" />
-            <code>单位：元，商城开启第三方配送模式下面有效，开启后，如果当前商品免邮或者没有获取到配送费的时候这里的费用结算给配送员，费用从结算费用中扣除，必须大于=3元</code>
-            </td>
-        </tr>
-        
-         <tr>
-            <td class="lfTdBt">结算佣金：</td>
-            <td class="rgTdBt"><input type="text" name="data[commission]" value="<{:round($detail['commission']/100,2)}>" class="scAddTextName w80" />%
-            <code>用于商城，酒店结算，这里设置百分比，比如设置3就是扣除3%，如果填写0则免佣金，免佣金模式下分销如果选择差价分成模式则失败，但是这里必须填写</code>
-            </td>
-        </tr>
-        
+<!--        <tr>-->
+<!--            <td class="lfTdBt">配送费：</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[express_price]" value="<{:round($detail['express_price']/100,2)}>" class="scAddTextName w210" />-->
+<!--            <code>单位：元，商城开启第三方配送模式下面有效，开启后，如果当前工作免邮或者没有获取到配送费的时候这里的费用结算给配送员，费用从结算费用中扣除，必须大于=3元</code>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        -->
+<!--         <tr>-->
+<!--            <td class="lfTdBt">结算佣金：</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[commission]" value="<{:round($detail['commission']/100,2)}>" class="scAddTextName w80" />%-->
+<!--            <code>用于商城，酒店结算，这里设置百分比，比如设置3就是扣除3%，如果填写0则免佣金，免佣金模式下分销如果选择差价分成模式则失败，但是这里必须填写</code>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        -->
         <tr>
             <td class="lfTdBt">固定排名：</td>
             <td class="rgTdBt"><input type="text" name="data[orderby]" value="<{$detail.orderby|default='100'}>" class="scAddTextName w210" />
                 <code>1就是固定排名在第一位，一般建议不需要设置这个值！</code>
             </td>
         </tr>
-        
-        <tr>
-              <td  class="lfTdBt">全景URL地址：</td>
-                <td class="rgTdBt"><input type="text" name="data[panorama_url]" value="<{$detail.panorama_url}>" class="scAddTextName w360" />
-                <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>
-                </td>
-        </tr>
+<!--        -->
+<!--        <tr>-->
+<!--              <td  class="lfTdBt">全景URL地址：</td>-->
+<!--                <td class="rgTdBt"><input type="text" name="data[panorama_url]" value="<{$detail.panorama_url}>" class="scAddTextName w360" />-->
+<!--                <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>-->
+<!--                </td>-->
+<!--        </tr>-->
 		
 
-        <tr>
-            <td class="lfTdBt">人均消费：</td>
-            <td class="rgTdBt"><input type="text" name="data[price]" value="<{$ex.price|default='0'}>" class="scAddTextName w210" />
-            </td>
-        </tr>
-        <tr>
+<!--        <tr>-->
+<!--            <td class="lfTdBt">人均消费：</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[price]" value="<{$ex.price|default='0'}>" class="scAddTextName w210" />-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
 
-            <td class="lfTdBt">订座：</td>
-            <td class="rgTdBt">&nbsp;&nbsp;&nbsp;<input type="radio" name="data[is_ding]" value="1" <if condition="$detail.is_ding eq 1"> checked="checked" </if>  />是 &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="data[is_ding]" value="0"  <if condition="$detail.is_ding eq 0"> checked="checked" </if>/>否&nbsp;&nbsp;&nbsp;
-            </td>
+<!--            <td class="lfTdBt">订座：</td>-->
+<!--            <td class="rgTdBt">&nbsp;&nbsp;&nbsp;<input type="radio" name="data[is_ding]" value="1" <if condition="$detail.is_ding eq 1"> checked="checked" </if>  />是 &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="data[is_ding]" value="0"  <if condition="$detail.is_ding eq 0"> checked="checked" </if>/>否&nbsp;&nbsp;&nbsp;-->
+<!--            </td>-->
 
-        </tr>
+<!--        </tr>-->
 
         <tr>
 
@@ -348,133 +348,130 @@
 
 			
 
-          <tr>
-                    <td class="lfTdBt">是否认领</td>
-                    <td class="rgTdBt">
-                 <input type="radio" name="data[recognition]" value="0" <if condition="$detail[recognition] eq 0">checked="checked"</if> />未认领
-				<input type="radio" name="data[recognition]" value="1" <if condition="$detail[recognition] eq 1">checked="checked"</if> />已认领
-
-                <code>特别说明，前台申请默认是已认领状态！如果是后台添加则是未认领状态，请注意区别</code>
-                    </td>
-        </tr>
+<!--          <tr>-->
+<!--                    <td class="lfTdBt">是否认领</td>-->
+<!--                    <td class="rgTdBt">-->
+<!--                 <input type="radio" name="data[recognition]" value="0" <if condition="$detail[recognition] eq 0">checked="checked"</if> />未认领-->
+<!--				<input type="radio" name="data[recognition]" value="1" <if condition="$detail[recognition] eq 1">checked="checked"</if> />已认领-->
+                <input type="hidden" name="data[recognition]" value="1" checked="checked" />
+<!--                <code>特别说明，前台申请默认是已认领状态！如果是后台添加则是未认领状态，请注意区别</code>-->
+<!--                    </td>-->
+<!--        </tr>-->
 
 
        
-        <tr>
-              <td class="lfTdBt">是否开启抢购在线支付</td>
-              <td class="rgTdBt">
-              <input type="radio" name="data[is_tuan_pay]" value="0" <if condition="$detail[is_tuan_pay] eq 0">checked="checked"</if> />关闭
-			  <input type="radio" name="data[is_tuan_pay]" value="1" <if condition="$detail[is_tuan_pay] eq 1">checked="checked"</if> />开启
-              <code>抢购模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>
-              </td>
-        </tr>
-        
-        <tr>
-              <td class="lfTdBt">是否开启酒店在线支付</td>
-              <td class="rgTdBt">
-              <input type="radio" name="data[is_hotel_pay]" value="0" <if condition="$detail[is_hotel_pay] eq 0">checked="checked"</if> />关闭
-			  <input type="radio" name="data[is_hotel_pay]" value="1" <if condition="$detail[is_hotel_pay] eq 1">checked="checked"</if> />开启
-              <code>酒店模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>
-              </td>
-        </tr>
+<!--        <tr>-->
+<!--              <td class="lfTdBt">是否开启抢购在线支付</td>-->
+<!--              <td class="rgTdBt">-->
+<!--              <input type="radio" name="data[is_tuan_pay]" value="0" <if condition="$detail[is_tuan_pay] eq 0">checked="checked"</if> />关闭-->
+<!--			  <input type="radio" name="data[is_tuan_pay]" value="1" <if condition="$detail[is_tuan_pay] eq 1">checked="checked"</if> />开启-->
+<!--              <code>抢购模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>-->
+<!--              </td>-->
+<!--        </tr>-->
+<!--        -->
+<!--        <tr>-->
+<!--              <td class="lfTdBt">是否开启酒店在线支付</td>-->
+<!--              <td class="rgTdBt">-->
+<!--              <input type="radio" name="data[is_hotel_pay]" value="0" <if condition="$detail[is_hotel_pay] eq 0">checked="checked"</if> />关闭-->
+<!--			  <input type="radio" name="data[is_hotel_pay]" value="1" <if condition="$detail[is_hotel_pay] eq 1">checked="checked"</if> />开启-->
+<!--              <code>酒店模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>-->
+<!--              </td>-->
+<!--        </tr>-->
 
-        
+<!--        -->
 
-        <tr>
-            <td class="lfTdBt">打印标识(apiKey)</td>
-            <td class="rgTdBt"><input type="text" name="data[apiKey]" value="<{$detail.apiKey}>" class="scAddTextName w210" />
-            <code>打印标识</code>
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <td class="lfTdBt">打印标识(apiKey)</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[apiKey]" value="<{$detail.apiKey}>" class="scAddTextName w210" />-->
+<!--            <code>打印标识</code>-->
+<!--            </td>-->
+<!--        </tr>-->
 
-		<tr>
-            <td class="lfTdBt">密钥(mKey)</td>
-            <td class="rgTdBt"><input type="text" name="data[mKey]" value="<{$detail.mKey}>" class="scAddTextName w210" />
-            <code>密钥</code>
-            </td>
+<!--		<tr>-->
+<!--            <td class="lfTdBt">密钥(mKey)</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[mKey]" value="<{$detail.mKey}>" class="scAddTextName w210" />-->
+<!--            <code>密钥</code>-->
+<!--            </td>-->
 
-        </tr>
+<!--        </tr>-->
 
-		<tr>
-            <td class="lfTdBt">用户id(partner)</td>
-            <td class="rgTdBt"><input type="text" name="data[partner]" value="<{$detail.partner}>" class="scAddTextName w210" />
-            <code>你再打印平台注册的ID</code>
-            </td>
-        </tr>
+<!--		<tr>-->
+<!--            <td class="lfTdBt">用户id(partner)</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[partner]" value="<{$detail.partner}>" class="scAddTextName w210" />-->
+<!--            <code>你再打印平台注册的ID</code>-->
+<!--            </td>-->
+<!--        </tr>-->
 
-		<tr>
-            <td class="lfTdBt">打印机终端号(machine_code)</td>
-            <td class="rgTdBt"><input type="text" name="data[machine_code]" value="<{$detail.machine_code}>" class="scAddTextName w210" />
-             <code>打印机终端号，一般购买打印机后打印机后面都有此号码。</code>
-            </td>
-        </tr>
-        
-        
- 
-        
-        <tr>
-                <td  class="lfTdBt">客服代码：</td>
-                <td class="rgTdBt"><textarea  name="data[service]" cols="120" rows="15" ><{$detail.service|default=''}></textarea>
+<!--		<tr>-->
+<!--            <td class="lfTdBt">打印机终端号(machine_code)</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[machine_code]" value="<{$detail.machine_code}>" class="scAddTextName w210" />-->
+<!--             <code>打印机终端号，一般购买打印机后打印机后面都有此号码。</code>-->
+<!--            </td>-->
+<!--        </tr>-->
 
-                </td>
-            </tr>
-            
-		
-        
-          <tr>
-              <td class="lfTdBt">是否显示客服代码</td>
-              <td class="rgTdBt">
-                 <input type="radio" name="data[service_audit]" value="0" <if condition="$detail[service_audit] eq 0">checked="checked"</if> />不显示
-				<input type="radio" name="data[service_audit]" value="1" <if condition="$detail[service_audit] eq 1">checked="checked"</if> />显示
-                <code>特别说明，部分用户的JS代码是不安全的，所以需要你后台审核通过才可以显示</code>
-               </td>
-          </tr>
+<!--        <tr>-->
+<!--                <td  class="lfTdBt">客服代码：</td>-->
+<!--                <td class="rgTdBt"><textarea  name="data[service]" cols="120" rows="15" ><{$detail.service|default=''}></textarea>-->
+
+<!--                </td>-->
+<!--            </tr>-->
+<!--            -->
+<!--		-->
+<!--        -->
+<!--          <tr>-->
+<!--              <td class="lfTdBt">是否显示客服代码</td>-->
+<!--              <td class="rgTdBt">-->
+<!--                 <input type="radio" name="data[service_audit]" value="0" <if condition="$detail[service_audit] eq 0">checked="checked"</if> />不显示-->
+<!--				<input type="radio" name="data[service_audit]" value="1" <if condition="$detail[service_audit] eq 1">checked="checked"</if> />显示-->
+<!--                <code>特别说明，部分用户的JS代码是不安全的，所以需要你后台审核通过才可以显示</code>-->
+<!--               </td>-->
+<!--          </tr>-->
           
-          
-          <tr>
-              <td class="lfTdBt">外卖打印</td>
-              <td class="rgTdBt">
-                 <input type="radio" name="data[is_ele_print]" value="1" <if condition="$detail[is_ele_print] eq 1">checked="checked"</if> />开启
-				<input type="radio" name="data[is_ele_print]" value="0" <if condition="$detail[is_ele_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印外卖订单</code>
-               </td>
-          </tr>
-          
-          <tr>
-              <td class="lfTdBt">抢购打印</td>
-              <td class="rgTdBt">
-                 <input type="radio" name="data[is_tuan_print]" value="1" <if condition="$detail[is_tuan_print] eq 1">checked="checked"</if> />开启
-				<input type="radio" name="data[is_tuan_print]" value="0" <if condition="$detail[is_tuan_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印抢购订单</code>
-               </td>
-          </tr>
-          
-           <tr>
-              <td class="lfTdBt">商城打印</td>
-              <td class="rgTdBt">
-                 <input type="radio" name="data[is_goods_print]" value="1" <if condition="$detail[is_goods_print] eq 1">checked="checked"</if> />开启
-				<input type="radio" name="data[is_goods_print]" value="0" <if condition="$detail[is_goods_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印商城订单</code>
-               </td>
-          </tr>
-          
-           <tr>
-              <td class="lfTdBt">订座打印</td>
-              <td class="rgTdBt">
-                 <input type="radio" name="data[is_booking_print]" value="1" <if condition="$detail[is_booking_print] eq 1">checked="checked"</if> />开启
-				<input type="radio" name="data[is_booking_print]" value="0" <if condition="$detail[is_booking_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印订座订单</code>
-               </td>
-          </tr>
-          
-          <tr>
-              <td class="lfTdBt">家政打印</td>
-              <td class="rgTdBt">
-                 <input type="radio" name="data[is_appoint_print]" value="1" <if condition="$detail[is_appoint_print] eq 1">checked="checked"</if> />开启
-				<input type="radio" name="data[is_appoint_print]" value="0" <if condition="$detail[is_appoint_print] eq 0">checked="checked"</if> />关闭
-                <code>开启状态才能打印家政订单</code>
-               </td>
-          </tr>
+<!--          -->
+<!--          <tr>-->
+<!--              <td class="lfTdBt">外卖打印</td>-->
+<!--              <td class="rgTdBt">-->
+<!--                 <input type="radio" name="data[is_ele_print]" value="1" <if condition="$detail[is_ele_print] eq 1">checked="checked"</if> />开启-->
+<!--				<input type="radio" name="data[is_ele_print]" value="0" <if condition="$detail[is_ele_print] eq 0">checked="checked"</if> />关闭-->
+<!--                <code>开启状态才能打印外卖订单</code>-->
+<!--               </td>-->
+<!--          </tr>-->
+<!--          -->
+<!--          <tr>-->
+<!--              <td class="lfTdBt">抢购打印</td>-->
+<!--              <td class="rgTdBt">-->
+<!--                 <input type="radio" name="data[is_tuan_print]" value="1" <if condition="$detail[is_tuan_print] eq 1">checked="checked"</if> />开启-->
+<!--				<input type="radio" name="data[is_tuan_print]" value="0" <if condition="$detail[is_tuan_print] eq 0">checked="checked"</if> />关闭-->
+<!--                <code>开启状态才能打印抢购订单</code>-->
+<!--               </td>-->
+<!--          </tr>-->
+<!--          -->
+<!--           <tr>-->
+<!--              <td class="lfTdBt">商城打印</td>-->
+<!--              <td class="rgTdBt">-->
+<!--                 <input type="radio" name="data[is_goods_print]" value="1" <if condition="$detail[is_goods_print] eq 1">checked="checked"</if> />开启-->
+<!--				<input type="radio" name="data[is_goods_print]" value="0" <if condition="$detail[is_goods_print] eq 0">checked="checked"</if> />关闭-->
+<!--                <code>开启状态才能打印商城订单</code>-->
+<!--               </td>-->
+<!--          </tr>-->
+<!--          -->
+<!--           <tr>-->
+<!--              <td class="lfTdBt">订座打印</td>-->
+<!--              <td class="rgTdBt">-->
+<!--                 <input type="radio" name="data[is_booking_print]" value="1" <if condition="$detail[is_booking_print] eq 1">checked="checked"</if> />开启-->
+<!--				<input type="radio" name="data[is_booking_print]" value="0" <if condition="$detail[is_booking_print] eq 0">checked="checked"</if> />关闭-->
+<!--                <code>开启状态才能打印订座订单</code>-->
+<!--               </td>-->
+<!--          </tr>-->
+<!--          -->
+<!--          <tr>-->
+<!--              <td class="lfTdBt">家政打印</td>-->
+<!--              <td class="rgTdBt">-->
+<!--                 <input type="radio" name="data[is_appoint_print]" value="1" <if condition="$detail[is_appoint_print] eq 1">checked="checked"</if> />开启-->
+<!--				<input type="radio" name="data[is_appoint_print]" value="0" <if condition="$detail[is_appoint_print] eq 0">checked="checked"</if> />关闭-->
+<!--                <code>开启状态才能打印家政订单</code>-->
+<!--               </td>-->
+<!--          </tr>-->
           
      
                 

@@ -78,7 +78,7 @@ class MalladdressAction extends CommonAction{
 					D('Ordergoods')->update_express_price($this->uid,$data['type'], $order_id,$id);//去更新订单运费
 					if(!empty($create_order_id)){//首先检测订单ID
 						$this->tuSuccess('添加成功', U('home/mall/pay', array('type' => $data['type'],'order_id' => $create_order_id,'address_id'=>$id)));
-					}elseif(!empty($create_goods_id)){//再检测商品ID
+					}elseif(!empty($create_goods_id)){//再检测工作ID
 						$this->tuSuccess('添加成功，正在为您返回', U('home/mall/detail', array('goods_id' =>$create_goods_id)));
 					}elseif(!empty($create_category)){//再检测购物车路径
 						$this->tuSuccess('添加地址成功，正在为你返回购物车', U('home/mall/cart'));

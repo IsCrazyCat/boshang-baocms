@@ -8,7 +8,7 @@
 class KoubeiTradeItemorderRefundRequest
 {
 	/** 
-	 * 口碑商品交易退货接口
+	 * 口碑工作交易退货接口
 	 **/
 	private $bizContent;
 

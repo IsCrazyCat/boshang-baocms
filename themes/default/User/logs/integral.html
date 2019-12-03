@@ -4,7 +4,7 @@
 		<a class="top-addr" href="<{:u('member/index')}>"><i class="iconfont icon-angle-left"></i></a>
 	</div>
 		<div class="top-title">
-			积分日志
+			补贴日志
 		</div>
 	<div class="top-signed">
 		<include file="public:message"/>
@@ -18,10 +18,10 @@ ul{padding-left:0px;}
 </style>
 
 <ul id="shangjia_tab">
-	<li class="x3"><a href="<{:U('logs/integral')}>" class="on">积分日志</a></li>
-    <li class="x3"><a href="<{:U('logs/moneylogs')}>">余额日志</a></li>
-    <li class="x3"><a href="<{:U('logs/prestige')}>"><{$CONFIG['prestige']['name']|default='威望'}>日志</a></li>
-    <li class="x3"><a href="<{:U('cash/cashlog')}>">提现日志</a></li>
+	<li class="x4"><a href="<{:U('logs/integral')}>" class="on">补贴日志</a></li>
+	<li class="x4"><a href="<{:U('logs/moneylogs')}>">余额日志</a></li>
+<!--	<li class="x3"><a href="<{:U('logs/prestige')}>">充值日志</a></li>-->
+	<li class="x4"><a href="<{:U('cash/cashlog')}>">提现日志</a></li>
 </ul>
 
 <div class="list-media-x" id="list-media">

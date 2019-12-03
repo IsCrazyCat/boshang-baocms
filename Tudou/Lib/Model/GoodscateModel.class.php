@@ -103,7 +103,7 @@ class GoodscateModel extends CommonModel {
 	public function check_cate_id_goods($cate_id){
         $res = D('Goods')->where(array('cate_id'=>$cate_id,'closed'=>'0'))->find();
 		if($res){
-		 	$this->error = '商品【'.$res['title'].'】正在使用当前分类，暂时无法删除';
+		 	$this->error = '工作【'.$res['title'].'】正在使用当前分类，暂时无法删除';
 			return false;
 		}
         return true;

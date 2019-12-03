@@ -8,7 +8,7 @@
 class AlipayOfflineMarketApplyorderBatchqueryRequest
 {
 	/** 
-	 * 分页查询Leads、门店、商品相关操作流水信息
+	 * 分页查询Leads、门店、工作相关操作流水信息
 	 **/
 	private $bizContent;
 

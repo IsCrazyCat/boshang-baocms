@@ -57,7 +57,7 @@ class MarketproductAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuError('商品不能为空');
+            $this->tuError('工作不能为空');
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
@@ -120,7 +120,7 @@ class MarketproductAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['product_name'] = htmlspecialchars($data['product_name']);
         if (empty($data['product_name'])) {
-            $this->tuError('商品不能为空');
+            $this->tuError('工作不能为空');
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
@@ -196,7 +196,7 @@ class MarketproductAction extends CommonAction{
                 }
                 $this->tuSuccess('审核成功', U('marketproduct/index'));
             }
-            $this->tuError('请选择要审核的商品');
+            $this->tuError('请选择要审核的工作');
         }
     }
 	

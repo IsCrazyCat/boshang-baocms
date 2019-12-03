@@ -18,7 +18,7 @@ class GoodstypeAction extends CommonAction {
 
     
 
-    //编辑商品类型
+    //编辑工作类型
     public  function addEditGoodsType(){        
             $_GET['id'] = $_GET['id'] ? $_GET['id'] : 0;     
             $model = M("TpGoodsType");
@@ -41,7 +41,7 @@ class GoodstypeAction extends CommonAction {
     }
 
 
-    //商品属性列表
+    //工作属性列表
     public function goodsAttributeList(){
 
         $where = ' 1 = 1 '; // 搜索条件                        
@@ -68,7 +68,7 @@ class GoodstypeAction extends CommonAction {
     } 
 
 
-    //添加修改商品属性
+    //添加修改工作属性
     public  function addEditGoodsAttribute(){
                         
             $model = D("TpGoodsAttribute");                      
@@ -105,11 +105,11 @@ class GoodstypeAction extends CommonAction {
 
 
 	
-	//删除商品属性
+	//删除工作属性
     public function delGoodsAttribute($attr_id = 0) {
         if (is_numeric($attr_id) && ($attr_id = (int) $attr_id)) {
 			
-			//D('TpGoodsAttr')->judge_goods_attr($attr_id);//判断商品属性暂时取消
+			//D('TpGoodsAttr')->judge_goods_attr($attr_id);//判断工作属性暂时取消
 			
             $obj = D('TpGoodsAttribute');
             $obj->delete($attr_id);
@@ -117,7 +117,7 @@ class GoodstypeAction extends CommonAction {
         } else {
             $attr_ids = $this->_post('attr_id', false);
             if (is_array($attr_ids)) {
-				//D('TpGoodsAttr')->judge_goods_attr($attr_id);//判断商品属性暂时取消
+				//D('TpGoodsAttr')->judge_goods_attr($attr_id);//判断工作属性暂时取消
                 $obj = D('TpGoodsAttribute');
                 foreach ($attr_ids as $id) {
                     $obj->delete($id);
@@ -131,12 +131,12 @@ class GoodstypeAction extends CommonAction {
 	    
 
 
-    //删除商品类型
+    //删除工作类型
     public function delGoodsType($id = 0) {
         if (is_numeric($id) && ($id = (int) $id)) {
 			$count = D('TpGoodsAttribute')->where(array('type_id'=>$id))->count();   
 			if($count > 0){
-				$this->tuError('该类型下有商品属性不得删除');
+				$this->tuError('该类型下有工作属性不得删除');
 			}
             $obj = M('TpGoodsType');
             $obj->delete($id);
@@ -149,7 +149,7 @@ class GoodstypeAction extends CommonAction {
                 foreach ($ids as $id){
 					$count = D('TpGoodsAttribute')->where(array('type_id'=>$id))->count();   
 					if($count > 0){
-						$this->tuError('该类型下有商品属性不得删除');
+						$this->tuError('该类型下有工作属性不得删除');
 					}
                     $obj->delete($id);
                 }

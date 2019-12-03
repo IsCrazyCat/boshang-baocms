@@ -39,7 +39,7 @@
                 <li><a href="<{:U('shop/branch',array('shop_id'=>$detail['shop_id']))}>">商家分店</a></li>
                 <li><a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>">商家介绍</a></li>
                 <li><a href="<{:U('shop/photo',array('shop_id'=>$detail['shop_id']))}>">相册</a></li>
-                <li><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">商品</a></li>
+                <li><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">工作</a></li>
                 <li><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">抢购</a></li>
                 <li><a href="<{:U('shop/coupon',array('shop_id'=>$detail['shop_id']))}>">优惠劵</a></li>
                 <li><a href="<{:U('shop/news',array('shop_id'=>$detail['shop_id']))}>">新闻</a></li>
@@ -77,7 +77,7 @@
             <a class="item current">优惠促销</a>
             </h2>
             <div class="group c2016">
-            <!--商品开始-->
+            <!--工作开始-->
             <calldata mdl="Goods" where="shop_id = {$detail['shop_id']} AND audit=1 AND closed=0" limit="0,4"  cache="21600" order="goods_id desc">
                 <div class="item big">
                    <p class="title">
@@ -86,12 +86,12 @@
                     <a class="block-link" href="<{:U('mall/detail',array('goods_id'=>$item['goods_id']))}>" target="_blank">
                     <img class="pic" src="<{:config_img($item['photo'])}>" title="<{$item.title}>"></a>
                     <span class="price"><em>&yen;</em><{:round($item['mall_price']/100,2)}></span>
-                    <del class="del-price">&yen;<{:round($item['price']/100,2)}></del><i class="tag tag-tuan">商品</i>
+                    <del class="del-price">&yen;<{:round($item['price']/100,2)}></del><i class="tag tag-tuan">工作</i>
                     <p class="title">结束时间 : <{$item['end_date']}></p>
                     <span class="sold-count">已售 <{$item['sold_num']}></span>
                 </div>
               </calldata> 
-              <!--商品结束--> 
+              <!--工作结束-->
               <!--抢购开始-->
               <calldata mdl="Tuan" where="shop_id = {$detail['shop_id']} AND audit=1 AND closed=0" limit="0,30"  cache="21600" order="tuan_id desc">
                 <div class="item big">

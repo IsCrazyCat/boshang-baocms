@@ -7,7 +7,7 @@ class  PayAction extends CommonAction{
 		$order_money = $logs['need_pay'] *100;//订单金额
 		$out_trade_no =$logs['log_id'].'-'.time();//订单号
 		$total_fee = $logs['need_pay'];//总金额
-		$orderBody = $logs['logs_id'].'订单支付';//商品描述
+		$orderBody = $logs['logs_id'].'订单支付';//工作描述
 		
 		$payment = D('Payment')->where(array('code'=>'weixin_app'))->find();
 		$payment = unserialize($payment['setting']);

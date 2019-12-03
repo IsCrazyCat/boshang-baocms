@@ -40,18 +40,18 @@
                     </td>
                 </tr>  
                 
-                 <tr>
-                    <td class="lfTdBt">商家等级：</td>
-                    <td class="rgTdBt">
-                       <select id="grade_id" name="data[grade_id]" class="seleFl w210">
-                       <option value="0">请选择...</option>
-                        <foreach name="grades" item="var">
-                         <option value="<{$var.grade_id}>"  <eq name="var.grade_id" value="$detail.grade_id">selected="selected"</eq> ><{$var.grade_name}></option>                
-                        </foreach>
-                        </select>
-                        <code>商家等级必须选择，如果没有等级显示去》》》商家》》》商家等级管理》》》添加等级》》》添加后才来添加商家</code>
-                    </td>
-                </tr>   
+<!--                 <tr>-->
+<!--                    <td class="lfTdBt">商家等级：</td>-->
+<!--                    <td class="rgTdBt">-->
+<!--                       <select id="grade_id" name="data[grade_id]" class="seleFl w210">-->
+<!--                       <option value="0">请选择...</option>-->
+<!--                        <foreach name="grades" item="var">-->
+<!--                         <option value="<{$var.grade_id}>"  <eq name="var.grade_id" value="$detail.grade_id">selected="selected"</eq> ><{$var.grade_name}></option>                -->
+<!--                        </foreach>-->
+<!--                        </select>-->
+<!--                        <code>商家等级必须选择，如果没有等级显示去》》》商家》》》商家等级管理》》》添加等级》》》添加后才来添加商家</code>-->
+<!--                    </td>-->
+<!--                </tr>   -->
                 
                   
                    <tr>
@@ -276,25 +276,25 @@
             </td>
         </tr>
 
-        <tr>
-            <td class="lfTdBt">等待配送时间：</td>
-            <td class="rgTdBt">
-                <label><input type="text" name="data[delivery_time]" class="scAddTextName w210"  value="30" />分钟</label>
-                <code>自主配送则不用填</code>
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <td class="lfTdBt">等待配送时间：</td>-->
+<!--            <td class="rgTdBt">-->
+<!--                <label><input type="text" name="data[delivery_time]" class="scAddTextName w210"  value="30" />分钟</label>-->
+<!--                <code>自主配送则不用填</code>-->
+<!--            </td>-->
+<!--        </tr>-->
        <tr>
             <td class="lfTdBt">营业时间：</td>
             <td class="rgTdBt"><input type="text" name="data[business_time]" value="<{$detail.business_time|default=''}>" class="scAddTextName w210" />
                 <code>例如8:00-19：00</code>
             </td>
         </tr>
-        <tr>
-            <td class="lfTdBt">配送费：</td>
-            <td class="rgTdBt"><input type="text" name="data[express_price]" value="<{:round($detail['express_price']/100,2)}>" class="scAddTextName w210" />
-            <code>商城开启第三方配送模式下面有效，开启后，如果当前商品免邮或者没有获取到配送费的时候这里的费用结算给配送员，费用从结算费用中扣除，必须大于=3元</code>
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <td class="lfTdBt">配送费：</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[express_price]" value="<{:round($detail['express_price']/100,2)}>" class="scAddTextName w210" />-->
+<!--            <code>商城开启第三方配送模式下面有效，开启后，如果当前工作免邮或者没有获取到配送费的时候这里的费用结算给配送员，费用从结算费用中扣除，必须大于=3元</code>-->
+<!--            </td>-->
+<!--        </tr>-->
         <tr>
             <td class="lfTdBt">固定排名：</td>
             <td class="rgTdBt"><input type="text" name="data[orderby]" value="<{$detail.orderby|default='100'}>" class="scAddTextName w210" />
@@ -302,18 +302,18 @@
             </td>
         </tr>
         
-         <tr>
-              <td  class="lfTdBt">全景URL地址：</td>
-                <td class="rgTdBt"><input type="text" name="data[panorama_url]" value="<{$detail.panorama_url}>" class="scAddTextName w360" />
-                <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>
-                </td>
-        </tr>
+<!--         <tr>-->
+<!--              <td  class="lfTdBt">全景URL地址：</td>-->
+<!--                <td class="rgTdBt"><input type="text" name="data[panorama_url]" value="<{$detail.panorama_url}>" class="scAddTextName w360" />-->
+<!--                <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>-->
+<!--                </td>-->
+<!--        </tr>-->
 
-        <tr>
-            <td class="lfTdBt">人均消费：</td>
-            <td class="rgTdBt"><input type="text" name="data[price]" value="<{$detail.price|default='0'}>" class="scAddTextName w210" />
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <td class="lfTdBt">人均消费：</td>-->
+<!--            <td class="rgTdBt"><input type="text" name="data[price]" value="<{$detail.price|default='0'}>" class="scAddTextName w210" />-->
+<!--            </td>-->
+<!--        </tr>-->
 
         <tr>
             <td class="lfTdBt">商家坐标：</td>
@@ -325,14 +325,15 @@
                 <a style="margin-left: 10px;" mini="select"  w="600" h="600" href="<{:U('public/maps')}>" class="seleSj">百度地图</a>
         </tr>
 
-        <tr>
-            <td class="lfTdBt">是否认领</td>
-            <td class="rgTdBt">
-             <input type="radio" name="data[recognition]" value="0" checked="checked" />未认领
-				<input type="radio" name="data[recognition]" value="1" />已认领
-               <code>您现在是后台添加商户，肯定选择未认领，除非你直接安排给那个会员</code>
-             </td>
-       </tr>
+<!--        <tr>-->
+<!--            <td class="lfTdBt">是否认领</td>-->
+<!--            <td class="rgTdBt">-->
+<!--             <input type="radio" name="data[recognition]" value="0" checked="checked" />未认领-->
+<!--				<input type="radio" name="data[recognition]" value="1" />已认领-->
+                <input type="hidden" name="data[recognition]" value="1" />
+<!--               <code>您现在是后台添加商户，肯定选择未认领，除非你直接安排给那个会员</code>-->
+<!--             </td>-->
+<!--       </tr>-->
 
        <tr><td class="lfTdBt">商家介绍：</td><td class="rgTdBt">
                   <script type="text/plain" id="details" name="details" style="width:800px;height:360px;"><{$ex.details}></script>

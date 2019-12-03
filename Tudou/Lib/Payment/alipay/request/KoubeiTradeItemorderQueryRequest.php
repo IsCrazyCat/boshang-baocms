@@ -8,7 +8,7 @@
 class KoubeiTradeItemorderQueryRequest
 {
 	/** 
-	 * 商品交易查询接口
+	 * 工作交易查询接口
 	 **/
 	private $bizContent;
 

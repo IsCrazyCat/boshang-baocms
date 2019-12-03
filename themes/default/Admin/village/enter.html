@@ -3,7 +3,7 @@
     <ul>
         <li class="li1">管理</li>
         <li class="li2">智慧乡村</li>
-        <li class="li2 li3">商品入驻</li>
+        <li class="li2 li3">工作入驻</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
@@ -14,7 +14,7 @@
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('village/enter',array('village_id'=>$village_id))}>"> 
                     <div class="seleHidden" id="seleHidden">
-                        <span>商品ID:</span>
+                        <span>工作ID:</span>
                         <input type="text" name="keyword" value="<{$keyword}>" class="inptText" /><input type="submit" value="搜索"  class="inptButton" />
                     </div> 
                 </form>
@@ -34,8 +34,8 @@
                     <td><input type="checkbox" class="checkAll" rel="enter_id" /></td>
                     <td>ID</td>
                     <td>类型</td>
-                    <td>商品ID</td>
-                    <td>商品名称</td>
+                    <td>工作ID</td>
+                    <td>工作名称</td>
                     <td>商家名称</td>
                     <td>乡村名称</td>
                     <td>申请理由</td>
@@ -46,7 +46,7 @@
                     <tr>
                         <td><input class="child_enter_id" type="checkbox" name="enter_id[]" value="<{$var.enter_id}>" /></td>
                         <td><{$var.enter_id}></td>
-                        <td><eq name="var.type" value="1">商品<else/>抢购</eq></td>
+                        <td><eq name="var.type" value="1">工作<else/>抢购</eq></td>
                         <td><{$var.id}></td>
                         <td><{$var.goods_name}></td>
                         <td><{$shops[$var['shop_id']]['shop_name']}></td>

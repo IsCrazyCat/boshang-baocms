@@ -149,7 +149,7 @@ class ShopAction extends CommonAction{
 		return "".$res ."";
 	}
 	
-	//商品列表
+	//工作列表
 	public function goods(){
 		$shop_id = I('store_id','','trim');
 		
@@ -160,7 +160,7 @@ class ShopAction extends CommonAction{
 			$list[$k]['is_show'] = 1;
 			$list[$k]['price'] = round($val['mall_price']/100,2);
 			$list[$k]['img'] = config_weixin_img($val['photo']);
-			$list[$k]['imgs'] = $this->getGoodsListPics($val['goods_id']);//商品图片获取
+			$list[$k]['imgs'] = $this->getGoodsListPics($val['goods_id']);//工作图片获取
 		}
 		//p($list);die;
         $json_str = json_encode($list);

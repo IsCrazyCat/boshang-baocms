@@ -212,7 +212,7 @@ footer #jq_total{width:auto}
 .step_more{color:#333;display:block;height:18px;line-height:18px;position:absolute;right:10px;text-align:right;top:15px}
 .step_more:after{background-position:-303px -102px;content:"";display:inline-block;height:12px;margin-left:5px;vertical-align:-1px;width:6px}
 
-/*商品列表*/
+/*工作列表*/
 .item-list ul{ }
 .item-list li{border-bottom:thin solid #EEE;}
 .item-list li:last-child{border:none;}
@@ -229,7 +229,7 @@ footer #jq_total{width:auto}
 .item-list li .title{ position: absolute;bottom: 0; padding: 10px; color: #FFF; background: rgba(0,0,0,0.5);width: 100%;}
 .item-list li .title h1{ font-size:18px;}
 
-/*商品详情*/
+/*工作详情*/
 .item-detail {background:#FFF;}
 .item-detail .bb{border-bottom:thin solid #eee;}
 .item-detail .detail-pic{width:100%;margin:0;padding:0;border-bottom:thin solid #eee;}

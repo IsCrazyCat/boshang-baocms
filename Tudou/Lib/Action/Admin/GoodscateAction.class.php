@@ -6,7 +6,7 @@ class GoodscateAction extends CommonAction{
 	public function _initialize(){
         parent::_initialize();
         $this->assign('commIds',$commIds = D('Goodscate')->getCommIds());//商务部类型
-		$this->assign('goodstypes',$goodstypes = M('TpGoodsType')->select());//全部商品类型
+		$this->assign('goodstypes',$goodstypes = M('TpGoodsType')->select());//全部工作类型
     }
 	
 	

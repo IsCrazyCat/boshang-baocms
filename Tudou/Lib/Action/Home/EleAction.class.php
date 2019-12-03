@@ -185,7 +185,7 @@ class EleAction extends CommonAction{
 			$settlement_price  += $product['settlement_price'] * $val;
         }
         if (count($shops) > 1) {
-            $this->ajaxReturn(array('status' => 'more', 'msg' => '您购买的商品是多个商户的!,要清空之前的购物车吗？'));
+            $this->ajaxReturn(array('status' => 'more', 'msg' => '您购买的工作是多个商户的!,要清空之前的购物车吗？'));
         }
         if (empty($shop_id)) {
             $this->ajaxReturn(array('status' => 'error', 'msg' => '该商家不存在'));

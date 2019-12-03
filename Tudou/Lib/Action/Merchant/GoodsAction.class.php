@@ -118,15 +118,15 @@ class GoodsAction extends CommonAction{
 		}
 	}
 
- 	//删除商品
+ 	//删除工作
  	public function delete($goods_id = 0){
         $goods_id = (int) $goods_id;
         $obj = D('Goods');
         if(empty($goods_id)){
-            $this->tuError('该商品信息不存在');
+            $this->tuError('该工作信息不存在');
         }
         if(!($detail = D('Tuan')->find($goods_id))){
-            $this->tuError('该商品信息不存在');
+            $this->tuError('该工作信息不存在');
         }
         if($detail['shop_id'] != $this->shop_id){
             $this->tuError('非法操作');
@@ -136,23 +136,23 @@ class GoodsAction extends CommonAction{
     }
 	
 	
-	//商品上架下架
+	//工作上架下架
     public function update($goods_id = 0){
         if($goods_id = (int) $goods_id){
 			if(!($detail = D('Goods')->find($goods_id))){
-				$this->tuError('请选择要操作的商品');
+				$this->tuError('请选择要操作的工作');
 			}
 			$data = array('closed' =>0,'goods_id' => $goods_id);
-			$intro = '上架商品成功';
+			$intro = '上架工作成功';
 			if($detail['closed'] == 0){
 				$data['closed'] = 1;
-				$intro = '下架商品成功';
+				$intro = '下架工作成功';
 			}
 			if(D('Goods')->save($data)){
 				$this->tuSuccess($intro, U('goods/index'));
 			}
         }else{
-            $this->tuError('请选择要操作的商品');
+            $this->tuError('请选择要操作的工作');
         }
     }
 	
@@ -169,12 +169,12 @@ class GoodsAction extends CommonAction{
                     D('Goodsphoto')->upload($goods_id, $photos);
                 }
 				$this->shuxin($goods_id);
-				$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新商品属性 -->
+				$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新工作属性 -->
                 $this->tuSuccess('添加成功', U('goods/index'));
             }
             $this->tuError('操作失败');
         }else{
-        	$this->assign('goodsInfo',D('Goods')->where('goods_id='.I('GET.id',0))->find());  // 商品详情   
+        	$this->assign('goodsInfo',D('Goods')->where('goods_id='.I('GET.id',0))->find());  // 工作详情   
             $this->assign('goodsType',M("TpGoodsType")->select());
             $this->assign('cates', D('Goodscate')->fetchAll());
             $this->display();
@@ -298,10 +298,10 @@ class GoodsAction extends CommonAction{
             $this->tuError('购买须知含有敏感词：' . $words);
         } $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品详情不能为空');
+            $this->tuError('工作详情不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品详情含有敏感词：' . $words);
+            $this->tuError('工作详情含有敏感词：' . $words);
         } $data['end_date'] = htmlspecialchars($data['end_date']);
         if (empty($data['end_date'])) {
             $this->tuError('过期时间不能为空');
@@ -326,7 +326,7 @@ class GoodsAction extends CommonAction{
         $data['profit_rate3'] = (int) $data['profit_rate3'];
 		
 		if($res = D('Goods')->where(array('title'=>$data['title'],'details'=>$data['details'],'end_date'=>$data['end_date']))->find()){
-			$this->tuError('请勿重复添加商品');
+			$this->tuError('请勿重复添加工作');
 		}
 		
         $data['create_time'] = NOW_TIME;
@@ -342,7 +342,7 @@ class GoodsAction extends CommonAction{
         if ($goods_id = (int) $goods_id) {
             $obj = D('Goods');
             if (!$detail = $obj->find($goods_id)) {
-                $this->error('请选择要编辑的商品');
+                $this->error('请选择要编辑的工作');
             }
             if ($detail['shop_id'] != $this->shop_id) {
                 $this->error('请不要试图越权操作其他人的内容');
@@ -366,7 +366,7 @@ class GoodsAction extends CommonAction{
                         D('Goodsphoto')->upload($goods_id, $photos);
                     }					
                     $this->shuxin($goods_id);
-					$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新商品属性
+					$this->saveGoodsAttr($goods_id,$_POST['goods_type']); //更新工作属性
 					
                     $this->tuSuccess('操作成功', U('goods/index'));
                 }
@@ -387,7 +387,7 @@ class GoodsAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商品');
+            $this->tuError('请选择要编辑的工作');
         }
     }
 
@@ -467,10 +467,10 @@ class GoodsAction extends CommonAction{
             $this->tuError('购买须知含有敏感词：' . $words);
         } $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商品详情不能为空');
+            $this->tuError('工作详情不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商品详情含有敏感词：' . $words);
+            $this->tuError('工作详情含有敏感词：' . $words);
         } $data['end_date'] = htmlspecialchars($data['end_date']);
         if (empty($data['end_date'])) {
             $this->tuError('过期时间不能为空');
@@ -518,7 +518,7 @@ class GoodsAction extends CommonAction{
 			$obj = D('Goods'); 
             $goods_id = I('goods_id', 0, 'trim,intval');
             if(!($detail = $obj->find($goods_id))) {
-                $this->ajaxReturn(array('status' => 'error', 'msg' => '该商品ID【'.$goods_id.'】不存在'));
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该工作ID【'.$goods_id.'】不存在'));
             }
 			$type = I('type', 0, 'trim,intval');
 			if(!$type){
@@ -554,7 +554,7 @@ class GoodsAction extends CommonAction{
 
     }
      /**
-     * 动态获取商品规格选择框 根据不同的数据返回不同的选择框
+     * 动态获取工作规格选择框 根据不同的数据返回不同的选择框
      */
     public function ajaxGetSpecSelect(){
         $goods_id = $_GET['goods_id'] ? $_GET['goods_id'] : 0;
@@ -574,7 +574,7 @@ class GoodsAction extends CommonAction{
     }    
 
      /**
-     * 动态获取商品规格输入框 根据不同的数据返回不同的输入框
+     * 动态获取工作规格输入框 根据不同的数据返回不同的输入框
      */    
     public function ajaxGetSpecInput(){     
          
@@ -585,7 +585,7 @@ class GoodsAction extends CommonAction{
 
      /**
      * 获取 规格的 笛卡尔积
-     * @param $goods_id 商品 id     
+     * @param $goods_id 工作 id     
      * @param $spec_arr 笛卡尔积
      * @return string 返回表格字符串
      */
@@ -640,7 +640,7 @@ class GoodsAction extends CommonAction{
 	
 	
 	
-	//动态获取商品属性入框根据不同的数据返回不同的输入框类型
+	//动态获取工作属性入框根据不同的数据返回不同的输入框类型
     public function ajaxGetAttrInput(){
 		$goods_id = $_REQUEST['goods_id'] ? $_REQUEST['goods_id'] : 0;
 		$type_id = $_REQUEST['type_id'] ? $_REQUEST['type_id'] : 0;
@@ -650,9 +650,9 @@ class GoodsAction extends CommonAction{
 	
 	
 	  /**
-     * 动态获取商品属性输入框 根据不同的数据返回不同的输入框类型
-     * @param int $goods_id 商品id
-     * @param int $type_id 商品属性类型id
+     * 动态获取工作属性输入框 根据不同的数据返回不同的输入框类型
+     * @param int $goods_id 工作id
+     * @param int $type_id 工作属性类型id
      */
     public function getAttrInput($goods_id,$type_id){
 		
@@ -710,8 +710,8 @@ class GoodsAction extends CommonAction{
     /**
      * 获取 tp_goods_attr 表中指定 goods_id  指定 attr_id  或者 指定 goods_attr_id 的值 可是字符串 可是数组
      * @param int $goods_attr_id tp_goods_attr表id
-     * @param int $goods_id 商品id
-     * @param int $attr_id 商品属性id
+     * @param int $goods_id 工作id
+     * @param int $attr_id 工作属性id
      * @return array 返回数组
      */
     public function getGoodsAttrVal($goods_attr_id = 0 ,$goods_id = 0, $attr_id = 0)
@@ -724,9 +724,9 @@ class GoodsAction extends CommonAction{
 	
 	
 	 /**
-     *  给指定商品添加属性 或修改属性 更新到 tp_goods_attr
-     * @param int $goods_id  商品id
-     * @param int $goods_type  商品类型id
+     *  给指定工作添加属性 或修改属性 更新到 tp_goods_attr
+     * @param int $goods_id  工作id
+     * @param int $goods_type  工作类型id
      */
     public function saveGoodsAttr($goods_id,$goods_type){  
      

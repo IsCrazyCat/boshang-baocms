@@ -151,7 +151,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
 
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
-            $this->tuError('商品名称不能为空');
+            $this->tuError('工作名称不能为空');
         }
         $data['intro'] = htmlspecialchars($data['intro']);
         if (empty($data['intro'])) {
@@ -342,7 +342,7 @@ class TuanAction extends CommonAction { //按逻辑  instructions  和  details 
         $data['business_id'] = $shop['business_id'];
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
-            $this->tuError('商品名称不能为空');
+            $this->tuError('工作名称不能为空');
         }
         $data['intro'] = htmlspecialchars($data['intro']);
         if (empty($data['intro'])) {

@@ -232,7 +232,7 @@ class EleproductAction extends CommonAction{
                 }
                 $this->tuSuccess('审核成功', U('eleproduct/index'));
             }
-            $this->tuError('请选择要审核的商品');
+            $this->tuError('请选择要审核的工作');
         }
     }
 }

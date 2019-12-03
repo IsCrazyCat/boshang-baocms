@@ -128,7 +128,7 @@ class AppointModel extends CommonModel {
     }
 	
 	public function appoint_buy($user_id,$appoint_id,$price,$order_id){
-        $Appoint = D('Appoint')->find($appoint_id);//商品状态
+        $Appoint = D('Appoint')->find($appoint_id);//工作状态
 		$shop = D('Shop')->find($Appoint['shop_id']);
 		
 		$user_intro = '购买家政'.$Appoint['title'].'订单号'.$order_id;

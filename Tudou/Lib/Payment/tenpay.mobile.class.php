@@ -62,7 +62,7 @@ class tenpay
             'cmdno'             => $cmd_no,                     // 业务代码, 财付通支付支付接口填  1
             'date'              => $today,                      // 商户日期：如20051212
             'bank_type'         => $bank_type,                  // 银行类型:支持纯网关和财付通
-            'desc'              => $desc,                       // 交易的商品名称
+            'desc'              => $desc,                       // 交易的工作名称
             'purchaser_id'      => '',                          // 用户(买方)的财付通帐户,可以为空
             'bargainor_id'      => $payment['tenpay_account'],  // 商家的财付通商户号
             'transaction_id'    => $transaction_id,             // 交易号(订单号)，由商户网站产生(建议顺序累加)

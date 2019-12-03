@@ -147,7 +147,7 @@ class PaymentAction extends CommonAction {
 	 protected function appoint_success($message, $detail){
         $order_id = (int) $detail['order_id'];
         $order = D('Appointorder')->find($order_id);
-        $Appoint = D('Appoint')->find($order['appoint_id']);//获取众筹商品
+        $Appoint = D('Appoint')->find($order['appoint_id']);//获取众筹工作
         $this->assign('order', $order);
         $this->assign('appoint', $Appoint);
         $this->assign('detail', $detail);
@@ -160,7 +160,7 @@ class PaymentAction extends CommonAction {
 	 protected function cloud_success($message, $detail){
         $log_id = (int) $detail['order_id'];
         $cloudlogs = D('Cloudlogs')->find($log_id);
-        $cloudgoods = D('Cloudgoods')->find($cloudlogs['goods_id']);//获取商品
+        $cloudgoods = D('Cloudgoods')->find($cloudlogs['goods_id']);//获取工作
         $this->assign('cloudlogs', $cloudlogs);
         $this->assign('cloudgoods', $cloudgoods);
         $this->assign('detail', $detail);

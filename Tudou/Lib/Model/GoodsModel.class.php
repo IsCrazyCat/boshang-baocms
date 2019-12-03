@@ -72,7 +72,7 @@ class GoodsModel extends CommonModel{
 			$this->error = '您的会员账户余额不足，请先充值后操作';
 			return false;
 		}
-		if(D('Users')->addMoney($Users['user_id'], -$money, '置顶商品ID【'.$goods_id.'】' . $type . '天')) {
+		if(D('Users')->addMoney($Users['user_id'], -$money, '置顶工作ID【'.$goods_id.'】' . $type . '天')) {
 			if($this->save(array('goods_id'=>$goods_id,'top_time'=>NOW_TIME + ($type*3600)))) {
 				return true;
 			}else{
@@ -85,7 +85,7 @@ class GoodsModel extends CommonModel{
 		}
    }
 	
-	//计算用户下单返回多少积分传2个参数，商品id商品类型
+	//计算用户下单返回多少积分传2个参数，工作id工作类型
     public function get_forecast_integral_restore($id,$type){
         $config = D('Setting')->fetchAll();
 		if($config['integral']['is_restore'] == 1){

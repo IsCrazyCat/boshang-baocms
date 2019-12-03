@@ -12,7 +12,7 @@
  * 		短链接转换接口--ShortUrl
  * 【响应型接口】--Wxpay_server_
  * 		通用通知接口--Notify
- * 		Native支付——请求商家获取商品信息接口--NativeCall
+ * 		Native支付——请求商家获取工作信息接口--NativeCall
  * 【其他】
  * 		静态链接二维码--NativeLink
  * 		JSAPI支付--JsApi
@@ -584,7 +584,7 @@ class Notify_pub extends Wxpay_server_pub {
 
 
 
-//请求商家获取商品信息接口
+//请求商家获取工作信息接口
 class NativeCall_pub extends Wxpay_server_pub{
 	function createXml()
 	{

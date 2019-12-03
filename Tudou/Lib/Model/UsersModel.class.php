@@ -129,7 +129,7 @@ class UsersModel extends CommonModel{
 	
    
 	
-	 //积分兑换商品返还积分给商家中间层
+	 //积分兑换工作返还积分给商家中间层
     public function return_integral($user_id, $jifen, $intro){
         static $CONFIG;
         if (empty($CONFIG)) {
@@ -490,6 +490,36 @@ class UsersModel extends CommonModel{
 		   ));
 		  D('Weixinmsg')->weixinTmplCapital($type = 1,$user_id,$money,$intro);//冻结余额模板通知
 		 return true;
+    }
+    //设置会员补贴资金入账
+    public function set_subsidy_money($user_id,$money,$intro){
+        if(!$detail = D('Users')->find($user_id)){
+            $this->error = '没有该用户';
+            return false;
+        }
+
+        D('Users')->save(array(
+            'user_id'=>$user_id,
+            'money'=> $detail['money'] + $money,
+            'subsidy_money'=> $detail['subsidy_money'] + $money
+        ));
+        D('Usermoneylogs')->add(array(
+            'user_id' => $user_id,
+            'money'=>$money,
+            'intro' => $intro.';修改前用户余额：'.$detail['money'],
+            'create_time' => NOW_TIME,
+            'create_ip'  => get_client_ip()
+        ));
+        D('SubsidyMoney')->add(array(
+            'user_id' => $user_id,
+            'money'=>$money,
+            'type'=>'subsidy',
+            'intro' => $intro.';修改前用户余额：'.$detail['money'],
+            'create_time' => NOW_TIME,
+            'create_ip'  => get_client_ip()
+        ));
+        D('Weixinmsg')->weixinTmplCapital($type = 1,$user_id,$money,$intro);//冻结余额模板通知
+        return true;
     }
 	
 	//检测积分兑换余额的合法性

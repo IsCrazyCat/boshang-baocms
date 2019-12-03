@@ -50,7 +50,7 @@
         <php>
         $shop = D('Shop') -> where('shop_id ='.$var['shop_id']) -> find();
         </php> 
-         <!--商品展示开始-->
+         <!--工作展示开始-->
         <div class="index__production___yfP3y" >
         <a  target="_blank"  href="<{:u('home/shop/detail',array('shop_id'=>$shop['shop_id']))}>" class="index__pic___TScfk" >
         <img src="<{:config_img($shop['photo'])}>" ><span></span></a>
@@ -61,7 +61,7 @@
             <span></span>
         	</div>
 		</div>
-       <!--商品展示END-->
+       <!--工作展示END-->
         
         </td>
         <td class="td_dianping_9" colspan="2">

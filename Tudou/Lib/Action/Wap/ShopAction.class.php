@@ -479,7 +479,7 @@ class ShopAction extends CommonAction{
 		$this->assign('goodsshopcate', $Goodsshopcate); 
         $this->assign('detail', $detail);
 		
-		//商品
+		//工作
 		$Goods = D('Goods');
         $goods_map = array('shop_id' => $shop_id,'closed' => 0,'audit' => 1, 'end_date' => array('EGT', TODAY));
         $count = $Goods->where($goods_map)->count();
@@ -687,7 +687,7 @@ class ShopAction extends CommonAction{
     }
 	
 	
-     //增加商城商品
+     //增加商城工作
     public function mall(){
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))){

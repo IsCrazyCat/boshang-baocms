@@ -1842,7 +1842,7 @@ function ajaxDistrict(parent_id) {
   });
 }
 
-//商品物流配送与运费
+//工作物流配送与运费
 function ajaxDispatching() {
 	
   var goods_id = $("input[name='goods_id']").val();

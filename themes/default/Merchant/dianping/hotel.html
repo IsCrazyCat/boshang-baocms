@@ -33,7 +33,7 @@
       <tr class="tr_dianping_2">
         <td class="td_dianping_12" colspan="2">
         <php>$Hotel = D('Hotel') ->find($var['shop_id']);</php> 
-         <!--商品展示开始-->
+         <!--工作展示开始-->
         <div class="index__production___yfP3y" >
         <a target="_blank"  href="<{:U('home/farm/detail',array('shop_id'=>$Hotel['shop_id']))}>" class="index__pic___TScfk" >
         <img src="<{:config_img($Farm['photo'])}>" ><span></span></a>
@@ -41,7 +41,7 @@
             <p ><a href="<{:U('home/farm/detail',array('shop_id'=>$Farm['shop_id']))}>" target="_blank" ><span><{$Hotel['hotel_name']}></span></a></p>
         	</div>
 		</div>
-       <!--商品展示END-->
+       <!--工作展示END-->
         </td>
         <td class="td_dianping_9" colspan="2">
         点评内容：<{$var.content}>

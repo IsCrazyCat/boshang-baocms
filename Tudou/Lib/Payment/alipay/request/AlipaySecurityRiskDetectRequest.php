@@ -158,7 +158,7 @@ class AlipaySecurityRiskDetectRequest
 	private $orderAmount;
 	
 	/** 
-	 * 订单商品所在类目
+	 * 订单工作所在类目
 	 **/
 	private $orderCategory;
 	
@@ -168,7 +168,7 @@ class AlipaySecurityRiskDetectRequest
 	private $orderCredateTime;
 	
 	/** 
-	 * 订单商品所在城市
+	 * 订单工作所在城市
 	 **/
 	private $orderItemCity;
 	

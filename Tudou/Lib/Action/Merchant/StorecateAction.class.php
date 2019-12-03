@@ -84,10 +84,10 @@ class StorecateAction extends CommonAction
         if ($cate_id = (int) $cate_id) {
             $obj = D('Storecate');
             if(!($detail = $obj->find($cate_id))){
-                $this->error('请选择要编辑的商品分类');
+                $this->error('请选择要编辑的工作分类');
             }
             if($detail['shop_id'] != $this->shop_id){
-                $this->error('请不要操作其他商家的商品分类');
+                $this->error('请不要操作其他商家的工作分类');
             }
             if($this->isPost()){
                 $data = $this->editCheck();
@@ -101,7 +101,7 @@ class StorecateAction extends CommonAction
                 $this->display();
             }
         }else{
-            $this->error('请选择要编辑的商品分类');
+            $this->error('请选择要编辑的工作分类');
         }
     }
 	
@@ -123,7 +123,7 @@ class StorecateAction extends CommonAction
 			
 			$res = D('Storeproduct')->where(array('cate_id'=>$cate_id))->find();
 			if($res){
-		 		 $this->tuError('当前分类下绑定了商品【'.$res['product_name'].'】，暂时无法删除');
+		 		 $this->tuError('当前分类下绑定了工作【'.$res['product_name'].'】，暂时无法删除');
 			}
 			
 			$res2 = $obj->where(array('parent_id'=>$cate_id))->find();
@@ -135,7 +135,7 @@ class StorecateAction extends CommonAction
             $obj->save(array('cate_id' => $cate_id, 'closed' => 1));
             $this->tuSuccess('删除成功', U('storecate/index'));
         }
-        $this->tuError('请选择要删除的商品分类');
+        $this->tuError('请选择要删除的工作分类');
     }
 	
 	

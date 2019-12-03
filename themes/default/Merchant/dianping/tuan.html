@@ -38,7 +38,7 @@
         <php>
         $tuan = D('Tuan') -> where('tuan_id ='.$var['tuan_id']) -> find();
         </php> 
-        <!--商品展示开始-->
+        <!--工作展示开始-->
         <div class="index__production___yfP3y" >
         <a  target="_blank"  href="<{:U('home/tuan/detail',array('tuan_id'=>$tuan['tuan_id']))}>" class="index__pic___TScfk" >
         <img src="<{:config_img($tuan['photo'])}>" ><span></span></a>
@@ -46,7 +46,7 @@
             <p><a href="<{:U('home/tuan/detail',array('tuan_id'=>$tuan['tuan_id']))}>" target="_blank" ><span><{$tuan['title']}></span></a></p>
         	</div>
 		</div>
-       <!--商品展示END-->
+       <!--工作展示END-->
         </td>
        <td class="td_dianping_9" colspan="3">
         点评内容：<{$var.contents}>

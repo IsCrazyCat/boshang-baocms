@@ -8,7 +8,7 @@
 class KoubeiTradeItemorderBuyRequest
 {
 	/** 
-	 * 商品下单购买
+	 * 工作下单购买
 	 **/
 	private $bizContent;
 

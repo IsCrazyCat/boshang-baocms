@@ -70,7 +70,7 @@ class StockAction extends CommonAction{
         $stock_id = (int) $_POST['stock_id'];
         $detail = D('Stock')->find($stock_id);
         if (empty($detail)) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该股权商品不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该股权工作不存在'));
         }
         $Stock = D('Stock');
         $obj = D('Stockorder');
@@ -104,10 +104,10 @@ class StockAction extends CommonAction{
         if ($stock_id = (int) $stock_id) {
             $obj = D('Stock');
             if (!($detail = $obj->find($stock_id))) {
-                $this->error('没有该商品');
+                $this->error('没有该工作');
             }
             if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-                $this->error('没有该商品');
+                $this->error('没有该工作');
             }
 			$obj->updateCount($msg_id, 'views');
             $thumb = unserialize($detail['thumb']);
@@ -115,7 +115,7 @@ class StockAction extends CommonAction{
             $this->assign('detail', $detail);
             $this->display();
         } else {
-            $this->error('没有该商品');
+            $this->error('没有该工作');
         }
     }
 	

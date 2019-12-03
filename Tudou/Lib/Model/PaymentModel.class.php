@@ -300,7 +300,7 @@ class PaymentModel extends CommonModel{
 						$obj -> add($insert);
 					}
 					D('Tuanorder')->save(array('order_id' => $order['order_id'], 'status' => 1));//设置已付款
-					D('Sms')->sms_tuan_user($member['user_id'],$order['order_id']);//团购商品通知用户
+					D('Sms')->sms_tuan_user($member['user_id'],$order['order_id']);//团购工作通知用户
 					D('Tuan')->updateCount($tuan['tuan_id'], 'sold_num');//更新卖出产品
 					D('Tuan')->updateCount($tuan['tuan_id'], 'num', -$order['num']);
 					D('Sms')->tuanTZshop($tuan['shop_id']);//发送短信通知商家

@@ -8,7 +8,7 @@
 class KoubeiItemCreateRequest
 {
 	/** 
-	 * 口碑商品创建接口
+	 * 口碑工作创建接口
 	 **/
 	private $bizContent;
 

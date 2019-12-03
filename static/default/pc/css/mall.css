@@ -180,7 +180,7 @@
 
 
 
-/*通栏商品*/
+/*通栏工作*/
 
 .all-col{width:100%;overflow:hidden;border:thin solid #DDD;border-top:none;}
 
@@ -202,7 +202,7 @@
 
 
 
-/*商品列表*/
+/*工作列表*/
 
 .index-list{width:100%;overflow:hidden;}
 
@@ -280,7 +280,7 @@
 
 
 
-/*商品详情左侧*/
+/*工作详情左侧*/
 
 .item-detail{width:855px;height:350px;float:left;border:1px solid #EEE;overflow:hidden;}
 
@@ -360,7 +360,7 @@
 
 
 
-/*商品介绍*/
+/*工作介绍*/
 
 .item-deal{background:#FFF;}
 
@@ -454,7 +454,7 @@
 
 
 
-/*店铺商品*/
+/*店铺工作*/
 
 .one-list{width:100%;overflow:hidden;}
 

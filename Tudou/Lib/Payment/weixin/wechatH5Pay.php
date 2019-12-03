@@ -12,7 +12,7 @@
      *  );
      *  统一下单方法
      *  $WechatAppPay = new wechatAppPay($options);
-     *  $params['body'] = '商品描述';                   //商品描述
+     *  $params['body'] = '工作描述';                   //工作描述
      *  $params['out_trade_no'] = '1217752501201407';   //自定义的订单号，不能重复
      *  $params['total_fee'] = '100';                   //订单金额 只能为整数 单位为分
      *  $params['trade_type'] = 'APP';                  //交易类型 JSAPI | NATIVE |APP | WAP 
@@ -36,7 +36,7 @@
         private $nonce_str;
         //签名
         private $sign;
-        //商品描述
+        //工作描述
         private $body;
         //商户订单号
         private $out_trade_no;

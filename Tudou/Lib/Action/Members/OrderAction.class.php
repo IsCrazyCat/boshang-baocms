@@ -382,10 +382,10 @@ class OrderAction extends CommonAction{
     public function dianping($order_id) {
         $order_id = (int) $order_id;
         if (!($detail = D('Order')->find($order_id))) {
-            $this->tuError('没有该商品');
+            $this->tuError('没有该工作');
         } else {
             if ($detail['user_id'] != $this->uid) {
-                $this->tuError('不要评价别人的商品');
+                $this->tuError('不要评价别人的工作');
                 die;
             }
         }
@@ -433,7 +433,7 @@ class OrderAction extends CommonAction{
                 D('Order')->save(array('order_id' => $order_id, 'is_dianping' => 1));
                 D('Users')->prestige($this->uid, 'dianping');
                 D('Users')->updateCount($this->uid, 'ping_num');
-                $this->tuSuccess('恭喜您点评商品成功!', U('members/order/goods'));
+                $this->tuSuccess('恭喜您点评工作成功!', U('members/order/goods'));
             }
             $this->tuError('点评失败');
         } else {

@@ -8,7 +8,7 @@
 class KoubeiItemExtitemCreateRequest
 {
 	/** 
-	 * 商品创建接口
+	 * 工作创建接口
 	 **/
 	private $bizContent;
 

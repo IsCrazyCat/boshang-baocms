@@ -513,10 +513,10 @@ class TuanAction extends CommonAction{
         }
         $tuan_id = (int) $this->_get('tuan_id');
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->tuError('该商品不存在');
+            $this->tuError('该工作不存在');
         }
         if ($detail['closed'] == 1 || $detail['end_date'] < TODAY) {
-            $this->tuError('该商品已经结束');
+            $this->tuError('该工作已经结束');
         }
 		if (false == D('Shop')->check_shop_user_id($detail['shop_id'],$this->uid)) {//不能购买自己家的产品
 			$this->tuError('您不能购买自己的产品');
@@ -534,7 +534,7 @@ class TuanAction extends CommonAction{
             $where['tuan_id'] = $tuan_id;
             $xdinfo = D('Tuanorder')->where($where)->order('order_id desc')->Field('order_id')->find();
             if ($xdinfo) {
-                $this->tuError('该商品只允许购买一次!');
+                $this->tuError('该工作只允许购买一次!');
                 die;
             }
         }
@@ -552,7 +552,7 @@ class TuanAction extends CommonAction{
                 if ($val['create_time'] >= $day_start && $val['create_time'] <= $day_end) {
                     $order_num += $val['num'] + $num;
                     if ($order_num > $detail['xiangou']) {
-                        $this->tuError('该商品每天每人限购' . $detail['xiangou'] . '份');
+                        $this->tuError('该工作每天每人限购' . $detail['xiangou'] . '份');
                         die;
                     }
                 }
@@ -602,11 +602,11 @@ class TuanAction extends CommonAction{
     {
         $tuan_id = (int) $this->_get('tuan_id');
         if (!($detail = D('Tuan')->find($tuan_id))) {
-            $this->error('该商品不存在');
+            $this->error('该工作不存在');
             die;
         }
         if ($detail['closed'] == 1 || $detail['end_date'] < TODAY) {
-            $this->error('该商品已经结束');
+            $this->error('该工作已经结束');
             die;
         }
         $num = (int) $this->_get('num');
@@ -624,7 +624,7 @@ class TuanAction extends CommonAction{
             $where['tuan_id'] = $tuan_id;
             $xdinfo = D('Tuanorder')->where($where)->order('order_id desc')->Field('order_id')->find();
             if ($xdinfo) {
-                $this->error('该商品只允许购买一次!');
+                $this->error('该工作只允许购买一次!');
                 die;
             }
         }
@@ -642,7 +642,7 @@ class TuanAction extends CommonAction{
                 if ($val['create_time'] >= $day_start && $val['create_time'] <= $day_end) {
                     $order_num += $val['num'] + $num;
                     if ($order_num > $detail['xiangou']) {
-                        $this->error('该商品每天每人限购' . $detail['xiangou'] . '份');
+                        $this->error('该工作每天每人限购' . $detail['xiangou'] . '份');
                         die;
                     }
                 }
@@ -702,7 +702,7 @@ class TuanAction extends CommonAction{
                     $obj->add($insert);
                 }
                 D('Tuan')->updateCount($tuan['tuan_id'], 'sold_num');
-				D('Sms')->sms_tuan_user($this->uid,$order['order_id']);//团购商品通知用户
+				D('Sms')->sms_tuan_user($this->uid,$order['order_id']);//团购工作通知用户
                 D('Users')->prestige($this->uid, 'tuan');//发送短信暂时不处理
                 D('Sms')->tuanTZshop($tuan['shop_id']);
                 D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,0);

@@ -20,8 +20,8 @@
    <div class="serch-bar-mask" id="cate_menu" style="display:none;top:50px;">
 		<div class="serch-bar-mask-list">
 			<ul>
-            <li><a href="<{:u('goods/create')}>">添加商品</a></li>
-            <li><a href="<{:u('mart/goodscate')}>">添加商品分类</a></li>
+            <li><a href="<{:u('goods/create')}>">添加工作</a></li>
+            <li><a href="<{:u('mart/goodscate')}>">添加工作分类</a></li>
 			</ul>
 		</div>
 	</div>
@@ -44,7 +44,7 @@
 				<div class="field">
 					<div class="input-group">
 						<span class="addbtn"><button type="button" class="button iconfont icon-search"></button></span>
-						<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="商品名称"  />
+						<input type="text" class="input" name="keyword" size="50" value="<{$keyword}>" placeholder="工作名称"  />
 						<span class="addbtn"><button type="submit" class="button">搜索</button></span>
 					</div>
 				</div>
@@ -58,13 +58,13 @@
 <!-- 筛选TAB -->
 <if condition="$SHOP['is_goods_pei'] eq 1">
 <ul id="shangjia_tab">
-        <li style="width:50%;"><a href="<{:U('mart/index')}>" class="on">商城商品</a></li>
+        <li style="width:50%;"><a href="<{:U('mart/index')}>" class="on">商城工作</a></li>
         <li style="width:50%;"><a href="<{:U('mart/all')}>">全部订单</a></li>
 </ul>    
 <else/>
 <ul id="shangjia_tab">
-        <li style="width: 25%;"><a href="<{:U('mart/index')}>" class="on">商城商品</a></li>
-        <li style="width: 25%;"><a href="<{:U('mart/order')}>">卖出商品</a></li>
+        <li style="width: 25%;"><a href="<{:U('mart/index')}>" class="on">商城工作</a></li>
+        <li style="width: 25%;"><a href="<{:U('mart/order')}>">卖出工作</a></li>
         <li style="width: 25%;"><a href="<{:U('mart/wait')}>">付款订单</a></li>
         <li style="width: 25%;"><a href="<{:U('mart/wait2')}>">货到付款</a></li>
 </ul>  
@@ -77,7 +77,7 @@
 <div class="blank-10 bg"></div>
 <foreach name="list" item="var">   
 <li class="line ">
-      <dt><a class="x3">商品ID：<{$var.goods_id}></a><a class="x9 text-right">发布日期：<{$var.create_time|date='Y-m-d',###}></a></dt>
+      <dt><a class="x3">工作ID：<{$var.goods_id}></a><a class="x9 text-right">发布日期：<{$var.create_time|date='Y-m-d',###}></a></dt>
         
       <dd class="zhong">
         <div class="x4">
@@ -135,7 +135,7 @@
 	$(document).ready(function () {
 		$(document).on('click', ".jquery-delete", function (e) {
 			var goods_id = $(this).attr('rel');
-			layer.confirm('您确定要删除该商品？', {
+			layer.confirm('您确定要删除该工作？', {
 				skin: 'layer-ext-demo', 
 				area: ['50%', 'auto'], 
 				btn: ['是的', '不'], 

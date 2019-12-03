@@ -509,7 +509,7 @@ class UserAction extends CommonAction{
        }       
    }
    
-   //设置会员冻结金 
+    //设置会员冻结金
  	public function frozen_money(){
        $user_id = (int)$this->_get('user_id'); 
        if(!$detail = D('Users')->find($user_id)){
@@ -533,7 +533,30 @@ class UserAction extends CommonAction{
            $this->display();
        }       
    }
-   
+    //增加会员补贴
+    public function subsidy_money(){
+        $user_id = (int)$this->_get('user_id');
+        if(!$detail = D('Users')->find($user_id)){
+            $this->tuError('没有该用户');
+        }
+        if($this->isPost()){
+            $money = (int)  ($this->_post('money') * 100);
+            if($money == 0){
+                $this->tuError('请输入正确的会员补贴金');
+            }
+            $intro =  $this->_post('intro', 'htmlspecialchars');
+            if(empty($intro)){
+                $this->tuError('会员补贴金说明不能为空');
+            }
+            if (!D('Users')->set_subsidy_money($user_id,$money,$intro)) {//入账
+                $this->tuError(D('Users')->getError(), 3000, true);
+            }
+            $this->tuSuccess('操作成功',U('user/index'));
+        }else{
+            $this->assign('user_id',$user_id);
+            $this->display();
+        }
+    }
    
     public function manage(){
         $user_id = (int) $this->_get('user_id');

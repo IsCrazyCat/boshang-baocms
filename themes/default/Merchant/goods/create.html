@@ -2,44 +2,44 @@
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布商品</a></li>
+        <li><a href="#">商家管理</a> > <a href="">商城</a> > <a>发布工作</a></li>
     </ul>
 </div>
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">商家发布的商品要在后台审核之后才能显示在前台</div>
+            <div class="left tuan_topser_l">商家发布的工作要在后台审核之后才能显示在前台</div>
         </div>
     </div> 
     <div class="tabnr_change  show">
     	<form method="post"  action="<{:U('goods/create')}>"  target="x-frame">
     	<table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="120"><p class="tuanfabu_t">商品名称：</p></td>
+                <td width="120"><p class="tuanfabu_t">工作名称：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[title]" value="<{$detail.title|default=''}>" class="tuanfabu_int tuanfabu_intw1"/>
-                <code>商品标题，建议不要超过20字</code>
+                <code>工作标题，建议不要超过20字</code>
                 </div></td>
             </tr>
              <tr>
-                    <td width="120"><p class="tuanfabu_t">商品简介：</p></td>
+                    <td width="120"><p class="tuanfabu_t">工作简介：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[intro]" value="<{$detail.intro|default=''}>" class="tuanfabu_int tuanfabu_intw3"  />
-                            <code>商品简要说明，建议不要超过30字</code>
+                            <code>工作简要说明，建议不要超过30字</code>
                         </div></td>
                 </tr>
                 <tr>
                     <td width="120"><p class="tuanfabu_t">产品规格：</p></td>
                     <td><div class="tuanfabu_nr">
                            <input type="text" name="data[guige]" value="<{$detail.guige|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
-                           <code>请填写商品规格，如件、条、捆、份、卷、张、公斤、千克、等</code>
+                           <code>请填写工作规格，如件、条、捆、份、卷、张、公斤、千克、等</code>
                         </div></td>
                          </tr>
                           <tr>
                     <td width="120"><p class="tuanfabu_t">库存：</p></td>
                     <td><div class="tuanfabu_nr">
                            <input type="text" name="data[num]" value="<{$detail.num|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
-                           <code>请填写商品库存</code>
+                           <code>请填写工作库存</code>
                         </div>
                         
                         </td>
@@ -51,15 +51,15 @@
                      <div class="tuanfabu_nr">
                      <label><input type="radio" <eq name="detail.is_reight" value="0"> checked="checked" </eq> name="data[is_reight]"  value="0"/>免运费</label>
                      <label><input type="radio" <eq name="detail.is_reight" value="1"> checked="checked" </eq> name="data[is_reight]"  value="1"/>不免运费</label>
-                     <code style="margin-left:10px; color:#00F">如果设置不免运费后必须设置商品重量</code></div>
+                     <code style="margin-left:10px; color:#00F">如果设置不免运费后必须设置工作重量</code></div>
                     </td>
                   </tr>
                   <tr>
-                   <td><p class="tuanfabu_t">请填写商品重量</td>
+                   <td><p class="tuanfabu_t">请填写工作重量</td>
                      <td>
                      <div class="tuanfabu_nr">
                      <input type="text" name="data[weight]" value="<{$detail.weight|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
-                     <code>新版克为单位，计算运费时候保留2位数，请填写商品的克重，运费模板那边的首重是KG为单位，那么这里填写1000克就收取首重费用，超出收取运费续重。</code>
+                     <code>新版克为单位，计算运费时候保留2位数，请填写工作的克重，运费模板那边的首重是KG为单位，那么这里填写1000克就收取首重费用，超出收取运费续重。</code>
                      </div></td>
                   </tr>
          
@@ -148,10 +148,10 @@
             
   
  			<tr> 
-                <td width="120"><p class="tuanfabu_t">商品类型：</p></td>
+                <td width="120"><p class="tuanfabu_t">工作类型：</p></td>
                <td> <div class="tuanfabu_nr">                                      
                 <select name="data[shoplx]" id="spec_type" class="seleFl w100" style="width:250px;">
-                  <option value="0">选择商品类型</option>
+                  <option value="0">选择工作类型</option>
                   <foreach name="goodsType" item="vo" key="k" >
                   <option value="<{$vo.id}>"<if condition="$goodsInfo[spec_type] eq $vo[id]"> selected="selected" </if> ><{$vo.name}></option>
                   </foreach>                                        
@@ -225,16 +225,16 @@
                          
 
 			<tr> 
-               <td width="120"><p class="tuanfabu_t">商品属性：</p></td>
+               <td width="120"><p class="tuanfabu_t">工作属性：</p></td>
                <td> 
                    <div class="tuanfabu_nr">  
                    
                         <table class="table table-bordered" id="goods_attr_table">                                
                                     <tr>
-                                        <td>商品属性:</td>
+                                        <td>工作属性:</td>
                                         <td>                                        
                                           <select name="goods_type" id="goods_type" class="form-control seleFl w200" style="width:250px;">
-                                            <option value="0">选择商品属性</option>
+                                            <option value="0">选择工作属性</option>
                                             <foreach name="goodsType" item="vo" key="k">
                                                 <option value="<{$vo.id}>" <if condition="$goodsInfo[goods_type] eq $vo[id]"> selected="selected" </if> ><{$vo.name}></option>
                                             </foreach>                                      
@@ -249,7 +249,7 @@
 			
             
             <tr>
-                 <td><p class="tuanfabu_t">商品图片：</p></td>
+                 <td><p class="tuanfabu_t">工作图片：</p></td>
                  <td><div class="tuanfabu_nr">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[photo]" value="<{$detail.photo}>" id="data_photo" />
@@ -361,7 +361,7 @@
                 <td width="120"><p class="tuanfabu_t">可使用积分数：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[use_integral]" value="<{$detail.use_integral|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
-                <code>100的倍数，100积分抵扣1元，一般不建议设置，如果你商品为1元，那么不得高于100积分，以此类推。</code>
+                <code>100的倍数，100积分抵扣1元，一般不建议设置，如果你工作为1元，那么不得高于100积分，以此类推。</code>
                 </div>
                 </td>
             </tr>
@@ -386,7 +386,7 @@
                 <!--购买须知结束-->
                 
                  <!--详情开始--> 
-                <tr><td><p class="tuanfabu_t">商品详情：</p></td> <td><div class="tuanfabu_nr">
+                <tr><td><p class="tuanfabu_t">工作详情：</p></td> <td><div class="tuanfabu_nr">
                 <script type="text/plain" id="details" name="data[details]" style="width:800px;height:360px;"><{$detail.details}></script>
                 <script>
                     um = UE.getEditor('details', {
