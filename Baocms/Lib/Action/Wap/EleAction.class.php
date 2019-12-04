@@ -396,10 +396,10 @@ class EleAction extends CommonAction{
         if (empty($addr_id)) {
             $this->fengmiMsg('请选择一个要配送的地址！');
         }
-        $mobile = D('Users')->where(array('user_id' => $this->uid))->getField('mobile');
-        if (!$mobile) {
-            $this->fengmiMsg('请先绑定手机号码再提交！');
-        }
+//        $mobile = D('Users')->where(array('user_id' => $this->uid))->getField('mobile');
+//        if (!$mobile) {
+//            $this->fengmiMsg('请先绑定手机号码再提交！');
+//        }
         D('Eleorder')->save(array('addr_id' => $addr_id, 'order_id' => $order_id));
         if (!($code = $this->_post('code'))) {
             $this->fengmiMsg('请选择支付方式！');

@@ -251,8 +251,12 @@ class PassportModel {
             }
         }
         $fuid = (int)cookie('fuid');
-        if(empty($fuid)&&!empty($data['fuid'])){
-            $fuid = $data['fuid'];
+        if(empty($fuid)){
+            if(!empty($data['fuid'])){
+                $fuid = $data['fuid'];
+            }else{
+                $fuid =(int)session('fuid');
+            }
         }
         $fuser = $obj->find($fuid);
         if ($fuser) {

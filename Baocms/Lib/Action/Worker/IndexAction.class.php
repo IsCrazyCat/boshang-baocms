@@ -56,7 +56,7 @@ class IndexAction extends CommonAction{
 
 
         //消费用户
-        $use_user = D('Users')->find($use_user_id);
+
         $json = $this->_param('snstr');
 
         $jsonarr = explode('/',$json);
@@ -74,6 +74,7 @@ class IndexAction extends CommonAction{
             $code_id = (int) $this->_param('code_id');
             $use_user_id = $this->_param('use_user_id');
         }
+        $use_user = D('Users')->find($use_user_id);
         $tuancode = D('Tuancode')->find($code_id);
         if(empty($tuancode)){
             $this->error('没有找到对应的团购券信息！', U('worker/index/index'));

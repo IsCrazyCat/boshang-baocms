@@ -164,6 +164,10 @@ class PassportAction extends CommonAction{
             } else {
                 $backurl = U('user/member/index');
             }
+            $param=$this->_param('bug');
+            if(empty($param)){
+                $this->success('正在登陆中！', $backurl);
+            }
             $this->assign('backurl', $backurl);
             $this->display();
         }

@@ -39,19 +39,13 @@ class MemberAction extends CommonAction{
             D('Payment')->logsPaid($logs_id);
 
             //这里是用户支付成功，生成分销二维码
-            if(empty($member['distribution_qrcode_url'])){
-                //没有分销二维码，则生成二维码
-                $token = 'fuid_' . $this->uid;
-//                $url = U('Wap/passport/register', array('fuid' => $this->uid));
-//                $file = baoQrCode($token, $url);
-                //分销二维码 修改为微信的二维码 + logo
-                $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
-                $token = 'fuid_' . $this->uid;
-                $logo = __ROOT__.'Public/img/blk_logo.jpg';
-                $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
-                D('Users')->save(array('user_id'=>$member['user_id'],'distribution_qrcode_url'=>$file));
-            }
 
+            //分销二维码 修改为微信的二维码 + logo
+            $wx_qrcode_url = D('Weixin')->getCode($this->uid,4);
+            $token = 'fuid_' . $this->uid;
+            $logo = __ROOT__.'Public/img/blk_logo.jpg';
+            $file = baoQrCodeLogo($token,$wx_qrcode_url,$logo);
+            D('Users')->save(array('user_id'=>$member['user_id'],'distribution_qrcode_url'=>$file));
         }
 		session('session_pay_password', null); //销毁cookie
         if ($detail['type'] == 'ele') {

@@ -4,9 +4,9 @@ class WeixinAction extends CommonAction {
 	public function _initialize() {
         parent::_initialize();
 		if($this->workers['tuan'] != 1){
-		    $shop = D('Shop')->where(array('user_id'=>$this->workers['user_id']))->find();
+		    $shop = D('Shop')->where(array('user_id'=>$this->uid))->find();
 		    if(empty($shop)){
-                $this->error('对不起，您无权限，请联系掌柜开通'.$this->workers['user_id']);
+                $this->error('对不起，您无权限，请联系掌柜开通!!');
             }
         }
 		

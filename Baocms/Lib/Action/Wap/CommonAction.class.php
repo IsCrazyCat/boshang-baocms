@@ -75,6 +75,7 @@ class CommonAction extends Action
         //三级分销开始
         $fuid = (int) $this->_get('fuid');
         if (!empty($fuid)) {
+            session('fuid', $fuid);
             $profit_expire = (int) $this->_CONFIG['profit']['profit_expire'];
             if ($profit_expire) {
                 cookie('fuid', $fuid, $profit_expire * 60 * 60);
@@ -192,6 +193,10 @@ class CommonAction extends Action
             }
             if ($yzm != $s_code) {
                 $this->ajaxReturn(array('status' => 'error', 'msg' => '验证码不正确！'));
+            }
+
+            if (empty($this->uid)) {
+                $this->error('登录状态失效!', U('Wap/passport/login'));
             }
             $data = array('user_id' => $this->uid, 'mobile' => $mobile);
             if (D('Users')->save($data)) {

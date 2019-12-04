@@ -492,10 +492,10 @@ class TuanAction extends CommonAction{
         if (!($code = $this->_post('code'))) {
             $this->fengmiMsg('请选择支付方式！');
         }
-        $mobile = D('Users')->where(array('user_id' => $this->uid))->getField('mobile');
-        if (!$mobile) {
-            $this->fengmiMsg('请先绑定手机号码再提交！');
-        }
+//        $mobile = D('Users')->where(array('user_id' => $this->uid))->getField('mobile');
+//        if (!$mobile) {
+//            $this->fengmiMsg('请先绑定手机号码再提交！');
+//        }
         $pay_mode = '在线支付';
         if ($code == 'wait') {
             $pay_mode = '货到支付';

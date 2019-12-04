@@ -875,69 +875,69 @@ function setpage()
 
 
 function check_user_mobile_for_pc(url1, url2) {
-    layer.open({
-        type: 1,
-        title: '请绑定手机后操作',
-        skin: 'layui-layer-demo', //加上边框
-        area: ['450px', '280px'], //宽高
-        content: '<div class="add-message"><p><span>*</span> 手机号：<input type="text" id="mobile" name="mobile" class="add-text add_mobile"><input class="send_button" type="button" id="jq_send" value="获取验证码"/></p><p><span>*</span> 验证码：<input type="text" id="yzm" name="yzm" class="add-text add_yzm">请输入手机获取的验证码</p></div> <div class="add-button"><input type="submit" id="go_mobile" class="add-hold" value="立刻认证"/></div>',
-    });
-
-
-    //获取验证码
-    var mobile_timeout;
-    var mobile_count = 100;
-    var mobile_lock = 0;
-    $(function () {
-        $("#jq_send").click(function () {
-
-            if (mobile_lock == 0) {
-                mobile_lock = 1;
-                $.post(url1, {mobile: $("#mobile").val()}, function (data) {
-                    if (data.status == 'success') {
-                        //alert(data.code);
-                        mobile_count = 60;
-                        layer.msg(data.msg,{icon: 1});
-                        BtnCount();
-                    } else {
-                        mobile_lock = 0;
-                        layer.msg(data.msg,{icon: 2});
-                    }
-                }, 'json');
-            }
-
-        });
-    });
-    BtnCount = function () {
-        if (mobile_count == 0) {
-            $('#jq_send').val("重新发送");
-            mobile_lock = 0;
-            clearTimeout(mobile_timeout);
-        }
-        else {
-            mobile_count--;
-            $('#jq_send').val("重新发送(" + mobile_count.toString() + ")秒");
-            mobile_timeout = setTimeout(BtnCount, 1000);
-        }
-    };
-    //提交
-    $('#go_mobile').click(function () {
-        var ml = $('#mobile').val();
-        var y = $('#yzm').val();
-        $.post(url2, {mobile: ml, yzm: y}, function (result) {
-            if (result.status == 'success') {
-                layer.msg(result.msg);
-                setTimeout(function () {
-                    location.reload(true);
-                }, 3000);
-            } else {
-                layer.msg(result.msg, {icon: 2});
-            }
-        }, 'json');
-    })
-
-
-    $('.layui-layer-title').css('color', '#ffffff').css('background', '#2fbdaa');
+    // layer.open({
+    //     type: 1,
+    //     title: '请绑定手机后操作',
+    //     skin: 'layui-layer-demo', //加上边框
+    //     area: ['450px', '280px'], //宽高
+    //     content: '<div class="add-message"><p><span>*</span> 手机号：<input type="text" id="mobile" name="mobile" class="add-text add_mobile"><input class="send_button" type="button" id="jq_send" value="获取验证码"/></p><p><span>*</span> 验证码：<input type="text" id="yzm" name="yzm" class="add-text add_yzm">请输入手机获取的验证码</p></div> <div class="add-button"><input type="submit" id="go_mobile" class="add-hold" value="立刻认证"/></div>',
+    // });
+    //
+    //
+    // //获取验证码
+    // var mobile_timeout;
+    // var mobile_count = 100;
+    // var mobile_lock = 0;
+    // $(function () {
+    //     $("#jq_send").click(function () {
+    //
+    //         if (mobile_lock == 0) {
+    //             mobile_lock = 1;
+    //             $.post(url1, {mobile: $("#mobile").val()}, function (data) {
+    //                 if (data.status == 'success') {
+    //                     //alert(data.code);
+    //                     mobile_count = 60;
+    //                     layer.msg(data.msg,{icon: 1});
+    //                     BtnCount();
+    //                 } else {
+    //                     mobile_lock = 0;
+    //                     layer.msg(data.msg,{icon: 2});
+    //                 }
+    //             }, 'json');
+    //         }
+    //
+    //     });
+    // });
+    // BtnCount = function () {
+    //     if (mobile_count == 0) {
+    //         $('#jq_send').val("重新发送");
+    //         mobile_lock = 0;
+    //         clearTimeout(mobile_timeout);
+    //     }
+    //     else {
+    //         mobile_count--;
+    //         $('#jq_send').val("重新发送(" + mobile_count.toString() + ")秒");
+    //         mobile_timeout = setTimeout(BtnCount, 1000);
+    //     }
+    // };
+    // //提交
+    // $('#go_mobile').click(function () {
+    //     var ml = $('#mobile').val();
+    //     var y = $('#yzm').val();
+    //     $.post(url2, {mobile: ml, yzm: y}, function (result) {
+    //         if (result.status == 'success') {
+    //             layer.msg(result.msg);
+    //             setTimeout(function () {
+    //                 location.reload(true);
+    //             }, 3000);
+    //         } else {
+    //             layer.msg(result.msg, {icon: 2});
+    //         }
+    //     }, 'json');
+    // })
+    //
+    //
+    // $('.layui-layer-title').css('color', '#ffffff').css('background', '#2fbdaa');
 
 }
 

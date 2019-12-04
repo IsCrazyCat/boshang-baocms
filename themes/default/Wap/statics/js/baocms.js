@@ -119,71 +119,71 @@ function set_bar(line_num, num) { //line,每行个数   num,总个数   多行�
 function check_user_mobile(url1,url2){
 
 
-		layer.open({
-			type: 1,
-			title:'请绑定手机后支付',
-			skin: 'layui-layer-demo', //加上边框
-			area: ['100%', '2.8rem'], //宽高
-			content: '<p class="form">手机号：<br><input name="mobile" id="mobile" type="text" /> <input type="button""  id="jq_send" value="获取验证码"/><br>验证码：<br><input  name="yzm" id="yzm" type="text" /> 输入验证码<br><input type="submit" value="立刻认证" id="go_mobile" /></p>'
-		});
-	//获取验证码
-        var mobile_timeout;
-        var mobile_count = 100;
-        var mobile_lock = 0;
-        $(function () {
-            $("#jq_send").click(function () {
-
-                if (mobile_lock == 0) {
-                    mobile_lock = 1;
-                    $.ajax({
-                        url: url1,
-                        data: 'mobile=' + $("#mobile").val(),
-                        type: 'post',
-                        success: function (data) {
-                            if (data.status == 'success') {
-                                mobile_count = 60;
-                                layer.msg(data.msg,{icon:1});
-                                BtnCount();
-                            } else {
-                                mobile_lock = 0;
-                                layer.msg(data.msg,{icon:2});
-                            }
-                        }
-                    });
-                }
-
-            });
-        });
-        BtnCount = function () {
-            if (mobile_count == 0) {
-                $('#jq_send').val("重新发送");
-                mobile_lock = 0;
-                clearTimeout(mobile_timeout);
-            }
-            else {
-                mobile_count--;
-                $('#jq_send').val("重新发送(" + mobile_count.toString() + ")秒");
-                mobile_timeout = setTimeout(BtnCount, 1000);
-            }
-        };
-		//提交
-		$('#go_mobile').click(function(){
-			var ml = $('#mobile').val();
-			var y = $('#yzm').val();
-			$.post(url2,{mobile:ml,yzm:y},function(result){										
-				if(result.status == 'success'){
-					layer.msg(result.msg);
-					setTimeout(function(){
-						location.reload(true);
-					},3000);
-				}else{
-					layer.msg(result.msg,{icon:2});
-				}														
-			},'json');
-		})	
-		
-		
-		$('.layui-layer-title').css('color','#ffffff').css('background','#2fbdaa');
+	// 	layer.open({
+	// 		type: 1,
+	// 		title:'请绑定手机后支付',
+	// 		skin: 'layui-layer-demo', //加上边框
+	// 		area: ['100%', '2.8rem'], //宽高
+	// 		content: '<p class="form">手机号：<br><input name="mobile" id="mobile" type="text" /> <input type="button""  id="jq_send" value="获取验证码"/><br>验证码：<br><input  name="yzm" id="yzm" type="text" /> 输入验证码<br><input type="submit" value="立刻认证" id="go_mobile" /></p>'
+	// 	});
+	// //获取验证码
+    //     var mobile_timeout;
+    //     var mobile_count = 100;
+    //     var mobile_lock = 0;
+    //     $(function () {
+    //         $("#jq_send").click(function () {
+    //
+    //             if (mobile_lock == 0) {
+    //                 mobile_lock = 1;
+    //                 $.ajax({
+    //                     url: url1,
+    //                     data: 'mobile=' + $("#mobile").val(),
+    //                     type: 'post',
+    //                     success: function (data) {
+    //                         if (data.status == 'success') {
+    //                             mobile_count = 60;
+    //                             layer.msg(data.msg,{icon:1});
+    //                             BtnCount();
+    //                         } else {
+    //                             mobile_lock = 0;
+    //                             layer.msg(data.msg,{icon:2});
+    //                         }
+    //                     }
+    //                 });
+    //             }
+    //
+    //         });
+    //     });
+    //     BtnCount = function () {
+    //         if (mobile_count == 0) {
+    //             $('#jq_send').val("重新发送");
+    //             mobile_lock = 0;
+    //             clearTimeout(mobile_timeout);
+    //         }
+    //         else {
+    //             mobile_count--;
+    //             $('#jq_send').val("重新发送(" + mobile_count.toString() + ")秒");
+    //             mobile_timeout = setTimeout(BtnCount, 1000);
+    //         }
+    //     };
+	// 	//提交
+	// 	$('#go_mobile').click(function(){
+	// 		var ml = $('#mobile').val();
+	// 		var y = $('#yzm').val();
+	// 		$.post(url2,{mobile:ml,yzm:y},function(result){
+	// 			if(result.status == 'success'){
+	// 				layer.msg(result.msg);
+	// 				setTimeout(function(){
+	// 					location.reload(true);
+	// 				},3000);
+	// 			}else{
+	// 				layer.msg(result.msg,{icon:2});
+	// 			}
+	// 		},'json');
+	// 	})
+	//
+	//
+	// 	$('.layui-layer-title').css('color','#ffffff').css('background','#2fbdaa');
 	
 }
 
@@ -191,71 +191,71 @@ function check_user_mobile(url1,url2){
 function change_user_mobile(url1,url2){
 
 
-		layer.open({
-			type: 1,
-			title:'请绑定手机后支付',
-			skin: 'layui-layer-demo', //加上边框
-			area: ['100%', '2.8rem'], //宽高
-			content: '<p class="form">手机号：<br><input name="mobile" id="mobile" type="text" /> <input type="button""  id="jq_send" value="获取验证码"/><br>验证码：<br><input  name="yzm" id="yzm" type="text" /> 输入验证码<br><input type="submit" value="立刻认证" id="go_mobile" /></p>'
-		});
-	//获取验证码
-        var mobile_timeout;
-        var mobile_count = 100;
-        var mobile_lock = 0;
-        $(function () {
-            $("#jq_send").click(function () {
-
-                if (mobile_lock == 0) {
-                    mobile_lock = 1;
-                    $.ajax({
-                        url: url1,
-                        data: 'mobile=' + $("#mobile").val(),
-                        type: 'post',
-                        success: function (data) {
-                            if (data.status == 'success') {
-                                mobile_count = 60;
-                                layer.msg(data.msg,{icon:1});
-                                BtnCount();
-                            } else {
-                                mobile_lock = 0;
-                                layer.msg(data.msg,{icon:2});
-                            }
-                        }
-                    });
-                }
-
-            });
-        });
-        BtnCount = function () {
-            if (mobile_count == 0) {
-                $('#jq_send').val("重新发送");
-                mobile_lock = 0;
-                clearTimeout(mobile_timeout);
-            }
-            else {
-                mobile_count--;
-                $('#jq_send').val("重新发送(" + mobile_count.toString() + ")秒");
-                mobile_timeout = setTimeout(BtnCount, 1000);
-            }
-        };
-		//提交
-		$('#go_mobile').click(function(){
-			var ml = $('#mobile').val();
-			var y = $('#yzm').val();
-			$.post(url2,{mobile:ml,yzm:y},function(result){										
-				if(result.status == 'success'){
-					layer.msg(result.msg,{icon:1});
-					setTimeout(function(){
-						location.reload(true);
-					},3000);
-				}else{
-					layer.msg(result.msg,{icon:2});
-				}														
-			},'json');
-		})	
-		
-		
-		$('.layui-layer-title').css('color','#ffffff').css('background','#2fbdaa');
+	// 	layer.open({
+	// 		type: 1,
+	// 		title:'请绑定手机后支付',
+	// 		skin: 'layui-layer-demo', //加上边框
+	// 		area: ['100%', '2.8rem'], //宽高
+	// 		content: '<p class="form">手机号：<br><input name="mobile" id="mobile" type="text" /> <input type="button""  id="jq_send" value="获取验证码"/><br>验证码：<br><input  name="yzm" id="yzm" type="text" /> 输入验证码<br><input type="submit" value="立刻认证" id="go_mobile" /></p>'
+	// 	});
+	// //获取验证码
+    //     var mobile_timeout;
+    //     var mobile_count = 100;
+    //     var mobile_lock = 0;
+    //     $(function () {
+    //         $("#jq_send").click(function () {
+    //
+    //             if (mobile_lock == 0) {
+    //                 mobile_lock = 1;
+    //                 $.ajax({
+    //                     url: url1,
+    //                     data: 'mobile=' + $("#mobile").val(),
+    //                     type: 'post',
+    //                     success: function (data) {
+    //                         if (data.status == 'success') {
+    //                             mobile_count = 60;
+    //                             layer.msg(data.msg,{icon:1});
+    //                             BtnCount();
+    //                         } else {
+    //                             mobile_lock = 0;
+    //                             layer.msg(data.msg,{icon:2});
+    //                         }
+    //                     }
+    //                 });
+    //             }
+    //
+    //         });
+    //     });
+    //     BtnCount = function () {
+    //         if (mobile_count == 0) {
+    //             $('#jq_send').val("重新发送");
+    //             mobile_lock = 0;
+    //             clearTimeout(mobile_timeout);
+    //         }
+    //         else {
+    //             mobile_count--;
+    //             $('#jq_send').val("重新发送(" + mobile_count.toString() + ")秒");
+    //             mobile_timeout = setTimeout(BtnCount, 1000);
+    //         }
+    //     };
+	// 	//提交
+	// 	$('#go_mobile').click(function(){
+	// 		var ml = $('#mobile').val();
+	// 		var y = $('#yzm').val();
+	// 		$.post(url2,{mobile:ml,yzm:y},function(result){
+	// 			if(result.status == 'success'){
+	// 				layer.msg(result.msg,{icon:1});
+	// 				setTimeout(function(){
+	// 					location.reload(true);
+	// 				},3000);
+	// 			}else{
+	// 				layer.msg(result.msg,{icon:2});
+	// 			}
+	// 		},'json');
+	// 	})
+	//
+	//
+	// 	$('.layui-layer-title').css('color','#ffffff').css('background','#2fbdaa');
 	
 }
 

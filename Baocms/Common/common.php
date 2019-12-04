@@ -120,6 +120,45 @@ function baoQrCodeLogo($token,$url,$logo_img,$size = 8){ //生成网址的二维
         return 'weixin/'.$dir.$md5.'_logo.png';
     }
 }
+/**
+ * @param $token
+ * @param $url
+ * @param int $size
+ * @return string 生成代logo的二维码
+ */
+function baoQrCodeLogo1($token,$url,$logo_img,$size = 8){ //生成网址的二维码 返回图片地址
+    $md5 = md5($token);
+    $dir = substr($md5,0,3).'/'.substr($md5,3,3).'/'.substr($md5,6,3).'/';
+    $patch =BASE_PATH.'/attachs/'. 'weixin/'.$dir;
+    if(!file_exists($patch)){
+        mkdir($patch,0755,true);
+    }
+    $file = 'weixin/'.$dir.$md5.'.png';
+    $fileName  =BASE_PATH.'/attachs/'.$file;
+    $level = 'L';
+    if(strstr($url,__HOST__)){
+        $data = $url;
+    }else{
+        $data =__HOST__. $url;
+    }
+    QRcode::png($data, $fileName, $level, $size,2,true);
+
+    if($logo_img){
+        $QR = imagecreatefromstring(file_get_contents(BASE_PATH.'/attachs/'.$file));
+        $logo_img = imagecreatefromstring(file_get_contents(BASE_PATH .'/' .$logo_img));
+        $QR_width = imagesx($QR);//二维码图片宽度
+        $QR_height = imagesy($QR);//二维码图片高度
+        $logo_width = imagesx($logo_img);//logo图片宽度
+        $logo_height = imagesy($logo_img);//logo图片高度
+        $logo_qr_width = $QR_width / 5;
+        $scale = $logo_width/$logo_qr_width;
+        $logo_qr_height = $logo_height/$scale;
+        $from_width = ($QR_width - $logo_qr_width) / 2;//重新组合图片并调整大小
+        imagecopyresampled($QR, $logo_img, $from_width, $from_width, 0, 0, $logo_qr_width,$logo_qr_height, $logo_width, $logo_height);//输出图片
+        imagepng($QR, BASE_PATH.'/attachs/'.'weixin/'.$dir.$md5.'_logo.png');
+        return 'weixin/'.$dir.$md5.'_logo.png';
+    }
+}
 function fengmiQrCode($token,$url,$size){ 
     $md5 = md5($token);
     $dir = substr($md5,0,3).'/'.substr($md5,3,3).'/'.substr($md5,6,3).'/';
