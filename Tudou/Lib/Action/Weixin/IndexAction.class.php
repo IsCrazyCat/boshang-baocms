@@ -34,7 +34,7 @@ class IndexAction extends CommonAction{
             }
             $this->weixin->response($content, 'news');
         } else {
-            $this->weixin->response('很抱歉没有合适的商家推荐给您', 'text');
+            $this->weixin->response('很抱歉没有合适的企业推荐给您', 'text');
         }
     }
 	
@@ -251,7 +251,7 @@ class IndexAction extends CommonAction{
 					$this->getImage($weixin_msg['photo']), 
 					$this->_CONFIG['weixin']['linkurl']
 				);
-                $this->weixin->response($content, 'news');//发送商家图片文字简介
+                $this->weixin->response($content, 'news');//发送企业图片文字简介
             }
         }
     }

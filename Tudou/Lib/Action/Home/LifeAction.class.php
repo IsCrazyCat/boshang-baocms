@@ -307,7 +307,7 @@ class LifeAction extends CommonAction{
             $data['cate_id'] = $cat;
             $details = $this->_post('details', 'SecurityEditorHtml');
             if ($words = D('Sensitive')->checkWords($details)) {
-                $this->tuAlert('商家介绍含有敏感词：' . $words);
+                $this->tuAlert('企业介绍含有敏感词：' . $words);
             }
             if ($life_id = D('Life')->add($data)) {
                 $photos = $this->_post('photos', false);

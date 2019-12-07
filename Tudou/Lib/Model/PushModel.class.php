@@ -14,11 +14,11 @@ class PushModel extends CommonModel{
 	
 	protected $category = array(
         1 => '会员',
-        2 => '商家',
+        2 => '企业',
 		3 => '分站管理员',
 		4 => '物业管理员',	
 		5 => '物流配送员',
-		6 => '商家员工',
+		6 => '企业员工',
 		7 => '智慧乡村管理员',	
     );
 	

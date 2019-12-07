@@ -175,7 +175,7 @@ class NewsAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'error', 'msg' => '评论内容不能为空'));
         }
         if ($words = D('Sensitive')->checkWords($content)) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '商家介绍含有敏感词：' . $words));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '企业介绍含有敏感词：' . $words));
         }
         if (empty($data['article_id'])) {
             $this->ajaxReturn(array('status' => 'error', 'msg' => '文章编号不正确'));

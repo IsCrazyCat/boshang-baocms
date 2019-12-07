@@ -16,7 +16,7 @@
 <div class="content zy_content">
 
 	<div class="spxq_loca">
-     <a href="<{:U('shop/index')}>">商家 ></a>
+     <a href="<{:U('shop/index')}>">企业 ></a>
      <a><{$detail.shop_name}></a>
     </div>
     
@@ -25,8 +25,8 @@
         <div class="shop-type c2016">
             <ul>
                 <li><a href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">首页</a></li>
-                <li><a href="<{:U('shop/branch',array('shop_id'=>$detail['shop_id']))}>">商家分店</a></li>
-                <li><a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>">商家介绍</a></li>
+                <li><a href="<{:U('shop/branch',array('shop_id'=>$detail['shop_id']))}>">企业分店</a></li>
+                <li><a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>">企业介绍</a></li>
                 <li><a href="<{:U('shop/photo',array('shop_id'=>$detail['shop_id']))}>">相册</a></li>
                 <li><a href="<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>">工作</a></li>
                 <li><a href="<{:U('shop/tuan',array('shop_id'=>$detail['shop_id']))}>">抢购</a></li>
@@ -52,7 +52,7 @@
                         </div>
                         </a>
                         <p>
-                            <a class="upload-photo" href="<{:U('shop/photo',array('shop_id'=>$detail['shop_id']))}>" target="_blank">更多商家图片</a><a class="icon"></a><a id="pic-count"> <{$pic}> </a>
+                            <a class="upload-photo" href="<{:U('shop/photo',array('shop_id'=>$detail['shop_id']))}>" target="_blank">更多企业图片</a><a class="icon"></a><a id="pic-count"> <{$pic}> </a>
                         </p>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
     <div class="mn">
 	<div class="mod sales-promotion c2016">
             <h2 class="mod-title c2016">
-            <a class="item current"><span>商家</span>资讯</a>
+            <a class="item current"><span>企业</span>资讯</a>
             </h2>
             <div class="news c2016">
              <foreach name="list" item="item">

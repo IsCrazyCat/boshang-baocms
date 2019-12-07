@@ -15,7 +15,7 @@ ul { padding-left: 0px;}
     
 <!-- 筛选TAB -->
 <ul id="shangjia_tab">
-   <li class="x2"><a href="<{:U('dianping/index')}>" class="on">商家</a></li>
+   <li class="x2"><a href="<{:U('dianping/index')}>" class="on">企业</a></li>
    <li class="x2"><a href="<{:U('dianping/tuan')}>">抢购</a></li>
    <li class="x2"><a href="<{:U('dianping/waimai')}>">外卖</a></li>
    <li class="x2"><a href="<{:U('dianping/booking')}>">订座</a></li>
@@ -52,7 +52,7 @@ ul { padding-left: 0px;}
          
          <if condition="!empty($var['reply'])">  
              <dt style="background:#FFF2F2">
-                 <div class="x12"><span class="margin-right">商家回复:<{$var.reply}></span></div>
+                 <div class="x12"><span class="margin-right">企业回复:<{$var.reply}></span></div>
              </dt>
          </if> 
             
@@ -63,7 +63,7 @@ ul { padding-left: 0px;}
             <a href="<{:U('dianping/reply',array('dianping_id'=>$var['dianping_id']))}>" class="button button-small bg-dot">回复</a> 
           </p>
           <else/>
-          <p class="text-right padding-top x6"> <a class="button button-small bg-gray">商家已回复</a> </p>
+          <p class="text-right padding-top x6"> <a class="button button-small bg-gray">企业已回复</a> </p>
           </if>
       </dl>
     </li>

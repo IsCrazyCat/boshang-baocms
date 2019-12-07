@@ -71,7 +71,7 @@ class ShopyuyueAction extends CommonAction
         $data['user_id'] = (int) $data['user_id'];
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {
@@ -103,7 +103,7 @@ class ShopyuyueAction extends CommonAction
         if ($yuyue_id = (int) $yuyue_id) {
             $obj = D('Shopyuyue');
             if (!($detail = $obj->find($yuyue_id))) {
-                $this->tuError('请选择要编辑的商家预约');
+                $this->tuError('请选择要编辑的企业预约');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -119,7 +119,7 @@ class ShopyuyueAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家预约');
+            $this->tuError('请选择要编辑的企业预约');
         }
     }
     private function editCheck()
@@ -128,7 +128,7 @@ class ShopyuyueAction extends CommonAction
         $data['user_id'] = (int) $data['user_id'];
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {
@@ -167,7 +167,7 @@ class ShopyuyueAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('shopyuyue/index'));
             }
-            $this->tuError('请选择要删除的商家预约');
+            $this->tuError('请选择要删除的企业预约');
         }
     }
 }

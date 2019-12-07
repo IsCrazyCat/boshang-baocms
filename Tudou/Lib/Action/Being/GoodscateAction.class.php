@@ -71,7 +71,7 @@ class GoodscateAction extends CommonAction
         if ($cate_id = (int) $cate_id) {
             $obj = D('Goodscate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->tuError('请选择要编辑的商家分类');
+                $this->tuError('请选择要编辑的企业分类');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -86,7 +86,7 @@ class GoodscateAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
     private function editCheck()
@@ -140,7 +140,7 @@ class GoodscateAction extends CommonAction
         if ($cate_id = (int) $cate_id) {
             $obj = D('Goodscate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->tuError('请选择要编辑的商家分类');
+                $this->tuError('请选择要编辑的企业分类');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -155,7 +155,7 @@ class GoodscateAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
     private function editoneCheck()
@@ -190,7 +190,7 @@ class GoodscateAction extends CommonAction
                 $obj->cleanCache();
                 $this->tuSuccess('删除成功', U('goodscate/index'));
             }
-            $this->tuError('请选择要删除的商家分类');
+            $this->tuError('请选择要删除的企业分类');
         }
     }
     public function delattr($attr_id)

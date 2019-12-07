@@ -38,10 +38,7 @@ class CommonAction extends Action{
             exit;
         }
         $this->ex = D('Usersex')->find($this->uid);
-		
-		
-        
-		
+
 		
 		$http = ($this->_CONFIG['site']['https'] == 1) ? 'https' : 'http';
 		if(IS_MOBILE){

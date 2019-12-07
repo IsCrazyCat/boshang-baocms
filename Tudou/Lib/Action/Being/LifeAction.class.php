@@ -60,7 +60,7 @@ class LifeAction extends CommonAction
             $obj = D('Life');
             $details = $this->_post('details', 'SecurityEditorHtml');
             if ($words = D('Sensitive')->checkWords($details)) {
-                $this->tuError('商家介绍含有敏感词：' . $words);
+                $this->tuError('企业介绍含有敏感词：' . $words);
             }
             if ($life_id = $obj->add($data)) {
                 if ($details) {
@@ -172,7 +172,7 @@ class LifeAction extends CommonAction
                 $data['life_id'] = $life_id;
                 $details = $this->_post('details', 'SecurityEditorHtml');
                 if ($words = D('Sensitive')->checkWords($details)) {
-                    $this->tuError('商家介绍含有敏感词：' . $words);
+                    $this->tuError('企业介绍含有敏感词：' . $words);
                 }
                 if (false !== $obj->save($data)) {
                     if ($details) {

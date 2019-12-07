@@ -60,7 +60,7 @@ class ShopweixinkeywordAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('请选择商家');
+            $this->tuError('请选择企业');
         }
         $data['keyword'] = htmlspecialchars($data['keyword']);
         if (empty($data['keyword'])) {
@@ -119,7 +119,7 @@ class ShopweixinkeywordAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('请选择商家');
+            $this->tuError('请选择企业');
         }
         $data['keyword'] = htmlspecialchars($data['keyword']);
         if (empty($data['keyword'])) {

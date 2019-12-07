@@ -41,7 +41,7 @@ class AppointorderModel  extends  CommonModel{
 		
 		D('Appointorder')->appoint_order_print($order_id);//家政打印万能接口
 		D('Sms')->sms_appoint_TZ_user($order_id);//家政短信通知用户
-		D('Sms')->sms_appoint_TZ_shop($order_id);//家政短信通知商家
+		D('Sms')->sms_appoint_TZ_shop($order_id);//家政短信通知企业
 		D('Weixinmsg')->weixinTmplOrderMessage($$order_id,$cate = 1,$type = 3,$status = 1);
 		D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 3,$status = 1);
         return true;
@@ -130,7 +130,7 @@ class AppointorderModel  extends  CommonModel{
 			$Appoint = D('Appoint')->find($detail['appoint_id']);
             if(false !== $this->save(array('order_id'=>$order_id,'status'=>8))){
 			  $info = '家政结算，订单号：'.$order_id;
-			  D('Shopmoney')->insertData($order_id,$id ='0',$Appoint['shop_id'],$detail['need_pay'],$type ='appoint',$intro);//结算给商家
+			  D('Shopmoney')->insertData($order_id,$id ='0',$Appoint['shop_id'],$detail['need_pay'],$type ='appoint',$intro);//结算给企业
 			  D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 3,$status = 8);
 			  D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 3,$status = 8);
 			  return true;
@@ -160,7 +160,7 @@ class AppointorderModel  extends  CommonModel{
 	//家政订单打印
 	public function appoint_print($order_id) {	
 			$Appointorder = D('Appointorder')->find($order_id);
-			$Shop = D('Shop')->where(array('shop_id'=> $Appointorder['shop_id']))->find();//商家信息
+			$Shop = D('Shop')->where(array('shop_id'=> $Appointorder['shop_id']))->find();//企业信息
 			
             $msg .= '@@家政订单__________NO:' . $Appointorder['order_id'] . '\r';
             $msg .= '预约姓名：' . $Appointorder['name'] . '\r';
@@ -176,7 +176,7 @@ class AppointorderModel  extends  CommonModel{
 			}
 			
             $msg .= '----------------------\r';
-			$msg .= '商家名称：' . $Shop['shop_name'] . '\r';
+			$msg .= '企业名称：' . $Shop['shop_name'] . '\r';
             $msg .= '已付定金：' . $Appointorder['need_pay'] / 100 . '元\r';
 			return $msg;//返回数组
    }

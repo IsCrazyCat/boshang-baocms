@@ -8,7 +8,7 @@
 class AlipayOpenServicemarketOrderItemConfirmRequest
 {
 	/** 
-	 * 服务商代商家确认完成
+	 * 服务商代企业确认完成
 	 **/
 	private $bizContent;
 

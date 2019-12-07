@@ -94,7 +94,7 @@ class BizAction extends CommonAction {
 	public function gps($pois_id){
         $pois_id = (int)$pois_id;
         if(empty($pois_id)){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }
         $Biz = D('Biz')->find($pois_id);
         
@@ -108,7 +108,7 @@ class BizAction extends CommonAction {
         if ($pois_id = (int) $pois_id) {
             $obj = D('Biz');
             if (!$detail = $obj->find($pois_id)) {
-                $this->error('没有该商家信息');
+                $this->error('没有该企业信息');
             }
 
 			$lat =$detail['lat'];
@@ -122,7 +122,7 @@ class BizAction extends CommonAction {
             $this->seodatas['keywords'] = $detail['tag'];
             $this->display();
         } else {
-            $this->error('没有该商家信息');
+            $this->error('没有该企业信息');
         }
     }
 
@@ -142,7 +142,7 @@ class BizAction extends CommonAction {
         }
 		$shops = D('Shop')->where(array('user_id'=>$this->uid))->find();
 		if(empty($shops)) {
-            $this->tuMsg('您还不是商家哦');
+            $this->tuMsg('您还不是企业哦');
         }
 		if($shops['is_biz'] == 0) {
             $this->tuMsg('您还没申请开通此项服务');
@@ -160,7 +160,7 @@ class BizAction extends CommonAction {
     }
 		
 		
-	//新添加预约商家开始
+	//新添加预约企业开始
 	
 	 public function yuyue($pois_id) {
         if (empty($this->uid)) {
@@ -181,7 +181,7 @@ class BizAction extends CommonAction {
             $data['code'] = $obj->getCode();
             if ($obj->add($data)) {
 				D('Sms')->sms_yuyue_notice_user($detail,$data['mobile'],$data['code']);//短信通知会员
-				D('Sms')->sms_yuyue_notice_shop($data,$$shops['mobile']);//短信通知商家          
+				D('Sms')->sms_yuyue_notice_shop($data,$$shops['mobile']);//短信通知企业
                 D('Shop')->updateCount($shop_id, 'yuyue_total');
                 $this->tuSuccess('预约成功', U('user/yuyue/index',array('status'=>2)));
             }
@@ -224,6 +224,6 @@ class BizAction extends CommonAction {
         $data['create_ip'] = get_client_ip();
         return $data;
     }
-	//预约商家结束
+	//预约企业结束
 
 }

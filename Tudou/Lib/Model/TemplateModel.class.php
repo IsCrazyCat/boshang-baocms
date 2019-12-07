@@ -8,7 +8,7 @@ class TemplateModel extends CommonModel{
 	public function getType(){
         return array(
             '1' => '网站模板',
-            '2' => '商家模板',
+            '2' => '企业模板',
             '3' => '会员模板',
         );
     }
@@ -34,7 +34,7 @@ class TemplateModel extends CommonModel{
         }
         return C('DEFAULT_THEME');
     }
-	//获取模板函数，控制器名称，商家ID，类型，函数名字，控制器名字
+	//获取模板函数，控制器名称，企业ID，类型，函数名字，控制器名字
 	public function getTemplate($control,$shop_id,$type = 0,$method){
 		if(!$control){
 			return false;

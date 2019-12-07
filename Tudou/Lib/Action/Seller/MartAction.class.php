@@ -403,7 +403,7 @@ class MartAction extends CommonAction{
             if ($cate_id) {
                 $obj = D('Goodsshopcate');
                 if (!($detail = $obj->find($cate_id))) {
-                    $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的商家分类!'));
+                    $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的企业分类!'));
                 }
                 if ($detail['shop_id'] != $this->shop_id) {
                     $this->ajaxReturn(array('status' => 'error', 'message' => '不可以修改别人的内容!'));
@@ -416,7 +416,7 @@ class MartAction extends CommonAction{
                 }
                 $this->ajaxReturn(array('status' => 'success', 'message' => '操作失败!'));
             } else {
-                $this->ajaxReturn(array('status' => 'success', 'message' => '请选择要编辑的商家分类!'));
+                $this->ajaxReturn(array('status' => 'success', 'message' => '请选择要编辑的企业分类!'));
             }
         } else {
             $this->assign('detail', $detail);
@@ -585,7 +585,7 @@ class MartAction extends CommonAction{
             $this->error('该订单不存在');
         }
         if ($detail['shop_id'] != $this->shop_id) {
-            $this->error('请不要操作其他商家的订单');
+            $this->error('请不要操作其他企业的订单');
         }
         $order_goods = D('Ordergoods')->where(array('order_id' => $order_id))->select();
         $goods_ids = array();

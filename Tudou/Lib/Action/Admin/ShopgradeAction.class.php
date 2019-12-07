@@ -72,7 +72,7 @@ class ShopgradeAction extends CommonAction{
         if ($grade_id = (int) $grade_id){
             $obj = D('Shopgrade');
             if(!($detail = $obj->find($grade_id))){
-                $this->tuError('请选择要编辑的商家等级');
+                $this->tuError('请选择要编辑的企业等级');
             }
             if($this->isPost()){
                 $data = $this->editCheck();
@@ -87,7 +87,7 @@ class ShopgradeAction extends CommonAction{
                 $this->display();
             }
         } else{
-            $this->tuError('请选择要编辑的商家等级');
+            $this->tuError('请选择要编辑的企业等级');
         }
     }
 	
@@ -138,7 +138,7 @@ class ShopgradeAction extends CommonAction{
                 }
                 $this->tuSuccess('删除成功', U('Shopgrade/index'));
             }
-            $this->tuError('请选择要删除的商家等级');
+            $this->tuError('请选择要删除的企业等级');
         }
     }
 	
@@ -146,7 +146,7 @@ class ShopgradeAction extends CommonAction{
 		if ($grade_id = (int) $grade_id) {
             $obj = D('Shopgrade');
             if (!($detail = $obj->find($grade_id))) {
-                $this->tuError('请选择要编辑的商家等级');
+                $this->tuError('请选择要编辑的企业等级');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck_jurisdiction();
@@ -161,7 +161,7 @@ class ShopgradeAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家等级');
+            $this->tuError('请选择要编辑的企业等级');
         }
     }
 	

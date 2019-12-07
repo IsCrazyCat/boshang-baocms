@@ -420,7 +420,7 @@ class ListsAction extends CommonAction {
         $shop_id = (int) $shop_id;
 		$type = (int) $this->_param('type');
         if(empty($shop_id)){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }
         $shop = D('Shop')->find($shop_id);
         $this->assign('shop', $shop);

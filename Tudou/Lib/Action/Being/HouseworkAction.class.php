@@ -12,7 +12,7 @@ class  HouseworkAction extends CommonAction{
 	    
 		//调用数据开始        
             $map_houseworksetting = array('city_id' => $this->city_id);//查询城市ID为当前登录账户的ID
-                $list_houseworksetting = D('Houseworksetting')->where($map_post)->select();//查询所在城市的商家
+                $list_houseworksetting = D('Houseworksetting')->where($map_post)->select();//查询所在城市的企业
                 foreach ($list_houseworksettin as $val) {
                         $ids[$val['id']] = $val['id'];//对比shop_id
               }
@@ -95,9 +95,9 @@ class  HouseworkAction extends CommonAction{
 				$this->tuError('城市不能为空');
 			}
 			$data['area_id'] = (int) $data['area_id'];
-			$data['shop_id'] = (int) $data['shop_id'];//商家ID
+			$data['shop_id'] = (int) $data['shop_id'];//企业ID
 			if (empty($data['shop_id'])) {
-            $this->tuError('请您选择商家');
+            $this->tuError('请您选择企业');
      	    }
 			$data['name'] = htmlspecialchars($_POST['name']);//标题名字
 			if (empty($data['name'])) {
@@ -198,9 +198,9 @@ class  HouseworkAction extends CommonAction{
 			}
 			$data['area_id'] = (int) $data['area_id'];
 			
-			$data['shop_id'] = (int) $data['shop_id'];//商家ID
+			$data['shop_id'] = (int) $data['shop_id'];//企业ID
 			if (empty($data['shop_id'])) {
-            $this->tuError('请您选择商家');
+            $this->tuError('请您选择企业');
      	    }
 			$data['name'] = htmlspecialchars($_POST['name']);//标题名字
 			if (empty($data['name'])) {

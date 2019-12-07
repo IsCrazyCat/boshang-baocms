@@ -55,7 +55,7 @@
                         <td class="w50"><input type="checkbox" class="checkAll" rel="cancel_id" /></td>
                         <td class="w50">ID</td>
                         <td>会员昵称</td>
-                        <td>核销商家</td>
+                        <td>核销企业</td>
                         <td>核销主体</td>
                         <td>核销总额</td>
                         <td>核销说明</td>
@@ -69,7 +69,7 @@
                             <td><{$users[$var['user_id']]['nickname']}></td>
                             <td><{$shops[$var['shop_id']]['shop_name']}></td>
                             <td>
-                                <eq name="var.type" value="1">商家</eq>
+                                <eq name="var.type" value="1">企业</eq>
                                 <eq name="var.type" value="2"><a style="color:#F00">店员</a></eq>
                             </td>
                             <td><{$var.integral}></td>

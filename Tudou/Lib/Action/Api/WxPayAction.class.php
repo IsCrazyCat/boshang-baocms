@@ -19,7 +19,7 @@ class WxPayAction extends CommonAction{
         }
         D('Eleorder')->save(array('addr_id' => $addr_id, 'order_id' => $order_id));
 
-        //为写入物流记录，查询商家类型
+        //为写入物流记录，查询企业类型
         $shop = D('Shop');
         $fshop = $shop->where('shop_id =' . $order['shop_id'])->find();
 

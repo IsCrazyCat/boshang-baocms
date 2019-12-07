@@ -3,7 +3,7 @@
     <ul>
         <li class="li1">预订</li>
         <li class="li2">预订管理</li>
-        <li class="li2 li3">编辑预订商家</li>
+        <li class="li2 li3">编辑预订企业</li>
     </ul>
 </div>
 <form  target="x-frame" action="<{:U('booking/edit',array('shop_id'=>$detail['shop_id']))}>" method="post">
@@ -11,17 +11,17 @@
         <div class="tableBox">
             <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                 <tr>
-                    <td class="lfTdBt">选择商家：</td>
+                    <td class="lfTdBt">选择企业：</td>
                     <td class="rgTdBt">
                         <div class="lt">
                             <input type="hidden" id="shop_id" name="data[shop_id]" value="<{$detail.shop_id|default=''}>"/>
                             <input type="text" id="shop_name" name="data[shop_name]" value="<{$detail.shop_name|default=''}>" class="manageInput" />
                         </div>
-                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="remberBtn">选择商家</a>
+                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="remberBtn">选择企业</a>
                     </td>
                 </tr>    
                 <tr>
-                    <td class="lfTdBt">商家地址：</td>
+                    <td class="lfTdBt">企业地址：</td>
                     <td class="rgTdBt"><input type="text" name="data[addr]" value="<{$detail.addr|default=''}>" class="scAddTextName w210" />
 
                     </td>
@@ -36,12 +36,12 @@
                         
                     </td>
                 </tr><tr>
-                    <td class="lfTdBt">商家手机号：</td>
+                    <td class="lfTdBt">企业手机号：</td>
                     <td class="rgTdBt"><input type="text" name="data[mobile]" value="<{$detail.mobile|default=''}>" class="scAddTextName w210" />
 
                     </td>
                 </tr><tr>
-                    <td class="lfTdBt">商家电话：</td>
+                    <td class="lfTdBt">企业电话：</td>
                     <td class="rgTdBt"><input type="text" name="data[tel]" value="<{$detail.tel|default=''}>" class="scAddTextName w210" />
 
                     </td>
@@ -134,7 +134,7 @@
             </td>
         </tr>
         <tr>
-            <td class="lfTdBt">商家坐标：</td>
+            <td class="lfTdBt">企业坐标：</td>
             <td class="rgTdBt">
                 <div class="lt">
                     经度<input type="text" name="data[lng]" id="data_lng" value="<{$detail.lng|default=''}>" class="scAddTextName w200" />

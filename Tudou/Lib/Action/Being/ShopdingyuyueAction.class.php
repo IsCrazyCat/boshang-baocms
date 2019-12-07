@@ -9,11 +9,11 @@ class ShopdingyuyueAction extends CommonAction {
     public function index() {	
 	
 	    $mapss = array('city_id' => $this->city_id);//查询城市ID为当前登录账户的ID
-		$shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();//查询所在城市的商家
+		$shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();//查询所在城市的企业
 		foreach ($shop_city as $val) {
 			$cityids[$val['shop_id']] = $val['shop_id'];//对比shop_id
 		}
-		$maps['shop_id']  = array('in',$cityids);//取得当前商家ID，给下面的maps查询
+		$maps['shop_id']  = array('in',$cityids);//取得当前企业ID，给下面的maps查询
 		
 			
         $Shopdingyuyue = D('Shopdingyuyue');
@@ -112,7 +112,7 @@ class ShopdingyuyueAction extends CommonAction {
                 }
                 $this->tuSuccess('删除成功', U('Shopdingyuyue/index'));
             }
-            $this->tuError('请选择要删除的商家订座预约2');
+            $this->tuError('请选择要删除的企业订座预约2');
         }
     }
 

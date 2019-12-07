@@ -78,7 +78,7 @@ class AuditAction extends CommonAction{
         if ($audit_id = (int) $audit_id) {
             $obj = D('Audit');
 				if (!($detail = $obj->find($audit_id))) {
-					$this->error('请选择要编辑的商家认证');
+					$this->error('请选择要编辑的企业认证');
 				}
 				if ($detail['shop_id'] != $this->shop_id) {
 					$this->error('请不要操作别人的认证');
@@ -115,7 +115,7 @@ class AuditAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->error('请选择要编辑的商家认证1');
+            $this->error('请选择要编辑的企业认证1');
         }
     }
     private function editCheck(){

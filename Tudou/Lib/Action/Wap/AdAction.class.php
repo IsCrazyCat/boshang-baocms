@@ -30,7 +30,7 @@ class AdAction extends CommonAction {
 					 //如果没有存cookie
                      if(!cookie('adinfo_'.$ad_id)){
                           if($user_id){
-								D('Ad')->where(array('ad_id'=>$ad_id))->setDec('prestore_integral',$ad_consume); //扣除商家广告位积分，反用户和推荐人积分
+								D('Ad')->where(array('ad_id'=>$ad_id))->setDec('prestore_integral',$ad_consume); //扣除企业广告位积分，反用户和推荐人积分
 								if($Adrecord['user_id'] != $user_id && $user_id != '' && $user_id != '0'){
 									$Users = D('Users')->where(array('user_id'=>$user_id))->find();
 									$intro2 = '用户【'.$Users['nickname'].'】广告点击返还用户积分';
@@ -45,7 +45,7 @@ class AdAction extends CommonAction {
 									$intro = '广告购买商【'.$this->member['nickname'].'】点击扣除积分【'.$ad_consume.'】';
 								}
 						  }else{
-							  D('Ad')->where(array('ad_id'=>$ad_id))->setDec('prestore_integral',$ad_consume); //游客点击只消耗商家广告位积分
+							  D('Ad')->where(array('ad_id'=>$ad_id))->setDec('prestore_integral',$ad_consume); //游客点击只消耗企业广告位积分
 							  $intro = '游客点击【'.$Adrecord['title'].'】扣除积分【'.$ad_consume.'】';
 						  } 
 					  

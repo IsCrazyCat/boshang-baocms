@@ -2,8 +2,8 @@
 
 class GoodsAction extends CommonAction {
 
-    private $create_fields = array('title','intro','shoplx','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
-    private $edit_fields = array('title','intro','shoplx','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $create_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $edit_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
 	
 	
     public function _initialize(){
@@ -79,6 +79,7 @@ class GoodsAction extends CommonAction {
             $this->tuError('操作失败');
         }else{
             $this->assign('cates', D('Goodscate')->fetchAll());
+            $this->assign('tags', D('Goodstag')->fetchAll());
 			$this->assign('goodsInfo',D('Goods')->where('goods_id='.I('GET.id',0))->find());  // 工作详情   
 			$this->assign('goodsType',M("TpGoodsType")->select());
 			$this->assign('goodscategory', D('TpGoodsCategory')->select());
@@ -97,7 +98,7 @@ class GoodsAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['title'] = htmlspecialchars($data['title']);
         if(empty($data['title'])){
-            $this->tuError('产品名称不能为空');
+            $this->tuError('工作名称不能为空');
         }
 		$data['intro'] = htmlspecialchars($data['intro']);
 		$data['guige'] = htmlspecialchars($data['guige']);
@@ -120,11 +121,11 @@ class GoodsAction extends CommonAction {
 //		}
         $data['shop_id'] = (int) $data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if(empty($shop)){
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
@@ -135,6 +136,13 @@ class GoodsAction extends CommonAction {
 		if($parent_id == 0) {
 			$this->tuError('请选择二级分类');
 		}
+        $data['tag_id'] = (int) $data['tag1'];
+		if(!empty($data['tag2'])){
+            $data['tag_id'] = $data['tag_id'].','.$data['tag2'];
+        }
+        if(!empty($data['tag3'])){
+            $data['tag_id'] = $data['tag_id'].','.$data['tag3'];
+        }
 		$data['city_id'] = $shop['city_id'];
         $data['area_id'] = $shop['area_id'];
         $data['business_id'] = $shop['business_id'];
@@ -224,7 +232,7 @@ class GoodsAction extends CommonAction {
             $this->error('请选择要编辑的工作');
         }
 		if(!$shop = M('Shop')->find($detail['shop_id'])){
-            $this->error('商家不存在');
+            $this->error('企业不存在');
         }
 		if($shop['is_profit'] != 1){
             $this->error('您尚未开通分销权限');
@@ -292,6 +300,8 @@ class GoodsAction extends CommonAction {
                 }
                 $this->tuError('操作失败');
             }else{
+                $this->assign('tags', D('Goodstag')->fetchAll());
+                $this->assign('tag_id',explode(',',$detail['tag_id']));
                 $this->assign('detail', $obj->_format($detail));
 				$this->assign('parent_id',D('Goodscate')->getParentsId($detail['cate_id']));
 				$this->assign('attrs', D('Goodscateattr')->order(array('orderby' => 'asc'))->where(array('cate_id' => $detail['cate_id']))->select());
@@ -320,29 +330,29 @@ class GoodsAction extends CommonAction {
 		$data['guige'] = htmlspecialchars($data['guige']);
 		$data['num'] = (int) $data['num'];
         if (empty($data['num'])) {
-            $this->tuError('报名人数不能为空');
+            $this->tuError('招聘人数不能为空');
         } 
 		$data['is_reight'] = (int) $data['is_reight'];
 		$data['weight'] = (int) $data['weight'];
-		if($data['is_reight'] == 1){
-			if(empty($data['weight'])){
-             	$this->tuError('重量不能为空');
-			}
-        }
+//		if($data['is_reight'] == 1){
+//			if(empty($data['weight'])){
+//             	$this->tuError('重量不能为空');
+//			}
+//        }
 		$data['kuaidi_id'] = (int) $data['kuaidi_id'];
-		if($data['is_reight'] == 1){
-			if(empty($data['kuaidi_id'])){
-				$this->tuError('运费模板不能为空');
-			}
-		}
-			
+//		if($data['is_reight'] == 1){
+//			if(empty($data['kuaidi_id'])){
+//				$this->tuError('运费模板不能为空');
+//			}
+//		}
+//
 		$data['shop_id'] = (int) $data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if(empty($shop)){
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
     
         $data['cate_id'] = (int) $data['cate_id'];
@@ -354,6 +364,13 @@ class GoodsAction extends CommonAction {
 		if($parent_id == 0){
 			$this->tuError('请选择二级分类');
 		}
+        $data['tag_id'] = (int) $data['tag1'];
+        if(!empty($data['tag2'])){
+            $data['tag_id'] = $data['tag_id'].','.$data['tag2'];
+        }
+        if(!empty($data['tag3'])){
+            $data['tag_id'] = $data['tag_id'].','.$data['tag3'];
+        }
 		$data['city_id'] = $shop['city_id'];
         $data['area_id'] = $shop['area_id'];
         $data['business_id'] = $shop['business_id'];
@@ -447,7 +464,7 @@ class GoodsAction extends CommonAction {
                 }
                 $this->tuSuccess('删除成功', U('goods/index'));
             }
-            $this->tuError('请选择要删除的商家');
+            $this->tuError('请选择要删除的企业');
         }
     }
 
@@ -470,7 +487,55 @@ class GoodsAction extends CommonAction {
             $this->tuError('请选择要操作的工作');
         }
     }
-
+    public function applyaudit($goods_id,$apply_ids){
+        if(empty($goods_id)){
+            $this->tuError('工作ID丢失，请重新操作！');
+        }
+        if(empty($apply_ids)){
+            $this->tuError('请选择要审核的用户！');
+        }
+        $obj = D('JobApply');
+        $jobapply=$obj->where(array('goods_id'=>$goods_id,'id'=>$apply_ids))->find();
+        if(empty($jobapply)){
+            $this->tuError('该用户尚未报名，无法审核',U('goods/index'));
+        }
+        if ($this->isPost()) {
+            $data = $this->checkFields($this->_post('data', false), array('goods_id','user_id','audit','remake'));
+            if($data['audit']== 2 &&empty($data['remark'])){
+                $this->tuError('请填写驳回理由！');
+            }
+            $data['id'] = $apply_ids;
+            if ($obj->save($data)) {
+                $obj->cleanCache();
+                $this->tuSuccess('审核成功', U('goods/apply',array('goods_id'=>$goods_id)));
+            }
+            $this->tuError('操作失败');
+        }else{
+            $this->assign('apply_ids', $apply_ids);
+            $this->assign('goods_id', $goods_id);
+            $this->display();
+        }
+    }
+    public function applydelete($goods_id,$apply_ids=0){
+        if(empty($goods_id)){
+            $this->tuError('工作信息有误，无法删除！');
+        }
+        if(is_numeric($apply_ids) && ($apply_ids = (int) $apply_ids)){
+            $obj = D('JobApply');
+            $obj->save(array('id' => $apply_ids,'goods_id'=>$goods_id,'closed' => 1));
+            $this->tuSuccess('删除成功', U('goods/apply',array('goods_id'=>$goods_id)));
+        }else{
+            $goods_id = $this->_post('goods_id', false);
+            if(is_array($goods_id)) {
+                $obj = D('Goods');
+                foreach ($goods_id as $id){
+                    $obj->save(array('goods_id' => $id, 'closed' => 1));
+                }
+                $this->tuSuccess('删除成功', U('goods/index'));
+            }
+            $this->tuError('请选择要删除的企业');
+        }
+    }
     public function audit($goods_id = 0) {
         if(is_numeric($goods_id) && ($goods_id = (int) $goods_id)){
             $obj = D('Goods');
@@ -480,8 +545,13 @@ class GoodsAction extends CommonAction {
             $goods_id = $this->_post('goods_id', false);
             if(is_array($goods_id)){
                 $obj = D('Goods');
+                $error = 0;
                 foreach ($goods_id as $id) {
-                    $obj->save(array('goods_id' => $id, 'audit' => 1));
+                    if($obj->save(array('goods_id' => $id, 'audit' => 1))){
+
+                    }else{
+                        $error++;
+                    }
                 }
                 $this->tuSuccess('审核成功！'.$error.'条失败', U('goods/index'));
             }
@@ -737,7 +807,53 @@ class GoodsAction extends CommonAction {
             }                       
     }
 	
-	
-	
+	public function apply(){
+        $apply = D('JobApply');
+        import('ORG.Util.Page');
+        $map = array();
+
+        $goods_id = $this->_param('goods_id');
+        if(empty($goods_id)){
+            $this->tuError('请选择要查看的工作！',U('goods/index'));
+        }
+        $map['goods_id'] = $goods_id;
+        if($keyword = $this->_param('keyword', 'htmlspecialchars')){
+            $map['ext0'] = array('LIKE', '%' . $keyword . '%');
+            $user_ids = D('Users')->where($map)->getField('user_id',true);
+            $map['user_id'] = array('IN',$user_ids);
+            $this->assign('keyword', $keyword);
+        }
+
+//        if($cate_id = (int) $this->_param('cate_id')){
+//            $map['cate_id'] = $cate_id;
+//            $this->assign('cate_id', $cate_id);
+//        }
+
+        if($audit = (int) $this->_param('audit')){
+            $map['audit'] = ($audit === 1 ? 1 : 0);
+            $this->assign('audit', $audit);
+        }
+        $count = $apply->where($map)->count();
+        $Page = new Page($count, 25);
+        $show = $Page->show();
+        $list = $apply->where($map)->order(array('id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        foreach($list as $k => $val){
+            $list[$k]['user'] = D('users')->find($val['user_id']);
+            $list[$k]['aux'] = D('Usersaux')->getUserex($val['user_id']);
+        }
+        $this->assign('shopinfo', D('Shop')->find($this->_param('shop_id')));
+        $this->assign('list', $list);
+        $this->assign('page', $show);
+        $this->display();
+    }
+	public function test(){
+        $tags = D('Goodstag')->fetchAll();
+        $tag_id = explode(',','21,22,23');
+        if($tag_id[0] == $tag_id[0]){
+            dump(1);
+        }else{
+            dump(456);
+        }
+    }
 	
 }

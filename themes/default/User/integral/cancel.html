@@ -24,7 +24,7 @@ ul{ padding-left:0px;}
                     <p class="text-gray">核销ID：<{$item['cancel_id']}></p>
                     <p class="text-gray">核销积分数量：<a class="text-red"><{$item.integral}></a></p>
                     <php>$shop = D('Shop')->find($item['shop_id']);</php>
-                    <p class="text-gray">核销商家名称：<a class="text-red"><{$shop.shop_name}></a></p>
+                    <p class="text-gray">核销企业名称：<a class="text-red"><{$shop.shop_name}></a></p>
                     <p class="text-gray">核销时间：<{$item.create_time|date='Y-m-d H:i:s',###}></p>
                 </div>
             </div>

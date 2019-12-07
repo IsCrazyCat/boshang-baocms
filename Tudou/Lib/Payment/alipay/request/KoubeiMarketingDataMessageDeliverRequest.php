@@ -8,7 +8,7 @@
 class KoubeiMarketingDataMessageDeliverRequest
 {
 	/** 
-	 * 一键营销商家中心PUSH消息接口
+	 * 一键营销企业中心PUSH消息接口
 	 **/
 	private $bizContent;
 

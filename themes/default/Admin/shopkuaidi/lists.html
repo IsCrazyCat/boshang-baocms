@@ -2,7 +2,7 @@
 
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
+        <li class="li1">企业</li>
         <li class="li2">运费管理</li>
         <li class="li2 li3">地区运费设置</li>
     </ul>
@@ -19,7 +19,7 @@
                 
                 
                 <{:BA('shopkuaidi/listcreate', array('kuaidi_id' => $kuaidi_id),'添加地区运费','',600,550)}>
-                <a>所属商家：<{$shop['shop_name']}></a>
+                <a>所属企业：<{$shop['shop_name']}></a>
                 
                 <a href="<{:U('shopkuaidi/listcreate', array('kuaidi_id' => $kuaidi_id))}>">
                 总34地区，当前运单模板添加了<{$count}>地区
@@ -39,7 +39,7 @@
                     <td>地区区域</td>
                     <td>首重费用</td>
                     <td>续重费用</td>
-                    <td>所属商家</td>
+                    <td>所属企业</td>
                     <td class="w360">操作</td>
                 </tr>
                 <foreach name="list" item="var">

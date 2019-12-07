@@ -51,7 +51,7 @@ class GoodsshopcateAction extends CommonAction
         if ($cate_id = (int) $cate_id) {
             $obj = D('Goodsshopcate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->tuError('请选择要编辑的商家分类');
+                $this->tuError('请选择要编辑的企业分类');
             }
             if ($detail['shop_id'] != $this->shop_id) {
                 $this->tuError('不可以修改别人的内容');
@@ -69,7 +69,7 @@ class GoodsshopcateAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
     private function editCheck()

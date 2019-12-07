@@ -5,17 +5,17 @@ class ShopyuyueAction extends CommonAction
     private $edit_fields = array('user_id', 'shop_id', 'name', 'mobile', 'yuyue_date', 'yuyue_time', 'number');
     public function index()
     {
-        //修改为单多城市，找到城市id为当前$city_id的商家过滤
+        //修改为单多城市，找到城市id为当前$city_id的企业过滤
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();
-        //查询所在城市的商家
+        //查询所在城市的企业
         foreach ($shop_city as $val) {
             $cityids[$val['shop_id']] = $val['shop_id'];
             //对比shop_id
         }
         $maps['shop_id'] = array('in', $cityids);
-        //取得当前商家ID，给下面的maps查询
+        //取得当前企业ID，给下面的maps查询
         $Shopyuyue = D('Shopyuyue');
         import('ORG.Util.Page');
         // 导入分页类 二开qq 120--585--022   www.juhucms.com
@@ -82,7 +82,7 @@ class ShopyuyueAction extends CommonAction
         $data['user_id'] = (int) $data['user_id'];
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {
@@ -123,7 +123,7 @@ class ShopyuyueAction extends CommonAction
             //查询上级ID编辑处代结束
             $obj = D('Shopyuyue');
             if (!($detail = $obj->find($yuyue_id))) {
-                $this->tuError('请选择要编辑的商家预约');
+                $this->tuError('请选择要编辑的企业预约');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -139,7 +139,7 @@ class ShopyuyueAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家预约');
+            $this->tuError('请选择要编辑的企业预约');
         }
     }
     private function editCheck()
@@ -148,7 +148,7 @@ class ShopyuyueAction extends CommonAction
         $data['user_id'] = (int) $data['user_id'];
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {
@@ -196,7 +196,7 @@ class ShopyuyueAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('shopyuyue/index'));
             }
-            $this->tuError('请选择要删除的商家预约');
+            $this->tuError('请选择要删除的企业预约');
         }
     }
 }

@@ -49,7 +49,7 @@ class WeixinAction extends CommonAction {
 		}
      }
   }
-	//商家扫码
+	//企业扫码
     public function coupon($download_id = 0) {
 		$download_id = (int) $this->_param('download_id');
 		$obj = D('Coupondownload');

@@ -68,7 +68,7 @@
 	});
 </script>
 <div class="sjgl_top">
-    <div class="left sjgl_toplogo"><{$CONFIG.site.sitename}>商家后台<if condition="$SHOP['parent_id']">【分店版】</if></div>
+    <div class="left sjgl_toplogo"><{$CONFIG.site.sitename}>企业后台<if condition="$SHOP['parent_id']">【分店版】</if></div>
     <div class="right sjgl_top_r">
         <ul>
             <li class="left sjgl_topli sjgl_toplixl"><a>您好：<{$SHOP.shop_name}><if condition="$SHOP['parent_id']">【分店】</if> ID：<{$SHOP.shop_id}></a><span class="suxian">|</span></li>
@@ -107,7 +107,7 @@
             <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a13" target="main_frm" href="<{:U('money/finance')}>"><em>&nbsp;</em>资金管理</a>
             	<div class="leftNav2">
                     <ul>  
-                   		 <li><a target="main_frm" href="<{:U('money/shopmoney')}>"><em>&nbsp;</em>商家资金</a></li>
+                   		 <li><a target="main_frm" href="<{:U('money/shopmoney')}>"><em>&nbsp;</em>企业资金</a></li>
                          <li><a target="main_frm" href="<{:U('money/index')}>"><em>&nbsp;</em>资金记录</a></li>
                          <li><a target="main_frm" href="<{:U('money/tixianlog')}>"><em>&nbsp;</em>提现申请</a></li>
                          <li><a target="main_frm" href="<{:U('shopyouhui/index')}>"><em>&nbsp;</em>收银台设置</a></li>
@@ -126,7 +126,7 @@
             </li>
             
             
-            <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a2"  target="main_frm" href="<{:U('shop/about')}>"><em>&nbsp;</em>商家管理</a>
+            <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a2"  target="main_frm" href="<{:U('shop/about')}>"><em>&nbsp;</em>企业管理</a>
                 <div class="leftNav2">
                     <ul>
                         <li><a target="main_frm" href="<{:U('shop/about')}>"><em>&nbsp;</em>基本管理</a></li>
@@ -139,7 +139,7 @@
                         </if>
                         
                         <li><a target="main_frm" href="<{:U('worker/index')}>"><em>&nbsp;</em>员工管理</a></li>
-                        <li><a target="main_frm" href="<{:U('shop/grade')}>"><em>&nbsp;</em>商家等级</a></li>
+                        <li><a target="main_frm" href="<{:U('shop/grade')}>"><em>&nbsp;</em>企业等级</a></li>
                         <li><a target="main_frm" href="<{:U('shopkuaidi/index')}>"><em>&nbsp;</em>商城运费模板</a></li>
                     </ul>
                 </div>
@@ -423,7 +423,7 @@
              <li class="leftMenu_li"><a class="leftMenu_a leftMenu_a12" target="main_frm" href="<{:U('dianping/index')}>"><em>&nbsp;</em>评价管理</a>
             	<div class="leftNav2">
                     <ul>  
-                        <li><a target="main_frm" href="<{:U('dianping/index')}>"><em>&nbsp;</em>商家评价</a></li>
+                        <li><a target="main_frm" href="<{:U('dianping/index')}>"><em>&nbsp;</em>企业评价</a></li>
                         <if condition="$CONFIG['operation']['tuan']"> 
                         	<li><a target="main_frm" href="<{:U('dianping/tuan')}>"><em>&nbsp;</em>团购评价</a></li>
                         </if>

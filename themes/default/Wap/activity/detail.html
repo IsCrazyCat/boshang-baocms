@@ -102,10 +102,10 @@ global_focus p  img { max-width:100% !important}
        
         <div class="blank-10 bg"></div>
 		<div class="detail-info">
-			<h1>商家信息</h1>
-			<p>提供商家：<a href="<{:U('shop/detail',array('shop_id'=>$shop['shop_id']))}>"><{$shop.shop_name}></a></p>
+			<h1>企业信息</h1>
+			<p>提供企业：<a href="<{:U('shop/detail',array('shop_id'=>$shop['shop_id']))}>"><{$shop.shop_name}></a></p>
 			<p>联系电话：<a href="tel:<{$shop.tel}>"><{$shop.tel}></a></p>
-			<p>商家地址：<{$detail.addr}></p>
+			<p>企业地址：<{$detail.addr}></p>
             <p>活动时间：<{$detail.time}></p>
 			<p>位置导航：<a href="<{:U('shop/gps',array('shop_id'=>$shop['shop_id']))}>">到这里去</a></p>
 		</div>

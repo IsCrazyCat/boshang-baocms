@@ -117,7 +117,7 @@ class NavigationAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
     private function editCheck(){
@@ -171,7 +171,7 @@ class NavigationAction extends CommonAction{
                 $obj->cleanCache();
                 $this->tuSuccess('删除成功', U('navigation/index',array('aready'=>$aready)));
             }
-            $this->tuError('请选择要删除的商家分类');
+            $this->tuError('请选择要删除的企业分类');
         }
     }
     public function update() {

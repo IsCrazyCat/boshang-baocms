@@ -65,7 +65,7 @@ class EleproductAction extends CommonAction{
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
@@ -130,7 +130,7 @@ class EleproductAction extends CommonAction{
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
@@ -195,7 +195,7 @@ class EleproductAction extends CommonAction{
     public function update($product_id = 0){
         if($product_id = (int) $product_id){
 			if(!($detail = D('EleProduct')->find($product_id))){
-				$this->tuError('请选择要编辑的商家');
+				$this->tuError('请选择要编辑的企业');
 			}
 			$data = array('closed' =>0,'product_id' => $product_id);
 			$intro = '上架菜品成功';

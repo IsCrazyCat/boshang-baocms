@@ -20,7 +20,7 @@ class BookingorderModel extends CommonModel{
 		$order_status = ($code == 'wait') ? '8' : '1';
         D('Bookingorder')->save(array('order_id'=>$order_id,'order_status' =>$order_status,'code' =>$code));
 		D('Sms')->sms_booking_user($order_id);//短信通知会员
-		D('Sms')->sms_booking_shop($order_id);//短信通知商家
+		D('Sms')->sms_booking_shop($order_id);//短信通知企业
 		D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 7,$status = 1);
 		D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 7,$status = 1);
 		return true;
@@ -69,7 +69,7 @@ class BookingorderModel extends CommonModel{
 					//店内支付不结算
 					if($status != 8){
 						$info = '订座订单号：'.$order_id;
-					 	D('Shopmoney')->insertData($order_id,$id ='0',$detail['shop_id'],$detail['amount'],$type ='booking',$intro);//结算给商家
+					 	D('Shopmoney')->insertData($order_id,$id ='0',$detail['shop_id'],$detail['amount'],$type ='booking',$intro);//结算给企业
 					}
 					D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 7,$status = 8);
 					D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 7,$status = 8);
@@ -111,7 +111,7 @@ class BookingorderModel extends CommonModel{
 	public function bookingPrint($order_id){	
 		$order = D('Bookingorder')->find($order_id);
         $member = D('Users')->find($order['user_id']);//会员信息
-		$Book = D('Book')->find($order['shop_id']);//订座商家信息
+		$Book = D('Book')->find($order['shop_id']);//订座企业信息
 			
 			$msg .= '<MN>2</MN>\r';
 			$msg .= '********************************\r';
@@ -132,7 +132,7 @@ class BookingorderModel extends CommonModel{
 			$msg .= '@@2点菜付款：' . round($order['menu_amount']/1,2) .'元\r';
 	
 			$msg .= '----------------------\r';
-			$msg .= '商家名称：' . $Book['shop_name'] .'\r';
+			$msg .= '企业名称：' . $Book['shop_name'] .'\r';
             $msg .= '配货电话：' . $Book['tel'] . '\r';
 			
 			$img = config_weixin_img($this->getBookingPrintCode($order_id));

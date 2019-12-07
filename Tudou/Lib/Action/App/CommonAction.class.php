@@ -122,7 +122,7 @@ class CommonAction extends BaseAction{
     public function gps($shop_id){
         $shop_id = (int) $shop_id;
         if (empty($shop_id)) {
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
             $this->stringify(array('status' => self::TU_DETAIL_NO_EXSITS, 'msg' => '数据不存在！'));
         }
         $shop = D('Shop')->find($shop_id);

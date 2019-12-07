@@ -143,7 +143,7 @@ class BreaksAction extends CommonAction {
 				$this->ajaxReturn(array('code'=>'0','msg'=>'领取失败'));
 			}
 		}else{
-			$this->ajaxReturn(array('code'=>'0','msg'=>'商家红包配置有误'));
+			$this->ajaxReturn(array('code'=>'0','msg'=>'企业红包配置有误'));
 		}
 		
     }

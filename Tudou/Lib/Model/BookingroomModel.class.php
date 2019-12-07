@@ -29,7 +29,7 @@ class BookingroomModel extends CommonModel{
     }
 
 	
-	//获取房间商家图片组合
+	//获取房间企业图片组合
 	public function get_room_thumb($room_id){
 		$detail = D('Bookingroom')->where(array('room_id'=>$room_id))->find();
 		if($detail['photo']){

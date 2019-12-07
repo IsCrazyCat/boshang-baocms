@@ -82,9 +82,9 @@ class OperateAction extends CommonAction
         //今日新增粉丝数量
         //评价
         $counts['shop_dianping'] = (int) D('Shopdianping')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count();
-        //总商家点评
+        //总企业点评
         $counts['totay_shop_dianping'] = (int) D('Shopdianping')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time)), 'status' => array('EGT', 0)))->count();
-        //今日商家点评
+        //今日企业点评
         $counts['goods_dianping'] = (int) D('Goodsdianping')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count();
         //总商城点评
         $counts['totay_goods_dianping'] = (int) D('Goodsdianping')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'create_time' => array(array('ELT', NOW_TIME), array('EGT', $bg_time)), 'status' => array('EGT', 0)))->count();
@@ -106,14 +106,14 @@ class OperateAction extends CommonAction
         //总分类信息
         $counts['life_audit'] = (int) D('Life')->where(array('shop_id' => $this->shop_id, 'audit' => 0, 'closed' => 0))->count();
         //待审核分类信息
-        //商家招聘
+        //企业招聘
         $counts['work'] = (int) D('Work')->where(array('shop_id' => $this->shop_id))->count();
         //总招聘
         $counts['work_audit'] = (int) D('Work')->where(array('shop_id' => $this->shop_id, 'audit' => 0))->count();
         //待审核招聘
-        //商家预约
+        //企业预约
         $counts['shopyuyue'] = (int) D('Shopyuyue')->where(array('shop_id' => $this->shop_id))->count();
-        //总商家预约数量
+        //总企业预约数量
         $counts['shopyuyue_one'] = (int) D('Shopyuyue')->where(array('shop_id' => $this->shop_id, 'used' => 1))->count();
         //已确认预约
         $counts['shopyuyue_eight'] = (int) D('Shopyuyue')->where(array('shop_id' => $this->shop_id, 'used' => 0))->count();

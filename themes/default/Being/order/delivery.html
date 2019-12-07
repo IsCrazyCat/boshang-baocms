@@ -9,9 +9,9 @@
 <div class="main-jsgl main-sc">
     <p style="height: 48px;" class="attention"><span>注意：</span>
         可以先加入捡货单，然后捡货！加入捡货单后可以点击立刻创建按钮进行清单创建！
-        建议将商家地址比较接近的单子一起捡货！
+        建议将企业地址比较接近的单子一起捡货！
         如果后期自建仓库的话，可以考虑联系官方开发者，升级经销存智能化管理！
-        商家自主发货的情况下，也需要在这一步由后台确认！
+        企业自主发货的情况下，也需要在这一步由后台确认！
     </p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
@@ -48,10 +48,10 @@
                         <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>" />
                         <input type="text" name="nickname" id="nickname"  value="<{$nickname}>"   class="text" />
                         <a mini="select"  w="800" h="600" href="<{:U('user/select')}>" class="sumit lt">选择用户</a>
-                        <span>商家</span>
+                        <span>企业</span>
                         <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                         <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text" />
-                        <a  href="<{:U('shop/select')}>" mini='select' w='800' h='600' class="sumit lt ">选择商家</a>
+                        <a  href="<{:U('shop/select')}>" mini='select' w='800' h='600' class="sumit lt ">选择企业</a>
                         <span>开始时间</span>
                         <input type="text" name="bg_date" value="<{$bg_date|default=''}>"  onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text" />
                         <span>结束时间</span>

@@ -1,8 +1,8 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家等级</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业等级</li>
         <li class="li2 li3">编辑等级</li>
     </ul>
 </div>
@@ -60,13 +60,13 @@
                         <tr>
                             <td class="lfTdBt">单独购买需要金额：</td>
                             <td class="rgTdBt"><input type="text" name="data[money]" value="<{:round($detail['money']/100,2)}>" class="scAddTextName w150" />
-                                <code>这里方便后期二期开发，就是商家单独购买此等级需要多少钱！</code>
+                                <code>这里方便后期二期开发，就是企业单独购买此等级需要多少钱！</code>
                             </td>
                         </tr>
                         <tr>
                             <td class="lfTdBt">自动升级需要多少商户资金：</td>
                             <td class="rgTdBt"><input type="text" name="data[gold]" value="<{:round($detail['gold']/100,2)}>" class="scAddTextName w150" />
-                                <code>这里跟上面并不冲突，这里的意思是商户等级不一定要购买，比如A等级需要1000元自动升级，那么商户资金到达1000元的时候就会自动升级，这样提升升级的兴趣，当然您一可以后台商家列表》》编辑等级》》手动调节商家等级</code>
+                                <code>这里跟上面并不冲突，这里的意思是商户等级不一定要购买，比如A等级需要1000元自动升级，那么商户资金到达1000元的时候就会自动升级，这样提升升级的兴趣，当然您一可以后台企业列表》》编辑等级》》手动调节企业等级</code>
                             </td>
                         </tr>
                         <tr>
@@ -79,7 +79,7 @@
                         <tr>
                             <td class="lfTdBt">权重排序：</td>
                             <td class="rgTdBt"><input type="text" name="data[orderby]" value="<{$detail.orderby|default=''}>" class="scAddTextName w150" />
-                                <code>这里数字越小，权重越小，你懂的，低级能升级到高级，高级用户不能购买低级权限，如需要调整权限请后台商家列表手动编辑！</code>
+                                <code>这里数字越小，权重越小，你懂的，低级能升级到高级，高级用户不能购买低级权限，如需要调整权限请后台企业列表手动编辑！</code>
                             </td>
                         </tr>
                     </table>

@@ -1109,7 +1109,7 @@ body{padding:50px 0;margin:0;overflow-x:hidden;}
 /* 底部导航 */
 .foot-fixed{position:fixed;bottom:0;z-index:999;width:100%;background:#FAFAFA;border-top: 1px solid #E8E8E8;box-shadow: 0 0 3px rgba(0,0,0,0.1);min-width: 320px;max-width: 640px;margin: 0 auto;}
 .foot-fixed .item{width:20%;float:left;text-align:center;color:#777;padding:5px 0;}
-.foot-fixed .foot-item{width:20%;float:left;text-align:center;color:#777;padding:5px 0;}
+.foot-fixed .foot-item{width:25%;float:left;text-align:center;color:#777;padding:5px 0;}
 .foot-fixed .foot-item span{display:block;width:100%;text-align:center;}
 .foot-fixed .foot-item .foot-label{height:15px;line-height:15px;font-size:12px;}
 .foot-fixed .foot-item .icon{font-size:24px;height:25px;overflow:hidden;line-height:25px;padding:0;}

@@ -58,7 +58,7 @@ class OrderModel extends CommonModel{
 	}
 	
 	
-	//后台退款跟商家退款逻辑封装
+	//后台退款跟企业退款逻辑封装
 	public function implemented_refund($order_id){
 		$order_id = (int) $order_id;
 		$order = D('Order');
@@ -298,7 +298,7 @@ class OrderModel extends CommonModel{
 				$address_id = $order['address_id'];
 			}
 			$user_addr = D('Paddress ')->where(array('id'=>$address_id))->find();
-			$shop_print = D('Shop')->where(array('shop_id'=> $order['shop_id']))->find();//商家信息
+			$shop_print = D('Shop')->where(array('shop_id'=> $order['shop_id']))->find();//企业信息
 			
 			$msg .= '<MN>2</MN>\r';
 			$msg .= '********************************\r';
@@ -322,7 +322,7 @@ class OrderModel extends CommonModel{
             $msg .= '配送地址：' .  $user_addr['area_str'] . '、' . $user_addr['info'] . '\r';
 			$msg .= '联系信息：' . $user_addr['xm'] .' - ' . $user_addr['tel'] . '\r';
 			$msg .= '********************************\r';
-			$msg .= '商家名称：' . $shop_print['shop_name'] .'\r';
+			$msg .= '企业名称：' . $shop_print['shop_name'] .'\r';
             $msg .= '配货电话：' . $shop_print['tel'] . '\r';
 			$msg .= '配货地址：' . $shop_print['addr'] . '\r';
 			$msg .= '备注：\r';
@@ -374,7 +374,7 @@ class OrderModel extends CommonModel{
                 $this->goods_order_print($v['order_id']);
             }
         }else{
-			//单商家
+			//单企业
             $order_ids = (int) $order_ids;
             $Order = D('Order')->where('order_id =' . $order_ids)->select();
             foreach($Order as $k => $v) {
@@ -419,9 +419,9 @@ class OrderModel extends CommonModel{
 					list($settlement_price,$intro) = $this->get_order_settlement_price_intro($detail);//获取结算价封装
 					
 						if($detail['is_daofu'] == 0){
-							D('Shopmoney')->insertData($order_id,$id = '0',$detail['shop_id'],$settlement_price,$type ='goods',$intro);//结算给商家
+							D('Shopmoney')->insertData($order_id,$id = '0',$detail['shop_id'],$settlement_price,$type ='goods',$intro);//结算给企业
 							D('Users')->integral_restore_user($detail['user_id'],$order_id, $id = '0',$settlement_price,$type ='goods');//商城购物返利积分
-							D('Users')->return_integral($Shop['user_id'], $detail['use_integral'] , '商城用户积分兑换返还给商家');//商城用户积分兑换返还给商家
+							D('Users')->return_integral($Shop['user_id'], $detail['use_integral'] , '商城用户积分兑换返还给企业');//商城用户积分兑换返还给企业
 							if($config['prestige']['is_goods']){
 								D('Users')->reward_prestige($detail['user_id'], (int)($settlement_price/100),'商城购物返'.$config['prestige']['name']);//返威望
 							}
@@ -454,7 +454,7 @@ class OrderModel extends CommonModel{
 			if($shop['is_goods_pei'] == 1){
 				$need_pay = $detail['need_pay'] - $detail['express_price'];//佣金计算应该是总价-运费
 				$commission = (int)(($need_pay * $shop['commission'])/10000);//计算佣金
-				$estimated_price = (int)($detail['need_pay'] - $commission);//实际结算给商家价格
+				$estimated_price = (int)($detail['need_pay'] - $commission);//实际结算给企业价格
 			}else{
 				$commission = (int)(($detail['need_pay'] * $shop['commission'])/10000);//佣金
 				$estimated_price = (int)($detail['need_pay'] - $commission);
@@ -464,25 +464,25 @@ class OrderModel extends CommonModel{
 		
 		if($estimated_price > 0){
 			if($shop['is_goods_pei'] == 1){
-				$express_price = isset($shop['express_price']) ? (int)$shop['express_price'] : 10;//商家自己配置的默认运费
+				$express_price = isset($shop['express_price']) ? (int)$shop['express_price'] : 10;//企业自己配置的默认运费
 				if($detail['express_price'] < $express_price){
 					$settlement_price = $estimated_price - $express_price;
 					$express_price = $express_price;
-					$intro .='状态：【已开通配送状态，用户支付运费小于商家默认配送费】---';   
-					$intro .='结算金额：结算价'.round($detail['need_pay']/100,2).'-商家默认配送费'.round($express_price/100,2).'元'.'-商城结算佣金'.round($commission/100,2).'元】---';   
+					$intro .='状态：【已开通配送状态，用户支付运费小于企业默认配送费】---';
+					$intro .='结算金额：结算价'.round($detail['need_pay']/100,2).'-企业默认配送费'.round($express_price/100,2).'元'.'-商城结算佣金'.round($commission/100,2).'元】---';
 					$intro .='当前佣金费率：【'.round($shop['commission']/100,2).'%】';   
 				}else{
 					$settlement_price = $estimated_price - $detail['express_price'];
 					$express_price = $detail['express_price'];
-					$intro .='状态：【已开通配送状态，用户支付运费大于商家默认配送费】---';   
+					$intro .='状态：【已开通配送状态，用户支付运费大于企业默认配送费】---';
 					$intro .='结算金额：结算价'.round($detail['need_pay']/100,2).'-用户支付运费'.round($detail['express_price']/100,2).'元'.'-商城结算佣金'.round($commission/100,2).'元】---';   
 					$intro .='当前佣金费率：【'.round($shop['commission']/100,2).'%】';   
 				}
 				D('Runningmoney')->add_express_price($detail['order_id'],$express_price,2);//配送员结算
 			}else{
-				//商家自主配送不结算给配送员，结算价 = 扣除佣金后价格 
+				//企业自主配送不结算给配送员，结算价 = 扣除佣金后价格
 				$settlement_price = $estimated_price;
-				$intro .='状态：【商家自主配送】---';   
+				$intro .='状态：【企业自主配送】---';
 				$intro .='结算金额：结算价'.round($detail['need_pay']/100,2).'-佣金'.round($commission/100,2).'元】---';   
 				$intro .='当前佣金费率：【'.round($shop['commission']/100,2).'%】';   
 			}
@@ -496,7 +496,7 @@ class OrderModel extends CommonModel{
 	
 	
 		
-   //后台退款跟商家退款更新购物表的状态
+   //后台退款跟企业退款更新购物表的状态
    public function order_goods_status($order_id) {
        $order_id = (int) $order_id;
        $order_goods = D('Ordergoods')->where(array('order_id' => $order_id))->select();
@@ -506,7 +506,7 @@ class OrderModel extends CommonModel{
       return TRUE;
     }
 	
-  //后台退款跟商家退款更新退款库存
+  //后台退款跟企业退款更新退款库存
    public function goods_num($order_id) {
        $order_id = (int) $order_id;
        $ordergoods = D('Ordergoods')->where('order_id =' . $order_id)->select();

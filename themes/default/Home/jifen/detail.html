@@ -23,7 +23,7 @@
                     <p class="jfxq_pj"><span class="spxq_qgpstarBg"><span class="spxq_qgpstar spxq_qgpstar<{$shop.score}>"></span></span><{$shop.score_num}>人评价</p>
                     <div class="spxq_qgjgk"><p class="hdxq_p">积分价：<span class="jfxq_jfj" style="color:#ff0000;"><{$detail.integral}></span>
                             <span class="jfxq_scj">市场价：<del>￥<{:round($detail['price']/100,2)}></del></span></p></div>
-                    <div class="spxq_qgjgk"><p class="hdxq_p">商家：<{$shop['shop_name']}></p></div>
+                    <div class="spxq_qgjgk"><p class="hdxq_p">企业：<{$shop['shop_name']}></p></div>
                     <div class="spxq_qgjgk"><p class="hdxq_p">库存：<if condition="$detail['num'] egt 1">有<else/>无</if><span class="jfxq_kcy">剩余：<{$detail.num}></span></p></div>
                     <div class="hdsy_Licj">
                         <if condition="$detail['num'] egt 1"><a onclick="javascript:$('.dhPop_mask').show();" class="spxq_qgjjKk">立即兑换</a><else/><a href="javascript:void(0);">兑换完了</a></if>
@@ -33,7 +33,7 @@
         </div>
         <div class="right spxq_xqgm_r">
             <div class="spxq_qgwx"><img width="120" height="120" src="<{:config_img($rsd['wei_pic'])}>">
-                <p>扫描商家微信</p>
+                <p>扫描企业微信</p>
                 <p>轻松购享优惠</p>
             </div>
             <div class="share bdsharebuttonbox spxq_qgFx" data-tag="share_1"><eq name="shop.favo" value="0"><a mini='act' class="spxq_qgFxA" href="<{:U('shop/favorites',array('shop_id'=>$detail['shop_id']))}>"><em>&nbsp;</em>收藏本店</a><else/><a class="spxq_qgFxA" href="javascript:void(0);"><em>&nbsp;</em>已收藏</a></eq><a class="spxq_qgFxA" data-cmd="more" href="javascript:void(0);"><em>&nbsp;</em>分享到</a></div>
@@ -47,14 +47,14 @@
             <div class="spxq_xqT">
                 <ul>
                     <li class="on" v="1"><a href="javascript:void();">工作详情</a><em></em></li>
-                    <li v="2"><a href="javascript:void();">商家详情</a><em></em></li>
+                    <li v="2"><a href="javascript:void();">企业详情</a><em></em></li>
                 </ul>
             </div>
             <div class="spxq_xqBt"  id="l1">工作详情</div>
             <div class="spxq_xqNr" id="ll1">
                 <{$detail.details}>
             </div>
-            <div class="spxq_xqBt" id="l2">商家详情</div>
+            <div class="spxq_xqBt" id="l2">企业详情</div>
             <div class="spxq_xqNr" id="ll2">
                 <div class="left spxq_xqMap_l"><img width="384" height="300" src="<{:config_img($shop['photo'])}>"></div>
                 <div class="left spxq_xqMap_r jfxq_xqMap_r">

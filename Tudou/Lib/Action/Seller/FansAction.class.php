@@ -47,7 +47,7 @@ class FansAction extends CommonAction
                 $this->tuMsg('您的账户积分不足');
             }
             D('Users')->addIntegral($this->uid, -$integral, '赠送会员积分');
-            D('Users')->addIntegral($user_id, $integral, '获得商家赠送积分');
+            D('Users')->addIntegral($user_id, $integral, '获得企业赠送积分');
             $this->tuMsg('赠送积分成功!', U('fans/index'));
         } else {
             $this->assign('shop', $shop);

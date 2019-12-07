@@ -19,13 +19,13 @@
         <form method="post"  action="<{:U('shopding/set_ding')}>" target="x-frame">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td><p class="tuanfabu_t">商家名称：</p></td>
+                    <td><p class="tuanfabu_t">企业名称：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[shop_name]" value="<notempty name="shopding.shop_name"><{$shopding.shop_name}><else/><{$SHOP.shop_name}></notempty>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">商家地址：</p></td>
+                    <td width="120"><p class="tuanfabu_t">企业地址：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[addr]" value="<notempty name="shopding.addr"><{$shopding.addr}><else/><{$SHOP.addr}></notempty>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
@@ -43,13 +43,13 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td><p class="tuanfabu_t">商家手机号：</p></td>
+                    <td><p class="tuanfabu_t">企业手机号：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[mobile]" value="<{$shopding.mobile|default=$SHOP['mobile']}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
                 </tr>
                 <tr>
-                    <td><p class="tuanfabu_t">商家电话：</p></td>
+                    <td><p class="tuanfabu_t">企业电话：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[tel]" value="<{$shopding.tel|default=$SHOP['tel']}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
@@ -69,7 +69,7 @@
                 <js file='__PUBLIC__/js/uploadify/jquery.uploadify.min.js'/>
                 <link rel="stylesheet" href="__PUBLIC__/js/uploadify/uploadify.css">
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">商家图片：</p></td>
+                    <td width="120"><p class="tuanfabu_t">企业图片：</p></td>
                     <td><div class="tuanfabu_nr">
                             <div style="width: 300px;height: 100px; float: left;">
                                 <input type="hidden" name="data[photo]" value="<{$shopding.photo}>" id="data_img" class="tuanfabu_int tuanfabu_intw" />
@@ -95,7 +95,7 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td><p class="tuanfabu_t">商家环境：</p></td>
+                    <td><p class="tuanfabu_t">企业环境：</p></td>
                     <td class="rgTdBt">
                         <div class="tuanfabu_nr">
                             <div>

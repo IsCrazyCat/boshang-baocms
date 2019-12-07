@@ -51,7 +51,7 @@ class ShopmoneyModel extends CommonModel{
 		//重组intro
 		if($jiesuan_price >= 10){
 			if($config['profit']['profit']){
-				$profit = D('Userprofitlogs')->profitUsers($order_id, $id,$shop_id, $jiesuan_price, $type);//分销，1，订单ID，2：其他ID，3：商家ID，4：结算价格，5：类型，返回分销金额
+				$profit = D('Userprofitlogs')->profitUsers($order_id, $id,$shop_id, $jiesuan_price, $type);//分销，1，订单ID，2：其他ID，3：企业ID，4：结算价格，5：类型，返回分销金额
 			}
 			if($config['backers']['open']){
 				if($config['backers']['is_reward']){
@@ -72,9 +72,9 @@ class ShopmoneyModel extends CommonModel{
 				$intro .='-会员等级返利金额：【'.round($UsersBackersReward/100,2).'元】';
 			}
 			if($UsersBackersDiscount){
-				$intro .='-商家推荐提成金额：【'.round($UsersBackersDiscount/100,2).'元】';
+				$intro .='-企业推荐提成金额：【'.round($UsersBackersDiscount/100,2).'元】';
 			}
-			$guide = D('Userguidelogs')->AddMoney($shop_id,$jiesuan_price,$order_id,$type);//给商家推荐人分成,商家ID，结算价格，订单ID，订单类型
+			$guide = D('Userguidelogs')->AddMoney($shop_id,$jiesuan_price,$order_id,$type);//给企业推荐人分成,企业ID，结算价格，订单ID，订单类型
 		}
 		
 		$Shop = D('Shop')->where(array('shop_id'=>$shop_id))->find();

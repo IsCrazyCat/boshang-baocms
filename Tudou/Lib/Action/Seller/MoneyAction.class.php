@@ -257,7 +257,7 @@ class MoneyAction extends CommonAction{
             $arr = array();
             $arr['user_id'] = $this->uid;
             $arr['shop_id'] = $this->shop_id;
-            //提现商家
+            //提现企业
             $arr['city_id'] = $shop['city_id'];
             $arr['area_id'] = $shop['area_id'];
             $arr['gold'] = $gold - $commission;

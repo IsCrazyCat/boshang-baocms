@@ -111,13 +111,13 @@ class FavoritesAction extends CommonAction {
         }
         $shop_id = (int) $this->_get('shop_id');
         if (!$detail = D('Shop')->find($shop_id)) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
         }
         if (D('Shopfavorites')->check($shop_id, $this->uid)) {
-            $this->error('您已经关注过该商家了');
+            $this->error('您已经关注过该企业了');
         }
         $data = array(
             'shop_id' => $shop_id,
@@ -133,7 +133,7 @@ class FavoritesAction extends CommonAction {
         
     }
     
-    //搜索要关注的商家
+    //搜索要关注的企业
     public function lists(){
         if(empty($this->uid)){
             header("Location:".U('passport/login'));die;
@@ -150,13 +150,13 @@ class FavoritesAction extends CommonAction {
         }
         $shop_id = (int)$this->_get('shop_id');
         if(!$detail = D('Shop')->find($shop_id)){
-            $this->error('商家不存在');
+            $this->error('企业不存在');
         }
         if($detail['audit']!=1 || $detail['closed']!=0){
-            $this->error('该商家不存在 ');
+            $this->error('该企业不存在 ');
         }
         if(!$fans = D('Shopfavorites')->check($shop_id,$this->uid)){
-            $this->error('您还未关注该商家');
+            $this->error('您还未关注该企业');
         }
         $news = D('Shopnews')->where(array(
             'shop_id' => $shop_id,
@@ -201,13 +201,13 @@ class FavoritesAction extends CommonAction {
         }
         $shop_id = (int)$this->_get('shop_id');
         if(!$detail = D('Shop')->find($shop_id)){
-            $this->error('商家不存在');
+            $this->error('企业不存在');
         }
         if($detail['audit']!=1 || $detail['closed']!=0){
-            $this->error('该商家不存在 ');
+            $this->error('该企业不存在 ');
         }
         if(!$fans = D('Shopfavorites')->check($shop_id,$this->uid)){
-            $this->error('您还未关注该商家');
+            $this->error('您还未关注该企业');
         }
         $word = htmlspecialchars($_POST['word']);
         $keyword = D('Shopweixinkeyword')->checkKeyword($shop_id,$word);

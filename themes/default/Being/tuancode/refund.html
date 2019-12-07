@@ -29,10 +29,10 @@
                         <label><span>开始时间</span><input type="text" name="bg_date" value="<{$bg_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w120" /></label>
                         <label><span>结束时间</span><input type="text" name="end_date" value="<{$end_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w120" /></label>
                         <label>
-                            <span>商家</span>
+                            <span>企业</span>
                             <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                             <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text" />
-                            <a  href="<{:U('shop/select')}>"  w="800" h="600" mini="select" class="sumit">选择商家</a>
+                            <a  href="<{:U('shop/select')}>"  w="800" h="600" mini="select" class="sumit">选择企业</a>
                         </label>
                         <label>
                             <span>用户</span>
@@ -60,7 +60,7 @@
                     <td class="w50">ID</td>
                     <td>抢购券</td>
                     <td>用户</td>
-                    <td>商家</td>
+                    <td>企业</td>
                     <td>订单</td>
                     <td>抢购</td>
                     <td>退款金额</td>

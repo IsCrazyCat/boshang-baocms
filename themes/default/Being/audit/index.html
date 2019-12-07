@@ -1,17 +1,17 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家资质认证</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业资质认证</li>
         <li class="li2 li3">认证列表</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>商家资质列表，认证后前台无法修改，认证后对应的模板处打标签</p>
+    <p class="attention"><span>注意：</span>企业资质列表，认证后前台无法修改，认证后对应的模板处打标签</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
-                <{:TUFZBA('shop/index','','商家列表')}>
+                <{:TUFZBA('shop/index','','企业列表')}>
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('audit/index')}>">
@@ -48,7 +48,7 @@
                         <label>
                             <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                             <input class="text" type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>"/>
-                            <a mini="select"  w="1000" h="800" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                            <a mini="select"  w="1000" h="800" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                         </label>
                         <label>
                             <span>关键字:</span>
@@ -68,7 +68,7 @@
                 <tr>
                     <td class="w50"><input type="checkbox" class="checkAll" rel="audit_id" /></td>
                     <td class="w50">ID</td>
-                    <td>商家</td>
+                    <td>企业</td>
                     <td>企业名字</td>
                     <td>注册号</td>
                     <td>创建时间</td>

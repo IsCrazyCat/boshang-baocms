@@ -69,7 +69,7 @@ class KtvOrderModel extends CommonModel{
 			if ($this->save(array('order_id' => $order_id, 'status' => '1'))){
 				D('Ktv')->where(array('ktv_id'=>$detail['ktv_id']))->setInc('orders_num',1);//新增一个预约销量
 				D('Sms')->sms_ktv_notice_user($order_id);//通知用户
-				D('Sms')->sms_ktv_notice_shop($order_id);//通知商家
+				D('Sms')->sms_ktv_notice_shop($order_id);//通知企业
 				return TRUE; 
 			}
         }else{
@@ -153,7 +153,7 @@ class KtvOrderModel extends CommonModel{
                 if ($this->save(array('order_id'=>$order_id,'status'=>8,'is_used_code'=>1))) {
 					if($detail['jiesuan_price'] > 0){//有设置结算价格采取结算
 						$info = 'KTV订单ID:'.$order_id.'完成，结算金额'.round($detail['jiesuan_price']/100,2);
-						D('Shopmoney')->insertData($order_id,$id ='0',$Ktv['shop_id'],$detail['jiesuan_price'],$type ='ktv',$info);//结算给商家
+						D('Shopmoney')->insertData($order_id,$id ='0',$Ktv['shop_id'],$detail['jiesuan_price'],$type ='ktv',$info);//结算给企业
 						D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 8,$status = 8);
 				    	D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 8,$status = 8);
 					}

@@ -64,7 +64,7 @@ class SellerAction extends CommonAction {
             }
         }
         $this->assign('tuans', $tuans);
-		//商家
+		//企业
 		$shops = D('SellerGoods')->where(array('user_id'=>$user_id,'type_id' =>3,'closed' =>0))->order(array('create_time' =>'desc'))->limit(0, 5)->select();
 		
 		foreach($shops as $k => $val){
@@ -334,13 +334,13 @@ class SellerAction extends CommonAction {
 			$intro = '抢购';
 		}elseif($type_id == 3){
 			if(!($Shop = D('Shop')->find($id))){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家不存在'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业不存在'));
 			}
 			if($Shop['closed'] != 0){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家已被删除'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业已被删除'));
 			}
 			if($Shop['audit'] != 1){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家未审核'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业未审核'));
 			}
 			$intro = '商城';
 		}
@@ -471,15 +471,15 @@ class SellerAction extends CommonAction {
 			$msg .='3级分成比例【'.$config['profit']['currency_profit_rate3'].'%】，预计分成【'.round($config['profit']['currency_profit_rate3'] * $Tuan['tuan_price']/10000,2).'】元<br>'; 
 		}elseif($detail['type_id'] == 3){
 			if(!($Shop = D('Shop')->find($detail['id']))){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家不存在'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业不存在'));
 			}
 			if($Shop['closed'] != 0){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家已被删除'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业已被删除'));
 			}
 			if($Shop['audit'] != 1){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家未审核'));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业未审核'));
 			}
-			$msg .='商家名称【'.$Shop['shop_name'].'】<br>'; 
+			$msg .='企业名称【'.$Shop['shop_name'].'】<br>';
 		}
         $this->ajaxReturn(array('code' => '1', 'msg' => $msg));    
 	}

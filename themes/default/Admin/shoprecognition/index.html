@@ -1,7 +1,7 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
+        <li class="li1">企业</li>
         <li class="li2">认领</li>
         <li class="li2 li3">认领列表</li>
     </ul>
@@ -11,7 +11,7 @@
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
-                <{:BA('shop/index','','全部商家')}>
+                <{:BA('shop/index','','全部企业')}>
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('shoprecognition/index')}>">
@@ -37,7 +37,7 @@
                         <label>
                             <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                             <input class="text" type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" />
-                            <a mini="select"  w="1000" h="800" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                            <a mini="select"  w="1000" h="800" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                         </label>
                         <label>
                             <span>关键字:</span>
@@ -58,7 +58,7 @@
                     <td class="w50"><input type="checkbox" class="checkAll" rel="yuyue_id" /></td>
                     <td class="w50">ID</td>
                     <td>用户</td>
-                    <td>商家</td>
+                    <td>企业</td>
                     <td>姓名/手机</td>
                     <td>申请时间</td>
                     <td>理由</td>
@@ -98,7 +98,7 @@
         </div>
         <div class="selectNr" style="margin-bottom: 0px; border-bottom: none;">
             <div class="left">
-                <a href="<{:U('shop/recognition')}>"  class=" a2 ">添加商家</a>
+                <a href="<{:U('shop/recognition')}>"  class=" a2 ">添加企业</a>
             </div>
         </div>
     </form>

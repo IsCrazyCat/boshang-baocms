@@ -163,13 +163,13 @@ class EnvelopeAction extends CommonAction{
             $data = $this->checkFields($this->_post('data', false), array('shop_id','title','intro','prestore','ratio','bg_date'));
 			$data['shop_id'] = $this->shop_id;
 			if(empty($data['shop_id'])){
-				$this->tuError('商家ID必须选择');
+				$this->tuError('企业ID必须选择');
 			}
 			if(!$shop = M('Shop')->find($data['shop_id'])){
-				$this->tuError('商家详情和不存在');
+				$this->tuError('企业详情和不存在');
 			}
 			if($res = M('envelope')->where(array('shop_id'=>$data['shop_id'],'closed'=>'0'))->find()){
-				$this->tuError('当前商家有一个红包【'.$res['title'].'】正在进行，暂时无法添加');
+				$this->tuError('当前企业有一个红包【'.$res['title'].'】正在进行，暂时无法添加');
 			}
 			$data['title'] = htmlspecialchars($data['title']);
 			if(empty($data['title'])){
@@ -187,10 +187,10 @@ class EnvelopeAction extends CommonAction{
 				$this->tuError('红包总额不能为空');
 			}
 			if(!$user = M('Users')->find($shop['user_id'])){
-				$this->tuError('该商家未绑定会员');
+				$this->tuError('该企业未绑定会员');
 			}
 			if($data['prestore'] > $user['money']){
-				$this->tuError('当前商家绑定的会员余额小于您填写的红包总额');
+				$this->tuError('当前企业绑定的会员余额小于您填写的红包总额');
 			}
 			$data['ratio'] = $data['ratio'];
 			if(empty($data['ratio'])){
@@ -235,7 +235,7 @@ class EnvelopeAction extends CommonAction{
 			$this->tuError('非法操作');
 		}
 		if(!($shop = M('Shop')->find($detial['shop_id']))){
-           $this->tuError('商家不存在');
+           $this->tuError('企业不存在');
         }
 		if(M('Envelope')->save(array('envelope_id' => $envelope_id,'closed' => 1))){
 			if($detial['prestore'] > 0 && $detial['type'] == 2){

@@ -23,8 +23,8 @@
                        <td class="w50"><input type="checkbox" class="checkAll" rel="enter_id" /></td>
                  <td class="w50">ID</td>
                 <td>商场名称</td>
-                <td>入驻商家</td>
-                <td>商家LOGO</td>
+                <td>入驻企业</td>
+                <td>企业LOGO</td>
                 <td>入驻时间</td>
                 <td>操作</td>
 
@@ -39,7 +39,7 @@
                     <td><{$var.create_time|date='Y-m-d H:i:s',###}></td>
                     <td>
                         <{:TUFZBA('market/cancle',array('enter_id'=>$var['enter_id']),'撤销入驻','act','remberBtn')}>
-                        <{:TUFZBA('market/enter',array("market_id"=>$var["market_id"]),'商家入驻','','remberBtn')}>
+                        <{:TUFZBA('market/enter',array("market_id"=>$var["market_id"]),'企业入驻','','remberBtn')}>
                     </td>
                 </tr>
             </foreach>

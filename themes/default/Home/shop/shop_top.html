@@ -4,11 +4,11 @@
                     <h1 class="shop-name"><{$detail.shop_name}>
                     
                         <if condition="$detail['recognition'] eq 0">
-                        	<a href="javascript:void(0);" class="branch das"  >认领商家
+                        	<a href="javascript:void(0);" class="branch das"  >认领企业
                             <i class="icon i-arrow"></i></a>
                         </if>
                     </h1>
-      <!--商家认领-->              
+      <!--企业认领-->
       <script>
         $(document).ready(function(){
             $(".das").click(function(){
@@ -59,7 +59,7 @@
                         	<span class="item" style="color:#F30">保证金 : &yen;<{:round($Users['frozen_gold']/100,2)}>元</span>
                         </if>
                         <if condition="!empty($Shopgrade)">
-                        	<span class="item">商家等级 : <{$Shopgrade.grade_name}> <img width="18" height="18" class="shop_grade_pic" src="<{:config_img($Shopgrade['photo'])}>"></span>
+                        	<span class="item">企业等级 : <{$Shopgrade.grade_name}> <img width="18" height="18" class="shop_grade_pic" src="<{:config_img($Shopgrade['photo'])}>"></span>
                         </if>
                         
                     </div>
@@ -73,13 +73,13 @@
                         <span class="item">营业时间 : <{$ex.business_time}></span>
                     </p>
                     <p class="expand-info J-service info-indent">
-                        <span class="info-name">商家详情 :</span><span class="item" itemprop="intro"><{:tu_msubstr(cleanhtml($ex['details']),0,108,false)}>...</span>
-                        <a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>"><i class="icon shop_view"></i>商家详情 >></a>
+                        <span class="info-name">企业详情 :</span><span class="item" itemprop="intro"><{:tu_msubstr(cleanhtml($ex['details']),0,108,false)}>...</span>
+                        <a href="<{:U('shop/about',array('shop_id'=>$detail['shop_id']))}>"><i class="icon shop_view"></i>企业详情 >></a>
                     </p>
                     <div class="action">
                         <if condition="!empty($detail['qq'])">
                             <a class="write left-action" href="http://wpa.qq.com/msgrd?v=3&uin=<{$detail.qq}>&menu=yes" target="_blank" rel="nofollow">
-                            <i class="qq"></i>商家QQ客服</a>
+                            <i class="qq"></i>企业QQ客服</a>
                         </if>
                         
                         <a class="write left-action" href="<{:U('shop/ping',array('shop_id'=>$detail['shop_id']))}>" target="_blank" rel="nofollow">

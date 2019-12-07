@@ -123,7 +123,7 @@ class StoreproductAction extends CommonAction{
                 $this->tuError('请选择要编辑的工作管理');
             }
             if ($detail['shop_id'] != $this->shop_id) {
-                $this->tuError('请不要操作其他商家的工作管理');
+                $this->tuError('请不要操作其他企业的工作管理');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();

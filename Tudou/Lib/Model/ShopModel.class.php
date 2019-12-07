@@ -3,7 +3,7 @@ class ShopModel extends CommonModel{
     protected $pk = 'shop_id';
     protected $tableName = 'shop';
 	
-	//商家有效期
+	//企业有效期
 	public function getEndDate(){
         return array(
 			1 => '1-30天', 
@@ -65,7 +65,7 @@ class ShopModel extends CommonModel{
 				}
 //			}
 		}else{
-			$this->error = '商家不存在';
+			$this->error = '企业不存在';
 			return false;
 		}
     }
@@ -137,7 +137,7 @@ class ShopModel extends CommonModel{
 		   return $Users['account'];   
 	    }
     }
-	//获取商家中结算金额，后期优化到月，年get_shop_sales
+	//获取企业中结算金额，后期优化到月，年get_shop_sales
 	public function get_shop_sales($shop_id){
         $sales = D('Shopmoney')->where(array('shop_id'=>$shop_id))->sum('money');
 		return $sales;

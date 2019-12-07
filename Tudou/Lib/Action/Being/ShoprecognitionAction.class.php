@@ -55,7 +55,7 @@ class ShoprecognitionAction extends CommonAction{
         if ($recognition_id = (int) $recognition_id) {
             $obj = D('Shoprecognition');
             if (!($detail = $obj->find($recognition_id))) {
-                $this->tuError('请选择要编辑的商家认领');
+                $this->tuError('请选择要编辑的企业认领');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -71,7 +71,7 @@ class ShoprecognitionAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家预约');
+            $this->tuError('请选择要编辑的企业预约');
         }
     }
     private function editCheck()
@@ -80,7 +80,7 @@ class ShoprecognitionAction extends CommonAction{
         $data['user_id'] = (int) $data['user_id'];
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['name'] = htmlspecialchars($data['name']);
         if (empty($data['name'])) {
@@ -118,7 +118,7 @@ class ShoprecognitionAction extends CommonAction{
             $this->tuError('请选择要删除的认领');
         }
     }
-    //审核商家
+    //审核企业
     public function audit($recognition_id = 0)
     {
             $recognition_id = (int) $recognition_id;
@@ -152,7 +152,7 @@ class ShoprecognitionAction extends CommonAction{
 				));
             }
             if (!empty($user_ids['email'])) {
-                D('Email')->sendMail('email_recognition', $user_ids['email'], '商家认领成功的通知', array(
+                D('Email')->sendMail('email_recognition', $user_ids['email'], '企业认领成功的通知', array(
 					'shop_name' => $shops['shop_name'], 
 					'name' =>$user_ids['name'], 
 					'mobile' => $user_ids['mobile'], 
@@ -161,7 +161,7 @@ class ShoprecognitionAction extends CommonAction{
 				));
             }
 
-            $obj_shop->save(array('shop_id' => $detail['shop_id'], 'recognition' => 1,'user_id' => $detail['user_id']));//更改商家认领状态
+            $obj_shop->save(array('shop_id' => $detail['shop_id'], 'recognition' => 1,'user_id' => $detail['user_id']));//更改企业认领状态
             $obj->save(array('recognition_id' => $recognition_id, 'audit' => 1));
             $this->tuSuccess('审核认领成功', U('Shoprecognition/index'));
     }

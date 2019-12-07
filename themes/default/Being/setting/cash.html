@@ -24,7 +24,7 @@
                      <td class="rgTdBt">
                      <label><input type="radio" name="data[is_cash]" <eq name="CONFIG.cash.is_cash" value="1">checked="checked"</eq> value="1"/>开启</label>
                      <label><input type="radio" name="data[is_cash]" <eq name="CONFIG.cash.is_cash" value="0">checked="checked"</eq>  value="0"/>关闭</label>
-                        <code>开启后才会出现会员提现按钮，否则会员无法提现，商家提现不受任何影响，商家已没有必要关闭提现功能。</code>
+                        <code>开启后才会出现会员提现按钮，否则会员无法提现，企业提现不受任何影响，企业已没有必要关闭提现功能。</code>
                       </td>
 			    </tr>
                 
@@ -68,9 +68,9 @@
                     <td class="lfTdBt">商户：</td>
                     <td class="rgTdBt">
                         <input type="text" name="data[shop]" value="<{$CONFIG.cash.shop}>" class="scAddTextName w80" />
-						<code>←商家单笔提现最低</code>
+						<code>←企业单笔提现最低</code>
                         <input type="text" name="data[shop_big]" value="<{$CONFIG.cash.shop_big}>" class="scAddTextName w80" />
-						<code>←商家单笔提现最高
+						<code>←企业单笔提现最高
                         	<if condition="$config['cash']['shop_big'] ELT $config['cash']['shop']">
                                 <a style="color:#F00">商户最低提现不合法 </a>
                             </if>
@@ -85,7 +85,7 @@
                     <td class="lfTdBt">认证商户：</td>
                     <td class="rgTdBt">
                         <input type="text" name="data[renzheng_shop]" value="<{$CONFIG.cash.renzheng_shop}>" class="scAddTextName w80" />
-						<code>←通过资质认证的商家每次提现可以多少钱</code>
+						<code>←通过资质认证的企业每次提现可以多少钱</code>
                         <input type="text" name="data[renzheng_shop_big]" value="<{$CONFIG.cash.renzheng_shop_big}>" class="scAddTextName w80" />
 						<code>←认证商户单笔最大提现多少钱
                         	<if condition="$config['cash']['renzheng_shop_big'] ELT $config['cash']['renzheng_shop']">
@@ -101,7 +101,7 @@
                         <input type="text" name="data[user_cash_second]" value="<{$CONFIG.cash.user_cash_second}>" class="scAddTextName w80" />
 						<code>会员每日最多申请多少次提现</code>
                         <input type="text" name="data[shop_cash_second]" value="<{$CONFIG.cash.shop_cash_second}>" class="scAddTextName w80" />
-						<code>商家每日最多申请多少次提现</code>
+						<code>企业每日最多申请多少次提现</code>
                     </td>
                 </tr>
                 

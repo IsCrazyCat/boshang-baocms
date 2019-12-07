@@ -12,7 +12,7 @@ class TransactionAction extends CommonAction{
             $shop_list[$k]['area'] = $area['area_name'];
         }
 		$shop_list = (array_chunk($shop_list,12));
-		$this->assign('shop_list',$shop_list);//商家列表
+		$this->assign('shop_list',$shop_list);//企业列表
 	   
 	    $this->assign('goodscate_count',$goodscate_count = D('Goodscate')->count());//产品种类
 	   	$this->assign('order_count',$order_count = D('Order')->count());//交易次数

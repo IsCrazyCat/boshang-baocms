@@ -106,7 +106,7 @@ class WeidianAction extends CommonAction
                 $data['shop_id'] = $shop_id;
                 //$details = $this->_post('details', 'SecurityEditorHtml');
                 if ($words = D('Sensitive')->checkWords($details)) {
-                    $this->tuError('商家介绍含有敏感词：' . $words);
+                    $this->tuError('企业介绍含有敏感词：' . $words);
                 }
                 $robj = $obj->where('shop_id=' . $shop_id)->save($data);
                 if ($robj) {
@@ -127,7 +127,7 @@ class WeidianAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家');
+            $this->tuError('请选择要编辑的企业');
         }
     }
     private function editCheck($shop_id)

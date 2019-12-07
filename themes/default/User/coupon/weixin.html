@@ -26,7 +26,7 @@
 
 
 <div class="container text-center">
-    <a class="button button-block button-big bg-dot margin-bottom" href="<{:U('wap/shop/goods',array('shop_id'=>$detail['shop_id']))}>">去商家购物消费</a>   
+    <a class="button button-block button-big bg-dot margin-bottom" href="<{:U('wap/shop/goods',array('shop_id'=>$detail['shop_id']))}>">去企业购物消费</a>
     <a class="button button-block button-big bg-blue margin-bottom" href="<{:U('coupon/give',array('download_id'=>$detail['download_id']))}>">赠送给朋友</a>  
     <if condition="$detail['is_sms'] eq 0">      
        <a class="button button-block button-big bg-yellow margin-bottom" href="<{:U('coupon/sms',array('download_id'=>$detail['download_id']))}>">发送短信到手机</a> 

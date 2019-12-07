@@ -24,7 +24,7 @@ class weixin {
         $input = new WxPayUnifiedOrder();
         $input->SetBody($logs['subject']);
         $input->SetAttach($logs['subject']);
-		$input->SetOut_trade_no($logs['logs_id'].'-'.time());//商家号增加时间戳，防止无法第二次付款
+		$input->SetOut_trade_no($logs['logs_id'].'-'.time());//企业号增加时间戳，防止无法第二次付款
         $logs['logs_amount'] = $logs['logs_amount'] *100;
         $input->SetTotal_fee("{$logs['logs_amount']}");
         $input->SetTime_start(date("YmdHis"));

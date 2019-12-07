@@ -129,11 +129,11 @@ class BookingAction extends CommonAction {
 	public function detail($shop_id){
 		$Booking = D('Booking');
         if(!$shop_id = (int)$shop_id){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }elseif(!$detail = $Booking->find($shop_id)){
-			$this->error('该商家不存在');
+			$this->error('该企业不存在');
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
-            $this->error('该商家已删除或未审核');
+            $this->error('该企业已删除或未审核');
         }else{
             $lat = addslashes(cookie('lat'));
             $lng = addslashes(cookie('lng'));
@@ -198,11 +198,11 @@ class BookingAction extends CommonAction {
     public function ding($orderType = '0',$room_id = '0',$shop_id = '0'){
 		$Booking = D('Booking');
         if(!$shop_id = (int)$shop_id){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }elseif(!$detail = $Booking->find($shop_id)){
-			$this->error('该商家不存在');
+			$this->error('该企业不存在');
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
-            $this->error('该商家已删除或未审核');
+            $this->error('该企业已删除或未审核');
         }else{
             $this->assign('note',htmlspecialchars($_COOKIE['note'])); 
             $this->assign('name',htmlspecialchars($_COOKIE['name'])); 
@@ -232,11 +232,11 @@ class BookingAction extends CommonAction {
 		$config = d('Setting')->fetchAll();
 		$this->assign('hostdo', '.'.$config['site']['hostdo']);
         if(!$shop_id = (int)$shop_id){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }elseif(!$detail = $Booking->find($shop_id)){
-			$this->error('该商家不存在');
+			$this->error('该企业不存在');
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
-            $this->error('该商家已删除或未审核');
+            $this->error('该企业已删除或未审核');
         }else{
             $list = $menu->where(array('shop_id'=>$shop_id,'closed'=>0))->select();
             $this->assign('menucates',D('Bookingcate')->where(array('shop_id'=>$shop_id))->select());
@@ -320,15 +320,15 @@ class BookingAction extends CommonAction {
 	public function dianping(){
         $shop_id = (int) $this->_get('shop_id');
         if(!$detail = D('Shop')->find($shop_id)){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if($detail['closed']){
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         $this->assign('detail', $detail);
-        $this->mobile_title = '商家点评';
+        $this->mobile_title = '企业点评';
         $this->display();
     }
 
@@ -426,7 +426,7 @@ class BookingAction extends CommonAction {
 		$ding_time = htmlspecialchars($_COOKIE['ding_time']); 
 		$ding_num = $this->unescape(htmlspecialchars($_COOKIE['ding_num'])); 
 		$room = D('Bookingroom');
-		$room_detail = $room->getrooms($shop_id,$ding_date,$ding_time,$ding_num );//商家ID，预约日期，预约时间，预约人数
+		$room_detail = $room->getrooms($shop_id,$ding_date,$ding_time,$ding_num );//企业ID，预约日期，预约时间，预约人数
 		$getType = $room->getType();
 		foreach($getType as $k => $v){
 			if($v == $reson){
@@ -587,13 +587,13 @@ class BookingAction extends CommonAction {
             $this->ajaxReturn(array('status'=>'login'));
         }
 		if(!$shop_id = (int)$shop_id){
-            $this->ajaxReturn(array('status'=>'error','msg'=>'该商家不存在'));
+            $this->ajaxReturn(array('status'=>'error','msg'=>'该企业不存在'));
         }
         if(!$detail = $Booking->find($shop_id)){
-            $this->ajaxReturn(array('status'=>'error','msg'=>'该商家不存在'));
+            $this->ajaxReturn(array('status'=>'error','msg'=>'该企业不存在'));
         }
         if($detail['audit'] != 1||$detail['closed']!=0) {
-            $this->ajaxReturn(array('status'=>'error','msg'=>'商家已删除或未审核'));
+            $this->ajaxReturn(array('status'=>'error','msg'=>'企业已删除或未审核'));
         }
 		
         $dingmenus = $this->_getCartGoods($shop_id);
@@ -695,7 +695,7 @@ class BookingAction extends CommonAction {
 			$this->error('登录状态失效', U('passport/login'));
         }
 		if(!$detail = $Booking->find($shop_id)){
-            $this->error('商家不存在');
+            $this->error('企业不存在');
         }
         $dingmenus = $this->_getCartGoods($shop_id);
 		

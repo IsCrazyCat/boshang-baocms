@@ -11,13 +11,13 @@ class AreaAction extends CommonAction
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $city_ids = D('City')->where($mapss)->order(array('city_id' => 'desc'))->select();
-        //查询所在城市的商家
+        //查询所在城市的企业
         foreach ($city_ids as $val) {
             $cityids[$val['city_id']] = $val['city_id'];
             //对比shop_id
         }
         $maps['city_id'] = array('in', $cityids);
-        //取得当前商家ID，给下面的maps查询
+        //取得当前企业ID，给下面的maps查询
         $map = array();
         $keyword = $this->_param('keyword', 'htmlspecialchars');
         if ($keyword) {

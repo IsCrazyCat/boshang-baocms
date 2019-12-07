@@ -48,10 +48,10 @@ class JifenAction extends CommonAction{
     public function shop($shop_id){
         $shop_id = (int) $shop_id;
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('该联盟商家不存在');
+            $this->error('该联盟企业不存在');
         }
         if ($detail['closed'] != 0 || $detail['audit'] != 1) {
-            $this->error('该联盟商家不存在');
+            $this->error('该联盟企业不存在');
         }
         $this->assign('shopdetail', D('Shopdetails')->find($shop_id));
         $this->seodatas['shop_name'] = $detail['shop_name'];
@@ -167,10 +167,10 @@ class JifenAction extends CommonAction{
 				//返还积分测试
 				if($this->_CONFIG['integral']['return'] == 1){
 					$shop = D('Shop')->find($detail['shop_id']);
-					D('Users')->return_integral($shop['user_id'], $detail['integral'] , '用户积分兑换返还给商家积分');
+					D('Users')->return_integral($shop['user_id'], $detail['integral'] , '用户积分兑换返还给企业积分');
 				}
 				D('Weixintmpl')->weixin_notice_jifen_user($exchange_id,$this->uid);//积分兑换通知买家
-				D('Weixintmpl')->weixin_notice_jifen_shop($exchange_id,$this->uid);//积分兑换通知商家
+				D('Weixintmpl')->weixin_notice_jifen_shop($exchange_id,$this->uid);//积分兑换通知企业
                 $this->tuSuccess('兑换成功', U('members/exchange'));
             }
             $this->tuError('兑换失败');

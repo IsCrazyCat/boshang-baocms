@@ -43,7 +43,7 @@ class ShopyouhuiAction extends CommonAction{
 		$yh_id = (int) $yh_id;
 		$obj = D('Shopyouhui');
 		if (!($detail = $obj->find($yh_id))) {
-                $this->tuError('请选择要编辑的商家优惠');
+                $this->tuError('请选择要编辑的企业优惠');
         }
         if ($this->isPost()) {
             $data = $this->createCheck();
@@ -124,7 +124,7 @@ class ShopyouhuiAction extends CommonAction{
 	 public function audit($yh_id) {
         $obj = D('Shopyouhui');
         if (!($detail = $obj->find($yh_id))) {
-            $this->error('请选择要审核的优惠商家');
+            $this->error('请选择要审核的优惠企业');
         }
         $data = array('audit' => 0, 'yh_id' => $yh_id);
         if ($detail['audit'] == 0) {

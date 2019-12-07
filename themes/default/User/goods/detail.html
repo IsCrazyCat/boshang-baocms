@@ -130,7 +130,7 @@
 
 <div class="blank-10 bg"></div>
 <div class="list-media-x">
-<h3 class="list-shop-x"><a href="<{:U('wap/shop/detail',array('shop_id'=>$detail['shop']['shop_id']))}>">商家信息<i class="iconfont icon-angle-right float-right"></i></a></h3>
+<h3 class="list-shop-x"><a href="<{:U('wap/shop/detail',array('shop_id'=>$detail['shop']['shop_id']))}>">企业信息<i class="iconfont icon-angle-right float-right"></i></a></h3>
 	<ul>
 		<li class="line padding">
 			<div class="x3">
@@ -234,7 +234,7 @@
 
 	wx.ready(function () {
     wx.onMenuShareTimeline({
-            title: '"我在商家【".<{$arr["shop_name"]}>."】购物后领取红包了"',
+            title: '"我在企业【".<{$arr["shop_name"]}>."】购物后领取红包了"',
         	link: "<{$CONFIG.site.host}><{:U('wap/shop/detail',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act,'shop_id'=>$detail['shop_id']))}>", 
         	imgUrl: "<{:config_weixin_img($arr['photo'])}>", 
             success: function (){
@@ -242,7 +242,7 @@
 			},
      });
      wx.onMenuShareAppMessage({
-            title: '"我在商家【".<{$arr["shop_name"]}>."】购物后领取红包了"',
+            title: '"我在企业【".<{$arr["shop_name"]}>."】购物后领取红包了"',
             desc: '<{:cleanhtml($arr["shopdetails"])}>',
             link: "<{$CONFIG.site.host}><{:U('wap/shop/detail',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act,'shop_id'=>$detail['shop_id']))}>", 
         	imgUrl: "<{:config_weixin_img($arr['photo'])}>", 

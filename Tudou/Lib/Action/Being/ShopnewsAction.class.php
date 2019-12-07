@@ -8,13 +8,13 @@ class ShopnewsAction extends CommonAction
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();
-        //查询所在城市的商家
+        //查询所在城市的企业
         foreach ($shop_city as $val) {
             $cityids[$val['shop_id']] = $val['shop_id'];
             //对比shop_id
         }
         $maps['shop_id'] = array('in', $cityids);
-        //取得当前商家ID，给下面的maps查询
+        //取得当前企业ID，给下面的maps查询
         $Shopnews = D('Shopnews');
         import('ORG.Util.Page');
         // 导入分页类 二开qq 120--585--022   www.juhucms.com
@@ -81,11 +81,11 @@ class ShopnewsAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
         $data['cate_id'] = $shop['cate_id'];
         $data['title'] = htmlspecialchars($data['title']);
@@ -123,7 +123,7 @@ class ShopnewsAction extends CommonAction
             //查询上级ID编辑处代结束
             $obj = D('Shopnews');
             if (!($detail = $obj->find($news_id))) {
-                $this->tuError('请选择要编辑的商家资讯');
+                $this->tuError('请选择要编辑的企业资讯');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -138,7 +138,7 @@ class ShopnewsAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家资讯');
+            $this->tuError('请选择要编辑的企业资讯');
         }
     }
     private function editCheck()
@@ -146,11 +146,11 @@ class ShopnewsAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
         $data['cate_id'] = $shop['cate_id'];
         $data['title'] = htmlspecialchars($data['title']);
@@ -196,7 +196,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('shopnews/index'));
             }
-            $this->tuError('请选择要删除的商家资讯');
+            $this->tuError('请选择要删除的企业资讯');
         }
     }
     public function audit($news_id = 0)
@@ -223,7 +223,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('shopnews/index'));
             }
-            $this->tuError('请选择要审核的商家资讯');
+            $this->tuError('请选择要审核的企业资讯');
         }
     }
 }

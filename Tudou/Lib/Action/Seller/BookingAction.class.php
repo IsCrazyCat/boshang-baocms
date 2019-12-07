@@ -352,7 +352,7 @@ class BookingAction extends CommonAction{
                     $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的分类'));
                 }
                 if($detail['shop_id'] != $this->shop_id){
-                    $this->ajaxReturn(array('status' => 'error', 'message' => '请不要操作其他商家的分类'));
+                    $this->ajaxReturn(array('status' => 'error', 'message' => '请不要操作其他企业的分类'));
                 }
                 $cate_name = I('cate_name', '', 'trim,htmlspecialchars');
                 if(empty($cate_name)){
@@ -454,7 +454,7 @@ class BookingAction extends CommonAction{
                 $this->error('请选择要编辑的菜品设置');
             }
             if ($detail['shop_id'] != $this->shop_id) {
-                $this->error('请不要操作其他商家的菜品设置');
+                $this->error('请不要操作其他企业的菜品设置');
             }
             if ($this->isPost()){
                 $data = $this->checkFields($this->_post('data', false), array('menu_name', 'cate_id', 'photo', 'price', 'ding_price', 'is_new', 'is_sale', 'is_tuijian'));

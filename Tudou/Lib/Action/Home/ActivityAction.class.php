@@ -147,7 +147,7 @@ class ActivityAction extends CommonAction{
                 D('Activity')->updateCount($activity_id, 'sign_num');
                 if (!empty($huodong_email)) {
                     //如果不等于空发邮件email_huodong_email
-                    D('Email')->sendMail('email_huodong_email', $huodong_email, '尊敬的商家，有客户报名活动！', array(
+                    D('Email')->sendMail('email_huodong_email', $huodong_email, '尊敬的企业，有客户报名活动！', array(
 						'name' => $data['name'], 
 						'mobile' => $data['mobile'], 
 						'num' => $data['num']

@@ -17,7 +17,7 @@
 .inptButton{height: 30px;line-height:30px;background:rgb(0, 153, 204); width:70px;text-align: center;}
 </style>
 <div class="main-jsgl main-sc">
-<p class="attention"><span>注意：</span> 菜市场订单可以导出了，您可以按照时间、选择会员、商家、还有订单ID交易状态筛选后导出订单！</p>
+<p class="attention"><span>注意：</span> 菜市场订单可以导出了，您可以按照时间、选择会员、企业、还有订单ID交易状态筛选后导出订单！</p>
     <div class="jsglNr">
         <div class="selectNr" style="border-top: none; margin-top: 0px;">
             <div class="right">
@@ -35,7 +35,7 @@
                             <label>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
-                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                             </label>
                             <label>
                                 <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>" />
@@ -67,7 +67,7 @@
                     <tr>
                         <td class="w50"><input type="checkbox" class="checkAll" rel="order_id" /></td>
                         <td class="w50">ID</td>
-                        <td>商家</td>
+                        <td>企业</td>
                         <td>用户</td>
                         <td>总金额</td>
                         <td>配送费</td>

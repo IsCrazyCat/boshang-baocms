@@ -4,7 +4,7 @@ class UsersModel extends CommonModel{
     protected $tableName = 'users';
     protected $_integral_type = array(
 		'login' => '每日登陆', 
-		'dianping_shop' => '商家点评', 
+		'dianping_shop' => '企业点评',
 		'thread' => '回复帖子', 
 		'mobile' => '手机认证', 
 		'email' => '邮件认证',
@@ -24,7 +24,7 @@ class UsersModel extends CommonModel{
     }
 	
 	
-	//判断是不是商家
+	//判断是不是企业
     public function get_is_shop($user_id){
         $Shop = D('Shop')->where(array('user_id'=>$user_id))->find();
         if (empty($Shop)) {
@@ -129,7 +129,7 @@ class UsersModel extends CommonModel{
 	
    
 	
-	 //积分兑换工作返还积分给商家中间层
+	 //积分兑换工作返还积分给企业中间层
     public function return_integral($user_id, $jifen, $intro){
         static $CONFIG;
         if (empty($CONFIG)) {
@@ -332,7 +332,7 @@ class UsersModel extends CommonModel{
 				
 		$user_id = D('Passport')->register($data,$Shop['user_id'],$type = '1');//注册数据，推荐人id，类型1支持返回会员id
 		
-		D('Sms')->register($user_id,$mobile,$data['account'],$data['password'],$shop_ids);//会员id，手机号，昵称，密码,商家id可用弃
+		D('Sms')->register($user_id,$mobile,$data['account'],$data['password'],$shop_ids);//会员id，手机号，昵称，密码,企业id可用弃
 		
 		D('Shopfavorites')->add(array('user_id'=>$user_id,'shop_id'=>$shop_ids,'is_sms'=>'1','is_weixin'=>'1','create_time'=>NOW_TIME,'create_ip' =>get_client_ip()));
 		

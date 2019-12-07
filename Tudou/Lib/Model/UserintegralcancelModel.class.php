@@ -9,7 +9,7 @@ class UserintegralcancelModel extends CommonModel{
 	//
 	
 	
-    //商家确认完成，验证已走这里，扫码验证已走这里，全部封装返回真就是成功，如果管理员直接确认已是直接走这里
+    //企业确认完成，验证已走这里，扫码验证已走这里，全部封装返回真就是成功，如果管理员直接确认已是直接走这里
     public function complete($user_id,$shop_id,$type,$worker_id,$integral,$intro){
         if(!$user_id = (int)$user_id){
             return false;

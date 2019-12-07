@@ -7,11 +7,11 @@ class DingdianpingAction extends CommonAction {
     public function index() {
 		
 		$mapss = array('city_id' => $this->city_id);//查询城市ID为当前登录账户的ID
-		$shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();//查询所在城市的商家
+		$shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();//查询所在城市的企业
 		foreach ($shop_city as $val) {
 			$cityids[$val['shop_id']] = $val['shop_id'];//对比shop_id
 		}
-		$maps['shop_id']  = array('in',$cityids);//取得当前商家ID，给下面的maps查询
+		$maps['shop_id']  = array('in',$cityids);//取得当前企业ID，给下面的maps查询
 		
 		
         $Tuandianping = D('Shopdingdianping');
@@ -86,7 +86,7 @@ class DingdianpingAction extends CommonAction {
         }
 		 $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['order_id'] = (int) $data['order_id'];
         if (empty($data['order_id'])) {
@@ -181,7 +181,7 @@ class DingdianpingAction extends CommonAction {
         }
 		 $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['score'] = (int) $data['score'];
         if (empty($data['score'])) {

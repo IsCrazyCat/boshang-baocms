@@ -61,10 +61,10 @@ class CoupondownloadModel extends CommonModel{
             $this->error = '这个手机已经存在账户，暂时无法注册';
 			return false;
 		 }elseif(empty($shop)){
-            $this->error = '该优惠劵商家不存在';
+            $this->error = '该优惠劵企业不存在';
 			return false;
 		 }elseif($shop['closed'] == 1){
-            $this->error = '该优惠劵商家已被删除';
+            $this->error = '该优惠劵企业已被删除';
 			return false;
 		 }elseif($coupondownload['user_id'] == $uid){
 			$this->error = '不能赠送给自己';

@@ -11,13 +11,13 @@
 </style>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家管理</li>
-        <li class="li2 li3">推荐商家列表</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业管理</li>
+        <li class="li2 li3">推荐企业列表</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>这里是会员推荐的商家列表，只显示有推荐人是商家，您可以根据商家的营业额来给推荐人分成！这里的销售额是该商家在平台总结算金额，不是销售额</p>
+    <p class="attention"><span>注意：</span>这里是会员推荐的企业列表，只显示有推荐人是企业，您可以根据企业的营业额来给推荐人分成！这里的销售额是该企业在平台总结算金额，不是销售额</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="right">
@@ -35,7 +35,7 @@
                             <label>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
-                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                             </label>
                             <label>
                                 <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>" />
@@ -64,8 +64,8 @@
                 <tr>
                     <td class="w50"><input type="checkbox" class="checkAll" rel="guide_id" /></td>
                     <td class="w50">ID</td>
-                    <td>商家ID</td>
-                    <td>商家名称</td>
+                    <td>企业ID</td>
+                    <td>企业名称</td>
                     <td>会员ID</td>
                     <td>会员昵称</td>
                     <td>分成费率</td>

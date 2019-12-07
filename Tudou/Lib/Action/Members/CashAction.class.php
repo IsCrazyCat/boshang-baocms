@@ -74,7 +74,7 @@ class CashAction extends CommonAction{
 			if($cash_id = D('Userscash')->add($arr)){
 				$Users->addMoney($data['user_id'], -$money,$intro);
 				D('Usersex')->save($data);
-				D('Weixintmpl')->weixin_cash_user($this->member['user_id'],1);//申请提现：1会员申请，2商家同意，3商家拒绝
+				D('Weixintmpl')->weixin_cash_user($this->member['user_id'],1);//申请提现：1会员申请，2企业同意，3企业拒绝
 				$this->tuSuccess('申请成功，请等待管理员审核', U('logs/cashlogs'));
 			}else{
 				$this->tuError('抱歉，提现操作失败');

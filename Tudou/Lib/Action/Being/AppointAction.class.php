@@ -70,13 +70,13 @@ class  AppointAction extends CommonAction{
 	 private function createCheck() {
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
 		
-			$data['shop_id'] = (int) $data['shop_id'];//商家ID
+			$data['shop_id'] = (int) $data['shop_id'];//企业ID
 			if (empty($data['shop_id'])) {
-            $this->tuError('请您选择商家');
+            $this->tuError('请您选择企业');
      	    } 
 			$shop = D('Shop')->find($data['shop_id']);
 			if (empty($shop)) {
-				$this->tuError('请选择正确的商家');
+				$this->tuError('请选择正确的企业');
 			}
 			$data['city_id'] = $shop['city_id'];
 			$data['area_id'] = $shop['area_id'];
@@ -187,13 +187,13 @@ class  AppointAction extends CommonAction{
 	
 	 private function editCheck(){
 			$data = $this->checkFields($this->_post('data', false), $this->edit_fields);
-			$data['shop_id'] = (int) $data['shop_id'];//商家ID
+			$data['shop_id'] = (int) $data['shop_id'];//企业ID
 			if (empty($data['shop_id'])) {
-            $this->tuError('请您选择商家');
+            $this->tuError('请您选择企业');
      	    } 
 			$shop = D('Shop')->find($data['shop_id']);
 			if (empty($shop)) {
-				$this->tuError('请选择正确的商家');
+				$this->tuError('请选择正确的企业');
 			}
 			$data['city_id'] = $shop['city_id'];
 			$data['area_id'] = $shop['area_id'];

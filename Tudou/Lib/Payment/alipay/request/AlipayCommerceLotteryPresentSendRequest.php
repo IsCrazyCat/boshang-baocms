@@ -8,7 +8,7 @@
 class AlipayCommerceLotteryPresentSendRequest
 {
 	/** 
-	 * 商家给用户赠送彩票，由亚博科技提供服务
+	 * 企业给用户赠送彩票，由亚博科技提供服务
 	 **/
 	private $bizContent;
 

@@ -40,7 +40,7 @@ class MarketAction extends CommonAction
             $obj = D('Market');
             $details = $this->_post('details', 'SecurityEditorHtml');
             if ($words = D('Sensitive')->checkWords($details)) {
-                $this->tuError('商家介绍含有敏感词：' . $words);
+                $this->tuError('企业介绍含有敏感词：' . $words);
             }
             $ex = array('details' => $details, 'near' => $data['near'], 'business_time' => $data['business_time']);
             unset($data['near'], $data['business_time']);
@@ -420,7 +420,7 @@ class MarketAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('market/floor', array('market_id' => $market_id)));
             }
-            $this->tuError('请选择要删除的商家楼层');
+            $this->tuError('请选择要删除的企业楼层');
         }
     }
     public function recovery($floor_id, $market_id)
@@ -456,7 +456,7 @@ class MarketAction extends CommonAction
                 $data['shop_id'] = (int) $this->_post('shop_id', false);
                 $details = D('Marketenter')->where(array('market_id' => $market_id, 'shop_id' => $data['shop_id']))->find();
                 if (!empty($details)) {
-                    $this->tuError('该商家已经入驻');
+                    $this->tuError('该企业已经入驻');
                 }
                 $data['cate_id'] = (int) $this->_post('cate_id');
                 $data['create_time'] = NOW_TIME;
@@ -533,7 +533,7 @@ class MarketAction extends CommonAction
                 }
                 $this->tuSuccess('撤销成功', U('market/enterlist'));
             }
-            $this->tuError('请选择要撤销的商家入驻');
+            $this->tuError('请选择要撤销的企业入驻');
         }
     }
 }

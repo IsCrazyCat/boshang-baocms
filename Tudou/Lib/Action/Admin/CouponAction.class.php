@@ -57,11 +57,11 @@ class CouponAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
         $data['cate_id'] = $shop['cate_id'];
         $data['city_id'] = $shop['city_id'];
@@ -134,11 +134,11 @@ class CouponAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
         $data['cate_id'] = $shop['cate_id'];
         $data['city_id'] = $shop['city_id'];

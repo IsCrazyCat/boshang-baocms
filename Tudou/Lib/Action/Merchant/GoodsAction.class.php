@@ -398,7 +398,7 @@ class GoodsAction extends CommonAction{
             $this->tuError('产品名称不能为空');
         } $data['shop_id'] = (int) $this->shop_id;
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
 
 		$data['intro'] = htmlspecialchars($data['intro']);

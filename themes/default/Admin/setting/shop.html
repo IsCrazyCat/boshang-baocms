@@ -6,12 +6,12 @@
 <div class="mainBt">
     <ul>
         <li class="li1">设置</li>
-        <li class="li2">商家功能</li>
+        <li class="li2">企业功能</li>
         <li class="li2 li3">功能设置</li>
     </ul>
 </div>
 <div class="main-cate">
-    <p class="attention"><span>注意：</span>商家的基本设置写在这里</p>
+    <p class="attention"><span>注意：</span>企业的基本设置写在这里</p>
 </div>       
 <div class="mainScAdd">
     <div class="tableBox">
@@ -19,7 +19,7 @@
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
             
              <tr>
-                    <td class="lfTdBt">开启商家点赞：</td>
+                    <td class="lfTdBt">开启企业点赞：</td>
                     <td class="rgTdBt">
                     <label>
                     	<input type="radio" name="data[is_shop_zan]" <eq name="CONFIG.shop.is_shop_zan" value="1">checked="checked"</eq> value="1"/>
@@ -29,7 +29,7 @@
                     	<input type="radio" name="data[is_shop_zan]" <eq name="CONFIG.shop.is_shop_zan" value="0">checked="checked"</eq> value="0"/>
                     	关闭
                     </label>
-                    <code>点击开启后，wap商家详情页出现点赞按钮，会员可对商家进行点赞，关闭后不出现按钮。</code>
+                    <code>点击开启后，wap企业详情页出现点赞按钮，会员可对企业进行点赞，关闭后不出现按钮。</code>
                     </td>
                 </tr>
               
@@ -42,10 +42,10 @@
                 </tr>
                 
                 <tr>
-                    <td class="lfTdBt" >同一个商家每天点赞次数：</td>
+                    <td class="lfTdBt" >同一个企业每天点赞次数：</td>
                     <td class="rgTdBt">
                         <input type="text" name="data[day_shop_zan_num]" value="<{$CONFIG.shop.day_shop_zan_num}>" class="scAddTextName w80" />
-                        <code>会员每天可对同一个商家点赞多少次，建议填写1-2，留空不限制。</code>
+                        <code>会员每天可对同一个企业点赞多少次，建议填写1-2，留空不限制。</code>
                     </td>
                 </tr>
                 
@@ -59,10 +59,10 @@
                 </tr>
                 
                 <tr>
-                    <td  class="lfTdBt">商家入驻扣除费用：</td>
+                    <td  class="lfTdBt">企业入驻扣除费用：</td>
                     <td class="rgTdBt">
                         <input type="text" name="data[shop_apply_prrice]" value="<{$CONFIG.shop.shop_apply_prrice}>" class="scAddTextName  w80" />
-                        <code>单位元，不支持负数，建议填写整数，不填写或者填写为0不生效，具体是在商家入驻成功后扣除相关费用，如果会员余额不足，无法入驻，建议留空或者填写为0。</code>
+                        <code>单位元，不支持负数，建议填写整数，不填写或者填写为0不生效，具体是在企业入驻成功后扣除相关费用，如果会员余额不足，无法入驻，建议留空或者填写为0。</code>
                     </td>
                 </tr>
                

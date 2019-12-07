@@ -210,13 +210,13 @@ class StoreorderAction extends CommonAction{
             $this->tuError('没有该订单');
         }
         if($detail['shop_id'] != $this->shop_id){
-            $this->tuError('您无权管理该商家');
+            $this->tuError('您无权管理该企业');
         }
         if($detail['status'] != 1){
             $this->tuError('该订单状态不正确');
         }
 		if(!($shop = D('Shop')->find($detail['shop_id']))){
-            $this->tuError('没有该商家');
+            $this->tuError('没有该企业');
         }
 		if($shop['is_store_pei'] == 1){
 			D('Storeorder')->store_delivery_order($order_id);//接单时候给配送
@@ -240,7 +240,7 @@ class StoreorderAction extends CommonAction{
             $this->tuError('没有该订单');
         }
         if($detail['shop_id'] != $this->shop_id){
-            $this->tuError('您无权管理该商家');
+            $this->tuError('您无权管理该企业');
         }
         $shop = D('Shop')->find($detial['shop_id']);
         if($shop['is_store_pei'] == 1){
@@ -267,7 +267,7 @@ class StoreorderAction extends CommonAction{
                 $this->tuError('便利店状态不正确');               
             }
 			if ($detail['shop_id'] != $this->shop_id) {
-				$this->tuError('您无权管理该商家');
+				$this->tuError('您无权管理该企业');
 			}
             if($detail['status'] == 3){
                 if(D('Storeorder')->save(array('order_id'=>$order_id,'status'=>4))){ //将内容变成

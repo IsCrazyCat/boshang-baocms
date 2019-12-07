@@ -19,7 +19,7 @@
     <div class="tgdd">
         <div class="tgdd_t">
             <ul>
-                <li <if condition="$status eq 1 or empty($status)">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>1))}>">商家点评</a></li>
+                <li <if condition="$status eq 1 or empty($status)">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>1))}>">企业点评</a></li>
                 <li <if condition="$status eq 2">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>2))}>">抢购点评</a></li>
                 <li <if condition="$status eq 6">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>6))}>">商城评</a></li>
                 <li <if condition="$status eq 3">class="on"</if> ><a href="<{:U('dianping/index',array('status'=>3))}>">订餐点评</a></li>
@@ -75,7 +75,7 @@
         </td>
         <td class="td_dianping_10" colspan="2">
         <if condition="!empty($var['reply'])">
-        <span style="color:#F00">商家回复：<{$var.reply}></span><else/>商家无回复</if></td>
+        <span style="color:#F00">企业回复：<{$var.reply}></span><else/>企业无回复</if></td>
       </tr>
       
       

@@ -1,7 +1,7 @@
 <include file='public:header'/>
 <div class="sjgl_lead">
     <ul>
-       <li><a href="">商家等级</a> > <a href="">等级列表</a> >等级权限详情说明</li>
+       <li><a href="">企业等级</a> > <a href="">等级列表</a> >等级权限详情说明</li>
     </ul>
 </div>
 <style>
@@ -54,10 +54,10 @@
                     <p class="permission_right">可上传外卖菜品数量： <{$detail['is_ele_num']}></p> 
                 </td>
                 <td class="border-right_1px">
-                    <p class="permission_left">商家新闻权限：
+                    <p class="permission_left">企业新闻权限：
                     	<if condition="!empty($detail['is_news'])"><a class="red">有</a><else/>无</if>
                     </p>  
-                    <p class="permission_right">可上传商家新闻数量： <{$detail['is_news_num']}></p> 
+                    <p class="permission_right">可上传企业新闻数量： <{$detail['is_news_num']}></p>
                 </td>
             </tr>
             <tr>
@@ -145,7 +145,7 @@
                 </td>
                 
                 <td class="border-right_1px">
-                    <p class="permission_left">商家预约权限：
+                    <p class="permission_left">企业预约权限：
                     	<if condition="!empty($detail['is_book'])"><a class="red">有</a><else/>无</if>
                     </p>  
                     <p class="permission_right">可上传预约数量【无效值】： <{$detail['is_book_num']}></p> 

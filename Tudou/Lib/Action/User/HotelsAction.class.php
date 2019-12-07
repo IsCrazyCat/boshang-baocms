@@ -122,7 +122,7 @@ class HotelsAction extends CommonAction {
 				 $this->tuMsg('当前订单状态不永许这样操作');
 			}else{
 				$Hotelorder->where('order_id =' . $order_id)->setField('order_status', 3);
-				D('Sms')->sms_hotel_refund_shop($order_id);//用户申请退款提醒商家
+				D('Sms')->sms_hotel_refund_shop($order_id);//用户申请退款提醒企业
 				D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 6,$status = 3);
 			    D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 6,$status = 3);
            		$this->tuMsg('申请退款成功', U('hotel/index', array('st' => 3)));

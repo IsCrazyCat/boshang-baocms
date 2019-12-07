@@ -45,7 +45,7 @@ class WeidiancateAction extends CommonAction
         if ($cate_id = (int) $cate_id) {
             $obj = D('Weidiancate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->tuError('请选择要编辑的商家分类');
+                $this->tuError('请选择要编辑的企业分类');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -60,7 +60,7 @@ class WeidiancateAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
     private function editCheck()
@@ -90,7 +90,7 @@ class WeidiancateAction extends CommonAction
                 $obj->cleanCache();
                 $this->tuSuccess('删除成功', U('Weidiancate/index'));
             }
-            $this->tuError('请选择要删除的商家分类');
+            $this->tuError('请选择要删除的企业分类');
         }
     }
     public function update()

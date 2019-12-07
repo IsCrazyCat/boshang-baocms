@@ -33,7 +33,7 @@ class CommonAction extends Action{
             }else{
 				$shopworker = D('Shopworker')->find(array("where" => array('user_id' => $this->uid)));
 				if (empty($shopworker)) {
-					$this->error('您还不属于任何商家的员工哦~', $passport_login );
+					$this->error('您还不属于任何企业的员工哦~', $passport_login );
 				}
 				if (empty($shopworker['status']) || $shopworker['status'] != 1) {
 					$this->error('您的员工信息还处于待通过状态，无权进行操作！', $passport_login );

@@ -198,7 +198,7 @@ class EleorderAction extends CommonAction{
             $this->tuError('没有该订单');
         }
         if ($detail['shop_id'] != $this->shop_id) {
-            $this->tuError('您无权管理该商家');
+            $this->tuError('您无权管理该企业');
         }
         if ($detail['status'] != 1) {
             $this->tuError('该订单状态不正确');
@@ -218,7 +218,7 @@ class EleorderAction extends CommonAction{
             $this->tuError('没有该订单');
         }
         if ($detail['shop_id'] != $this->shop_id) {
-            $this->tuError('您无权管理该商家');
+            $this->tuError('您无权管理该企业');
         }
         $shop = D('Shop')->find($detial['shop_id']);
 		
@@ -247,7 +247,7 @@ class EleorderAction extends CommonAction{
                 $this->tuError('订餐状态不正确');               
             }
 			if ($detail['shop_id'] != $this->shop_id) {
-				$this->tuError('您无权管理该商家');
+				$this->tuError('您无权管理该企业');
 			}
             if($detail['status'] == 3){
                 if(D('Eleorder')->save(array('order_id'=>$order_id,'status'=>4))){ //将内容变成

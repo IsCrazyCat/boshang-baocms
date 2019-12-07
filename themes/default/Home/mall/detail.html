@@ -180,7 +180,7 @@
                     
                     <span class="spxq_qgjgz"><{$discount}>折</span>
                     <if condition="$shop['is_renzheng'] eq 1">
-                    <span class="spxq_qgjgz" style="background:#33b095">该商家已通过资质认证</span>
+                    <span class="spxq_qgjgz" style="background:#33b095">该企业已通过资质认证</span>
                    
                     </if>
 					 </div>
@@ -211,7 +211,7 @@
 					
                     <div class="spxq_qgjgk">
 
-                        <span style="height: 30px; line-height: 30px;">商家：<a style=" font-size: 18px; font-weight: bold;" target="_blank" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>"><{$shop.shop_name}></a></span>
+                        <span style="height: 30px; line-height: 30px;">企业：<a style=" font-size: 18px; font-weight: bold;" target="_blank" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>"><{$shop.shop_name}></a></span>
 
                     </div>
 			<!--工作多属性-->
@@ -332,7 +332,7 @@
                        	  <span class="spxq_spxqmc">服&nbsp;&nbsp;&nbsp;&nbsp;务:</span></div>
                          <div class="tubiao">
                              <ui>
-                                <eq name="detail.is_vs1" value="1"><li class="vs1">认证商家</li></eq>
+                                <eq name="detail.is_vs1" value="1"><li class="vs1">认证企业</li></eq>
                                 <eq name="detail.is_vs2" value="1"><li class="vs2">正品保证</li></eq>
                                 <eq name="detail.is_vs3" value="1"><li class="vs3">假一赔十</li></eq>
                                 <eq name="detail.is_vs4" value="1"><li class="vs4">当日送达</li></eq>
@@ -364,7 +364,7 @@
            
             
 				<a href="<{:U('mall/detail',array('goods_id'=>$detail['goods_id']))}>"><div class="sy_sjcpwx"  id="code_<{$detail.goods_id}>"></div></a>
-                <p>扫描商家微信</p>
+                <p>扫描企业微信</p>
 				<if condition="!empty($detail['mobile_fan'])">
                 <p>手机下单立减 <span style="color:#F00; font-size:16px; font-weight:bold"><{:round($detail['mobile_fan']/100,2)}></span> 元</p>
 				<else/>
@@ -456,7 +456,7 @@
                                         </volist>
                                     </ul>
                                     <if condition="!empty($var['reply'])">
-                                    <a class="spxq_pjAn">商家回复：</a><{$var.reply}>
+                                    <a class="spxq_pjAn">企业回复：</a><{$var.reply}>
                                     </if>
                                 </div>
                             </li>

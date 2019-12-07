@@ -823,7 +823,7 @@
 
     <div class="go-store">
         <a data-spm="dstore" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>">
-            <span class="iconfont icon-shangjia2"></span>店铺</a>
+            <span class="iconfont icon-shangjia2"></span>企业</a>
     </div>
 
 
@@ -945,7 +945,7 @@
                 return;
             }
             $.post(url, {goods_id: goods_id, shop_id: shop_id, is_vip: '0'}, function (data) {
-
+                alert(data.msg);
                 layer.msg(data.msg);
                 setTimeout(function () {
                     window.location.href = data.url;

@@ -19,17 +19,17 @@
         <form method="post"  action="<{:U('booking/set_booking')}>" target="x-frame">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td><p class="tuanfabu_t">商家名称：</p></td>
+                    <td><p class="tuanfabu_t">企业名称：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[shop_name]" value="<notempty name="shopding.shop_name"><{$booking.shop_name}><else/><{$SHOP.shop_name}></notempty>" class="tuanfabu_int tuanfabu_intw2" />
                             <code>订座名称，用于前台展示使用</code>
                         </div></td>
                 </tr>
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">商家地址：</p></td>
+                    <td width="120"><p class="tuanfabu_t">企业地址：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[addr]" value="<notempty name="shopding.addr"><{$booking.addr}><else/><{$SHOP.addr}></notempty>" class="tuanfabu_int tuanfabu_intw2" />
-                            <code>默认调用商家地址</code>
+                            <code>默认调用企业地址</code>
                         </div></td>
                 </tr>
                 <tr>
@@ -47,17 +47,17 @@
                         </div></td>
                 </tr>
                 <tr>
-                    <td><p class="tuanfabu_t">商家手机号：</p></td>
+                    <td><p class="tuanfabu_t">企业手机号：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[mobile]" value="<{$booking.mobile|default=$SHOP['mobile']}>" class="tuanfabu_int tuanfabu_intw2" />
-                            <code>默认调用商家手机，您已可以修改</code>
+                            <code>默认调用企业手机，您已可以修改</code>
                         </div></td>
                 </tr>
                 <tr>
-                    <td><p class="tuanfabu_t">商家电话：</p></td>
+                    <td><p class="tuanfabu_t">企业电话：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[tel]" value="<{$booking.tel|default=$SHOP['tel']}>" class="tuanfabu_int tuanfabu_intw2" />
-                            <code>默认调用商家电话，您已可以修改独立的电话，用于前台显示</code>
+                            <code>默认调用企业电话，您已可以修改独立的电话，用于前台显示</code>
                         </div></td>
                 </tr>
                

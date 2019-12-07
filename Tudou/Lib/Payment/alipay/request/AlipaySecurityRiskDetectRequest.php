@@ -28,7 +28,7 @@ class AlipaySecurityRiskDetectRequest
 	private $buyerBindMobile;
 	
 	/** 
-	 * 买家账户在商家的等级，范围：VIP（高级买家）, NORMAL(普通买家）。为空默认NORMAL
+	 * 买家账户在企业的等级，范围：VIP（高级买家）, NORMAL(普通买家）。为空默认NORMAL
 	 **/
 	private $buyerGrade;
 	

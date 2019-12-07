@@ -126,7 +126,7 @@ class MarketAction extends CommonAction{
             $this->tuError('ID不能为空');
         }
         if (!($shop = D('Shop')->find($data['shop_id']))) {
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['shop_name'] = $shop['shop_name'];
         $data['lng'] = $shop['lng'];

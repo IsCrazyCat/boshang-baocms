@@ -97,7 +97,7 @@ class UseraddrAction extends CommonAction{
         if ($addr_id = (int) $addr_id) {
             $obj = D('Useraddr');
             if (!($detail = $obj->find($addr_id))) {
-                $this->tuError('请选择要编辑的商家地址');
+                $this->tuError('请选择要编辑的企业地址');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -114,7 +114,7 @@ class UseraddrAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家地址');
+            $this->tuError('请选择要编辑的企业地址');
         }
     }
     private function editCheck(){

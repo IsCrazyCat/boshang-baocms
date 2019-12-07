@@ -341,7 +341,29 @@ class WeixintmplModel extends CommonModel{
             Wxmesg::net($user_id,'OPENTM202297555', $notice_data);
 			return true;
     }
-	
+    //VIP购买微信通知
+    public function weixin_notice_VIP_user($order_id,$user_id,$type){
+
+        $config = D('Setting')->fetchAll();
+
+
+        $pay_type = '在线支付' ;
+
+        include_once 'Tudou/Lib/Net/Wxmesg.class.php';
+        $notice_data = array(
+            'url' => $config['site']['host'] . '/user/goods/index/aready/' . $order_id . '.html',
+            'first' => '亲,您的购买VIP单创建成功!',
+            'remark' => '详情请登录-' . $config['site']['host'],
+            'order_id' => -1,
+            'title' => "购买VIP",
+            'num' => 1,
+            'price' => '99元',
+            'pay_type' => $pay_type
+        );
+        $notice_data = Wxmesg::place_an_order($notice_data);
+        Wxmesg::net($user_id,'OPENTM202297555', $notice_data);
+        return true;
+    }
 	
 	
 	//会员提现，审核，拒绝，通知会员自己
@@ -391,7 +413,7 @@ class WeixintmplModel extends CommonModel{
 			return true;
     }
 	
-	//积分兑换通知商家
+	//积分兑换通知企业
     public function weixin_notice_jifen_shop($exchange_id,$user_id){
 		$config = D('Setting')->fetchAll();
            $detail = D('Integralexchange')->find($exchange_id);
@@ -414,7 +436,7 @@ class WeixintmplModel extends CommonModel{
 			return true;
     }
 	
-	//客户预约商家微信通知OPENTM206305152，1通知客户，2通知商家
+	//客户预约企业微信通知OPENTM206305152，1通知客户，2通知企业
     public function weixin_yuyue_notice($yuyue_id,$type){
 		$config = D('Setting')->fetchAll();
             $detail = D('Shopyuyue')->find($yuyue_id);

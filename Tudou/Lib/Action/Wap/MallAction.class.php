@@ -10,6 +10,7 @@ class MallAction extends CommonAction{
         $this->assign('cartnum', (int) array_sum($goods));
         $cat = (int) $this->_param('cat');
         $this->assign('goodscates', $goodscates = D('Goodscate')->fetchAll());
+        $this->assign('goodstags', $goodstags = D('Goodstag')->fetchAll());
         $check_user_addr = D('Paddress')->where(array('user_id'=>$this->uid))->find();//全局检测地址
         $this->assign('check_user_addr', $check_user_addr);
     }
@@ -77,6 +78,9 @@ class MallAction extends CommonAction{
         $this->assign('user_id', $user_id);
         $linkArr['user_id'] = $user_id;
 
+        $tag_id = (int) $this->_param('tag_id');
+        $this->assign('tag_id', $tag_id);
+        $linkArr['tag_id'] = $tag_id;
 
         //开始组装数组
         $query_string  = explode ('/',$_SERVER["QUERY_STRING"]);
@@ -158,6 +162,13 @@ class MallAction extends CommonAction{
         if($type){
             $this->assign('type', $type);
             $linkArr['type'] = $type;
+        }
+
+        $tag_id = (int) $this->_param('tag_id');
+        if($tag_id){
+            $map['tag_id'] = array('like','%'.$tag_id.'%');
+            $this->assign('tag_id', $tag_id);
+            $linkArr['tag_id'] = $tag_id;
         }
 
         $map['audit'] = 1;
@@ -803,10 +814,10 @@ class MallAction extends CommonAction{
                 'key'=> $val['sky'],
                 'key_name' => $val['key_name']
             );
-            $total_canuserintegral[$val['shop_id']] += $canuserintegral; //不同商家可使用积分
-            $total_price[$val['shop_id']] += $price; //不同商家的总价格
-            $express_price[$val['shop_id']] += $order_express_price; //不同商家总运费
-            $mm_price[$val['shop_id']] += $mobile_fan;  //不同商家的手机下单立减
+            $total_canuserintegral[$val['shop_id']] += $canuserintegral; //不同企业可使用积分
+            $total_price[$val['shop_id']] += $price; //不同企业的总价格
+            $express_price[$val['shop_id']] += $order_express_price; //不同企业总运费
+            $mm_price[$val['shop_id']] += $mobile_fan;  //不同企业的手机下单立减
 
         }
         $order = array('user_id' => $this->uid, 'create_time' => NOW_TIME, 'create_ip' => $ip, 'is_mobile' => 1);
@@ -985,8 +996,8 @@ class MallAction extends CommonAction{
             D('Ordergoods')->save(array('is_daofu' => 1, 'status' => 1), array('where' => array('order_id' => array('IN', $order_ids))));
             D('Order')->mallSold($order_ids);//更新销量
             D('Order')->mallPeisong(array($order_ids), 1);//更新配送
-            D('Sms')->mallTZshop($order_ids);//用户下单通知商家
-            D('Order')->combination_goods_print($order_ids);//多商家订单打印
+            D('Sms')->mallTZshop($order_ids);//用户下单通知企业
+            D('Order')->combination_goods_print($order_ids);//多企业订单打印
             $this->tuMsg('恭喜您下单成功', U('user/goods/index'));
         } else {
             $payment = D('Payment')->checkPayment($code);
@@ -1064,7 +1075,7 @@ class MallAction extends CommonAction{
             D('Ordergoods')->save(array('is_daofu' => 1,'status' => 1), array('where' => array('order_id' => $order_id)));
             $obj ->mallSold($order_id);//更新销量
             $obj ->mallPeisong(array($order_id), 1);//更新配送
-            D('Sms')->mallTZshop($order_id);//用户下单通知商家
+            D('Sms')->mallTZshop($order_id);//用户下单通知企业
             $obj ->combination_goods_print($order_id);//万能商城订单打印
             D('Weixintmpl')->weixin_notice_goods_user($order_id,$this->uid,0);//商城微信通知
             $this->tuMsg('恭喜您下单成功', U('user/goods/index'));
@@ -1216,13 +1227,20 @@ class MallAction extends CommonAction{
             if(!empty($jobApply)){
                 $this->ajaxReturn(array('status' => 'error', 'msg' => '您已经报名，请勿重复报名！','url'=>U('mall/index')));
             }
+            //是否已经完善信息 姓名手机号身份证号
+            $detail = D('Usersaux')->find($this->uid);
+            if(empty($detail)){
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '您尚未实名认证，请先进行认证！！','url'=>U('user/usersaux/index')));
+            }
             $data['user_id']=$this->uid;
             $data['goods_id'] = $goods_id;
             $data['creat_time'] = time();
             $data['closed'] = 0;
+            $data['is_vip'] = 1;//是否vip报名 1否 0是
             //是否是VIP报名，0普通报名，1VIP报名
             $is_vip = $this->_param('is_vip');
             if($is_vip){
+                $data['is_vip'] = 0;
                 if($user['rand_id']==0){
                     $this->ajaxReturn(array('status' => 'error', 'msg' => '您还不是VIP,无法享受高价哦！！','url'=>U('wap/job/vipRouter')));
                 }else{

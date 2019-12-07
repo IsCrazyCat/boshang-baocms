@@ -21,7 +21,7 @@
                             <label>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="inptText w200" />
-                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                             </label>
                         <span>状态：</span>   
                         <select class="selecttop" name="audit">
@@ -45,7 +45,7 @@
                         <td class="w50"><input type="checkbox" class="checkAll" rel="stock_id" /></td>
                         <td class="w50">ID</td>
                         <td>股权名称</td>
-                        <td>商家</td>
+                        <td>企业</td>
                         <td>缩略图</td>
                         <td>股权价格</td>
                         <td>可使用<{$CONFIG.prestige.name|default='威望'}></td>

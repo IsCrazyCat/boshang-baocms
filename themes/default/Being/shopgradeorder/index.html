@@ -1,17 +1,17 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家等级</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业等级</li>
         <li class="li2 li3">购买等级订单</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>显示商家购买的等级列表</p>
+    <p class="attention"><span>注意：</span>显示企业购买的等级列表</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
          	<div class="left">
-                <{:TUFZBA('shopgrade/index','','商家等级列表')}>
+                <{:TUFZBA('shopgrade/index','','企业等级列表')}>
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('shopgradeorder/index')}>">
@@ -24,7 +24,7 @@
                             <label>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text" />
-                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                                 <input style="float: right;" type="submit" value="   搜索"  class="inptButton" />
                             </label>
                         </div>
@@ -40,7 +40,7 @@
                         <td class="w50"><input type="checkbox" class="checkAll" rel="order_id" /></td>
                         <td class="w50">订单ID</td>
                         <td>买单用户</td>
-                        <td>商家</td>
+                        <td>企业</td>
                         <td>支付金额</td>
                         <td>购买等级</td>
                         <td>付款状态</td>

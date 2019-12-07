@@ -23,7 +23,7 @@ class TemplateOrderModel extends CommonModel {
 	public function shop_pay_template($template_id,$shop_id){
         $Shop = D('Shop')->find($shop_id);
 		$Users = D('Users')->find($Shop['user_id']);
-		$Template = D('Template')->find($template_id);//准备购买的商家等级
+		$Template = D('Template')->find($template_id);//准备购买的企业等级
 		
 		if($TemplateOrder = D('TemplateOrder')->where(array('template_id'=>$template_id,'status'=>'1'))->find()){
 			$this->error = '您选择的模板已经购买无需再次购买';

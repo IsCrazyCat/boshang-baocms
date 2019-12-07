@@ -55,7 +55,7 @@ class MarketapplyAction extends CommonAction
             $this->tuMsg('ID不能为空');
         }
         if (!($shop = D('Shop')->find($data['shop_id']))) {
-            $this->tuMsg('商家不存在');
+            $this->tuMsg('企业不存在');
         }
         $data['shop_name'] = $shop['shop_name'];
         $data['lng'] = $shop['lng'];

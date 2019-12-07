@@ -127,7 +127,7 @@ class EleorderAction extends CommonAction{
 		if($detail['DeliveryOrder']){
 			$this->assign('status',1);//1代表配送员
 		}else{
-			$this->assign('status',2);//2代表商家配送
+			$this->assign('status',2);//2代表企业配送
 		}
         $this->assign('eleproducts', $ele_products = D('Eleorderproduct')->where(array('order_id' => $order_id))->select());;
         $this->assign('addr', D('Useraddr')->find($detail['addr_id']));

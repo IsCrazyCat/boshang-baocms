@@ -29,7 +29,7 @@ class PaymentModel extends CommonModel{
 		'market'=>'菜市场',
 		'store'=>'便利店',
 		'rank'=>'会员等级购买',
-		'shop'=>'商家入驻',
+		'shop'=>'企业入驻',
     );
 
     protected $type = null;
@@ -249,7 +249,7 @@ class PaymentModel extends CommonModel{
 					D('Breaksorder')->settlement($logs['order_id']);//优惠买单回调
 					return true;
 				}elseif($logs['type'] == 'shop'){   
-					//商家入驻更新费用
+					//企业入驻更新费用
 					D('Shop')->save(array('shop_id'=>$logs['order_id'],'shop_apply_prrice'=>$logs['need_pay']));
 					return true;
 				}elseif($logs['type'] == 'life'){   
@@ -303,7 +303,7 @@ class PaymentModel extends CommonModel{
 					D('Sms')->sms_tuan_user($member['user_id'],$order['order_id']);//团购工作通知用户
 					D('Tuan')->updateCount($tuan['tuan_id'], 'sold_num');//更新卖出产品
 					D('Tuan')->updateCount($tuan['tuan_id'], 'num', -$order['num']);
-					D('Sms')->tuanTZshop($tuan['shop_id']);//发送短信通知商家
+					D('Sms')->tuanTZshop($tuan['shop_id']);//发送短信通知企业
 					D('Users')->prestige($member['user_id'], 'tuan');
 					D('Tongji')->log(1, $logs['need_pay']);//统计//分销
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 1,$type = 4,$status = 1);
@@ -316,7 +316,7 @@ class PaymentModel extends CommonModel{
 					D('Eleorder')->ele_month_num($logs['order_id']);//更新外卖销量
 					D('Eleorder')->ele_delivery_order($logs['order_id'],0);//外卖配送接口
 					D('Tongji')->log(3, $logs['need_pay']);//统计
-					D('Sms')->eleTZshop($logs['order_id']);//通知商家
+					D('Sms')->eleTZshop($logs['order_id']);//通知企业
 					D('Eleorder')->combination_ele_print($logs['order_id'],$order['addr_id']);//外卖打印万能接口
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 1,$type = 1,$status = 1);
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 2,$type = 1,$status = 1);
@@ -327,7 +327,7 @@ class PaymentModel extends CommonModel{
                     D('Marketorder')->save(array('order_id' => $logs['order_id'],'status' => 1,'is_pay' => 1,'pay_time' => NOW_TIME));
 					$order = D('Marketorder')->where('order_id =' . $logs['order_id'])->find();
 					D('Marketorder')->market_month_num($logs['order_id']);//更新菜市场销量
-					D('Sms')->marketTZshop($logs['order_id']);//通知商家
+					D('Sms')->marketTZshop($logs['order_id']);//通知企业
 					D('Marketorder')->combination_market_print($logs['order_id'],$order['addr_id']);//菜市场打印万能接口
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 1,$type = 9,$status = 1);
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 2,$type =9,$status = 1);
@@ -337,7 +337,7 @@ class PaymentModel extends CommonModel{
                     D('Storeorder')->save(array('order_id' => $logs['order_id'],'status' => 1,'is_pay' => 1,'pay_time' => NOW_TIME));
 					$order = D('Storeorder')->where('order_id =' . $logs['order_id'])->find();
 					D('Storeorder')->store_month_num($logs['order_id']);//更新便利店销量
-					D('Sms')->storeTZshop($logs['order_id']);//通知商家
+					D('Sms')->storeTZshop($logs['order_id']);//通知企业
 					D('Storeorder')->combination_store_print($logs['order_id'],$order['addr_id']);//便利店打印万能接口
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 1,$type = 10,$status = 1);
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 2,$type = 10,$status = 1);
@@ -350,7 +350,7 @@ class PaymentModel extends CommonModel{
                     $shop = D('Shop')->find($hotel['shop_id']);
                     D('Hotelorder')->save(array('order_id' => $logs['order_id'], 'order_status' => 1)); //设置已付款
 					D('Sms')->sms_hotel_user($logs['order_id']);//短信通知用户
-					D('Sms')->sms_hotel_shop($logs['order_id']);//短信通知酒店商家
+					D('Sms')->sms_hotel_shop($logs['order_id']);//短信通知酒店企业
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 1,$type = 6,$status = 1);
 					D('Weixinmsg')->weixinTmplOrderMessage($logs['order_id'],$cate = 2,$type = 6,$status = 1);
                     return true;
@@ -415,7 +415,7 @@ class PaymentModel extends CommonModel{
 						//合并付款
                         $order_ids = explode(',', $logs['order_ids']);
                         D('Order')->save(array('status' => 1), array('where' => array('order_id' => array('IN', $order_ids))));
-                        D('Sms')->mallTZshop($order_ids); //通知商家
+                        D('Sms')->mallTZshop($order_ids); //通知企业
                         D('Order')->mallSold($order_ids);//更新销售接口
                         D('Order')->mallPeisong(array($order_ids),0);//更新配送接口
 						D('Order')->combination_goods_print($order_ids);//万能商城订单打印
@@ -423,7 +423,7 @@ class PaymentModel extends CommonModel{
                         D('Order')->save(array('order_id' => $logs['order_id'],'status' => 1));
                         D('Order')->mallPeisong(array($logs['order_id']),0);//更新配送接口
                         D('Order')->mallSold($logs['order_id']);//更新销售接口
-                        D('Sms')->mallTZshop($logs['order_id']);//通知商家
+                        D('Sms')->mallTZshop($logs['order_id']);//通知企业
 						D('Coupon')->change_download_id_is_used($logs['order_id']);//如果有优惠劵就修改优惠劵的状态，合并付款暂时不做
 						D('Order')->combination_goods_print($logs['order_id']);//万能商城订单打印
                     }

@@ -61,7 +61,7 @@ class StoreproductAction extends CommonAction{
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {
@@ -124,7 +124,7 @@ class StoreproductAction extends CommonAction{
         }
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['cate_id'] = (int) $data['cate_id'];
         if (empty($data['cate_id'])) {

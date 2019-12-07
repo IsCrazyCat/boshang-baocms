@@ -188,21 +188,21 @@ class EleAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'more', 'msg' => '您购买的工作是多个商户的!,要清空之前的购物车吗？'));
         }
         if (empty($shop_id)) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商家不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该企业不存在'));
         }
         $shop = D('Ele')->find($shop_id);
         if (empty($shop)) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '该商家不存在'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '该企业不存在'));
         }
 		if (false == D('Shop')->check_shop_user_id($shop_id,$this->uid)) {//不能购买自己家的产品
 			 $this->ajaxReturn(array('status' => 'error', 'msg' => '对不起，您是该商铺管理员，无法购买哦'));
 		}
         if (!$shop['is_open']) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '商家已经打烊，实在对不住客官'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '企业已经打烊，实在对不住客官'));
         }
 		$busihour = $this->closeshopele($shop['busihour']);
 		 if ($busihour == 1) {
-            $this->ajaxReturn(array('status' => 'error', 'msg' => '当前时间段商家正在休息，请稍后再来，谢谢'));
+            $this->ajaxReturn(array('status' => 'error', 'msg' => '当前时间段企业正在休息，请稍后再来，谢谢'));
         }
         $total['money'] += $shop['logistics'];
         $total['need_pay'] = $total['money'];
@@ -344,7 +344,7 @@ class EleAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择支付方式！'));
         }
 
-        //为写入物流记录，查询商家类型
+        //为写入物流记录，查询企业类型
         $shop = D('Shop');
         $fshop = $shop->where('shop_id =' . $order['shop_id'])->find();
         
@@ -724,11 +724,11 @@ class EleAction extends CommonAction{
     public function detail(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         $Shopdianping = D('Shopdianping');
@@ -792,10 +792,10 @@ class EleAction extends CommonAction{
         }
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->tuError('没有该商家');
+            $this->tuError('没有该企业');
         }
         if ($detail['closed']) {
-            $this->tuError('该商家已经被删除');
+            $this->tuError('该企业已经被删除');
         }
         if (D('Shopdianping')->check($shop_id, $this->uid)) {
             $this->tuError('不可重复评价一个商户');

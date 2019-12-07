@@ -224,7 +224,7 @@ class IntegralAction extends CommonAction{
         $this->display();
     }
 	
-	//商家核销积分列表
+	//企业核销积分列表
 	 public function cancel(){
         $obj = D('Userintegralcancel');
         import('ORG.Util.Page');

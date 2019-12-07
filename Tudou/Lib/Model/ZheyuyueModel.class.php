@@ -25,11 +25,11 @@ class 	ZheyuyueModel extends CommonModel{
 	public function check_yuyue_time($zhe_id,$user_id){
 	    $config = D('Setting')->fetchAll();
 	    if(!$zhe = D('Zhe')->find($zhe_id)) {
-            $this->error = '您预约的五折卡商家状态异常';
+            $this->error = '您预约的五折卡企业状态异常';
             return false;  
        }
 	   if($zhe['closed'] != 0 || $zhe['audit'] != 1) {
-            $this->error = '该五折卡商家已关闭或者没有审核';
+            $this->error = '该五折卡企业已关闭或者没有审核';
             return false;  
         }
 	   $week_id = date("w"); 
@@ -41,7 +41,7 @@ class 	ZheyuyueModel extends CommonModel{
 	   $b = in_array($date_id,$explode_date_id);
 
 	   if(empty($a) && empty($b)) {
-            $this->error = '抱歉，亲，今天该商家不参与五折卡活动，去其他商家看看嘛';
+            $this->error = '抱歉，亲，今天该企业不参与五折卡活动，去其他企业看看嘛';
             return false;  
        }
 	   $map = array('user_id'=>$user_id,'status'=>1,'closed'=>0,'end_time' => array('EGT', NOW_TIME));
@@ -70,7 +70,7 @@ class 	ZheyuyueModel extends CommonModel{
     }
 	
 	
-    //商家确认完成，验证已走这里，扫码验证已走这里，全部封装返回真就是成功，如果管理员直接确认已是直接走这里
+    //企业确认完成，验证已走这里，扫码验证已走这里，全部封装返回真就是成功，如果管理员直接确认已是直接走这里
     public function complete($yuyue_id){
         if(!$yuyue_id = (int)$yuyue_id){
             return false;

@@ -161,7 +161,7 @@ class ShopmoneyAction extends CommonAction{
             $data = $this->_post('data', false);
             $add = array('create_time' => NOW_TIME, 'create_ip' => get_client_ip());
             if (!$data['shop_id']) {
-                $this->tuError('请选择商家');
+                $this->tuError('请选择企业');
             }
             $add['shop_id'] = (int) $data['shop_id'];
             if (!$data['money']) {

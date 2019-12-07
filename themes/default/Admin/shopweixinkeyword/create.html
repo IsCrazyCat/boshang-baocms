@@ -1,7 +1,7 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家微信</li>
+        <li class="li1">企业微信</li>
         <li class="li2">微信关键字</li>
         <li class="li2 li3">新增</li>
     </ul>
@@ -11,11 +11,11 @@
         <form  target="x-frame" action="<{:U('shopweixinkeyword/create')}>" method="post">
             <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                 <tr>
-                    <td class="lfTdBt">商家：</td>
+                    <td class="lfTdBt">企业：</td>
                     <td class="rgTdBt">
                         <input type="hidden" id="shop_id" name="data[shop_id]" value="<{$detail.shop_id|default=''}>"/>
                         <input type="text" id="shop_name" name="shop_name" value="" class="scAddTextName w300" />
-                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="seleSj">选择商家</a>
+                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="seleSj">选择企业</a>
                     </td>
                 </tr>
                 <tr>

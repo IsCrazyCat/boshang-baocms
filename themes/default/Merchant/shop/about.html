@@ -42,12 +42,12 @@
                 <td><p class="tuanfabu_t">手机：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[mobile]" value="<{$SHOP.mobile|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
-                <code>必须填写，用来接收商家订单，建议填写跟您会员绑定的手机号一致！</code>
+                <code>必须填写，用来接收企业订单，建议填写跟您会员绑定的手机号一致！</code>
                 </div></td>
             </tr>
             
              <tr>
-                <td><p class="tuanfabu_t">商家标签：</p></td>
+                <td><p class="tuanfabu_t">企业标签：</p></td>
                 <td><div class="tuanfabu_nr">
                 <input type="text" name="data[tags]" value="<{$SHOP.tags|default=''}>" class="tuanfabu_int tuanfabu_intw3" />
                     <code>每个标签用“，”分隔</code>
@@ -98,7 +98,7 @@
             <tr>
               <td><p class="tuanfabu_t">全景URL地址：</p></td>
                 <td><div class="tuanfabu_nr"><input type="text" name="data[panorama_url]" value="<{$SHOP.panorama_url}>" class="tuanfabu_int tuanfabu_intw3" />
-                <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>
+                <code>请填写完整的全景URL地址，带http://，填写后默认企业详情页顶部展示，不填写不展示，前台加载的是框架</code>
                 </div></td>
            </tr>
            
@@ -162,7 +162,7 @@
         
            
            <tr>
-                    <td width="120"><p class="tuanfabu_t">商家坐标：</p></td>
+                    <td width="120"><p class="tuanfabu_t">企业坐标：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[lng]" id="lng" value="<{$SHOP.lng|default=''}>" class="tuanfabu_int tuanfabu_intw2" /> 经度
                             <input type="text" name="data[lat]" id="lat" value="<{$SHOP.lat|default=''}>" class="tuanfabu_int tuanfabu_intw2" /> 纬度
@@ -173,7 +173,7 @@
         
 
              <!--详情开始--> 
-                <tr><td><p class="tuanfabu_t">商家详情：</p></td> <td><div class="tuanfabu_nr">
+                <tr><td><p class="tuanfabu_t">企业详情：</p></td> <td><div class="tuanfabu_nr">
                 <script type="text/plain" id="details" name="details" style="width:800px;height:360px;"><{$ex.details}></script>
                 <link rel="stylesheet" href="/Public/qiniu_ueditor/themes/default/css/ueditor.min.css" type="text/css">
                 <script type="text/javascript" charset="utf-8" src="/Public/qiniu_ueditor/ueditor.config.js"></script>

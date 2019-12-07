@@ -8,11 +8,11 @@
 			<a class="top-addr" href="<{:U('index/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title">
-			商家列表
+			企业列表
 		</div>
 		<div class="top-search" style="display:none;">
 			<form method="post" action="<{:U('shop/index')}>">
-				<input name="keyword" placeholder="输入商家的关键字"  />
+				<input name="keyword" placeholder="输入企业的关键字"  />
 				<button type="submit" class="iconfont icon-search"></button> 
 			</form>
 		</div>
@@ -197,13 +197,13 @@
 	
 	wx.ready(function () {
     wx.onMenuShareTimeline({
-        title: '<{$CONFIG.site.sitename}>"商家首页"',
+        title: '<{$CONFIG.site.sitename}>"企业首页"',
         link: "<{$CONFIG.site.host}><{:U('wap/shop/index',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act))}>", 
         imgUrl: "<{:config_weixin_img($CONFIG['site']['logo'])}>"
     });
     wx.onMenuShareAppMessage({
-       title: '"商家首页"',
-       desc: '快来看更多商家吧',
+       title: '"企业首页"',
+       desc: '快来看更多企业吧',
        link: "<{$CONFIG.site.host}><{:U('wap/shop/detail',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act))}>", 
        imgUrl: "<{:config_weixin_img($CONFIG['site']['logo'])}>"
      });

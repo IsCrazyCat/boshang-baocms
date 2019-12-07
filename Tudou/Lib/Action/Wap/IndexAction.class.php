@@ -183,7 +183,7 @@ class IndexAction extends CommonAction {
 		
 		if($Envelope['prestore'] < $money){
 			M('Envelope')->where(array('envelope_id'=>$envelope_id))->save(array('closed'=>1)); //关闭返还
-			//如果是商家红包
+			//如果是企业红包
 			if($Envelope['type'] == 2){
 				$shop = M('Shop')->find($Envelope['shop_id']);
 				D('Users')->addMoney($shop['user_id'],$Envelope['prestore'],'用户兑换的金额大于红包剩余余额，自动关闭该红包');

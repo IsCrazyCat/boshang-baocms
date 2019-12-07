@@ -47,7 +47,7 @@
 <div class="content zy_content" style="position: relative;">
     <div class="spxq_xqT spxq_xqT2">
         <ul>
-            <li class="jq_spxq_xqBt1 on"><code rel="spxq_xqBt1">商家位置</code><em></em></li>
+            <li class="jq_spxq_xqBt1 on"><code rel="spxq_xqBt1">企业位置</code><em></em></li>
             <li class="jq_spxq_xqBt2"><code rel="spxq_xqBt2">购买须知</code><em></em></li>
             <li class="jq_spxq_xqBt3"><code rel="spxq_xqBt3">本单详情</code><em></em></li>
             <li class="jq_spxq_xqBt4"><code rel="spxq_xqBt4">用户评价(<{$counts}>)</code><em></em></li>
@@ -352,7 +352,7 @@
            
             
 				<a href="<{:U('tuan/detail',array('tuan_id'=>$detail['tuan_id']))}>"><div class="sy_sjcpwx"  id="code_<{$detail.tuan_id}>"></div></a>
-                <p>扫描商家微信</p>
+                <p>扫描企业微信</p>
 				<if condition="!empty($detail['mobile_fan'])">
                 <p>手机下单立减 <span style="color:#F00; font-size:16px; font-weight:bold"><{$detail['mobile_fan']}></span> 元</p>
 				<else/>
@@ -380,14 +380,14 @@
         <div class="left zy_content_l">
             <div class="spxq_xqT">
                 <ul>
-                    <li class="on"><code rel="spxq_xqBt1">商家介绍</code><em></em></li>
+                    <li class="on"><code rel="spxq_xqBt1">企业介绍</code><em></em></li>
                     <li><code rel="spxq_xqBt2">购买须知</code><em></em></li>
                     <li><code rel="spxq_xqBt3">本单详情</code><em></em></li>
                     <li><code rel="spxq_xqBt4">用户评价(<{$counts}>)</code><em></em></li>
                 </ul>
             </div>
 			<div id="shop" class="spxq_xqBt1">
-                <div class="spxq_xqBt spxq_xqBt1">商家介绍</div>
+                <div class="spxq_xqBt spxq_xqBt1">企业介绍</div>
                 <div class="spxq_xqNr"><{$ex.details}></div>
             </div>
             <div class="spxq_xqBt2">

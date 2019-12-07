@@ -319,9 +319,9 @@
     $Shop = D('Shop')->find($Users['user_id']);
     if($Shop){
         if($Shop['is_renzheng'] == 1){
-            $intros = '（商家，已实名认证）';
+            $intros = '（企业，已实名认证）';
         }else{
-            $intros = '（商家，未认证）';
+            $intros = '（企业，未认证）';
         }
     }else{
     	if($Users['is_aux'] == 1){

@@ -140,7 +140,7 @@ class CrowdAction extends CommonAction {
                 }
                 $this->tuSuccess('删除成功', U('crowd/index'));
             }
-            $this->tuError('请选择要删除的商家');
+            $this->tuError('请选择要删除的企业');
         }
     }
 

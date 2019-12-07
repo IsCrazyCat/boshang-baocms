@@ -195,7 +195,7 @@ class SmsModel extends CommonModel{
 	
 	
 	
-	//商城订单通知商家
+	//商城订单通知企业
     public function mallTZshop($order_id){
         if (is_numeric($order_id) && ($order_id = (int) $order_id)) {
             $order_id = array($order_id);
@@ -374,7 +374,7 @@ class SmsModel extends CommonModel{
 		
         return true;
     }
-	//新订单外卖通知商家
+	//新订单外卖通知企业
     public function eleTZshop($order_id){
         if (is_numeric($order_id) && ($order_id = (int) $order_id)) {
             $order = D('Eleorder')->find($order_id);
@@ -394,7 +394,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//新订单菜市场通知商家
+	//新订单菜市场通知企业
     public function marketTZshop($order_id){
         if (is_numeric($order_id) && ($order_id = (int) $order_id)) {
             $order = D('Marketorder')->find($order_id);
@@ -410,7 +410,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//新订单便利店通知商家
+	//新订单便利店通知企业
     public function storeTZshop($order_id){
         if (is_numeric($order_id) && ($order_id = (int) $order_id)) {
             $order = D('Storeorder')->find($order_id);
@@ -427,7 +427,7 @@ class SmsModel extends CommonModel{
     }
 	
 	
-    //外卖催单通知商家
+    //外卖催单通知企业
     public function sms_ele_reminder_shop($order_id){
         if (is_numeric($order_id) && ($order_id = (int) $order_id)) {
             $Eleorder = D('Eleorder')->find($order_id);
@@ -498,7 +498,7 @@ class SmsModel extends CommonModel{
         }
         return true;
     }
-    //商家抢购劵验证成功后发送消息到用户手机
+    //企业抢购劵验证成功后发送消息到用户手机
     public function tuan_TZ_user($code_id){
         if (is_numeric($code_id) && ($code_id = (int) $code_id)) {
             $tuancode = D('Tuancode')->find($code_id);
@@ -546,7 +546,7 @@ class SmsModel extends CommonModel{
 		}
         return true;
     }
-    //团购通知商家
+    //团购通知企业
     public function tuanTZshop($shop_id){
         $shop_id = (int) $shop_id;
         $shop = D('Shop')->find($shop_id);
@@ -579,7 +579,7 @@ class SmsModel extends CommonModel{
 		
         return true;
     }
-    //酒店通知商家
+    //酒店通知企业
     public function sms_hotel_shop($order_id){
         $order = D('Hotelorder')->find($order_id);
         $room = D('Hotelroom')->find($order['room_id']);
@@ -615,7 +615,7 @@ class SmsModel extends CommonModel{
     }
 
 	
-	//预订通知商家
+	//预订通知企业
     public function sms_booking_shop($order_id){
         $order = D('Bookingorder')->find($order_id);
         $booking = D('Booking')->find($order['shop_id']);
@@ -633,7 +633,7 @@ class SmsModel extends CommonModel{
 		}
 		
 		$this->send('sms_booking_shop',$order['shop_id'], $mobile, array(
-				'bookingName' => niuMsubstr($booking['shop_name'],0,8,false),//商家名称
+				'bookingName' => niuMsubstr($booking['shop_name'],0,8,false),//企业名称
 				'orderName' => niuMsubstr($order['name'],0,8,false),//预订人名字
 			));
 			
@@ -682,7 +682,7 @@ class SmsModel extends CommonModel{
 	
         return true;
     }
-    //家政预约成功再通知商家
+    //家政预约成功再通知企业
     public function sms_appoint_TZ_shop($order_id){
         $order = D('Appointorder')->find($order_id);
         $appoint = D('Appoint')->find($order['appoint_id']);
@@ -812,7 +812,7 @@ class SmsModel extends CommonModel{
 		
         return true;
     }
-    //云购中奖通知商家
+    //云购中奖通知企业
     public function sms_cloud_win_shop($goods_id, $number){
         $Cloudgoods = D('Cloudgoods')->find($goods_id);
         $Shop = D('Shop')->find($Cloudgoods['shop_id']);
@@ -864,7 +864,7 @@ class SmsModel extends CommonModel{
 		
         return true;
     }
-    //课程购买成功通知商家
+    //课程购买成功通知企业
     public function sms_edu_notice_shop($order_id){
         $EduOrder = D('EduOrder')->find($order_id);
         $Educourse = D('Educourse')->find($EduOrder['course_id']);
@@ -903,7 +903,7 @@ class SmsModel extends CommonModel{
 		
         return true;
     }
-    //五折卡预约通知商家
+    //五折卡预约通知企业
     public function sms_zhe_yuyue_shop($yuyue_id){
         $Zheyuyue = D('Zheyuyue')->find($yuyue_id);
         $Zhe = D('Zhe')->find($Zheyuyue['zhe_id']);
@@ -959,7 +959,7 @@ class SmsModel extends CommonModel{
         return true;
     }	
 	
-	//股权购买成功通知商家
+	//股权购买成功通知企业
 	public function sms_stock_shop($order_id){
         	$Stockorder = D('Stockorder')->find($order_id);
 			$Stock = D('Stock')->find($Stockorder['stock_id']);
@@ -1019,7 +1019,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//KTV购买成功通知商家
+	//KTV购买成功通知企业
     public function sms_ktv_notice_shop($order_id){
         $KtvOrder = D('KtvOrder')->find($order_id);
         $Ktv = D('Ktv')->find($KtvOrder['ktv_id']);
@@ -1044,7 +1044,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//KTV用户申请退款通知商家
+	//KTV用户申请退款通知企业
     public function sms_ktv_refund_shop($order_id){
         $KtvOrder = D('KtvOrder')->find($order_id);
         $Ktv = D('Ktv')->find($KtvOrder['ktv_id']);
@@ -1110,7 +1110,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	 //用户预约商家通知买家
+	 //用户预约企业通知买家
     public function sms_yuyue_notice_user($detail = array(),$mobile,$code){
         $config = D('Setting')->fetchAll();
 		
@@ -1126,7 +1126,7 @@ class SmsModel extends CommonModel{
     }
 	
 	
-	 //用户预约商家通知商家
+	 //用户预约企业通知企业
     public function sms_yuyue_notice_shop($data = array(),$mobile){
         $config = D('Setting')->fetchAll();
 		
@@ -1143,7 +1143,7 @@ class SmsModel extends CommonModel{
     }
 	
 	
-	 //会员认领商家通知管理员
+	 //会员认领企业通知管理员
     public function sms_shop_recognition_admin($mobile,$shop_name,$name){ 
         $config = D('Setting')->fetchAll();
 		
@@ -1158,7 +1158,7 @@ class SmsModel extends CommonModel{
 	
 	
 	
-	 //认领商家通过审核给会员发送短信
+	 //认领企业通过审核给会员发送短信
     public function sms_shop_recognition_user($mobile,$user_name,$shop_name){ 
         $config = D('Setting')->fetchAll();
 		
@@ -1185,7 +1185,7 @@ class SmsModel extends CommonModel{
     }
 	
 	
-	//新用户注册短信通知接口，支持扣除商家短信
+	//新用户注册短信通知接口，支持扣除企业短信
     public function register($user_id,$mobile,$account,$password,$shop_id){
 		$Shop = D('Shop')->find($shop_id);
         $config = D('Setting')->fetchAll();
@@ -1202,7 +1202,7 @@ class SmsModel extends CommonModel{
     }
 	
 	
-	//商家新闻，短信批量推送给会员
+	//企业新闻，短信批量推送给会员
     public function sms_shop_news_push($detail,$mobile){
 		$Shop = D('Shop')->find($shop_id);
         $config = D('Setting')->fetchAll();
@@ -1239,7 +1239,7 @@ class SmsModel extends CommonModel{
         return true;
     }
 	
-	//商家改价通知买家
+	//企业改价通知买家
     public function order_change_price_user($detail,$change_price){
 		$User = D('Users')->find($detail['order_id']);
 		$Shop = D('Shop')->find($detail['shop_id']);

@@ -7,7 +7,7 @@
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>这里显示商家对商城订单改价操作日志！</p>
+    <p class="attention"><span>注意：</span>这里显示企业对商城订单改价操作日志！</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="right">
@@ -17,10 +17,10 @@
                             <label><span>开始时间</span><input type="text" name="bg_date" value="<{$bg_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w120" /></label>
                             <label><span>结束时间</span><input type="text" name="end_date" value="<{$end_date|default=''}>" onfocus="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'});"  class="text w120" /></label>
                             <label>
-                                <span>商家</span>
+                                <span>企业</span>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text" />
-                                <a  href="<{:U('shop/select')}>"  w="800" h="600" mini="select" class="sumit">选择商家</a>
+                                <a  href="<{:U('shop/select')}>"  w="800" h="600" mini="select" class="sumit">选择企业</a>
                             </label>
                             <label>
                                 <span>用户</span>
@@ -56,7 +56,7 @@
                     <td>ID</td>
                     <td>原始订单ID</td>
                     <td>用户</td>
-                    <td>商家</td>
+                    <td>企业</td>
                     <td>金额</td>
                     <td>购买时间</td>
                     <td>创建IP</td>

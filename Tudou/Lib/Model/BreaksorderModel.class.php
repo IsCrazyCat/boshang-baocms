@@ -12,11 +12,11 @@ class BreaksorderModel extends CommonModel{
 		
 		$Breaksorder = D('Breaksorder')->find($order_id );//查询订单信息
 		
-		$Shopyouhui = D('Shopyouhui')->find($Breaksorder['shop_id']);//商家优惠信息
+		$Shopyouhui = D('Shopyouhui')->find($Breaksorder['shop_id']);//企业优惠信息
 		
 		D('Shopyouhui')->updateCount($Shopyouhui['yh_id'], 'use_count',1);
 		
-		$Shop = D('Shop')->find($Breaksorder['shop_id']);//商家信息
+		$Shop = D('Shop')->find($Breaksorder['shop_id']);//企业信息
 		
 		
 		$deduction = $this->get_deduction($Shop['shop_id'],$Breaksorder['amount'],$Breaksorder['exception']);//网站扣除金额，暂时写到购买的会员余额
@@ -43,8 +43,8 @@ class BreaksorderModel extends CommonModel{
 			}	
 		}
 
-		D('Shopmoney')->insertData($order_id,$id ='0',$Breaksorder['shop_id'],$money,$type ='breaks',$info);//结算给商家 
-		D('Sms')->breaksTZshop($order_id);//发送短信给商家
+		D('Shopmoney')->insertData($order_id,$id ='0',$Breaksorder['shop_id'],$money,$type ='breaks',$info);//结算给企业
+		D('Sms')->breaksTZshop($order_id);//发送短信给企业
 		D('Sms')->breaksTZuser($order_id);//发送短信给用户
 		
         return TRUE;

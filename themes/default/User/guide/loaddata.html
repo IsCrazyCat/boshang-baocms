@@ -17,7 +17,7 @@
                         </span>
                     </p>
                     <if condition="$item['shop_id']">
-                    	<p class="text-small">来自商家：<span class="text-dot margin-right"><{$shops[$item['shop_id']]['shop_name']|default='其他类型'}></span></p>
+                    	<p class="text-small">来自企业：<span class="text-dot margin-right"><{$shops[$item['shop_id']]['shop_name']|default='其他类型'}></span></p>
                     </if>
                     <if condition="$item['info']">
                     	<p class="text-small">分成说明：<span class="text-dot1 margin-right"><{$item.info}></span></p>

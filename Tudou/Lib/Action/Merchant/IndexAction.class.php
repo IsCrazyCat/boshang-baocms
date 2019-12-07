@@ -37,7 +37,7 @@ class IndexAction extends CommonAction{
         $this->display();
     }
 	
-	//商家导入会员
+	//企业导入会员
 	public function import() {
 		$file = $_FILES['fileName'];
 		$max_size = "2000000";
@@ -105,7 +105,7 @@ class IndexAction extends CommonAction{
 						$addr = trim(iconv('gb2312', 'utf-8', $result[$i][3]));
 						$identity = trim(iconv('gb2312', 'utf-8', $result[$i][4]));
 						if (!empty($shop_id) && !empty($mobile)){
-							//商家id，csv商家id，手机号，入校年份，地址，身份去操作，如果成功返回真，失败返回假
+							//企业id，csv企业id，手机号，入校年份，地址，身份去操作，如果成功返回真，失败返回假
 							$res = D('Users')->ImportMember($this->shop_id,$shop_id,$mobile,$school_year,$addr,$identity); 
 							if ($res) {
 								$succ_result += 1;

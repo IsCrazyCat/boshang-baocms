@@ -77,7 +77,7 @@ class TuandianpingAction extends CommonAction {
         }
 		 $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['order_id'] = (int) $data['order_id'];
         if (empty($data['order_id'])) {
@@ -168,7 +168,7 @@ class TuandianpingAction extends CommonAction {
         }
 		 $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $data['score'] = (int) $data['score'];
         if (empty($data['score'])) {

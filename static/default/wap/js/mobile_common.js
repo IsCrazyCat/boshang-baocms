@@ -183,7 +183,7 @@ function setMap(map,point){
 		var mapPoint = $(this);
 		var dataX = mapPoint.attr('data-x'),dataY = mapPoint.attr('data-y');
 		if(dataX === '' || dataX ==='0'){return;}
-		var pointB = new BMap.Point(dataX,dataY);  // 商家坐标
+		var pointB = new BMap.Point(dataX,dataY);  // 企业坐标
 		var txt = (map.getDistance(point,pointB)/1000).toFixed(2)+'公里';
 		$(this).find('.juli').html(txt);
 	});

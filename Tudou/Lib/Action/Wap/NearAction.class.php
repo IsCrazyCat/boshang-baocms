@@ -254,7 +254,7 @@ class NearAction extends CommonAction{
         } else {
             $detail = D('Near')->where(array('uid' => $id))->find();
         }
-        //如果是入驻商家
+        //如果是入驻企业
         if (!empty($detail['shop_id'])) {
             $shop = D('Shop')->find($detail['shop_id']);
             $this->assign('shop', $shop);

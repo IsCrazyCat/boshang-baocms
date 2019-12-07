@@ -3,11 +3,11 @@ class DianpingAction extends CommonAction{
     public function index($shop_id){
         $shop_id = (int) $shop_id;
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->tuMsg('该商家不存在');
+            $this->tuMsg('该企业不存在');
         }
 		
         $cates = D('Shopcate')->where(array('cate_id'=>$detail['cate_id']))->find();
-		$cates['d1'] = $cates['d1'] ? $cates['d1'] : '商家描述';
+		$cates['d1'] = $cates['d1'] ? $cates['d1'] : '企业描述';
 		$cates['d2'] = $cates['d2'] ? $cates['d2'] : '服务态度';
 		$cates['d3'] = $cates['d3'] ? $cates['d3'] : '服务守时';
 		$this->assign('cate',$cates);

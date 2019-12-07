@@ -94,7 +94,7 @@ class ShopapplyAction extends CommonAction
                 }
                 $this->tuSuccess('确认成功', U('shopapply/index'));
             }
-            $this->tuError('请选择要确认的商家申请');
+            $this->tuError('请选择要确认的企业申请');
         }
     }
 }

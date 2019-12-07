@@ -110,7 +110,7 @@ class TuancodeAction extends CommonAction{
 		if($Shopworker){
 			$this->success('您是店员，正在为您跳转', U('worker/weixin/tuan',array('code_id'=>$code_id)));
 		}else{
-			$this->success('您是商家正在为您跳转', U('seller/weixin/tuan',array('code_id'=>$code_id)));
+			$this->success('您是企业正在为您跳转', U('seller/weixin/tuan',array('code_id'=>$code_id)));
 		}
 	
 		

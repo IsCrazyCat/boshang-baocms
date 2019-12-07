@@ -6,13 +6,13 @@ class ShoppicAction extends CommonAction
         $map = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $shop_city = D('Shop')->where($map)->order(array('shop_id' => 'desc'))->select();
-        //查询所在城市的商家
+        //查询所在城市的企业
         foreach ($shop_city as $val) {
             $cityids[$val['shop_id']] = $val['shop_id'];
             //对比shop_id
         }
         $maps['shop_id'] = array('in', $cityids);
-        //取得当前商家ID，给下面的maps查询
+        //取得当前企业ID，给下面的maps查询
         $Shoppic = D('Shoppic');
         import('ORG.Util.Page');
         // 导入分页类 二开qq 120--585--022   www.juhucms.com
@@ -80,7 +80,7 @@ class ShoppicAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('shoppic/index'));
             }
-            $this->tuError('请选择要删除的商家图片');
+            $this->tuError('请选择要删除的企业图片');
         }
     }
     public function audit($pic_id = 0)
@@ -107,7 +107,7 @@ class ShoppicAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('shoppic/index'));
             }
-            $this->tuError('请选择要审核的商家图片');
+            $this->tuError('请选择要审核的企业图片');
         }
     }
 }

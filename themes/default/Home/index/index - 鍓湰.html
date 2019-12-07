@@ -326,7 +326,7 @@
 
    
             <div class="clearfix settledin">
-            <a href="<{:u('home/shop/apply')}>"  target="_blank" class="fl">免费商家入驻</a>
+            <a href="<{:u('home/shop/apply')}>"  target="_blank" class="fl">免费企业入驻</a>
                 <a href="<{:U('user/apply/delivery')}>" target="_blank" class="fl lastcb">物流入驻</a>
             </div>
 
@@ -437,11 +437,11 @@
                                         <if condition="$shops[$item['shop_id']]['fans_num'] eq null">
                                         <p><{$item.views}>人正在抢购</p>
                                         <else/>
-                                        <p>此商家已有<span><{$shops[$item['shop_id']]['fans_num']}></span>个粉丝 </p>
+                                        <p>此企业已有<span><{$shops[$item['shop_id']]['fans_num']}></span>个粉丝 </p>
                                         </if>
                                         <a href="<{:U('tuan/detail',array('tuan_id'=>$item['tuan_id']))}>"><div class="sy_sjcpwx"  id="tuan_code_<{$item.tuan_id}>"></div></a>
                                         <div class="sy_sjcpCz">
-                       <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>">商家<em>&nbsp;</em></a>
+                       <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>">企业<em>&nbsp;</em></a>
                        <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id'],'act'=>'tuan'))}>">抢购<em>&nbsp;</em></a>
                        <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id'],'act'=>'ping'))}>">点评<em>&nbsp;</em></a>
                        <a class="radius3 sy_sjcpCzA" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id'],'act'=>'map'))}>"><em>&nbsp;</em></a>

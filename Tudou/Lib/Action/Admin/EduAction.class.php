@@ -98,13 +98,13 @@ class EduAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), array('shop_id','edu_name','intro','tel','photo','addr','cate_id','city_id','area_id','business_id','lat','lng','rate','details','audit'));
 		$data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
 		if(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
 		if($Edu = D('Edu')->where(array('shop_id'=>$data['shop_id']))->find()){
-            $this->tuError('您选择的商家【'.$shop['shop_name'].'】已经开通交教育，请不要重复添加');
+            $this->tuError('您选择的企业【'.$shop['shop_name'].'】已经开通交教育，请不要重复添加');
         }
 		
         $data['area_id'] = $shop['area_id'];
@@ -112,7 +112,7 @@ class EduAction extends CommonAction {
         $data['city_id'] = $shop['city_id'];
 		$data['cate_id'] = (int)$data['cate_id'];
 		if (empty($data['cate_id'])) {
-            $this->tuError('教育商家分类不能为空');
+            $this->tuError('教育企业分类不能为空');
         }
         $data['edu_name'] = htmlspecialchars($data['edu_name']);
         if (empty($data['edu_name'])) {
@@ -184,16 +184,16 @@ class EduAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), array('shop_id', 'edu_name','intro', 'tel', 'photo', 'addr','cate_id', 'city_id', 'area_id', 'business_id','lat', 'lng', 'rate', 'details'));
        $data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }elseif(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['area_id'] = $shop['area_id'];
         $data['business_id'] = $shop['business_id'];
         $data['city_id'] = $shop['city_id'];
 		$data['cate_id'] = (int)$data['cate_id'];
 		if (empty($data['cate_id'])) {
-            $this->tuError('教育商家分类不能为空');
+            $this->tuError('教育企业分类不能为空');
         }
         $data['edu_name'] = htmlspecialchars($data['edu_name']);
         if (empty($data['edu_name'])) {
@@ -234,7 +234,7 @@ class EduAction extends CommonAction {
         return $data;
     }
     
-    //教育商家删除
+    //教育企业删除
     public function delete($edu_id = 0){
         $obj = D('Edu');
         if(is_numeric($edu_id) && ($edu_id = (int) $edu_id)) {
@@ -254,7 +254,7 @@ class EduAction extends CommonAction {
             $this->tuError('请选择要删除的教育');
         }
     }
- //教育商家审核
+ //教育企业审核
     public function audit($edu_id = 0) {
 		$edu_id = (int) $edu_id;
         if (false !== D('Edu')->where(array('edu_id'=>$edu_id))->save(array('audit'=>1))){
@@ -520,7 +520,7 @@ class EduAction extends CommonAction {
 		$edu_id = (int) $edu_id;
 		$obj = D('Edu');
         if (!$Edu = $obj->where(array('edu_id'=>$edu_id))->find()) {
-          $this->tuError('课程商家不存在');
+          $this->tuError('课程企业不存在');
         }
         if ($course_id = (int) $course_id) {
             $obj = D('Educourse');

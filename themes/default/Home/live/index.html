@@ -31,7 +31,7 @@
                 <li class="goods_flList">
                     <div class="left goods_flList_l">分类：</div>
                     <div class="left goods_flList_r">
-                        <a  class="<if condition='empty($cat)'>on</if> goods_flListA"  title="所有商家" href="<{:LinkTo('live/index',$linkArr,array('cat'=>0,'cate_id'=>0))}>">全部</a>
+                        <a  class="<if condition='empty($cat)'>on</if> goods_flListA"  title="所有企业" href="<{:LinkTo('live/index',$linkArr,array('cat'=>0,'cate_id'=>0))}>">全部</a>
                         <php>$i = 1;</php>
                         <foreach name="shopcates" item="item">
                             <eq name="item.parent_id" value="0"> 

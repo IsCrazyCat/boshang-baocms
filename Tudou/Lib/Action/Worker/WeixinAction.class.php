@@ -27,7 +27,7 @@ class WeixinAction extends CommonAction {
 		
 		$Shopworker = D('Shopworker')->where(array('user_id'=>$this->uid))->find();
 		if(!$Shopworker){
-			$this->error('您还不属于商家员工哦', U('index/index'));
+			$this->error('您还不属于企业员工哦', U('index/index'));
 		}
 		if($Shopworker['status'] !=1){
 			$this->error('您的员工信息还是待审核状态', U('index/index'));
@@ -68,7 +68,7 @@ class WeixinAction extends CommonAction {
        
 		$Shopworker = D('Shopworker')->where(array('user_id'=>$this->uid))->find();
 		if(!$Shopworker){
-			$this->error('您还不属于商家员工哦', U('index/index'));
+			$this->error('您还不属于企业员工哦', U('index/index'));
 		}
 		if($Shopworker['status'] !=1){
 			$this->error('您的员工信息还是待审核状态', U('index/index'));

@@ -1,8 +1,8 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家推荐</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业推荐</li>
         <li class="li2 li3">推荐分成列表</li>
     </ul>
 </div>
@@ -36,7 +36,7 @@
                         <label>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
-                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                             </label>
                        <label>
                             <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>"/>
@@ -78,7 +78,7 @@
                     <td class="w50"><input type="checkbox" class="checkAll" rel="log_id" /></td>
                     <td class="w50">ID</td>
                     <td>用户</td>
-                    <td>商家</td>
+                    <td>企业</td>
                     <td>订单ID</td>
                     <td>分成金额</td>
                     <td>类型</td>

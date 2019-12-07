@@ -18,7 +18,7 @@ class ApplyAction extends CommonAction{
 			if($Shop['closed'] == 1){
 				$this->error('您的商铺异常', U('index/index'));
 			}
-			$this->error('正在为您跳转到商家管理中心', U('seller/index/index'));
+			$this->error('正在为您跳转到企业管理中心', U('seller/index/index'));
 		}
 		
 		$guide_id = I('guide_id');
@@ -33,7 +33,7 @@ class ApplyAction extends CommonAction{
             $data = $this->createCheck();
             $details = $this->_post('details', 'htmlspecialchars');
             if($words = D('Sensitive')->checkWords($details)){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家介绍含有敏感词：' . $words));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业介绍含有敏感词：' . $words));
             }
 			
 			if($shop_apply_prrice > 0){
@@ -50,7 +50,7 @@ class ApplyAction extends CommonAction{
             if($shop_id = $obj->add($data)){
                 D('Shopdetails')->upDetails($shop_id,$ex);
 				D('Shopguide')->upAdd($data['user_guide_id'],$shop_id);//新增到推荐人表
-				D('Shop')->buildShopQrcode($shop_id,15);//生成商家二维码
+				D('Shop')->buildShopQrcode($shop_id,15);//生成企业二维码
 				if($shop_apply_prrice > 0){
 					$arr = array(
 						'type' => 'shop', 
@@ -92,7 +92,7 @@ class ApplyAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
 		$detail = D('Shop')->where(array('user_id' =>$this->uid))->find();
         if(!empty($detail)){
-			$this->ajaxReturn(array('code'=>'0','msg'=>'您已经是商家了'));
+			$this->ajaxReturn(array('code'=>'0','msg'=>'您已经是企业了'));
         }
 		$data['user_id'] = $this->uid;
 		$guide_ids = htmlspecialchars($data['user_guide_id']);
@@ -104,10 +104,10 @@ class ApplyAction extends CommonAction{
 		}
         $data['photo'] = htmlspecialchars($data['photo']);
         if(empty($data['photo'])){
-			$this->ajaxReturn(array('code'=>'0','msg'=>'请上传商家形象图'));
+			$this->ajaxReturn(array('code'=>'0','msg'=>'请上传企业形象图'));
         }
         if(!isImage($data['photo'])){
-			$this->ajaxReturn(array('code'=>'0','msg'=>'商家形象图格式不正确'));
+			$this->ajaxReturn(array('code'=>'0','msg'=>'企业形象图格式不正确'));
         }
 		$data['logo'] = htmlspecialchars($data['logo']);
         $data['shop_name'] = htmlspecialchars($data['shop_name']);
@@ -216,7 +216,7 @@ class ApplyAction extends CommonAction{
 			$data['user_id'] = $this->uid;
 			$data['shop_id'] = $data['shop_id'];
 			if(empty($data['shop_id'])){
-				$this->tuMsg('商家ID不能为空');
+				$this->tuMsg('企业ID不能为空');
 			}
 			$data['name'] = htmlspecialchars($data['name']);
 			if (empty($data['name'])){

@@ -64,7 +64,7 @@ class tenpay
             'bank_type'         => $bank_type,                  // 银行类型:支持纯网关和财付通
             'desc'              => $desc,                       // 交易的工作名称
             'purchaser_id'      => '',                          // 用户(买方)的财付通帐户,可以为空
-            'bargainor_id'      => $payment['tenpay_account'],  // 商家的财付通商户号
+            'bargainor_id'      => $payment['tenpay_account'],  // 企业的财付通商户号
             'transaction_id'    => $transaction_id,             // 交易号(订单号)，由商户网站产生(建议顺序累加)
             'sp_billno'         => $sp_billno,                  // 商户系统内部的定单号,最多10位
             'total_fee'         => $total_fee,                  // 订单金额

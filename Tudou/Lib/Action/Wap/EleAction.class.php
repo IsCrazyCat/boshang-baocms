@@ -88,7 +88,7 @@ class EleAction extends CommonAction{
             $shop_ids[$val['shop_id']] = $val['shop_id'];
         }
 		$lists = D('Eleproduct')->where(array('is_tuijian'=>1, 'audit' => 1, 'closed' =>0,'shop_id'=>array('in', $shop_ids),'cost_price' => array('neq','')))->order(array('sold_num' => 'desc','create_time' => 'desc'))->limit(0,6)->select();
-		$this->assign('product', $list = second_array_unique_bykey($lists,'shop_id'));//去掉重复商家
+		$this->assign('product', $list = second_array_unique_bykey($lists,'shop_id'));//去掉重复企业
         $this->display();
     }
 	
@@ -338,22 +338,22 @@ class EleAction extends CommonAction{
             $this->tuMsg('您购买的工作是2个商户的');
         }
         if (empty($shop_id)) {
-            $this->tuMsg('商家不存在');
+            $this->tuMsg('企业不存在');
         }
         $shop = D('Ele')->find($shop_id);
         if (empty($shop)) {
-            $this->tuMsg('该商家不存在');
+            $this->tuMsg('该企业不存在');
         }
 		if (false == D('Shop')->check_shop_user_id($shop_id,$this->uid)) {//不能购买自己家的产品
 			 $this->tuMsg('您不能购买自己的外卖');
 		}
 		
         if (!$shop['is_open']) {
-            $this->tuMsg('商家已经打烊，实在对不住客官');
+            $this->tuMsg('企业已经打烊，实在对不住客官');
         }
 		$busihour = $this->closeshopele($shop['busihour']);
 		 if ($busihour == 1) {
-            $this->tuMsg('商家休息中，请稍后再试');
+            $this->tuMsg('企业休息中，请稍后再试');
         }
 		
 		$total['logistics_full_money'] = D('Eleorder')->get_logistics($total['money'],$shop_id);//获取用户实际支付配送费用
@@ -376,7 +376,7 @@ class EleAction extends CommonAction{
         };
 		
 		
-		//结算金额逻辑后期封装，如果是第三方配送，如果开通新单立减后，配送费用商家出，如果商家开启满减优惠，满减优惠商家出
+		//结算金额逻辑后期封装，如果是第三方配送，如果开通新单立减后，配送费用企业出，如果企业开启满减优惠，满减优惠企业出
 		
 		$shop_detail = D('Shop')->where(array('shop_id'=>$shop_id))->find();
 		if($shop_detail){
@@ -399,7 +399,7 @@ class EleAction extends CommonAction{
 				//p($settlementIntro);die;
 			}
 		}else{
-			//商家自己配送，结算价-新单立减+ 配送费-满减费用
+			//企业自己配送，结算价-新单立减+ 配送费-满减费用
 			
 			$logistics = ($shop['logistics'] >= 50) ? $shop['logistics'] : '50';
 			
@@ -605,10 +605,10 @@ class EleAction extends CommonAction{
         }
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
         }
         if($detail['closed']){
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
         }
         if(D('Shopfavorites')->check($shop_id, $this->uid)){
             $this->error('您已经收藏过了');
@@ -624,11 +624,11 @@ class EleAction extends CommonAction{
     public function detail(){
         $shop_id = (int) $this->_param('shop_id');
         if(!($detail = D('Ele')->find($shop_id))){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if($detail['closed'] != 0 || $detail['audit'] != 1){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
             die;
         }
         $this->assign('detail', $detail);
@@ -641,11 +641,11 @@ class EleAction extends CommonAction{
     public function dianping(){
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Ele')->find($shop_id))){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if($detail['closed']){
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         $this->assign('detail', $detail);

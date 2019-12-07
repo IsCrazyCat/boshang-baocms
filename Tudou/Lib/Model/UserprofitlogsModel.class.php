@@ -14,7 +14,7 @@ class UserprofitlogsModel extends CommonModel{
 		'hotel' =>'酒店',
 		'farm'=>'农家乐', 
 		'rank'=>'会员购买等级', 
-		'grade'=>'商家购买等级', 
+		'grade'=>'企业购买等级', 
 		'market' => '菜市场',
 		'store' => '便利店',
     );
@@ -61,8 +61,8 @@ class UserprofitlogsModel extends CommonModel{
 	
 	protected $_profit_price_type = array(
 		'1' => '用户实付金额', 
-		'2' => '商家结算金额', 
-		'3' => '用户实付金额-商家结算金额=差价', 
+		'2' => '企业结算金额', 
+		'3' => '用户实付金额-企业结算金额=差价', 
 	);
 	
 	
@@ -500,7 +500,7 @@ class UserprofitlogsModel extends CommonModel{
    }
    
    
-    //商家购买等级三级分成，商家id，购买等级金额，购买商家等级名称
+    //企业购买等级三级分成，企业id，购买等级金额，购买企业等级名称
 	public function buy_shop_grade_profit_user($shop_id,$price,$grade_name){
 		$config = D('Setting')->fetchAll();
 		$obj = D('Users');
@@ -510,7 +510,7 @@ class UserprofitlogsModel extends CommonModel{
 		if($Users['fuid1']) {
 			$money1 = round($price * $config['profit']['grade_profit_rate1'] / 100);
 			if ($money1 > 0) {
-				$info1 = '商家【:' . $Shop['shop_name'] . '】, 购买商家等级【'.$grade_name.'】一级分成: ' . round($money1 / 100, 2);
+				$info1 = '企业【:' . $Shop['shop_name'] . '】, 购买企业等级【'.$grade_name.'】一级分成: ' . round($money1 / 100, 2);
 				$fuser1 = $obj->find($Users['fuid1']);
 				if($fuser1){
 					$obj->addMoney($Users['fuid1'], $money1, $info1);
@@ -522,7 +522,7 @@ class UserprofitlogsModel extends CommonModel{
 		if($Users['fuid2']) {
 			$money2 = round($price * $config['profit']['grade_profit_rate2'] / 100);
 			if ($money2 > 0) {
-				$info2 = '商家【:' . $Shop['shop_name'] . '】, 购买商家等级【'.$grade_name.'】二级分成: ' . round($money2 / 100, 2);
+				$info2 = '企业【:' . $Shop['shop_name'] . '】, 购买企业等级【'.$grade_name.'】二级分成: ' . round($money2 / 100, 2);
 				$fuser2 = $obj->find($Users['fuid2']);
 				if($fuser2){
 					$obj->addMoney($Users['fuid2'], $money2, $info2);
@@ -534,7 +534,7 @@ class UserprofitlogsModel extends CommonModel{
 		if($Users['fuid3']) {
 			$money3 = round($price * $config['profit']['grade_profit_rate3'] / 100);
 			if ($money3 > 0) {
-				$info3 = '商家【:' . $Shop['shop_name'] . '】, 购买商家等级【'.$grade_name.'】三级分成: ' . round($money3 / 100, 2);
+				$info3 = '企业【:' . $Shop['shop_name'] . '】, 购买企业等级【'.$grade_name.'】三级分成: ' . round($money3 / 100, 2);
 				$fuser3 = $obj->find($Users['fuid3']);
 				if($fuser3){
 					$obj->addMoney($Users['fuid3'], $money3, $info3);

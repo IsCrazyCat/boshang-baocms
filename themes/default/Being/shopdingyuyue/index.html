@@ -1,13 +1,13 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">餐饮商家</li>
+        <li class="li1">餐饮企业</li>
         <li class="li2">餐饮预约订座</li>
         <li class="li2 li3">订座预约</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>这里是显示商家订餐的预约！非商家详情页预约！不要混淆了！</p>
+    <p class="attention"><span>注意：</span>这里是显示企业订餐的预约！非企业详情页预约！不要混淆了！</p>
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
@@ -37,7 +37,7 @@
                         <label>
                             <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                             <input class="text" type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" />
-                            <a mini="select"  w="1000" h="800" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                            <a mini="select"  w="1000" h="800" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                         </label>
                         <label>
                             <span>关键字:</span>
@@ -58,7 +58,7 @@
                     <td class="w50"><input type="checkbox" class="checkAll" rel="ding_id" /></td>
                     <td class="w50">ID</td>
                     <td>用户</td>
-                    <td>商家</td>
+                    <td>企业</td>
                     <td>用餐时间</td>
                     <td>地址</td>
                     <td>预计人数</td>

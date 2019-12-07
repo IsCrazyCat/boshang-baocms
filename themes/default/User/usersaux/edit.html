@@ -13,55 +13,55 @@
 
     <form class="fabu-form" method="post"  target="x-frame" action="<{:U('usersaux/edit',array('user_id'=>$detail['user_id']))}>">
     <div class="blank-10"></div>
-    <div class="Upload-img-box">
-       <div  id="fileToUpload">上传身份证</div>
-       <div class="Upload-img">
-       		<div class="list-img loading">
-				<img src="<{:config_img($detail['card_photo'])}>">
-                <input type="hidden" name="data[card_photo]" value="<{$detail.card_photo}>"/>
-			</div>
-       <div class="list-img jq_photo" style="display:none;"></div>
-      </div>
-    </div>
-        <script>
-            var width_shop_audit = '<{:thumbSize($CONFIG[attachs][shop_audit][thumb],0)}>';                     
-            var height_shop_audit = '<{:thumbSize($CONFIG[attachs][shop_audit][thumb],1)}>';  
-            var uploader = WebUploader.create({                 
-                auto: true,                             
-                swf: '/static/default/webuploader/Uploader.swf',                             
-                server: '<{:U("app/upload/uploadify",array("model"=>"shop_audit"))}>',                             
-                pick: '#fileToUpload',                             
-                resize: true,    
-                compress : {width:width_shop_audit,height:height_shop_audit,quality:60,allowMagnify: false,crop: true}//裁剪       
-            });
-            uploader.on( 'beforeFileQueued', function( file ) {
-                $(".loading").show();
-                if(file.size > 1024000){
-                    uploader.option( 'compress', {
-                        width:width_shopphoto,
-                        quality:60
-                    });
-                }
-            });
-            uploader.on( 'uploadSuccess', function( file,resporse) {
-                $(".loading").hide();
-                var str = '<img src="'+resporse.url+'"><input type="hidden" name="data[card_photo]" value="' + resporse.url + '" />';
-                $(".jq_photo").show().html(str);
-            });
-            uploader.on( 'uploadError', function( file ) {
-                alert('上传出错');
-            });
-    
-            $(document).ready(function () {
-                $(document).on("click", ".photo img", function () {
-                    $(this).parent().remove();
-                });
-            });
-        </script>
-    
-    
-    
-    <div class="blank-10 bg"></div>
+<!--    <div class="Upload-img-box">-->
+<!--       <div  id="fileToUpload">上传身份证</div>-->
+<!--       <div class="Upload-img">-->
+<!--       		<div class="list-img loading">-->
+<!--				<img src="<{:config_img($detail['card_photo'])}>">-->
+<!--                <input type="hidden" name="data[card_photo]" value="<{$detail.card_photo}>"/>-->
+<!--			</div>-->
+<!--       <div class="list-img jq_photo" style="display:none;"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--        <script>-->
+<!--            var width_shop_audit = '<{:thumbSize($CONFIG[attachs][shop_audit][thumb],0)}>';                     -->
+<!--            var height_shop_audit = '<{:thumbSize($CONFIG[attachs][shop_audit][thumb],1)}>';  -->
+<!--            var uploader = WebUploader.create({                 -->
+<!--                auto: true,                             -->
+<!--                swf: '/static/default/webuploader/Uploader.swf',                             -->
+<!--                server: '<{:U("app/upload/uploadify",array("model"=>"shop_audit"))}>',                             -->
+<!--                pick: '#fileToUpload',                             -->
+<!--                resize: true,    -->
+<!--                compress : {width:width_shop_audit,height:height_shop_audit,quality:60,allowMagnify: false,crop: true}//裁剪       -->
+<!--            });-->
+<!--            uploader.on( 'beforeFileQueued', function( file ) {-->
+<!--                $(".loading").show();-->
+<!--                if(file.size > 1024000){-->
+<!--                    uploader.option( 'compress', {-->
+<!--                        width:width_shopphoto,-->
+<!--                        quality:60-->
+<!--                    });-->
+<!--                }-->
+<!--            });-->
+<!--            uploader.on( 'uploadSuccess', function( file,resporse) {-->
+<!--                $(".loading").hide();-->
+<!--                var str = '<img src="'+resporse.url+'"><input type="hidden" name="data[card_photo]" value="' + resporse.url + '" />';-->
+<!--                $(".jq_photo").show().html(str);-->
+<!--            });-->
+<!--            uploader.on( 'uploadError', function( file ) {-->
+<!--                alert('上传出错');-->
+<!--            });-->
+<!--    -->
+<!--            $(document).ready(function () {-->
+<!--                $(document).on("click", ".photo img", function () {-->
+<!--                    $(this).parent().remove();-->
+<!--                });-->
+<!--            });-->
+<!--        </script>-->
+<!--    -->
+<!--    -->
+<!--    -->
+<!--    <div class="blank-10 bg"></div>-->
     
     <div class="row">
         <div class="line">
@@ -218,151 +218,17 @@
     
     
         
-        <div class="row">
-        <div class="line">
-            <span class="x3">团队</span>
-            <span class="x3">
-                <select name="data[team_id]" id="team_id" class="text-select">
-                    <option value="0" selected="selected">队伍</option>
-                </select>
-            </span>
-            <span class="x3">
-                <select name="data[jury_id]" id="jury_id" class="text-select">
-                    <option value="0" selected="selected">← 团队</option>
-                </select>
-            </span>
-            
-            <span class="x3">
-                <select name="data[group_id]" id="group_id" class="text-select">
-                    <option value="0" selected="selected">← 群</option>
-                </select>
-            </span>
-        </div>
-        <script src="<{:U('app/datas/stock',array('name'=>'teamjurys'))}>"></script>
-                    <script>
-                                    var team_id = "<{$detail['team_id']}>";
-                                    var jury_id = "<{$detail['jury_id']}>";
-                                    var group_id = "<{$detail['group_id']}>";
-                                    $(document).ready(function () {
-                                        var team_str = ' <option value="0">请选择...</option>';
-                                        for (a in teamjurys.team) {
-											//alert(teamjurys.team[a].team_name);//在页面上弹出上联
-                                            if (team_id == teamjurys.team[a].team_id) {
-                                                team_str += '<option selected="selected" value="' + teamjurys.team[a].team_id + '">' + teamjurys.team[a].team_name + '</option>';
-                                            } else {
-                                                team_str += '<option value="' + teamjurys.team[a].team_id + '">' + teamjurys.team[a].team_name + '</option>';
-                                            }
-                                        }
-                                        $("#team_id").html(team_str);
-    
-                                        $("#team_id").change(function () {
-                                            if ($("#team_id").val() > 0) {
-                                                team_id = $("#team_id").val();
-                                                var jury_str = ' <option value="0">请选择...</option>';
-												//alert("上联：山石岩下古木枯");//在页面上弹出上
-                                                for (a in teamjurys.jury) {
-                                                    if (teamjurys.jury[a].team_id == team_id) {
-                                                        if (jury_id == teamjurys.jury[a].jury_id) {
-                                                            jury_str += '<option selected="selected" value="' + teamjurys.jury[a].jury_id + '">' + teamjurys.jury[a].jury_name + '</option>';
-                                                        } else {
-                                                            jury_str += '<option value="' + teamjurys.jury[a].jury_id + '">' + teamjurys.jury[a].jury_name + '</option>';
-                                                        }
-                                                    }
-                                                }
-                                                $("#jury_id").html(jury_str);
-                                                $("#group_id").html('<option value="0">请选择...</option>');
-                                            } else {
-                                                $("#jury_id").html('<option value="0">请选择...</option>');
-                                                $("#group_id").html('<option value="0">请选择...</option>');
-                                            }
-    
-                                        });
-    
-                                        if (team_id > 0) {
-											//alert("上联：山石岩下古木枯");//在页面上弹出上联
-                                            var jury_str = ' <option value="0">请选择...</option>';
-                                            for (a in teamjurys.jury) {
-												
-                                                if (teamjurys.jury[a].team_id == team_id) {
-                                                    if (jury_id == teamjurys.jury[a].jury_id) {
-                                                        jury_str += '<option selected="selected" value="' + teamjurys.jury[a].jury_id + '">' + teamjurys.jury[a].jury_name + '</option>';
-                                                    } else {
-                                                        jury_str += '<option value="' + teamjurys.jury[a].jury_id + '">' + teamjurys.jury[a].jury_name + '</option>';
-														
-														
-                                                    }
-                                                }
-                                            }
-                                            $("#jury_id").html(jury_str);
-                                        }
-    
-    
-                                        $("#jury_id").change(function () {
-                                            if ($("#jury_id").val() > 0) {
-                                                jury_id = $("#jury_id").val();
-                                                var group_str = ' <option value="0">请选择...</option>';
-                                                for (a in teamjurys.group) {
-                                                    if (teamjurys.group[a].jury_id == jury_id) {
-                                                        if (group_id == teamjurys.group[a].group_id) {
-                                                            group_str += '<option selected="selected" value="' + teamjurys.group[a].group_id + '">' + teamjurys.group[a].group_name + '</option>';
-                                                        } else {
-                                                            group_str += '<option value="' + teamjurys.group[a].group_id + '">' + teamjurys.group[a].group_name + '</option>';
-                                                        }
-                                                    }
-                                                }
-                                                $("#group_id").html(group_str);
-                                            } else {
-                                                $("#group_id").html('<option value="0">请选择...</option>');
-                                            }
-    
-                                        });
-    
-                                        if (jury_id > 0) {
-                                            var group_str = ' <option value="0">请选择...</option>';
-                                            for (a in teamjurys.group) {
-                                                if (teamjurys.group[a].jury_id == jury_id) {
-                                                    if (group_id == teamjurys.group[a].group_id) {
-                                                        group_str += '<option selected="selected" value="' + teamjurys.group[a].group_id + '">' + teamjurys.group[a].group_name + '</option>';
-                                                    } else {
-                                                        group_str += '<option value="' + teamjurys.group[a].group_id + '">' + teamjurys.group[a].bgroup_name + '</option>';
-                                                    }
-                                                }
-                                            }
-                                            $("#group_id").html(group_str);
-                                        }
-                                        $("#group_id").change(function () {
-                                            group_id = $(this).val();
-                                        });
-                                    });
-                    </script> 
-    </div>
-    
+
     
     <div class="row">
         <div class="line">
             <span class="x3">详细地址</span>
             <span class="x9">
-                <input type="text" class="text-input" name="data[addr_info]" value="<{$detail.mobile|default=''}>"/>
+                <input type="text" class="text-input" name="data[addr_info]" value="<{$detail.addr_info|default=''}>"/>
             </span>
         </div>
     </div>
-    
-    <div class="row">
-        <div class="line">
-            <span class="x3">担保人姓名</span>
-            <span class="x9">
-                <input type="text" class="text-input" name="data[guarantor_name]" value="<{$detail.guarantor_name|default=''}>" />
-            </span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="line">
-            <span class="x3">担保人电话</span>
-            <span class="x9">
-                <input type="text" class="text-input" name="data[guarantor_mobile]" value="<{$detail.guarantor_mobile|default=''}>"/>
-            </span>
-        </div>
-    </div>
+
     
         <div class="container">
             <div class="blank-30"></div>

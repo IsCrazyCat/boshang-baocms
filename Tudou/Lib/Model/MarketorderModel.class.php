@@ -84,7 +84,7 @@ class MarketorderModel extends CommonModel {
 			return false;
 		}
 	}
-	//删除过期菜市场订单,商家id，会员ID，可选
+	//删除过期菜市场订单,企业id，会员ID，可选
 	public function past_due_market_order($shop_id ,$user_id){
 		$config = D('Setting')->fetchAll();
 		$past_due_market_order_time = isset($config['market']['past_due_market_order_time']) ? (int)$config['market']['past_due_market_order_time'] : 15;
@@ -119,7 +119,7 @@ class MarketorderModel extends CommonModel {
 		   return false;
         }else{
 			if(!$Shop = D('Shop')->find($detail['shop_id'])){
-			   $this->error = '没有找到该订单的商家信息';
+			   $this->error = '没有找到该订单的企业信息';
 			   return false;
 			}else{
 				if($Shop['is_market_pei'] == 1){
@@ -157,7 +157,7 @@ class MarketorderModel extends CommonModel {
 				$Market = D('Market')->find($detail['shop_id']);
 				if (D('Marketorder')->save(array('order_id' => $order_id, 'status' => 8,'end_time' => NOW_TIME))) { //防止并发请求
 					$Intro = '菜市场订单结算';//获取结算说明
-					D('Shopmoney')->insertData($order_id,$id ='0',$detail['shop_id'],$detail['settlement_price'],$type ='market',$Intro);//结算给商家
+					D('Shopmoney')->insertData($order_id,$id ='0',$detail['shop_id'],$detail['settlement_price'],$type ='market',$Intro);//结算给企业
 					if($detail['settlement_price'] > 0) {
 						D('Userguidelogs')->AddMoney($detail['shop_id'], $detail['settlement_price'], $order_id,$type = 'market');//推荐员分成
 						D('Users')->integral_restore_user($detail['user_id'],$order_id,$id ='0',$detail['settlement_price'],$type ='market');//菜市场购物返利积分
@@ -217,7 +217,7 @@ class MarketorderModel extends CommonModel {
 				$addr_id = $order['addr_id'];
 			}
 			$user_addr = D('Useraddr')->where(array('addr_id'=>$addr_id))->find();
-			$shop_print = D('Shop')->where(array('shop_id'=> $order['shop_id']))->find();//商家信息
+			$shop_print = D('Shop')->where(array('shop_id'=> $order['shop_id']))->find();//企业信息
             $msg .= '@@2点菜清单__________NO:' . $order['order_id'] . '\r';
             $msg .= '店名：' . $shop_print['shop_name'] . '\r';
             $msg .= '联系人：' . $user_addr['name'] . '\r';
@@ -225,7 +225,7 @@ class MarketorderModel extends CommonModel {
             $msg .= '客户地址：' . $user_addr['addr'] . '\r';
             $msg .= '用餐时间：' . date('Y-m-d H:i:s', $order['create_time']) . '左右\r';
             $msg .= '用餐地址：' . $shop_print['addr'] . '\r';
-            $msg .= '商家电话：' . $shop_print['tel'] . '\r';
+            $msg .= '企业电话：' . $shop_print['tel'] . '\r';
             $msg .= '----------------------\r';
             $msg .= '@@2菜品明细\r';
             $products = D('Marketorderproduct')->where(array('order_id' => $order['order_id']))->select();
@@ -297,7 +297,7 @@ class MarketorderModel extends CommonModel {
 					$is_appoint  = 0;
 				}
 			}else{
-				return false;//没有找到菜市场商家返回假
+				return false;//没有找到菜市场企业返回假
 			}
 			if($order['logistics_full_money'] > 0){
 				$logistics_price = $order['logistics_full_money'];

@@ -63,7 +63,7 @@ class SmsshopAction extends CommonAction{
 		$data['shop_id'] = (int) $data['shop_id'];
 		if($data['shop_id']){
 			if($detail = D('Smsshop')->where(array('type' => shop, 'shop_id' => $data['shop_id']))->find()){
-				$this->tuError('该商家已经有短信记录');
+				$this->tuError('该企业已经有短信记录');
 			}	
 			$data['type'] = shop;
 		}

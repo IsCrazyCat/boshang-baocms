@@ -104,7 +104,7 @@ class ShopAction extends CommonAction
             $obj = D('Shop');
             $details = $this->_post('details', 'SecurityEditorHtml');
             if ($words = D('Sensitive')->checkWords($details)) {
-                $this->tuError('商家介绍含有敏感词：' . $words);
+                $this->tuError('企业介绍含有敏感词：' . $words);
             }
             $bank = $this->_post('bank', 'htmlspecialchars');
             unset($data['near'], $data['price'], $data['business_time'], $data['delivery_time']);
@@ -258,7 +258,7 @@ class ShopAction extends CommonAction
     }
     public function edit($shop_id = 0)
     {
-        //判断是不是自己的商家
+        //判断是不是自己的企业
         $shop_ids = D('Shop')->find($shop_id);
         $citys = $shop_ids['city_id'];
         if ($citys != $this->city_id) {
@@ -268,14 +268,14 @@ class ShopAction extends CommonAction
         if ($shop_id = (int) $shop_id) {
             $obj = D('Shop');
             if (!($detail = $obj->find($shop_id))) {
-                $this->tuError('请选择要编辑的商家');
+                $this->tuError('请选择要编辑的企业');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck($shop_id);
                 $data['shop_id'] = $shop_id;
                 $details = $this->_post('details', 'SecurityEditorHtml');
                 if ($words = D('Sensitive')->checkWords($details)) {
-                    $this->tuError('商家介绍含有敏感词：' . $words);
+                    $this->tuError('企业介绍含有敏感词：' . $words);
                 }
                 $bank = $this->_post('bank', 'htmlspecialchars');
                 $shopdetails = D('Shopdetails')->find($shop_id);
@@ -305,7 +305,7 @@ class ShopAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家');
+            $this->tuError('请选择要编辑的企业');
         }
     }
     private function editCheck($shop_id)
@@ -383,7 +383,7 @@ class ShopAction extends CommonAction
     public function delete($shop_id = 0)
     {
         if (is_numeric($shop_id) && ($shop_id = (int) $shop_id)) {
-            //判断是不是自己的商家
+            //判断是不是自己的企业
             $shop_ids = D('Shop')->find($shop_id);
             $citys = $shop_ids['city_id'];
             if ($citys != $this->city_id) {
@@ -402,13 +402,13 @@ class ShopAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('shop/index'));
             }
-            $this->tuError('请选择要删除的商家');
+            $this->tuError('请选择要删除的企业');
         }
     }
     public function audit($shop_id = 0)
     {
         if (is_numeric($shop_id) && ($shop_id = (int) $shop_id)) {
-            //判断是不是自己的商家
+            //判断是不是自己的企业
             $shop_ids = D('Shop')->find($shop_id);
             $citys = $shop_ids['city_id'];
             if ($citys != $this->city_id) {
@@ -427,14 +427,14 @@ class ShopAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('shop/apply'));
             }
-            $this->tuError('请选择要审核的商家');
+            $this->tuError('请选择要审核的企业');
         }
     }
     public function login($shop_id)
     {
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if (empty($detail['user_id'])) {
             $this->error('该用户没有绑定管理者');
@@ -445,7 +445,7 @@ class ShopAction extends CommonAction
     }
     public function ding($shop_id)
     {
-        //判断是不是自己的商家
+        //判断是不是自己的企业
         $shop_ids = D('Shop')->find($shop_id);
         $citys = $shop_ids['city_id'];
         if ($citys != $this->city_id) {
@@ -454,7 +454,7 @@ class ShopAction extends CommonAction
         //end
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_ding' => 0, 'shop_id' => $shop_id);
         if ($detail['is_ding'] == 0) {
@@ -465,7 +465,7 @@ class ShopAction extends CommonAction
     }
     public function biz($shop_id)
     {
-        //判断是不是自己的商家
+        //判断是不是自己的企业
         $shop_ids = D('Shop')->find($shop_id);
         $citys = $shop_ids['city_id'];
         if ($citys != $this->city_id) {
@@ -474,7 +474,7 @@ class ShopAction extends CommonAction
         //end
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_biz' => 0, 'shop_id' => $shop_id);
         if ($detail['is_biz'] == 0) {
@@ -487,7 +487,7 @@ class ShopAction extends CommonAction
     {
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_profit' => 0, 'shop_id' => $shop_id);
         if ($detail['is_profit'] == 0) {
@@ -501,7 +501,7 @@ class ShopAction extends CommonAction
     {
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if ($detail['is_pei'] == 1) {
             //当前不是配送
@@ -621,7 +621,7 @@ class ShopAction extends CommonAction
     public function recovery2($shop_id = 0)
     {
         if (is_numeric($shop_id) && ($shop_id = (int) $shop_id)) {
-            //判断是不是自己的商家
+            //判断是不是自己的企业
             $shop_ids = D('Shop')->find($shop_id);
             $citys = $shop_ids['city_id'];
             if ($citys != $this->city_id) {
@@ -630,7 +630,7 @@ class ShopAction extends CommonAction
             //end
             $obj = D('Shop');
             $obj->save(array('shop_id' => $shop_id, 'closed' => 0));
-            $this->tuSuccess('恢复商家成功', U('shop/index'));
+            $this->tuSuccess('恢复企业成功', U('shop/index'));
         } else {
             $shop_id = $this->_post('shop_id', false);
             if (is_array($shop_id)) {
@@ -638,15 +638,15 @@ class ShopAction extends CommonAction
                 foreach ($shop_id as $id) {
                     $obj->save(array('shop_id' => $id, 'closed' => 0));
                 }
-                $this->tuSuccess('恢复商家成功', U('shop/index'));
+                $this->tuSuccess('恢复企业成功', U('shop/index'));
             }
-            $this->tuError('请选择要恢复的商家');
+            $this->tuError('请选择要恢复的企业');
         }
     }
     public function delete2($shop_id = 0)
     {
         if (is_numeric($shop_id) && ($shop_id = (int) $shop_id)) {
-            //判断是不是自己的商家
+            //判断是不是自己的企业
             $shop_ids = D('Shop')->find($shop_id);
             $citys = $shop_ids['city_id'];
             if ($citys != $this->city_id) {
@@ -665,7 +665,7 @@ class ShopAction extends CommonAction
                 }
                 $this->tuSuccess('彻底删除成功', U('shop/recovery'));
             }
-            $this->tuError('请选择要彻底删除的商家');
+            $this->tuError('请选择要彻底删除的企业');
         }
     }
 }

@@ -84,10 +84,10 @@ class ZheAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
 	    $data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
 		if(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
 		
 		
@@ -97,7 +97,7 @@ class ZheAction extends CommonAction {
         }
 		$count = D('Zhe')->where(array('shop_id'=>$data['shop_id'],'closed'=>'0'))->count();
 		if($count){
-            $this->tuError('该商家已存在无折卡');
+            $this->tuError('该企业已存在无折卡');
         }
 		
 		$data['city_id'] = $shop['city_id'];
@@ -150,7 +150,7 @@ class ZheAction extends CommonAction {
         return $data;
     }
     
-    //编辑五折卡商家
+    //编辑五折卡企业
     public function edit($zhe_id = 0) {
         if ($zhe_id = (int) $zhe_id) {
             $obj = D('Zhe');
@@ -188,15 +188,15 @@ class ZheAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
 		if(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
 		
 		$count = D('Zhe')->where(array('shop_id'=>$data['shop_id'],'closed'=>'0'))->count();
 		if($count > 1){
-            $this->tuError('该商家已存在无折卡');
+            $this->tuError('该企业已存在无折卡');
         }
 		
 		$data['city_id'] = $shop['city_id'];

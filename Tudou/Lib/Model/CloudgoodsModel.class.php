@@ -44,7 +44,7 @@ class CloudgoodsModel extends CommonModel{
 			'user_id' => $user_id, 
 			'shop_id' => $detail['shop_id'], 
 			'num' => $num, 
-			'type' => $detail['type'],//防止商家修改云购类型
+			'type' => $detail['type'],//防止企业修改云购类型
 			'money' => $num*100, 
 			'status' => 0, 
 			'create_time' => NOW_TIME, 

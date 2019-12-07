@@ -87,7 +87,7 @@ class StorecateAction extends CommonAction
                 $this->error('请选择要编辑的工作分类');
             }
             if($detail['shop_id'] != $this->shop_id){
-                $this->error('请不要操作其他商家的工作分类');
+                $this->error('请不要操作其他企业的工作分类');
             }
             if($this->isPost()){
                 $data = $this->editCheck();

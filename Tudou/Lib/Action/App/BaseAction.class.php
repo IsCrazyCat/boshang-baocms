@@ -63,7 +63,7 @@ class BaseAction extends Action
     const TU_PWD_NO_AGREE = 323;
     //原密码输入不正确！
     const TU_PWD_NO_FALSE = 324;
-    //您已经关注过该商家了！
+    //您已经关注过该企业了！
     const TU_FAVOR_IS_TRUE = 325;
     //您未关注！
     const TU_FAVOR_IS_FALSE = 326;

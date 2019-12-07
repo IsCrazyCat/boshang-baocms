@@ -23,7 +23,7 @@ class CommonAction extends Action
             }
 			if($this->shop['end_date'] && $this->shop['end_date'] != 0000-00-00){
 				if($this->shop['end_date'] <= TODAY){
-					$this->error('您的商家已到期请联系管理员', U('login/index'));
+					$this->error('您的企业已到期请联系管理员', U('login/index'));
 				}
 			}
             $this->shop_id = $this->shop['shop_id'];

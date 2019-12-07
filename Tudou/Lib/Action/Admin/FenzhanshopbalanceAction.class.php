@@ -72,7 +72,7 @@ public function frozen(){
 		   $data['frozen_gold'] = $detail['frozen'] + $frozen;
 		   $data['frozen_time'] = NOW_TIME;
 		   
-		   $intro = '管理员设置商家冻结金'.$intro ;
+		   $intro = '管理员设置企业冻结金'.$intro ;
 		   D('Users')->save($data);
            D('Usergoldlogs')->add(array('user_id' => $user_id,'gold'=>$frozen,'intro' => $intro,'create_time' => NOW_TIME,'create_ip'  => get_client_ip()));
            $this->tuSuccess('操作成功',U('fenzhanshopbalance/index'));

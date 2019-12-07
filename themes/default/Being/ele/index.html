@@ -5,11 +5,11 @@
     <ul>
         <li class="li1">频道</li>
         <li class="li2">餐饮频道</li>
-        <li class="li2 li3">商家列表</li>
+        <li class="li2 li3">企业列表</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>如果未添加商家，那么不能发布菜单</p>
+    <p class="attention"><span>注意：</span>如果未添加企业，那么不能发布菜单</p>
     <div class="jsglNr">
         <div class="selectNr" style="border-top: none; margin-top: 0px;">
             <div class="left">
@@ -55,7 +55,7 @@
                     <tr>
                         <td class="w50"><input type="checkbox" class="checkAll" rel="shop_id" /></td>
                         <td class="w50">ID</td>
-                        <td>商家名称</td>
+                        <td>企业名称</td>
                         <td>纬度</td>
                         <td>是否打洋</td>
                         <td>是否支持在线付款</td>
@@ -103,7 +103,7 @@
                         <else/>
                         <{:TUFZBA('ele/opened',array("shop_id"=>$var["shop_id"],'type'=>'closed'),'打烊','act','remberBtn')}>
                         </eq>
-                        <a target="_blank" class="remberBtn" href="<{:U('shop/login',array('shop_id'=>$var['shop_id']))}>">管理商家</a>
+                        <a target="_blank" class="remberBtn" href="<{:U('shop/login',array('shop_id'=>$var['shop_id']))}>">管理企业</a>
                         </td>
                         </tr>
                     </foreach>

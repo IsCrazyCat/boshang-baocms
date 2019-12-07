@@ -12,7 +12,7 @@ class PostreplyAction extends CommonAction
         $map_post = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $list_post = D('Post')->where($map_post)->select();
-        //查询所在城市的商家
+        //查询所在城市的企业
         foreach ($list_post as $val) {
             $post_ids[$val['post_id']] = $val['post_id'];
             //对比shop_id

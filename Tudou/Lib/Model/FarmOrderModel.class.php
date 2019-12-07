@@ -44,7 +44,7 @@ class FarmOrderModel extends CommonModel{
             if(false !== $this->save(array('order_id'=>$order_id,'order_status'=>2))){
                 if($detail['is_fan'] == 1){
 					$info = '农家乐【'.$farm['farm_name'].'】订单ID：'.$order_id.'完成，结算金额：'.$detail['jiesuan_amount'].'元';
-					D('Shopmoney')->insertData($order_id,$id ='0',$farm['shop_id'],$detail['jiesuan_amount']*100,$type ='farm',$info);//结算给商家
+					D('Shopmoney')->insertData($order_id,$id ='0',$farm['shop_id'],$detail['jiesuan_amount']*100,$type ='farm',$info);//结算给企业
 					D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 5,$status = 8);
 					D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 5,$status = 8);
 					return true;

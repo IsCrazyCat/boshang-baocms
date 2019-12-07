@@ -1,13 +1,13 @@
 <include  file='public:header'/>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">系统设置</a> > <a href="">商家导航</a> > <a>wap商家详情页导航</a></li>
+        <li><a href="#">系统设置</a> > <a href="">企业导航</a> > <a>wap企业详情页导航</a></li>
     </ul>
 </div>
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">商家开通后首先来勾选自己在WAP商家详情页需要显示的模块，最多勾选4个，这里给商家自主性选择，请根据自己的实际业务来勾选，切勿乱勾选！这里的排序功能暂时勿用，可以不去修改默认的就行！</div>
+            <div class="left tuan_topser_l">企业开通后首先来勾选自己在WAP企业详情页需要显示的模块，最多勾选4个，这里给企业自主性选择，请根据自己的实际业务来勾选，切勿乱勾选！这里的排序功能暂时勿用，可以不去修改默认的就行！</div>
         </div>
     </div> 
     <include  file='shop:nav'/>
@@ -79,8 +79,8 @@
           </tr>
           
            <tr>
-              <td style="height:50px;">商家新闻</td>
-              <td><input type="text" class="tuanfabu_int tuanfabu_intw2" name="data[nav6_name]" value="<{$detail.nav6_name|default='商家新闻'}>" /></td>
+              <td style="height:50px;">企业新闻</td>
+              <td><input type="text" class="tuanfabu_int tuanfabu_intw2" name="data[nav6_name]" value="<{$detail.nav6_name|default='企业新闻'}>" /></td>
               <td><input type="text" class="tuanfabu_int tuanfabu_intw2" name="nav6_is_orderby" value="<{$detail.nav6_is_orderby|default='100'}>" /></td>
               <td>
                   <input type="radio" name="nav6_is_open" value="0" <if condition="$detail[nav6_is_open] eq 0">checked="checked"</if> />隐藏

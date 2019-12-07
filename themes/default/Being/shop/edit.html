@@ -1,12 +1,12 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家管理</li>
-        <li class="li2 li3">编辑商家</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业管理</li>
+        <li class="li2 li3">编辑企业</li>
     </ul>
 </div>
-<p class="attention"><span>说明：</span> 请注意显示商家万能代码的时候建议多审核下</p>
+<p class="attention"><span>说明：</span> 请注意显示企业万能代码的时候建议多审核下</p>
 
 <form  target="x-frame" action="<{:U('shop/edit',array('shop_id'=>$detail['shop_id']))}>" method="post">
     <div class="mainScAdd">
@@ -343,7 +343,7 @@
 
         <tr>
 
-            <td class="lfTdBt">商家坐标：</td>
+            <td class="lfTdBt">企业坐标：</td>
             <td class="rgTdBt">
                 <div class="lt">
                     经度<input type="text" name="data[lng]" id="data_lng" value="<{$detail.lng|default=''}>" class="scAddTextName w210 w100" />
@@ -457,7 +457,7 @@
           </tr>
         
 
-             <tr><td class="lfTdBt">商家介绍：</td><td class="rgTdBt">
+             <tr><td class="lfTdBt">企业介绍：</td><td class="rgTdBt">
                   <script type="text/plain" id="details" name="details" style="width:800px;height:360px;"><{$ex.details}></script>
 					</td>
              </tr><link rel="stylesheet" href="__PUBLIC__/qiniu_ueditor/themes/default/css/ueditor.min.css" type="text/css">

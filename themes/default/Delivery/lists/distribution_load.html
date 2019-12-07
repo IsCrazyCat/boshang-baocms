@@ -117,11 +117,11 @@
        
                         <if condition="$item.status eq 2">
                             <if condition="$cha lt 0">
-                                <span class="text-small">已超出商家规定时间</span>
+                                <span class="text-small">已超出企业规定时间</span>
                                 <else/>
                                 
                             <span class="text-small spxq_qgTime" id="t<{$a}>">
-                                    <span class="spxq_qgTimezt spxq_qgTimejx">距商家规定时间还有：</span>
+                                    <span class="spxq_qgTimezt spxq_qgTimejx">距企业规定时间还有：</span>
                                     <span id="t_d">00</span>:
                                     <span id="t_h">00</span>:
                                     <span id="t_m">00</span>:
@@ -157,8 +157,8 @@
             <div class="num">
             <table class="table">
                 <div class="blank-10"></div>
-                <a class="text-small button-block">商家名称：<{$shops[$addr['shop_id']]['shop_name']}>-  <{$shops[$addr['shop_id']]['tel']}></a>
-                <a class="text-small button-block">商家地址：<{$shops[$addr['shop_id']]['addr']}> </a>
+                <a class="text-small button-block">企业名称：<{$shops[$addr['shop_id']]['shop_name']}>-  <{$shops[$addr['shop_id']]['tel']}></a>
+                <a class="text-small button-block">企业地址：<{$shops[$addr['shop_id']]['addr']}> </a>
                 <div class="blank-10 bg"></div>
                 <a class="text-small button-block">买家地址：<{$addr['addr']}> </a>
                 <a class="text-small button-block">买家姓名：<{$addr['name']}></a>

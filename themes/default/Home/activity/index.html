@@ -66,7 +66,7 @@
                 </div>
                 <div class="hdxq_LiTime">
                     有效期：至<{$item.sign_end}><a target="_blank" style="font-size:12px;" href="<{:U('shop/detail',array('shop_id'=>$item['shop_id']))}>">
-                    商家：<{$shops[$item['shop_id']]['shop_name']}> <{$shops[$item['shop_id']]['tel']}><if condition="$shops[$item['shop_id']]['extension'] neq null">转<{$shops[$item['shop_id']]['extension']}>分机</if></a>
+                    企业：<{$shops[$item['shop_id']]['shop_name']}> <{$shops[$item['shop_id']]['tel']}><if condition="$shops[$item['shop_id']]['extension'] neq null">转<{$shops[$item['shop_id']]['extension']}>分机</if></a>
                 </div>
             </div>
            <div class="right hdxq_tgList_r"><a href="<{:U('activity/detail',array('activity_id'=>$item['activity_id']))}>"><img width="639" height="293" src="<{:config_img($item['photo'])}>"></a></div>

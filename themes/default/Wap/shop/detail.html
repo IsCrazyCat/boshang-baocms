@@ -87,7 +87,7 @@
 			<div class="x3">
 				<a class="favor" href="<{:U('shop/favorites',array('shop_id'=>$detail['shop_id']))}>">
 					<div class="txt radius-circle bg-green"><i class="iconfont icon-25"></i></div>
-					<p>关注该商家</p>
+					<p>关注该企业</p>
 					<p class="text-small">粉丝<em class="text-yellow"><{$favnum}></em>人</p>
 				</a>
 			</div>
@@ -95,7 +95,7 @@
                 <div class="x3">
                     <a class="favor" id="www-hatudou-com-url-btn" href="<{:U('shop/zan',array('shop_id'=>$detail['shop_id']))}>">
                         <div class="txt radius-circle bg-yellow"><i class="iconfont icon-dianzan"></i></div>
-                        <p>给商家点赞</p>
+                        <p>给企业点赞</p>
                         <p class="text-small">点赞<em class="text-yellow"><{$detail['zan_num']}></em>人</p>
                     </a>
                 </div>
@@ -179,7 +179,7 @@
 
 <!--		    <if condition="!empty($tuans)"> 	-->
 <!--               	<a href="<{:U('tuan/index',array('shop_id'=>$detail['shop_id']))}>">-->
-<!--				   	<span class="txt txt-little radius-little bg-green">团</span> 去逛逛商家抢购-->
+<!--				   	<span class="txt txt-little radius-little bg-green">团</span> 去逛逛企业抢购-->
 <!--			    	<span class="float-right iconfont icon-angle-right"></span>-->
 <!--			    </a>		   -->
 <!--            </if>		           -->
@@ -220,7 +220,7 @@
             <!--活动开始--> 
 <!--            <if condition="!empty($huodong)">-->
 <!--                <div class="blank-10 bg"></div>-->
-<!--                <div class="panel-head"><b>商家活动</b></div>-->
+<!--                <div class="panel-head"><b>企业活动</b></div>-->
 <!--                <php>$i=0;</php>	-->
 <!--                <volist name="huodong" id="item" key="index">&lt;!&ndash;循环输出的一条数据&ndash;&gt;-->
 <!--                    <php>$i++;</php>	-->
@@ -245,7 +245,7 @@
 
 <!--            <if condition="!empty($ele_menu)">&lt;!&ndash;显示近期外卖数据&ndash;&gt;			-->
 <!--                <a href="<{:U('wap/ele/shop/',array('shop_id'=>$detail['shop_id']))}>">-->
-<!--			     	<span class="txt txt-little radius-little bg-dot">外</span> 商家外卖精选-->
+<!--			     	<span class="txt txt-little radius-little bg-dot">外</span> 企业外卖精选-->
 <!--        		    <span class="float-right iconfont icon-angle-right"></span>-->
 <!--			    </a>-->
 <!--            </if>&lt;!&ndash;显示近期外卖结束&ndash;&gt;                -->
@@ -264,7 +264,7 @@
    <div class="blank-10 bg"></div>
      <div class="container2">
 		<div class="panel detail-intro radius-none">
-			<div class="panel-head">商家介绍</div>
+			<div class="panel-head">企业介绍</div>
 			<div class="panel-body">
             
             	<{$ex['details']}>
@@ -285,7 +285,7 @@
        
 <!--       <div class="container2">-->
 <!--        <div class="panel detail-intro radius-none">-->
-<!--			<div class="panel-head" onclick="location='<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>'">商家抢购 <span class="float-right iconfont icon-angle-right"></span></div>-->
+<!--			<div class="panel-head" onclick="location='<{:U('shop/goods',array('shop_id'=>$detail['shop_id']))}>'">企业抢购 <span class="float-right iconfont icon-angle-right"></span></div>-->
 <!--		    <div class="main-tuan" id="main-tuan" style="padding:0 10px;">-->
 <!--            <volist name="goods" id="item">		-->
 <!--	        <li>-->
@@ -332,7 +332,7 @@
 <script>
 wx.ready(function () {
     wx.onMenuShareTimeline({
-            title: '【<{$detail["shop_name"]}>】成功加入<{$CONFIG.site.sitename}>优质商家',
+            title: '【<{$detail["shop_name"]}>】成功加入<{$CONFIG.site.sitename}>优质企业',
         	link: "<{$CONFIG.site.host}><{:U('wap/shop/detail',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act,'shop_id'=>$detail['shop_id']))}>", 
         	imgUrl: "<{:config_weixin_img($detail['photo'])}>", 
             success: function (){
@@ -344,7 +344,7 @@ wx.ready(function () {
         });
         //分享给朋友
         wx.onMenuShareAppMessage({
-            title: '【<{$detail["shop_name"]}>】成功加入<{$CONFIG.site.sitename}>优质商家',
+            title: '【<{$detail["shop_name"]}>】成功加入<{$CONFIG.site.sitename}>优质企业',
             desc: '<{$CONFIG.site.description}>',
             link: "<{$CONFIG.site.host}><{:U('wap/shop/detail',array('fuid'=>$MEMBER['user_id'],'controller'=>$ctl,'action'=>$act,'shop_id'=>$detail['shop_id']))}>", 
         	imgUrl: "<{:config_weixin_img($detail['photo'])}>", 

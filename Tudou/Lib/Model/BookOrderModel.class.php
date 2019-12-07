@@ -86,7 +86,7 @@ class BookOrderModel extends CommonModel{
 		}
      }  
 	 
-	 //商家抢单
+	 //企业抢单
 	public function book_orders($order_id,$shop_id){
 		if(!$detail = $this->find($order_id)) {
            $this->error = '没有找到订单';
@@ -101,7 +101,7 @@ class BookOrderModel extends CommonModel{
         }
     }
 	
-	 //商家订单已完成
+	 //企业订单已完成
 	public function book_complete($order_id,$shop_id){
 		if(!$detail = $this->find($order_id)) {
            $this->error = '没有找到订单';
@@ -133,7 +133,7 @@ class BookOrderModel extends CommonModel{
                 if ($this->save(array('order_id'=>$order_id,'status'=>8,'complete_time'=>NOW_TIME))) {
 					if($detail['price'] > 0){
 						$info = '服务预约订单ID:'.$order_id.'完成，结算金额'.round($detail['price']/100,2);
-						D('Shopmoney')->insertData($order_id,$id ='0',$detail['shop_id'],$detail['price'],$type ='book',$info);//结算给商家
+						D('Shopmoney')->insertData($order_id,$id ='0',$detail['shop_id'],$detail['price'],$type ='book',$info);//结算给企业
 						D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 9,$status = 8);
 				    	D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 9,$status = 8);
 					}

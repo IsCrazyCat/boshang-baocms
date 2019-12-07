@@ -21,7 +21,7 @@
                                 <div class="left"><a class="myInfor_sx" target="_blank" href="<{:u('home/tuan/detail',array('tuan_id'=>$var['tuan_id']))}>">
                                 
                                 <img src="<{:config_img($tuan[$var['tuan_id']]['photo'])}>" width="81" height="60" /></a></div>
-                                <div class="lef"><a class="myInfor_sx" target="_blank" href="<{:u('home/tuan/detail',array('tuan_id'=>$var['tuan_id']))}>"><{$tuan[$var['tuan_id']]['title']}></a><p>有效期至：<{$tuan[$var['tuan_id']]['fail_date']}></p><p>商家：<a class="myInfor_sx" target="_blank" href="<{:u('home/shop/detail',array('shop_id'=>$var['shop_id']))}>"><{$shops[$var['shop_id']]['shop_name']|default='本站'}></a></p></div>
+                                <div class="lef"><a class="myInfor_sx" target="_blank" href="<{:u('home/tuan/detail',array('tuan_id'=>$var['tuan_id']))}>"><{$tuan[$var['tuan_id']]['title']}></a><p>有效期至：<{$tuan[$var['tuan_id']]['fail_date']}></p><p>企业：<a class="myInfor_sx" target="_blank" href="<{:u('home/shop/detail',array('shop_id'=>$var['shop_id']))}>"><{$shops[$var['shop_id']]['shop_name']|default='本站'}></a></p></div>
                             </div></td>
                         <td class="tgdd_nrCtd"><{$var.num}></td>
                         <td class="tgdd_nrCtd">&yen;<{:round($var['total_price']/100,2)}></td>

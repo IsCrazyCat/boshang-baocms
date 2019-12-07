@@ -26,7 +26,7 @@ $(function(){
 					var snstr = res.resultStr; 
 					$.post("<{:U('weixin/tuan')}>",{snstr:snstr},function(data){
 						alert(data.info);
-						//alert("请等待商家审核通过!");
+						//alert("请等待企业审核通过!");
 					},'json');	
 			}
 		});

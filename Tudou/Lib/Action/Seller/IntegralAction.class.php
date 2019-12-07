@@ -34,7 +34,7 @@ class IntegralAction extends CommonAction {
     }
 	
 	
-	//商家核销二维码
+	//企业核销二维码
 	public function verify($user_id = 0,$type = 0){
 		$obj = D('Users');
         $user_id = (int) $user_id;
@@ -63,10 +63,10 @@ class IntegralAction extends CommonAction {
 			if ($yzm != $cancel_used_code) {
 			   $this->tuMsg('短信验证码不正确');
 			}
-			$intro = '商家【'.$this->shop['shop_name'].'】积分核销：' . $integral;
+			$intro = '企业【'.$this->shop['shop_name'].'】积分核销：' . $integral;
 			if(false !== D('Userintegralcancel')->complete($detail['user_id'],$this->shop_id,$type,$worker_id = 0,$integral,$intro)){
 				session('cancel_used_code', null);
-				$this->tuMsg('商家验证成功', U('integral/index',array('aready'=>1)));
+				$this->tuMsg('企业验证成功', U('integral/index',array('aready'=>1)));
 			}else{
 				session('cancel_used_code', null);
 				$this->tuMsg('操作失败');
@@ -79,14 +79,14 @@ class IntegralAction extends CommonAction {
 		
     }
 	
-	 //商家核销验证码
+	 //企业核销验证码
     public function used() {
 		$user_id = (int) $this->_param('user_id');
 		$obj = D('Userintegralcancel');
 		if(!$obj->integral_cancel_verify($user_id,$this->shop_id)){//判断一切错误
 			$this->error($obj->getError());	  
 		}else{
-			$this->error('尊敬的商家，我们已向用户手机发送短信，正在为您跳转到下一页', U('integral/verify',array('user_id'=>$user_id,'type'=>1)));
+			$this->error('尊敬的企业，我们已向用户手机发送短信，正在为您跳转到下一页', U('integral/verify',array('user_id'=>$user_id,'type'=>1)));
 		}
     }
 }

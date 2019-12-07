@@ -148,10 +148,10 @@ class BookingAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), array('shop_id','shop_name', 'addr', 'city_id', 'area_id','business_id','price', 'tel','mobile','deposit','details', 'photo', 'lng', 'lat','business_time'));
         $data['shop_name'] = htmlspecialchars($data['shop_name']);
         if (empty($data['shop_name'])) {
-            $this->tuError('商家名称不能为空');
+            $this->tuError('企业名称不能为空');
         }$data['addr'] = htmlspecialchars($data['addr']);
         if (empty($data['addr'])) {
-            $this->tuError('商家地址不能为空');
+            $this->tuError('企业地址不能为空');
         }$data['price'] = (int)$data['price'];
         if (empty($data['price'])) {
             $this->tuError('平均消费不能为空');
@@ -160,13 +160,13 @@ class BookingAction extends CommonAction{
         $data['lng'] = htmlspecialchars($data['lng']);
         $data['lat'] = htmlspecialchars($data['lat']);
         if (empty($data['lng']) || empty($data['lat'])) {
-                $this->tuError('商家坐标没有选择');
+                $this->tuError('企业坐标没有选择');
             }
         $data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }elseif(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['mobile'] = htmlspecialchars($data['mobile']);
         if(!isMobile($data['mobile'])){
@@ -186,10 +186,10 @@ class BookingAction extends CommonAction{
         
         $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商家详情不能为空');
+            $this->tuError('企业详情不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
-            $this->tuError('商家详情含有敏感词：' . $words);
+            $this->tuError('企业详情含有敏感词：' . $words);
         } 
         $data['business_time'] = htmlspecialchars($data['business_time']);
         $data['audit'] = 1;
@@ -202,7 +202,7 @@ class BookingAction extends CommonAction{
         if ($shop_id = (int) $shop_id) {
             $obj = D('Booking');
             if (!$detail = $obj->find($shop_id)) {
-                $this->tuError('请选择要编辑的订座商家');
+                $this->tuError('请选择要编辑的订座企业');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -244,7 +244,7 @@ class BookingAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的订座商家');
+            $this->tuError('请选择要编辑的订座企业');
         }
     }
     
@@ -252,10 +252,10 @@ class BookingAction extends CommonAction{
         $data = $this->checkFields($this->_post('data', false), array('shop_id','shop_name', 'addr', 'city_id', 'area_id','business_id','price', 'tel','mobile','deposit', 'details', 'photo', 'lng', 'lat','business_time'));
         $data['shop_name'] = htmlspecialchars($data['shop_name']);
         if (empty($data['shop_name'])) {
-            $this->tuError('商家名称不能为空');
+            $this->tuError('企业名称不能为空');
         }$data['addr'] = htmlspecialchars($data['addr']);
         if (empty($data['addr'])) {
-            $this->tuError('商家地址不能为空');
+            $this->tuError('企业地址不能为空');
         }$data['price'] = (int)$data['price'];
         if (empty($data['price'])) {
             $this->tuError('平均消费不能为空');
@@ -266,13 +266,13 @@ class BookingAction extends CommonAction{
         $data['lng'] = htmlspecialchars($data['lng']);
         $data['lat'] = htmlspecialchars($data['lat']);
         if (empty($data['lng']) || empty($data['lat'])) {
-                $this->tuError('商家坐标没有选择');
+                $this->tuError('企业坐标没有选择');
             }
         $data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }elseif(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }$data['mobile'] = htmlspecialchars($data['mobile']);
         if (empty($data['mobile'])) {
             $this->tuError('手机号不能为空');
@@ -369,7 +369,7 @@ class BookingAction extends CommonAction{
                 }
                 $this->tuSuccess('删除成功', U('booking/index'));
             }
-            $this->tuError('请选择要删除的商家');
+            $this->tuError('请选择要删除的企业');
         }
     }
 
@@ -386,7 +386,7 @@ class BookingAction extends CommonAction{
                 }
                 $this->tuSuccess('审核成功', U('booking/index'));
             }
-            $this->tuError('请选择要审核的订座商家');
+            $this->tuError('请选择要审核的订座企业');
         }
     }
 

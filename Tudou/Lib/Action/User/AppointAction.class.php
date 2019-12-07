@@ -165,7 +165,7 @@ class AppointAction extends CommonAction{
             }elseif($appoint_order['status'] != 2){
 				 $this->tuMsg('当前订单状态不永许这样操作');
 			}else{
-				if (false == D('Appointorder')->appoint_settlement($order_id)) {//确认订单去把余额返回给商家
+				if (false == D('Appointorder')->appoint_settlement($order_id)) {//确认订单去把余额返回给企业
 					$this->tuMsg('非法操作');
 				}else{
 					$this->tuMsg('您已成功确认订单，请给我们评价下吧',U('appoint/index', array('st' => 8)));	

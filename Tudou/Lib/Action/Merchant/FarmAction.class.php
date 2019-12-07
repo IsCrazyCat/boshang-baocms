@@ -220,7 +220,7 @@ class FarmAction extends CommonAction {
         
         $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商家简介不能为空');
+            $this->tuError('企业简介不能为空');
         }
         $data['notice'] = SecurityEditorHtml($data['notice']);
         if (empty($data['notice'])) {

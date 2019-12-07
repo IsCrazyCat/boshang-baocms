@@ -462,7 +462,7 @@ class OrderAction extends CommonAction {
             $this->error('该订单不存在');
         }
         if ($detail['shop_id'] != $this->shop_id) {
-            $this->error('请不要操作其他商家的订单');
+            $this->error('请不要操作其他企业的订单');
         }
         $order_goods = D('Ordergoods')->where(array('order_id' => $order_id))->select();
         $goods_ids = array();
@@ -491,7 +491,7 @@ class OrderAction extends CommonAction {
             $this->error('该订单不存在');
         }
         if ($Order['shop_id'] != $this->shop_id) {
-            $this->error('请不要操作其他商家的订单');
+            $this->error('请不要操作其他企业的订单');
         }
 		$list = D('Userprofitlogs')->where(array('order_id' => $order_id))->select();
 		$user_ids = array();

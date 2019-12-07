@@ -14,11 +14,11 @@
     <ul>
         <li class="li1">外卖频道</li>
         <li class="li2">便利店频道</li>
-        <li class="li2 li3">商家列表</li>
+        <li class="li2 li3">企业列表</li>
     </ul>
 </div>
 <div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>如果未添加商家，那么不能发布工作，这里可以按照条件搜索外卖商家，已可以查询商家的营业状态等</p>
+    <p class="attention"><span>注意：</span>如果未添加企业，那么不能发布工作，这里可以按照条件搜索外卖企业，已可以查询企业的营业状态等</p>
     <div class="jsglNr">
         <div class="selectNr" style="border-top: none; margin-top: 0px;">
             <div class="left">
@@ -80,7 +80,7 @@
                     <tr>
                         <td class="w50"><input type="checkbox" class="checkAll" rel="shop_id" /></td>
                         <td class="w50">ID</td>
-                        <td>商家名称</td>
+                        <td>企业名称</td>
                         <td>是否打烊</td>
                         <td>是否支持在线付款</td>
                         <td>是否支持货到付款</td>
@@ -146,7 +146,7 @@
                             <else/>
                             <{:BA('store/opened',array("shop_id"=>$var["shop_id"],'type'=>'closed'),'打烊','act','remberBtn')}>
                             </eq>
-                            <a target="_blank" class="remberBtn" href="<{:U('shop/login',array('shop_id'=>$var['shop_id']))}>">管理商家</a>
+                            <a target="_blank" class="remberBtn" href="<{:U('shop/login',array('shop_id'=>$var['shop_id']))}>">管理企业</a>
                             </td>
                         </tr>
                     </foreach>

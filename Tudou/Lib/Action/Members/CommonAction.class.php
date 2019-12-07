@@ -89,7 +89,7 @@ class CommonAction extends Action{
        
         $this->assign('color', $color = $this->_CONFIG['other']['color']);
         $this->assign('shop_gold', $shop_gold = D('Shop')->where(array('user_id' => $this->uid))->find());
-        //查询此会员是否是商家
+        //查询此会员是否是企业
         $bg_time = strtotime(TODAY);
         $this->assign('msg_day', $counts['msg_day'] = (int) D('Msg')->where(array('cate_id' => 2, 'views' => 0, 'shop_id' => $this->shop_id))->count());
 		

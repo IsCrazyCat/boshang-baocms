@@ -2,7 +2,7 @@
 <script src="__PUBLIC__/js/my97/WdatePicker.js"></script>
 <div class="sjgl_lead">
     <ul>
-        <li><a href="#">商家管理</a> > <a href="">黄页</a> > <a>创建黄页</a></li>
+        <li><a href="#">企业管理</a> > <a href="">黄页</a> > <a>创建黄页</a></li>
     </ul>
 </div>
 <if condition="!empty($list)">
@@ -16,7 +16,7 @@
         <form method="post"  action="<{:U('pois/create')}>"  target="x-frame">
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">商家名称：</p></td>
+                    <td width="120"><p class="tuanfabu_t">企业名称：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[name]" value="<{$detail.name|default=''}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>
@@ -116,7 +116,7 @@
 <div class="tuan_content">
     <div class="radius5 tuan_top">
         <div class="tuan_top_t">
-            <div class="left tuan_topser_l">注意：</strong> 下面的信息来自于您的商家资料，请检查后提交开通黄页功能！</div>
+            <div class="left tuan_topser_l">注意：</strong> 下面的信息来自于您的企业资料，请检查后提交开通黄页功能！</div>
         </div>
     </div> 
     <div class="tabnr_change  show">
@@ -124,7 +124,7 @@
 
             <table class="tuanfabu_table" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="120"><p class="tuanfabu_t">商家名称：</p></td>
+                    <td width="120"><p class="tuanfabu_t">企业名称：</p></td>
                     <td><div class="tuanfabu_nr">
                             <input type="text" name="data[name]" value="<{$SHOP.shop_name}>" class="tuanfabu_int tuanfabu_intw2" />
                         </div></td>

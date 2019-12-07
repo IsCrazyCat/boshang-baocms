@@ -24,7 +24,7 @@
                     <li class="goods_flList">
                         <div class="left goods_flList_l">分类：</div>
                         <div class="left goods_flList_r">
-                            <a  class="<if condition='empty($cat)'>on</if> goods_flListA"  title="所有商家" href="<{:LinkTo('shop/index',$linkArr,array('cat'=>0,'cate_id'=>0))}>">全部</a>
+                            <a  class="<if condition='empty($cat)'>on</if> goods_flListA"  title="所有企业" href="<{:LinkTo('shop/index',$linkArr,array('cat'=>0,'cate_id'=>0))}>">全部</a>
                             <php>$i = 1;</php>
                             <foreach name="shopcates" item="item">
                                 <eq name="item.parent_id" value="0"> 
@@ -144,9 +144,9 @@
                             </div>
                         </div>
                         <div class="message">
-                            <p class="menu">商家类别: 
+                            <p class="menu">企业类别:
                             <a href="<{:U('shop/index',array('cate_id'=>$item['cate_id']))}>"><{$shopcates[$item['cate_id']]['cate_name']}></a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                            <p class="address2"><a>商家地址：<{$item.addr}></p>
+                            <p class="address2"><a>企业地址：<{$item.addr}></p>
                         </div>
                         <div class="message message_2">
                             <p class="address2"></p>
@@ -166,15 +166,15 @@
                         
                       <if condition="!empty($item['qrcode'])">
                           <span class="line">|</span>
-                          <a class="qrcode" rel="qrcode_mask_<{$item.shop_id}>" data="<{$item.shop_name}>"  href="javascript:void(0);">商家二维码</a>
+                          <a class="qrcode" rel="qrcode_mask_<{$item.shop_id}>" data="<{$item.shop_name}>"  href="javascript:void(0);">企业二维码</a>
                       </if>   
                          
                          
                         <span class="line">|</span>
-                        <a  id="a_favoritemod_1" class="o-favor J_o-favor"  mini='act' href="<{:U('shop/favorites',array('shop_id'=>$item['shop_id']))}>">关注商家</a>
+                        <a  id="a_favoritemod_1" class="o-favor J_o-favor"  mini='act' href="<{:U('shop/favorites',array('shop_id'=>$item['shop_id']))}>">关注企业</a>
 
                          <span class="line">|</span>
-                         <a class="sjsy_ljzx3 o-remark2" href="<{:U('shop/about',array('shop_id'=>$item['shop_id']))}>">商家地图</a>
+                         <a class="sjsy_ljzx3 o-remark2" href="<{:U('shop/about',array('shop_id'=>$item['shop_id']))}>">企业地图</a>
 
                         </div>
                         <php>$shopyouhui = D('Shopyouhui')->where(array('shop_id'=>$item['shop_id']))->find();</php>
@@ -205,7 +205,7 @@
             <div class="aside">
                 <div class="J_mkt-group-2"></div>
                 <div class="hot-ct con-block">
-                  <div class="title"><span>推荐商家</span></div>
+                  <div class="title"><span>推荐企业</span></div>
                 <div class="wp">
                    <div class="ct-infor-list">
                     <ul>

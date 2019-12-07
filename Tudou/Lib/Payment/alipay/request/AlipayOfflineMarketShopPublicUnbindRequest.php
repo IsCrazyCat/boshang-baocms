@@ -13,7 +13,7 @@ class AlipayOfflineMarketShopPublicUnbindRequest
 	private $isAll;
 	
 	/** 
-	 * 解除绑定门店的ID列表，一次最多解绑100个门店，is_all为T时表示解除绑定本商家下所有门店，即门店列表无需通过本参数shop_ids传入，由系统自动查询;is_all为F时该参数必填
+	 * 解除绑定门店的ID列表，一次最多解绑100个门店，is_all为T时表示解除绑定本企业下所有门店，即门店列表无需通过本参数shop_ids传入，由系统自动查询;is_all为F时该参数必填
 	 **/
 	private $shopIds;
 

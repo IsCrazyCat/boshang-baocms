@@ -23,7 +23,7 @@
                                  <option <eq name="category" value="$key">selected="selected"</eq>  value="<{$key}>"><{$item}></option>
                               </foreach>
                         </select>
-                        <code>首选选择给谁发送短信，如果您是给会员发送则不要选择商家等级，这里没做隐藏判断</code>
+                        <code>首选选择给谁发送短信，如果您是给会员发送则不要选择企业等级，这里没做隐藏判断</code>
                     </td>
                 </tr>
                 
@@ -78,15 +78,15 @@
                 </tr>
                 
                 <tr>
-                    <td class="lfTdBt">商家等级：</td>
+                    <td class="lfTdBt">企业等级：</td>
                     <td class="rgTdBt">
                         <select name="data[grade_id]" class="seleFl w200">
-                            <option value="0">不选择商家等级</option>
+                            <option value="0">不选择企业等级</option>
                             <foreach name="grades" item="item">
                                 <option <eq name="item.grade_id" value="$detail.grade_id">selected="selected"</eq> value="<{$item.grade_id}>"><{$item.grade_name}></option>
                             </foreach>
                         </select>
-                        <code>如果不选择则全部商家等级发送，如果您选择商家等级我们针对不同的等级发送，针对发送主体为商家时候有效</code>
+                        <code>如果不选择则全部企业等级发送，如果您选择企业等级我们针对不同的等级发送，针对发送主体为企业时候有效</code>
                     </td>
                 </tr>
                 

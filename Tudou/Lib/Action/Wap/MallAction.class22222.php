@@ -613,10 +613,10 @@ class MallAction extends CommonAction{
 				'key'=> $val['sky'],
 				'key_name' => $val['key_name']
 			);
-            $total_canuserintegral[$val['shop_id']] += $canuserintegral; //不同商家可使用积分
-            $total_price[$val['shop_id']] += $price; //不同商家的总价格
-			$express_price[$val['shop_id']] += $order_express_price; //不同商家总运费
-            $mm_price[$val['shop_id']] += $mobile_fan;  //不同商家的手机下单立减
+            $total_canuserintegral[$val['shop_id']] += $canuserintegral; //不同企业可使用积分
+            $total_price[$val['shop_id']] += $price; //不同企业的总价格
+			$express_price[$val['shop_id']] += $order_express_price; //不同企业总运费
+            $mm_price[$val['shop_id']] += $mobile_fan;  //不同企业的手机下单立减
           
         }
         $order = array('user_id' => $this->uid, 'create_time' => NOW_TIME, 'create_ip' => $ip, 'is_mobile' => 1);
@@ -805,8 +805,8 @@ class MallAction extends CommonAction{
             D('Ordergoods')->save(array('is_daofu' => 1, 'status' => 1), array('where' => array('order_id' => array('IN', $order_ids))));
             D('Order')->mallSold($order_ids);//更新销量
             D('Order')->mallPeisong(array($order_ids), 1);//更新配送
-			D('Sms')->mallTZshop($order_ids);//用户下单通知商家
-			D('Order')->combination_goods_print($order_ids);//多商家订单打印
+			D('Sms')->mallTZshop($order_ids);//用户下单通知企业
+			D('Order')->combination_goods_print($order_ids);//多企业订单打印
             $this->tuMsg('恭喜您下单成功', U('user/goods/index'));
         } else {
             $payment = D('Payment')->checkPayment($code);
@@ -884,7 +884,7 @@ class MallAction extends CommonAction{
             D('Ordergoods')->save(array('is_daofu' => 1, 'status' => 1), array('where' => array('order_id' => $order_id)));			
             $obj ->mallSold($order_id);//更新销量
             $obj ->mallPeisong(array($order_id), 1);//更新配送
-			D('Sms')->mallTZshop($order_id);//用户下单通知商家
+			D('Sms')->mallTZshop($order_id);//用户下单通知企业
 			$obj ->combination_goods_print($order_id);//万能商城订单打印
 		    D('Weixintmpl')->weixin_notice_goods_user($order_id,$this->uid,0);//商城微信通知
             $this->tuMsg('恭喜您下单成功', U('user/goods/index'));

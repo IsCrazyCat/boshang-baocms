@@ -54,7 +54,7 @@ class AlipayOpenPublicLifeAgentCreateRequest
 	
 	/** 
 	 * 所属MCCCode，详情可参考
-<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.INIZWb&articleId=105364&docType=1">商家经营类目</a> 中的“经营类目编码”
+<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.INIZWb&articleId=105364&docType=1">企业经营类目</a> 中的“经营类目编码”
 	 **/
 	private $mccCode;
 	
@@ -89,7 +89,7 @@ class AlipayOpenPublicLifeAgentCreateRequest
 	private $shopSignBoardPic;
 	
 	/** 
-	 * 企业特殊资质图片，可参考 <a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.INIZWb&articleId=105364&docType=1">商家经营类目</a> 中的 “需要的特殊资质证书”
+	 * 企业特殊资质图片，可参考 <a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.INIZWb&articleId=105364&docType=1">企业经营类目</a> 中的 “需要的特殊资质证书”
 	 **/
 	private $specialLicensePic;
 

@@ -256,7 +256,7 @@ class GoodsAction extends CommonAction{
         }
         $data['shop_id'] = (int) $this->shop_id;
         if(empty($data['shop_id'])){
-            $this->tuMsg('商家不能为空');
+            $this->tuMsg('企业不能为空');
         }
         $data['guige'] = htmlspecialchars($data['guige']);
 		$data['num'] = (int) $data['num'];

@@ -38,7 +38,7 @@ class EleAction extends CommonAction{
         exit($json_str); 
 	}
 	
-	//首页商家列表  商家搜索
+	//首页企业列表  企业搜索
 	public function index(){
 		$ele = D('Ele');
         import('ORG.Util.Page');
@@ -114,7 +114,7 @@ class EleAction extends CommonAction{
         foreach ($list as $k => $val) {
             $shop_ids[$val['shop_id']] = $val['shop_id'];
         }
-        //所有商家信息
+        //所有企业信息
         $shops = D('Shop')->itemsByIds($shop_ids);
         $count = 0;
         foreach ($list as $k => $val) {
@@ -161,7 +161,7 @@ class EleAction extends CommonAction{
         return $close;
     }
 
-    //商家菜品分类
+    //企业菜品分类
     public function shopCates($shop_id){
 
 		$cates = D('Elecate')->where(array('shop_id' => $shop_id, 'closed' => 0))->select();
@@ -277,22 +277,22 @@ class EleAction extends CommonAction{
         } 
 
         if (empty($shop_id)) {
-             exit(json_encode(array('status'=>-1,'msg'=>'商家不存在','data'=>'')));
+             exit(json_encode(array('status'=>-1,'msg'=>'企业不存在','data'=>'')));
         }
         $shop = D('Ele')->find($shop_id);
         if (empty($shop)) {
-             exit(json_encode(array('status'=>-1,'msg'=>'该商家不存在','data'=>'')));
+             exit(json_encode(array('status'=>-1,'msg'=>'该企业不存在','data'=>'')));
         }
         if (false == D('Shop')->check_shop_user_id($shop_id,$this->uid)) {//不能购买自己家的产品
              exit(json_encode(array('status'=>-1,'msg'=>'您不能购买自己家的外卖，请换个账号登录','data'=>'')));
         }
         
         if (!$shop['is_open']) {
-             exit(json_encode(array('status'=>-1,'msg'=>'商家已经打烊了','data'=>'')));
+             exit(json_encode(array('status'=>-1,'msg'=>'企业已经打烊了','data'=>'')));
         }
         $busihour = $this->closeshopele($shop['busihour']);
          if ($busihour == 1) {
-             exit(json_encode(array('status'=>-1,'msg'=>'商家休息中，无法接受订餐','data'=>'')));
+             exit(json_encode(array('status'=>-1,'msg'=>'企业休息中，无法接受订餐','data'=>'')));
         }
         
         $total['logistics_full_money'] = D('Eleorder')->get_logistics($total['money'],$shop_id);//获取配送费用
@@ -315,7 +315,7 @@ class EleAction extends CommonAction{
         };
         
         
-        //结算金额逻辑后期封装，如果是第三方配送，如果开通新单立减后，配送费用商家出，如果商家开启满减优惠，满减优惠商家出
+        //结算金额逻辑后期封装，如果是第三方配送，如果开通新单立减后，配送费用企业出，如果企业开启满减优惠，满减优惠企业出
         if($total['logistics_full_money']){
             $logistics = 0;
             $shop_detail = D('Shop')->find($shop_id);

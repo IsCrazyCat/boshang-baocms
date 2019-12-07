@@ -22,7 +22,7 @@
 			community => '小区缴费',
 			market => '菜市场',
 			store => '便利店',
-			shop => '商家入驻',
+			shop => '企业入驻',
         );
         protected $is_paid = array(
             0 => '未支付',

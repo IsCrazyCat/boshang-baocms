@@ -1,5 +1,5 @@
 <?php
-//商家中心的控制器不要搞错了
+//企业中心的控制器不要搞错了
 class EduAction extends CommonAction {  
    private $cate_create_fields = array('cate_name', 'photo', 'orderby');
    private $cate_edit_fields = array('cate_name', 'photo', 'orderby');
@@ -82,7 +82,7 @@ class EduAction extends CommonAction {
         $this->display(); 
     }
     
-    //编辑教育商家
+    //编辑教育企业
     public function set_edu(){
         $obj = D('Edu');
         $edu = $obj->where(array('shop_id'=>$this->shop_id))->find();
@@ -113,21 +113,21 @@ class EduAction extends CommonAction {
             $this->display();
         }
     }
-    //教育商家编辑验证
+    //教育企业编辑验证
      private function createCheck() {
         $data = $this->checkFields($this->_post('data', false), array('shop_id', 'edu_name','intro', 'tel', 'photo', 'addr','cate_id', 'city_id', 'area_id', 'business_id','lat', 'lng', 'rate', 'details'));
 		$data['shop_id'] = $this->shop_id;
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }elseif(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['area_id'] = $shop['area_id'];
         $data['business_id'] = $shop['business_id'];
         $data['city_id'] = $shop['city_id'];
 		$data['cate_id'] = (int)$data['cate_id'];
 		if (empty($data['cate_id'])) {
-            $this->tuError('教育商家分类不能为空');
+            $this->tuError('教育企业分类不能为空');
         }
         $data['edu_name'] = htmlspecialchars($data['edu_name']);
         if (empty($data['edu_name'])) {

@@ -299,7 +299,7 @@ class LifeAction extends CommonAction{
 			}
             $details = I('details','','trim,htmlspecialchars');//内容
             if($words = D('Sensitive')->checkWords($details)){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家介绍含有敏感词：' . $words));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业介绍含有敏感词：' . $words));
             }
 			//标签开始
 			$sz = I('sz','','trim,htmlspecialchars');//获取josn数据

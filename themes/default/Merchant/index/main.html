@@ -14,7 +14,7 @@
 </style>
 <div class="sjgl_lead">
 	<ul>
-		<li><a href="#">商家中心首页</a>
+		<li><a href="#">企业中心首页</a>
 		</li>
 	</ul>
 </div>
@@ -46,12 +46,12 @@
          <div class="tuan_top_t">
             <if condition="!empty($SHOP['end_date']) and ($SHOP['end_date'] neq '0000-00-00')">
                 <div class="left tuan_topser_l">
-                    商家有效期至：<strong class="green"><{$SHOP.end_date}></strong> 	
+                    企业有效期至：<strong class="green"><{$SHOP.end_date}></strong>
                 </div>
             </if>
            <if condition="!empty($SHOPGRADE['grade_name'])">
                 <div class="left tuan_topser_l" <if condition="empty($SHOP['end_date']) and ($SHOP['end_date'] eq '0000-00-00')">style="margin-left:80px;"></if>>
-                    商家等级：<strong class="green"><{$SHOPGRADE.grade_name}></strong> 
+                    企业等级：<strong class="green"><{$SHOPGRADE.grade_name}></strong>
                     <a target="main_frm" href="<{:U('shop/permission',array('grade_id'=>$SHOPGRADE['grade_id']))}>" class="hatudou-btn">查看权限</a>	
                 </div>
            </if> 

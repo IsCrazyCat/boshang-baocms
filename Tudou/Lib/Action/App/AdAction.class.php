@@ -5,7 +5,7 @@ class  AdAction extends CommonAction{
 		$aready = (int) $this->_param('aready');
 		$obj = D('Ad');
 		if(!$detail = $obj->find($ad_id)){
-            $this->error('没有该商家信息');
+            $this->error('没有该企业信息');
         }
 		if($detail['closed'] ==1){
             $this->error('广告已关闭');

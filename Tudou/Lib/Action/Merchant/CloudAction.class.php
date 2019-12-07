@@ -81,7 +81,7 @@ class CloudAction extends CommonAction{
         if (!empty($data['shop_id'])) {
             $shop = D('Shop')->find($data['shop_id']);
             if (empty($shop)) {
-                $this->tuError('请选择正确的商家');
+                $this->tuError('请选择正确的企业');
             }
             $data['city_id'] = $shop['city_id'];
             $data['area_id'] = $shop['area_id'];
@@ -182,7 +182,7 @@ class CloudAction extends CommonAction{
         if (!empty($data['shop_id'])) {
             $shop = D('Shop')->find($data['shop_id']);
             if (empty($shop)) {
-                $this->tuError('请选择正确的商家');
+                $this->tuError('请选择正确的企业');
             }
             $data['city_id'] = $shop['city_id'];
             $data['area_id'] = $shop['area_id'];
@@ -252,7 +252,7 @@ class CloudAction extends CommonAction{
         }
     }
 	
-	//商家中心云购数据加载
+	//企业中心云购数据加载
 	public function order(){
         $obj = D("Cloudlogs");
         import("ORG.Util.Page");
@@ -291,7 +291,7 @@ class CloudAction extends CommonAction{
         $this->display();
     }
 
-	//商家云购删除订单
+	//企业云购删除订单
 	 public function order_delete($log_id){
         if (is_numeric($log_id) && ($log_id = (int) $log_id)) {
             $obj = D("Cloudlogs");

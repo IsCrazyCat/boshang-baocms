@@ -62,7 +62,7 @@ class AdsiteAction extends CommonAction
                 // 输出模板
             }
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
 	

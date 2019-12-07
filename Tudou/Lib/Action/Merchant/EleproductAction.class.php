@@ -121,7 +121,7 @@ class EleproductAction extends CommonAction{
                 $this->tuError('请选择要编辑的菜单管理');
             }
             if ($detail['shop_id'] != $this->shop_id) {
-                $this->tuError('请不要操作其他商家的菜单管理');
+                $this->tuError('请不要操作其他企业的菜单管理');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();

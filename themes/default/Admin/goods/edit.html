@@ -43,46 +43,8 @@
                     </td>
                 </tr>
 
-                <!--增加开始-->
                 <tr>
-                    <td class="lfTdBt">是否免运费：</td>
-                    <td class="rgTdBt">
-                        <input type="radio" name="data[is_reight]" value="0"
-                        <if condition="$detail[is_reight] eq 0">checked="checked"</if>
-                        />免运费
-                        <input type="radio" name="data[is_reight]" value="1"
-                        <if condition="$detail[is_reight] eq 1">checked="checked"</if>
-                        />不免运费
-                        <code>开启了免运费，下面就不要填写重量</code>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="lfTdBt">重量：</td>
-                    <td class="rgTdBt"><input type="text" name="data[weight]" value="<{$detail.weight|default=''}>"
-                                              class="manageInput"/>
-                        <code>填写克数，1000克等于1KG，配送费的首重按照KG计算</code>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="lfTdBt">选择运费模板：</td>
-                    <td class="rgTdBt">
-                        <select id="kuaidi_id" name="data[kuaidi_id]" class="seleFl w300">
-                            <option value="0">请选择</option>
-                            <foreach name="kuaidi" item="var">
-                                <option
-                                <eq name="var.id" value="$detail['kuaidi_id']">selected="selected"</eq>
-                                value="<{$var.id}>"><{$var.name}></option>
-                            </foreach>
-                        </select>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="lfTdBt">商家：</td>
+                    <td class="lfTdBt">企业：</td>
                     <td class="rgTdBt">
                         <div class="lt">
                             <input type="hidden" id="shop_id" name="data[shop_id]"
@@ -90,7 +52,7 @@
                             <input type="text" id="shop_name" name="shop_name" value="<{$shop.shop_name}>"
                                    class="manageInput"/>
                         </div>
-                        <a mini="select" w="1000" h="600" href="<{:U('shop/select')}>" class="remberBtn">选择商家</a>
+                        <a mini="select" w="1000" h="600" href="<{:U('shop/select')}>" class="remberBtn">选择企业</a>
                     </td>
                 </tr>
                 <tr>
@@ -153,96 +115,41 @@
 
 
                 <tr>
-                    <td class="lfTdBt">工作类型:</td>
-                    <td>
-                        <select name="data[shoplx]" id="spec_type" class="form-control seleFl w200"
-                                style="width:250px;">
-                            <option value="0">选择工作类型</option>
-                            <foreach name="goodsType" item="vo" key="k">
-                                <option value="<{$vo.id}>"
-                                <if condition="$goodsInfo[shoplx] eq $vo[id]"> selected="selected"</if>
-                                ><{$vo.name}></option>
+                    <td class="lfTdBt">工作标签<{$tag_id[0]}>:</td>
+                    <td class="rgTdBt">
+                        <select name="data[tag1]" class="seleFl w100" style="width:250px;float: left;margin-right: 15px">
+                            <option value="0">选择工作标签</option>
+                            <foreach name="tags" item="vo" key="k" >
+                                <if condition="$vo['cate_id'] eq $tag_id[0]">
+                                    <option value="<{$vo.cate_id}>" selected="selected"><{$vo.cate_name}></option>
+                                <else/>
+                                    <option value="<{$vo.cate_id}>" ><{$vo.cate_name}></option>
+                                </if>
+
+                            </foreach>
+                        </select>
+                        <select name="data[tag2]"  class="seleFl w100" style="width:250px;float: left;margin-right: 15px">
+                            <option value="0">选择工作标签</option>
+                            <foreach name="tags" item="vo" key="k" >
+                                <if condition="!empty($tag_id[1]) AND ($tag_id[1] eq $vo['cate_id'])">
+                                    <option value="<{$vo.cate_id}>" selected="selected"><{$vo.cate_name}></option>
+                                <else/>
+                                    <option value="<{$vo.cate_id}>" ><{$vo.cate_name}></option>
+                                </if>
+                            </foreach>
+                        </select>
+                        <select name="data[tag3]" class="seleFl w100" style="width:250px;float: left;">
+                            <option value="0">选择工作标签</option>
+                            <foreach name="tags" item="vo" key="k" >
+                                <if condition="!empty($tag_id[2]) AND ($tag_id[2] eq $vo['cate_id'])">
+                                    <option value="<{$vo.cate_id}>" selected="selected"><{$vo.cate_name}></option>
+                                <else/>
+                                    <option value="<{$vo.cate_id}>" ><{$vo.cate_name}></option>
+                                </if>
                             </foreach>
                         </select>
                     </td>
                 </tr>
-                <td class="lfTdBt">
-                </td>
-                <td>
-                    <div id="ajax_spec_data"></div>
-                </td>
-                <tr></tr>
-
-
-                <tr>
-                    <td class="lfTdBt">工作属性：</td>
-                    <td class="rgTdBt">
-                        <table class="table table-bordered" id="goods_attr_table">
-                            <tr>
-                                <td>工作属性:</td>
-                                <td>
-                                    <select name="goods_type" id="goods_type" class="form-control seleFl w200"
-                                            style="width:250px;">
-                                        <option value="0">选择工作属性</option>
-                                        <foreach name="goodsType" item="vo" key="k">
-                                            <option value="<{$vo.id}>"
-                                            <if condition="$goodsInfo[goods_type] eq $vo[id]"> selected="selected"</if>
-                                            ><{$vo.name}></option>
-                                        </foreach>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-
-
-                <script>
-                    $(document).ready(function () {
-                        $("#spec_type").change(function () {
-                            var goods_id = '<{$detail.goods_id}>';
-                            var spec_type = $(this).val();
-                            $.ajax({
-                                type: 'GET',
-                                data: {goods_id: goods_id, spec_type: spec_type},
-                                url: "<{:U('Goods/ajaxGetSpecSelect')}>",
-                                success: function (data) {
-                                    $("#ajax_spec_data").html('')
-                                    $("#ajax_spec_data").append(data);
-                                    ajaxGetSpecInput();
-                                }
-                            });
-                        });
-                        $("#spec_type").trigger('change');
-                    });
-                    $(document).ready(function () {
-                        $("#goods_type").change(function () {
-                            var goods_id = $("input[name='goods_id']").val();
-                            var type_id = $(this).val();
-                            $.ajax({
-                                type: 'GET',
-                                data: {goods_id: goods_id, type_id: type_id},
-                                url: "<{:U('goods/ajaxGetAttrInput')}>",
-                                success: function (data) {
-                                    $("#goods_attr_table tr:gt(0)").remove()
-                                    $("#goods_attr_table").append(data);
-                                }
-                            });
-                        });
-                        $("#goods_type").trigger('change');
-                    });
-
-                    function addAttr(a) {
-                        var attr = $(a).parent().parent().prop("outerHTML");
-                        attr = attr.replace('addAttr', 'delAttr').replace('+', '-');
-                        $(a).parent().parent().after(attr);
-                    }
-
-                    function delAttr(a) {
-                        $(a).parent().parent().remove();
-                    }
-                </script>
-
 
                 <tr>
                     <td class="lfTdBt">
@@ -335,24 +242,24 @@
                 </tr>
                 <tr>
 
-                <tr>
-                    <td class="lfTdBt">属性：</td>
-                    <td class="rgTdBt">
-                        <label><span>认证商家：</span><input type="checkbox" name="data[is_vs1]"
-                            <if condition="$detail['is_vs1'] eq 1"> checked="checked"</if>
-                            value="1" /></label>
-                        <label><span style="margin-left: 20px;">正品保证：</span><input type="checkbox" name="data[is_vs2]"
-                            <if condition="$detail['is_vs2'] eq 1"> checked="checked"</if>
-                            value="1" /></label>
-                        <label><span style="margin-left: 20px;">假一赔十：</span><input type="checkbox" name="data[is_vs3]"
-                            <if condition="$detail['is_vs3'] eq 1"> checked="checked"</if>
-                            value="1" /></label>
-                        <label><span style="margin-left: 20px;">当日送达：</span><input type="checkbox" name="data[is_vs4]"
-                            <if condition="$detail['is_vs4'] eq 1"> checked="checked"</if>
-                            value="1" /></label>
+<!--                <tr>-->
+<!--                    <td class="lfTdBt">属性：</td>-->
+<!--                    <td class="rgTdBt">-->
+<!--                        <label><span>认证企业：</span><input type="checkbox" name="data[is_vs1]"-->
+<!--                            <if condition="$detail['is_vs1'] eq 1"> checked="checked"</if>-->
+<!--                            value="1" /></label>-->
+<!--                        <label><span style="margin-left: 20px;">正品保证：</span><input type="checkbox" name="data[is_vs2]"-->
+<!--                            <if condition="$detail['is_vs2'] eq 1"> checked="checked"</if>-->
+<!--                            value="1" /></label>-->
+<!--                        <label><span style="margin-left: 20px;">假一赔十：</span><input type="checkbox" name="data[is_vs3]"-->
+<!--                            <if condition="$detail['is_vs3'] eq 1"> checked="checked"</if>-->
+<!--                            value="1" /></label>-->
+<!--                        <label><span style="margin-left: 20px;">当日送达：</span><input type="checkbox" name="data[is_vs4]"-->
+<!--                            <if condition="$detail['is_vs4'] eq 1"> checked="checked"</if>-->
+<!--                            value="1" /></label>-->
 
-                    </td>
-                </tr>
+<!--                    </td>-->
+<!--                </tr>-->
                 <tr>
                     <td class="lfTdBt">普通薪资：</td>
                     <td class="rgTdBt"><input type="text" name="data[price]" value="<{$detail.price|default=''}>"

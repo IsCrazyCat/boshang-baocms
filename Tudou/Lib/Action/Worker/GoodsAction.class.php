@@ -66,7 +66,7 @@ class GoodsAction extends CommonAction{
                 $this->tuMsg('详情没有填写');
             }
             if ($words = D('Sensitive')->checkWords($details)) {
-                $this->tuMsg('商家介绍含有敏感词：' . $words);
+                $this->tuMsg('企业介绍含有敏感词：' . $words);
             }
             if (!$weidian) {
                 $add = $wd->add($data);
@@ -337,7 +337,7 @@ class GoodsAction extends CommonAction{
         }
         $data['shop_id'] = (int) $this->shop_id;
         if (empty($data['shop_id'])) {
-            $this->tuMsg('商家不能为空');
+            $this->tuMsg('企业不能为空');
         }
         $data['intro'] = htmlspecialchars($data['intro']);
         if (empty($data['intro'])) {

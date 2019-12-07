@@ -41,7 +41,7 @@ class EduOrderModel extends CommonModel{
         }  
     }
     
-    //商家确认完成，验证已走这里，扫码验证已走这里，全部封装返回真就是成功，如果管理员直接确认已是直接走这里
+    //企业确认完成，验证已走这里，扫码验证已走这里，全部封装返回真就是成功，如果管理员直接确认已是直接走这里
     public function complete($order_id){
         if(!$order_id = (int)$order_id){
             return false;
@@ -58,7 +58,7 @@ class EduOrderModel extends CommonModel{
 					$settlement_price = (int)($detail['need_pay'] - ($detail['need_pay'] *  $Edu['rate'] /1000));
 					if ($data['settlement_price'] > 0) {
 						$info = '教育订单ID:'.$order_id.'完成，结算金额'.$settlement_price*100;
-						D('Shopmoney')->insertData($order_id,$detail['shop_id'],$settlement_price,$type ='edu',$info);//结算给商家 
+						D('Shopmoney')->insertData($order_id,$detail['shop_id'],$settlement_price,$type ='edu',$info);//结算给企业
                      }
                 }
                 return true;
@@ -104,7 +104,7 @@ class EduOrderModel extends CommonModel{
 			if ($this->save(array('order_id' => $order_id, 'order_status' => '1'))){
 				D('Edu')->where(array('edu_id'=>$detail['edu_id']))->setDec('sale',1);
 				D('Sms')->sms_edu_notice_user($order_id);//通知用户
-				D('Sms')->sms_edu_notice_shop($order_id);//通知商家
+				D('Sms')->sms_edu_notice_shop($order_id);//通知企业
 				return TRUE; 
 			}
         }else{

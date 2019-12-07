@@ -8,7 +8,7 @@
 class AlipayOpenPublicAccountResetRequest
 {
 	/** 
-	 * 重新设置绑定商家会员号
+	 * 重新设置绑定企业会员号
 	 **/
 	private $bizContent;
 

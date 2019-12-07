@@ -147,10 +147,10 @@ class JifenAction extends CommonAction {
 				//返还积分测试
 				if($this->_CONFIG['integral']['return'] == 1){
 					$shop = D('Shop')->find($detail['shop_id']);
-					D('Users')->return_integral($shop['user_id'], $detail['integral'] , '用户积分兑换返还给商家积分');
+					D('Users')->return_integral($shop['user_id'], $detail['integral'] , '用户积分兑换返还给企业积分');
 				}
 				D('Weixintmpl')->weixin_notice_jifen_user($exchange_id,$this->uid);//积分兑换通知买家
-				D('Weixintmpl')->weixin_notice_jifen_shop($exchange_id,$this->uid);//积分兑换通知商家
+				D('Weixintmpl')->weixin_notice_jifen_shop($exchange_id,$this->uid);//积分兑换通知企业
                 $this->success('兑换成功', U('user/exchange/index'));
             }
 

@@ -1,31 +1,20 @@
 <div class="blank-20"></div>
  <footer class="foot-fixed">
-  <if condition="($ctl eq 'member') AND ($act eq 'index')">
-    <a class="foot-item <if condition="($ctl eq 'member') AND ($act neq 'fabu')">active</if>" href="<{:u('wap/index/index')}>">		
-    <span class="iconfont icon-shouye"></span>
-    <span class="foot-label">首页</span>
-    </a>
-  <else/>
-  <a class="foot-item" href="<{:u('wap/index/index')}>">
-    <span class="iconfont icon-shouye"></span>
-    <span class="foot-label">首页</span>
-    </a>
-  
-  </if>
-    
-    <a class="foot-item  <if condition="$act eq 'fabu'">active</if> " href="<{:LinkTo('user/member/index')}>">
-    <span class="iconfont icon-fabu"></span><span class="foot-label">我的</span></a>
-    
-    <a class="foot-item  <if condition="($ctl eq 'breaks')">active</if>" href="<{:u('wap/mall/index')}>">
-    <span class="iconfont icon-maidan"></span><span class="foot-label">工作</span></a>
-    
-    <a class="foot-item  <if condition="($ctl eq 'message') ||($act eq 'xiaoxizhongxin')">active</if>" href="<{:u('message/index')}>">	
-        <span class="iconfont icon-tubiao1tieba1"></span>
-        <span class="foot-label <if condition="$msg_day">text-dot</if>"> <if condition="$msg_day">有新</if>消息</span>
-    </a>
-    
-    <a class="foot-item  <if condition="$ctl eq 'information'">active</if>" href="<{:u('information/index')}>">			
-    <span class="iconfont icon-guanli"></span><span class="foot-label">设置</span></a>
+
+     <a class="foot-item <if condition="$ctl eq 'index'">active</if>" href="<{:u('wap/index/index')}>">
+     <span class="iconfont icon-shouye"></span>
+     <span class="foot-label">首页</span>
+     </a>
+
+     <a class="foot-item  <if condition="($ctl eq 'mall')">active</if>" href="<{:u('wap/mall/index')}>">
+     <span class="iconfont icon-maidan"></span><span class="foot-label">找工作</span></a>
+
+     <a class="foot-item  <if condition="$ctl eq 'information'">active</if>" href="<{:u('information/index')}>">
+     <span class="iconfont icon-guanli"></span><span class="foot-label">排行榜</span></a>
+
+     <a class="foot-item  <if condition="$ctl eq 'member'">active</if> " href="<{:LinkTo('user/member/index')}>">
+     <span class="iconfont icon-fabu"></span><span class="foot-label">个人中心</span></a>
+
     </footer>
 
 

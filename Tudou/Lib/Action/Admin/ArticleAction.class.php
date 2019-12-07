@@ -163,7 +163,7 @@ class ArticleAction extends CommonAction{
                 $data['article_id'] = $article_id;
 				if(!empty($detail['news_id'])){
 					if (false == D('Shopnews')->update_shop_news($detail['news_id'],$data)){
-						$this->tuError('更新商家文章失败');
+						$this->tuError('更新企业文章失败');
 					}
 				}
                 if (false !== $obj->save($data)) {

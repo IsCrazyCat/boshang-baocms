@@ -96,7 +96,7 @@ class StockModel extends CommonModel{
 					D('Users')->addPrestige($user_id,-$order['prestige'],'股权工作' . $detail['title'] . '扣除分红积分');
 					$this->save_stock_num($order['stock_id'],$order['num']);
 					$settlement_price = (int)(($order['need_pay_price']*$CONFIG['stock']['settlement'])/100);
-					D('Shopmoney')->insertData($order_id,$id ='0',$order['shop_id'],$settlement_price,$type ='stock','股权订单结算');//股权结算给商家
+					D('Shopmoney')->insertData($order_id,$id ='0',$order['shop_id'],$settlement_price,$type ='stock','股权订单结算');//股权结算给企业
 					return true; 
 				 }else{
 					return false;	 
@@ -115,7 +115,7 @@ class StockModel extends CommonModel{
         if (!empty($order_id)) {
 			if (D('Stockorder')->save(array('order_id' => $order_id, 'status' => '1'))){
 				$settlement_price = (int)(($order['need_pay_price']*$CONFIG['stock']['settlement'])/100);
-				D('Shopmoney')->insertData($order_id,$id ='0',$order['shop_id'],$settlement_price,$type ='stock','股权订单结算');//股权结算给商家
+				D('Shopmoney')->insertData($order_id,$id ='0',$order['shop_id'],$settlement_price,$type ='stock','股权订单结算');//股权结算给企业
 				$this->save_stock_num($order['stock_id'],$order['num']);
 				return true; 
 			}
@@ -131,7 +131,7 @@ class StockModel extends CommonModel{
 			$this->where(array('stock_id'=>$stock_id))->setInc('sold_num',$num);
 			$this->where(array('stock_id'=>$stock_id))->setDec('num',$num);
 			D('Sms')->sms_stock_user($order_id);//会员购买通知买家
-			D('Sms')->sms_stock_shop($order_id);//会员购买通知商家
+			D('Sms')->sms_stock_shop($order_id);//会员购买通知企业
 			return true; 
         }else{
 			return true; 

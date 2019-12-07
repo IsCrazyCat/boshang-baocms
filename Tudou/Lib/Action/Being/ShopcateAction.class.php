@@ -28,14 +28,14 @@ class ShopcateAction extends CommonAction{
         if ($cate_id = (int) $cate_id) {
             $obj = D('Shopcate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->tuError('请选择要编辑的商家分类');
+                $this->tuError('请选择要编辑的企业分类');
             }
             $detail['is_hot'] = $detail['is_hot'] == 0 ? 1 : 0;
             $obj->save(array('cate_id' => $cate_id, 'is_hot' => $detail['is_hot']));
             $obj->cleanCache();
             $this->tuSuccess('操作成功', U('shopcate/index'));
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
     private function createCheck(){
@@ -55,7 +55,7 @@ class ShopcateAction extends CommonAction{
         if ($cate_id = (int) $cate_id) {
             $obj = D('Shopcate');
             if (!($detail = $obj->find($cate_id))) {
-                $this->tuError('请选择要编辑的商家分类');
+                $this->tuError('请选择要编辑的企业分类');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -70,7 +70,7 @@ class ShopcateAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家分类');
+            $this->tuError('请选择要编辑的企业分类');
         }
     }
     private function editCheck(){
@@ -93,7 +93,7 @@ class ShopcateAction extends CommonAction{
 				$this->tuError('当前分类下面还有二级分类');
 			}
 			if(false == $obj->check_cate_id_shop($cate_id)){
-				$this->tuError('当前分类下面还有商家');
+				$this->tuError('当前分类下面还有企业');
 			}
             $obj->delete($cate_id);
             $obj->cleanCache();
@@ -108,7 +108,7 @@ class ShopcateAction extends CommonAction{
                 $obj->cleanCache();
                 $this->tuSuccess('删除成功', U('shopcate/index'));
             }
-            $this->tuError('请选择要删除的商家分类');
+            $this->tuError('请选择要删除的企业分类');
         }
     }
     public function update(){

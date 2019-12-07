@@ -477,7 +477,7 @@ class SettingAction extends CommonAction{
             $data = serialize($data);
             D('Setting')->save(array('k' => 'shop', 'v' => $data));
             D('Setting')->cleanCache();
-            $this->tuSuccess('商家全局配置成功', U('setting/shop'));
+            $this->tuSuccess('企业全局配置成功', U('setting/shop'));
         } else {
             $this->display();
         }

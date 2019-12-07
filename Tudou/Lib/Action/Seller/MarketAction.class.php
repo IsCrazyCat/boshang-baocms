@@ -126,7 +126,7 @@ class MarketAction extends CommonAction{
                     $this->ajaxReturn(array('status' => 'error', 'message' => '请选择要编辑的工作分类'));
                 }
                 if($detail['shop_id'] != $this->shop_id){
-                    $this->ajaxReturn(array('status' => 'error', 'message' => '请不要操作其他商家的工作分类'));
+                    $this->ajaxReturn(array('status' => 'error', 'message' => '请不要操作其他企业的工作分类'));
                 }
                 $cate_name = I('cate_name', '', 'trim,htmlspecialchars');
                 if(empty($cate_name)){
@@ -409,7 +409,7 @@ class MarketAction extends CommonAction{
             $this->tuMsg('没有该订单');
         }
         if($detail['shop_id'] != $this->shop_id){
-            $this->tuMsg('您无权管理该商家');
+            $this->tuMsg('您无权管理该企业');
         }
         $shop = D('Shop')->where(array('shop_id'=>$this->shop_id))->find();
         if ($shop['is_market_pei'] == 1) {
@@ -502,7 +502,7 @@ class MarketAction extends CommonAction{
                 $this->error('请选择要编辑的工作管理');
             }
             if ($detail['shop_id'] != $this->shop_id) {
-                $this->error('请不要操作其他商家的工作管理');
+                $this->error('请不要操作其他企业的工作管理');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();

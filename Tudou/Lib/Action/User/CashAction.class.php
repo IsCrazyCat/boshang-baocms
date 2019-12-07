@@ -127,7 +127,7 @@ class CashAction extends CommonAction{
 			if($cash_id = D('Userscash')->add($arr)){
 				if($Users->addMoney($detail['user_id'], -$money,$intro)){
 					D('Usersex')->save($data);
-					D('Weixintmpl')->weixin_cash_user($this->uid,1);//申请提现：1会员申请，2商家同意，3商家拒绝
+					D('Weixintmpl')->weixin_cash_user($this->uid,1);//申请提现：1会员申请，2企业同意，3企业拒绝
 					$this->tuMsg('申请成功，请等待管理员审核', U('cash/cashlog'));
 				}else{
 					$this->tuMsg('抱歉，提现扣余额失败');
@@ -186,6 +186,48 @@ class CashAction extends CommonAction{
         $list = $Userscash->where($map)->order(array('cash_id' => 'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $this->assign('list', $list);
         $this->assign('page', $show);
+        $this->display();
+    }
+    public function bankInfo(){
+
+        $Users = D('Users');
+        if(!$detail = $Users->find($this->uid)){
+            $this->error('登录信息已失效！',U('wap/passport/login'));
+        }elseif($detail['is_lock'] == 1){
+            $this->error('您的账户已被锁，暂时无法操作');
+        }
+        $info = D('Usersex')->getUserex($this->uid);
+
+        if(IS_POST){
+            if(!($data['bank_name'] = htmlspecialchars($_POST['bank_name']))){
+                $this->tuMsg('开户行不能为空');
+            }
+            if(!($data['bank_num'] = htmlspecialchars($_POST['bank_num']))){
+                $this->tuMsg('银行账号不能为空');
+            }
+            if(!is_numeric($data['bank_num'])){
+                $this->tuMsg('银行账号只能为数字');
+            }
+            if(strlen($data['bank_num']) < 15){
+                $this->tuMsg('银行账号格式不正确');
+            }
+            if(!($data['bank_realname'] = htmlspecialchars($_POST['bank_realname']))){
+                $this->tuMsg('开户姓名不能为空');
+            }
+            $data['bank_branch'] = htmlspecialchars($_POST['bank_branch']);
+
+            $data['user_id'] = $this->uid;
+            if(empty($info)){
+                D('Usersex')->add($data);
+            }else{
+                D('Usersex')->save($data);
+            }
+            D('Users')->save(array('user_id'=>$this->uid,'ext0'=>$data['bank_realname']));
+
+        }
+
+        $this->assign('detail', $detail);
+        $this->assign('info',$info);
         $this->display();
     }
 }

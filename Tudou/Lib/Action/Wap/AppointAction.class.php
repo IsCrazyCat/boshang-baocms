@@ -577,8 +577,8 @@ class AppointAction extends CommonAction {
 			}
 		}
 		
-		$appoint_shop = D('Shop')->find($cate_id['shop_id']);//商家信息
-		$appoint_shop_user = D('Users')->find($appoint_shop['user_id']);//商家信息
+		$appoint_shop = D('Shop')->find($cate_id['shop_id']);//企业信息
+		$appoint_shop_user = D('Users')->find($appoint_shop['user_id']);//企业信息
 		$data['city_id'] = $this->city_id;
 		$data['appoint_id'] = $appoint_id;
 		$data['user_id'] = (int) $this->uid;

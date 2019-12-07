@@ -75,7 +75,7 @@ class NewsAction extends CommonAction
             $data = $this->editCheck();
             $data['article_id'] = $article_id;
 			if (false == D('Shopnews')->update_shop_news($detail['news_id'],$data)){
-                $this->tuMsg('更新商家文章失败');
+                $this->tuMsg('更新企业文章失败');
             }
             if (false !== $obj->save($data)) {
                 $this->tuMsg('更新文章成功', U('news/index'));

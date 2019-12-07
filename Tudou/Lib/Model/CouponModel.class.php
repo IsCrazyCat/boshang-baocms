@@ -15,7 +15,7 @@ class CouponModel extends CommonModel{
 					if ($coupon['expire_date'] <= TODAY) {
 						unset($coupon_download_list[$k]);
 					}
-					//判断当前订单的商家ID是否跟优惠劵的商家ID一致
+					//判断当前订单的企业ID是否跟优惠劵的企业ID一致
 					if ($order['shop_id'] != $val['shop_id']) {
 						unset($coupon_download_list[$k]);
 					}

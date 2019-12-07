@@ -73,7 +73,7 @@ class MsgAction extends CommonAction
         $data['worker_id'] = (int) $data['worker_id'];
         $data['village_id'] = (int) $data['village_id'];
         $data['type'] = htmlspecialchars($data['type']);
-        //普通商家发送的时候选择type
+        //普通企业发送的时候选择type
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
             $this->tuError('标题不能为空');
@@ -114,7 +114,7 @@ class MsgAction extends CommonAction
                 $this->assign('business', D('Business')->fetchAll());
                 $this->assign('types', D('Msg')->getType());//通知用户类型
                 $this->assign('user', D('Users')->find($detail['user_id']));//查会员
-                $this->assign('shop', D('Shop')->find($datail['shop_id']));//查商家
+                $this->assign('shop', D('Shop')->find($datail['shop_id']));//查企业
                 $this->assign('community', D('Community')->find($datail['community_id']));//查小区
                 $this->assign('village', D('Village')->find($datail['village_id']));//查乡村
                 $this->assign('delivery', D('Delivery')->find($datail['delivery_id']));//查配送员
@@ -142,7 +142,7 @@ class MsgAction extends CommonAction
         $data['worker_id'] = (int) $data['worker_id'];
         $data['village_id'] = (int) $data['village_id'];
         $data['type'] = htmlspecialchars($data['type']);
-        //普通商家发送的时候选择type
+        //普通企业发送的时候选择type
         $data['title'] = htmlspecialchars($data['title']);
         if (empty($data['title'])) {
             $this->tuError('标题不能为空');
@@ -200,7 +200,7 @@ class MsgAction extends CommonAction
         echo $str;
         die;
     }
-    //选择通知商家
+    //选择通知企业
     public function child_shop($area_id = 0)
     {
         $datas = D('Shop')->select();

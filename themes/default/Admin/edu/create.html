@@ -11,14 +11,14 @@
         <div class="tableBox">
             <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                   <tr>
-                    <td class="lfTdBt">选择商家：</td>
+                    <td class="lfTdBt">选择企业：</td>
                     <td class="rgTdBt">
                         <div class="lt">
                             <input type="hidden" id="shop_id" name="data[shop_id]" value="<{$detail.shop_id|default=''}>"/>
                             <input type="text" id="shop_name" name="shop_name" value="<{$shop.shop_name}>" class="manageInput" />
                         </div>
-                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="remberBtn">选择商家</a>
-                        <code>这里必选，首先您的有商家入驻，这里的城市ID，经纬度调用的商家的信息</code> 
+                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="remberBtn">选择企业</a>
+                        <code>这里必选，首先您的有企业入驻，这里的城市ID，经纬度调用的企业的信息</code>
                     </td>
                 </tr>
                 <tr>
@@ -41,25 +41,25 @@
                     </td> 
                 </tr>
                 <tr>
-                    <td class="lfTdBt">教育商家名称：</td>
+                    <td class="lfTdBt">教育企业名称：</td>
                     <td class="rgTdBt"><input type="text" name="data[edu_name]" value="<{$detail.edu_name|default=''}>" class="scAddTextName w210" />
-					<code>当前教育商家的名称</code>
+					<code>当前教育企业的名称</code>
                     </td>
                 </tr><tr>
-                    <td class="lfTdBt">教育商家简介：</td>
+                    <td class="lfTdBt">教育企业简介：</td>
                     <td class="rgTdBt"><input type="text" name="data[intro]" value="<{$detail.intro|default=''}>" class="scAddTextName w210" />
-					<code>当前教育商家的简短说明</code>
+					<code>当前教育企业的简短说明</code>
                     </td>
                 </tr><tr>
-                    <td class="lfTdBt">教育商家地址：</td>
+                    <td class="lfTdBt">教育企业地址：</td>
                     <td class="rgTdBt"><input type="text" name="data[addr]" value="<{$detail.addr|default=''}>" class="scAddTextName w210" />
-					<code>当前教育商家的地址</code>
+					<code>当前教育企业的地址</code>
                     </td>
                 </tr>
                 <tr>
                     <td class="lfTdBt">教育电话：</td>
                     <td class="rgTdBt"><input type="text" name="data[tel]" value="<{$detail.tel|default=''}>" class="scAddTextName w210" />
-					<code>当前教育商家的电话，这里一般填写座机，暂时不调用商家的电话，万一这个商家有自己的店铺还有自己的教育学校呢</code>
+					<code>当前教育企业的电话，这里一般填写座机，暂时不调用企业的电话，万一这个企业有自己的店铺还有自己的教育学校呢</code>
                     </td>
                 </tr>
                 
@@ -68,7 +68,7 @@
                  <td class="rgTdBt">
                     <div style="width: 300px;height: 100px; float: left;">
                         <input type="hidden" name="data[photo]" value="<{$detail.photo}>" id="data_photo" />
-                        <div id="fileToUpload" >上传教育商家主图</div>
+                        <div id="fileToUpload" >上传教育企业主图</div>
                     </div>
                     <div style="width: 300px;height: 100px; float: left;">
                         <img id="photo_img" width="120" height="80"  src="<{:config_img($detail['photo'])}>" />
@@ -114,7 +114,7 @@
             </td>
         </tr>
        <tr>
-        <td class="lfTdBt">教育商家详情：</td>
+        <td class="lfTdBt">教育企业详情：</td>
         <td class="rgTdBt">
         	<script type="text/plain" id="data_details" name="data[details]" style="width:800px;height:360px;"><{$detail.details}></script>
         </td>

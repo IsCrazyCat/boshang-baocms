@@ -3,23 +3,23 @@
 <div class="mainBt">
     <ul>
         <li class="li1">订餐管理</li>
-        <li class="li2">餐饮商家</li>
-        <li class="li2 li3">新增商家</li>
+        <li class="li2">餐饮企业</li>
+        <li class="li2 li3">新增企业</li>
     </ul>
 </div>
-<p class="attention"><span>注意：</span>很多功能需要在商家后台设置，如果您是管理员您可以点击管理商家》》》然后到商家后台设置，比如外卖留言标签，外卖时间段等功能！</p>
+<p class="attention"><span>注意：</span>很多功能需要在企业后台设置，如果您是管理员您可以点击管理企业》》》然后到企业后台设置，比如外卖留言标签，外卖时间段等功能！</p>
 <div class="mainScAdd ">
     <div class="tableBox">
         <form  target="x-frame" action="<{:U('ele/create')}>" method="post">
             <table  bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;" >
                 <tr>
-                    <td  width="150" class="lfTdBt">商家：</td>
+                    <td  width="150" class="lfTdBt">企业：</td>
                     <td class="rgTdBt">
                         <div class="lt">
                             <input type="hidden" id="shop_id" name="data[shop_id]" value="<{$detail.shop_id|default=''}>"/>
                             <input type="text" id="shop_name" name="shop_name" value="" class="manageInput w200" />
                         </div>
-                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="seleSj">选择商家</a>
+                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="seleSj">选择企业</a>
                     </td>
                 </tr>
                 
@@ -64,11 +64,11 @@
                 </td> 
                 </tr>
                 <tr>
-                    <td class="lfTdBt">是否支持使用商家优惠劵：</td>
+                    <td class="lfTdBt">是否支持使用企业优惠劵：</td>
                     <td class="rgTdBt">
                     <label> <input type="radio" name="data[is_coupon]" value="1" <eq name="detail.is_coupon" value="1">checked="checked"</eq>  /> 支持</label>
                     <label> <input type="radio" name="data[is_coupon]" value="0"  <eq name="detail.is_coupon" value="0">checked="checked"</eq> /> 不支持</label>
-                        <code>会员需要先领取该商家的优惠劵后才可以做以下使用优惠劵满减，后期开发，暂时不可用</code>
+                        <code>会员需要先领取该企业的优惠劵后才可以做以下使用优惠劵满减，后期开发，暂时不可用</code>
                     </td>
                 </tr>
                  <tr><td class="rgTdBt profit" colspan="2"> 新客户下单立减<a style="color:#F00"> 谨慎开启</a></td></tr>
@@ -77,7 +77,7 @@
                     <td  class="rgTdBt">
                         <label> <input type="radio" name="data[is_new]" value="1" <eq name="detail.is_new" value="1">checked="checked"</eq>  /> 支持</label>
                         <label> <input type="radio" name="data[is_new]" value="0"  <eq name="detail.is_new" value="0">checked="checked"</eq> /> 不支持</label>
-                        <code>←用户在当前商家第一次下单是否开启下单立减，就是优惠的功能</code>
+                        <code>←用户在当前企业第一次下单是否开启下单立减，就是优惠的功能</code>
                         <input type="text" name="data[full_money]" value="<{:round($detail['full_money']/100,2)}>" class="manageInput w80" />
                         <code>←新客户第一次下单满多少钱</code>
                         <input type="text" name="data[new_money]" value="<{:round($detail['new_money']/100,2)}>" class="manageInput w80" />
@@ -107,14 +107,14 @@
                 <tr>
                     <td class="lfTdBt">配送费：</td>
                     <td  class="rgTdBt"><input type="text" name="data[logistics]" value="<{:round($detail['logistics']/100,2)}>" class="manageInput" />
-					<code>商家固定外卖配送费，如果开启满多少减去这个配送费，那么如果是配送员抢单，那么这个配送费需要在结算价格里面扣除</code>
+					<code>企业固定外卖配送费，如果开启满多少减去这个配送费，那么如果是配送员抢单，那么这个配送费需要在结算价格里面扣除</code>
                     </td>
                 </tr>
                 <tr>
                     <td class="lfTdBt">满多钱免配送费：</td>
                     <td  class="rgTdBt">
                     <input type="text" name="data[logistics_full]" value="<{:round($detail['logistics_full']/100,2)}>" class="manageInput" />
-					<code>客户在当前商家单笔订单超过多少钱后免配送费</code>
+					<code>客户在当前企业单笔订单超过多少钱后免配送费</code>
                     </td>
                 </tr>
                 <tr>
@@ -138,13 +138,13 @@
                 <tr>
                     <td class="lfTdBt">说明：</td>
                     <td  class="rgTdBt"><textarea  name="data[intro]" cols="60" rows="4" ><{$detail.intro|default=''}></textarea>
-					<code>当前商家的简短介绍！</code>
+					<code>当前企业的简短介绍！</code>
                     </td>
                 </tr>
                 <tr>
                     <td class="lfTdBt">排序：</td>
                     <td  class="rgTdBt"><input type="text" name="data[orderby]" value="<{$detail.orderby|default='100'}>" class="manageInput" />
-					<code>商家的固定排序，默认100，数字越小，排名越靠前！</code>
+					<code>企业的固定排序，默认100，数字越小，排名越靠前！</code>
                     </td>
                 </tr>
 
@@ -152,7 +152,7 @@
                     <td class="lfTdBt">配送时间：</td>
                     <td  class="rgTdBt">
                     <input type="text" name="data[distribution]" value="<{$detail.distribution|default='100'}>" class="manageInput" /> 分钟送达
-					<code>当前商家的大概配送时间！</code>
+					<code>当前企业的大概配送时间！</code>
                     </td>
                 </tr>
                 <tr>

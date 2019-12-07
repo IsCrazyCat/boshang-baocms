@@ -33,7 +33,7 @@ class WeixinmsgModel extends CommonModel{
 	
 	//订单消息提醒OPENTM205109409
 	//$order_id订单ID
-	//$cate  1通知会员，2通知商家
+	//$cate  1通知会员，2通知企业
 	//$type  1外卖，2商城，3家政，4团购，5农家乐，6酒店，7订座，8KTV
 	//$status 0取消订单，2订单已发货，3申请退款，4已同意退款，8订单已完成
     public function weixinTmplOrderMessage($order_id,$cate,$type,$status){
@@ -241,14 +241,14 @@ class WeixinmsgModel extends CommonModel{
 			return true;
     }
 	
-	//商家新闻推送
+	//企业新闻推送
     public function weixin_shop_news_push($detail,$user_id){
 		$config = D('Setting')->fetchAll();
 			$Users = D('Users')->find($user_id);
 			include_once 'Tudou/Lib/Net/Wxmesg.class.php';
             $data = array(
 				'url' => $config['site']['host'] . '/wap/shop/news_detail/'.$detail['news_id'].'/', 
-				'first' => '商家新闻推送', 
+				'first' => '企业新闻推送',
 				'user_demand' => $detail['title'], //客户要求
 				'user_name' => $Users['nickname'] , //客户名称
 				'time' => date('Y-m-d H:i:s ', $detail['create_time']),//提出时间

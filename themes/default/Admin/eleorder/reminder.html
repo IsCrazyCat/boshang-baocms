@@ -17,7 +17,7 @@
 .inptButton{height: 30px;line-height:30px;background:rgb(0, 153, 204); width:70px;text-align: center;}
 </style>
 <div class="main-jsgl main-sc">
-<p class="attention"><span>注意：</span> 这里显示用户催单列表，目前默认是付款后45分钟后可以催单，催单用短信方式提醒商家！</p>
+<p class="attention"><span>注意：</span> 这里显示用户催单列表，目前默认是付款后45分钟后可以催单，催单用短信方式提醒企业！</p>
     <div class="jsglNr">
         <div class="selectNr" style="border-top: none; margin-top: 0px;">
             <div class="right">
@@ -35,7 +35,7 @@
                             <label>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
-                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                             </label>
                             <label>
                                 <input type="hidden" id="user_id" name="user_id" value="<{$user_id|default=''}>" />
@@ -58,7 +58,7 @@
                     <tr>
                         <td class="w50"><input type="checkbox" class="checkAll" rel="reminder_id" /></td>
                         <td class="w50">ID</td>
-                        <td>商家</td>
+                        <td>企业</td>
                         <td>用户</td>
                         <td>订单ID</td>
                         <td>催单时间</td>

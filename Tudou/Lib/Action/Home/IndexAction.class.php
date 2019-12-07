@@ -18,7 +18,7 @@ class IndexAction extends CommonAction {
 		$this->goodscate = D('Goodscate')->fetchAll();
         $this->assign('goodscate', $this->goodscate);
 		
-		//商家
+		//企业
 		$this->shopcates = D('Shopcate')->fetchAll();
         $this->assign('shopcates', $this->shopcates);
 		

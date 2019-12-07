@@ -7,7 +7,7 @@ class KeywordModel extends CommonModel {
     public function getKeyType() {
         $res = array(
             '0' => '不限',
-            '1' => '商家',
+            '1' => '企业',
             '2' => '抢购',
             '3' => '生活信息',
             '4' => '工作',

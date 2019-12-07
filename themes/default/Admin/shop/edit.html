@@ -1,12 +1,12 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家管理</li>
-        <li class="li2 li3">编辑商家</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业管理</li>
+        <li class="li2 li3">编辑企业</li>
     </ul>
 </div>
-<p class="attention"><span>说明：</span> 请注意显示商家万能代码的时候建议多审核下</p>
+<p class="attention"><span>说明：</span> 请注意显示企业万能代码的时候建议多审核下</p>
 
 <form  target="x-frame" action="<{:U('shop/edit',array('shop_id'=>$detail['shop_id']))}>" method="post">
     <div class="mainScAdd">
@@ -20,7 +20,7 @@
                             <input class="scAddTextName w210 sj" type="text" name="nickname" id="nickname"  value="<{$user.nickname}>" />
                         </div>
                         <a mini="select"  w="800" h="600" href="<{:U('user/select')}>" class="seleSj">选择用户</a>
-                        <code>注意：中途更换会员商户资金并不会转移，请手动修改商家管理员的商户资金，当然我们不建议亲中途更换会员ID，请见谅！</code>
+                        <code>注意：中途更换会员商户资金并不会转移，请手动修改企业管理员的商户资金，当然我们不建议亲中途更换会员ID，请见谅！</code>
                     </td>
                 </tr>    <tr>
 
@@ -42,7 +42,7 @@
                 </tr>   
                 
 <!--                <tr>-->
-<!--                    <td class="lfTdBt">商家等级：</td>-->
+<!--                    <td class="lfTdBt">企业等级：</td>-->
 <!--                    <td class="rgTdBt">-->
 <!--                       <select id="grade_id" name="data[grade_id]" class="seleFl w210">-->
 <!--                       <option value="0">请选择...</option>-->
@@ -50,7 +50,7 @@
 <!--                         <option value="<{$var.grade_id}>"  <eq name="var.grade_id" value="$detail.grade_id">selected="selected"</eq> ><{$var.grade_name}></option>                -->
 <!--                        </foreach>-->
 <!--                        </select>-->
-<!--                        <code>商家等级必须选择，如果没有等级显示去》》》商家》》》商家等级管理》》》添加等级》》》添加后才来添加商家</code>-->
+<!--                        <code>企业等级必须选择，如果没有等级显示去》》》企业》》》企业等级管理》》》添加等级》》》添加后才来添加企业</code>-->
 <!--                    </td>-->
 <!--                </tr>   -->
                  
@@ -169,7 +169,7 @@
              <tr>
                     <td class="lfTdBt">商铺名称：</td>
                     <td class="rgTdBt"><input type="text" name="data[shop_name]" value="<{$detail.shop_name|default=''}>" class="scAddTextName w210" />
-                    <code>商家名称，建议不超过6字</code>
+                    <code>企业名称，建议不超过6字</code>
                     </td>
                 </tr>
                
@@ -264,7 +264,7 @@
             <td class="lfTdBt">手机号码：</td>
             <td class="rgTdBt">
                 <input type="text" name="data[mobile]" value="<{$detail.mobile|default=''}>" class="scAddTextName w210" />
-                 <code>认真填写手机号码，部分场景用来商家接收短信使用</code>
+                 <code>认真填写手机号码，部分场景用来企业接收短信使用</code>
             </td>
         </tr>
         <tr>
@@ -316,7 +316,7 @@
 <!--        <tr>-->
 <!--              <td  class="lfTdBt">全景URL地址：</td>-->
 <!--                <td class="rgTdBt"><input type="text" name="data[panorama_url]" value="<{$detail.panorama_url}>" class="scAddTextName w360" />-->
-<!--                <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>-->
+<!--                <code>请填写完整的全景URL地址，带http://，填写后默认企业详情页顶部展示，不填写不展示，前台加载的是框架</code>-->
 <!--                </td>-->
 <!--        </tr>-->
 		
@@ -336,7 +336,7 @@
 
         <tr>
 
-            <td class="lfTdBt">商家坐标：</td>
+            <td class="lfTdBt">企业坐标：</td>
             <td class="rgTdBt">
                 <div class="lt">
                     经度<input type="text" name="data[lng]" id="data_lng" value="<{$detail.lng|default=''}>" class="scAddTextName w210 w100" />
@@ -365,7 +365,7 @@
 <!--              <td class="rgTdBt">-->
 <!--              <input type="radio" name="data[is_tuan_pay]" value="0" <if condition="$detail[is_tuan_pay] eq 0">checked="checked"</if> />关闭-->
 <!--			  <input type="radio" name="data[is_tuan_pay]" value="1" <if condition="$detail[is_tuan_pay] eq 1">checked="checked"</if> />开启-->
-<!--              <code>抢购模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>-->
+<!--              <code>抢购模块默认不支持在线支付，需要后台设置为开启状态后，该企业的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>-->
 <!--              </td>-->
 <!--        </tr>-->
 <!--        -->
@@ -374,7 +374,7 @@
 <!--              <td class="rgTdBt">-->
 <!--              <input type="radio" name="data[is_hotel_pay]" value="0" <if condition="$detail[is_hotel_pay] eq 0">checked="checked"</if> />关闭-->
 <!--			  <input type="radio" name="data[is_hotel_pay]" value="1" <if condition="$detail[is_hotel_pay] eq 1">checked="checked"</if> />开启-->
-<!--              <code>酒店模块默认不支持在线支付，需要后台设置为开启状态后，该商家的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>-->
+<!--              <code>酒店模块默认不支持在线支付，需要后台设置为开启状态后，该企业的抢购订单再付款的时候才会出现在线支付方式，默认为货到付款</code>-->
 <!--              </td>-->
 <!--        </tr>-->
 
@@ -483,7 +483,7 @@
                 </tr>
         
 
-             <tr><td class="lfTdBt">商家介绍：</td><td class="rgTdBt">
+             <tr><td class="lfTdBt">企业介绍：</td><td class="rgTdBt">
                   <script type="text/plain" id="details" name="details" style="width:800px;height:360px;"><{$ex.details}></script>
 					</td>
              </tr><link rel="stylesheet" href="__PUBLIC__/qiniu_ueditor/themes/default/css/ueditor.min.css" type="text/css">

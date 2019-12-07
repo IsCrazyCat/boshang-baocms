@@ -120,7 +120,7 @@ function is_login(siteUrl,tplPath,hasQQ,hasWX,source){
 	$.getJSON(url,function(data){
 		if(data[0].islogin==="1"){
 			if(data[0].jibie === '1'||data[0].jibie === '2'||parseInt(data[0].manageshopid)>0){
-				sj_btn = " <a href=\""+siteUrl+"member/userindex_s.aspx\" class=\"shangjia\" target=\"_blank\">商家平台</a>";
+				sj_btn = " <a href=\""+siteUrl+"member/userindex_s.aspx\" class=\"shangjia\" target=\"_blank\">企业平台</a>";
 			}
 			txt="<p class=\"login_success\"><span class=\"username\">"+data[0].name+"</span>，您好！<a href=\""+siteUrl+"member/index.html\">管理</a>"+sj_btn+" <a href=\"javascript:loginout('"+siteUrl+"');\">退出</a></p>";
 			txt+="<input value=\"1\" id=\"isLogin\" type=\"hidden\" /><input value=\""+data[0].jibie+"\" id=\"user_jibie\" type=\"hidden\" />";
@@ -159,7 +159,7 @@ function is_login2(siteUrl,tplPath,hasQQ,hasWX,source){
 	$.getJSON(url,function(data) {
 		if(data[0].islogin==="1"){
 			if(data[0].jibie === '1'||data[0].jibie === '2'||parseInt(data[0].manageshopid)>0){
-				//sj_btn = " <a href=\""+siteUrl+"member/userindex_s.aspx\" class=\"shangjia\" target=\"_blank\">商家平台</a>";
+				//sj_btn = " <a href=\""+siteUrl+"member/userindex_s.aspx\" class=\"shangjia\" target=\"_blank\">企业平台</a>";
 			}
 			txt="<li><p class=\"login_success\"><span class=\"username\">"+data[0].name+"</span>，您好！ <a href=\""+siteUrl+"member/index.html\">管理</a>"+sj_btn+" <a href=\"javascript:loginout('"+siteUrl+"');\">退出</a></p></li>";
 			txt+="<input value=\"1\" id=\"isLogin\" type=\"hidden\" /><input value=\""+data[0].jibie+"\" id=\"user_jibie\" type=\"hidden\" />";
@@ -199,7 +199,7 @@ function is_login3(siteUrl,tplPath,hasQQ,hasWX,source){
 	$.getJSON(url,function(data) {
 		if(data[0].islogin==="1"){
 			if(data[0].jibie === '1'||data[0].jibie === '2'||parseInt(data[0].manageshopid)>0){
-				//sj_btn = " <a href=\""+siteUrl+"member/userindex_s.aspx\" class=\"shangjia\" target=\"_blank\">商家平台</a>";
+				//sj_btn = " <a href=\""+siteUrl+"member/userindex_s.aspx\" class=\"shangjia\" target=\"_blank\">企业平台</a>";
 			}
 			txt="<p class=\"login_success\"><span class=\"username\">"+data[0].name+"</span>，您好！ <a href=\""+siteUrl+"member/index.html\">管理</a>"+sj_btn+" <a href=\"javascript:loginout('"+siteUrl+"');\">退出</a></p><dl class=\"xian\"></dl>";
 			txt+="<input value=\"1\" id=\"isLogin\" type=\"hidden\" /><input value=\""+data[0].jibie+"\" id=\"user_jibie\" type=\"hidden\" />";

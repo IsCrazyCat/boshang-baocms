@@ -129,7 +129,7 @@ class WeixinModel {
         return $this->getShopToken($shop_id);
     }
 	
-    //获取商家的TOKEN
+    //获取企业的TOKEN
     private function getShopToken($shop_id){ 
         if(!$data = D('Shopweixinaccess')->getToken($shop_id)){
             $details = D('Shopdetails')->find($shop_id);

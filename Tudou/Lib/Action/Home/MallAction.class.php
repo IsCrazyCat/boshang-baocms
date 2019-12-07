@@ -286,13 +286,13 @@ class MallAction extends CommonAction{
     public function shop()
     {
         if (!($shop_id = (int) $this->_param('shop_id'))) {
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }
         if (!($shop = D('Shop')->find($shop_id))) {
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }
         if (!$shop['is_mall']) {
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }
         $this->assign('shop_id', $shop_id);
         $this->assign('shop', $shop);
@@ -1054,7 +1054,7 @@ class MallAction extends CommonAction{
 					'key_name' => $val['key_name']
 				);
             $total_price[$val['shop_id']] += $price;
-            $express_price[$val['shop_id']] += $order_express_price;//不同商家总运费
+            $express_price[$val['shop_id']] += $order_express_price;//不同企业总运费
         }
         //总订单
         $order = array('user_id' => $this->uid, 'create_time' => NOW_TIME, 'create_ip' => $ip, 'need_pay' => $need_pay, 'goods_id' => $val['goods_id'], 'total_price' => 0);
@@ -1068,7 +1068,7 @@ class MallAction extends CommonAction{
             $order['total_price'] = $total_price[$k];//这里影响的没有减去积分
             $order['express_price'] = $express_price[$k];//写入运费
             $order['address_id'] = $defaultAddress['id'];//写入快递ID
-            $order['is_shop'] = (int) $shop['is_pei'];//是否由商家自己配送
+            $order['is_shop'] = (int) $shop['is_pei'];//是否由企业自己配送
 			$val[0]['express_price'] = $express_price[$k];//写入运费
 			$val[0]['address_id'] = $defaultAddress['id'];//写入快递I
             if ($order_id = D('Order')->add($order)) {
@@ -1189,7 +1189,7 @@ class MallAction extends CommonAction{
         if ($code == 'wait') {//如果是货到付款
             D('Order')->save(array('is_daofu' => 1, 'status' => 1), array('where' => array('order_id' => array('IN', $order_ids))));
             D('Ordergoods')->save(array('is_daofu' => 1, 'status' => 1), array('where' => array('order_id' => array('IN', $order_ids))));
-            D('Sms')->mallTZshop($order_ids);//用户下单通知商家
+            D('Sms')->mallTZshop($order_ids);//用户下单通知企业
             $this->goods_mum($order_id);//检测库存
             D('Order')->mallSold($order_ids);//配送接口
             D('Order')->mallPeisong(array($order_ids), 1);//更新配送
@@ -1264,7 +1264,7 @@ class MallAction extends CommonAction{
             D('Order')->mallSold($order_id);//更新销量
             D('Order')->mallPeisong(array($order_id), 1);//更新配送接口
 			D('Order')->combination_goods_print($order_id);//万能商城订单打印
-			D('Sms')->mallTZshop($order_id);//用户下单通知商家
+			D('Sms')->mallTZshop($order_id);//用户下单通知企业
             D('Weixintmpl')->weixin_notice_goods_user($order_id,$this->uid,0);//商城微信通知货到付款
             $this->tuSuccess('恭喜您下单成功', U('members/order/goods'));
         } else {

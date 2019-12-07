@@ -126,7 +126,7 @@ class  DatasAction extends  CommonAction{
 		echo $outStr;
 		die();
 	}
-	//获取商家分类
+	//获取企业分类
 	public function shopcate($parent_id = 0){
         $datas = D('Shopcate')->fetchAll();
         $str = '';

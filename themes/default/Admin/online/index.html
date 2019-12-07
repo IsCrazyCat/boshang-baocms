@@ -8,7 +8,7 @@
 </div>
 
 <div class="main-jsgl main-sc">
-<p class="attention"><span>注意：</span> 这里显示每一个站点的交易信息，但是推送的时候可选择单个推送或者全部推送，当前开通农村电商的商家有【<{$count_shop_online}>】家，今日日期是：<{$data_day}></p>
+<p class="attention"><span>注意：</span> 这里显示每一个站点的交易信息，但是推送的时候可选择单个推送或者全部推送，当前开通农村电商的企业有【<{$count_shop_online}>】家，今日日期是：<{$data_day}></p>
     <div class="jsglNr">
         <div class="selectNr" style="border-top: none; margin-top: 0px;">
         
@@ -36,7 +36,7 @@
                         <label>
                             <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                             <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
-                            <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择站点商家</a>
+                            <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择站点企业</a>
                         </label>
                         <label>
                              <span>状态：</span>
@@ -63,7 +63,7 @@
                     <tr>
                         <td class="w50"><input type="checkbox" class="checkAll" rel="online_id" /></td>
                         <td class="w50">ID</td>
-                        <td>商家</td>
+                        <td>企业</td>
                         <td>日期</td>
                         <td>站点编码</td>
                         <td>站点名称</td>

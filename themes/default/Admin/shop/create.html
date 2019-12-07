@@ -1,12 +1,12 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家管理</li>
-        <li class="li2 li3">新增商家</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业管理</li>
+        <li class="li2 li3">新增企业</li>
     </ul>
 </div>
-<p class="attention"><span>注意： </span> 后台添加商户管理员ID请默认选择您自己的常用登录账户的id，目的是方便用户前台认领，如果用户被占用，请到回收站删除商家</p>
+<p class="attention"><span>注意： </span> 后台添加商户管理员ID请默认选择您自己的常用登录账户的id，目的是方便用户前台认领，如果用户被占用，请到回收站删除企业</p>
 <form  target="x-frame" action="<{:U('shop/create')}>" method="post">
     <div class="mainScAdd">
         <div class="tableBox">
@@ -41,7 +41,7 @@
                 </tr>  
                 
 <!--                 <tr>-->
-<!--                    <td class="lfTdBt">商家等级：</td>-->
+<!--                    <td class="lfTdBt">企业等级：</td>-->
 <!--                    <td class="rgTdBt">-->
 <!--                       <select id="grade_id" name="data[grade_id]" class="seleFl w210">-->
 <!--                       <option value="0">请选择...</option>-->
@@ -49,7 +49,7 @@
 <!--                         <option value="<{$var.grade_id}>"  <eq name="var.grade_id" value="$detail.grade_id">selected="selected"</eq> ><{$var.grade_name}></option>                -->
 <!--                        </foreach>-->
 <!--                        </select>-->
-<!--                        <code>商家等级必须选择，如果没有等级显示去》》》商家》》》商家等级管理》》》添加等级》》》添加后才来添加商家</code>-->
+<!--                        <code>企业等级必须选择，如果没有等级显示去》》》企业》》》企业等级管理》》》添加等级》》》添加后才来添加企业</code>-->
 <!--                    </td>-->
 <!--                </tr>   -->
                 
@@ -169,7 +169,7 @@
                <tr>
                     <td class="lfTdBt">商铺名称：</td>
                     <td class="rgTdBt"><input type="text" name="data[shop_name]" value="<{$detail.shop_name|default=''}>" class="scAddTextName w210" />
-                    <code>商家名称，建议不超过6字</code>
+                    <code>企业名称，建议不超过6字</code>
                     </td>
                 </tr>
                 
@@ -265,7 +265,7 @@
             <td class="lfTdBt">手机号码：</td>
             <td class="rgTdBt">
                 <input type="text" name="data[mobile]" value="<{$detail.mobile|default=''}>" class="scAddTextName w210" />
-                 <code>认真填写手机号码，部分场景用来商家接收短信使用</code>
+                 <code>认真填写手机号码，部分场景用来企业接收短信使用</code>
             </td>
         </tr>
         
@@ -305,7 +305,7 @@
 <!--         <tr>-->
 <!--              <td  class="lfTdBt">全景URL地址：</td>-->
 <!--                <td class="rgTdBt"><input type="text" name="data[panorama_url]" value="<{$detail.panorama_url}>" class="scAddTextName w360" />-->
-<!--                <code>请填写完整的全景URL地址，带http://，填写后默认商家详情页顶部展示，不填写不展示，前台加载的是框架</code>-->
+<!--                <code>请填写完整的全景URL地址，带http://，填写后默认企业详情页顶部展示，不填写不展示，前台加载的是框架</code>-->
 <!--                </td>-->
 <!--        </tr>-->
 
@@ -316,7 +316,7 @@
 <!--        </tr>-->
 
         <tr>
-            <td class="lfTdBt">商家坐标：</td>
+            <td class="lfTdBt">企业坐标：</td>
             <td class="rgTdBt">
                 <div class="lt">
                     经度<input type="text" name="data[lng]" id="data_lng" value="<{$detail.lng|default=''}>" class="scAddTextName w200" />
@@ -335,7 +335,7 @@
 <!--             </td>-->
 <!--       </tr>-->
 
-       <tr><td class="lfTdBt">商家介绍：</td><td class="rgTdBt">
+       <tr><td class="lfTdBt">企业介绍：</td><td class="rgTdBt">
                   <script type="text/plain" id="details" name="details" style="width:800px;height:360px;"><{$ex.details}></script>
 					</td>
              </tr><link rel="stylesheet" href="__PUBLIC__/qiniu_ueditor/themes/default/css/ueditor.min.css" type="text/css">

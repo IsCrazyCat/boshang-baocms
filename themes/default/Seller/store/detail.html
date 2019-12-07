@@ -93,7 +93,7 @@
         </if>
         
         <li><a href="javascript:;">配送方式：<em>
-        <notempty name='do'>第三方配送<else/>商家配送</notempty><!-- （配送费 <span class="fontcl1">￥<{:round($order['logistics']/100,2)}></span>）-->
+        <notempty name='do'>第三方配送<else/>企业配送</notempty><!-- （配送费 <span class="fontcl1">￥<{:round($order['logistics']/100,2)}></span>）-->
         </em></a></li>
         <notempty name='do'>               
         <li><a href="javascript:;">配送员：<gt name="do.delivery_id" value="0"><{$delivery.name}>(<{$delivery.mobile}>)<else/>还未接单</gt></a></li>

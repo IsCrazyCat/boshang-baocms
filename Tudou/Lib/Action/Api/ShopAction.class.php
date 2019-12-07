@@ -1,7 +1,7 @@
 <?php
 
 class ShopAction extends CommonAction{
-	//商家分类
+	//企业分类
 	public function ShopType(){
 		$arr = D('Shopcate')->where(array('parent_id'=>0))->limit(0,10)->select();
 		$kk = 0;
@@ -14,7 +14,7 @@ class ShopAction extends CommonAction{
         exit($json_str); 
 	}
 	
-	//商家广告
+	//企业广告
 	public function Ad(){
 		$list = D('Ad')->where(array('site_id'=>'57','closed'=>'0'))->select();
 		foreach ($list as $k => $val){
@@ -26,14 +26,14 @@ class ShopAction extends CommonAction{
         exit($json_str); 
 	}
 	
-	//最新入驻商家
+	//最新入驻企业
 	public function news(){
 		$res = D('Shop')->where(array('audit'=>'1','closed'=>'0'))->order(array('create_time' => 'desc'))->limit(0,5)->select();
         $json_str = json_encode($res);
         exit($json_str); 
 	}
 	
-	//商家列表
+	//企业列表
 	public function Lists(){
 		$obj = D('Shop');
 		import('ORG.Util.Page');
@@ -61,7 +61,7 @@ class ShopAction extends CommonAction{
 	}
 	
 	
-	//商家分类列表
+	//企业分类列表
 	public function TypeStoreList(){
 		$obj = D('Shop');
 		import('ORG.Util.Page');
@@ -91,7 +91,7 @@ class ShopAction extends CommonAction{
 	
 
 	
-	//商家详情
+	//企业详情
 	public function detail(){
 		$shop_id = I('id','','trim');
 		$detail = D('Shop')->find($shop_id);
@@ -102,7 +102,7 @@ class ShopAction extends CommonAction{
 		$detail['details'] = D('Shopdetails')->where(array('shop_id'=>$shop_id))->find();
 		$detail['detail'] =  cleanhtml($detail['details']['details']);
 		$detail['logo'] = config_weixin_img($detail['photo']);
-		$detail['ad'] = $this->getShopListPics($detail['shop_id']);//商家图片获取
+		$detail['ad'] = $this->getShopListPics($detail['shop_id']);//企业图片获取
 		$detail['img'] = config_weixin_img($detail['photo']);//小程序编码
 		$data['store'][]=$detail;
 		
@@ -188,7 +188,7 @@ class ShopAction extends CommonAction{
     }
 	
 	
-	//商家点评列表
+	//企业点评列表
 	public function dianping(){
 		$shop_id = I('store_id','','trim');
 		$obj = D('ShopDianping');
@@ -243,7 +243,7 @@ class ShopAction extends CommonAction{
 		
 	
 	  
-	 //商家d点评
+	 //企业d点评
       public function StoreComments(){
 		$data['shop_id'] = I('store_id','','trim'); 
 		$data['user_id'] = I('user_id','','trim');
@@ -266,7 +266,7 @@ class ShopAction extends CommonAction{
 	  
 	 
 	  
-	  //商家二维码
+	  //企业二维码
 	  public function StoreCode(){
 		  $config = D('Setting')->fetchAll();
 		  $shop_id = I('store_id','','trim');
@@ -381,7 +381,7 @@ class ShopAction extends CommonAction{
 	}
 
 	 
-	 //商家回复点评
+	 //企业回复点评
      public function Reply(){
 		 $id = I('id','','trim');
 		 $reply = I('reply','','trim,htmlspecialchars');
@@ -393,7 +393,7 @@ class ShopAction extends CommonAction{
 		 }
      }
 	 
-	 //商家入驻时候选择分类
+	 //企业入驻时候选择分类
      public function storetype(){
         $arr = D('Shopcate')->where(array('parent_id'=>array('neq',0)))->limit(0,60)->select();
 		$kk = 0;
@@ -406,7 +406,7 @@ class ShopAction extends CommonAction{
         exit($json_str); 
       }
 	
-	//商家入驻费用
+	//企业入驻费用
 	public function InMoney(){
 		$config = D('Setting')->fetchAll();
 		if($config['shop']['shop_apply_prrice']){
@@ -444,11 +444,11 @@ class ShopAction extends CommonAction{
 		  }
 	 }
 	 
-	 //商家入驻页面
+	 //企业入驻页面
      public function Store(){
 		 $data['city_id'] = I('city_id','','trim');//城市id
          $data['user_id'] = I('user_id','','trim');//用户id
-         $data['shop_name']= I('store_name','','trim,htmlspecialchars');//商家名称
+         $data['shop_name']= I('store_name','','trim,htmlspecialchars');//企业名称
 		 $storetype_id = I('storetype_id','','trim');//行业分类id
          $data['cate_id'] = I('storetype_id','','trim');//之行业分类id
          $data['start_time']=I('start_time','','trim,htmlspecialchars');//营业时间
@@ -461,8 +461,8 @@ class ShopAction extends CommonAction{
 		 $data['addr']= I('address','','trim,htmlspecialchars');//地址
 		 
 		 
-         $data['photo']=I('logo','','trim');//商家photo
-		 $data['logo']=I('logo','','trim');//商家logo
+         $data['photo']=I('logo','','trim');//企业photo
+		 $data['logo']=I('logo','','trim');//企业logo
          $data['panorama_url']=I('vr_link','','trim');//vr
 		 
          $data['service_weixin_qrcode']=I('weixin_logo','','trim');//老板微信
@@ -472,7 +472,7 @@ class ShopAction extends CommonAction{
          $data['create_time'] = NOW_TIME;
          $data['create_ip'] = get_client_ip();
          $data['money']=I('money','','trim,htmlspecialchars');//付款价格
-         $data['details']=I('details','','trim,htmlspecialchars');//商家简介
+         $data['details']=I('details','','trim,htmlspecialchars');//企业简介
 		 
          $coordinates = I('coordinates','','trim,htmlspecialchars');//坐标
 		 $coordinates2 = explode(',',$coordinates);
@@ -485,7 +485,7 @@ class ShopAction extends CommonAction{
         
        
          if($shop_id = D('Shop')->add($data)){
-			D('Shop')->buildShopQrcode($shop_id,15);//生成商家二维码
+			D('Shop')->buildShopQrcode($shop_id,15);//生成企业二维码
 			
 			$ads = explode(',',I('ad','','trim'));
 			foreach($ads as $val){
@@ -514,7 +514,7 @@ class ShopAction extends CommonAction{
     }
 	 
 	 
-	//商家入驻模板消息后期开发
+	//企业入驻模板消息后期开发
 	public function rzmessage(){
 		$access_token = $this->getaccess_token();
 		echo '1';

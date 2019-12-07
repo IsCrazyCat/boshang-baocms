@@ -8,10 +8,10 @@ class ShopAction extends CommonAction{
 		$this->assign('cates', D('Shopcate')->fetchAll());
 		$this->end_dates = D('Shop')->getEndDate();
         $this->assign('end_dates',$this->end_dates);
-        $this->assign('grades',$grades = D('Shopgrade')->where(array('closed'=>0))->select());//哈土豆二开增加商家等级
+        $this->assign('grades',$grades = D('Shopgrade')->where(array('closed'=>0))->select());//哈土豆二开增加企业等级
     }
 	
-	//批量试生产商家二维码
+	//批量试生产企业二维码
 	public function buildqrcode($admin_id){
 		$list = M('Shop')->where(array('audit'=>'1','closed'=>'0'))->select();
 		$i= 0;
@@ -24,7 +24,7 @@ class ShopAction extends CommonAction{
         }
 		
 		if($i){
-			$explain = '生成'.$i.'个商家二维码';
+			$explain = '生成'.$i.'个企业二维码';
 		}else{
 			$explain = '没有可生成的二维码或者操作失败';
 		}
@@ -38,7 +38,7 @@ class ShopAction extends CommonAction{
         $this->tuSuccess($explain, U('index/main'));
     }
 	
-	//删除试生产商家二维
+	//删除试生产企业二维
 	public function delqrcode($admin_id){
 		$list = M('Shop')->where(array('audit'=>'1','closed'=>'0'))->select();
 		$i= 0;
@@ -50,7 +50,7 @@ class ShopAction extends CommonAction{
         }
 		
 		if($i){
-			$explain = '成功删除'.$i.'个商家二维码';
+			$explain = '成功删除'.$i.'个企业二维码';
 		}else{
 			$explain = '没有可删除的二维码或者操作失败';
 		}
@@ -61,7 +61,7 @@ class ShopAction extends CommonAction{
 		$arr['create_time'] = NOW_TIME;
 		$arr['create_ip'] = get_client_ip();
 		M('AdminActionLogs')->add($arr);  
-        $this->tuSuccess('成功删除'.$i.'个商家二维码', U('index/main'));
+        $this->tuSuccess('成功删除'.$i.'个企业二维码', U('index/main'));
     }
 	
 	
@@ -286,7 +286,7 @@ class ShopAction extends CommonAction{
             $obj = D('Shop');
             $details = $this->_post('details', 'SecurityEditorHtml');
             if ($words = D('Sensitive')->checkWords($details)) {
-                $this->tuError('商家介绍含有敏感词：' . $words);
+                $this->tuError('企业介绍含有敏感词：' . $words);
             }
             $bank = $this->_post('bank', 'htmlspecialchars');
             unset($data['near'], $data['price'], $data['business_time'], $data['delivery_time']);
@@ -294,7 +294,7 @@ class ShopAction extends CommonAction{
                 $wei_pic = D('Weixin')->getCode($shop_id, 1);
                 $ex = array('wei_pic' =>$wei_pic,'details'=>$details,'bank'=>$bank,'near'=>$data2['near'],'price' =>$data2['price'],'business_time'=>$data2['business_time'],'delivery_time'=>$data2['delivery_time']);
                 D('Shopdetails')->upDetails($shop_id, $ex);
-				D('Shop')->buildShopQrcode($shop_id,15);//生成商家二维码
+				D('Shop')->buildShopQrcode($shop_id,15);//生成企业二维码
                 $this->tuSuccess('添加成功', U('shop/apply'));
             }
             $this->tuError('操作失败');
@@ -360,7 +360,7 @@ class ShopAction extends CommonAction{
         }
 		$data['grade_id'] = (int) $data['grade_id'];
 //        if(empty($data['grade_id'])){
-//            $this->tuError('商家等级不能为空');
+//            $this->tuError('企业等级不能为空');
 //        }
         $data['city_id'] = (int) $data['city_id'];
         $data['area_id'] = (int) $data['area_id'];
@@ -417,14 +417,14 @@ class ShopAction extends CommonAction{
         if($shop_id = (int) $shop_id) {
             $obj = D('Shop');
             if(!($detail = $obj->find($shop_id))){
-                $this->tuError('请选择要编辑的商家');
+                $this->tuError('请选择要编辑的企业');
             }
             if($this->isPost()){
                 $data = $this->editCheck($shop_id);
                 $data['shop_id'] = $shop_id;
                 $details = $this->_post('details', 'SecurityEditorHtml');
                 if ($words = D('Sensitive')->checkWords($details)) {
-                    $this->tuError('商家介绍含有敏感词：' . $words);
+                    $this->tuError('企业介绍含有敏感词：' . $words);
                 }
                 $bank = $this->_post('bank', 'htmlspecialchars');
                 $shopdetails = D('Shopdetails')->find($shop_id);
@@ -441,7 +441,7 @@ class ShopAction extends CommonAction{
                 unset($data['near'], $data['price'], $data['business_time']);
                 if(false !== $obj->save($data)) {
                     D('Shopdetails')->upDetails($shop_id, $ex);
-					D('Shop')->buildShopQrcode($shop_id,15);//生成商家二维码
+					D('Shop')->buildShopQrcode($shop_id,15);//生成企业二维码
                     $this->tuSuccess('操作成功', U('shop/index'));
                 }
                 $this->tuError('操作失败');
@@ -453,7 +453,7 @@ class ShopAction extends CommonAction{
                 $this->display();
             }
         }else{
-            $this->tuError('请选择要编辑的商家');
+            $this->tuError('请选择要编辑的企业');
         }
     }
 	
@@ -475,7 +475,7 @@ class ShopAction extends CommonAction{
         }
 		$data['grade_id'] = (int) $data['grade_id'];
 //        if (empty($data['grade_id'])) {
-//            $this->tuError('商家等级不能为空');
+//            $this->tuError('企业等级不能为空');
 //        }
         $data['city_id'] = (int) $data['city_id'];
         $data['area_id'] = (int) $data['area_id'];
@@ -583,7 +583,7 @@ class ShopAction extends CommonAction{
                 }
                 $this->tuSuccess('删除成功', U('shop/index'));
             }
-            $this->tuError('请选择要删除的商家');
+            $this->tuError('请选择要删除的企业');
         }
     }
 	
@@ -599,14 +599,14 @@ class ShopAction extends CommonAction{
 				$this->tuError($obj->getError());
 			}
         }else{
-			$this->tuError('商家不存在');
+			$this->tuError('企业不存在');
 		}
 	}
 	
     public function login($shop_id){
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))){
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if (empty($detail['user_id'])) {
             $this->error('该用户没有绑定管理者');
@@ -619,7 +619,7 @@ class ShopAction extends CommonAction{
     public function biz($shop_id,$p = 0){
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_biz' => 0, 'shop_id' => $shop_id);
         if ($detail['is_biz'] == 0) {
@@ -631,7 +631,7 @@ class ShopAction extends CommonAction{
     public function profit($shop_id,$p = 0){
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_profit' => 0, 'shop_id' => $shop_id);
         if ($detail['is_profit'] == 0) {
@@ -646,7 +646,7 @@ class ShopAction extends CommonAction{
 		
         $obj = D('Shop');
         if(!($detail = $obj->find($shop_id))){
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_online' => 0, 'shop_id' => $shop_id);
 		$intro = '关闭农电商成功';
@@ -663,7 +663,7 @@ class ShopAction extends CommonAction{
     public function is_ele_pei($shop_id,$p = 0){
         $obj = D('Shop');
         if(!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if($detail['is_ele_pei'] == 1){
 			$do = D('DeliveryOrder')->where(array('shop_id' =>$detail['shop_id'],'type' => 1,'closed' =>0,'status' => array('IN',array(1,2))))->find();
@@ -675,7 +675,7 @@ class ShopAction extends CommonAction{
             if($detail['is_ele_pei'] == 0){
 				$Eleorder = D('Eleorder')->where(array('shop_id' =>$detail['shop_id'],'closed' =>0,'status' => array('IN',array(1,2))))->find();
 				if($Eleorder){
-					$this->tuError('该商家外卖订单号【'.$Eleorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
+					$this->tuError('该企业外卖订单号【'.$Eleorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
 				}
                 $obj->save(array('shop_id' => $shop_id, 'is_ele_pei' =>1));
             }
@@ -687,7 +687,7 @@ class ShopAction extends CommonAction{
     public function is_market_pei($shop_id,$p = 0){
         $obj = D('Shop');
         if(!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if($detail['is_market_pei'] == 1){
 			$do = D('DeliveryOrder')->where(array('shop_id' =>$detail['shop_id'],'type' =>3,'closed' =>0,'status' => array('IN',array(1,2))))->find();
@@ -699,7 +699,7 @@ class ShopAction extends CommonAction{
             if($detail['is_market_pei'] == 0){
 				$Marketorder = D('Marketorder')->where(array('shop_id' =>$detail['shop_id'],'closed' =>0,'status' => array('IN',array(1,2))))->find();
 				if($Marketorder){
-					$this->tuError('该商家菜市场订单号【'.$Marketorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
+					$this->tuError('该企业菜市场订单号【'.$Marketorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
 				}
                 $obj->save(array('shop_id' => $shop_id, 'is_market_pei' =>1));
             }
@@ -711,7 +711,7 @@ class ShopAction extends CommonAction{
     public function is_store_pei($shop_id,$p = 0){
         $obj = D('Shop');
         if(!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if($detail['is_store_pei'] == 1){
 			$do = D('DeliveryOrder')->where(array('shop_id' =>$detail['shop_id'],'type' =>4,'closed' =>0,'status' => array('IN',array(1,2))))->find();
@@ -723,7 +723,7 @@ class ShopAction extends CommonAction{
             if($detail['is_store_pei'] == 0){
 				$Storeorder = D('Storeorder')->where(array('shop_id' =>$detail['shop_id'],'closed' =>0,'status' => array('IN',array(1,2))))->find();
 				if($Storeorder){
-					$this->tuError('该商家便利店订单号【'.$Storeorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
+					$this->tuError('该企业便利店订单号【'.$Storeorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
 				}
                 $obj->save(array('shop_id' => $shop_id, 'is_store_pei' =>1));
             }
@@ -737,7 +737,7 @@ class ShopAction extends CommonAction{
 	public function is_goods_pei($shop_id,$p = 0){
         $obj = D('Shop');
         if(!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if($detail['is_goods_pei'] == 1) {
 			$do = D('DeliveryOrder')->where(array('shop_id' =>$detail['shop_id'],'type' =>0,'closed' =>0,'status' => array('IN',array(1,2))))->find();
@@ -749,7 +749,7 @@ class ShopAction extends CommonAction{
             if($detail['is_goods_pei'] == 0){
 				$order = D('Order')->where(array('shop_id' =>$detail['shop_id'],'closed' =>0,'status' => array('IN',array(1,2))))->find();
 				if($order){
-					$this->tuError('该商家商城订单号【'.$order['order_id'].'】没处理完毕，暂时无法强制开通配送');
+					$this->tuError('该企业商城订单号【'.$order['order_id'].'】没处理完毕，暂时无法强制开通配送');
 				}
                 $obj->save(array('shop_id' => $shop_id, 'is_goods_pei' =>1));
             }
@@ -761,28 +761,28 @@ class ShopAction extends CommonAction{
 	public function is_goods_backers($shop_id,$p = 0){
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_goods_backers' => 0, 'shop_id' => $shop_id);
         if ($detail['is_goods_backers'] == 0) {
             $data['is_goods_backers'] = 1;
         }
         $obj->save($data);
-        $this->tuSuccess('商家商城推手设置成功', U('shop/index',array('p'=>$p)));
+        $this->tuSuccess('企业商城推手设置成功', U('shop/index',array('p'=>$p)));
     }
 	
 	//开启外卖推手
 	public function is_ele_backers($shop_id,$p = 0){
         $obj = D('Shop');
         if (!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         $data = array('is_ele_backers' => 0, 'shop_id' => $shop_id);
         if ($detail['is_ele_backers'] == 0) {
             $data['is_ele_backers'] = 1;
         }
         $obj->save($data);
-        $this->tuSuccess('商家外卖推手设置成功', U('shop/index',array('p'=>$p)));
+        $this->tuSuccess('企业外卖推手设置成功', U('shop/index',array('p'=>$p)));
     }
 	
     public function recovery(){
@@ -865,7 +865,7 @@ class ShopAction extends CommonAction{
         if (is_numeric($shop_id) && ($shop_id = (int) $shop_id)) {
             $obj = D('Shop');
             $obj->save(array('shop_id' => $shop_id, 'closed' => 0));
-            $this->tuSuccess('恢复商家成功', U('shop/index'));
+            $this->tuSuccess('恢复企业成功', U('shop/index'));
         } else {
             $shop_id = $this->_post('shop_id', false);
             if (is_array($shop_id)) {
@@ -873,9 +873,9 @@ class ShopAction extends CommonAction{
                 foreach ($shop_id as $id) {
                     $obj->save(array('shop_id' => $id, 'closed' => 0));
                 }
-                $this->tuSuccess('恢复商家成功', U('shop/index'));
+                $this->tuSuccess('恢复企业成功', U('shop/index'));
             }
-            $this->tuError('请选择要恢复的商家');
+            $this->tuError('请选择要恢复的企业');
         }
     }
     public function delete2($shop_id = 0){

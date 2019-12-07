@@ -92,7 +92,7 @@ class ShopdingyuyueAction extends CommonAction {
                 }
                 $this->tuSuccess('删除成功', U('Shopdingyuyue/index'));
             }
-            $this->tuError('请选择要删除的商家订座预约2');
+            $this->tuError('请选择要删除的企业订座预约2');
         }
     }
 

@@ -9,7 +9,7 @@ class SmsshopModel extends CommonModel{
         return $this->error;
     }
 	
-	//购买短信商家版本
+	//购买短信企业版本
 	public function buy($num,$user_id,$shop_id){
 		$CONFIG = D('Setting')->fetchAll();
 		$detail = $this->where(array('type'=>'shop','user_id'=>$user_id,'status'=>0))->find();

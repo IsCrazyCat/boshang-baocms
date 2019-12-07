@@ -18,13 +18,13 @@ class IndexAction extends CommonAction{
         //家政信息
         $counts['appoint'] = (int) D('Appointorder')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count();
         $counts['appoint_audit'] = (int) D('Appointorder')->where(array('shop_id' => $this->shop_id, 'status' => 1, 'closed' => 0))->count();
-        //商家招聘
+        //企业招聘
         $counts['work'] = (int) D('Work')->where(array('shop_id' => $this->shop_id))->count();
         $counts['work_audit'] = (int) D('Work')->where(array('shop_id' => $this->shop_id, 'audit' => 0))->count();
         //文章
         $counts['news'] = (int) D('Article')->where(array('shop_id' => $this->shop_id, 'closed' => 0))->count();
         $counts['news_autit'] = (int) D('Article')->where(array('shop_id' => $this->shop_id, 'closed' => 0, 'audit' => 0))->count();
-        //商家预约
+        //企业预约
         $counts['shopyuyue'] = (int) D('Shopyuyue')->where(array('shop_id' => $this->shop_id))->count();
         $counts['shopyuyue_one'] = (int) D('Shopyuyue')->where(array('shop_id' => $this->shop_id, 'used' => 1))->count();
         $counts['shopyuyue_eight'] = (int) D('Shopyuyue')->where(array('shop_id' => $this->shop_id, 'used' => 0))->count();

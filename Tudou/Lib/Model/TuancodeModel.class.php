@@ -33,13 +33,13 @@ class TuancodeModel extends CommonModel{
 			
 			
 			if(!empty($data['price'])){
-				D('Shopmoney')->insertData($data['order_id'],$data['code_id'],$data['shop_id'],$settlement_price,$type ='tuan',$intro);//结算给商家
+				D('Shopmoney')->insertData($data['order_id'],$data['code_id'],$data['shop_id'],$settlement_price,$type ='tuan',$intro);//结算给企业
 				D('Userguidelogs')->AddMoney($data['shop_id'], $data['settlement_price'], $data['order_id'],$type = "tuan");//推荐分成
                 
 				$config = D('Setting')->fetchAll();//获取配置
 				if(!empty($data['real_integral'])){
 					if($config['integral']['tuan_return_integral'] == 1){
-						D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '抢购用户消费积分返还给商家');//抢购返还积分给商家用户
+						D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '抢购用户消费积分返还给企业');//抢购返还积分给企业用户
 					}
 				}
 				

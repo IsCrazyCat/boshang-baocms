@@ -9,8 +9,8 @@
 <div class="content zy_content" style="position: relative; padding-top: 5px;">
 	<div class="spxq_xqT spxq_xqT2">
         <ul>
-            <li class="jq_spxq_xqBt1 on"><code rel="spxq_xqBt1">商家位置</code><em></em></li>
-            <li class="jq_spxq_xqBt2"><code rel="spxq_xqBt2">商家介绍</code><em></em></li>
+            <li class="jq_spxq_xqBt1 on"><code rel="spxq_xqBt1">企业位置</code><em></em></li>
+            <li class="jq_spxq_xqBt2"><code rel="spxq_xqBt2">企业介绍</code><em></em></li>
             <li class="jq_spxq_xqBt3"><code rel="spxq_xqBt3">本店特色菜</code><em></em></li>
             <li class="jq_spxq_xqBt4"><code rel="spxq_xqBt4">店铺环境</code><em></em></li>
             <li class="jq_spxq_xqBt5"><code rel="spxq_xqBt5">设施服务</code><em></em></li>
@@ -51,7 +51,7 @@
             <div class="FocAndShare2 right share bdsharebuttonbox" data-tag="share_1">
                 <ul>
                     <li class="list"><a mini='act' href="<{:U('shop/favorites',array('shop_id'=>$detail['shop_id']))}>">
-                        <em class="ico ico_2"></em>收藏商家</a>
+                        <em class="ico ico_2"></em>收藏企业</a>
                     </li>
                     <li class="list"><a data-cmd="more" href="javascript:void(0);">
                         <em class="ico ico_3"></em>分享</a>
@@ -140,10 +140,10 @@
             })
     })
     </script>
-    <!--商家优惠-->
+    <!--企业优惠-->
     <if condition="$coupon_list">
         <div class="seat_detl_youhui mb10">
-            <div class="title mb10">商家优惠</div>
+            <div class="title mb10">企业优惠</div>
             <div>
                 <ul>
                     <foreach name="coupon_list" item="item">
@@ -163,7 +163,7 @@
         </div>
     </if>
     <!--<div class="seat_detl_ding mb20"><span class="left tag">订</span><p>本店支持在线订座，满480元送特调果汁初恋一杯，六月特惠，一定要手机买单</p></div>-->
-    <!--商家优惠end-->
+    <!--企业优惠end-->
 	<!--预约表单-->
     <div class="hotel_detl_soso mb20" >
     	<div class="hotel_soso seat_soso">
@@ -194,8 +194,8 @@
     <!--预约表单end-->
     <div class="spxq_xqT">
         <ul>
-            <li class="on"><code rel="spxq_xqBt1">商家位置</code><em></em></li>
-            <li><code rel="spxq_xqBt2">商家介绍</code><em></em></li>
+            <li class="on"><code rel="spxq_xqBt1">企业位置</code><em></em></li>
+            <li><code rel="spxq_xqBt2">企业介绍</code><em></em></li>
             <li><code rel="spxq_xqBt3">本店特色菜</code><em></em></li>
             <li><code rel="spxq_xqBt4">店铺环境</code><em></em></li>
             <li><code rel="spxq_xqBt6">设施服务</code><em></em></li>
@@ -205,7 +205,7 @@
     </div>
     <!--地图-->
     <div class="hotel_detl_box mb20 spxq_xqBt1">
-        <div class="hotel_detl_tit">商家位置</div>
+        <div class="hotel_detl_tit">企业位置</div>
         <div class="hotel_detl_nr">
             <div class="hotel_map">
                 <div class="map_box left" id="allmap" style="width:1160px; height:430px;"></div>
@@ -227,7 +227,7 @@
     </div>
     <!--地图结束-->
     <div class="hotel_detl_box mb20 spxq_xqBt2">
-        <div class="hotel_detl_tit">商家介绍</div>
+        <div class="hotel_detl_tit">企业介绍</div>
         <div class="hotel_detl_nr"><{$detail.details}></div>
     </div>
     

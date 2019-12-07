@@ -62,11 +62,11 @@ class ShopnewsAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->create_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
         $data['cate_id'] = $shop['cate_id'];
         $data['title'] = htmlspecialchars($data['title']);
@@ -95,7 +95,7 @@ class ShopnewsAction extends CommonAction
         if ($news_id = (int) $news_id) {
             $obj = D('Shopnews');
             if (!($detail = $obj->find($news_id))) {
-                $this->tuError('请选择要编辑的商家资讯');
+                $this->tuError('请选择要编辑的企业资讯');
             }
 
             if ($this->isPost()) {
@@ -111,7 +111,7 @@ class ShopnewsAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家资讯');
+            $this->tuError('请选择要编辑的企业资讯');
         }
     }
     private function editCheck()
@@ -119,11 +119,11 @@ class ShopnewsAction extends CommonAction
         $data = $this->checkFields($this->_post('data', false), $this->edit_fields);
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
         $data['cate_id'] = $shop['cate_id'];
         $data['title'] = htmlspecialchars($data['title']);
@@ -160,7 +160,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('shopnews/index'));
             }
-            $this->tuError('请选择要删除的商家资讯');
+            $this->tuError('请选择要删除的企业资讯');
         }
     }
     public function audit($news_id = 0)
@@ -178,7 +178,7 @@ class ShopnewsAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('shopnews/index'));
             }
-            $this->tuError('请选择要审核的商家资讯');
+            $this->tuError('请选择要审核的企业资讯');
         }
     }
 }

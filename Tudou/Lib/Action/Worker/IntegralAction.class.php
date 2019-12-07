@@ -62,7 +62,7 @@ class IntegralAction extends CommonAction {
 			if ($yzm != $cancel_used_code) {
 			   $this->tuMsg('短信验证码不正确');
 			}
-			$intro = '店员【'.$this->workers['name'].'】积分核销：' . $integral.'所属商家'.$this->shop['shop_name'];
+			$intro = '店员【'.$this->workers['name'].'】积分核销：' . $integral.'所属企业'.$this->shop['shop_name'];
 			if(false !== D('Userintegralcancel')->complete($detail['user_id'],$this->shop_id,$type,$this->workers['worker_id'],$integral,$intro)){
 				$this->tuMsg('恭喜店员'.$this->workers['name'].'验证成功', U('integral/index',array('aready'=>1)));
 				session('cancel_used_code', null);

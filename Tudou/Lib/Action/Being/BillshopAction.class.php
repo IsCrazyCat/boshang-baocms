@@ -51,7 +51,7 @@ class BillshopAction extends CommonAction
             $obj = D('Billshop');
             $detail = $obj->where(array('shop_id' => $data['shop_id'], 'list_id' => $list_id))->find();
             if (!empty($detail)) {
-                $this->tuError('此商家已经上榜过了');
+                $this->tuError('此企业已经上榜过了');
             }
             if ($obj->add($data)) {
                 $this->tuSuccess('添加成功', U('billboard/index'));
@@ -90,7 +90,7 @@ class BillshopAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('billboard/index'));
             }
-            $this->tuError('请选择要删除的商家');
+            $this->tuError('请选择要删除的企业');
         }
     }
 }

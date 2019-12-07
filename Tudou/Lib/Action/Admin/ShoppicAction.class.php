@@ -61,7 +61,7 @@ class ShoppicAction extends CommonAction
                 }
                 $this->tuSuccess('删除成功', U('shoppic/index'));
             }
-            $this->tuError('请选择要删除的商家图片');
+            $this->tuError('请选择要删除的企业图片');
         }
     }
     public function audit($pic_id = 0)
@@ -79,7 +79,7 @@ class ShoppicAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('shoppic/index'));
             }
-            $this->tuError('请选择要审核的商家图片');
+            $this->tuError('请选择要审核的企业图片');
         }
     }
 }

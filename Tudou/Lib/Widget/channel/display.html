@@ -48,7 +48,7 @@
         </ul>
     </div>
     <div class="shangp">
-        <h3>最新入驻商家</h3>
+        <h3>最新入驻企业</h3>
         <ul>
             <?php $i=0; foreach($shops as $val) { $i++; ?>
             <li><em <?php if($i >3) echo 'class="e2"'; ?>><?php echo $i;?></em><a href="<?php echo U('shop/detail',array('shop_id'=>$val['shop_id']));?>" title="<?php echo $val['shop_name'];?>"  target="_blank"><?php echo $val['shop_name'];?></a></li>

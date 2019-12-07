@@ -370,19 +370,19 @@ class MarketAction extends CommonAction{
             $this->tuMsg('您购买的工作是2个商户的');
         }
         if (empty($shop_id)) {
-            $this->tuMsg('商家不存在');
+            $this->tuMsg('企业不存在');
         }
         $shop = D('Market')->find($shop_id);
         if (empty($shop)) {
-            $this->tuMsg('该商家不存在');
+            $this->tuMsg('该企业不存在');
         }
 	
         if (!$shop['is_open']) {
-            $this->tuMsg('商家已经打烊，实在对不住客官');
+            $this->tuMsg('企业已经打烊，实在对不住客官');
         }
 		$busihour = $this->closeshopele($shop['busihour']);
 		 if ($busihour == 1) {
-            $this->tuMsg('商家休息中，请稍后再试');
+            $this->tuMsg('企业休息中，请稍后再试');
         }
 		
 		$total['logistics_full_money'] = D('Marketorder')->get_logistics($total['money'],$shop_id);//获取配送费用
@@ -405,7 +405,7 @@ class MarketAction extends CommonAction{
         };
 		
 		
-		//结算金额逻辑后期封装，如果是第三方配送，如果开通新单立减后，配送费用商家出，如果商家开启满减优惠，满减优惠商家出
+		//结算金额逻辑后期封装，如果是第三方配送，如果开通新单立减后，配送费用企业出，如果企业开启满减优惠，满减优惠企业出
 		if($total['logistics_full_money']){
 			$logistics = 0;
 			$shop_detail = D('Shop')->find($shop_id);

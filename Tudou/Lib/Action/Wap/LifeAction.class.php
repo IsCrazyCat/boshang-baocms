@@ -507,7 +507,7 @@ class LifeAction extends CommonAction{
 				$this->ajaxReturn(array('code'=>'0','msg'=>'您输入的文字太多了'));
 			}
             if($words = D('Sensitive')->checkWords($details)){
-				$this->ajaxReturn(array('code'=>'0','msg'=>'商家介绍含有敏感词：' . $words));
+				$this->ajaxReturn(array('code'=>'0','msg'=>'企业介绍含有敏感词：' . $words));
             }
 			$data['cate_id'] = (int) $data['cate_id'];
 			if(empty($data['cate_id'])){

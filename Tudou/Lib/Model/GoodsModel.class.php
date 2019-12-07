@@ -59,7 +59,7 @@ class GoodsModel extends CommonModel{
 		$goods = $this->find($goods_id);
 		$shop = D('Shop')->find($goods['shop_id']);
 		if(!$shop){
-			$this->error = '没找到商家';
+			$this->error = '没找到企业';
 			return false;
 		}
 		$Users = D('Users')->find($shop['user_id']);

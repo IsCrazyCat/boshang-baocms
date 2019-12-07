@@ -28,7 +28,7 @@ class ShopAction extends CommonAction{
     public function qrcode($shop_id){
         $shop_id = (int) $shop_id;
         if(empty($shop_id)){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }
         $shop = D('Shop')->find($shop_id);
         $file = D('Weixin')->getCode($shop_id, 1);
@@ -41,7 +41,7 @@ class ShopAction extends CommonAction{
         $shop_id = (int) $shop_id;
 		$type = (int) $this->_param('type');
         if(empty($shop_id)){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }
         $shop = D('Shop')->find($shop_id);
         $this->assign('shop', $shop);
@@ -145,11 +145,11 @@ class ShopAction extends CommonAction{
     public function detail(){
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
        
@@ -235,7 +235,7 @@ class ShopAction extends CommonAction{
     public function nav($shop_id){
         $shop_id = (int) $shop_id;
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
         }
 		$this->assign('grade', $grade = D('Shopgrade')->where(array('grade_id' => $detail['grade_id'],'closed'=>0))->find());
         $this->assign('nav', $nav = D('Shopnav')->where(array('shop_id' => $shop_id))->find());
@@ -250,10 +250,10 @@ class ShopAction extends CommonAction{
         }
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
         }
         if (D('Shopfavorites')->check($shop_id, $this->uid)) {
             $this->error('您已经收藏过了');
@@ -272,10 +272,10 @@ class ShopAction extends CommonAction{
         }
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))) {
-			$this->ajaxReturn(array('code'=>'0','msg'=>'没有该商家'));
+			$this->ajaxReturn(array('code'=>'0','msg'=>'没有该企业'));
         }
         if($detail['closed']){
-			$this->ajaxReturn(array('code'=>'0','msg'=>'该商家已经被删除'));
+			$this->ajaxReturn(array('code'=>'0','msg'=>'该企业已经被删除'));
         }
         if(false == D('Shopzan')->zan($shop_id, $this->uid)) {
             $this->ajaxReturn(array('code'=>'0','msg'=>D('Shopzan')->getError()));
@@ -287,11 +287,11 @@ class ShopAction extends CommonAction{
     public function dianping(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
 		$this->assign('nav', $nav = D('Shopnav')->where(array('shop_id' => $shop_id))->find());
@@ -354,7 +354,7 @@ class ShopAction extends CommonAction{
         $this->display();
     }
 	
-    //新添加预约商家开始
+    //新添加预约企业开始
     public function book($shop_id){
         if (empty($this->uid)) {
             $this->error('登录状态失效!', U('passport/login'));
@@ -362,10 +362,10 @@ class ShopAction extends CommonAction{
         $shop_id = (int) $shop_id;
         $detail = D('Shop')->find($shop_id);
         if (empty($detail)) {
-            $this->error('商家不存在');
+            $this->error('企业不存在');
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         $Users = D('Users')->find($detail['user_id']);
@@ -378,10 +378,10 @@ class ShopAction extends CommonAction{
             if ($yuyue_id = $obj->add($data)) {
 				
 				D('Sms')->sms_yuyue_notice_user($detail,$data['mobile'],$data['code']);//短信通知会员
-				D('Sms')->sms_yuyue_notice_shop($data,$Users['mobile']);//短信通知商家            
-                //预约通知商家功能结束
+				D('Sms')->sms_yuyue_notice_shop($data,$Users['mobile']);//短信通知企业            
+                //预约通知企业功能结束
                 D('Weixintmpl')->weixin_yuyue_notice($yuyue_id,1);//预约后微信通知预约人
-				D('Weixintmpl')->weixin_yuyue_notice($yuyue_id,2);//预约后微信通知商家
+				D('Weixintmpl')->weixin_yuyue_notice($yuyue_id,2);//预约后微信通知企业
                 D('Shop')->updateCount($shop_id, 'yuyue_total');
                 $this->ajaxReturn(array('code'=>'1','msg'=>'预约成功','url'=>U('user/yuyue/index')));
             }
@@ -428,11 +428,11 @@ class ShopAction extends CommonAction{
     public function tuan(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
 		$this->assign('nav', $nav = D('Shopnav')->where(array('shop_id' => $shop_id))->find());
@@ -466,11 +466,11 @@ class ShopAction extends CommonAction{
     public function goods() {
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
 		$this->assign('nav', $nav = D('Shopnav')->where(array('shop_id' => $shop_id))->find());
@@ -492,11 +492,11 @@ class ShopAction extends CommonAction{
     public function coupon(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
 		$this->assign('nav', $nav = D('Shopnav')->where(array('shop_id' => $shop_id))->find());
@@ -527,11 +527,11 @@ class ShopAction extends CommonAction{
 	public function jifen(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         $this->assign('nextpage', LinkTo('shop/jifenloaddata', array('shop_id' => $shop_id, 't' => NOW_TIME, 'p' => '0000')));
@@ -542,7 +542,7 @@ class ShopAction extends CommonAction{
     public function jifenloaddata(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         $obj = D('Integralgoods');
@@ -566,15 +566,15 @@ class ShopAction extends CommonAction{
     public function pic(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
 		
-		$list = D('Shoppic')->get_shop_pic_array($shop_id );//获取商家全部图片结合
+		$list = D('Shoppic')->get_shop_pic_array($shop_id );//获取企业全部图片结合
 		$this->assign('list', $list);
         $this->assign('detail', $detail);
         $this->display();
@@ -584,11 +584,11 @@ class ShopAction extends CommonAction{
     public function life(){
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if($detail['closed']){
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
 		$this->assign('nav', $nav = D('Shopnav')->where(array('shop_id' => $shop_id))->find());
@@ -602,7 +602,7 @@ class ShopAction extends CommonAction{
     public function lifeload(){
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         $obj = D('Life');
@@ -627,11 +627,11 @@ class ShopAction extends CommonAction{
     public function news(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
 		$this->assign('nav', $nav = D('Shopnav')->where(array('shop_id' => $shop_id))->find());
@@ -644,11 +644,11 @@ class ShopAction extends CommonAction{
     public function newsload(){
         $shop_id = (int) $this->_get('shop_id');
         if (!($detail = D('Shop')->find($shop_id))) {
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if ($detail['closed']) {
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         $Shopnews = D('Shopnews');
@@ -691,11 +691,11 @@ class ShopAction extends CommonAction{
     public function mall(){
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if($detail['closed']){
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         $this->assign('detail', $detail);
@@ -733,11 +733,11 @@ class ShopAction extends CommonAction{
     public function recognition(){
         $shop_id = (int) $this->_get('shop_id');
         if(!($detail = D('Shop')->find($shop_id))){
-            $this->error('没有该商家');
+            $this->error('没有该企业');
             die;
         }
         if($detail['closed']){
-            $this->error('该商家已经被删除');
+            $this->error('该企业已经被删除');
             die;
         }
         if($this->isPost()){
@@ -771,7 +771,7 @@ class ShopAction extends CommonAction{
             $data['code'] = $obj->getCode();
             //保证唯一性
             if ($obj->add($data)) {
-                D('Sms')->sms_shop_recognition_admin($this->_CONFIG['site']['config_mobile'],$detail['shop_name'],$data['name']);//认领商家通知管理员
+                D('Sms')->sms_shop_recognition_admin($this->_CONFIG['site']['config_mobile'],$detail['shop_name'],$data['name']);//认领企业通知管理员
             }
             $this->tuMsg('恭喜，认领成功，等待管理员审核', U('Wap/shop/index'));
         } else {
@@ -813,9 +813,9 @@ class ShopAction extends CommonAction{
         if(!$shop_id = (int)$shop_id){
             $this->error('ID不存在');
         }elseif(!$detail = $Booking->where(array('shop_id'=>$shop_id))->find()){
-			$this->error('该商家没开通订座功能');
+			$this->error('该企业没开通订座功能');
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
-            $this->error('该订座商家未审核或者已删除');
+            $this->error('该订座企业未审核或者已删除');
         }else{
             $lat = addslashes(cookie('lat'));
             $lng = addslashes(cookie('lng'));
@@ -916,12 +916,12 @@ class ShopAction extends CommonAction{
         }
         $shop_id = (int) $shop_id;
         if(!$shop_id){
-            $this->error('该商家没有设置买单优惠');
+            $this->error('该企业没有设置买单优惠');
         }elseif(!($detail = D('Shopyouhui')->where(array('shop_id' => $shop_id, 'is_open' => 1))->find())) {
-            $this->error('该商家没有设置买单优惠或已关闭');
+            $this->error('该企业没有设置买单优惠或已关闭');
         }
         if($detail['audit'] == 0){
-            $this->error('商家优惠未通过审核');
+            $this->error('企业优惠未通过审核');
         }
         $breaksorder = D('Breaksorder')->where(array('user_id' => $this->uid))->order(array('create_time' => 'desc'))->find();
         $breaksorder_time = NOW_TIME;

@@ -79,7 +79,7 @@ class MarketAction extends CommonAction {
             $this->tuError('ID不能为空');
         }
         if (!$shop = D('Shop')->find($data['shop_id'])) {
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['shop_name'] = $shop['shop_name'];
         $data['lng'] = $shop['lng'];
@@ -147,7 +147,7 @@ class MarketAction extends CommonAction {
         if ($shop_id = (int) $shop_id) {
             $obj = D('Market');
             if (!$detail = $obj->find($shop_id)) {
-                $this->tuError('请选择要编辑的餐饮商家');
+                $this->tuError('请选择要编辑的餐饮企业');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -166,7 +166,7 @@ class MarketAction extends CommonAction {
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的餐饮商家');
+            $this->tuError('请选择要编辑的餐饮企业');
         }
     }
 
@@ -258,7 +258,7 @@ class MarketAction extends CommonAction {
                 }
                 $this->tuSuccess('删除成功', U('market/index'));
             }
-            $this->tuError('请选择要删除的餐饮商家');
+            $this->tuError('请选择要删除的餐饮企业');
         }
     }
 

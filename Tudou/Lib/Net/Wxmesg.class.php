@@ -137,7 +137,7 @@ class Wxmesg{
 		);
 	}
 	
-	//用户付款后订单通知商家
+	//用户付款后订单通知企业
 	static public function order_notice_shop($data=null){
 		return array(
 			'touser' => '',
@@ -156,7 +156,7 @@ class Wxmesg{
 		);
 	}
 	
-	//客户预约成功通知商家
+	//客户预约成功通知企业
 
 	static public function yuyue($data=null){
 		return array(

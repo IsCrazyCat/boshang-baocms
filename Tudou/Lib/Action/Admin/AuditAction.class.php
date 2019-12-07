@@ -127,7 +127,7 @@ class AuditAction extends CommonAction
         if ($audit_id = (int) $audit_id) {
             $obj = D('Audit');
             if (!($detail = $obj->find($audit_id))) {
-                $this->tuError('请选择要编辑的商家认证');
+                $this->tuError('请选择要编辑的企业认证');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -142,7 +142,7 @@ class AuditAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家认证');
+            $this->tuError('请选择要编辑的企业认证');
         }
     }
     private function editCheck()
@@ -208,7 +208,7 @@ class AuditAction extends CommonAction
             $obj->save(array('audit_id' => $audit_id, 'closed' => 1));
             $shop_ids = D('Audit')->where(array('audit_id' => $audit_id))->find();
             $shop_id = $shop_ids['shop_id'];
-            //审核商家
+            //审核企业
             $shop = D('Shop');
             $shop->save(array('shop_id' => $shop_id, 'is_renzheng' => 0));
             $this->tuSuccess('删除成功', U('audit/index'));
@@ -221,7 +221,7 @@ class AuditAction extends CommonAction
                 }
                 $this->tuSuccess('批量删除成功', U('audit/index'));
             }
-            $this->tuError('请选择要删除的商家认证');
+            $this->tuError('请选择要删除的企业认证');
         }
     }
     public function audit($audit_id = 0)
@@ -231,7 +231,7 @@ class AuditAction extends CommonAction
             $obj->save(array('audit_id' => $audit_id, 'audit' => 1));
             $shop_ids = D('Audit')->where(array('audit_id' => $audit_id))->find();
             $shop_id = $shop_ids['shop_id'];
-            //审核商家
+            //审核企业
             $shop = D('Shop');
             $shop->save(array('shop_id' => $shop_id, 'is_renzheng' => 1));
             $this->tuSuccess('审核成功', U('audit/index'));
@@ -244,7 +244,7 @@ class AuditAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('audit/index'));
             }
-            $this->tuError('请选择要审核的商家认证');
+            $this->tuError('请选择要审核的企业认证');
         }
     }
 }

@@ -70,7 +70,7 @@ class InformationAction extends CommonAction{
             $this->error('没有权限访问错误');
         }
 		if(D('Shopworker')->save(array('status' => 1, 'worker_id' => $worker['worker_id']))){
-			$this->success('恭喜您成为了该商家的员工', U('worker/index/index'));
+			$this->success('恭喜您成为了该企业的员工', U('worker/index/index'));
 		}else{
 			$this->error('操作失败');
 		}
@@ -91,7 +91,7 @@ class InformationAction extends CommonAction{
             $this->error('没有权限访问错误');
         }
 		if(D('Shopworker')->where(array('worker_id' => $worker['worker_id']))->delete()){
-			$this->success('您残忍地拒绝了该商家的请求', U('index/index'));
+			$this->success('您残忍地拒绝了该企业的请求', U('index/index'));
 		}else{
 			$this->error('操作失败');
 		}

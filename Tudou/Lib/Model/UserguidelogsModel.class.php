@@ -8,7 +8,7 @@ class  UserguidelogsModel extends CommonModel{
 	 public function AddMoney($shop_id, $price, $order_id,$type){
 	  //找到分成会员ID，分成，循环写入日志
 	  $arr = D('Shopguide')->where(array('shop_id'=>$shop_id,'rate'=>array('gt',0),'user_id'=>array('neq','')))->select();
-	  $intro = '订单类型【'.$type.'】原始订单ID【'.$order_id.'】会员推荐商家分成';
+	  $intro = '订单类型【'.$type.'】原始订单ID【'.$order_id.'】会员推荐企业分成';
 	  $i=0;
 	  
 	  foreach($arr as $k => $v){

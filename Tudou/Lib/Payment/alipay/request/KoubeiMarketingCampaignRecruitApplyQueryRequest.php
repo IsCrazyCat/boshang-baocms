@@ -8,7 +8,7 @@
 class KoubeiMarketingCampaignRecruitApplyQueryRequest
 {
 	/** 
-	 * 招商商家报名分页查询接口
+	 * 招商企业报名分页查询接口
 	 **/
 	private $bizContent;
 

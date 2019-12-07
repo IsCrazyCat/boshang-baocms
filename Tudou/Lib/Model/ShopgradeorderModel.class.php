@@ -6,18 +6,18 @@ class ShopgradeorderModel extends CommonModel {
 	public function getError() {
         return $this->error;
     }
-	//统计当前等级下面多少商家
+	//统计当前等级下面多少企业
 	public function shop_pay_grade($grade_id,$shop_id){
 		$obj = D('Shopgrade');
         $Shop = D('Shop')->find($shop_id);
 		$users = D('Users')->find($Shop['user_id']);
-		$shop_grade = $obj->find($grade_id);//准备购买的商家等级
-		$old_shop_grade = $obj->find($Shop['grade_id']);//当前商家的等级
+		$shop_grade = $obj->find($grade_id);//准备购买的企业等级
+		$old_shop_grade = $obj->find($Shop['grade_id']);//当前企业的等级
 		if(empty($shop_grade)){
 			$this->error = '您购买的等级不存在或者被删除了';
 			return false;
 		}elseif($Shop['grade_id'] == $grade_id){
-			$this->error = '购买的等级跟您的商家等级一致，无法购买';
+			$this->error = '购买的等级跟您的企业等级一致，无法购买';
 			return false;
 	    }elseif($old_shop_grade['orderby'] >= $shop_grade['orderby']){
 			$this->error = '您不能降级，只能购买高权限的等级';
@@ -38,9 +38,9 @@ class ShopgradeorderModel extends CommonModel {
 		));
 		
 	   if($order_id){
-			if (false !== D('Users')->addMoney($users['user_id'], -$shop_grade['money'], '提升商家等级【' . $shop_grade['grade_name'] . '】扣费成功')) {
+			if (false !== D('Users')->addMoney($users['user_id'], -$shop_grade['money'], '提升企业等级【' . $shop_grade['grade_name'] . '】扣费成功')) {
 				D('Shop')->save(array('shop_id' => $shop_id, 'grade_id' => $grade_id));
-				D('Userprofitlogs')->buy_shop_grade_profit_user($shop_id,$shop_grade['money'],$shop_grade['grade_name']);//商家购买等级对接三级分销
+				D('Userprofitlogs')->buy_shop_grade_profit_user($shop_id,$shop_grade['money'],$shop_grade['grade_name']);//企业购买等级对接三级分销
 				return TRUE; 
 			} else {
 				$this->error = '扣费失败请重试';

@@ -151,9 +151,9 @@ class UsercashAction extends CommonAction{
 				}else{
 					
 						$obj->save($data);
-						D('Weixintmpl')->weixin_cash_user($detail['user_id'],1,$detail['type']);//申请提现：1会员申请，2商家同意，3商家拒绝
+						D('Weixintmpl')->weixin_cash_user($detail['user_id'],1,$detail['type']);//申请提现：1会员申请，2企业同意，3企业拒绝
 						if($detail['type'] == shop){
-							$this->tuSuccess('商家提现操作成功', U('usercash/gold'));	
+							$this->tuSuccess('企业提现操作成功', U('usercash/gold'));
 						}else{
 							$this->tuSuccess('会员提现操作成功', U('usercash/index'));	
 						}
@@ -184,9 +184,9 @@ class UsercashAction extends CommonAction{
 				$this->tuError(D('Userscash')->getError());
 			}else{
 				D('Userscash')->save($data);
-				D('Weixintmpl')->weixin_cash_user($detail['user_id'],1,$detail['type']);//申请提现：1会员申请，2商家同意，3商家拒绝
+				D('Weixintmpl')->weixin_cash_user($detail['user_id'],1,$detail['type']);//申请提现：1会员申请，2企业同意，3企业拒绝
 				if($detail['type'] == shop){
-					$this->tuSuccess('商家支付宝提现操作成功', U('usercash/gold'));	
+					$this->tuSuccess('企业支付宝提现操作成功', U('usercash/gold'));
 				}else{
 					$this->tuSuccess('会员支付宝提现操作成功', U('usercash/index'));	
 				}
@@ -211,7 +211,7 @@ class UsercashAction extends CommonAction{
                 $data['cash_id'] = $cash_id;
                 $data['status'] = $status;
                 if($obj->save($data)){
-					D('Weixintmpl')->weixin_cash_user($detail['user_id'],1);//申请提现：1会员申请，2商家同意，3商家拒绝
+					D('Weixintmpl')->weixin_cash_user($detail['user_id'],1);//申请提现：1会员申请，2企业同意，3企业拒绝
                 	$this->tuSuccess('操作成功', U('usercash/index'));
 				}else{
 					$this->tuError('更新数据库失败');
@@ -239,11 +239,11 @@ class UsercashAction extends CommonAction{
                 $data = array();
                 $data['cash_id'] = $cash_id;
                 $data['status'] = $status;
-				if(false == $obj-> weixinUserCach($cash_id,2)) {//微信提现逻辑封装，1会员，2商家
+				if(false == $obj-> weixinUserCach($cash_id,2)) {//微信提现逻辑封装，1会员，2企业
 					$this->tuError($obj->getError());
 				}else{
 					if($obj->save($data)){
-						D('Weixintmpl')->weixin_cash_user($detail['user_id'],1);//申请提现：1会员申请，2商家同意，3商家拒绝
+						D('Weixintmpl')->weixin_cash_user($detail['user_id'],1);//申请提现：1会员申请，2企业同意，3企业拒绝
 						$this->tuSuccess('操作成功', U('usercash/gold'));
 					}else{
 						$this->tuError('请不要重复操作');
@@ -272,7 +272,7 @@ class UsercashAction extends CommonAction{
                 $data['cash_id'] = $cash_id;
                 $data['status'] = $status;
                 if($obj->save($data)){
-					D('Weixintmpl')->weixin_cash_user($detail['user_id'],1);//申请提现：1会员申请，2商家同意，3商家拒绝
+					D('Weixintmpl')->weixin_cash_user($detail['user_id'],1);//申请提现：1会员申请，2企业同意，3企业拒绝
                 	$this->tuSuccess('操作成功', U('usercash/index'));
 				}else{
 					$this->tuError('更新数据库失败');
@@ -316,7 +316,7 @@ class UsercashAction extends CommonAction{
 		}
 	
     }
-    //拒绝商家提现
+    //拒绝企业提现
     public function jujue_gold(){
 		$status = (int) $_POST['status'];
 		$cash_id = (int) $_POST['cash_id'];
@@ -334,7 +334,7 @@ class UsercashAction extends CommonAction{
             $this->ajaxReturn(array('status' => 'error', 'msg' => '拒绝状态错误'));
         }
         if($status == 2){
-            D('Users')->addGold($detail['user_id'], $detail['gold'] + $detail['commission'], '提现ID【'.$cash_id.'】商家申请提现拒绝退款，理由【'.$value.'】');
+            D('Users')->addGold($detail['user_id'], $detail['gold'] + $detail['commission'], '提现ID【'.$cash_id.'】企业申请提现拒绝退款，理由【'.$value.'】');
 			if(D('Userscash')->save(array('cash_id' => $cash_id, 'status' => $status, 'reason' => $value))){
 				D('Weixintmpl')->weixin_cash_user($detail['user_id'],3);
             	$this->ajaxReturn(array('status' => 'success', 'msg' => '拒绝退款操作成功', 'url' => U('usercash/gold')));

@@ -44,7 +44,7 @@ class ShopAction extends CommonAction{
 			$data['audit'] = 1;
 			$details = $this->_post('details', 'SecurityEditorHtml');
             if($words = D('Sensitive')->checkWords($details)){
-                $this->tuError('商家介绍含有敏感词：' . $words);
+                $this->tuError('企业介绍含有敏感词：' . $words);
             }
             $ex = array('details' => $details, 'business_time' => $data['business_time'], 'delivery_time' => $data['delivery_time']);
             unset($data['business_time'],$data['delivery_time']);
@@ -114,7 +114,7 @@ class ShopAction extends CommonAction{
     public function service(){
         $obj = D('Shop');
         if (!($detail = $obj->find($this->shop_id))) {
-            $this->tuError('请选择要编辑的商家');
+            $this->tuError('请选择要编辑的企业');
         }
         if ($detail['shop_id'] != $this->shop_id) {
             $this->tuError('请不要非法操作');
@@ -170,7 +170,7 @@ class ShopAction extends CommonAction{
         }
     }
 	
-	//商家等级权限 
+	//企业等级权限
 	public function grade(){
         $Shopgrade = D('Shopgrade');
         import('ORG.Util.Page');
@@ -187,12 +187,12 @@ class ShopAction extends CommonAction{
         $this->display();
     }
 	
-	//商家等级权限 
+	//企业等级权限
 	public function permission($grade_id = 0){
         $grade_id = (int) $grade_id;
         $obj = D('Shopgrade');
         if (!($detail = $obj->find($grade_id))) {
-            $this->tuError('请选择要查看的商家等级');
+            $this->tuError('请选择要查看的企业等级');
         }
         $this->assign('detail', $detail);
         $this->display();
@@ -249,7 +249,7 @@ class ShopAction extends CommonAction{
     }
 	
 	
-	//商家模板
+	//企业模板
 	public function template(){
         $obj = D('Template');
 		//手机模板
@@ -268,7 +268,7 @@ class ShopAction extends CommonAction{
     }
 	
 	
-	//购买商家模板
+	//购买企业模板
 	public function pay_template(){
         $template_id = (int) $this->_param('template_id');
 		$shop_id = (int) $this->_param('shop_id');

@@ -11,7 +11,7 @@
     <div class="jsglNr">
         <div class="selectNr" style="margin-top: 0px; border-top:none;">
             <div class="left">
-                <{:BA('edu/create','','添加教育商家')}>
+                <{:BA('edu/create','','添加教育企业')}>
             </div>
             <div class="right">
                 <form class="search_form" method="post" action="<{:U('edu/noaudit')}>">
@@ -94,7 +94,7 @@
                     <td>教育电话</td>
                     <td>教育地址</td>			
                     <td>入驻时间</td>
-                    <td>商家更新时间</td>
+                    <td>企业更新时间</td>
                     <td>入驻IP</td>
                     <td class="w360">操作</td>
                 </tr>
@@ -102,7 +102,7 @@
                     <tr>
                         <td><input class="child_edu_id" type="checkbox" name="edu_id[]" value="<{$var.edu_id}>" /></td>
                         <td><{$var.edu_id}></td>
-                        <td><{$var.edu_name}>(商家ID:<{$var.shop_id}>)</td>
+                        <td><{$var.edu_name}>(企业ID:<{$var.shop_id}>)</td>
                         <td><img src="<{:config_img($var['photo'])}>" class="w80" /></td>
                         <td><{$var.tel}></td>
                         <td><{$var.addr}></td>

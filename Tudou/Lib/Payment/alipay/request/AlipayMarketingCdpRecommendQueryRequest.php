@@ -8,7 +8,7 @@
 class AlipayMarketingCdpRecommendQueryRequest
 {
 	/** 
-	 * 外部应用根据用户当前地理位置查询附近商家信息
+	 * 外部应用根据用户当前地理位置查询附近企业信息
 	 **/
 	private $bizContent;
 

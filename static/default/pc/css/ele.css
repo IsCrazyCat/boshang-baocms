@@ -34,7 +34,7 @@
 .shop-row li .desc {display:none;background:#FFF;position:absolute;z-index:9999999;width:276px;left:-1px;top:239px;padding:0 10px 10px 10px;border:thin solid #DDD;border-top:none;}
 .shop-row li .ding a{display:block;padding:10px 20px;background:#E74C3C;margin-top:5px;color:#FFF;font-size:14px;text-align:center;}
 
-/*商家页面*/
+/*企业页面*/
 .detail-box{border:thin solid #DDD;padding:10px;}
 .detail-box .photo img{width:350px;height:240px;}
 .detail-box h1{font-size:14px;font-weight:bold;}

@@ -6,13 +6,13 @@ class ShopmoneyAction extends CommonAction
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();
-        //查询所在城市的商家
+        //查询所在城市的企业
         foreach ($shop_city as $val) {
             $cityids[$val['shop_id']] = $val['shop_id'];
             //对比shop_id
         }
         $maps['shop_id'] = array('in', $cityids);
-        //取得当前商家ID，给下面的maps查询
+        //取得当前企业ID，给下面的maps查询
         $Shopmoney = D('Shopmoney');
         import('ORG.Util.Page');
         // 导入分页类 二开qq 120--585--022   www.juhucms.com
@@ -166,7 +166,7 @@ class ShopmoneyAction extends CommonAction
             $data = $this->_post('data', false);
             $add = array('create_time' => NOW_TIME, 'create_ip' => get_client_ip());
             if (!$data['shop_id']) {
-                $this->tuError('请选择商家');
+                $this->tuError('请选择企业');
             }
             $add['shop_id'] = (int) $data['shop_id'];
             if (!$data['money']) {

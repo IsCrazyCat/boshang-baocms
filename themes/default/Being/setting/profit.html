@@ -11,7 +11,7 @@
     </ul>
 </div>
 
-<p class="attention"><span>注意：</span>1：这里开通分销，2：这里给模块开启分销，3：给商家开启分销权限，4：这页面配置分成比例，5：用户确认收货后即可给上级分成</p>
+<p class="attention"><span>注意：</span>1：这里开通分销，2：这里给模块开启分销，3：给企业开启分销权限，4：这页面配置分成比例，5：用户确认收货后即可给上级分成</p>
 <form  target="x-frame" action="<{:U('setting/profit')}>" method="post">
 
     <div class="mainScAdd">
@@ -98,7 +98,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_tuan]" <eq name="CONFIG.profit.profit_is_tuan" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_tuan]" <eq name="CONFIG.profit.profit_is_tuan" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后抢购订单结算给商家时候会分成。</code>
+                    <code>开启后抢购订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -108,7 +108,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_ele]" <eq name="CONFIG.profit.profit_is_ele" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_ele]" <eq name="CONFIG.profit.profit_is_ele" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后外卖订单结算给商家时候会分成。</code>
+                    <code>开启后外卖订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -117,7 +117,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_market]" <eq name="CONFIG.profit.profit_is_market" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_market]" <eq name="CONFIG.profit.profit_is_market" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后菜市场订单结算给商家时候会分成。</code>
+                    <code>开启后菜市场订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -126,7 +126,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_store]" <eq name="CONFIG.profit.profit_is_store" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_store]" <eq name="CONFIG.profit.profit_is_store" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后便利店订单结算给商家时候会分成。</code>
+                    <code>开启后便利店订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
 
@@ -136,7 +136,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_farm]" <eq name="CONFIG.profit.profit_is_farm" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_farm]" <eq name="CONFIG.profit.profit_is_farm" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后农家乐订单结算给商家时候会分成。</code>
+                    <code>开启后农家乐订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -145,7 +145,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_goods]" <eq name="CONFIG.profit.profit_is_goods" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_goods]" <eq name="CONFIG.profit.profit_is_goods" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后商城订单结算给商家时候会分成。</code>
+                    <code>开启后商城订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -154,7 +154,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_booking]" <eq name="CONFIG.profit.profit_is_booking" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_booking]" <eq name="CONFIG.profit.profit_is_booking" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后订座订单结算给商家时候会分成。</code>
+                    <code>开启后订座订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -164,7 +164,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_hotel]" <eq name="CONFIG.profit.profit_is_hotel" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_hotel]" <eq name="CONFIG.profit.profit_is_hotel" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后酒店订单结算给商家时候会分成。</code>
+                    <code>开启后酒店订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -173,7 +173,7 @@
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_is_breaks]" <eq name="CONFIG.profit.profit_is_breaks" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_is_breaks]" <eq name="CONFIG.profit.profit_is_breaks" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后优惠买单订单结算给商家时候会分成。</code>
+                    <code>开启后优惠买单订单结算给企业时候会分成。</code>
                     </td>
                 </tr>
                 
@@ -195,11 +195,11 @@
                 </tr>
                 
                  <tr>
-                    <td class="lfTdBt">开启商家购买等级分销：</td>
+                    <td class="lfTdBt">开启企业购买等级分销：</td>
                     <td class="rgTdBt">
                     <label><input type="radio" name="data[profit_buy_shop_grade]" <eq name="CONFIG.profit.profit_buy_shop_grade" value="1">checked="checked"</eq> value="1"/>开启</label>
                     <label><input type="radio" name="data[profit_buy_shop_grade]" <eq name="CONFIG.profit.profit_buy_shop_grade" value="0">checked="checked"</eq> value="0"/>关闭</label>
-                    <code>开启后，当会员推荐的商家购买等级后，推荐人有分成，分成比例还是按照下面的订单比例分成。</code>
+                    <code>开启后，当会员推荐的企业购买等级后，推荐人有分成，分成比例还是按照下面的订单比例分成。</code>
                     </td>
                 </tr>
 
@@ -211,10 +211,10 @@
                         <select name="data[profit_price_type]"  class="scAddTextName sogn">
                             <option value="0">请选择分成金额类型</option>
                             <option value="1" <if condition="$CONFIG['profit']['profit_price_type'] eq 1">selected='selected'</if>>用户实付金额</option>
-                            <option value="2" <if condition="$CONFIG['profit']['profit_price_type'] eq 2">selected='selected'</if>>商家结算金额</option>
-                            <option value="3" <if condition="$CONFIG['profit']['profit_price_type'] eq 3">selected='selected'</if>>用户实付金额-商家结算金额=差价</option>
+                            <option value="2" <if condition="$CONFIG['profit']['profit_price_type'] eq 2">selected='selected'</if>>企业结算金额</option>
+                            <option value="3" <if condition="$CONFIG['profit']['profit_price_type'] eq 3">selected='selected'</if>>用户实付金额-企业结算金额=差价</option>
                         </select>
-                        <code>选择后，请不要轻易修改哦，毕竟差别还是挺大的，建议选择【用户实付金额-商家结算金额=差价】</code></td>
+                        <code>选择后，请不要轻易修改哦，毕竟差别还是挺大的，建议选择【用户实付金额-企业结算金额=差价】</code></td>
                 </tr>
                 
                 
@@ -337,26 +337,26 @@
                 </tr>
                 
                 
-                <tr><td class="rgTdBt profit" colspan = "2"> 商家等级购买分成设置，1-3级相加不得高于100%，如果需要给网站留利润，可1-3级相加=30%这样设置，这里计算金额是商家购买等级实际支付金额</td></tr>
+                <tr><td class="rgTdBt profit" colspan = "2"> 企业等级购买分成设置，1-3级相加不得高于100%，如果需要给网站留利润，可1-3级相加=30%这样设置，这里计算金额是企业购买等级实际支付金额</td></tr>
                 <tr>
-                    <td class="lfTdBt">商家等级购买一级分成比例：</td>
+                    <td class="lfTdBt">企业等级购买一级分成比例：</td>
                     <td class="rgTdBt"><input type="number" min="0" max="100" name="data[grade_profit_rate1]" value='<{$CONFIG.profit.grade_profit_rate1}>' class="scAddTextName w80" />% 
-                    <code>商家购买等时候的一级分成比例</code></td>
+                    <code>企业购买等时候的一级分成比例</code></td>
                 </tr>
                 <tr>
-                    <td class="lfTdBt">商家等级购买二级分成比例：</td>
+                    <td class="lfTdBt">企业等级购买二级分成比例：</td>
                     <td class="rgTdBt"><input type="number" min="0" max="100" name="data[grade_profit_rate2]" value='<{$CONFIG.profit.grade_profit_rate2}>' class="scAddTextName w80" />% 
-                    <code>商家购买等时候的二级分成比例</code></td>
+                    <code>企业购买等时候的二级分成比例</code></td>
                 </tr>
 
                 <tr>
-                    <td class="lfTdBt">商家等级购买三级分成比例：</td>
+                    <td class="lfTdBt">企业等级购买三级分成比例：</td>
                     <td class="rgTdBt"><input type="number" min="0" max="100" name="data[grade_profit_rate3]" value='<{$CONFIG.profit.grade_profit_rate3}>' class="scAddTextName w80" />% 
-                    <code>商家购买等时候的三级分成比例</code></td>
+                    <code>企业购买等时候的三级分成比例</code></td>
                 </tr>
                 
                 
-                 <tr><td class="rgTdBt profit" colspan = "2">优惠买单分成设置，1-3级相加不得高于100%，如果需要给网站留利润，可1-3级相加=30%这样设置，这里计算金额是商家购买等级实际支付金额</td></tr>
+                 <tr><td class="rgTdBt profit" colspan = "2">优惠买单分成设置，1-3级相加不得高于100%，如果需要给网站留利润，可1-3级相加=30%这样设置，这里计算金额是企业购买等级实际支付金额</td></tr>
                 <tr>
                     <td class="lfTdBt">优惠买单一级分成比例：</td>
                     <td class="rgTdBt"><input type="number" min="0" max="100" name="data[breaks_profit_rate1]" value='<{$CONFIG.profit.breaks_profit_rate1}>' class="scAddTextName w80" />% 

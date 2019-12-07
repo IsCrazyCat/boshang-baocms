@@ -140,7 +140,7 @@ class KtvAction extends CommonAction {
 			$this->error('操作失败');
 		}
     }
-    //最新商家同意封装退款
+    //最新企业同意封装退款
     public function agree_refund(){
         $order_id = I('order_id', 0, 'trim,intval');
         $obj = D('KtvOrder');

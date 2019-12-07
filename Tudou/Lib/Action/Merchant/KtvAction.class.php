@@ -64,7 +64,7 @@ class KtvAction extends CommonAction {
         $this->display(); 
     }
     
-	//商家删除订单    
+	//企业删除订单    
     public function delete($order_id){
         $ktv_id = $this->check_ktv();
 		$obj = D('KtvOrder'); 
@@ -88,7 +88,7 @@ class KtvAction extends CommonAction {
     }
     
 	
-	 //商家后台同意退款操作
+	 //企业后台同意退款操作
     public function order_agree_refund($order_id){
         if($order_id = (int) $order_id){
 			$obj = D('KtvOrder');
@@ -189,7 +189,7 @@ class KtvAction extends CommonAction {
         
         $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商家简介不能为空');
+            $this->tuError('企业简介不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
             $this->tuError('详情含有敏感词：' . $words);

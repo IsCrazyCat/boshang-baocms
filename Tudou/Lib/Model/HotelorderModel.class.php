@@ -80,7 +80,7 @@ class HotelorderModel extends CommonModel{
                 if($detail['is_fan'] == 1 && $jiesuan_amount > 1){
 					
 					$info = '酒店订单号【'.$order_id.'】结算，房间名称【'.$room['title'].'】当前结算佣金比例【'.$shop['commission'].'%】订单总价【'.$detail['amount'].'】元';
-					D('Shopmoney')->insertData($order_id,$id ='0',$Hotel['shop_id'],$jiesuan_amount*100,$type ='hotel',$info);//结算给商家
+					D('Shopmoney')->insertData($order_id,$id ='0',$Hotel['shop_id'],$jiesuan_amount*100,$type ='hotel',$info);//结算给企业
 					D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 1,$type = 6,$status = 8);
 					D('Weixinmsg')->weixinTmplOrderMessage($order_id,$cate = 2,$type = 6,$status = 8);
                 }else{

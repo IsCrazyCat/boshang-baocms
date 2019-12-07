@@ -28,11 +28,11 @@ class  BookingAction extends  CommonAction{
 	{
 		$Booking = D('Booking');
         if(!$shop_id = (int)$shop_id){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }elseif(!$detail = $Booking->find($shop_id)){
-			$this->error('该商家不存在');
+			$this->error('该企业不存在');
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
-            $this->error('该商家已删除或未审核');
+            $this->error('该企业已删除或未审核');
         }else{
 			$pics = D('Bookingpics')->where(array('shop_id'=>$shop_id))->select();
             $pics[] = array('photo'=>$detail['photo']);
@@ -91,11 +91,11 @@ class  BookingAction extends  CommonAction{
 		       $this->assign('hostdo', '.'.$config['site']['hostdo']);
 		//print_r($config);exit;
         if(!$shop_id = (int)$shop_id){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }elseif(!$detail = $Booking->find($shop_id)){
-			$this->error('该商家不存在');
+			$this->error('该企业不存在');
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
-            $this->error('该商家已删除或未审核');
+            $this->error('该企业已删除或未审核');
         }else{
             import('ORG.Util.Page'); // 导入分页类
             $linkArr['shop_id'] = $shop_id;
@@ -158,11 +158,11 @@ class  BookingAction extends  CommonAction{
     public function order($shop_id){
         $Booking = D('Booking');
         if(!$shop_id = (int)$shop_id){
-            $this->error('该商家不存在');
+            $this->error('该企业不存在');
         }elseif(!$detail = $Booking->find($shop_id)){
-			$this->error('该商家不存在');
+			$this->error('该企业不存在');
         }elseif($detail['audit'] !=1||$detail['closed']!=0){
-            $this->error('该商家已删除或未审核');
+            $this->error('该企业已删除或未审核');
         }else{
             $this->assign('ding_date',htmlspecialchars($_COOKIE['ding_date'])); 
             $this->assign('ding_num',htmlspecialchars($_COOKIE['ding_num'])); 
@@ -196,16 +196,16 @@ class  BookingAction extends  CommonAction{
             $this->ajaxReturn(array('status'=>'login'));
         }
 		if (!$shop_id = (int)$shop_id) {
-            $this->ajaxReturn(array('status'=>'error','msg'=>'该商家不存在'));
+            $this->ajaxReturn(array('status'=>'error','msg'=>'该企业不存在'));
         }
         if (!$detail = $Booking->find($shop_id)) {
-            $this->ajaxReturn(array('status'=>'error','msg'=>'该商家不存在'));
+            $this->ajaxReturn(array('status'=>'error','msg'=>'该企业不存在'));
         }
 		if (false == D('Shop')->check_shop_user_id($shop_id,$this->uid)) {//不能购买自己家的产品
 			 $this->ajaxReturn(array('status' => 'error', 'msg' => '您不能购买自己的产品'));
 		}
         if ($detail['audit'] != 1||$detail['closed']!=0) {
-            $this->ajaxReturn(array('status'=>'error','msg'=>'商家已删除或未审核'));
+            $this->ajaxReturn(array('status'=>'error','msg'=>'企业已删除或未审核'));
         }
         $dingmenus = $this->_getCartGoods($shop_id);
         
@@ -218,7 +218,7 @@ class  BookingAction extends  CommonAction{
         }else if($ding_date < TODAY){
 			$this->ajaxReturn(array('status'=>'error','msg'=>'预约日期已过,请重新选择日期'));
 		}else if($ding_date == TODAY && !(in_array($ding_time,$is_open))){		
-			$this->ajaxReturn(array('status'=>'error','msg'=>'商家已经打烊或者选择时间不正确'));
+			$this->ajaxReturn(array('status'=>'error','msg'=>'企业已经打烊或者选择时间不正确'));
 		}
         $ding_num = htmlspecialchars($this->_param('ding_num'));
         if(!$ding_num){

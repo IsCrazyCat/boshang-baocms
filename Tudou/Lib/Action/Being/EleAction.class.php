@@ -56,7 +56,7 @@ class EleAction extends CommonAction{
             $this->tuError('ID不能为空');
         }
         if (!($shop = D('Shop')->find($data['shop_id']))) {
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['shop_name'] = $shop['shop_name'];
         $data['lng'] = $shop['lng'];
@@ -91,7 +91,7 @@ class EleAction extends CommonAction{
 			
             $obj = D('Ele');
             if (!($detail = $obj->find($shop_id))) {
-                $this->tuError('请选择要编辑的餐饮商家');
+                $this->tuError('请选择要编辑的餐饮企业');
             }
 			 if ($detail['city_id'] != $this->city_id) {
                 $this->error('非法操作', U('ele/index'));
@@ -113,7 +113,7 @@ class EleAction extends CommonAction{
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的餐饮商家');
+            $this->tuError('请选择要编辑的餐饮企业');
         }
     }
     private function editCheck(){
@@ -144,7 +144,7 @@ class EleAction extends CommonAction{
 			
             $obj = D('Ele');
 			if (!($detail = $obj->find($shop_id))) {
-                $this->tuError('请选择要编辑的餐饮商家');
+                $this->tuError('请选择要编辑的餐饮企业');
             }
 			 if ($detail['city_id'] != $this->city_id) {
                 $this->error('非法操作', U('ele/index'));
@@ -158,7 +158,7 @@ class EleAction extends CommonAction{
                 $obj = D('Ele');
 				$obj = D('Ele');
 				if (!($detail = $obj->find($shop_id))) {
-					$this->tuError('请选择要编辑的餐饮商家');
+					$this->tuError('请选择要编辑的餐饮企业');
 				}
 				 if ($detail['city_id'] != $this->city_id) {
 					$this->error('非法操作', U('ele/index'));
@@ -169,7 +169,7 @@ class EleAction extends CommonAction{
                 }
                 $this->tuSuccess('删除成功', U('ele/index'));
             }
-            $this->tuError('请选择要删除的餐饮商家');
+            $this->tuError('请选择要删除的餐饮企业');
         }
     }
     public function opened($shop_id = 0, $type = 'open'){
@@ -177,7 +177,7 @@ class EleAction extends CommonAction{
             $obj = D('Ele');
 			$obj = D('Ele');
 			if (!($detail = $obj->find($shop_id))) {
-                $this->tuError('请选择要编辑的餐饮商家');
+                $this->tuError('请选择要编辑的餐饮企业');
             }
 			 if ($detail['city_id'] != $this->city_id) {
                 $this->error('非法操作', U('ele/index'));

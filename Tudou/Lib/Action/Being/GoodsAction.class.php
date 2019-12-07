@@ -114,11 +114,11 @@ class GoodsAction extends CommonAction {
 		}	
         $data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
    
         $data['cate_id'] = (int) $data['cate_id'];
@@ -281,11 +281,11 @@ class GoodsAction extends CommonAction {
 		}	
 		$data['shop_id'] = (int) $data['shop_id'];
         if (empty($data['shop_id'])) {
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }
         $shop = D('Shop')->find($data['shop_id']);
         if (empty($shop)) {
-            $this->tuError('请选择正确的商家');
+            $this->tuError('请选择正确的企业');
         }
     
         $data['cate_id'] = (int) $data['cate_id'];
@@ -385,7 +385,7 @@ class GoodsAction extends CommonAction {
                 }
                 $this->tuSuccess('删除成功', U('goods/index'));
             }
-            $this->tuError('请选择要删除的商家');
+            $this->tuError('请选择要删除的企业');
         }
     }
 

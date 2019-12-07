@@ -126,10 +126,10 @@
                 <span class="detail_spxq_qg_tit">活动价格：</span>
                 <span class="spxq_qgjg"><small> &yen;</small><b><{$detail['price']}></b></span><span class="spxq_qgjgz"><{$cate_name}></span></div>
 
-                    <div class="spxq_qgjgk"><p class="hdxq_p"><span class="detail_spxq_qg_tit">商家地址：</span><{$detail.addr}></p></div>
-                    <div class="spxq_qgjgk"><p class="hdxq_p"><span class="detail_spxq_qg_tit">商家名称：</span><a target="_blank" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>#shop"><{$shop.shop_name}></a> 
+                    <div class="spxq_qgjgk"><p class="hdxq_p"><span class="detail_spxq_qg_tit">企业地址：</span><{$detail.addr}></p></div>
+                    <div class="spxq_qgjgk"><p class="hdxq_p"><span class="detail_spxq_qg_tit">企业名称：</span><a target="_blank" href="<{:U('shop/detail',array('shop_id'=>$detail['shop_id']))}>#shop"><{$shop.shop_name}></a>
                     <if condition="$shop['is_renzheng'] eq 1">
-                    <span class="spxq_qgjgz">认证商家</span>
+                    <span class="spxq_qgjgz">认证企业</span>
                     </if>
                     </p></div>
                     <div class="spxq_qgjgk">
@@ -170,7 +170,7 @@
                 $wx = $sd -> where('shop_id ='.$shop['shop_id']) -> getField('wei_pic');
             </php>
             <div class="spxq_qgwx"><img width="120" height="120" src="<{:config_img($wx)}>">
-                <p>扫描商家微信</p>
+                <p>扫描企业微信</p>
                 <p>轻松购享优惠</p>
             </div>
 

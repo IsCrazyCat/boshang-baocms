@@ -74,17 +74,17 @@ class KtvAction extends CommonAction {
         $data = $this->checkFields($this->_post('data', false), array('shop_id', 'ktv_name','intro', 'tel', 'photo', 'addr', 'city_id', 'area_id', 'business_id','lat', 'lng','date_id', 'details','orderby','orders_num','views'));
 		$data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }elseif(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
 		$data['city_id'] = $shop['city_id'];
 		if(empty($data['city_id'])) {
-            $this->tuError('商家没有城市ID');
+            $this->tuError('企业没有城市ID');
         }
         $data['area_id'] = $shop['area_id'];
 		if(empty($data['area_id'])) {
-            $this->tuError('商家没有区域ID');
+            $this->tuError('企业没有区域ID');
         }
         $data['business_id'] = $shop['business_id'];
         $data['ktv_name'] = htmlspecialchars($data['ktv_name']);
@@ -117,7 +117,7 @@ class KtvAction extends CommonAction {
         } 
         $data['details'] = SecurityEditorHtml($data['details']);
         if (empty($data['details'])) {
-            $this->tuError('商家简介不能为空');
+            $this->tuError('企业简介不能为空');
         }
         if ($words = D('Sensitive')->checkWords($data['details'])) {
             $this->tuError('详情含有敏感词：' . $words);
@@ -366,7 +366,7 @@ class KtvAction extends CommonAction {
     public function room_delete($room_id = 0,$ktv_id = 0){
 		$ktv_id = (int) $ktv_id;
         if (!$ktv = D('Ktv')->find($ktv_id)) {
-          $this->tuError('KTV商家不存在');
+          $this->tuError('KTV企业不存在');
         }
         if ($room_id = (int) $room_id) {
             $obj = D('KtvRoom');

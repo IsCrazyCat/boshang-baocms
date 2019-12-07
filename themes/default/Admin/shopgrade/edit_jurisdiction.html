@@ -1,15 +1,15 @@
 <include  file='public:header'/>
 <div class="mainBt">
     <ul>
-        <li class="li1">商家</li>
-        <li class="li2">商家等级</li>
+        <li class="li1">企业</li>
+        <li class="li2">企业等级</li>
         <li class="li2 li3">编辑等级权限</li>
     </ul>
 </div>
 <style>
 .biankuang{ border:1px #666666 dashed; padding:5px;}
 </style>
-<p class="attention"><span>当前等级：</span> 数量系统还没控制，后期优化，商家审核的时候必须分配等级，您当前编辑的等级<a style="color:#F00; font-size:18px;">【<{$detail['grade_name']}>】</a></p>
+<p class="attention"><span>当前等级：</span> 数量系统还没控制，后期优化，企业审核的时候必须分配等级，您当前编辑的等级<a style="color:#F00; font-size:18px;">【<{$detail['grade_name']}>】</a></p>
 <p class="attention"><span>等级说明：</span><a style="color: #00F" class="biankuang"><{$detail['content']}></a></p>
 <p class="attention"><span>等级费用：</span>单独购买费用：&yen; <{:round($detail['money']/100,2)}>元， &nbsp; 自动升级需要商户资金： &yen;</span><{:round($detail['gold']/100,2)}>元</p>
 <form  target="x-frame" action="<{:U('shopgrade/edit_jurisdiction',array('grade_id'=>$detail['grade_id']))}>" method="post">
@@ -74,13 +74,13 @@
      
 
      
-      <td class="lfTdBt">商家新闻权限：</td>
+      <td class="lfTdBt">企业新闻权限：</td>
         <td class="rgTdBt">&nbsp;&nbsp;&nbsp;
         <input type="radio" name="data[is_news]" value="1" <if condition="$detail.is_news eq 1"> checked="checked" </if> />是 &nbsp;&nbsp;
         <input type="radio" name="data[is_news]" value="0"  <if condition="$detail.is_news eq 0"> checked="checked" </if>/>否&nbsp;&nbsp;
         <a class="rgTdBt" style="margin-left:50px;">可发布数量：</a>
         <input type="text" name="data[is_news_num]" value="<{$detail.is_news_num|default=''}>" class="scAddTextName w150" />
-        <code>填写可发布商家新闻数量</code>
+        <code>填写可发布企业新闻数量</code>
         </td>
      </tr>
      
@@ -176,13 +176,13 @@
      
    
      
-     <td class="lfTdBt">商家预约权限：</td>
+     <td class="lfTdBt">企业预约权限：</td>
         <td class="rgTdBt">&nbsp;&nbsp;&nbsp;
         <input type="radio" name="data[is_book]" value="1" <if condition="$detail.is_book eq 1"> checked="checked" </if> />是 &nbsp;&nbsp;
         <input type="radio" name="data[is_book]" value="0"  <if condition="$detail.is_book eq 0"> checked="checked" </if>/>否&nbsp;&nbsp;
         <a class="rgTdBt" style="margin-left:50px;">可发布数量：</a>
         <input type="text" name="data[is_book_num]" value="<{$detail.is_book_num|default=''}>" class="scAddTextName w150" />
-        <code>这里是商家等级预约，不是商家详情页那边的预约，你不要搞错了，建议1-3个就行了</code>
+        <code>这里是企业等级预约，不是企业详情页那边的预约，你不要搞错了，建议1-3个就行了</code>
         </td>
      </tr>
      
@@ -212,7 +212,7 @@
         <input type="radio" name="data[is_zhe]" value="0"  <if condition="$detail.is_zhe eq 0"> checked="checked" </if>/>否&nbsp;&nbsp;
         <a class="rgTdBt" style="margin-left:50px;">可发布数量：</a>
         <input type="text" name="data[is_zhe_num]" value="<{$detail.is_zhe_num|default=''}>" class="scAddTextName w150" />
-        <code>五折卡数量无效，这里是控制wap商家管理中心的五折卡权限</code>
+        <code>五折卡数量无效，这里是控制wap企业管理中心的五折卡权限</code>
         </td>
      </tr>
 
@@ -222,7 +222,7 @@
         <input type="radio" name="data[is_ktv]" value="0"  <if condition="$detail.is_ktv eq 0"> checked="checked" </if>/>否&nbsp;&nbsp;
         <a class="rgTdBt" style="margin-left:50px;">可发布数量：</a>
         <input type="text" name="data[is_ktv_num]" value="<{$detail.is_ktv_num|default=''}>" class="scAddTextName w150" />
-        <code>ktv数量无效，这里是控制wap商家管理中心的ktv权限</code>
+        <code>ktv数量无效，这里是控制wap企业管理中心的ktv权限</code>
         </td>
      </tr>
 

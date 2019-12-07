@@ -29,7 +29,7 @@ class BranchAction extends CommonAction{
             $obj = D('Shop');
             $details = $this->_post('details', 'htmlspecialchars');
             if($words = D('Sensitive')->checkWords($details)) {
-                $this->tuError('商家介绍含有敏感词：' . $words, 2000, true);
+                $this->tuError('企业介绍含有敏感词：' . $words, 2000, true);
             }
             $ex = array('details' => $details, 'near' => $data['near'], 'price' => $data['price'], 'business_time' => $data['business_time']);
             unset($data['near'], $data['price'], $data['business_time']);
@@ -58,7 +58,7 @@ class BranchAction extends CommonAction{
             $this->tuError('你输入的管理员不存在', 2000, true);
         }
         if(D('Shop')->where(array('user_id' => $data['user_id']))->find()) {
-            $this->tuError('当前用户ID【'.$data['user_id'].'】已经管理其他商家', 2000, true);
+            $this->tuError('当前用户ID【'.$data['user_id'].'】已经管理其他企业', 2000, true);
         }
         $guide_ids = htmlspecialchars($data['user_guide_id']);
 		$data['user_guide_id'] = explode(',',$guide_ids);
@@ -144,7 +144,7 @@ class BranchAction extends CommonAction{
   public function login($shop_id){
         $obj = D('Shop');
         if(!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if(empty($detail['user_id'])) {
             $this->error('该用户没有绑定管理者');

@@ -125,9 +125,9 @@ class HotelAction extends CommonAction {
             }
         $data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }elseif(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['area_id'] = $shop['area_id'];
         $data['business_id'] = $shop['business_id'];
@@ -234,9 +234,9 @@ class HotelAction extends CommonAction {
             }
         $data['shop_id'] = (int)$data['shop_id'];
         if(empty($data['shop_id'])){
-            $this->tuError('商家不能为空');
+            $this->tuError('企业不能为空');
         }elseif(!$shop = D('Shop')->find($data['shop_id'])){
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['area_id'] = $shop['area_id'];
         $data['business_id'] = $shop['business_id'];

@@ -17,11 +17,11 @@
                 <form class="search_form" method="post" action="<{:U('zhe/index')}>">
                     <div class="seleHidden" id="seleHidden">
                     <div class="seleK">
-                    <span>选择商家：</span>
+                    <span>选择企业：</span>
                     <label>
                         <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                         <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
-                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                        <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                     </label>
                         <span>五折卡名称</span>
                         <input type="text" name="keyword" value="<{$keyword}>" class="inptText" /><input type="submit" value="   搜索"  class="inptButton" />
@@ -56,7 +56,7 @@
                         <label>
                                 <input type="hidden" id="shop_id" name="shop_id" value="<{$shop_id|default=''}>"/>
                                 <input type="text"   id="shop_name" name="shop_name" value="<{$shop_name}>" class="text " />
-                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择商家</a>
+                                <a mini="select"  w="1000" h="600" href="<{:U('shop/select')}>" class="sumit">选择企业</a>
                         </label>
                         <label>
                             <span>区域：</span>
@@ -119,7 +119,7 @@
                     <td class="w50"><input type="checkbox" class="checkAll" rel="zhe_id" /></td>
                     <td class="w50">ID</td>
                     <td>名称</td>
-                    <td>所属商家</td>
+                    <td>所属企业</td>
                     <td>图片</td>
                     <td>分类</td>
                     <td>人数</td>

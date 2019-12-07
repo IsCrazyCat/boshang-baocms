@@ -223,7 +223,7 @@ class ZheAction extends CommonAction {
 		$data['create_ip'] = get_client_ip();
 		if($yuyue_id = D('Zheyuyue')->add($data)){
 			D('Sms')->sms_zhe_yuyue_user($yuyue_id);//预约通知用户
-			D('Sms')->sms_zhe_yuyue_shop($yuyue_id);//预约通知商家
+			D('Sms')->sms_zhe_yuyue_shop($yuyue_id);//预约通知企业
 			$obj->updateCount($zhe_id, 'yuyue_num');	
 			$this->tuMsg('恭喜您预约成功',U('user/member/zhe_yuyue'));
 		}else {

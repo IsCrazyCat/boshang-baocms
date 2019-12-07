@@ -342,7 +342,7 @@ class FarmAction extends CommonAction {
             $this->tuMsg('没有该农家');
         }
         if ($detail['closed']) {
-            $this->tuMsg('该商家已经被删除');
+            $this->tuMsg('该企业已经被删除');
         }
         if (D('Shopfavorites')->check($detail['shop_id'], $this->uid)) {
             $this->tuMsg('您已经收藏过了');

@@ -65,10 +65,10 @@ class  YuyueAction extends CommonAction{
 			$obj =  D('Shopyuyue');
 			$ip = get_client_ip();
             $code_ids = $obj->find(array('where'=>array('yuyue_id'=>$yuyue_id )));
-			if ($code_ids['shop_id'] != $this->shop_id) {//如果不是当前商家或者已验证
+			if ($code_ids['shop_id'] != $this->shop_id) {//如果不是当前企业或者已验证
             $this->error('非法操作');
        		}
-			if ($code_ids['used'] == 1) {//如果不是当前商家或者已验证
+			if ($code_ids['used'] == 1) {//如果不是当前企业或者已验证
             $this->error('请不要重复验证');
        		}
 			

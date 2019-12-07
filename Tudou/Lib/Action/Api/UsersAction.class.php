@@ -122,7 +122,7 @@ class UsersAction extends CommonAction{
 		if($cash_id = D('Userscash')->add($arr)){
 			if(D('Users')->addMoney($user_id, -$money,$intro)){
 				D('Usersex')->save($data);
-				D('Weixintmpl')->weixin_cash_user($this->uid,1);//申请提现：1会员申请，2商家同意，3商家拒绝
+				D('Weixintmpl')->weixin_cash_user($this->uid,1);//申请提现：1会员申请，2企业同意，3企业拒绝
 				exit($cash_id); //成功输出ID
 			}else{
 				exit(0);
@@ -178,7 +178,7 @@ class UsersAction extends CommonAction{
 	
 	
 	
-	//收藏的商家
+	//收藏的企业
 	public function MyStoreCollection(){
 		$user_id = I('user_id','','trim');
 		$obj = D('Shopfavorites');

@@ -317,7 +317,7 @@ class LifeAction extends CommonAction{
                 $details = $this->_post('details', 'SecurityEditorHtml');
                 $data['audit'] = 1;
                 if($words = D('Sensitive')->checkWords($details)){
-                    $this->ajaxReturn(array('code'=>'0','msg'=>'商家介绍含有敏感词：' . $words));
+                    $this->ajaxReturn(array('code'=>'0','msg'=>'企业介绍含有敏感词：' . $words));
                 }
 				
 				

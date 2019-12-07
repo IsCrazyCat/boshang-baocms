@@ -32,14 +32,14 @@ class CommonAction extends Action{
                 $this->error('该用户没有开通商户', U('passport/login'));
             }
 			if($this->shop['closed'] == 1){
-                $this->error('商家已被删除', U('passport/login'));
+                $this->error('企业已被删除', U('passport/login'));
             }
 			if($this->shop['audit'] == 0){
-                $this->error('商家未审核', U('passport/login'));
+                $this->error('企业未审核', U('passport/login'));
             }
 			if($this->shop['end_date'] && $this->shop['end_date'] != 0000-00-00){
 				if($this->shop['end_date'] <= TODAY){
-					$this->error('您的商家已到期请联系管理员', U('passport/login'));
+					$this->error('您的企业已到期请联系管理员', U('passport/login'));
 				}
 			}
 			

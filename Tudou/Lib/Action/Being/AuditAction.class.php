@@ -11,14 +11,14 @@ class AuditAction extends CommonAction
         $mapss = array('city_id' => $this->city_id);
         //查询城市ID为当前登录账户的ID
         $shop_city = D('Shop')->where($mapss)->order(array('shop_id' => 'desc'))->select();
-        //查询所在城市的商家
+        //查询所在城市的企业
         foreach ($shop_city as $val) {
             $cityids[$val['shop_id']] = $val['shop_id'];
             //对比shop_id
         }
         $maps = array();
         $maps['shop_id'] = array('in', $cityids);
-        //取得当前商家ID，给下面的maps查
+        //取得当前企业ID，给下面的maps查
         $maps['closed'] = 0;
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $maps['name'] = array('LIKE', '%' . $keyword . '%');
@@ -77,7 +77,7 @@ class AuditAction extends CommonAction
             }
             $obj = D('Audit');
             if (!($detail = $obj->find($audit_id))) {
-                $this->tuError('请选择要编辑的商家认证');
+                $this->tuError('请选择要编辑的企业认证');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -92,7 +92,7 @@ class AuditAction extends CommonAction
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的商家认证');
+            $this->tuError('请选择要编辑的企业认证');
         }
     }
     private function editCheck()
@@ -166,7 +166,7 @@ class AuditAction extends CommonAction
             $obj->save(array('audit_id' => $audit_id, 'closed' => 1));
             $shop_ids = D('Audit')->where(array('audit_id' => $audit_id))->find();
             $shop_id = $shop_ids['shop_id'];
-            //审核商家
+            //审核企业
             $shop = D('Shop');
             $shop->save(array('shop_id' => $shop_id, 'is_renzheng' => 0));
             $this->tuSuccess('删除成功', U('audit/index'));
@@ -179,7 +179,7 @@ class AuditAction extends CommonAction
                 }
                 $this->tuSuccess('批量删除成功', U('audit/index'));
             }
-            $this->tuError('请选择要删除的商家认证');
+            $this->tuError('请选择要删除的企业认证');
         }
     }
     public function audit($audit_id = 0)
@@ -197,7 +197,7 @@ class AuditAction extends CommonAction
             $obj->save(array('audit_id' => $audit_id, 'audit' => 1));
             $shop_ids = D('Audit')->where(array('audit_id' => $audit_id))->find();
             $shop_id = $shop_ids['shop_id'];
-            //审核商家
+            //审核企业
             $shop = D('Shop');
             $shop->save(array('shop_id' => $shop_id, 'is_renzheng' => 1));
             $this->tuSuccess('审核成功', U('audit/index'));
@@ -210,7 +210,7 @@ class AuditAction extends CommonAction
                 }
                 $this->tuSuccess('审核成功', U('audit/index'));
             }
-            $this->tuError('请选择要审核的商家认证');
+            $this->tuError('请选择要审核的企业认证');
         }
     }
 }

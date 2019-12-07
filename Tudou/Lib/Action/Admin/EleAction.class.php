@@ -79,7 +79,7 @@ class EleAction extends CommonAction {
             $this->tuError('ID不能为空');
         }
         if (!$shop = D('Shop')->find($data['shop_id'])) {
-            $this->tuError('商家不存在');
+            $this->tuError('企业不存在');
         }
         $data['shop_name'] = $shop['shop_name'];
         $data['lng'] = $shop['lng'];
@@ -147,7 +147,7 @@ class EleAction extends CommonAction {
         if ($shop_id = (int) $shop_id) {
             $obj = D('Ele');
             if (!$detail = $obj->find($shop_id)) {
-                $this->tuError('请选择要编辑的餐饮商家');
+                $this->tuError('请选择要编辑的餐饮企业');
             }
             if ($this->isPost()) {
                 $data = $this->editCheck();
@@ -166,7 +166,7 @@ class EleAction extends CommonAction {
                 $this->display();
             }
         } else {
-            $this->tuError('请选择要编辑的餐饮商家');
+            $this->tuError('请选择要编辑的餐饮企业');
         }
     }
 
@@ -258,11 +258,11 @@ class EleAction extends CommonAction {
                 }
                 $this->tuSuccess('批量删除成功', U('ele/index'));
             }
-            $this->tuError('请选择要删除的餐饮商家');
+            $this->tuError('请选择要删除的餐饮企业');
         }
     }
 
-	//商家审核
+	//企业审核
 	public function audit($shop_id = 0){
         if(is_numeric($shop_id) && ($shop_id = (int) $shop_id)){
             $obj = D('Ele');
@@ -299,7 +299,7 @@ class EleAction extends CommonAction {
     public function is_ele_pei($shop_id,$p = 0){
         $obj = D('Shop');
         if(!($detail = $obj->find($shop_id))) {
-            $this->error('请选择要编辑的商家');
+            $this->error('请选择要编辑的企业');
         }
         if($detail['is_ele_pei'] == 1){
 			$do = D('DeliveryOrder')->where(array('shop_id' =>$detail['shop_id'],'type' => 1,'closed' =>0,'status' => array('IN',array(1,2))))->find();
@@ -311,7 +311,7 @@ class EleAction extends CommonAction {
             if($detail['is_ele_pei'] == 0){
 				$Eleorder = D('Eleorder')->where(array('shop_id' =>$detail['shop_id'],'closed' =>0,'status' => array('IN',array(1,2))))->find();
 				if($Eleorder){
-					$this->tuError('该商家外卖订单号【'.$Eleorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
+					$this->tuError('该企业外卖订单号【'.$Eleorder['order_id'].'】没处理完毕，暂时无法强制开通配送');
 				}
                 $obj->save(array('shop_id' => $shop_id, 'is_ele_pei' =>1));
             }

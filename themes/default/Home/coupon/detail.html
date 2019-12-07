@@ -37,7 +37,7 @@
                 <div class="right spxq_qg_r yhxq_qg_r">
                     <div class="spxq_qgjgk"><p class="yhxq_jj"><{$detail.title}></p></div>
                     <div class="spxq_qgjgk"><p class="yhxq_time"><span class="detail_spxq_qg_tit">过期时间：</span>截止到<{$detail.expire_date}>
-                    <span class="yhxq_timeTs">（适用商家：【<{$shop.shop_name}>】&nbsp;&nbsp;&nbsp;  满&yen;<{:round($detail['full_price']/100,2)}>元减&yen;<{:round($detail['reduce_price']/100,2)}>元）</span></p></div>
+                    <span class="yhxq_timeTs">（适用企业：【<{$shop.shop_name}>】&nbsp;&nbsp;&nbsp;  满&yen;<{:round($detail['full_price']/100,2)}>元减&yen;<{:round($detail['reduce_price']/100,2)}>元）</span></p></div>
                     <div class="spxq_qgjgk">
                         <span class="detail_spxq_qg_tit">浏览次数：</span><{$detail.views}>人</span>
                         <span class="yhxq_time">&nbsp;&nbsp;剩余<font style="color: red;"><{$detail.num}></font>份</span>
@@ -50,7 +50,7 @@
                         <else/>
                         	<a class="spxq_qgjjKk gray" href="<{:U('coupon/index')}>">没有库存了</a>
                         </if>         
-                        <a class="spxq_qgjjKk" href="<{:U('shop/detail',array('shop_id'=>$shop['shop_id']))}>" >去商家逛逛</a>
+                        <a class="spxq_qgjjKk" href="<{:U('shop/detail',array('shop_id'=>$shop['shop_id']))}>" >去企业逛逛</a>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
             <div class="spxq_xqNr">
                 <p>1.请将此优惠打印或下载到手机上使用；<br/>
                     2.除特殊注明外，本优惠不能与其他优惠同时享受；<br/>
-                    3.本优惠由商家提供，如有疑问请与商家联系；<br/>
+                    3.本优惠由企业提供，如有疑问请与企业联系；<br/>
                     4.本优惠请务必从网站或其授权网站下载使用，否则无效。</p>
             </div>
             <div class="spxq_xqBt spxq_xqBt3">商户地址</div>

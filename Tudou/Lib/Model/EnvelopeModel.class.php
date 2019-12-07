@@ -6,7 +6,7 @@ class EnvelopeModel extends CommonModel{
     public function getType(){
         return array(
 			'1' => '平台红包', 
-			'2' => '商家红包', 
+			'2' => '企业红包',
 		);
     }
 	
@@ -16,11 +16,11 @@ class EnvelopeModel extends CommonModel{
 			'2' => '外卖订单', 
 			'3' => '家政订单', 
 			'4' => '预定订单', 
-			'5' => '商家收银台', 
+			'5' => '企业收银台',
 			'6' => '平台红包',
 		);
     }
-	//获取平台红包或者商家红包
+	//获取平台红包或者企业红包
 	public function getArray($orderType,$shop_id,$pay_time){
 		$envelope = M('Envelope')->where(array('bg_date' => array('ELT', TODAY),'closed'=>'0','type'=>'2','shop_id'=>$shop_id))->find();
    		if(!$envelope){
@@ -29,7 +29,7 @@ class EnvelopeModel extends CommonModel{
 		$date = date("Y-m-d",$pay_time);
 		$arr['show'] = ($date >= $envelope['bg_date']) ? '1' : '0';
 		$arr['envelope_id']= $envelope['envelope_id'];
-    	$arr['intro']= $envelope['type'] == 1 ? '平台' : '商家';
+    	$arr['intro']= $envelope['type'] == 1 ? '平台' : '企业';
         $arr['shop_name'] = M('Shop')->where(array('shop_id'=>$shop_id))->getField('shop_name');
 		$arr['photo'] = M('Shop')->where(array('shop_id'=>$shop_id))->getField('photo');
         $shopdetails = D('Shopdetails')->where(array('shop_id'=>$shop_id))->getField('details');
