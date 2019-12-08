@@ -264,7 +264,7 @@ class IndexAction extends CommonAction{
         if (!empty($data['data'])) {
             $datas = explode('_', $data['data']['EventKey']);
             $id = $datas[1];
-			
+            $this->weixin->response('您的上级是：'.$id.'--'.$data['data'], 'text');//发送文字回复
 			//优先查询用户分享关注下级
 			$uDate = D('Users')->find($id);
 			if($uDate){

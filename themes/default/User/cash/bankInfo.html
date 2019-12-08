@@ -13,12 +13,12 @@
 </style>
 
 <div class="blank-40 bg"></div>
-    <form action="<{:U('cash/bankInfo')}>" method="post" target="x-frame">
+    <form action="<{:U('cash/bankInfo')}>" method="post" >
 
     <div class="line padding border-bottom bank-cash-show">
-		<span class="x3 text-gray">开户名：</span>
+		<span class="x3 text-gray">开户名 ：</span>
 		<span class="x9">
-        	<input type="text" name="bank_realname" id="bank_realname" class="text-input"  value="<{$info.bank_realname|default=$deatil.ext0}>"  placeholder="输入开户名" >
+        	<input type="text" name="bank_realname" id="bank_realname" class="text-input"  value="<{$info.bank_realname|default=$deatil['ext0']}>"  placeholder="输入开户名" >
         </span>
 	</div>
     
@@ -32,7 +32,7 @@
 		<span class="x3 text-gray">银行账号：</span>
 		<span class="x9"><input type="text" name="bank_num" id="bank_num" class="text-input"  value="<{$info.bank_num}>"   placeholder="请输入银行账户" ></span>
 	</div>
-    
+
     <div class="line padding border-bottom bank-num-show bank-cash-show" style="display:none">
 		<span class="x3 text-gray">银行名称：</span>
 		<span class="x9 bank-num-show-text text-dot"></span>
@@ -44,18 +44,21 @@
 		<span class="x3 text-gray">具体支行：</span>
 		<span class="x9"><input type="text" name="bank_branch" id="bank_branch" class="text-input"   value="<{$info.bank_branch}>"  placeholder="请输入具体支行名字" ></span>
 	</div>
-    
-    
-    <div class="line padding border-bottom weixin-cash-show">
-		<span class="x3 text-gray">真实姓名：</span>
-		<span class="x9"><input type="text" name="re_user_name" id="re_user_name" class="text-input"  value="<{$info.re_user_name}>"  placeholder="输入真实姓名" ></span>
-	</div>
-    
 
-    
 	<div class="container">
 		<div class="blank-10"></div>
-		<p><span class="text-dot">小提示：</span> 请您仔细核对您的提现信息!</p>
+		<p><span class="text-dot">小提示：</span> 请您仔细核对您的信息!</p>
+	</div>
+	<div class="container">
+		<div class="blank-10"></div>
+		<button class="button button-big button-block bg-dot">
+			<if condition="empty($info) eq true">
+				提交
+			<else/>
+				更新
+			</if>
+		</button>
+		<div class="blank-10"></div>
 	</div>
 </form>
 

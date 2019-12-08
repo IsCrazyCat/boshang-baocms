@@ -217,17 +217,26 @@ class CashAction extends CommonAction{
             $data['bank_branch'] = htmlspecialchars($_POST['bank_branch']);
 
             $data['user_id'] = $this->uid;
-            if(empty($info)){
-                D('Usersex')->add($data);
-            }else{
-                D('Usersex')->save($data);
-            }
             D('Users')->save(array('user_id'=>$this->uid,'ext0'=>$data['bank_realname']));
+            if(empty($info)){
+                if(D('Usersex')->add($data)){
+                    $this->success('恭喜您绑定银行卡成功',U('user/member/index'));
+                }else{
+                    $this->error('银行卡信息绑定失败，请稍后重试！');
+                }
+            }else{
+                if(D('Usersex')->save($data)){
+                    $this->success('恭喜您更新银行卡成功',U('user/member/index'));
+                }else{
+                    $this->error('银行卡信息未更新！');
+                }
+            }
 
+        }else{
+            $this->assign('detail', $detail);
+            $this->assign('info',$info);
+            $this->display();
         }
 
-        $this->assign('detail', $detail);
-        $this->assign('info',$info);
-        $this->display();
     }
 }

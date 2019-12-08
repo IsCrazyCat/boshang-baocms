@@ -1,7 +1,7 @@
 <?php
 class UsersauxAction extends CommonAction{
-    private $create_fields = array('user_id','city_id', 'area_id', 'business_id','team_id', 'jury_id', 'group_id', 'card_photo', 'name', 'mobile','card_id','addr_str', 'addr_info', 'guarantor_name', 'guarantor_mobile');
-    private $edit_fields = array('user_id','city_id', 'area_id', 'business_id', 'team_id', 'jury_id', 'group_id','card_photo', 'name', 'mobile','card_id','addr_str', 'addr_info', 'guarantor_name', 'guarantor_mobile');
+    private $create_fields = array('yzm','user_id','city_id', 'area_id', 'business_id','team_id', 'jury_id', 'group_id', 'card_photo', 'name', 'mobile','card_id','addr_str', 'addr_info', 'guarantor_name', 'guarantor_mobile');
+    private $edit_fields = array('yzm','user_id','city_id', 'area_id', 'business_id', 'team_id', 'jury_id', 'group_id','card_photo', 'name', 'mobile','card_id','addr_str', 'addr_info', 'guarantor_name', 'guarantor_mobile');
     public function index(){
         if (empty($this->uid)) {
             header("Location:" . U('passport/login'));
@@ -41,15 +41,22 @@ class UsersauxAction extends CommonAction{
         if (empty($data['mobile'])) {
             $this->tuMsg('手机号不能为空');
         }
-        $data['card_id'] = (int) $data['card_id'];
-        if (empty($data['card_id'])) {
-            $this->tuMsg('身份证号码不能为空');
-        }
-
         if (!isPhone($data['mobile']) && !isMobile($data['mobile'])) {
             $this->tuMsg('手机号码格式不正确');
         }
-
+        $data['yzm'] = (int) $data['yzm'];
+        if (empty($data['yzm'])) {
+            $this->tuMsg('验证码不能为空');
+        }else{
+            $s_code = session('auxcode');
+            if ($data['yzm'] != $s_code) {
+                $this->tuMsg('验证码不正确');
+            }
+        }
+        $data['card_id'] = $data['card_id'];
+        if (empty($data['card_id'])) {
+            $this->tuMsg('身份证号码不能为空');
+        }
         $data['city_id'] = (int) $data['city_id'];
 //        if (empty($data['city_id'])) {
 //            $this->tuMsg('城市不能为空');
@@ -250,5 +257,22 @@ class UsersauxAction extends CommonAction{
                 }
             }
         }
+    }
+    public function sendsms(){
+        if(!($mobile = htmlspecialchars($_POST['mobile']))) {
+            die('请输入正确的手机号码');
+        }
+        if(!isMobile($mobile)) {
+            die('请输入正确的手机号码');
+        }
+        $randstring = session('auxcode');
+        if(!empty($randstring)){
+            session('auxcode',null);
+        }
+        $randstring = rand_string(4,1);
+        session('auxcode', $randstring);
+
+        D('Sms')->sms_yzm($mobile, $randstring);//发送短信
+        die('1');
     }
 }

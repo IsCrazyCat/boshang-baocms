@@ -21,19 +21,18 @@ class MallAction extends CommonAction{
         import('ORG.Util.Page');
         $map = array('audit' => 1, 'closed' => 0, 'end_date' => array('EGT', TODAY));
         $count = $obj->where($map)->count();
-        $Page = new Page($count, 3);
+        $Page = new Page($count, 5);
         $show = $Page->show();
         $var = C('VAR_PAGE') ? C('VAR_PAGE') : 'p';
         $p = $_GET[$var];
         if ($Page->totalPages < $p) {
             die('0');
         }
-        $goods = $obj->where($map)->order(array('top_time' =>'desc','orderby' =>'asc'))->limit(0,30)->select();
+        $goods = $obj->where($map)->order(array('top_time' =>'desc','orderby' =>'asc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $this->assign('goods', $goods);
         $this->assign('page', $show);
         $this->display();
     }
-
 
     public function index(){
         $keyword = $this->_param('keyword', 'htmlspecialchars');

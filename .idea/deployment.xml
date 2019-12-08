@@ -2,13 +2,6 @@
 <project version="4">
   <component name="PublishConfigData" serverName="zhaopin_weixinguanfang_com">
     <serverData>
-      <paths name="blklube_zmkm0523_com">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="zhaopin_weixinguanfang_com">
         <serverdata>
           <mappings>

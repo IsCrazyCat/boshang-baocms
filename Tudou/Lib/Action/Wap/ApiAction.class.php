@@ -197,4 +197,8 @@ class ApiAction extends CommonAction {
 			$this->error('错误');
 		}
     }
+    public function test(){
+//	    dump(D('Weixin')->getToken());
+        dump(D('Api')->getWeixinCodePng(4));
+    }
 }

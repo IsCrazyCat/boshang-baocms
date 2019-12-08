@@ -332,50 +332,19 @@
         <div class="items-tag">
             <img src="/static/default/wap/image/index/index-hot-job.png" />
         </div>
-        <foreach name="goods" item="v" index="index">
-            <li>
-                <a href="<{:U('wap/mall/detail',array('goods_id'=>$v['goods_id']))}>"
-                   class="">
-                    <div class="item-image">
-                        <img src="<{$v['photo']}>" width="100%">
-                    </div>
-                    <div class="item-inner">
-                        <div>
-                            <p class="item-number" title="<{$v.title}>">
-                                <{$v.title}>
-                            </p>
-                        </div>
-                        <p class="index-item-subtitle">
-                            <{$v.guige}>
-                        </p>
-                        <div class="item-price-row">
-                            <p class="price-price" style="padding-bottom: 10px">
-                                <span><{$v.price_month}></span>
-                                元/月
-                            </p>
-                        </div>
-                        <div class="item-amount">
-                            <p class="hot-mark ">
-                                <if condition="$v.show_price_type lt 2">
-                                    工价
-                                    <else/>
-                                    补贴
-                                </if>
-                            </p>
-                            <p><{:round($v['price']/100,2)}><{$v['price_unit']}></p>
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </foreach>
+        <script>
+            $(document).ready(function() {
+                loaddata('<{:U("mall/push",array("t"=>$nowtime,"p"=>"0000"))}>', $("#index-joblist"), true);
+            });
+        </script>
     </ul>
 
-    <div style="margin-top: 15px;width: 80%;margin-left: 10%;">
-        <ul>
-            <a class="button button-block button-big bg-yellow text-center"
-               href="<{:U('wap/mall/index')}>">查看更多工作 <i class="iconfont icon-angle-right"></i></a>
-        </ul>
-    </div>
+<!--    <div style="margin-top: 15px;width: 80%;margin-left: 10%;">-->
+<!--        <ul>-->
+<!--            <a class="button button-block button-big bg-yellow text-center"-->
+<!--               href="<{:U('wap/mall/index')}>">查看更多工作 <i class="iconfont icon-angle-right"></i></a>-->
+<!--        </ul>-->
+<!--    </div>-->
     <div class="blank-10"></div>
 
     <include file="public:footer"/>

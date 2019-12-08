@@ -118,7 +118,7 @@ class MemberAction extends CommonAction{
         //是否已经完善信息 姓名手机号身份证号
         $detail = D('Usersaux')->find($this->uid);
         if(empty($detail)&&(strpos($_SERVER['REQUEST_URI'],'user/usersaux/index') == false)){
-           $this->error('您尚未完善信息，请先完善信息',U('user/usersaux/index'));
+            $this->success('您尚未完善信息，请先完善信息',U('user/usersaux/index'));
         }
 		$this->assign('card', $Usercard = D('Usercard')->where(array('user_id' => $this->uid))->find());
         $this->assign('shop', $Shop = D('Shop')->where(array('user_id' => $this->uid))->find());

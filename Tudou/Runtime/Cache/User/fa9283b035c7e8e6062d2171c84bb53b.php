@@ -1,4 +1,21 @@
-<include  file='public:header'/>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<title><?php if(!empty($seo_title)): echo ($seo_title); ?>_<?php endif; echo ($CONFIG["site"]["sitename"]); ?>会员中心</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link rel="stylesheet" href="/static/default/wap/css/base.css">
+        <link rel="stylesheet" href="<?php echo ($CONFIG['config']['iocnfont']); ?>">
+		<link rel="stylesheet" href="/static/default/wap/css/mcenter.css"/>
+		<script src="/static/default/wap/js/jquery.js"></script>
+		<script src="/static/default/wap/js/base.js"></script>
+		<script src="/static/default/wap/other/layer.js"></script>
+        <script src="/static/default/wap/js/jquery.form.js"></script>
+		<script src="/static/default/wap/other/roll.js"></script>
+		<script src="/static/default/wap/js/public.js"></script>
+ 
+	</head>
+	<body>
 <link rel="stylesheet" type="text/css" href="/static/default/wap/other/webuploader.css">
 <script src="/static/default/webuploader/webuploader.min.js"></script>
 <header class="top-fixed bg-yellow bg-inverse">
@@ -15,14 +32,14 @@
 </style>
 
 
-    <form class="fabu-form" method="post"  target="x-frame" action="<{:U('usersaux/index')}>">
+    <form class="fabu-form" method="post"  target="x-frame" action="<?php echo U('usersaux/index');?>">
         <div class="blank-10 bg"></div>
 
         <div class="row">
             <div class="line">
                 <span class="x3">姓名</span>
                 <span class="x9">
-                <input type="text" class="text-input" name="data[name]" value="<{$detail['name']}>"/>
+                <input type="text" class="text-input" name="data[name]" value="<?php echo ($detail['name']); ?>"/>
 </span>
 </div>
 </div>
@@ -31,7 +48,7 @@
     <div class="line">
         <span class="x3">手机号</span>
         <span class="x5">
-            <input type="text" class="text-input" id="mobile" name="data[mobile]" value="<if condition="$MEMBER.mobile neq null"><{$MEMBER.mobile}></if>"/>
+            <input type="text" class="text-input" id="mobile" name="data[mobile]" value="<?php if($MEMBER["mobile"] != null): echo ($MEMBER["mobile"]); endif; ?>"/>
         </span>
         <span class="x4" id="yzmspan"><a class="button button-small bg-dot" id="m_zcyz" href="javascript:void(0);">获取验证码</a></span>
 
@@ -50,7 +67,7 @@
     <div class="line">
         <span class="x3">身份证</span>
         <span class="x9">
-                <input type="text" class="text-input" name="data[card_id]" value="<{$detail.card_id|default=''}>"/>
+                <input type="text" class="text-input" name="data[card_id]" value="<?php echo (($detail["card_id"])?($detail["card_id"]):''); ?>"/>
             </span>
     </div>
 </div>
@@ -58,31 +75,58 @@
         <div class="container">
             <div class="line" style="padding:10px">
                 <div class="x12">
-                    <if condition="empty($detail)">
-                        <input type="hidden" value="1" id="flag">
+                    <?php if(empty($detail)): ?><input type="hidden" value="1" id="flag">
                         <button  type="submit" class="button button-block button-big bg-dot">立即认证</button>
-                    <elseif condition="$detail['audit'] eq 0"/>
+                    <?php elseif($detail['audit'] == 0): ?>
                         <a class="button button-block button-big bg-dot text-center">审核中</a>
                         <div class="blank-20"></div>
-                        <a class="button button-block button-big bg-yellow text-center" href="<{:U('user/member/index')}>">返回会员中心</a>
-                        <!--                    <h1>审核中，加快审核联系电话<{$CONFIG.site.tel}> <a class="button button-small bg-yellow" href="<{:U('usersaux/edit',array('user_id'=>$detail['user_id']))}>">编辑</a></h1>-->
-                    <elseif condition="$detail['audit'] eq -1" />
-                        <h1>已驳回，拒绝理由：<{$detail.reason}> <a class="button button-small bg-dot" href="<{:U('usersaux/edit',array('user_id'=>$detail['user_id']))}>">重新编辑</a></h1>
-                    <elseif condition="$detail['audit'] eq 1" />
+                        <a class="button button-block button-big bg-yellow text-center" href="<?php echo U('user/member/index');?>">返回会员中心</a>
+                        <!--                    <h1>审核中，加快审核联系电话<?php echo ($CONFIG["site"]["tel"]); ?> <a class="button button-small bg-yellow" href="<?php echo U('usersaux/edit',array('user_id'=>$detail['user_id']));?>">编辑</a></h1>-->
+                    <?php elseif($detail['audit'] == -1): ?>
+                        <h1>已驳回，拒绝理由：<?php echo ($detail["reason"]); ?> <a class="button button-small bg-dot" href="<?php echo U('usersaux/edit',array('user_id'=>$detail['user_id']));?>">重新编辑</a></h1>
+                    <?php elseif($detail['audit'] == 1): ?>
                         <a class="button button-block button-big bg-dot text-center">已通过实名认证</a>
                         <div class="blank-20"></div>
-                        <a class="button button-block button-big bg-yellow text-center" href="<{:U('user/member/index')}>">返回会员中心</a>
-                    </if>
+                        <a class="button button-block button-big bg-yellow text-center" href="<?php echo U('user/member/index');?>">返回会员中心</a><?php endif; ?>
                 </div>
             </div>
         </div>
 </form>
-<include  file='public:footer'/>
+<div class="blank-20"></div>
+ <footer class="foot-fixed">
+
+     <a class="foot-item <?php if($ctl == 'index'): ?>active<?php endif; ?>" href="<?php echo u('wap/index/index');?>">
+     <span class="iconfont icon-shouye"></span>
+     <span class="foot-label">首页</span>
+     </a>
+
+     <a class="foot-item  <?php if(($ctl == 'mall')): ?>active<?php endif; ?>" href="<?php echo u('wap/mall/index');?>">
+     <span class="iconfont icon-maidan"></span><span class="foot-label">找工作</span></a>
+
+     <a class="foot-item  <?php if($ctl == 'information'): ?>active<?php endif; ?>" href="<?php echo u('information/index');?>">
+     <span class="iconfont icon-guanli"></span><span class="foot-label">排行榜</span></a>
+
+     <a class="foot-item  <?php if($ctl == 'member'): ?>active<?php endif; ?> " href="<?php echo LinkTo('user/member/index');?>">
+     <span class="iconfont icon-fabu"></span><span class="foot-label">个人中心</span></a>
+
+    </footer>
+
+
+<iframe id="x-frame" name="x-frame" style="display:none;"></iframe>
+<style>
+.add-message {margin-top: 30px;}
+.add-button{ text-align:center;}
+.layui-layer-title {border-bottom: 0px solid #eee;}
+</style>
+
+
+</body>
+</html>
 
 <script>
     if($("#flag").val() != 1){
+
         $("input").attr("readonly",true);
-        $("input").css("background","#FFF");
         $("#yzmspan").hide();
         $("#yzmdiv").hide();
     }
@@ -100,13 +144,13 @@
                 if(mobile=="" || mobile=="请输入手机号码"){
                     layer.msg('请先输入手机号码', function(){
                         setTimeout(function () {
-                            window.location.href = "<{:U('usersaux/index')}>";
+                            window.location.href = "<?php echo U('usersaux/index');?>";
                         }, 1000);
                     });
                     exit;//如果没绑定手机，不执行下面的代码
                 }
                 $.ajax({
-                    url: '<{:U("usersaux/sendsms")}>',
+                    url: '<?php echo U("usersaux/sendsms");?>',
                     data: 'mobile=' + $("#mobile").val(),
                     type: 'post',
                     success: function (data) {
