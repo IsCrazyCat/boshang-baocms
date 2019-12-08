@@ -37,7 +37,7 @@ class ApiModel extends CommonModel{
 			if(!file_exists($patch)){
 				mkdir($patch,0755,true);
 			}
-			$file = '/attachs/weixinuid/'.$name.$md5.'.png';
+			$file = '/weixinuid/'.$name.$md5.'.png';
 			$fileName  = BASE_PATH.'/attachs/'.$file;
 			if(!file_exists($fileName)){
 				$level = 'L';

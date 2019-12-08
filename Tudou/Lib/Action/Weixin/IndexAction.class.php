@@ -140,9 +140,22 @@ class IndexAction extends CommonAction{
 	
 	//获取全局授权
 	public function getAccessToken($appId,$appSecret) {
-		$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appId&secret=$appSecret";
-		$res = json_decode($this->httpGet($url));
-		return $res->access_token;
+        //判断是否过了缓存期
+        $token = D('Weixinaccess')->getToken();
+        $expire_time = $token['expir_time'];
+        if($expire_time > time()){
+            return $token['access_token'];
+        }
+
+        $this->config = D('Setting')->fetchAll();
+        $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .$this->config['weixin']['appid'] . '&secret=' .$this->config['weixin']['appsecret'];
+        import("@/Net.Curl");
+        $curl = new Curl();
+        $result = $curl->get($url);
+        $result = json_decode($result, true);
+        if (!empty($result['errcode'])) return false;
+        D('Weixinaccess')->setToken($result['access_token']);
+        return $result['access_token'];
 
     }
 	//请求
@@ -264,7 +277,7 @@ class IndexAction extends CommonAction{
         if (!empty($data['data'])) {
             $datas = explode('_', $data['data']['EventKey']);
             $id = $datas[1];
-            $this->weixin->response('您的上级是：'.$id.'--'.$data['data'], 'text');//发送文字回复
+//            $this->weixin->response('您的上级是：'.$id.'--'.$data['data'], 'text');//发送文字回复
 			//优先查询用户分享关注下级
 			$uDate = D('Users')->find($id);
 			if($uDate){

@@ -216,7 +216,8 @@ class IndexAction extends CommonAction {
 		}
 		
     }
-	
-	
+    public function closed(){
+
+    }
 	
 }

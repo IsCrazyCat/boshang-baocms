@@ -198,7 +198,8 @@ class ApiAction extends CommonAction {
 		}
     }
     public function test(){
-//	    dump(D('Weixin')->getToken());
-        dump(D('Api')->getWeixinCodePng(4));
+        $client = D('Weixin')->admin_wechat_client1();
+        $access = $client->getAccessToken();
+        dump($access);
     }
 }

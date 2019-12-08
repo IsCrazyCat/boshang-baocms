@@ -496,40 +496,22 @@ class WeChatClient {
     }
 
     public function getAccessToken($tokenOnly = 1, $nocache = 0) {
-        global $_G;
-        $myTokenInfo = null;
-        $appid = $this->_appid;
-        $appsecret = $this->_appsecret;
-        $cachename = 'wechatat_' . $appid;
-        loadcache($cachename);
-
-        if ($nocache || empty(self::$_accessTokenCache[$appid])) {
-            self::$_accessTokenCache[$appid] = $_G['cache'][$cachename];
+        //判断是否过了缓存期
+        $token = D('Weixinaccess')->getToken();
+        $expire_time = $token['expir_time'];
+        if($expire_time > time()){
+            return $token['access_token'];
         }
 
-        // check cache
-        if (!empty(self::$_accessTokenCache[$appid])) {
-            $myTokenInfo = self::$_accessTokenCache[$appid];
-            if (time() < $myTokenInfo['expiration']) {
-                return $tokenOnly ? $myTokenInfo['token'] : $myTokenInfo;
-            }
-        }
-
-        // get new token
-        $url = self::$_URL_API_ROOT . "/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
-
-        $json = self::get($url);
-        $res = json_decode($json, true);
-
-        if (self::checkIsSuc($res)) {
-            // update cache
-            self::$_accessTokenCache[$appid] = $myTokenInfo = array(
-                'token' => $res['access_token'],
-                'expiration' => time() + (int) $res['expires_in']
-            );
-            savecache($cachename, $myTokenInfo);
-        }
-        return $tokenOnly ? $myTokenInfo['token'] : $myTokenInfo;
+        $this->config = D('Setting')->fetchAll();
+        $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .$this->config['weixin']['appid'] . '&secret=' .$this->config['weixin']['appsecret'];
+        import("@/Net.Curl");
+        $curl = new Curl();
+        $result = $curl->get($url);
+        $result = json_decode($result, true);
+        if (!empty($result['errcode'])) return false;
+        D('Weixinaccess')->setToken($result['access_token']);
+        return $result['access_token'];
     }
 
     public function setAccessToken($tokenInfo) {

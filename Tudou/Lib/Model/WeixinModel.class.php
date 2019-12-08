@@ -162,28 +162,21 @@ class WeixinModel {
 	
 	//获取主站的TOKEN
 	public function getSiteToken(){
-		$this->config = D('Setting')->fetchAll();
-		$url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .$this->config['weixin']['appid'] . '&secret=' .$this->config['weixin']['appsecret'];
-		$data = json_decode(file_get_contents(BASE_PATH."/access_token2.json"));
-		//file_put_contents('data.txt', var_export($data, true));
-		if($data->expire_time < time()) {
-		    $result = $this->curl->get($url);
-            $result = json_decode($result, true);
-			//file_put_contents('result.txt', var_export($result, true));
-			if(!empty($result['errcode'])){
-				return false;
-			}else{
-				$data->expire_time = time() + 7200;
-				$data->access_token = $result['access_token'];
-				$fp = fopen(BASE_PATH."/access_token.json2", "w");
-				fwrite($fp, json_encode($data));
-				fclose($fp);
-				//file_put_contents('result_access_token.txt', var_export($result['access_token'], true));
-				return $result['access_token'];
-			}
-		}
-		//file_put_contents('data_access_token.txt', var_export($data->access_token, true));
-		return $data->access_token;
+        //判断是否过了缓存期
+        $token = D('Weixinaccess')->getToken();
+        $expire_time = $token['expir_time'];
+        if($expire_time > time()){
+            return $token['access_token'];
+        }
+
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxea78884ef0a0a7a3&secret=5f3e872e294bd51d6f0f0722952d8ce8";
+        import("@/Net.Curl");
+        $curl = new Curl();
+        $result = $curl->get($url);
+        $result = json_decode($result, true);
+        if (!empty($result['errcode'])) return false;
+        D('Weixinaccess')->setToken($result['access_token']);
+        return $result['access_token'];
     }
 	
 	

@@ -1,3 +1,0 @@
-<?php
-//000000086400a:3:{i:59;a:13:{s:7:"area_id";s:2:"59";s:7:"city_id";s:2:"33";s:9:"area_name";s:9:"聊城市";s:7:"user_id";N;s:4:"Name";N;s:9:"LevelType";N;s:8:"CityCode";N;s:7:"ZipCode";N;s:10:"MergerName";N;s:3:"lng";N;s:3:"Lat";N;s:6:"pinyin";N;s:7:"orderby";s:1:"0";}i:57;a:13:{s:7:"area_id";s:2:"57";s:7:"city_id";s:2:"32";s:9:"area_name";s:9:"朝阳区";s:7:"user_id";N;s:4:"Name";N;s:9:"LevelType";N;s:8:"CityCode";N;s:7:"ZipCode";N;s:10:"MergerName";N;s:3:"lng";N;s:3:"Lat";N;s:6:"pinyin";N;s:7:"orderby";s:1:"1";}i:2;a:13:{s:7:"area_id";s:1:"2";s:7:"city_id";s:1:"1";s:9:"area_name";s:6:"新站";s:7:"user_id";s:2:"12";s:4:"Name";N;s:9:"LevelType";N;s:8:"CityCode";N;s:7:"ZipCode";N;s:10:"MergerName";N;s:3:"lng";N;s:3:"Lat";N;s:6:"pinyin";N;s:7:"orderby";s:1:"2";}}
-?>

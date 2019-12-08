@@ -69,12 +69,24 @@ class WeixinJSSDK {
 
   private function getAccessToken() {
     // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
-	
-      $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$this->appId&secret=$this->appSecret";
-      $res = json_decode($this->httpGet($url));
-      $access_token = $res->access_token;
-      
-    return $access_token;
+
+      //判断是否过了缓存期
+      $token = D('Weixinaccess')->getToken();
+      $expire_time = $token['expir_time'];
+      if($expire_time > time()){
+          return $token['access_token'];
+      }
+
+      $this->config = D('Setting')->fetchAll();
+      $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .$this->config['weixin']['appid'] . '&secret=' .$this->config['weixin']['appsecret'];
+      import("@/Net.Curl");
+      $curl = new Curl();
+      $result = $curl->get($url);
+      $result = json_decode($result, true);
+      if (!empty($result['errcode'])) return false;
+      D('Weixinaccess')->setToken($result['access_token']);
+      return $result['access_token'];
+
   }
 
   private function httpGet($url) {
