@@ -45,22 +45,22 @@ ul { padding-left: 0px;}
 		</if>
 		<em></span>
 	</div>
-	<div class="line padding border-bottom">
-		<span class="x3 text-gray">开户银行：</span>
-		<span class="x9"><input type="text" name="bank_name" id="bank_name" class="text-input" value="<{$info.bank_name}>"  placeholder="请输入开户银行" ></span>
-	</div>
-	<div class="line padding border-bottom">
-		<span class="x3 text-gray">银行账号：</span>
-		<span class="x9"><input type="text"  name="bank_num" id="bank_num" class="text-input"  value="<{$info.bank_num}>"   placeholder="请输入银行账户" ></span>
-	</div>
-	<div class="line padding border-bottom">
-		<span class="x3 text-gray">具体支行：</span>
-		<span class="x9"><input type="text" name="bank_branch" id="bank_branch" class="text-input" value="<{$info.bank_branch}>"  placeholder="请输入具体支行名字" ></span>
-	</div>
-	<div class="line padding border-bottom">
-		<span class="x3 text-gray">开户名：</span>
-		<span class="x9"><input type="text" name="bank_realname" id="bank_realname" class="text-input" value="<{$info.bank_realname}>"  placeholder="输入开户名" ></span>
-	</div>
+<!--	<div class="line padding border-bottom">-->
+<!--		<span class="x3 text-gray">开户银行：</span>-->
+<!--		<span class="x9"><input type="text" name="bank_name" id="bank_name" class="text-input" value="<{$info.bank_name}>"  placeholder="请输入开户银行" ></span>-->
+<!--	</div>-->
+<!--	<div class="line padding border-bottom">-->
+<!--		<span class="x3 text-gray">银行账号：</span>-->
+<!--		<span class="x9"><input type="text"  name="bank_num" id="bank_num" class="text-input"  value="<{$info.bank_num}>"   placeholder="请输入银行账户" ></span>-->
+<!--	</div>-->
+<!--	<div class="line padding border-bottom">-->
+<!--		<span class="x3 text-gray">具体支行：</span>-->
+<!--		<span class="x9"><input type="text" name="bank_branch" id="bank_branch" class="text-input" value="<{$info.bank_branch}>"  placeholder="请输入具体支行名字" ></span>-->
+<!--	</div>-->
+<!--	<div class="line padding border-bottom">-->
+<!--		<span class="x3 text-gray">开户名：</span>-->
+<!--		<span class="x9"><input type="text" name="bank_realname" id="bank_realname" class="text-input" value="<{$info.bank_realname}>"  placeholder="输入开户名" ></span>-->
+<!--	</div>-->
 	<php>$mobile = substr_replace($MEMBER['mobile'],'****',3,4);</php>
 	<!--验证码-->
 	<if condition="!empty($MEMBER['mobile'])">

@@ -206,18 +206,18 @@ class MoneyAction extends CommonAction{
             if ($gold > $cash_money_big * 100) {
                 $this->fengmiMsg('您单笔最多能提现' . $cash_money_big . '元');
             }
-            if ($gold > $this->member['gold'] || $this->member['gold'] == 0) {
-                $this->fengmiMsg('商户资金不足，无法提现');
-            }
-            if (!($data['bank_name'] = htmlspecialchars($_POST['bank_name']))) {
-                $this->fengmiMsg('开户行不能为空');
-            }
-            if (!($data['bank_num'] = htmlspecialchars($_POST['bank_num']))) {
-                $this->fengmiMsg('银行账号不能为空');
-            }
-            if (!($data['bank_realname'] = htmlspecialchars($_POST['bank_realname']))) {
-                $this->fengmiMsg('开户姓名不能为空');
-            }
+//            if ($gold > $this->member['gold'] || $this->member['gold'] == 0) {
+//                $this->fengmiMsg('商户资金不足，无法提现');
+//            }
+//            if (!($data['bank_name'] = htmlspecialchars($_POST['bank_name']))) {
+//                $this->fengmiMsg('开户行不能为空');
+//            }
+//            if (!($data['bank_num'] = htmlspecialchars($_POST['bank_num']))) {
+//                $this->fengmiMsg('银行账号不能为空');
+//            }
+//            if (!($data['bank_realname'] = htmlspecialchars($_POST['bank_realname']))) {
+//                $this->fengmiMsg('开户姓名不能为空');
+//            }
             //获取手机，验证码
             $yzm = $this->_post('yzm');
             $s_mobile = session('mobile');

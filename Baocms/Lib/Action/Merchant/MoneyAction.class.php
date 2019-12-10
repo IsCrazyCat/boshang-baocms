@@ -201,15 +201,15 @@ class MoneyAction extends CommonAction{
             if ($gold > $this->member['gold'] || $this->member['gold'] == 0) {
                 $this->baoError('商户资金不足，无法提现');
             }
-            if (!($data['bank_name'] = htmlspecialchars($_POST['bank_name']))) {
-                $this->baoError('开户行不能为空');
-            }
-            if (!($data['bank_num'] = htmlspecialchars($_POST['bank_num']))) {
-                $this->baoError('银行账号不能为空');
-            }
-            if (!($data['bank_realname'] = htmlspecialchars($_POST['bank_realname']))) {
-                $this->baoError('开户姓名不能为空');
-            }
+//            if (!($data['bank_name'] = htmlspecialchars($_POST['bank_name']))) {
+//                $this->baoError('开户行不能为空');
+//            }
+//            if (!($data['bank_num'] = htmlspecialchars($_POST['bank_num']))) {
+//                $this->baoError('银行账号不能为空');
+//            }
+//            if (!($data['bank_realname'] = htmlspecialchars($_POST['bank_realname']))) {
+//                $this->baoError('开户姓名不能为空');
+//            }
             $data['bank_branch'] = htmlspecialchars($_POST['bank_branch']);
             $data['user_id'] = $this->uid;
             $arr = array();

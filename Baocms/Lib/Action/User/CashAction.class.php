@@ -37,15 +37,15 @@ class CashAction extends CommonAction{
             if ($money > $data['money'] || $data['money'] == 0) {
                 $this->fengmiMsg('余额不足，无法提现');
             }
-            if (!($data['bank_name'] = htmlspecialchars($_POST['bank_name']))) {
-                $this->fengmiMsg('开户行不能为空');
-            }
-            if (!($data['bank_num'] = htmlspecialchars($_POST['bank_num']))) {
-                $this->fengmiMsg('银行账号不能为空');
-            }
-            if (!($data['bank_realname'] = htmlspecialchars($_POST['bank_realname']))) {
-                $this->fengmiMsg('开户姓名不能为空');
-            }
+//            if (!($data['bank_name'] = htmlspecialchars($_POST['bank_name']))) {
+//                $this->fengmiMsg('开户行不能为空');
+//            }
+//            if (!($data['bank_num'] = htmlspecialchars($_POST['bank_num']))) {
+//                $this->fengmiMsg('银行账号不能为空');
+//            }
+//            if (!($data['bank_realname'] = htmlspecialchars($_POST['bank_realname']))) {
+//                $this->fengmiMsg('开户姓名不能为空');
+//            }
             $data['bank_branch'] = htmlspecialchars($_POST['bank_branch']);
             $data['user_id'] = $this->uid;
 			
