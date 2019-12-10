@@ -67,9 +67,9 @@ ul { padding-left: 0px;}
 	<div class="line padding border-bottom">
 		<span class="x3 text-gray">输入手机</span>
 		<span class="x5">
-		<input type="text" name="mobile" id="mobile" class="text-input" value="<{$MEMBER['mobile']}>" disabled="disabled">
+		<input type="text" name="mobile1" id="mobile1" class="text-input" value="<{$MEMBER['mobile']}>" disabled="disabled">
 		</span>
-		<span class="x4"><a class="button button-small bg-dot" id="jq_send" href="javascript:void(0);">获取验证码</a></span>
+		<span class="x4"><a class="button button-small bg-dot" id="get_yzm" href="javascript:void(0);">获取验证码</a></span>
 	</div>
 	<div class="line padding border-bottom">
 		<span class="x3 text-gray">验证码</span>
@@ -121,33 +121,33 @@ ul { padding-left: 0px;}
 </script>
 </notempty>
 <script type="text/javascript">
-	var mobile_timeout;
-	var mobile_count = 100;
-	var mobile_lock = 0;
+	var mobile_timeout1;
+	var mobile_count1 = 100;
+	var mobile_lock1 = 0;
 	$(function () {
-		$("#jq_send").click(function () {
-			if (mobile_lock == 0) {
+		$("#get_yzm").click(function () {
+			if (mobile_lock1 == 0) {
 				$.ajax({
 					url: '<{:U("money/sendsms")}>',
-					data: 'mobile=' + $("#mobile").val(),
+					data: 'mobile=' + $("#mobile1").val(),
 					type: 'post'
 				});
-				mobile_count = 100;
-				BtnCount();
-				mobile_lock = 1;
+				mobile_count1 = 100;
+				BtnCount1();
+				mobile_lock1 = 1;
 			}
 		});
 	});
-	BtnCount = function () {
-		if (mobile_count == 0) {
-			$('#jq_send').html("重新发送");
-			mobile_lock = 0;
-			clearTimeout(mobile_timeout);
+	BtnCount1 = function () {
+		if (mobile_count1 == 0) {
+			$('#get_yzm').html("重新发送");
+			mobile_lock1 = 0;
+			clearTimeout(mobile_timeout1);
 		}
 		else {
-			mobile_count--;
-			$('#jq_send').html("重新发送(" + mobile_count.toString() + ")秒");
-			mobile_timeout = setTimeout(BtnCount, 1000);
+			mobile_count1--;
+			$('#get_yzm').html("重新发送(" + mobile_count1.toString() + ")秒");
+			mobile_timeout1 = setTimeout(BtnCount, 1000);
 		}
 	};
 </script>

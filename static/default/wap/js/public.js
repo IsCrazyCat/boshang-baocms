@@ -113,139 +113,139 @@ $(document).ready(function (){
 });
 
 function check_user_mobile(url1,url2){
-	// layer.open({
-	// 	type: 1,
-	// 	title:'<h4>请绑定手机后操作</h4>',
-	// 	skin: 'layui-layer-molv', //加上边框
-	// 	area: ['90%', '300px'], //宽高
-	// 	shift:6,
-	// 	content: '<div class="form-auto form-x"><div class="form-group"><div class="label"><label>手机号</label></div><div class="field form-inline"><input class="input input-auto" name="mobile" id="mobile" value="" placeholder="填写手机号码" size="20" type="text"> <button class="button margin-top bg-yellow" id="jq_send">获取验证码</button></div></div><div class="form-group"><div class="label" ><label>验证码</label></div><div class="field"><input class="input input-auto" name="yzm" id="yzm" value="" size="10" placeholder="填写验证码" type="text"></div></div><div class="form-button"><button id="go_mobile" class="button bg-yellow edit_post" type="submit">立刻认证</button></div></div>'
-	// });
-	// //获取验证码
-	// var mobile_timeout;
-	// var mobile_count = 100;
-	// var mobile_lock = 0;
-	// $(function () {
-	// 	$("#jq_send").click(function () {
-	//
-	// 		if (mobile_lock == 0) {
-	// 			mobile_lock = 1;
-	// 			$.ajax({
-	// 				url: url1,
-	// 				data: 'mobile=' + $("#mobile").val(),
-	// 				type: 'post',
-	// 				success: function (data) {
-	// 					if (data.status == 'success') {
-	// 						mobile_count = 60;
-	// 						layer.msg(data.msg,{icon:1});
-	// 						BtnCount();
-	// 					} else {
-	// 						mobile_lock = 0;
-	// 						layer.msg(data.msg,{icon:2});
-	// 					}
-	// 				}
-	// 			});
-	// 		}
-	//
-	// 	});
-	// });
-	// BtnCount = function () {
-	// 	if (mobile_count == 0) {
-	// 		$('#jq_send').html("重新发送");
-	// 		mobile_lock = 0;
-	// 		clearTimeout(mobile_timeout);
-	// 	}
-	// 	else {
-	// 		mobile_count--;
-	// 		$('#jq_send').html("重新发送(" + mobile_count.toString() + ")秒");
-	// 		mobile_timeout = setTimeout(BtnCount, 1000);
-	// 	}
-	// };
-	// //提交
-	// $('#go_mobile').click(function(){
-	// 	var ml = $('#mobile').val();
-	// 	var y = $('#yzm').val();
-	// 	$.post(url2,{mobile:ml,yzm:y},function(result){
-	// 		if(result.status == 'success'){
-	// 			layer.msg(result.msg);
-	// 			setTimeout(function(){
-	// 				location.reload(true);
-	// 			},3000);
-	// 		}else{
-	// 			layer.msg(result.msg,{icon:2});
-	// 		}
-	// 	},'json');
-	// })
-	//
-	// $('.layui-layer-content').css('padding','15px');
+	layer.open({
+		type: 1,
+		title:'<h4>请绑定手机后操作</h4>',
+		skin: 'layui-layer-molv', //加上边框
+		area: ['90%', '300px'], //宽高
+		shift:6,
+		content: '<div class="form-auto form-x"><div class="form-group"><div class="label"><label>手机号</label></div><div class="field form-inline"><input class="input input-auto" name="mobile" id="mobile" value="" placeholder="填写手机号码" size="20" type="text"> <button class="button margin-top bg-yellow" id="jq_send">获取验证码</button></div></div><div class="form-group"><div class="label" ><label>验证码</label></div><div class="field"><input class="input input-auto" name="yzm" id="yzm" value="" size="10" placeholder="填写验证码" type="text"></div></div><div class="form-button"><button id="go_mobile" class="button bg-yellow edit_post" type="submit">立刻认证</button></div></div>'
+	});
+	//获取验证码
+	var mobile_timeout;
+	var mobile_count = 100;
+	var mobile_lock = 0;
+	$(function () {
+		$("#jq_send").click(function () {
+
+			if (mobile_lock == 0) {
+				mobile_lock = 1;
+				$.ajax({
+					url: url1,
+					data: 'mobile=' + $("#mobile").val(),
+					type: 'post',
+					success: function (data) {
+						if (data.status == 'success') {
+							mobile_count = 60;
+							layer.msg(data.msg,{icon:1});
+							BtnCount();
+						} else {
+							mobile_lock = 0;
+							layer.msg(data.msg,{icon:2});
+						}
+					}
+				});
+			}
+
+		});
+	});
+	BtnCount = function () {
+		if (mobile_count == 0) {
+			$('#jq_send').html("重新发送");
+			mobile_lock = 0;
+			clearTimeout(mobile_timeout);
+		}
+		else {
+			mobile_count--;
+			$('#jq_send').html("重新发送(" + mobile_count.toString() + ")秒");
+			mobile_timeout = setTimeout(BtnCount, 1000);
+		}
+	};
+	//提交
+	$('#go_mobile').click(function(){
+		var ml = $('#mobile').val();
+		var y = $('#yzm').val();
+		$.post(url2,{mobile:ml,yzm:y},function(result){
+			if(result.status == 'success'){
+				layer.msg(result.msg);
+				setTimeout(function(){
+					location.reload(true);
+				},3000);
+			}else{
+				layer.msg(result.msg,{icon:2});
+			}
+		},'json');
+	})
+
+	$('.layui-layer-content').css('padding','15px');
 	
 }
 
 
 function change_user_mobile(url1,url2){
-	// layer.open({
-	// 	type: 1,
-	// 	title:'请绑定手机后操作',
-	// 	skin: 'layer-ext-demo', //加上边框
-	// 	area: ['90%', '300px'], //宽高
-	// 	content: '<div class="padding-big">手机号<br /><input name="mobile" id="mobile" type="text" size="13" class="input input-auto" /> <button class="button margin-top bg-yellow" type="button" id="jq_send">获取验证码</button><br /><div class="blank-10"></div>验证码<br /><input  class="input input-auto" size="10"  name="yzm" id="yzm" type="text" /> 输入验证码<br><div class="blank-20"></div><input type="submit" value="立刻认证" class="button bg-yellow"  id="go_mobile" /></div>'
-	// });
-	// //获取验证码
-	// var mobile_timeout;
-	// var mobile_count = 100;
-	// var mobile_lock = 0;
-	// $(function () {
-	// 	$("#jq_send").click(function () {
-	// 		if (mobile_lock == 0) {
-	// 			mobile_lock = 1;
-	// 			$.ajax({
-	// 				url: url1,
-	// 				data: 'mobile=' + $("#mobile").val(),
-	// 				type: 'post',
-	// 				success: function (data) {
-	// 					if (data.status == 'success') {
-	// 						mobile_count = 60;
-	// 						layer.msg(data.msg,{icon:1});
-	// 						BtnCount();
-	// 					} else {
-	// 						mobile_lock = 0;
-	// 						layer.msg(data.msg,{icon:2});
-	// 					}
-	// 				}
-	// 			});
-	// 		}
-	//
-	// 	});
-	// });
-	// BtnCount = function () {
-	// 	if (mobile_count == 0) {
-	// 		$('#jq_send').html("重新发送");
-	// 		mobile_lock = 0;
-	// 		clearTimeout(mobile_timeout);
-	// 	}else {
-	// 		mobile_count--;
-	// 		$('#jq_send').html("重新发送(" + mobile_count.toString() + ")秒");
-	// 		mobile_timeout = setTimeout(BtnCount, 1000);
-	// 	}
-	// };
-	// //提交
-	// $('#go_mobile').click(function(){
-	// 	var ml = $('#mobile').val();
-	// 	var y = $('#yzm').val();
-	// 	$.post(url2,{mobile:ml,yzm:y},function(result){
-	// 		if(result.status == 'success'){
-	// 			layer.msg(result.msg,{icon:1});
-	// 			setTimeout(function(){
-	// 				location.reload(true);
-	// 			},3000);
-	// 		}else{
-	// 			layer.msg(result.msg,{icon:2});
-	// 		}
-	// 	},'json');
-	// })
-	//
-	//
-	// $('.layui-layer-title').css('color','#ffffff').css('background','#2fbdaa');
+	layer.open({
+		type: 1,
+		title:'请绑定手机后操作',
+		skin: 'layer-ext-demo', //加上边框
+		area: ['90%', '300px'], //宽高
+		content: '<div class="padding-big">手机号<br /><input name="mobile" id="mobile" type="text" size="13" class="input input-auto" /> <button class="button margin-top bg-yellow" type="button" id="jq_send">获取验证码</button><br /><div class="blank-10"></div>验证码<br /><input  class="input input-auto" size="10"  name="yzm" id="yzm" type="text" /> 输入验证码<br><div class="blank-20"></div><input type="submit" value="立刻认证" class="button bg-yellow"  id="go_mobile" /></div>'
+	});
+	//获取验证码
+	var mobile_timeout;
+	var mobile_count = 100;
+	var mobile_lock = 0;
+	$(function () {
+		$("#jq_send").click(function () {
+			if (mobile_lock == 0) {
+				mobile_lock = 1;
+				$.ajax({
+					url: url1,
+					data: 'mobile=' + $("#mobile").val(),
+					type: 'post',
+					success: function (data) {
+						if (data.status == 'success') {
+							mobile_count = 60;
+							layer.msg(data.msg,{icon:1});
+							BtnCount();
+						} else {
+							mobile_lock = 0;
+							layer.msg(data.msg,{icon:2});
+						}
+					}
+				});
+			}
+
+		});
+	});
+	BtnCount = function () {
+		if (mobile_count == 0) {
+			$('#jq_send').html("重新发送");
+			mobile_lock = 0;
+			clearTimeout(mobile_timeout);
+		}else {
+			mobile_count--;
+			$('#jq_send').html("重新发送(" + mobile_count.toString() + ")秒");
+			mobile_timeout = setTimeout(BtnCount, 1000);
+		}
+	};
+	//提交
+	$('#go_mobile').click(function(){
+		var ml = $('#mobile').val();
+		var y = $('#yzm').val();
+		$.post(url2,{mobile:ml,yzm:y},function(result){
+			if(result.status == 'success'){
+				layer.msg(result.msg,{icon:1});
+				setTimeout(function(){
+					location.reload(true);
+				},3000);
+			}else{
+				layer.msg(result.msg,{icon:2});
+			}
+		},'json');
+	})
+
+
+	$('.layui-layer-title').css('color','#ffffff').css('background','#2fbdaa');
 	
 }
 
