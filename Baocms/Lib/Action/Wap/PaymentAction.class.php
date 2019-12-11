@@ -400,10 +400,9 @@ class PaymentAction extends CommonAction {
         $payment['appsecret'] = '5f3e872e294bd51d6f0f0722952d8ce8';
         $payment['mchid'] = '1544216781';
         $payment['appkey'] = '2f2bc64138263432353d526940f6e22e';
-
         $datas = array(
             'subject' => '购买0.01元商品！',
-            'logs_id' => 1210,
+            'logs_id' => rand_string(6, 1),
             'logs_amount' => 0.01,
         );
         require_cache(APP_PATH . 'Lib/Payment/weixin.mobile.class.php');

@@ -68,7 +68,7 @@ class weixin {
         $this->init($payment);
         $tools = new JsApiPay();
 //        $openId = 'oz6Qc6As2xPVK6lHxedoY5saIzuw';
-        $openId = 'oz6Qc6MLDsiKlcwPMSyyUDMFFEW0';
+        $openId = 'oz6Qc6NRucGr9Ijx7zxQ4HHFR0zg';
 
         $input = new WxPayUnifiedOrder();
         $input->SetBody($logs['subject']);
