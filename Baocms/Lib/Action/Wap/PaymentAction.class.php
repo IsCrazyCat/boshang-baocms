@@ -365,7 +365,7 @@ class PaymentAction extends CommonAction {
            $this->ajaxReturn(array('status' => 'error', 'msg' => '支付密码不能为空'));
         }
 		if ($Users['pay_password'] != md5(md5($pay_password)) ) {
-           $this->ajaxReturn(array('status' => 'error', 'msg' => 'pay='.$Users['pay_password'].'--'.md5(md5($pay_password)) ));
+           $this->ajaxReturn(array('status' => 'error', 'msg' => '支付密码错误！请重新输入' ));
         }else{
            session('session_pay_password', $session_pay_password = rand_string(32, 1));
 		   $this->ajaxReturn(array('status' => 'success', 'msg' => '密码正确，点击支付按钮支付'));
@@ -390,5 +390,26 @@ class PaymentAction extends CommonAction {
 			 $this->ajaxReturn(array('status' => 'error', 'msg' => '操作失败，请重试'));
 		}
     }
+    public function testpay() {
+        if (!$this->uid) {
+            $this->fengmiMsg('登录状态失效!', U('passport/login'));
+        }
+        $payment = D('payment')->where(array('code'=>'weixin'))->find();
 
+        $payment['appid'] = 'wxea78884ef0a0a7a3';
+        $payment['appsecret'] = '5f3e872e294bd51d6f0f0722952d8ce8';
+        $payment['mchid'] = '1544216781';
+        $payment['appkey'] = '2f2bc64138263432353d526940f6e22e';
+
+        $datas = array(
+            'subject' => '购买0.01元商品！',
+            'logs_id' => 1210,
+            'logs_amount' => 0.01,
+        );
+        require_cache(APP_PATH . 'Lib/Payment/weixin.mobile.class.php');
+
+        $obj = new weixin();
+        $this -> assign('button', $obj->getCode1($datas, $payment));
+        $this->display();
+    }
 }

@@ -64,6 +64,54 @@ class weixin {
         ';
         return $str;
     }
+    public function getCode1($logs, $payment) {
+        $this->init($payment);
+        $tools = new JsApiPay();
+//        $openId = 'oz6Qc6As2xPVK6lHxedoY5saIzuw';
+        $openId = 'oz6Qc6MLDsiKlcwPMSyyUDMFFEW0';
+
+        $input = new WxPayUnifiedOrder();
+        $input->SetBody($logs['subject']);
+        $input->SetAttach($logs['subject']);
+        $input->SetOut_trade_no($logs['logs_id']);
+        $logs['logs_amount'] = $logs['logs_amount'] *100;
+        $input->SetTotal_fee("{$logs['logs_amount']}");
+        $input->SetTime_start(date("YmdHis"));
+        $input->SetTime_expire(date("YmdHis", time() + 600));
+        $input->SetGoods_tag($logs['subject']);
+        $input->SetNotify_url(__HOST__ . U( 'wap/payment/respond', array('code' => 'weixin')));
+        $input->SetTrade_type("JSAPI");
+        $input->SetOpenid($openId);
+        $order = WxPayApi::unifiedOrder($input);
+        $jsApiParameters = $tools->GetJsApiParameters($order);
+        $str = '<script>function jsApiCall()
+	{
+		WeixinJSBridge.invoke(
+			\'getBrandWCPayRequest\',
+			'.$jsApiParameters.',
+			function(res){
+                            if(res.err_msg ==\'get_brand_wcpay_request:ok\'){ 
+                                location.href="'.U('wap/payment/yes',array('log_id'=>$logs['logs_id'])).'";
+                            }
+			}
+		);
+	}
+	function callpay(){
+		if (typeof WeixinJSBridge == "undefined"){
+		    if( document.addEventListener ){
+		        document.addEventListener(\'WeixinJSBridgeReady\', jsApiCall, false);
+		    }else if (document.attachEvent){
+		        document.attachEvent(\'WeixinJSBridgeReady\', jsApiCall); 
+		        document.attachEvent(\'onWeixinJSBridgeReady\', jsApiCall);
+		    }
+		}else{
+		    jsApiCall();
+		}
+	}</script>
+<button   class="button button-block bg-dot button-big" type="button" onclick="callpay()" >立即支付</button>
+        ';
+        return $str;
+    }
 
 
 

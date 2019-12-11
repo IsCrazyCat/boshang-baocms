@@ -112,7 +112,6 @@
 
 function getCity(){
   var province = $("#province").val();
-  alert(province);
   $.ajax({
         type: "GET",
         url: "<{$CONFIG.site.host}>/wap/pintuan/city/upid/"+province,
