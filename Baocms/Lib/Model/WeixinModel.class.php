@@ -63,6 +63,29 @@ class WeixinModel {
         }
         return true;
     }
+
+    /**
+     * 发送客服消息
+     * @param $content
+     * @param $openId
+     * @return bool
+     */
+    public function send_wx_custom_msg($content,$openId)
+    {
+        $token = $this->getSiteToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$token;
+        $data = '{
+        "touser":"'.$openId.'",
+        "msgtype":"text",
+        "text":
+            {
+                 "content":"'.$content.'"
+            }
+        }';
+        $result = $this->curl->post($url, json_encode($data) );
+        $result = (array)json_decode($result);
+        return $token;
+    }
     /*
      * 账号后台模板ID 
      * @param  string $short_id 模板库模板ID
