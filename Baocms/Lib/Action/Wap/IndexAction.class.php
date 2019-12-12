@@ -109,7 +109,13 @@ class IndexAction extends CommonAction {
         die;
     }
     public function test(){
-          $token =D('Weixin')->getToken();
-          exit($token);
+//        if($data['data']['FromUserName']=='oz6Qc6OtmkWc-wM2NVd_4weH79oY'||$data['data']['FromUserName']=='oz6Qc6As2xPVK6lHxedoY5saIzuw'){
+//            $content = '恭喜您，新增下级会员：';
+//            D('weixin')->send_wx_custom_msg($content,$data['data']['FromUserName']);
+//            $this->weixin->response($data['data']['FromUserName'], 'text');
+//        }
+        $content = '恭喜您，新增下级会员：';
+        $result =  D('Weixin')->send_wx_custom_msg($content,'oz6Qc6OtmkWc-wM2NVd_4weH79oY');
+        dump($result);
     }
 }

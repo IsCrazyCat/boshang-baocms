@@ -84,7 +84,7 @@ class WeixinModel {
         }';
         $result = $this->curl->post($url, json_encode($data) );
         $result = (array)json_decode($result);
-        return $token;
+        return $result;
     }
     /*
      * 账号后台模板ID 
