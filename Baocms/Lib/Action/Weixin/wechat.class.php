@@ -740,15 +740,20 @@ class WeChatClient {
     }
 
 	public function getShopToken($shop,$tokenOnly = 1, $nocache = 0) {
-        global $_G;
-        $myTokenInfo = null;
-        $appid = $shop['app_id'];
-        $appsecret = $shop['app_key'];
-        $cachename = 'wechatat_' . $appid;
-
-        
-	$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";      $res = json_decode($this->httpGet($url));      $access_token = $res->access_token;          return $access_token;
-    }		 private function httpGet($url) {		$curl = curl_init();		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);		curl_setopt($curl, CURLOPT_TIMEOUT, 500);		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);		curl_setopt($curl, CURLOPT_URL, $url);		$res = curl_exec($curl);		curl_close($curl);		return $res;	  }
+        return getWxAccessToken();
+//        global $_G;
+//        $myTokenInfo = null;
+//        $appid = $shop['app_id'];
+//        $appsecret = $shop['app_key'];
+//        $cachename = 'wechatat_' . $appid;
+//
+//
+//	$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appid&secret=$appsecret";
+//	$res = json_decode($this->httpGet($url));
+//	$access_token = $res->access_token;
+//	return $access_token;
+    }
+    private function httpGet($url) {		$curl = curl_init();		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);		curl_setopt($curl, CURLOPT_TIMEOUT, 500);		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);		curl_setopt($curl, CURLOPT_URL, $url);		$res = curl_exec($curl);		curl_close($curl);		return $res;	  }
 
 	//卡卷
 

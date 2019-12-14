@@ -109,13 +109,15 @@ class IndexAction extends CommonAction {
         die;
     }
     public function test(){
-//        if($data['data']['FromUserName']=='oz6Qc6OtmkWc-wM2NVd_4weH79oY'||$data['data']['FromUserName']=='oz6Qc6As2xPVK6lHxedoY5saIzuw'){
-//            $content = '恭喜您，新增下级会员：';
-//            D('weixin')->send_wx_custom_msg($content,$data['data']['FromUserName']);
-//            $this->weixin->response($data['data']['FromUserName'], 'text');
-//        }
-        $content = '恭喜您，新增下级会员：';
-        $result =  D('Weixin')->send_wx_custom_msg($content,'oz6Qc6OtmkWc-wM2NVd_4weH79oY');
+        $reg_user= D('Users')->find('3184');
+
+
+//            if($data['open_id']=='oz6Qc6OtmkWc-wM2NVd_4weH79oY'||$data['open_id']=='oz6Qc6As2xPVK6lHxedoY5saIzuw'){
+        if(!empty($reg_user['fuid1'])){
+            $content = '恭喜您，新增下级会员：';
+            $reg_connect = D('connect')->where(array('uid'=>$reg_user['fuid1']))->find();
+            $result= D('Weixin')->send_wx_custom_msg($content,$reg_connect['open_id']);
+        }
         dump($result);
     }
 }

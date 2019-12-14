@@ -46,8 +46,8 @@ class IndexAction extends CommonAction
         if (empty($data['Content'])) {
             return;
         }
-		
-		
+
+
         if ($this->shop_id == 0) {
             $key = explode(' ', $data['Content']);
             $keyword = D('Weixinkeyword')->checkKeyword($key[0]);
@@ -67,7 +67,7 @@ class IndexAction extends CommonAction
                         $this->weixin->response($content, 'news');
                         break;
                 }
-			
+
             } else {
                 // 没有特定关键词则查询POIS信息
                 $openid = $data['FromUserName'];
@@ -161,9 +161,9 @@ class IndexAction extends CommonAction
             }
         }
     }
-	
-	
-	
+
+
+
     //响应用户的事件
     private function event(){
         if ($this->shop_id == 0) {
@@ -286,7 +286,6 @@ class IndexAction extends CommonAction
                 //存入cookie 然后跳转到首页 走自动注册流程，然后注册时取出fuid，创建会员
 
                 $client = D('Weixin')->wechat_client();
-                $access_token = $client->getAccessToken();
 
                 $wx_info = $client->getUserInfoById($data['data']['FromUserName']);
 
@@ -299,10 +298,8 @@ class IndexAction extends CommonAction
                     'fuid'=>$fuid
                 );
 
-                $test = $this->wxconn($data,$data['open_id']);
-                if($data['data']['FromUserName']=='oz6Qc6OtmkWc-wM2NVd_4weH79oY'){
-                    $this->weixin->response($data['data']['FromUserName'], 'text');
-                }
+                $this->wxconn($data,$data['open_id']);
+                $this->weixin->response('欢迎关注blk爱车小助手', 'text');
             }
         }
     }
@@ -402,6 +399,12 @@ class IndexAction extends CommonAction
             // 用户数据整理
             $host = explode('.', $this->_CONFIG['site']['host']);
             $account = uniqid() . '@' .'blk.com';
+            for($i=0;;$i++){
+                $account_user = D('Users')->where(array('account'=>$account))->find();
+                if(empty($account_user)){
+                    break;
+                }
+            }
             if ($data['nickname'] == '') {
                 $nickname = $data['type'] . $connect['connect_id'];
             } else {
@@ -427,7 +430,20 @@ class IndexAction extends CommonAction
             $token = D('Passport')->getToken();
             $connect['uid'] = $token['uid'];
             D('Connect')->save(array('connect_id' => $connect['connect_id'], 'uid' => $connect['uid']));// 注册成功智能跳转
-            $backurl = session('backurl');
+            //判断是否有上级，有上级则推送客服消息通知
+            //这里判断账户account
+            $reg_user= D('Users')->find($token['uid']);
+
+
+//            if($data['open_id']=='oz6Qc6OtmkWc-wM2NVd_4weH79oY'||$data['open_id']=='oz6Qc6As2xPVK6lHxedoY5saIzuw'){
+                if(!empty($reg_user['fuid1'])){
+                    $content = '恭喜您，新增下级会员：'.$nickname;
+                    $reg_connect = D('connect')->where(array('uid'=>$reg_user['fuid1']))->find();
+                    D('Weixin')->send_wx_custom_msg($content,$reg_connect['open_id']);
+                }
+//            }
+
+//            $backurl = session('backurl');
 //            if (!empty($backurl)) {
 //                header("Location:{$backurl}");
 //            } else {

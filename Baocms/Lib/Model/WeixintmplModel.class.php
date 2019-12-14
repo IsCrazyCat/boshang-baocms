@@ -50,7 +50,7 @@ class WeixintmplModel extends CommonModel{
 	//套餐下单微信通知
     public function weixin_notice_tuan_user($order_id,$user_id,$type){
             $Tuanorder = D('Tuanorder')->find($order_id);
-		    $Tuan = D('Tuan')->find($order['tuan_id']);
+		    $Tuan = D('Tuan')->find($Tuanorder['tuan_id']);
 			if($type == 0){
 				$pay_type = '货到付款' ;
 			}else{
@@ -67,7 +67,7 @@ class WeixintmplModel extends CommonModel{
 				'price' => round($Tuanorder['need_pay'] / 100, 2) . '元', 
 				'pay_type' => $pay_type 
 			);
-			
+
             $notice_data = Wxmesg::place_an_order($notice_data);
             Wxmesg::net($user_id, 'OPENTM202297555', $notice_data);
 			return true;

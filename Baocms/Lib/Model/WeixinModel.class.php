@@ -8,7 +8,7 @@ class WeixinModel {
      * @var array
      */
     private $data = array();
-    private $token = 'weixintoken'; 
+    private $token = 'weixintoken';
     private $access_token = '';
     private $config = array();
     private $curl = null;
@@ -21,22 +21,22 @@ class WeixinModel {
         import("@/Net.Curl");
         $this->curl = new Curl();
     }
-    
+
     public function mass($data,$shop_id = 0){
         $token = $this->getToken($shop_id);
         $url = 'http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token='.$token.'&type=thumb';
         $result = $this->curl->post($url,array('media'=>'@'.BASE_PATH.'/attachs/'.$data['photo']));
         $result = json_decode($result,true);
-    
+
         if($result['errcode']){
-             return  $result['errcode'].$result['errmsg'];
+            return  $result['errcode'].$result['errmsg'];
         }
-        
+
         $msg['articles']= array(
             array(
                 'thumb_media_id'     => $result['media_id'],
                 'author'            => $_SERVER['HTTP_HOST'],
-                'title'             => $data['title'],  
+                'title'             => $data['title'],
                 'content_source_url'=> $data['url'],
                 'content'           => $data['contents'],
                 'show_cover_pic'    => 1,
@@ -45,12 +45,12 @@ class WeixinModel {
         $msg = json_encode($msg);
         $this->curl->post('https://api.weixin.qq.com/cgi-bin/media/uploadnews?access_token='.$token,$msg);
         if($result['errcode']){
-             return  $result['errcode'].$result['errmsg'];
+            return  $result['errcode'].$result['errmsg'];
         }
         return true;
     }
-    
-  
+
+
 
     public function tmplmesg($data)
     {
@@ -74,17 +74,13 @@ class WeixinModel {
     {
         $token = $this->getSiteToken();
         $url = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='.$token;
-        $data = '{
-        "touser":"'.$openId.'",
-        "msgtype":"text",
-        "text":
-            {
-                 "content":"'.$content.'"
-            }
-        }';
-        $result = $this->curl->post($url, json_encode($data) );
+
+        $data['touser']=$openId;
+        $data['msgtype']='text';
+        $data['text']=array('content'=>$content);
+        $result = $this->curl->post($url,urldecode(json_encode($data, JSON_UNESCAPED_UNICODE)));
         $result = (array)json_decode($result);
-        return $result;
+        return  $result;
     }
     /*
      * 账号后台模板ID 
@@ -105,38 +101,39 @@ class WeixinModel {
 
     public function getToken($shop_id=0) {
         return  $this->getSiteToken();
-        
+
 //        if(!$shop_id) return  $this->getSiteToken();
 //
 //        return $this->getShopToken($shop_id);
     }
-    
+
     private function getShopToken($shop_id){ //获取商家的TOKEN
-        if(!$data = D('Shopweixinaccess')->getToken($shop_id)){
-         
-            $details = D('Shopdetails')->find($shop_id);
-            $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .
-                    $details['app_id'] . '&secret=' .
-                    $details['app_key'];
-            $result = $this->curl->get($url);
-            $result = json_decode($result, true);
-            if (!empty($result['errcode'])) return false;
-           // exit($result['errmsg']);
-            $data = $result['access_token'];
-            D('Shopweixinaccess')->setToken($shop_id, $data);
-        }
-        return $data;
+        return getWxAccessToken();
+//        if(!$data = D('Shopweixinaccess')->getToken($shop_id)){
+//
+//            $details = D('Shopdetails')->find($shop_id);
+//            $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' .
+//                $details['app_id'] . '&secret=' .
+//                $details['app_key'];
+//            $result = $this->curl->get($url);
+//            $result = json_decode($result, true);
+//            if (!empty($result['errcode'])) return false;
+//            // exit($result['errmsg']);
+//            $data = $result['access_token'];
+//            D('Shopweixinaccess')->setToken($shop_id, $data);
+//        }
+//        return $data;
     }
 
-	
 
-	public function admin_wechat_client($shop_id=0)
+
+    public function admin_wechat_client($shop_id=0)
     {
         static $clients = array();
-		if($weixin_admin = D('Shopdetails')->find($shop_id)){
-			include_once "Baocms/Lib/Action/Weixin/wechat.class.php";
-			$client = new WechatClient($weixin_admin['app_id'], $weixin_admin['app_key']);
-		}
+        if($weixin_admin = D('Shopdetails')->find($shop_id)){
+            include_once "Baocms/Lib/Action/Weixin/wechat.class.php";
+            $client = new WechatClient($weixin_admin['app_id'], $weixin_admin['app_key']);
+        }
         return $client;
     }
     public function wechat_client()
@@ -145,7 +142,7 @@ class WeixinModel {
         $client = new WechatClient('wxea78884ef0a0a7a3', '5f3e872e294bd51d6f0f0722952d8ce8');
         return $client;
     }
-    
+
     private function getSiteToken(){ //获取主站的TOKEN
 //        $this->config = D('Setting')->fetchAll();
         return getWxAccessToken();
@@ -175,7 +172,7 @@ class WeixinModel {
             $id = D('Weixinqrcode')->add(array('soure_id'=>$soure_id,'type'=>$type));
             $str = $id;
         }
-        
+
         $data = array(
             'action_name' => 'QR_LIMIT_SCENE',
             'action_info' =>array(
@@ -187,7 +184,7 @@ class WeixinModel {
         $datastr = json_encode($data);
         $result = $this->curl->post($url, $datastr);
         $result = json_decode($result, true);
-        
+
         if ($result['errcode']) {
             return false;
         }
@@ -226,8 +223,8 @@ class WeixinModel {
 //        if(checkFile($imgurl))
         return $imgurl;
     }
-    
-    
+
+
     public function weixinmenu($data,$shop_id = 0 ) {
 
         $datas = array();
@@ -254,7 +251,7 @@ class WeixinModel {
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . $this->getToken($shop_id);
         $result = $this->curl->post($url, $datastr);
         $result = json_decode($result, true);
-		//file_put_contents('/www/web/mantuo/public_html/Baocms/Lib/Model/bb.txt',$result);
+        //file_put_contents('/www/web/mantuo/public_html/Baocms/Lib/Model/bb.txt',$result);
         if ($result['errcode'] != 0) {
             return false;
         }
@@ -265,7 +262,7 @@ class WeixinModel {
     public function init($token) {
 
         if (!empty($_GET['echostr'])) {
-          //  $this->auth($token) || exit;
+            //  $this->auth($token) || exit;
             exit($_GET['echostr']);
         } else {
             $xml = file_get_contents("php://input");
@@ -332,11 +329,11 @@ class WeixinModel {
      */
     private function music($music) {
         list(
-                $music['Title'],
-                $music['Description'],
-                $music['MusicUrl'],
-                $music['HQMusicUrl']
-                ) = $music;
+            $music['Title'],
+            $music['Description'],
+            $music['MusicUrl'],
+            $music['HQMusicUrl']
+            ) = $music;
         $this->data['Music'] = $music;
     }
 
@@ -349,11 +346,11 @@ class WeixinModel {
 
         foreach ($news as $key => $value) {
             list(
-                    $articles[$key]['Title'],
-                    $articles[$key]['Description'],
-                    $articles[$key]['PicUrl'],
-                    $articles[$key]['Url']
-                    ) = $value;
+                $articles[$key]['Title'],
+                $articles[$key]['Description'],
+                $articles[$key]['PicUrl'],
+                $articles[$key]['Url']
+                ) = $value;
             if ($key >= 9) {
                 break;
             } //最多只允许10调新闻
@@ -405,7 +402,7 @@ class WeixinModel {
 
         /* 生成签名 */
         $signature = sha1(implode($data));
-       // file_put_contents('/www/web/bao_baocms_cn/public_html/Baocms/Lib/Action/Weixin/bb.txt',$signature);
+        // file_put_contents('/www/web/bao_baocms_cn/public_html/Baocms/Lib/Action/Weixin/bb.txt',$signature);
         return $signature === $sign;
     }
 
