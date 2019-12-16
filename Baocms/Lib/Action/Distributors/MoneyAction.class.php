@@ -131,7 +131,11 @@ class MoneyAction extends CommonAction{
 		foreach ($list as $k => $val) {
 			$type = D('Shopmoney')->get_money_type($val['type']);
             $list[$k]['type'] = $type;
-			
+			$tuanOrder=D('tuanOrder')->find($val['order_id']);
+			$tuan = D('tuan')->find($tuanOrder['tuan_id']);
+			$list[$k]['order']=$tuanOrder;
+            $list[$k]['tuan']=$tuan;
+            $list[$k]['user']=D('users')->find($tuanOrder['user_id']);
         }
         $this->assign('list', $list);
         $this->assign('page', $show);

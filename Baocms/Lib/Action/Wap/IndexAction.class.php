@@ -50,7 +50,7 @@ class IndexAction extends CommonAction {
         $this->assign('keys',$keys);
         $this->display();
     }
-	
+
 	 public function dingwei() {
         $lat = $this->_get('lat', 'htmlspecialchars');
         $lng = $this->_get('lng', 'htmlspecialchars');
@@ -83,21 +83,21 @@ class IndexAction extends CommonAction {
                 $profit_users[$key]['level'.$i]=D('Users')->where($map)->count();
             }
         }
-        $first_user = D('Users')->where(array('mobile'=>'15562884131'))->find();
-        $first_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $first_user['user_id']))->count();
-        $first_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $first_user['user_id']))->count();
-
-        $sencond_user = D('Users')->where(array('mobile'=>'18264582670 '))->find();
-        $sencond_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $sencond_user['user_id']))->count();
-        $sencond_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $sencond_user['user_id']))->count();
-
-        $third_user = D('Users')->where(array('mobile'=>'15166353000'))->find();
-        $third_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $third_user['user_id']))->count();
-        $third_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $third_user['user_id']))->count();
-
-        $first_user = D('Users')->where(array('mobile'=>'15562884131'))->find();
-        $first_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $first_user['user_id']))->count();
-        $first_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $first_user['user_id']))->count();
+//        $first_user = D('Users')->where(array('mobile'=>'15562884131'))->find();
+//        $first_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $first_user['user_id']))->count();
+//        $first_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $first_user['user_id']))->count();
+//
+//        $sencond_user = D('Users')->where(array('mobile'=>'18264582670 '))->find();
+//        $sencond_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $sencond_user['user_id']))->count();
+//        $sencond_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $sencond_user['user_id']))->count();
+//
+//        $third_user = D('Users')->where(array('mobile'=>'15166353000'))->find();
+//        $third_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $third_user['user_id']))->count();
+//        $third_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $third_user['user_id']))->count();
+//
+//        $first_user = D('Users')->where(array('mobile'=>'15562884131'))->find();
+//        $first_user['fuid1_count'] = 500 + D('Users')->where(array('closed' => 0, 'fuid1' => $first_user['user_id']))->count();
+//        $first_user['fuid2_count'] = 600 + D('Users')->where(array('closed' => 0, 'fuid2' => $first_user['user_id']))->count();
 
 
 

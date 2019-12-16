@@ -9,15 +9,11 @@
                 <div class="x12">
                     <p> 账户：<{$item['account']}></p>
                     <p> 昵称：<{$item['nickname']}></p>
-                    <p class="text-small">
-                    <span class="text-dot1 margin-right"> EMAIL：
-                      <if condition="!empty($item['email'])">
-                        <span class="text-dot"><{$item['email']}></span> 
-                      <else/>
-                        暂未设置
-                      </if>  
-                    </span>    
+                    <p>
+                        下级会员：
+                        <{$item['downcount']}>个
                     </p>
+                    <p> 提供分成：￥<{:round($item['pmoney']/100,2)}></p>
               </div>
           </dd>
     </li>

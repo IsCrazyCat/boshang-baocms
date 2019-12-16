@@ -108,6 +108,14 @@ class DistributionAction extends CommonAction{
         }
         $orderby = array('user_id' => 'DESC');
         $list = $user->where($map)->order($orderby)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+
+        foreach($list as $key=>$val){
+            $downcount=D('users')->where(array('fuid1'=>$val['user_id']))->count();
+            $list[$key]['downcount']= $downcount;
+            $sql  = "SELECT torder.user_id as user_id,sum(up.money) as money FROM __PREFIX__user_profit_logs AS up INNER JOIN __PREFIX__tuan_order AS torder ON up.order_id = torder.order_id WHERE up.user_id ={$this->uid} and torder.user_id={$val['user_id']}";
+            $pmoney = M()->query($sql);
+            $list[$key]['pmoney'] = $pmoney[0]['money'];
+        }
         $this->assign('list', $list);
         $this->assign('page', $show);
         $this->assign('level', $level);
