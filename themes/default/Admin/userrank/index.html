@@ -21,12 +21,11 @@
                         <td class="w50"><input type="checkbox" class="checkAll" rel="rank_id" /></td>
                         <td class="w50">ID</td>
                         <td>等级名称</td>
-                        <td>需要人数</td>
-                        <td>等级折扣</td>
-                        <td>等级推广奖励</td>
-                        <td>等级图标</td>
-                        <td>需要积分</td> 
                         <td>购买金额</td>
+                        <td>推广奖励</td>
+                        <td>上级奖励</td>
+                        <td>描述</td>
+                        <td>备注</td>
                         <td>操作</td>
                     </tr>
                     <foreach name="list" item="var">
@@ -34,12 +33,11 @@
                             <td><input class="child_rank_id" type="checkbox" name="rank_id[]" value="<{$var.rank_id}>" /></td>
                             <td><{$var.rank_id}></td>
                             <td><{$var.rank_name}></td>
-                            <td><{$var.number}></td>
-                            <td><{$var.discount}>%</td>
-                            <td><{$var.reward}>%</td>
-                            <td><img style="width:38px;" src="<{:config_img($var['photo'])}>"/></td>
-                            <td><{$var.integral}></td>
-                            <td style="color:#F00"><{:round($var['price']/100,2)}></td>
+                            <td style="color:#F00">￥<{:round($var['price']/100,2)}></td>
+                            <td style="color:#F00">￥<{$var.reward}></td>
+                            <td>上级奖励</td>
+                            <td><{$var.desc}></td>
+                            <td><{$var.remark}></td>
                             <td>
                                 <{:BA('userrank/edit',array("rank_id"=>$var["rank_id"]),'编辑','load','remberBtn',800,550)}>
                                 <{:BA('userrank/delete',array("rank_id"=>$var["rank_id"]),'删除','act','remberBtn')}>

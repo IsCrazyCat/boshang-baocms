@@ -197,9 +197,4 @@ class ApiAction extends CommonAction {
 			$this->error('错误');
 		}
     }
-    public function test(){
-        $client = D('Weixin')->admin_wechat_client1();
-        $access = $client->getAccessToken();
-        dump($access);
-    }
 }

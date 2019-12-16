@@ -1,7 +1,7 @@
 <?php
 class UserrankAction extends CommonAction{
-    private $create_fields = array('rank_name', 'number', 'discount', 'reward', 'icon', 'icon1','integral', 'prestige', 'rebate', 'price','photo');
-    private $edit_fields = array('rank_name', 'number', 'discount', 'reward', 'icon', 'icon1','integral', 'prestige', 'rebate','price', 'photo');
+    private $create_fields = array('rank_name', 'number', 'discount', 'reward','leader_reward', 'icon', 'icon1','integral', 'prestige', 'rebate', 'price','photo','desc','remark');
+    private $edit_fields = array('rank_name', 'number', 'discount', 'reward', 'leader_reward','icon', 'icon1','integral', 'prestige', 'rebate','price', 'photo','desc','remark');
     public function index(){
         $obj = D('Userrank');
         import('ORG.Util.Page');
@@ -35,16 +35,19 @@ class UserrankAction extends CommonAction{
         }
         $data['number'] = htmlspecialchars($data['number']);
 		$data['discount'] = htmlspecialchars($data['discount']);
-		$data['reward'] = htmlspecialchars($data['reward']);
+		$data['reward'] = (int)($data['reward']);
+        $data['leader_reward'] = (int)($data['leader_reward']);
         $data['integral'] = (int) $data['integral'];
 		$data['photo'] = htmlspecialchars($data['photo']);
-        if (empty($data['photo'])) {
-            $this->tuError('请上传缩略图');
-        }
-        if (!isImage($data['photo'])) {
-            $this->tuError('缩略图格式不正确');
-        }
-		$data['price'] = (int) ($data['price']*100); 
+//        if (empty($data['photo'])) {
+//            $this->tuError('请上传缩略图');
+//        }
+//        if (!isImage($data['photo'])) {
+//            $this->tuError('缩略图格式不正确');
+//        }
+		$data['price'] = (int) ($data['price']*100);
+        $data['desc'] = htmlspecialchars($data['desc']);
+        $data['remark'] = htmlspecialchars($data['remark']);
         return $data;
     }
     public function edit($rank_id = 0){
@@ -77,16 +80,19 @@ class UserrankAction extends CommonAction{
         }
         $data['number'] = htmlspecialchars($data['number']);
 		$data['discount'] = htmlspecialchars($data['discount']);
-		$data['reward'] = htmlspecialchars($data['reward']);
+        $data['reward'] = (int)($data['reward']);
+        $data['leader_reward'] = (int)($data['leader_reward']);
         $data['integral'] = (int) $data['integral'];
 		$data['photo'] = htmlspecialchars($data['photo']);
-        if (empty($data['photo'])) {
-            $this->tuError('请上传缩略图');
-        }
-        if (!isImage($data['photo'])) {
-            $this->tuError('缩略图格式不正确');
-        }
-		$data['price'] = (int) ($data['price']*100); 
+//        if (empty($data['photo'])) {
+//            $this->tuError('请上传缩略图');
+//        }
+//        if (!isImage($data['photo'])) {
+//            $this->tuError('缩略图格式不正确');
+//        }
+		$data['price'] = (int) ($data['price']*100);
+        $data['desc'] = htmlspecialchars($data['desc']);
+        $data['remark'] = htmlspecialchars($data['remark']);
         return $data;
     }
     public function delete($rank_id = 0){

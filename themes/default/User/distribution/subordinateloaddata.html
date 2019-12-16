@@ -10,13 +10,12 @@
                     <p> 账户：<{$item['account']}></p>
                     <p> 昵称：<{$item['nickname']}></p>
                     <p class="text-small">
-                    <span class="text-dot1 margin-right"> EMAIL：
-                      <if condition="!empty($item['email'])">
-                        <span class="text-dot"><{$item['email']}></span> 
-                      <else/>
-                        暂未设置
-                      </if>  
-                    </span>    
+                        会员等级：
+                        <if condition="empty($item['rank_id']) neq true ">
+                            <{$ranks[$item['rank_id']]['rank_name']}>
+                        <else/>
+                            无等级
+                        </if>
                     </p>
               </div>
           </dd>

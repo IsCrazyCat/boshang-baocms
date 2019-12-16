@@ -126,7 +126,7 @@ class ProfitAction extends CommonAction{
         $count = $User->alias('u')->join($join)->where($map)->count(); 
         $Page = new Page($count, 25); 
         $show = $Page->show(); 
-        $list = $User->alias('u')->field('u.*, f.user_id AS fuserid, f.account AS fusername')->join($join)->where($map)->order(array('u.user_id'=>'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        $list = $User->alias('u')->field('u.*, f.user_id AS fuserid, f.account AS fusername,f.rank_id AS frankid')->join($join)->where($map)->order(array('u.user_id'=>'desc'))->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $uids = $level1 = $level2 = $level3 = array();
         foreach($list as $k=>$val){
             $val['reg_ip_area'] = $this->ipToArea($val['reg_ip']);

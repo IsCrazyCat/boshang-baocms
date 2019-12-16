@@ -248,7 +248,6 @@ class WeixinModel {
         return true;
     }
 
-
     //此TOKEN 是由网站分配
     public function init($token) {
 

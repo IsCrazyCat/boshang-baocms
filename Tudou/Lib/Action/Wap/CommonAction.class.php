@@ -301,6 +301,7 @@ class CommonAction extends Action{
 	
 	
     protected function sendsms(){
+        $a = 11;
         if(!($mobile = $this->_post('mobile'))){
             $this->ajaxReturn(array('status' => 'error', 'msg' => '请输入正确的手机号码'));
         }

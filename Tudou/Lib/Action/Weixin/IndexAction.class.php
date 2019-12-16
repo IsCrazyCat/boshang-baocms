@@ -63,7 +63,8 @@ class IndexAction extends CommonAction{
                         break;
                 }
             } else {
-                $this->event();
+                $this->weixin->response('小的正在努力学习哦，暂时不能回答您的问题！！！敬请期待哦！', 'text');
+//                $this->event();
             }
         }else{
            $keyword = D('Shopweixinkeyword')->checkKeyword($this->shop_id, $data['Content']);

@@ -3,7 +3,7 @@
     return  array(
     'DB_TYPE'   =>  'mysql',
     'DB_HOST'   =>  '127.0.0.1',
-    'DB_NAME'   =>  'zhaopin_weixinguanfang_com',//数据库名字
+    'DB_NAME'   =>  'zhaopin.weixinguanfang.com',//数据库名字
     'DB_USER'   =>  'zhaopin',//数据库用户名
     'DB_PWD'    =>  'zhaopin',//数据库密码
     'DB_PORT'   =>   3306 ,

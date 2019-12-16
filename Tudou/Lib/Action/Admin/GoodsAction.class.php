@@ -522,14 +522,18 @@ class GoodsAction extends CommonAction {
         }
         if(is_numeric($apply_ids) && ($apply_ids = (int) $apply_ids)){
             $obj = D('JobApply');
-            $obj->save(array('id' => $apply_ids,'goods_id'=>$goods_id,'closed' => 1));
+//            $obj->save(array('id' => $apply_ids,'goods_id'=>$goods_id,'closed' => 1));
+            $obj->delete($apply_ids);
+            $obj->cleanCache();
             $this->tuSuccess('删除成功', U('goods/apply',array('goods_id'=>$goods_id)));
         }else{
             $goods_id = $this->_post('goods_id', false);
             if(is_array($goods_id)) {
                 $obj = D('Goods');
                 foreach ($goods_id as $id){
-                    $obj->save(array('goods_id' => $id, 'closed' => 1));
+//                    $obj->save(array('goods_id' => $id, 'closed' => 1));
+                    $obj->delete($id);
+                    $obj->cleanCache();
                 }
                 $this->tuSuccess('删除成功', U('goods/index'));
             }

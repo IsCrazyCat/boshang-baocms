@@ -366,6 +366,18 @@ class PassportModel {
 				$data['mobile'] = $data['account'];
 			}
             $data['user_id'] = $obj->add($data);
+			//创建账户成功 发放推荐奖励
+            if(!empty($fuser)){
+                $frank = D('Userrank')->find($fuser['rank_id']);
+                D('Usermoneylogs')->add(array(
+                    'user_id' => $fuser['user_id'],
+                    'money' => $frank['reward'],
+                    'create_time' => NOW_TIME,
+                    'create_ip' => get_client_ip(),
+                    'intro' => '推荐下级：'.$this->uid.',奖励'.$frank['reward'].'元。当前余额：'.$fuser['money'].';当前等级'.$frank['rank_id']
+                ));
+                D('Users')->save(array('user_id'=>$fuser['user_id'],'money'=>array('exp','money+'.$frank['reward'])));
+            }
         }
 		D('Weixinmsg')->profit_register_weixin_tpl($data['user_id'], $data['nickname']);//用户注册通知上级
 		D('Users')->integral($data['user_id'], 'register');//首次注册送积分接口

@@ -1,0 +1,3 @@
+<?php
+//000000086400a:2:{i:93;a:10:{s:7:"cate_id";s:2:"93";s:9:"cate_name";s:9:"工作网";s:9:"parent_id";s:1:"0";s:7:"orderby";s:1:"0";s:6:"is_hot";s:1:"0";s:2:"d1";s:0:"";s:2:"d2";s:0:"";s:2:"d3";s:0:"";s:8:"book_num";s:1:"0";s:5:"title";s:0:"";}i:94;a:10:{s:7:"cate_id";s:2:"94";s:9:"cate_name";s:9:"工作网";s:9:"parent_id";s:2:"93";s:7:"orderby";s:1:"0";s:6:"is_hot";s:1:"0";s:2:"d1";s:0:"";s:2:"d2";s:0:"";s:2:"d3";s:0:"";s:8:"book_num";s:1:"0";s:5:"title";s:0:"";}}
+?>

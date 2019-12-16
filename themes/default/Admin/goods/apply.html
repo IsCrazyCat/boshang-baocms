@@ -75,7 +75,7 @@
                         <td>证件号</td>
                         <td>VIP报名</td>
                         <td>报名时间</td>
-                        <td>是否审核</td>
+                        <td>状态</td>
                         <td>备注</td>
                         <td>操作</td>
                     </tr>
@@ -96,7 +96,9 @@
                             </td>
                             <td><{$var.creat_time|date='Y-m-d H:i:s',###}></td>
                             <td>
-                                <if condition="$var['audit'] eq 1">
+                                <if condition="$var['cancal'] eq 0">
+                                    已取消
+                                <elseif condition="$var['audit'] eq 1"/>
                                     已审核
                                 <elseif condition="$var['audit'] eq 2"/>
                                     已驳回

@@ -54,14 +54,17 @@
             </div>
         </div>
         <div class="item-footer clear-both-after">
-            <div class="item-btn btn-4 vip-share" data-invite="000oMc">
-                <a href="<{:U('wap/job/vipRouter')}>">VIP高价</a>
+            <div class="item-btn btn-4 vip-share" data-invite="000oMc" onclick="location='<{:U(\'wap/job/vipRouter\')}>'">
+                VIP高价
             </div>
-            <div class="item-btn btn-4 perfect-information">
-                <a href="<{:U('user/usersaux/index')}>">完善信息</a>
+            <div class="item-btn btn-4 perfect-information" onclick="location='<{:U(\'user/usersaux/index\')}>'">
+                完善信息
             </div>
-<!--            <div class="item-btn btn-4 cancel-apply">取消报名</div>-->
-
+            <if condition="$job['audit'] eq 0">
+                <div class="item-btn btn-4 cancel-apply" onclick="location='<{:U('user/job/jobCanalSign',array('goods_id'=>$job['goods_id'],\'apply_id\'=>$job[\'id\']))}>'">
+                    取消报名
+                </div>
+            </if>
         </div>
     </li>
     <div class="blank-10 bg"></div>

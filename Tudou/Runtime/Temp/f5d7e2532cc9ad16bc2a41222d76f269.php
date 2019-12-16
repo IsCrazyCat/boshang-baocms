@@ -1,0 +1,3 @@
+<?php
+//000000086400a:3:{i:60;a:8:{s:11:"business_id";s:2:"60";s:13:"business_name";s:9:"开发区";s:7:"area_id";s:2:"59";s:3:"lng";N;s:3:"lat";N;s:7:"orderby";s:1:"0";s:6:"is_hot";s:1:"0";s:9:"area_name";s:9:"聊城市";}i:1;a:8:{s:11:"business_id";s:1:"1";s:13:"business_name";s:12:"生态公园";s:7:"area_id";s:1:"2";s:3:"lng";N;s:3:"lat";N;s:7:"orderby";s:1:"1";s:6:"is_hot";s:1:"1";s:9:"area_name";s:6:"新站";}i:59;a:8:{s:11:"business_id";s:2:"59";s:13:"business_name";s:12:"朝阳公园";s:7:"area_id";s:2:"57";s:3:"lng";N;s:3:"lat";N;s:7:"orderby";s:1:"2";s:6:"is_hot";s:1:"0";s:9:"area_name";s:9:"朝阳区";}}
+?>

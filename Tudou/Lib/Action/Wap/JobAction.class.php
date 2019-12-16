@@ -359,6 +359,8 @@ class JobAction extends CommonAction{
     }
 
     public function vipRouter(){
+        $rank = D('Userrank')->where(array('rank_name'=>'VIP会员'))->find();
+        $this->assign('rank',$rank);
         $this->display();
     }
 
