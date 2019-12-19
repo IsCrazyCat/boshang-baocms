@@ -526,7 +526,7 @@
                 <h3><{:tu_msubstr($detail['title'],0,24)}></h3>
                 <div>
                     <span class="job-tag"><{$detail['guige']}></span><br/>
-                    厂发薪资 :<span class="price" id="goods_price"><{:round($detail['mall_price']/100,2)}>元/小时</span>
+                    厂发薪资 :<span class="price" id="goods_price"><{:round($detail['mall_price']/100,2)}><{$detail['price_unit']}></span>
                     <span style="float:right;margin-top:7px">已报名：<{$detail['sold_num']}>人</span>
                 </div>
             </div>
@@ -866,7 +866,6 @@
 <!--底部footer结束-->
 <script>
 
-
     //查看工作详情
     $('.seedeadei').click(function () {
         $('.xq_details').eq(0).hide();
@@ -927,7 +926,10 @@
                 return;
             }
             $.post(url, {goods_id: goods_id, shop_id: shop_id, is_vip: '1'}, function (data) {
-
+                if(data.status=='merror'){
+                    check_user_mobile('<{:U("wap/tuan/tuan_sendsms")}>','<{:U("wap/tuan/tuan_mobile")}>');
+                    return false;
+                }
                 layer.msg(data.msg);
                 setTimeout(function () {
                     window.location.href = data.url;
@@ -945,6 +947,10 @@
                 return;
             }
             $.post(url, {goods_id: goods_id, shop_id: shop_id, is_vip: '0'}, function (data) {
+                if(data.status=='merror'){
+                    check_user_mobile('<{:U("wap/tuan/tuan_sendsms")}>','<{:U("wap/tuan/tuan_mobile")}>');
+                    return false;
+                }
                 alert(data.msg);
                 layer.msg(data.msg);
                 setTimeout(function () {

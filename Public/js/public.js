@@ -177,7 +177,8 @@ function check_user_mobile(url1,url2){
 	var mobile_lock = 0;
 	$(function () {
 		$("#jq_send").click(function () {
-
+			alert(mobile_lock);
+			alert($("#mobile").val());
 			if (mobile_lock == 0) {
 				mobile_lock = 1;
 				$.ajax({

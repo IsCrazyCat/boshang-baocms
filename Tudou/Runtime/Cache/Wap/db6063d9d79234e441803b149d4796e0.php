@@ -629,7 +629,7 @@
                 <h3><?php echo tu_msubstr($detail['title'],0,24);?></h3>
                 <div>
                     <span class="job-tag"><?php echo ($detail['guige']); ?></span><br/>
-                    厂发薪资 :<span class="price" id="goods_price"><?php echo round($detail['mall_price']/100,2);?>元/小时</span>
+                    厂发薪资 :<span class="price" id="goods_price"><?php echo round($detail['mall_price']/100,2); echo ($detail['price_unit']); ?></span>
                     <span style="float:right;margin-top:7px">已报名：<?php echo ($detail['sold_num']); ?>人</span>
                 </div>
             </div>
@@ -955,7 +955,6 @@
 </div>
 <!--底部footer结束-->
 <script>
-    check_user_mobile('<?php echo U("wap/tuan/sendsms");?>','<?php echo U("wap/tuan/tuan_mobile");?>');
 
     //查看工作详情
     $('.seedeadei').click(function () {
@@ -1008,12 +1007,6 @@
 
     $(document).ready(function () {
         $(".buy_now2").click(function () {
-
-            <?php if(empty($MEMBER['mobile'])): ?>check_user_mobile('<?php echo U("wap/tuan/tuan_sendsms");?>','<?php echo U("wap/tuan/tuan_mobile");?>');
-                $('.submit').click(function(){
-                    check_user_mobile('<?php echo U("wap/tuan/tuan_sendsms");?>','<?php echo U("wap/tuan/tuan_mobile");?>');
-                    return false;
-                });<?php endif; ?>
             var url = "<?php echo U('wap/mall/jobsign');?>";
             var goods_id = "<?php echo ($detail["goods_id"]); ?>";
             var shop_id = "<?php echo ($detail["shop_id"]); ?>";
@@ -1023,7 +1016,10 @@
                 return;
             }
             $.post(url, {goods_id: goods_id, shop_id: shop_id, is_vip: '1'}, function (data) {
-
+                if(data.status=='merror'){
+                    check_user_mobile('<?php echo U("wap/tuan/tuan_sendsms");?>','<?php echo U("wap/tuan/tuan_mobile");?>');
+                    return false;
+                }
                 layer.msg(data.msg);
                 setTimeout(function () {
                     window.location.href = data.url;
@@ -1032,27 +1028,26 @@
             }, 'json');
         });
         $(".cartadd2").click(function () {
-            <?php if(empty($MEMBER['mobile'])): ?>check_user_mobile('<?php echo U("wap/tuan/sendsms");?>','<?php echo U("wap/tuan/tuan_mobile");?>');
-            <?php else: ?>
-                var url = "<?php echo U('/wap/mall/jobsign');?>";
-                var goods_id = "<?php echo ($detail["goods_id"]); ?>";
-                var shop_id = "<?php echo ($detail["shop_id"]); ?>";
-                var num = $("#goods_num").val();
-                if (num == 0) {
-                    layer.msg('当前职位报名人数已满！');
-                    return;
+            var url = "<?php echo U('/wap/mall/jobsign');?>";
+            var goods_id = "<?php echo ($detail["goods_id"]); ?>";
+            var shop_id = "<?php echo ($detail["shop_id"]); ?>";
+            var num = $("#goods_num").val();
+            if (num == 0) {
+                layer.msg('当前职位报名人数已满！');
+                return;
+            }
+            $.post(url, {goods_id: goods_id, shop_id: shop_id, is_vip: '0'}, function (data) {
+                if(data.status=='merror'){
+                    check_user_mobile('<?php echo U("wap/tuan/tuan_sendsms");?>','<?php echo U("wap/tuan/tuan_mobile");?>');
+                    return false;
                 }
-                $.post(url, {goods_id: goods_id, shop_id: shop_id, is_vip: '0'}, function (data) {
-                    alert(data.msg);
-                    layer.msg(data.msg);
-                    setTimeout(function () {
-                        window.location.href = data.url;
-                    }, 2000);
+                alert(data.msg);
+                layer.msg(data.msg);
+                setTimeout(function () {
+                    window.location.href = data.url;
+                }, 2000);
 
-                }, 'json');<?php endif; ?>
-
-
-
+            }, 'json');
         });
     });
 
