@@ -27,7 +27,6 @@ $(function(){
 		spic = lcatchpic;
 		
 	}
-	console.log(lcatchpic);
 	wx.config({
 	debug: false,
 	appId: '<{$signPackage.appId}>',
@@ -40,7 +39,8 @@ $(function(){
 	'onMenuShareAppMessage',
 	'onMenuShareQQ',
 	'onMenuShareWeibo',
-	'onMenuShareQZone'
+	'onMenuShareQZone',
+    'getLocation',
 	]
 	});
 	wx.ready(function(){
@@ -104,7 +104,8 @@ $(function(){
 			cancel: function () { 
 				alert("分享失败!");
 			}
-		});	
+		});
+
 	});
 })	
 </script>	

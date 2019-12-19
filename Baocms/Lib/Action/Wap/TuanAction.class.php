@@ -330,7 +330,7 @@ class TuanAction extends CommonAction{
         if (!$this->uid) {
             $this->fengmiMsg('登录状态失效!', U('passport/login'));
         }
-
+        $user = D('Users')->find($this->uid);
         $tuan_id = (int) $this->_get('tuan_id');
         if (!($detail = D('Tuan')->find($tuan_id))) {
             $this->fengmiMsg('该商品不存在');
@@ -397,24 +397,26 @@ class TuanAction extends CommonAction{
 			'is_mobile' => 1
 		);
         $param['user_id']=$this->uid;
-        $realname = $this->_param('realname');
+        $realname = $this->_param('realname','htmlspecialchars');
         if(!empty($realname)){
             $param['ext0']=$realname;
         }
-        $mobile = $this->_post('mobile');
-        $yzm = $this->_post('yzm');
-        if (empty($mobile) || empty($yzm)) {
-            $this->fengmiMsg('请填写正确的手机及手机收到的验证码！');
+        if(empty($user['mobile'])){
+            $mobile = $this->_post('mobile');
+            $yzm = $this->_post('yzm');
+            if (empty($mobile) || empty($yzm)) {
+                $this->fengmiMsg('请填写正确的手机及手机收到的验证码！');
+            }
+            $s_mobile = session('mobile');
+            $s_code = session('code');
+            if ($mobile != $s_mobile) {
+                $this->fengmiMsg('手机号码和收取验证码的手机号不一致！');
+            }
+            if ($yzm != $s_code) {
+                $this->fengmiMsg('验证码不正确！');
+            }
+            $param['mobile'] = $mobile;
         }
-        $s_mobile = session('mobile');
-        $s_code = session('code');
-        if ($mobile != $s_mobile) {
-            $this->fengmiMsg('手机号码和收取验证码的手机号不一致！');
-        }
-        if ($yzm != $s_code) {
-            $this->fengmiMsg('验证码不正确！');
-        }
-        $param['mobile'] = $mobile;
         $car_id = $this->_param('car_id');
         if(!empty($car_id)){
             $param['car_id']=$car_id;
@@ -557,6 +559,8 @@ class TuanAction extends CommonAction{
                 D('Users')->prestige($this->uid, 'tuan');
                 D('Sms')->tuanTZshop($tuan['shop_id']);
        			D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,0);
+                D('Weixintmpl')->weixin_notice_tuan_user_leader($order_id,$this->uid,0);
+
                 $this->fengmiMsg('恭喜您下单成功！', U('user/tuan/index'));
             } else {
                 $this->fengmiMsg('您已经设置过该套餐为到店付了！');
@@ -585,8 +589,8 @@ class TuanAction extends CommonAction{
                 $logs['code'] = $code;
                 D('Paymentlogs')->save($logs);
             }
-            $codestr = join(',', $codes);
             D('Weixintmpl')->weixin_notice_tuan_user($order_id,$this->uid,1);
+            D('Weixintmpl')->weixin_notice_tuan_user_leader($order_id,$this->uid,0);
             $this->fengmiMsg('订单设置完毕，即将进入付款。', U('payment/payment', array('log_id' => $logs['log_id'])));
             die;
         }

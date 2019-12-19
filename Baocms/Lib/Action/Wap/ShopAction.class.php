@@ -38,6 +38,10 @@ class ShopAction extends CommonAction{
         $this->assign('business_id', $business);
         $this->assign('areas', $areas);
         $this->assign('biz', $biz);
+        $this->assign('sign',$this->signPackage);
+        $this->assign('wxlat',cookie('wxlat'));
+        $this->assign('wxlng',cookie('wxlng'));
+        $this->assign('isWeixin',is_weixin());
         $this->assign('nextpage', LinkTo('shop/loaddata', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
         $this->display();
         // 输出模板
@@ -124,8 +128,8 @@ class ShopAction extends CommonAction{
             $map['business_id'] = $business;
         }
         $order = (int) $this->_param('order');
-        $lat = addslashes(cookie('lat'));
-        $lng = addslashes(cookie('lng'));
+        $lat = addslashes(cookie('wxlat'));
+        $lng = addslashes(cookie('wxlng'));
 //        if (empty($lat) || empty($lng)) {
 //            $lat = $this->city['lat'];
 //            $lng = $this->city['lng'];
@@ -255,6 +259,19 @@ class ShopAction extends CommonAction{
         $this->mobile_title = $detail['shop_name'];
         $this->mobile_keywords = $detail['addr'] . ',' . $detail['tel'];
         $this->mobile_description = $detail['addr'];
+        $lat = addslashes(cookie('wxlat'));
+        $lng = addslashes(cookie('wxlng'));
+//        if (empty($lat) || empty($lng)) {
+//            $lat = $this->city['lat'];
+//            $lng = $this->city['lng'];
+//        }
+        if (empty($lat) || empty($lng)) {
+            $lat = $this->_CONFIG['site']['lat'];
+            $lng = $this->_CONFIG['site']['lng'];
+        }
+        $this->assign('lat',$lat);
+        $this->assign('lng',$lng);
+
         $this->display();
     }
     public function favorites(){

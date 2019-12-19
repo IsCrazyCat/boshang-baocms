@@ -3,7 +3,7 @@
 		<div class="x12">
 			<p>核销商品：<{$var['tuan']['title']}></p>
 			<p>购买人：<{$var['user']['nickname']}></p>
-			<p>核销金额：<{$var['tuan']['tuan_price']}></p>
+			<p>核销金额：<{:round($var['tuan']['tuan_price']/100,2)}></p>
             <p>核销时间：<{$var.create_time|date='Y-m-d H:i:s',###}></p>
 		</div>
 	</div>

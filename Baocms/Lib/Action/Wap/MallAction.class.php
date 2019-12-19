@@ -42,6 +42,7 @@ class MallAction extends CommonAction{
         $this->assign('order', $order);
         $this->assign('cat', $cat);
         $this->assign('car_id', $car_id);
+        $this->assign('sign',$this->signPackage);
         $this->assign('nextpage', LinkTo('mall/loaddata', array('car_id'=>$car_id,'cat' => $cat, 'order' => $order, 'area' => $area, 'business' => $business, 'cate_id' => $cate_id, 'keyword' => $keyword, 'p' => '0000')));
         $this->display();
     }
