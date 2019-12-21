@@ -115,6 +115,10 @@ class ProfitAction extends CommonAction{
             $map['u.ext0'] = array('LIKE','%'.$ext0.'%');
             $this->assign('ext0',$ext0);
         }
+        if($fuid1=$this->_param('fuid1','htmlspecialchars')){
+            $map['u.fuid1'] = $fuid1;
+            $this->assign('fuid1',$fuid1);
+        }
         $profit_min_rank_id = (int)$this->_CONFIG['profit']['profit_min_rank_id'];
         if ($profit_min_rank_id) {
             $rank = D('Userrank')->find($profit_min_rank_id);

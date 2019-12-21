@@ -102,7 +102,7 @@
                                 <{$var.fusername}>(UID: <{$var.fuserid}>)
                             </if>
                         </td>
-                        <td><{:(int)$level1[$var['user_id']] + (int)$level2[$var['user_id']] + (int)$level3[$var['user_id']]}></td>
+                        <td><a href="<{:U('profit/user',array('fuid1'=>$var['user_id']))}>"><{:(int)$level1[$var['user_id']] + (int)$level2[$var['user_id']] + (int)$level3[$var['user_id']]}></a></td>
                         <td><{:(int)$level1[$var['user_id']]}></td>
                         <td><{:(int)$level2[$var['user_id']]}></td>
                         <td><{:(int)$level3[$var['user_id']]}></td>

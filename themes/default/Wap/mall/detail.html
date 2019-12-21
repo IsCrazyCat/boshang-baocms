@@ -562,27 +562,26 @@
             <div class="intro-title">平台补贴</div>
             <div class="intro-bd"><{$detail['instructions']}></div>
             <div id="moreinstructions" style="display: none">
-                <div class="intro-bd"><{$detail['instructions']}></div>
-                <div class="intro-bd"><{$detail['instructions']}></div>
-                <div class="intro-bd"><{$detail['instructions']}></div>
+                <div class="intro-bd"><{$detail['instructions1']}></div>
             </div>
 
-
-            <div class="intro-bd" id="checkAll" style="border-top:1px solid;text-align: center;color: #F60;font-size: 20px;">
-                <script>
-                    $(function () {
-                        $("#checkAll").on("click",function(){
-                           if($("#moreinstructions").css("display")=='block'){
-                               $("#moreinstructions").hide(200);
-                           }
-                           else{
-                               $("#moreinstructions").show(200);
-                           }
-                        });
-                    })
-                </script>
-                查看所有补贴
-            </div>
+            <if condition="empty($detail['instructions1']) neq true">
+                <div class="intro-bd" id="checkAll" style="border-top:1px solid;text-align: center;color: #F60;font-size: 20px;">
+                    <script>
+                        $(function () {
+                            $("#checkAll").on("click",function(){
+                                if($("#moreinstructions").css("display")=='block'){
+                                    $("#moreinstructions").hide(200);
+                                }
+                                else{
+                                    $("#moreinstructions").show(200);
+                                }
+                            });
+                        })
+                    </script>
+                    查看所有补贴
+                </div>
+            </if>
         </div>
     </if>
     <if condition="empty($detail['salary']) neq true">

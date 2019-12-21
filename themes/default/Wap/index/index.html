@@ -346,7 +346,43 @@
 <!--        </ul>-->
 <!--    </div>-->
     <div class="blank-10"></div>
+    <style>
+        .nav-index-foat {
+            position:fixed;
+            right: 2rem;
+            z-index: 9999;
+            bottom: 4rem;
+        }
+         .nav-index-foat p {
+             width: 3.2rem;
+             height: 3.2rem;
+             background-color: white;
+             border-radius: 2.4rem;
+             text-align: center;
+             box-shadow: 0 0 5px 2px rgba(96, 96, 96, 0.1);
+             display: block;
+             margin-block-start: 1em;
+             margin-block-end: 1em;
+             margin-inline-start: 0px;
+             margin-inline-end: 0px;
+         }
+        .nav-index-foat p a {
+            color: var(--mainColor);
+            font-size: .7rem;
 
+            display: inline-block;
+            color: #0894ec;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+    </style>
+    <div class="nav-index-foat">
+        <p class="nav-index-text">
+            <a href="tel:<{$mobile}>" class="external" id="free-external">免费<br>咨询</a>
+        </p>
+    </div>
     <include file="public:footer"/>
 
 

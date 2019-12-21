@@ -2,8 +2,8 @@
 
 class GoodsAction extends CommonAction {
 
-    private $create_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id','price_title', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','reminder', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
-    private $edit_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price_title','price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','reminder','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $create_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id','price_title', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'instructions1','details', 'salary','enroll','explain','reminder', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $edit_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price_title','price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'instructions1','details', 'salary','enroll','explain','reminder','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
 
 	
     public function _initialize(){
@@ -181,6 +181,10 @@ class GoodsAction extends CommonAction {
         $data['views'] = (int) $data['views'];
         $data['instructions'] = SecurityEditorHtml($data['instructions']);
         if($words = D('Sensitive')->checkWords($data['instructions'])) {
+            $this->tuError('平台补贴含有敏感词：' . $words);
+        }
+        $data['instructions1'] = SecurityEditorHtml($data['instructions1']);
+        if($words = D('Sensitive')->checkWords($data['instructions1'])) {
             $this->tuError('平台补贴含有敏感词：' . $words);
         }
 
@@ -420,8 +424,11 @@ class GoodsAction extends CommonAction {
 		$data['instructions'] = SecurityEditorHtml($data['instructions']);
         if($words = D('Sensitive')->checkWords($data['instructions'])) {
             $this->tuError('平台补贴含有敏感词：' . $words);
-        } 
-
+        }
+        $data['instructions1'] = SecurityEditorHtml($data['instructions1']);
+        if($words = D('Sensitive')->checkWords($data['instructions1'])) {
+            $this->tuError('平台补贴含有敏感词：' . $words);
+        }
         $data['salary'] = SecurityEditorHtml($data['salary']);
         if(empty($data['salary'])){
 //            $this->tuError('薪资待遇不能为空');
@@ -871,6 +878,9 @@ class GoodsAction extends CommonAction {
         $this->assign('shopinfo', D('Shop')->find($this->_param('shop_id')));
         $this->assign('list', $list);
         $this->assign('page', $show);
+        $this->display();
+    }
+    public function instructions(){
         $this->display();
     }
 	public function test(){

@@ -267,7 +267,33 @@
 					toolbars:[['fullscreen', 'source', 'undo', 'redo', 'bold', 'italic', 'underline', 'fontborder', 'backcolor', 'fontsize', 'fontfamily', ]],  
                   });
                 </script>
+<!--                <tr>-->
+<!--                    <td class="lfTdBt">补贴记录：</td>-->
+<!--                    <script>-->
+<!--                        $(function () {-->
+<!--                            $("#showAll").on("click",function () {-->
+<!--                               window.location.href = "<{:U('goods/instructions')}>";-->
+<!--                            });-->
+<!--                        });-->
+<!--                    </script>-->
+<!--                    <td class="rgTdBt"><button id="showAll" class="manageInput" >查看补贴</button>-->
 
+<!--                    </td>-->
+<!--                </tr>-->
+                <tr>
+                    <td class="lfTdBt">补贴记录：</td>
+                    <td class="rgTdBt">
+                        <script type="text/plain" id="data_instructions1" name="data[instructions1]"
+                                style="width:800px;height:200px;"><{$detail.instructions1}>
+                        </script>
+                    </td>
+                </tr>
+                <script>
+                    um = UE.getEditor('data_instructions1', {
+                        lang: 'zh-cn',
+                        toolbars: [['fullscreen', 'source', 'undo', 'redo', 'bold', 'italic', 'underline', 'fontborder', 'backcolor', 'fontsize', 'fontfamily', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'link', 'unlink', 'map', 'template', 'background', 'inserttable', 'print', 'attachment', 'emotion', 'snapscreen', 'insertimage', 'music', 'insertvideo']],
+                    });
+                </script>
                 <tr>
                     <td class="lfTdBt">薪资待遇：</td>
                     <td class="rgTdBt">
