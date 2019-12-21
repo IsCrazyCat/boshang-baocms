@@ -189,18 +189,6 @@
 	<script>
 
         if($("#isweixin").val()){
-            wx.config({
-                debug: false,
-                appId: '<{$signPackage.appId}>',
-                timestamp: '<{$signPackage.timestamp}>',
-                nonceStr: '<{$signPackage.nonceStr}>',
-                signature: '<{$signPackage.signature}>',
-                jsApiList: [
-                    'checkJsApi',
-                    'getLocation',
-                ]
-            });
-
             $(document).ready(function () {
                 wx.ready(function(){
                     wx.getLocation({

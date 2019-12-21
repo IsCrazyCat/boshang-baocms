@@ -321,22 +321,66 @@
 	function getBaiduPosition(yy,xx) {
 		location.href = "<{:U('shop/gps',array('shop_id'=>$detail['shop_id']))}>";
 	}
-	$("#daohang").on("click",function () {
-		var lat = $.cookie('wxlat');
-		var lng = $.cookie('wxlng');
-
-		if(lat==""||lng==""||lat==null||lng==null){
-			lat=$("#lat").val();
-			lng=$("#lng").val();
+	//经纬度转换
+	function transformBD (lat, lng, type, callback) {
+		var url;　　
+		var self = this;
+		if (type == 'gcj02') {
+			//百度坐标转为火星坐标
+			url = "https://api.map.baidu.com/geoconv/v1/?coords=" + lng + "," + lat + "&from=5&to=3&ak=7b92b3afff29988b6d4dbf9a00698ed8";//注意latitude 和longitude参数的顺序
+		} else {
+			//'bd09ll'
+			//转为百度坐标
+			url = "https://api.map.baidu.com/geoconv/v1/?coords=" + lng + "," + lat + "&from=1&to=5&ak=7b92b3afff29988b6d4dbf9a00698ed8";
 		}
-		layer.open({
-			type: 1,
-			title:'请选择导航方式',
-			skin: 'layui-layer-demo', //加上边框
-			area: ['100%', '300px'], //宽高
-			content: '<input type="button" onclick="getPosition('+lat+','+lng+')" value="高德地图" style="height: 40px;width: 60%;margin-left:20%;margin-top: 40px;"/><br><input type="button" onclick="getBaiduPosition('+lat+','+lng+')" value="百度地图" style="height: 40px;width: 60%;margin-left:20%;margin-top: 40px;"/><br>'
-			//
+
+		$.ajax({
+			url: url,
+			success: function (data, status, xhr) {
+				if (status == 'success') {
+					var point = data.result[0];
+					//y为lat,x为lng
+					callback.call(self, point.y, point.x);
+				}
+			},
+			dataType: 'jsonp'
 		});
+	}
+	function bMapToQQMap(lng, lat) {
+
+		if (lng == null || lng == '' || lat == null || lat == '')
+			return [lng, lat];
+
+		var x_pi = 3.14159265358979324;
+		var x = parseFloat(lng) - 0.0065;
+		var y = parseFloat(lat) - 0.006;
+		var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
+		var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
+		var lng = (z * Math.cos(theta)).toFixed(7);
+		var lat = (z * Math.sin(theta)).toFixed(7);
+
+		return [lng, lat];
+
+	}
+	$("#daohang").on("click",function () {
+		var x_pi = 3.14159265358979324;
+		var x = parseFloat(shoplng) - 0.0065;
+		var y = parseFloat(shoplat) - 0.006;
+		var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
+		var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
+		var lng1 = (z * Math.cos(theta)).toFixed(7);
+		var lat1 = (z * Math.sin(theta)).toFixed(7);
+		wx.openLocation({
+			latitude: lat1, // 纬度，浮点数，范围为90 ~ -90
+			longitude: lng1, // 经度，浮点数，范围为180 ~ -180。
+			name: shopname, // 位置名
+			address: '', // 地址详情说明
+			scale: 25, // 地图缩放级别,整形值,范围从1~28。默认为最大
+			infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+		});
+
+
+
 	})
 </script>
 
