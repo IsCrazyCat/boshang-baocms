@@ -192,19 +192,13 @@
                             </div>					
                         </td>
                     </tr>
-             <tr>
-             
-             
-<!--             <tr>-->
-<!--                    <td  class="lfTdBt">属性：</td>-->
-<!--                    <td class="rgTdBt">-->
-<!--                        <label><span>认证企业：</span><input type="checkbox" name="data[is_vs1]" value="1" /></label>-->
-<!--                        <label><span style="margin-left: 20px;">正品保证：</span><input type="checkbox" name="data[is_vs2]" value="1" /></label>-->
-<!--                        <label><span style="margin-left: 20px;">假一赔十：</span><input type="checkbox" name="data[is_vs3]" value="1" /></label>-->
-<!--                        <label><span style="margin-left: 20px;">当日送达：</span><input type="checkbox" name="data[is_vs4]" value="1" /></label>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            <tr>-->
+        <tr>
+            <td class="lfTdBt">薪资标题：</td>
+            <td class="rgTdBt">
+                <input type="text" name="data[price_title]" value="<{$detail.price_title|default=''}>" class="manageInput" />
+            </td>
+        </tr>
+         <tr>
             <td class="lfTdBt">普通薪资：</td>
              <td class="rgTdBt"><input type="text" name="data[price]" value="<{$detail.price|default=''}>" class="manageInput" />
 
@@ -317,7 +311,20 @@
                         toolbars: [['fullscreen', 'source', 'undo', 'redo', 'bold', 'italic', 'underline', 'fontborder', 'backcolor', 'fontsize', 'fontfamily', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'link', 'unlink', 'map', 'template', 'background', 'inserttable', 'print', 'attachment', 'emotion', 'snapscreen', 'insertimage', 'music', 'insertvideo']],
                     });
                 </script>
-                
+                <tr>
+                    <td class="lfTdBt">温馨提示：</td>
+                    <td class="rgTdBt">
+                        <script type="text/plain" id="data_reminder" name="data[reminder]"
+                                style="width:800px;height:200px;"><{$detail.reminder}>
+                        </script>
+                    </td>
+                </tr>
+                <script>
+                    um = UE.getEditor('data_reminder', {
+                        lang: 'zh-cn',
+                        toolbars: [['fullscreen', 'source', 'undo', 'redo', 'bold', 'italic', 'underline', 'fontborder', 'backcolor', 'fontsize', 'fontfamily', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'link', 'unlink', 'map', 'template', 'background', 'inserttable', 'print', 'attachment', 'emotion', 'snapscreen', 'insertimage', 'music', 'insertvideo']],
+                    });
+                </script>
                 
         <tr>
             <td class="lfTdBt">截止时间：</td>

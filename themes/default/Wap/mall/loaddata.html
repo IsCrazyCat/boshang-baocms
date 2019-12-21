@@ -22,11 +22,12 @@
                 </div>
                 <div class="item-amount">
                     <p class="hot-mark ">
-                        <if condition="$item.show_price_type lt 2">
-                            工价
-                            <else/>
-                            补贴
-                        </if>
+<!--                        <if condition="$item.show_price_type lt 2">-->
+<!--                            工价-->
+<!--                            <else/>-->
+<!--                            补贴-->
+<!--                        </if>-->
+                        <{$item['price_title']}>
                     </p>
                     <p><{:round($item['price']/100,2)}><{$item['price_unit']}></p>
                 </div>

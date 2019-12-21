@@ -17,6 +17,21 @@ class SettingAction extends CommonAction{
             $this->display();
         }
     }
+    public function rankingsite(){
+        if ($this->isPost()) {
+            $data = $this->_post('data', false);
+            $data = serialize($data);
+            $result = D('Setting')->save(array('k' => 'ranking', 'v' => $data));
+            if(!empty($result)){
+                D('Setting')->cleanCache();
+                $this->tuSuccess('站点设置成功', U('setting/rankingsite'));
+            }
+
+        } else {
+            //增加分销
+            $this->display();
+        }
+    }
 	
 	
     public function config(){

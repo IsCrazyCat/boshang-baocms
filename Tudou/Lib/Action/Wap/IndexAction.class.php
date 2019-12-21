@@ -219,5 +219,24 @@ class IndexAction extends CommonAction {
     public function closed(){
 
     }
-	
+
+    /**
+     * 排行榜
+     */
+	public function ranking(){
+
+        $users = D('Users')->where(array('fuid1'=>array('neq','0')))->field(array('COUNT(*)' => 'cnt', 'fuid1'))->order('cnt desc')->group('fuid1')->limit(0,10)->select();
+        foreach ($users as $key=>$val){
+            $user = D('Users')->find($val['fuid1']);
+            $users[$key]['user']=$user;
+        }
+        if(!empty($this->uid)){
+            $this->assign('user_id',$this->uid);
+        }
+        $config = D('Setting')->fetchAll();
+        $this->assign('remark',$config['ranking']['remark']);
+        $this->assign('remark1',$config['ranking']['remark1']);
+        $this->assign('users',$users);
+        $this->display();
+    }
 }

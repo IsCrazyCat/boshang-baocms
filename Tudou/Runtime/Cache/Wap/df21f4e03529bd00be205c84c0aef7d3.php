@@ -29,50 +29,50 @@
 		doLocation();		
 		//获取距离
 		function initLocation(){
-			var url = "<?php echo ($url); ?>";
-			var geolocation = new BMap.Geolocation();
-			geolocation.getCurrentPosition(function(r){
-				if(this.getStatus() === 0) {
-					var address = r.address.province + r.address.city + r.address.district + r.address.street;
-					$.post("/wap/index/dingwei.html",{lat:r.point.lat,lon:r.point.lng,address:address,url:url,type:'browser'},function(response){
-						
-						$("span[attr-ctrl='distance']").each(function(){   
-							var lat = $(this).attr("attr-lat");
-							var lon = $(this).attr("attr-lon");
-							d = getGreatCircleDistance(lat,lon,response.lat,response.lon);
-							$(this).html(d);
-						});
-						
-						if(response.code == 1){
-							return false;
-						}
-						
-						//没有匹配到城市
-						if(response.code == 6){
-							layer.confirm(response.msg, {
-							  btn: ['去默认城市','关闭'] //按钮
-							},function(){
-							  layer.msg('正在带您去默认城市'+response.city_name, {icon:1});
-							  location.href = response.url;
-							},function(){
-							  
-							});
-						}
-						
-						//已经匹配到城市
-						if(response.code == 2){
-							 layer.confirm(response.msg,{icon: 6}, function(){
-								location.href = response.url;
-							 });
-						}
-				
-						
-						
-					});
-				}else {
-					layer.msg('定位失败，原因：' + this.getStatus(),2000,2);
-				}        
-			},{enableHighAccuracy: true});
+			// var url = "<?php echo ($url); ?>";
+			// var geolocation = new BMap.Geolocation();
+			// geolocation.getCurrentPosition(function(r){
+			// 	if(this.getStatus() === 0) {
+			// 		var address = r.address.province + r.address.city + r.address.district + r.address.street;
+			// 		$.post("/wap/index/dingwei.html",{lat:r.point.lat,lon:r.point.lng,address:address,url:url,type:'browser'},function(response){
+			//
+			// 			$("span[attr-ctrl='distance']").each(function(){
+			// 				var lat = $(this).attr("attr-lat");
+			// 				var lon = $(this).attr("attr-lon");
+			// 				d = getGreatCircleDistance(lat,lon,response.lat,response.lon);
+			// 				$(this).html(d);
+			// 			});
+			//
+			// 			if(response.code == 1){
+			// 				return false;
+			// 			}
+			//
+			// 			//没有匹配到城市
+			// 			if(response.code == 6){
+			// 				layer.confirm(response.msg, {
+			// 				  btn: ['去默认城市','关闭'] //按钮
+			// 				},function(){
+			// 				  layer.msg('正在带您去默认城市'+response.city_name, {icon:1});
+			// 				  location.href = response.url;
+			// 				},function(){
+			//
+			// 				});
+			// 			}
+			//
+			// 			//已经匹配到城市
+			// 			if(response.code == 2){
+			// 				 layer.confirm(response.msg,{icon: 6}, function(){
+			// 					location.href = response.url;
+			// 				 });
+			// 			}
+			//
+			//
+			//
+			// 		});
+			// 	}else {
+			// 		layer.msg('定位失败，原因：' + this.getStatus(),2000,2);
+			// 	}
+			// },{enableHighAccuracy: true});
 		}
 		function doLocation(){
 			var script = document.createElement("script");

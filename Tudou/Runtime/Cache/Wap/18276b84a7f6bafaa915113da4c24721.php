@@ -21,9 +21,12 @@
                 </div>
                 <div class="item-amount">
                     <p class="hot-mark ">
-                        <?php if($item["show_price_type"] < 2): ?>工价
-                            <?php else: ?>
-                            补贴<?php endif; ?>
+<!--                        <?php if($item["show_price_type"] < 2): ?>-->
+<!--                            工价-->
+<!--                            <?php else: ?>-->
+<!--                            补贴-->
+<!--<?php endif; ?>-->
+                        <?php echo ($item['price_title']); ?>
                     </p>
                     <p><?php echo round($item['price']/100,2); echo ($item['price_unit']); ?></p>
                 </div>

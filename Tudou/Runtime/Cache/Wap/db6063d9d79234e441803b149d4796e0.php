@@ -30,50 +30,50 @@
 		doLocation();		
 		//获取距离
 		function initLocation(){
-			var url = "<?php echo ($url); ?>";
-			var geolocation = new BMap.Geolocation();
-			geolocation.getCurrentPosition(function(r){
-				if(this.getStatus() === 0) {
-					var address = r.address.province + r.address.city + r.address.district + r.address.street;
-					$.post("/wap/index/dingwei.html",{lat:r.point.lat,lon:r.point.lng,address:address,url:url,type:'browser'},function(response){
-						
-						$("span[attr-ctrl='distance']").each(function(){   
-							var lat = $(this).attr("attr-lat");
-							var lon = $(this).attr("attr-lon");
-							d = getGreatCircleDistance(lat,lon,response.lat,response.lon);
-							$(this).html(d);
-						});
-						
-						if(response.code == 1){
-							return false;
-						}
-						
-						//没有匹配到城市
-						if(response.code == 6){
-							layer.confirm(response.msg, {
-							  btn: ['去默认城市','关闭'] //按钮
-							},function(){
-							  layer.msg('正在带您去默认城市'+response.city_name, {icon:1});
-							  location.href = response.url;
-							},function(){
-							  
-							});
-						}
-						
-						//已经匹配到城市
-						if(response.code == 2){
-							 layer.confirm(response.msg,{icon: 6}, function(){
-								location.href = response.url;
-							 });
-						}
-				
-						
-						
-					});
-				}else {
-					layer.msg('定位失败，原因：' + this.getStatus(),2000,2);
-				}        
-			},{enableHighAccuracy: true});
+			// var url = "<?php echo ($url); ?>";
+			// var geolocation = new BMap.Geolocation();
+			// geolocation.getCurrentPosition(function(r){
+			// 	if(this.getStatus() === 0) {
+			// 		var address = r.address.province + r.address.city + r.address.district + r.address.street;
+			// 		$.post("/wap/index/dingwei.html",{lat:r.point.lat,lon:r.point.lng,address:address,url:url,type:'browser'},function(response){
+			//
+			// 			$("span[attr-ctrl='distance']").each(function(){
+			// 				var lat = $(this).attr("attr-lat");
+			// 				var lon = $(this).attr("attr-lon");
+			// 				d = getGreatCircleDistance(lat,lon,response.lat,response.lon);
+			// 				$(this).html(d);
+			// 			});
+			//
+			// 			if(response.code == 1){
+			// 				return false;
+			// 			}
+			//
+			// 			//没有匹配到城市
+			// 			if(response.code == 6){
+			// 				layer.confirm(response.msg, {
+			// 				  btn: ['去默认城市','关闭'] //按钮
+			// 				},function(){
+			// 				  layer.msg('正在带您去默认城市'+response.city_name, {icon:1});
+			// 				  location.href = response.url;
+			// 				},function(){
+			//
+			// 				});
+			// 			}
+			//
+			// 			//已经匹配到城市
+			// 			if(response.code == 2){
+			// 				 layer.confirm(response.msg,{icon: 6}, function(){
+			// 					location.href = response.url;
+			// 				 });
+			// 			}
+			//
+			//
+			//
+			// 		});
+			// 	}else {
+			// 		layer.msg('定位失败，原因：' + this.getStatus(),2000,2);
+			// 	}
+			// },{enableHighAccuracy: true});
 		}
 		function doLocation(){
 			var script = document.createElement("script");
@@ -660,33 +660,67 @@
             margin-left: 10px;
         }
     </style>
-    <div class="item-intro">
-        <div class="intro-title">平台补贴</div>
-        <div class="intro-bd"><?php echo ($detail['instructions']); ?></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">薪资待遇</div>
-        <div class="intro-bd"><?php echo ($detail['salary']); ?></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">录用条件</div>
-        <div class="intro-bd"><?php echo ($detail['enroll']); ?></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">岗位介绍</div>
-        <div class="intro-bd"><?php echo ($detail['explain']); ?></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">公司介绍</div>
-        <div class="intro-bd">
-            <?php echo ($shopdetails['details']); ?>
-        </div>
-    </div>
+    <?php if(empty($detail['instructions']) != true): ?><div class="item-intro">
+            <div class="intro-title">平台补贴</div>
+            <div class="intro-bd"><?php echo ($detail['instructions']); ?></div>
+            <div id="moreinstructions" style="display: none">
+                <div class="intro-bd"><?php echo ($detail['instructions']); ?></div>
+                <div class="intro-bd"><?php echo ($detail['instructions']); ?></div>
+                <div class="intro-bd"><?php echo ($detail['instructions']); ?></div>
+            </div>
+
+
+            <div class="intro-bd" id="checkAll" style="border-top:1px solid;text-align: center;color: #F60;font-size: 20px;">
+                <script>
+                    $(function () {
+                        $("#checkAll").on("click",function(){
+                           if($("#moreinstructions").css("display")=='block'){
+                               $("#moreinstructions").hide(200);
+                           }
+                           else{
+                               $("#moreinstructions").show(200);
+                           }
+                        });
+                    })
+                </script>
+                查看所有补贴
+            </div>
+        </div><?php endif; ?>
+    <?php if(empty($detail['salary']) != true): ?><div class="item-intro">
+            <div class="intro-title">薪资待遇</div>
+            <div class="intro-bd"><?php echo ($detail['salary']); ?></div>
+        </div><?php endif; ?>
+    <?php if(empty($detail['enroll']) != true): ?><div class="item-intro">
+            <div class="intro-title">录用条件</div>
+            <div class="intro-bd"><?php echo ($detail['enroll']); ?></div>
+        </div><?php endif; ?>
+    <?php if(empty($detail['explain']) != true): ?><div class="item-intro">
+            <div class="intro-title">岗位介绍</div>
+            <div class="intro-bd"><?php echo ($detail['explain']); ?></div>
+        </div><?php endif; ?>
+    <?php if(empty($shopdetails['details']) != true): ?><div class="item-intro">
+            <div class="intro-title">公司介绍</div>
+            <div class="intro-bd">
+                <?php echo ($shopdetails['details']); ?>
+            </div>
+        </div><?php endif; ?>
+
+
+
+
     <div class="item-intro">
         <div class="intro-title">面试地址</div>
         <div class="intro-bd">
-            <div class="address-detail">中国上海市上海市浦东新区申沔路</div>
-            <div class="address-city">上海市&nbsp;&nbsp;浦东新区</div>
+            <script>
+                $(function () {
+                    $("#addr").on("click",function(){
+                        window.location.href="<?php echo U('shop/gps',array('shop_id'=>$detail['shop_id']));?>";
+                        return;
+                    });
+                });
+            </script>
+            <div class="address-detail" id="addr"><?php echo ($shop['addr']); ?></div>
+            <div class="address-city"><a class="button button-small bg-yellow margin-small-right" href="<?php echo U('shop/gps',array('shop_id'=>$detail['shop_id']));?>"><i class="iconfont icon-daohang"></i> 查看位置</a></div>
         </div>
     </div>
 
@@ -858,9 +892,12 @@
                             </div>
                             <div class="item-amount">
                                 <p class="hot-mark ">
-                                    <?php if($v["show_price_type"] < 2): ?>工价
-                                        <?php else: ?>
-                                        补贴<?php endif; ?>
+<!--                                    <?php if($v["show_price_type"] < 2): ?>-->
+<!--                                        工价-->
+<!--                                        <?php else: ?>-->
+<!--                                        补贴-->
+<!--<?php endif; ?>-->
+                                    <?php echo ($v['price_title']); ?>
                                 </p>
                                 <p><?php echo round($v['price']/100,2);?>元/小时</p>
                             </div>

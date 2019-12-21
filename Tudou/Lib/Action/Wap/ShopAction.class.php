@@ -70,7 +70,7 @@ class ShopAction extends CommonAction{
     public function loaddata(){
         $Shop = D('Shop');
         import('ORG.Util.Page');
-        $map = array('closed' => 0, 'audit' => 1, 'city_id' => $this->city_id);
+        $map = array('closed' => 0, 'audit' => 1);
         $cat = (int) $this->_param('cat');
         if ($cat) {
             $catids = D('Shopcate')->getChildren($cat);

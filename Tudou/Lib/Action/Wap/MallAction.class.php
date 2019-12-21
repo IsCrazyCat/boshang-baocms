@@ -1229,7 +1229,7 @@ class MallAction extends CommonAction{
 
 //            是否已经完善信息 姓名手机号身份证号 修改为只验证手机号
             $detail = D('Usersaux')->find($this->uid);
-            if(empty($detail)){
+            if(empty($user['mobile'])){
                 $this->ajaxReturn(array('status' => 'merror', 'msg' => '您尚未完善手机号！'));
             }
             $data['user_id']=$this->uid;

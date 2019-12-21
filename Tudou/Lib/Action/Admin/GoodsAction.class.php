@@ -2,9 +2,9 @@
 
 class GoodsAction extends CommonAction {
 
-    private $create_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
-    private $edit_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
-	
+    private $create_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige', 'num','is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id','price_title', 'price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','reminder', 'end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+    private $edit_fields = array('title','intro','shoplx','tag1','tag2','tag3','guige','num', 'is_reight','weight','kuaidi_id','shop_id', 'photo', 'cate_id', 'price_title','price', 'mall_price','price_unit','price_month','use_integral','mobile_fan', 'sold_num', 'orderby', 'views', 'instructions', 'details', 'salary','enroll','explain','reminder','end_date', 'orderby','is_vs1','is_vs2','is_vs3','is_vs4','is_vs5','is_vs6','is_backers');
+
 	
     public function _initialize(){
         parent::_initialize();
@@ -155,7 +155,11 @@ class GoodsAction extends CommonAction {
         }
         if(!isImage($data['photo'])){
             $this->tuError('缩略图格式不正确');
-        } 
+        }
+        $data['price_title'] = htmlspecialchars($data['price_title']);
+        if(empty($data['price_title'])){
+            $this->tuError('薪资标题不能为空');
+        }
 		$data['price'] = (int) ($data['price'] * 100);
         if(empty($data['price'])){
             $this->tuError('普通薪资不能为空');
@@ -189,19 +193,25 @@ class GoodsAction extends CommonAction {
         }
         $data['enroll'] = SecurityEditorHtml($data['enroll']);
         if(empty($data['enroll'])){
-            $this->tuError('录用条件不能为空');
+//            $this->tuError('录用条件不能为空');
         }
         if($words = D('Sensitive')->checkWords($data['enroll'])) {
             $this->tuError('录用条件含有敏感词：' . $words);
         }
         $data['explain'] = SecurityEditorHtml($data['explain']);
         if(empty($data['explain'])){
-            $this->tuError('岗位介绍不能为空');
+//            $this->tuError('岗位介绍不能为空');
         }
         if($words = D('Sensitive')->checkWords($data['explain'])) {
             $this->tuError('岗位介绍含有敏感词：' . $words);
         }
-
+        $data['reminder'] = SecurityEditorHtml($data['reminder']);
+        if(empty($data['reminder'])){
+//            $this->tuError('平台提示不能为空');
+        }
+        if($words = D('Sensitive')->checkWords($data['reminder'])) {
+            $this->tuError('平台提示含有敏感词：' . $words);
+        }
         $data['end_date'] = htmlspecialchars($data['end_date']);
         if(empty($data['end_date'])){
             $this->tuError('截止日期不能为空');
@@ -383,7 +393,11 @@ class GoodsAction extends CommonAction {
         }
         if(!isImage($data['photo'])) {
             $this->tuError('缩略图格式不正确');
-        } 
+        }
+        $data['price_title'] = htmlspecialchars($data['price_title']);
+        if(empty($data['price_title'])){
+            $this->tuError('薪资标题不能为空');
+        }
         $data['price'] = (int) ($data['price'] * 100);
         if(empty($data['price'])) {
             $this->tuError('普通薪资不能为空');
@@ -410,26 +424,32 @@ class GoodsAction extends CommonAction {
 
         $data['salary'] = SecurityEditorHtml($data['salary']);
         if(empty($data['salary'])){
-            $this->tuError('薪资待遇不能为空');
+//            $this->tuError('薪资待遇不能为空');
         }
         if($words = D('Sensitive')->checkWords($data['salary'])) {
             $this->tuError('薪资待遇含有敏感词：' . $words);
         }
         $data['enroll'] = SecurityEditorHtml($data['enroll']);
         if(empty($data['enroll'])){
-            $this->tuError('录用条件不能为空');
+//            $this->tuError('录用条件不能为空');
         }
         if($words = D('Sensitive')->checkWords($data['enroll'])) {
             $this->tuError('录用条件含有敏感词：' . $words);
         }
         $data['explain'] = SecurityEditorHtml($data['explain']);
         if(empty($data['explain'])){
-            $this->tuError('岗位介绍不能为空');
+//            $this->tuError('岗位介绍不能为空');
         }
         if($words = D('Sensitive')->checkWords($data['explain'])) {
-            $this->tuError('岗位介绍含有敏感词：' . $words);
+//            $this->tuError('岗位介绍含有敏感词：' . $words);
         }
-
+        $data['reminder'] = SecurityEditorHtml($data['reminder']);
+        if(empty($data['reminder'])){
+//            $this->tuError('平台提示不能为空');
+        }
+        if($words = D('Sensitive')->checkWords($data['reminder'])) {
+            $this->tuError('平台提示含有敏感词：' . $words);
+        }
 		$data['end_date'] = htmlspecialchars($data['end_date']);
         if(empty($data['end_date'])){
             $this->tuError('截止日期不能为空');
@@ -818,9 +838,11 @@ class GoodsAction extends CommonAction {
 
         $goods_id = $this->_param('goods_id');
         if(empty($goods_id)){
-            $this->tuError('请选择要查看的工作！',U('goods/index'));
+//            $this->tuError('请选择要查看的工作！',U('goods/index'));
+        }else{
+            $map['goods_id'] = $goods_id;
         }
-        $map['goods_id'] = $goods_id;
+
         if($keyword = $this->_param('keyword', 'htmlspecialchars')){
             $map['ext0'] = array('LIKE', '%' . $keyword . '%');
             $user_ids = D('Users')->where($map)->getField('user_id',true);
@@ -844,6 +866,7 @@ class GoodsAction extends CommonAction {
         foreach($list as $k => $val){
             $list[$k]['user'] = D('users')->find($val['user_id']);
             $list[$k]['aux'] = D('Usersaux')->getUserex($val['user_id']);
+            $list[$k]['good']=D("Goods")->find($val['goods_id']);
         }
         $this->assign('shopinfo', D('Shop')->find($this->_param('shop_id')));
         $this->assign('list', $list);

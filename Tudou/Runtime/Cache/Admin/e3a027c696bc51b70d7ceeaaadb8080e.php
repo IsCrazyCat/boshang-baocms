@@ -52,53 +52,41 @@ function position_fixed(el, eltop, elleft){
    <div class="main">
 <div class="mainBt">
     <ul>
-        <li class="li1">会员</li>
-        <li class="li2">会员管理</li>
-        <li class="li2 li3">会员等级</li>
+        <li class="li1">商城</li>
+        <li class="li2">企业工作</li>
+        <li class="li2 li3">工作标签</li>
     </ul>
 </div>
-<div class="main-jsgl main-sc">
-    <p class="attention"><span>注意：</span>会员的等级图标建议写成样式！请不要随意删除等级，不然等级混乱后影响全局操作！</p>
+<div class="main-cate">
+	<p class="attention">
     <div class="jsglNr">
-        <div class="selectNr" style="margin-top: 0px; border-top:none;">
-            <div class="left">
-                <?php echo BA('userrank/create','','添加等级','load','',800,550);?>
+        <form id="cate_action" action="" target="x-frame" method="post">
+            <div class="selectNr" style="border-top: 1px solid #dbdbdb;">
+                <div class="left">
+                    <?php echo BA('goods/applyaudit','','添加标签','load','',600,450);?>
+                </div>
+                <div class="right">
+                    <?php echo BA('goodstag/update','','更新','list','remberBtn');?>
+                </div>
             </div>
-        </div>
-        <form  target="x-frame" method="post">
             <div class="tableBox">
-                <table bordercolor="#e1e6eb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF;"  >
-                    <tr>
-                        <td class="w50"><input type="checkbox" class="checkAll" rel="rank_id" /></td>
-                        <td class="w50">ID</td>
-                        <td>等级名称</td>
-                        <td>购买金额</td>
-                        <td>推广奖励</td>
-                        <td>上级奖励</td>
-                        <td>描述</td>
-                        <td>备注</td>
+                <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  style=" border-collapse: collapse; margin:0px; vertical-align:middle; background-color:#FFF; text-align:center;">
+                    <tr bgcolor="#f1f1f1" height="48px;" style="color:#333; font-size:16px; line-height:48px;">
+                        <td>标签ID</td>
+                        <td>标签名称</td>
+                        <td>排序</td>
                         <td>操作</td>
                     </tr>
-                    <?php if(is_array($list)): foreach($list as $key=>$var): ?><tr>
-                            <td><input class="child_rank_id" type="checkbox" name="rank_id[]" value="<?php echo ($var["rank_id"]); ?>" /></td>
-                            <td><?php echo ($var["rank_id"]); ?></td>
-                            <td><?php echo ($var["rank_name"]); ?></td>
-                            <td style="color:#F00">￥<?php echo round($var['price']/100,2);?></td>
-                            <td style="color:#F00">￥<?php echo ($var["reward"]); ?></td>
-                            <td>上级奖励</td>
-                            <td><?php echo ($var["desc"]); ?></td>
-                            <td><?php echo ($var["remark"]); ?></td>
-                            <td>
-                                <?php echo BA('userrank/edit',array("rank_id"=>$var["rank_id"]),'编辑','load','remberBtn',800,550);?>
-                                <?php echo BA('userrank/delete',array("rank_id"=>$var["rank_id"]),'删除','act','remberBtn');?>
+                    <?php if(is_array($list)): foreach($list as $key=>$var): ?><tr bgcolor="#F4F4F4" height="48px" style="font-size:14px; color:#545454; text-align:left; line-height:48px;">
+                            <td style="padding-left:20px;"><?php echo ($var["cate_id"]); ?></td>
+                            <td style="padding-left:20px;"><?php echo ($var["cate_name"]); ?></td>
+                            <td style="padding-left:70px;"><input name="orderby[<?php echo ($var["cate_id"]); ?>]" value="<?php echo ($var["orderby"]); ?>" type="text" class="remberinput w80" /></td>
+                            <td style="text-align: center;">
+                                <?php echo BA('goodstag/edit',array("cate_id"=>$var["cate_id"]),'编辑','load','remberBtn',600,450);?>
+                                <?php echo BA('goodstag/delete',array("cate_id"=>$var["cate_id"]),'删除','act','remberBtn');?>
                             </td>
-                        </tr><?php endforeach; endif; ?>
+                        </tr><?php endforeach; endif; ?>        
                 </table>
-                <?php echo ($page); ?>
-            </div>
-            <div class="selectNr" style="margin-bottom: 0px; border-bottom: none;">
-                <div class="left">
-                </div>
             </div>
         </form>
     </div>

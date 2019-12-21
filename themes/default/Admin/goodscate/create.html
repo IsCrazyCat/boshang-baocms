@@ -9,32 +9,32 @@
                     </td>
                 </tr>
                 
-                 <tr>
-                    <td class="lfTdBt">工作类别：</td>
-                      <td class="rgTdBt">
-                          <select id="star" name="data[type_id]" class="seleFl w210">
-                              <option value="">=选择工作类型=</option>
-                                <volist name="goodstypes" id="var" key='index'>
-                                    <option <eq name="detail.type_id" value="$var.id">selected='selected'</eq> value="<{$var.id}>"><{$var.name}></option>
-                                </volist>
-                           </select>
-                        <code>这里对应的是工作类型的ID，这里一级分类跟二级分类建议填写一致，同时影响编辑或者添加工作的时候筛选属性功能</code>
-                     </td>
-                 </tr>
-                
-               <tr>
-                    <td class="lfTdBt">代卖ID：</td>
-                      <td class="rgTdBt">
-                          <select id="star" name="data[commId]" class="seleFl w210">
-                              <option value="">=选择类型=</option>
-                              
-                                <volist name="commIds" id="var" key='index'>
-                                    <option <eq name="detail.commId" value="$var.sellNumber">selected='selected'</eq> value="<{$var.sellNumber}>"><{$var.name}></option>
-                                </volist>
-                           </select>
-                        <code>这里对接的国家商务部的代卖的ID，不是必须选择，没有对接国家商务部的不要填写</code>
-                     </td>
-                 </tr>
+<!--                 <tr>-->
+<!--                    <td class="lfTdBt">工作类别：</td>-->
+<!--                      <td class="rgTdBt">-->
+<!--                          <select id="star" name="data[type_id]" class="seleFl w210">-->
+<!--                              <option value="">=选择工作类型=</option>-->
+<!--                                <volist name="goodstypes" id="var" key='index'>-->
+<!--                                    <option <eq name="detail.type_id" value="$var.id">selected='selected'</eq> value="<{$var.id}>"><{$var.name}></option>-->
+<!--                                </volist>-->
+<!--                           </select>-->
+<!--                        <code>这里对应的是工作类型的ID，这里一级分类跟二级分类建议填写一致，同时影响编辑或者添加工作的时候筛选属性功能</code>-->
+<!--                     </td>-->
+<!--                 </tr>-->
+<!--                -->
+<!--               <tr>-->
+<!--                    <td class="lfTdBt">代卖ID：</td>-->
+<!--                      <td class="rgTdBt">-->
+<!--                          <select id="star" name="data[commId]" class="seleFl w210">-->
+<!--                              <option value="">=选择类型=</option>-->
+<!--                              -->
+<!--                                <volist name="commIds" id="var" key='index'>-->
+<!--                                    <option <eq name="detail.commId" value="$var.sellNumber">selected='selected'</eq> value="<{$var.sellNumber}>"><{$var.name}></option>-->
+<!--                                </volist>-->
+<!--                           </select>-->
+<!--                        <code>这里对接的国家商务部的代卖的ID，不是必须选择，没有对接国家商务部的不要填写</code>-->
+<!--                     </td>-->
+<!--                 </tr>-->
                  
                  <tr>
                     <td class="lfTdBt">分类图标：</td>

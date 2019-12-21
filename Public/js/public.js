@@ -175,30 +175,28 @@ function check_user_mobile(url1,url2){
 	var mobile_timeout;
 	var mobile_count = 100;
 	var mobile_lock = 0;
-	$(function () {
-		$("#jq_send").click(function () {
-			alert(mobile_lock);
-			alert($("#mobile").val());
-			if (mobile_lock == 0) {
-				mobile_lock = 1;
-				$.ajax({
-					url: url1,
-					data: 'mobile=' + $("#mobile").val(),
-					type: 'post',
-					success: function (data) {
-						if (data.status == 'success') {
-							mobile_count = 60;
-							layer.msg(data.msg,{icon:1});
-							BtnCount();
-						} else {
-							mobile_lock = 0;
-							layer.msg(data.msg,{icon:2});
-						}
+	$("#jq_send").click(function () {
+		alert(mobile_lock);
+		alert($("#mobile").val());
+		if (mobile_lock == 0) {
+			mobile_lock = 1;
+			$.ajax({
+				url: url1,
+				data: 'mobile=' + $("#mobile").val(),
+				type: 'post',
+				success: function (data) {
+					if (data.status == 'success') {
+						mobile_count = 60;
+						layer.msg(data.msg,{icon:1});
+						BtnCount();
+					} else {
+						mobile_lock = 0;
+						layer.msg(data.msg,{icon:2});
 					}
-				});
-			}
+				}
+			});
+		}
 
-		});
 	});
 	BtnCount = function () {
 		if (mobile_count == 0) {
@@ -216,7 +214,7 @@ function check_user_mobile(url1,url2){
 	$('#go_mobile').click(function(){
 		var ml = $('#mobile').val();
 		var y = $('#yzm').val();
-		$.post(url2,{mobile:ml,yzm:y},function(result){										
+		$.post(url2,{mobile:ml,yzm:y},function(result){
 			if(result.status == 'success'){
 				layer.msg(result.msg);
 				setTimeout(function(){
@@ -224,10 +222,10 @@ function check_user_mobile(url1,url2){
 				},3000);
 			}else{
 				layer.msg(result.msg,{icon:2});
-			}														
+			}
 		},'json');
 	})
-	
+
 	$('.layui-layer-content').css('padding','15px');
 	
 }

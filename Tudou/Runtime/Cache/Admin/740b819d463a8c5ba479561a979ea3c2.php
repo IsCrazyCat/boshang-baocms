@@ -143,11 +143,11 @@ function position_fixed(el, eltop, elleft){
                         </td>
                         <td>
                             <?php if($var["fuid1"] == 0): ?>平台方
-                            <elsei/>
+                            <elseif condition="$var.frankid > "/>
                                 <?php echo ($var["fusername"]); ?>(UID: <?php echo ($var["fuserid"]); ?>)<?php endif; ?>
                         </td>
                         <td><?php echo (int)$level1[$var['user_id']] + (int)$level2[$var['user_id']] + (int)$level3[$var['user_id']];?></td>
-                        <td><a><?php echo (int)$level1[$var['user_id']];?></a></td>
+                        <td><?php echo (int)$level1[$var['user_id']];?></td>
                         <td><?php echo (int)$level2[$var['user_id']];?></td>
                         <td><?php echo (int)$level3[$var['user_id']];?></td>
                         <td><?php echo (date('Y-m-d H:i',$var["reg_time"])); ?></td>

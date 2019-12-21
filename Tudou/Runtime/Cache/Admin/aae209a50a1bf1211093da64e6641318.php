@@ -121,6 +121,7 @@ function position_fixed(el, eltop, elleft){
                         <td class="w50"><input type="checkbox" class="checkAll" rel="goods_id" /></td>
                         <td class="w50">用户ID</td>
                         <td>企业</td>
+                        <td>职位</td>
                         <td>姓名</td>
                         <td>电话</td>
                         <td>证件号</td>
@@ -134,6 +135,10 @@ function position_fixed(el, eltop, elleft){
                             <td><input class="child_goods_id" type="checkbox" name="applys_id[]" value="<?php echo ($var["id"]); ?>" /> </td>
                             <td><?php echo ($var["user_id"]); ?></td>
                             <td><?php echo ($shopinfo["shop_name"]); ?></td>
+                            <td><?php echo tu_msubstr($var['good']['title'],0,10,false);?>...<a class="tips"
+                                                                                rel="<?php echo ($var['good']['title']); ?>"
+                                                                                style="color: #fff; background: #1ca290; padding: 0px 5px; margin-right:5px;border-radius:0px; margin-left: 10px; display: inline-block; float: right; height: 20px; line-height: 20px;"
+                                                                                href="javascript:void(0)">查看</a>
                             <td><?php echo ($var['user']['ext0']); ?></td>
                             <td><?php echo ($var['user']['mobile']); ?></td>
                             <td><?php echo ($var['aux']['card_id']); ?></td>

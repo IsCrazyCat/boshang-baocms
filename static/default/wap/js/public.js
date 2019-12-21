@@ -218,7 +218,7 @@ $(document).ready(function (){
 function check_user_mobile(url1,url2){
 	layer.open({
 		type: 1,
-		title:'<h4>请绑定手机后操作</h4>',
+		title:'<h4>请绑定手机后操作3</h4>',
 		skin: 'layui-layer-molv', //加上边框
 		area: ['90%', '300px'], //宽高
 		shift:6,
@@ -228,29 +228,27 @@ function check_user_mobile(url1,url2){
 	var mobile_timeout;
 	var mobile_count = 100;
 	var mobile_lock = 0;
-	$(function () {
-		$("#jq_send").click(function () {
+	$("#jq_send").click(function () {
 
-			if (mobile_lock == 0) {
-				mobile_lock = 1;
-				$.ajax({
-					url: url1,
-					data: 'mobile=' + $("#mobile").val(),
-					type: 'post',
-					success: function (data) {
-						if (data.status == 'success') {
-							mobile_count = 60;
-							layer.msg(data.msg,{icon:1});
-							BtnCount();
-						} else {
-							mobile_lock = 0;
-							layer.msg(data.msg,{icon:2});
-						}
+		if (mobile_lock == 0) {
+			mobile_lock = 1;
+			$.ajax({
+				url: url1,
+				data: 'mobile=' + $("#mobile").val(),
+				type: 'post',
+				success: function (data) {
+					if (data.status == 'success') {
+						mobile_count = 60;
+						layer.msg(data.msg,{icon:1});
+						BtnCount();
+					} else {
+						mobile_lock = 0;
+						layer.msg(data.msg,{icon:2});
 					}
-				});
-			}
+				}
+			});
+		}
 
-		});
 	});
 	BtnCount = function () {
 		if (mobile_count == 0) {

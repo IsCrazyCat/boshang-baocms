@@ -557,33 +557,77 @@
             margin-left: 10px;
         }
     </style>
-    <div class="item-intro">
-        <div class="intro-title">平台补贴</div>
-        <div class="intro-bd"><{$detail['instructions']}></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">薪资待遇</div>
-        <div class="intro-bd"><{$detail['salary']}></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">录用条件</div>
-        <div class="intro-bd"><{$detail['enroll']}></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">岗位介绍</div>
-        <div class="intro-bd"><{$detail['explain']}></div>
-    </div>
-    <div class="item-intro">
-        <div class="intro-title">公司介绍</div>
-        <div class="intro-bd">
-            <{$shopdetails['details']}>
+    <if condition="empty($detail['instructions']) neq true">
+        <div class="item-intro">
+            <div class="intro-title">平台补贴</div>
+            <div class="intro-bd"><{$detail['instructions']}></div>
+            <div id="moreinstructions" style="display: none">
+                <div class="intro-bd"><{$detail['instructions']}></div>
+                <div class="intro-bd"><{$detail['instructions']}></div>
+                <div class="intro-bd"><{$detail['instructions']}></div>
+            </div>
+
+
+            <div class="intro-bd" id="checkAll" style="border-top:1px solid;text-align: center;color: #F60;font-size: 20px;">
+                <script>
+                    $(function () {
+                        $("#checkAll").on("click",function(){
+                           if($("#moreinstructions").css("display")=='block'){
+                               $("#moreinstructions").hide(200);
+                           }
+                           else{
+                               $("#moreinstructions").show(200);
+                           }
+                        });
+                    })
+                </script>
+                查看所有补贴
+            </div>
         </div>
-    </div>
+    </if>
+    <if condition="empty($detail['salary']) neq true">
+        <div class="item-intro">
+            <div class="intro-title">薪资待遇</div>
+            <div class="intro-bd"><{$detail['salary']}></div>
+        </div>
+    </if>
+    <if condition="empty($detail['enroll']) neq true">
+        <div class="item-intro">
+            <div class="intro-title">录用条件</div>
+            <div class="intro-bd"><{$detail['enroll']}></div>
+        </div>
+    </if>
+    <if condition="empty($detail['explain']) neq true">
+        <div class="item-intro">
+            <div class="intro-title">岗位介绍</div>
+            <div class="intro-bd"><{$detail['explain']}></div>
+        </div>
+    </if>
+    <if condition="empty($shopdetails['details']) neq true">
+        <div class="item-intro">
+            <div class="intro-title">公司介绍</div>
+            <div class="intro-bd">
+                <{$shopdetails['details']}>
+            </div>
+        </div>
+    </if>
+
+
+
+
     <div class="item-intro">
         <div class="intro-title">面试地址</div>
         <div class="intro-bd">
-            <div class="address-detail">中国上海市上海市浦东新区申沔路</div>
-            <div class="address-city">上海市&nbsp;&nbsp;浦东新区</div>
+            <script>
+                $(function () {
+                    $("#addr").on("click",function(){
+                        window.location.href="<{:U('shop/gps',array('shop_id'=>$detail['shop_id']))}>";
+                        return;
+                    });
+                });
+            </script>
+            <div class="address-detail" id="addr"><{$shop['addr']}></div>
+            <div class="address-city"><a class="button button-small bg-yellow margin-small-right" href="<{:U('shop/gps',array('shop_id'=>$detail['shop_id']))}>"><i class="iconfont icon-daohang"></i> 查看位置</a></div>
         </div>
     </div>
 
@@ -757,11 +801,12 @@
                             </div>
                             <div class="item-amount">
                                 <p class="hot-mark ">
-                                    <if condition="$v.show_price_type lt 2">
-                                        工价
-                                        <else/>
-                                        补贴
-                                    </if>
+<!--                                    <if condition="$v.show_price_type lt 2">-->
+<!--                                        工价-->
+<!--                                        <else/>-->
+<!--                                        补贴-->
+<!--                                    </if>-->
+                                    <{$v['price_title']}>
                                 </p>
                                 <p><{:round($v['price']/100,2)}>元/小时</p>
                             </div>

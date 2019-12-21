@@ -25,11 +25,12 @@
                         <p class="stop-mark">已停招</p>
                         <else/>
                         <p class="hot-mark ">
-                            <if condition="$v.show_price_type lt 2">
-                                工价
-                                <else/>
-                                补贴
-                            </if>
+<!--                            <if condition="$v.show_price_type lt 2">-->
+<!--                                工价-->
+<!--                                <else/>-->
+<!--                                补贴-->
+<!--                            </if>-->
+                            <{$v['price_title']}>
                         </p>
                     </if>
                     <if condition="$v.show_price_type eq 0">

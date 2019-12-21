@@ -50,54 +50,46 @@ function position_fixed(el, eltop, elleft){
     <body>
          <iframe id="x-frame" name="x-frame" style="display:none;"></iframe>
    <div class="main">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/easyui/easyui.css">
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/easyui/icon.css">
-<script type="text/javascript" src="__PUBLIC__/easyui/jquery.easyui.min.js"></script>
-
 <div class="mainBt">
-    <ul>
-        <li class="li1">分销</li>
-        <li class="li2">分销管理</li>
-        <li class="li2 li3">族谱表</li>
-    </ul>
+	<ul>
+		<li class="li1">设置</li>
+		<li class="li2">基本设置</li>
+		<li class="li2 li3">排行榜设置</li>
+	</ul>
 </div>
-
-
-<div class="main-wrap">
-        
-        <div class="result-wrap">
-           
-                <div class="config-items">
-                   
-                    <div class="result-content">
-                        
-<table title="推荐图" class="easyui-treegrid" style="width:100%;height:550px"
-			data-options="
-                url: '<?php echo ($CONFIG["site"]["host"]); ?>/backstage/user/family',
-				method: 'get',
-				lines: true,
-				rownumbers: true,
-				idField: 'user_id',
-				treeField: 'nickname',
-			">
-		<thead>
+<p class="attention">
+	<span></span>
+</p>
+<form target="x-frame" action="<?php echo U('setting/rankingsite');?>" method="post">
+	<div class="mainScAdd">
+		<div class="tableBox">
+			<table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px" style=" border-collapse: collapse; margin:0px;background-color:#fff;">
 			<tr>
-				<th data-options="field:'nickname'" width="220">账号</th>
-				
-				<th data-options="field:'prestige'" width="150"><?php echo (($CONFIG["prestige"]["name"])?($CONFIG["prestige"]["name"]):'威望'); ?></th>
-				<th data-options="field:'integral'" width="150">积分</th>
-				<th data-options="field:'rank_id'" width="150">级别</th>
+				<td class="lfTdBt">
+					排名规则：
+				</td>
+				<td class="rgTdBt">
+					<textarea type="text" name="data[remark]" class="scAddTextName "><?php echo ($CONFIG["ranking"]["remark"]); ?></textarea>
+					<code></code>
+				</td>
 			</tr>
-		</thead>
-	</table>
-                    </div>
-                </div>
-         
-        </div>
-    </div>
-       
-</div>
-</div>
+			<tr>
+				<td class="lfTdBt">
+					说明：
+				</td>
+				<td class="rgTdBt">
+					<textarea type="text" name="data[remark1]"  class="scAddTextName "><?php echo ($CONFIG["ranking"]["remark1"]); ?></textarea>
+					<code></code>
+				</td>
+			</tr>
+
+			</table>
+		</div>
+		<div class="smtQr">
+			<input type="submit" value="确认保存" class="smtQrIpt"/>
+		</div>
+	</div>
+</form>
   		</div>
 	</body>
 </html>
