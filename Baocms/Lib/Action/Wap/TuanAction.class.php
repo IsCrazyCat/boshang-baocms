@@ -549,7 +549,7 @@ class TuanAction extends CommonAction{
 						'fail_date' => $tuan['fail_date'], 
 						'settlement_price' => 0, 
 						'create_time' => NOW_TIME, 
-						'create_ip' => get_client_ip()
+						'create_ip' => $ip
 					);
                     $codes[] = $local;
                     $obj->add($insert);

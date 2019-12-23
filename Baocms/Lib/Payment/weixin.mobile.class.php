@@ -54,7 +54,7 @@ class weixin {
 		        document.addEventListener(\'WeixinJSBridgeReady\', jsApiCall, false);
 		    }else if (document.attachEvent){
 		        document.attachEvent(\'WeixinJSBridgeReady\', jsApiCall); 
-		        document.attachEvent(\'onWeixinJSBridgeReady\', jsApiCall);
+		        document.attachEvent(\'onWeixinJSBridgeReady\', jsApiCall);ma
 		    }
 		}else{
 		    jsApiCall();

@@ -900,5 +900,7 @@ class ShopAction extends CommonAction{
         }
         $this->fengmiMsg('买单订单设置完毕，即将进入付款。', U('payment/payment', array('log_id' => $logs['log_id'])));
     }
-
+    public function test(){
+        exit(getDistance());
+    }
 }

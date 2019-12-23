@@ -102,7 +102,7 @@ class WeixintmplModel extends CommonModel{
 			$goods_name = $this->get_mall_order_goods_name($order_id);//获取商城订单名称
             include_once 'Baocms/Lib/Net/Wxmesg.class.php';
             $notice_data = array(
-				'url' => 'http://' . $_SERVER['HTTP_HOST'] . '/user/goods/index/aready/' . $order_id . '.html',
+				'url' => 'http://' . $_SERVER['HTTP_HOST'] . '/user/goods/index/aready/' . $order_id . '.html', 
 				'first' => '亲,您的订单创建成功!', 
 				'remark' => '详情请登录-http://' . $_SERVER['HTTP_HOST'], 
 				'order_id' => $order_id, 
@@ -418,7 +418,7 @@ class WeixintmplModel extends CommonModel{
 			  $url = $config_site_url.'goods/detail/order_id/'.$logs['order_id'].'/';  
 		   }elseif($logs['type'] == 'breaks'){
 			  $type_name = '优惠买单';  
-			  $url = $config_site_url.'breaks/index/';
+			  $url = $config_site_url.'breaks/index/';  
 		   }elseif($logs['type'] == 'hotel'){
 			  $type_name = '酒店';  
 			  $url = $config_site_url.'hotel/detail/order_id/'.$logs['order_id'].'/';  
