@@ -19,4 +19,10 @@ class WeixinaccessModel extends CommonModel
         $this->add(array('access_token' => $token, 'expir_time' => NOW_TIME + 7000,'create_time'=>NOW_TIME));
         return true;
     }
+    public function setTokenold()
+    {
+        $data = $this->order('id desc')->find();
+        $this->save(array('id'=>$data['id'],'expir_time' => NOW_TIME - 7000,'create_time'=>NOW_TIME));
+        return true;
+    }
 }

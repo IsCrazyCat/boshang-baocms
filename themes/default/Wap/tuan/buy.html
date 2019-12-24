@@ -93,11 +93,11 @@
 			<div class="container">
 				<div class="x12 row  border-bottom">
 					<span class="float-left">
-						姓名(选填)
+						姓名
 					</span>
 					<span class="float-right">
-						<input type="text"name="realname" placeholder="请输入姓名(选填)"
-							   <if condition="(empty($MEMBER['ext0']) neq true) AND (strpos($MEMBER['ext0'],'@b') eq false)">value="<{$MEMBER['ext0']}>" readonly="readonly"
+						<input type="text"name="realname" placeholder=""
+							   <if condition="(empty($MEMBER['ext0']) neq true) AND (strpos($MEMBER['ext0'],'@b') eq false)">value="<{$MEMBER['ext0']}>"
 							   <else/>
 								   value=""
 							   </if>
@@ -114,29 +114,29 @@
 						手机
 					</span>
 					<span class="float-right">
-						<input type="text" value="<{$MEMBER.mobile}>" name="mobile" placeholder="请输入手机号"
-							   <if condition="empty($MEMBER['mobile']) neq true"> readonly="readonly"</if>
+						<input type="text" value="<{$MEMBER.mobile}>" name="mobile" placeholder=""
+							   <if condition="empty($MEMBER['mobile']) neq true"> </if>
 							   style="border: 0px;text-align: right;"/>
 					</span>
 
 				</div>
-				<if condition="empty($MEMBER['mobile']) eq true">
-					<div class="x12 row border-bottom" id="yzmDiv">
-						<style>
-							input[readonly]{
-								background: white;
-							}
-						</style>
-						<span class="float-left">
-						验证码
-						</span>
-						<span class="float-right"><a class="button button-small bg-dot" id="get_yzm" href="javascript:void(0);">获取验证码</a></span>
-						<span class="float-right">
-							<input type="text" value="" name="yzm" placeholder="请输入验证码"
-							   style="border: 0px;text-align: right;line-height: 30px;margin-right: 10px"/>
-						</span>
-					</div>
-				</if>
+<!--				<if condition="empty($MEMBER['mobile']) eq true">-->
+<!--					<div class="x12 row border-bottom" id="yzmDiv">-->
+<!--						<style>-->
+<!--							input[readonly]{-->
+<!--								background: white;-->
+<!--							}-->
+<!--						</style>-->
+<!--						<span class="float-left">-->
+<!--						验证码-->
+<!--						</span>-->
+<!--						<span class="float-right"><a class="button button-small bg-dot" id="get_yzm" href="javascript:void(0);">获取验证码</a></span>-->
+<!--						<span class="float-right">-->
+<!--							<input type="text" value="" name="yzm" placeholder="请输入验证码"-->
+<!--							   style="border: 0px;text-align: right;line-height: 30px;margin-right: 10px"/>-->
+<!--						</span>-->
+<!--					</div>-->
+<!--				</if>-->
 
 <!--				<div class="x12 row border-bottom">-->
 <!--					<span class="float-left">-->
@@ -150,11 +150,11 @@
 <!--				</div>-->
 				<div class="x12 row">
 					<span class="float-left">
-						车牌号(选填)
+						车牌号
 					</span>
 					<span class="float-right">
-						<input type="text" value="<{$MEMBER.car_num}>" name="car_num" placeholder="请输入车牌号(选填)"
-						<if condition="empty($MEMBER['car_num']) neq true"> readonly="readonly"</if>
+						<input type="text" value="<{$MEMBER.car_num}>" name="car_num" placeholder=""
+						<if condition="empty($MEMBER['car_num']) neq true"></if>
 							   style="border: 0px;text-align: right;"/>
 					</span>
 				</div>

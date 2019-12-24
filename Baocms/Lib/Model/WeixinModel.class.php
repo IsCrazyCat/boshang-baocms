@@ -162,7 +162,7 @@ class WeixinModel {
 //        return $data;
     }
 
-    public function getCode($soure_id,$type){ //生成二维码
+    public function getCode($soure_id,$type,$flag=1){ //生成二维码
         $url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $this->getSiteToken();
         $str = "";
         $detail = D('Weixinqrcode')->where(array('soure_id'=>$soure_id,'type'=>$type))->find();
@@ -186,6 +186,12 @@ class WeixinModel {
         $result = json_decode($result, true);
 
         if ($result['errcode']) {
+            //重新生成accessToken 然后重新获取
+            if($flag==1){
+                D('Weixinaccess')->setTokenold();
+                return $this->getCode($soure_id,$soure_id,0);
+            }
+
             return false;
         }
         $ticket = urlencode($result['ticket']);

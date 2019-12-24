@@ -415,7 +415,7 @@ class IndexAction extends CommonAction
                 'account' => $account,
                 'password' => rand(10000000, 999999999),
                 'nickname' => $nickname,
-                'ext0' => $account,
+//                'ext0' => $account,
                 'face' => $data['headimgurl'],
                 'token' => $data['token'],
                 'reg_time' => NOW_TIME,

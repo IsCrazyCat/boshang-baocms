@@ -401,22 +401,24 @@ class TuanAction extends CommonAction{
         if(!empty($realname)){
             $param['ext0']=$realname;
         }
-        if(empty($user['mobile'])){
-            $mobile = $this->_post('mobile');
-            $yzm = $this->_post('yzm');
-            if (empty($mobile) || empty($yzm)) {
-                $this->fengmiMsg('请填写正确的手机及手机收到的验证码！');
-            }
-            $s_mobile = session('mobile');
-            $s_code = session('code');
-            if ($mobile != $s_mobile) {
-                $this->fengmiMsg('手机号码和收取验证码的手机号不一致！');
-            }
-            if ($yzm != $s_code) {
-                $this->fengmiMsg('验证码不正确！');
-            }
-            $param['mobile'] = $mobile;
-        }
+        $mobile = $this->_post('mobile');
+        $param['mobile'] = $mobile;
+//        if(empty($user['mobile'])){
+//            $yzm = $this->_post('yzm');
+//            if (empty($mobile) || empty($yzm)) {
+//                $this->fengmiMsg('请填写正确的手机及手机收到的验证码！');
+//            }
+//            $s_mobile = session('mobile');
+//            $s_code = session('code');
+//            if ($mobile != $s_mobile) {
+//                $this->fengmiMsg('手机号码和收取验证码的手机号不一致！');
+//            }
+//            if ($yzm != $s_code) {
+//                $this->fengmiMsg('验证码不正确！');
+//            }
+//            $param['mobile'] = $mobile;
+//        }
+
         $car_id = $this->_param('car_id');
         if(!empty($car_id)){
             $param['car_id']=$car_id;
