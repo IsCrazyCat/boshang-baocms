@@ -720,15 +720,18 @@ class WeixintmplModel extends CommonModel{
         }
 	    if($type==1){
 	        if($user_type==1){
-	            $title = '客户'.$name.'已经取消了在您店'.$tuan_appoint['yuyue_date'].' '.$tuan_appoint['yuyue_time'].'的预约！套餐：'.$tuan['title'];
+	            $user_id=$shop_user['user_id'];
+	            $title = '客户'.$name.'已经取消了在您店的预约！套餐：'.$tuan['title'];
             }else{
                 $title = '您已经成功取消预约！预约门店：'.$shop['shop_name'].',预约套餐：'.$tuan['title'];
             }
         }else{
 	        if($user_type==1){
+                $user_id=$shop_user['user_id'];
                 $title = '客户'.$name.'已经成功在您店预约！预约时间：'.$tuan_appoint['yuyue_date'].' '.$tuan_appoint['yuyue_time'].';预约套餐：'.$tuan['title'];
+            }else{
+                $title = '恭喜您，预约成功！预约时间：'.$tuan_appoint['yuyue_date'].' '.$tuan_appoint['yuyue_time'].';预约套餐：'.$tuan['title'];
             }
-	        $title = '恭喜您，预约成功！预约时间：'.$tuan_appoint['yuyue_date'].' '.$tuan_appoint['yuyue_time'].';预约套餐：'.$tuan['title'];
         }
         include_once "Baocms/Lib/Net/Wxmesg.class.php";
         $_cash_data = array(
