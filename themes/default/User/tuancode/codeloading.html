@@ -26,6 +26,23 @@
                             </eq>
                             </eq>
 					</p>
+                    <p class="yuyue">
+                        <eq name="item.is_used" value="1">
+                        <else/>
+                            <eq name="item.status" value="0">
+                                <style>
+                                    .yuyue{
+                                        border: 1px solid;
+                                        width: 40%;
+                                        text-align: center;
+                                        background: #06c1ae;
+                                        border-radius: 5px;
+                                    }
+                                </style>
+                                <a style="color: white" href="<{:U('wap/shop/index',array('order_id'=>$item['order_id']))}>">预约门店</a>
+                            </eq>
+                        </eq>
+                    </p>
 				</div>
 
 			</div>

@@ -698,7 +698,44 @@ class WeixintmplModel extends CommonModel{
 		
 	}
 
-
-
+    /**
+     * 用户团购券预约通知
+     * @param $user_id 用户iD
+     * @param $shop_id 商家ID
+     * @param $tuan_order_id 套餐订单ID
+     * @param $type 0 预约 1取消预约
+     * @param $user_type 0 客户 1商家
+     */
+    public function tuan_shop_yuyue($user_id,$shop_id,$tuan_order_id,$type,$user_type){
+        $user = D('Users')->find($user_id);
+        $shop = D('Shop')->find($shop_id);
+        $shop_user = D('Users')->find($shop['user_id']);
+        $tuan_order = D('TuanOrder')->where(array('order_id'=>$tuan_order_id))->find();
+        $tuan = D('Tuan')->find($tuan_order['tuan_id']);
+        $tuan_appoint = D('shopyuyue')->where(array('pois_id'=>$tuan_order_id))->find();
+        if(!empty($user['ext0'])){
+            $name=$user['ext0'];
+        }else{
+            $name=$user['nickname'];
+        }
+	    if($type==1){
+	        if($user_type==1){
+	            $title = '客户'.$name.'已经取消了在您店'.$tuan_appoint['yuyue_date'].' '.$tuan_appoint['yuyue_time'].'的预约！套餐：'.$tuan['title'];
+            }else{
+                $title = '您已经成功取消预约！预约门店：'.$shop['shop_name'].',预约套餐：'.$tuan['title'];
+            }
+        }else{
+	        if($user_type==1){
+                $title = '客户'.$name.'已经成功在您店预约！预约时间：'.$tuan_appoint['yuyue_date'].' '.$tuan_appoint['yuyue_time'].';预约套餐：'.$tuan['title'];
+            }
+	        $title = '恭喜您，预约成功！预约时间：'.$tuan_appoint['yuyue_date'].' '.$tuan_appoint['yuyue_time'].';预约套餐：'.$tuan['title'];
+        }
+        include_once "Baocms/Lib/Net/Wxmesg.class.php";
+        $_cash_data = array(
+            'first'   => $title
+        );
+        $cash_data = Wxmesg::yuyue($_cash_data);
+        Wxmesg::net($user_id, '', $cash_data);
+    }
 
 }

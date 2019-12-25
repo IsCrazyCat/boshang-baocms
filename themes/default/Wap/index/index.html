@@ -113,200 +113,81 @@
                 </div>
             </div>
         <else/>
-			<script>
-				$(document).ready(function() {
-					$('.flexslider_cate').flexslider({
-						directionNav: true,
-						pauseOnAction: false,
-					});
-				});
-			</script>
-			<div class="banner mb10">
-				<div class="flexslider_cate">
-					<ul class="slides">
-						<volist name='nav' id='item'>
-							<if condition="$i%8 eq 1">
-								<li class="list">
-									<ul class="cate">
-										<li>
-											<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
-												<div class="icon <{$item.ioc}> <{$item.colour}>"></div>
-												<p>
-													<{$item.nav_name}>
-												</p>
-											</a>
-										</li>
-										<elseif condition="$i%8 eq 0" />
-										<li>
-											<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
-												<div class="icon <{$item.ioc}> <{$item.colour}>"></div>
-												<p>
-													<{$item.nav_name}>
-												</p>
-											</a>
-										</li>
-									</ul>
-								</li>
-								<else/>
-								<li>
-									<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
-										<div class="icon <{$item.ioc}> <{$item.colour}>"></div>
-										<p>
-											<{$item.nav_name}>
-										</p>
-									</a>
-								</li>
-							</if>
-						</volist>
-					</ul>
-				</div>
-                </if>
-			</div>
+<!--			<script>-->
+<!--				$(document).ready(function() {-->
+<!--					$('.flexslider_cate').flexslider({-->
+<!--						directionNav: true,-->
+<!--						pauseOnAction: false,-->
+<!--					});-->
+<!--				});-->
+<!--			</script>-->
+<!--			<div class="banner mb10">-->
+<!--				<div class="flexslider_cate">-->
+<!--					<ul class="slides">-->
+<!--						<volist name='nav' id='item'>-->
+<!--							<if condition="$i%8 eq 1">-->
+<!--								<li class="list">-->
+<!--									<ul class="cate">-->
+<!--										<li>-->
+<!--											<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">-->
+<!--												<div class="icon <{$item.ioc}> <{$item.colour}>"></div>-->
+<!--												<p>-->
+<!--													<{$item.nav_name}>-->
+<!--												</p>-->
+<!--											</a>-->
+<!--										</li>-->
+<!--										<elseif condition="$i%8 eq 0" />-->
+<!--										<li>-->
+<!--											<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">-->
+<!--												<div class="icon <{$item.ioc}> <{$item.colour}>"></div>-->
+<!--												<p>-->
+<!--													<{$item.nav_name}>-->
+<!--												</p>-->
+<!--											</a>-->
+<!--										</li>-->
+<!--									</ul>-->
+<!--								</li>-->
+<!--								<else/>-->
+<!--								<li>-->
+<!--									<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">-->
+<!--										<div class="icon <{$item.ioc}> <{$item.colour}>"></div>-->
+<!--										<p>-->
+<!--											<{$item.nav_name}>-->
+<!--										</p>-->
+<!--									</a>-->
+<!--								</li>-->
+<!--							</if>-->
+<!--						</volist>-->
+<!--					</ul>-->
+<!--				</div>-->
+<!--                </if>-->
+<!--			</div>-->
 
-			<!-- 图标部分 -->
+			<!-- 图标部分-->
 			<div class="banner mb10 qbanner">
 				<div class="flexslider_cate">
 					<ul class="slides">
-						
 								<li class="list">
 									<ul class="cate">
+										<volist name='nav' id='item'>
 										<li class="qli">
-											<a href="">
+											<a href="<{:config_navigation_url($item['url'],2)}>?nav_id=<{$item['nav_id']}>">
 												<div>
-													<img src="/static/default/wap/image/indexicon/1car.png" alt="">
+													<img src="<{:config_img($item['photo'])}>" alt="">
 												</div>
 												<p>
-													车辆信息
+													<{$item.nav_name}>
 												</p>
 											</a>
 										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/2bsx.png" alt="">
-												</div>
-												<p>
-												变速箱
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/3fdx.png" alt="">
-												</div>
-												<p>
-													分动箱差速器
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/4oil.png" alt="">
-												</div>
-												<p>
-													机油
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/5regularMaint.png" alt="">
-												</div>
-												<p>
-													保养件
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/6brake.png" alt="">
-												</div>
-												<p>
-													制动
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/7air.png" alt="">
-												</div>
-												<p>
-													空调
-												</p>
-											</a>
-										</li>
+										</volist>
 
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/8bxs.png" alt="">
-												</div>
-												<p>
-													保险丝
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/9byd.png" alt="">
-												</div>
-												<p>
-													保养灯复位
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/10xdc.png" alt="">
-												</div>
-												<p>
-													蓄电池
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/11hhs.png" alt="">
-												</div>
-												<p>
-													火花塞
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/12fjpd.png" alt="">
-												</div>
-												<p>
-													附时皮带系统
-												</p>
-											</a>
-										</li>
-										<li>
-											<a href="">
-												<div>
-													<img src="/static/default/wap/image/indexicon/13zspd.png" alt="">
-												</div>
-												<p>
-												正时皮带系统
-												</p>
-											</a>
-										</li>
 									</ul>
 								</li>
-								
-						
+
+
 					</ul>
-			</div> 
+			</div>
 		
          
          <!--下一段开始-->   

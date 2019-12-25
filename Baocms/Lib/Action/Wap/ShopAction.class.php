@@ -35,6 +35,9 @@ class ShopAction extends CommonAction{
         $this->assign('area_id', $area);
         $biz = D('Business')->fetchAll();
         $business = (int) $this->_param('business');
+        $order_id = (int) $this->_param('order_id');
+        $this->assign('order_id', $order_id);
+        $this->assign('cat', $cat);
         $this->assign('business_id', $business);
         $this->assign('areas', $areas);
         $this->assign('biz', $biz);
@@ -42,7 +45,7 @@ class ShopAction extends CommonAction{
         $this->assign('wxlat',cookie('wxlat'));
         $this->assign('wxlng',cookie('wxlng'));
         $this->assign('isWeixin',is_weixin());
-        $this->assign('nextpage', LinkTo('shop/loaddata', array('cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
+        $this->assign('nextpage', LinkTo('shop/loaddata', array('order_id'=>$order_id,'cat' => $cat, 'area' => $area, 'business' => $business, 'order' => $order, 't' => NOW_TIME, 'keyword' => $keyword, 'p' => '0000')));
         $this->display();
         // 输出模板
     }
@@ -165,6 +168,10 @@ class ShopAction extends CommonAction{
         $shopdetails = D('Shopdetails')->itemsByIds($shop_ids);
         foreach ($list as $k => $val) {
             $list[$k]['price'] = $shopdetails[$val['shop_id']]['price'];
+        }
+        $order_id = (int) $this->_param('order_id');
+        if ($order_id) {
+            $this->assign('order_id', $order_id);
         }
         $this->assign('list', $list);
         $this->assign('page', $show);
@@ -899,6 +906,128 @@ class ShopAction extends CommonAction{
             D('Paymentlogs')->save($logs);
         }
         $this->fengmiMsg('买单订单设置完毕，即将进入付款。', U('payment/payment', array('log_id' => $logs['log_id'])));
+    }
+    public function appoint(){
+        if(empty($this->uid)){
+            $this->error('请登录', U('passport/login'));
+        }
+        if($this->ispost()){
+            $data = $this->checkFields($this->_post('data', false), array('order_id','shop_id','name', 'mobile', 'content', 'yuyue_date', 'yuyue_time', 'number'));
+            if (!($shop = D('Shop')->find($data['shop_id']))) {
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '没有该商家！'));
+            }
+            if ($shop['closed']) {
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该商家已经被删除！'));
+
+            }
+            $data['user_id'] = $this->uid;
+            $data['pois_id']= $data['order_id'];
+            $data['content'] = htmlspecialchars($data['content']);
+            $data['code']=D('Shopyuyue')->getCode();
+            if(empty($data['yuyue_date'])|| empty($data['yuyue_time'])){
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '服务时间不能为空！'));
+            }
+            if (!isDate($data['yuyue_date'])) {
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '预定日期格式错误！'));
+            }
+            $data['svctime'] = $data['date'].  " " . $data['time'];
+
+            //判断时间是否过期
+            $svctime = $data['date'].' '.$data['time'];
+            $appoint_time = strtotime($svctime);
+            if (empty($data['yuyue_time'])) {
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '请选择时间！'));
+            }else if($appoint_time < time()){
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '预约时间已经过期，请选择正确的时间！'));
+            }
+            //判断时间过期结束
+            if (!$data['name'] = htmlspecialchars($data['name'])) {
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '联系人不能为空！'));
+            }
+            if (!$data['mobile'] = htmlspecialchars($data['mobile'])) {
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '联系电话不能为空！'));
+            }
+            if (!isMobile($data['mobile']) && !isPhone($data['mobile'])) {
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '电话号码不正确！'));
+            }
+            $data['create_time']=time();
+            $appoint = D('Shopyuyue')->where(array('pois_id'=>$data['order_id'],'user_id'=>$this->uid))->find();
+            if(!empty($appoint)){
+                $this->ajaxReturn(array('status' => 'error', 'msg' => '该套餐已经预约过了！'));
+            }
+            if(D('Shopyuyue')->add($data)){
+                //通知用户
+//                if ($this->_CONFIG['sms']['dxapi'] == 'dy') {
+//                    D('Sms')->DySms($this->_CONFIG['site']['sitename'], 'sms_shop_yuyue_code', $data['mobile'], array(
+//                        'shop_name' => $shop['shop_name'],
+//                        'shop_tel' => $shop['mobile'],
+//                        'shop_addr' => $shop['addr'],
+//                        'code' => $data['code']
+//                    ));
+//                } else {
+//                    D('Sms')->sendSms('sms_shop_yuyue', $data['mobile'], array(
+//                        'shop_name' => $shop['shop_name'],
+//                        'shop_tel' => $shop['tel'],
+//                        'shop_addr' => $shop['addr'],
+//                        'code' => $data['code']
+//                    ));
+//                }
+                //预约通知商家功能开始
+//                if (!empty($shop['mobile'])) {
+//                    if ($this->_CONFIG['sms']['dxapi'] == 'dy') {
+//                        D('Sms')->DySms($this->_CONFIG['site']['sitename'], 'sms_shop_yuyue_shop', $shop['mobile'], array(
+//                            'name' => $data['name'],
+//                            'content' => $data['content'],
+//                            'yuyue_date' => $data['yuyue_date'],
+//                            'mobile' => $data['mobile'],
+//                            'number' => $data['number']
+//                        ));
+//                    } else {
+//                        D('Sms')->sendSms('sms_shangjia_yuyue', $shop['mobile'], array(
+//                            'name' => $data['name'],
+//                            'content' => $data['content'],
+//                            'mobile' => $data['mobile'],
+//                            'number' => $data['number'],
+//                            'yuyue_date' => $data['yuyue_date']
+//                        ));
+//                    }
+//                }
+                D('Weixintmpl')->tuan_shop_yuyue($this->uid,$data['shop_id'],$data['order_id'],0,0);
+                D('Weixintmpl')->tuan_shop_yuyue($this->uid,$data['shop_id'],$data['order_id'],0,1);
+                //预约通知商家功能结束
+                $this->ajaxReturn(array('status' => 'success', 'msg' => '恭喜您预约成功！','url'=>U('user/yuyue/index')));
+            }
+        }else{
+            $user = D('Users')->find($this->uid);
+            $this->assign('user',$user);
+
+            if(empty($user['ext0'])){
+                $data['name']=$user['nickname'];
+                $this->assign('name',$user['nickname']);
+            }else{
+                $data['name']=$user['ext0'];
+                $this->assign('name',$user['ext0']);
+            }
+            $order_id = $this->_param('order_id');
+            if(empty($order_id)){
+                $this->error('请先选择需要预约的套餐');
+            }
+            $order = D('TuanOrder')->find($order_id);
+            if(empty($order)){
+                $this->error('该订单不存在，请重新选择');
+            }
+            $shop_id = $this->_param('shop_id');
+            if(empty($shop_id)){
+                $this->error('请选择要预约的门店', U('wap/shop/index',array('order_id'=>$order_id)));
+            }
+            $shop = D('Shop')->find($shop_id);
+            $this->assign('shop', $shop);
+            $this->assign('tuan',D('Tuan')->find($order['tuan_id']));
+            $this->assign('order_id', $order_id);
+            $this->assign('getcfg', $getCfg = D('Appoint')->getCfg());
+            $this->display();
+        }
+
     }
     public function test(){
         exit(getDistance());

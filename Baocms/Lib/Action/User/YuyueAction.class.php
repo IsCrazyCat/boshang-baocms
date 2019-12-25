@@ -18,15 +18,15 @@ class YuyueAction extends CommonAction {
         if ($keyword = $this->_param('keyword', 'htmlspecialchars')) {
             $map['title'] = array('LIKE', '%' . $keyword . '%');
         }
-        $status = $this->_param('status', 'htmlspecialchars');
-        switch ($status) {
-            case 1:
-                $map['used'] = 1;
-                break;
-            case 2:
-                $map['used'] = 0;
-                break;
-        }
+//        $status = $this->_param('status', 'htmlspecialchars');
+//        switch ($status) {
+//            case 1:
+//                $map['used'] = 1;
+//                break;
+//            case 2:
+//                $map['used'] = 0;
+//                break;
+//        }
         $count = $yuyue->where($map)->count(); // 查询满足要求的总记录数 
         $Page = new Page($count, 10); // 实例化分页类 传入总记录数和每页显示的记录数
         $show = $Page->show(); // 分页显示输出
@@ -36,11 +36,15 @@ class YuyueAction extends CommonAction {
         if ($Page->totalPages < $p) {
             die('0');
         }
-        $list = $yuyue->where($map)->order($orderby)->limit($Page->firstRow . ',' . $Page->listRows)->select();
+        $list = $yuyue->where($map)->limit($Page->firstRow . ',' . $Page->listRows)->select();
         $shop_ids = array();
         foreach ($list as $k => $val) {
             $list[$k] = $val;
             $shop_ids[$val['shop_id']] = $val['shop_id'];
+            $tuancode = D('TuanCode')->where(array('order_id'=>$val['pois_id']))->find();
+            $tuan = D('Tuan')->find($tuancode['tuan_id']);
+            $list[$k]['tuan']=$tuan;
+            $list[$k]['tuancode']=$tuancode;
         }
         if (!empty($shop_ids)) {
             $this->assign('shops', D('Shop')->itemsByIds($shop_ids));
@@ -62,7 +66,9 @@ class YuyueAction extends CommonAction {
             $this->ajaxReturn(array('status'=>'error','msg'=>'不要操作别人的预约'));
         }
         if(D('Shopyuyue')->delete($yuyue_id)){
-            $this->ajaxReturn(array('status'=>'success','msg'=>'恭喜您删除成功'));
+            D('Weixintmpl')->tuan_shop_yuyue($this->uid,$detail['shop_id'],$detail['pois_id'],1,0);
+            D('Weixintmpl')->tuan_shop_yuyue($this->uid,$detail['shop_id'],$detail['pois_id'],1,1);
+            $this->ajaxReturn(array('status'=>'success','msg'=>'恭喜您取消预约成功'));
         }
     }
     

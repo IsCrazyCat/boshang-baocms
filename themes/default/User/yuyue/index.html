@@ -17,17 +17,16 @@
 	</div>
 </header>
 
-<!-- 筛选TAB -->
-<ul id="shangjia_tab">
-        <li style="width:50%;"><a href="<{:LinkTo('yuyue/index',array('status'=>1))}>" <eq name='status' value='1'>class="on"</eq>>已使用</a></li>
-        <li style="width:50%;"><a href="<{:LinkTo('yuyue/index',array('status'=>2))}>" <eq name='status' value='2'>class="on"</eq>>未使用</a></li>
-     
-</ul>
+<!--&lt;!&ndash; 筛选TAB &ndash;&gt;-->
+<!--<ul id="shangjia_tab">-->
+<!--        <li style="width:50%;"><a href="<{:LinkTo('yuyue/index',array('status'=>1))}>" <eq name='status' value='1'>class="on"</eq>>已使用</a></li>-->
+<!--        <li style="width:50%;"><a href="<{:LinkTo('yuyue/index',array('status'=>2))}>" <eq name='status' value='2'>class="on"</eq>>未使用</a></li>-->
+<!--     -->
+<!--</ul>-->
 
 
 
-<div class="list-media-x" id="list-media">
-<div class="blank-10 bg"></div>
+<div class="list-media-x" style="margin-top: 0px;" id="list-media">
 	<ul></ul>
 </div>	
 
@@ -38,7 +37,7 @@
 		
 		$(document).on('click', ".jquery-delete", function (e) {
 			var yuyue_id = $(this).attr('rel');
-			layer.confirm('您确定要删除该预约？', {
+			layer.confirm('您确定要取消该预约？', {
 				skin: 'layer-ext-demo', 
 				area: ['50%', 'auto'], //宽高
 				btn: ['是的', '不'], //按钮

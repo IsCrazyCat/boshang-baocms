@@ -21,9 +21,24 @@
                     </if>
                 </if>
 			</div>	
-			<span class="addr">	
+			<p class="addr">
 				<{:msubstr($item['addr'],0,26,'utf-8',false)}>
-			</span>
+			</p>
+			<style>
+				.yuyue{
+					float: right;
+					margin-top: -20px;
+					background: #06c1ae;
+					width: 40%;
+					text-align: center;
+					border-radius: 5px;
+				}
+			</style>
+			<if condition="empty($order_id) neq true">
+				<p class="yuyue">
+					<object><a style="color: white" href="<{:U('wap/shop/appoint',array('order_id'=>$order_id,'shop_id'=>$item['shop_id']))}>">立即预约</a></object>
+				</p>
+			</if>
 		</div>	
 	</a>
 </volist>

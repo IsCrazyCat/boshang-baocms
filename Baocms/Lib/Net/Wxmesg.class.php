@@ -14,7 +14,7 @@ class Wxmesg{
 		$openid = D('Connect')->where("type='weixin'")->getFieldByUid($uid,'open_id'); 
 
 		if($openid){
-			if(!$serial)     throw new Exception("模板编号参数不正确！", 1000);
+//			if(!$serial)     throw new Exception("模板编号参数不正确！", 1000);
 			if(empty($data)) throw new Exception("没有数据可供发送！");
             $data['template_id'] = D('Weixintmpl')->getFieldBySerial($serial,'template_id');//支付成功模板
             $data['touser']  = $openid;

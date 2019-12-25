@@ -62,10 +62,10 @@ class WeixinAction extends CommonAction {
 			
 			
 			 //解决了多多份套餐无法点评的BUG
-					   $Tuancode_count = $obj->where(array('order_id' => $data['order_id'], 'is_used' =>0))->count();	
-					   if($Tuancode_count ==1){
-						   D('Tuanorder')->save(array('order_id' => $data['order_id'], 'status' => 8));//套餐状态修改为8
-					   }
+           $Tuancode_count = $obj->where(array('order_id' => $data['order_id'], 'is_used' =>0))->count();
+           if($Tuancode_count ==1){
+               D('Tuanorder')->save(array('order_id' => $data['order_id'], 'status' => 8));//套餐状态修改为8
+           }
 					   
 			if ($obj->save(array('code_id' => $data['code_id'], 'is_used' => 1,'used_time' => NOW_TIME,'worker_id' => $this->uid, 'used_ip' => $ip))) { 
 			//这次更新保证了更新的结果集
@@ -96,6 +96,11 @@ class WeixinAction extends CommonAction {
 							D('Users')->return_integral($shop['user_id'], $data['real_integral'] , '套餐用户消费积分返还给商家');
 						}
 					}
+					//查看是否有预约，有则改成已使用状态
+                    $appoint = D('Shopyuyue')->where(array('order_id'=>$data['order_id']))->find();
+					if(!empty($appoint)){
+					    D('Shopyuyue')->save(array('yuyue_id'=>$appoint['yuyue_id'],'used'=>1,'usd_time'=>time(),'used_ip'=>get_client_ip()));
+                    }
 					$this->success('团购券'.$code_id.'消费成功！',U('worker/index/index'));
 				} else {
 
