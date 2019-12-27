@@ -33,6 +33,10 @@ class TuancodeAction extends CommonAction{
         $shop_ids = array();
         foreach ($list as $k => $val) {
             $shop_ids[$val['shop_id']] = $val['shop_id'];
+            $appoint = D('Shopyuyue')->where(array('pois_id'=>$order_id,'user_id'=>$this->uid))->find();
+            if($appoint){
+                $list[$k]['is_yuyue']=1;
+            }
         }
         $this->assign('shops', D('Shop')->itemsByIds($shop_ids));
         $this->assign('list', $list);

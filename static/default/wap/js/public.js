@@ -83,9 +83,9 @@ function loaddata(page, obj, sc) {
 var input_array = Array();
 $(document).ready(function (){
     $("input").each(function () {
-        // if (!$(this).val()) {
-        //     $(this).val($(this).attr('placeholder'));
-        // }
+        if (!$(this).val()) {
+            $(this).val($(this).attr('placeholder'));
+        }
         if ($(this).attr('type') == 'password') {
             input_array.push($(this).attr('name'));
             $(this).attr('type', 'text');
