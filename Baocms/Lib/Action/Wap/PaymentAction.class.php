@@ -411,4 +411,7 @@ class PaymentAction extends CommonAction {
         $this -> assign('button', $obj->getCode1($datas, $payment));
         $this->display();
     }
+    public function testpay1() {
+
+    }
 }

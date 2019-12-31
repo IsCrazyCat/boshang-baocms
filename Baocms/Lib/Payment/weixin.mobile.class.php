@@ -22,10 +22,13 @@ class weixin {
         $this->init($payment);
         $tools = new JsApiPay();
         $openId = $tools->GetOpenid($logs);
+//        $logs1 = D('Paymentlogs')->find($logs['log_id']);
+//        $connect= D('connect')->where(array('uid'=>$logs1['user_id']))->find();
+//        $openId = $connect['open_id'];
         $input = new WxPayUnifiedOrder();
         $input->SetBody($logs['subject']);
         $input->SetAttach($logs['subject']);
-        $input->SetOut_trade_no($logs['logs_id']);
+        $input->SetOut_trade_no($logs['logs_id']+time());
         $logs['logs_amount'] = $logs['logs_amount'] *100;
         $input->SetTotal_fee("{$logs['logs_amount']}");
         $input->SetTime_start(date("YmdHis"));
