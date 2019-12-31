@@ -540,19 +540,19 @@ class TuanAction extends CommonAction{
                 for ($i = 0; $i < $order['num']; $i++) {
                     $local = $obj->getCode();
                     $insert = array(
-						'user_id' => $this->uid, 
-						'shop_id' => $tuan['shop_id'], 
-						'order_id' => $order['order_id'], 
-						'tuan_id' => $order['tuan_id'], 
-						'code' => $local, 
-						'price' => 0, 
-						'real_money' => 0, 
-						'real_integral' => 0, 
-						'fail_date' => $tuan['fail_date'], 
-						'settlement_price' => 0, 
-						'create_time' => NOW_TIME, 
-						'create_ip' => $ip
-					);
+						'user_id' => $this->uid,
+						'shop_id' => $tuan['shop_id'],
+						'order_id' => $order['order_id'],
+						'tuan_id' => $order['tuan_id'],
+						'code' => $local,
+						'price' => 0,
+						'real_money' => 0,
+						'real_integral' => 0,
+						'fail_date' => $tuan['fail_date'],
+						'settlement_price' => 0,
+						'create_time' => NOW_TIME,
+						'create_ip' => get_client_ip(),
+                    );
                     $codes[] = $local;
                     $obj->add($insert);
                 }

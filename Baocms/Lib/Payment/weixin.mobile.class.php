@@ -28,7 +28,7 @@ class weixin {
         $input = new WxPayUnifiedOrder();
         $input->SetBody($logs['subject']);
         $input->SetAttach($logs['subject']);
-        $input->SetOut_trade_no($logs['logs_id']+time());
+        $input->SetOut_trade_no($logs['logs_id']);
         $logs['logs_amount'] = $logs['logs_amount'] *100;
         $input->SetTotal_fee("{$logs['logs_amount']}");
         $input->SetTime_start(date("YmdHis"));

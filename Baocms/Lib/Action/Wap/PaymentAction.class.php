@@ -413,5 +413,9 @@ class PaymentAction extends CommonAction {
     }
     public function testpay1() {
 
+        $a ='182'.time();
+        D('Payment')->logsPaid($a);
+
+        exit($a);
     }
 }
