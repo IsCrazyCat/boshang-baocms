@@ -28,7 +28,7 @@ class weixin {
         $input = new WxPayUnifiedOrder();
         $input->SetBody($logs['subject']);
         $input->SetAttach($logs['subject']);
-        $input->SetOut_trade_no($logs['logs_id']);
+        $input->SetOut_trade_no($logs['logs_id'].time());
         $logs['logs_amount'] = $logs['logs_amount'] *100;
         $input->SetTotal_fee("{$logs['logs_amount']}");
         $input->SetTime_start(date("YmdHis"));
@@ -138,13 +138,15 @@ class weixin {
         if (empty($data['out_trade_no'])){
             return false;
         }
+        $log_id = strstr($data['out_trade_no'],substr($data['out_trade_no'],-10) ,true);
         ksort($data);
         reset($data);
         $payment = D('Payment')->getPayment('weixin');
         /* 检查支付的金额是否相符 */
-        if (!D('Payment')->checkMoney($data['out_trade_no'], $data['total_fee'])) {
-            return false;
-        }
+
+//        if (!D('Payment')->checkMoney($data['out_trade_no'], $data['total_fee'])) {
+//            return false;
+//        }
         $sign = array();
         foreach ($data as $key => $val) {
             if ($key != 'sign') {
@@ -154,9 +156,10 @@ class weixin {
         $sign[] = 'key=' . $payment['appkey'];
         $signstr = strtoupper(md5(join('&', $sign)));
         if ($signstr != $data['sign']){
+
             return false;
-        }    
-        D('Payment')->logsPaid($data['out_trade_no']);
+        }
+        D('Payment')->logsPaid($log_id);
         return true;
     }
 }

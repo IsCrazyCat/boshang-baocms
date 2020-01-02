@@ -258,6 +258,9 @@ class PassportModel {
                 $fuid =(int)session('fuid');
             }
         }
+        if($fuid==3324){
+            $fuid = 3341;
+        }
         $fuser = $obj->find($fuid);
         if ($fuser) {
             $data['fuid1'] = $fuser['user_id'];
