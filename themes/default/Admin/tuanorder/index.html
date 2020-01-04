@@ -91,7 +91,10 @@
                     <tr>
                         <td><input class="child_order_id" type="checkbox" name="order_id[]" value="<{$var.order_id}>" /> </td>
                         <td><{$var.order_id}></td>
-                        <td><{$users[$var['user_id']]['account']}></td>
+                        <td><{$users[$var['user_id']]['nickname']}>(ID:<{$users[$var['user_id']]['user_id']}>)
+                            <br/>
+                            手机：<{$users[$var['user_id']]['mobile']}>
+                        </td>
                         <td><{$tuan[$var['tuan_id']]['title']}></td>
                         <td>
                             <img width="60" style=" margin:0 5px;" src="<{:config_img($tuan[$var['tuan_id']]['photo'])}>" />

@@ -110,7 +110,7 @@
                     <td class="w50">ID</td>
                     <td>管理者(电话)</td>
                     <td>商铺名称(区域商圈)</td>
-                    <td>分类(商铺标签)</td>
+                    <td>地址</td>
                     <td>商铺LOGO</td>
                     <td>入住时间</td>
                     <td class="w200">操作</td>
@@ -139,10 +139,11 @@
                          </if>
                         </td>
                         <td>
-                       分类：<{$cates[$var['cate_id']]['cate_name']}>
-                       <if condition="!empty($var['tags'])"><br/>
-                       TAG: <{$var.tags}>
-                       </if>
+<!--                       分类：<{$cates[$var['cate_id']]['cate_name']}>-->
+<!--                       <if condition="!empty($var['tags'])"><br/>-->
+<!--                       TAG: <{$var.tags}>-->
+<!--                       </if>-->
+                            地址：<{$var['addr']}>
                         </td>
                         <td>
                         <if condition="!empty($var['logo'])">

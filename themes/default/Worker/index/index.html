@@ -4,7 +4,7 @@
 	wx.config({
 	debug: false,
 	appId: "<{$sign.appId}>",
-	timestamp: <{$sign.timestamp}>,
+	timestamp: "<{$sign.timestamp}>",
 	nonceStr: "<{$sign.nonceStr}>",
 	signature: "<{$sign.signature}>",
 	jsApiList: [
@@ -16,7 +16,7 @@
 	});
 	
 $(function(){
-	$("a[name='makebtn']").click(function(){
+	$("#makebtn").click(function(){
 		
 		//$(this).attr("disabled",true);
 		wx.scanQRCode({
@@ -32,6 +32,22 @@ $(function(){
 			}
 		});
 	})
+    $("#makebtn1").click(function(){
+
+        //$(this).attr("disabled",true);
+        wx.scanQRCode({
+            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ["qrCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function (res) {
+                var snstr = res.resultStr;
+                location.href="/worker/index/scanaudit?snstr="+snstr;
+                // $.post("<{:U('index/scanaudit')}>",{snstr:snstr},function(data){
+                // 	alert(data.info);
+                // 	//alert("请等待商家审核通过!");
+                // },'json');
+            }
+        });
+    })
 })	
 </script>
 
@@ -43,7 +59,7 @@ $(function(){
 		</div>
 	<div class="top-signed">
     <if condition="$is_weixin">
-    <a name="makebtn" ><i class="icon-qrcode"></i></a>
+    <a id="makebtn" ><i class="icon-qrcode"></i></a>
 	<else/>
     <a href="<{:U('passport/logout')}>"><i class="icon-sign-out"></i></a>  
     </if>
@@ -71,7 +87,7 @@ $(function(){
 <div class="panel-list">
 	<ul>
         <li>
-            <a name="makebtn" href=""><span class="icon-tags"></span>扫一扫
+            <a id="makebtn1"><span class="icon-tags"></span>扫一扫
                 <i class="icon-angle-right"></i></a>
         </li>
 <if condition="$worker['tuan'] eq 1">

@@ -403,6 +403,9 @@ class TuanAction extends CommonAction{
         }
         $mobile = $this->_post('mobile');
         $param['mobile'] = $mobile;
+        if (empty($mobile)) {
+            $this->fengmiMsg('请填写正确的手机号码！');
+        }
 //        if(empty($user['mobile'])){
 //            $yzm = $this->_post('yzm');
 //            if (empty($mobile) || empty($yzm)) {
