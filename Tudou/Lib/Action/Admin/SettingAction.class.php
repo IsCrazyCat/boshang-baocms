@@ -96,9 +96,8 @@ class SettingAction extends CommonAction{
             $this->display();
         }
     }
-	
-	
-	
+
+
    public function sms(){
 		$config = D('Setting')->fetchAll();
 		if(!empty($config['sms']['sms_bao_account'])){
@@ -112,7 +111,7 @@ class SettingAction extends CommonAction{
 			//如果是选择get模式
 			if($config['sms']['curl'] == 'get'){
 				$res = $this->curl->get($http);
-				$res = json_decode($res, true);
+//				$res = json_decode($res, true);
 			}else{
 				$res = file_get_contents($http);
 			}

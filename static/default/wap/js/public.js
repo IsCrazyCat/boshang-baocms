@@ -218,7 +218,7 @@ $(document).ready(function (){
 function check_user_mobile(url1,url2){
 	layer.open({
 		type: 1,
-		title:'<h4>请绑定手机后操作3</h4>',
+		title:'<h4>请绑定手机后操作</h4>',
 		skin: 'layui-layer-molv', //加上边框
 		area: ['90%', '300px'], //宽高
 		shift:6,

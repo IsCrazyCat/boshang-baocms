@@ -73,11 +73,11 @@ class SmsModel extends CommonModel{
 			//如果是选择get模式
 			if($config['sms']['curl'] == 'get'){
 				$res = $this->curl->get($http);
-				$res = json_decode($res, true);
+//				$res = json_decode($res, true);
 			}else{
 				$res = file_get_contents($http);
 			}
-			
+
 			D('Smsbao')->ToUpdate($sms_id,$shop_id,$res);//更新短信宝状态
             return true;
        

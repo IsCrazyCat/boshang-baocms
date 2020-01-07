@@ -5,9 +5,9 @@
 			<a class="top-addr" href="<{:U('shop/index')}>"><i class="iconfont icon-angle-left"></i></a>
 		</div>
 		<div class="top-title"><{$detail.shop_name}></div>
-		<div class="top-share">
-        	<a href="<{:U('user/dianping/index',array('shop_id'=>$detail['shop_id']))}>" class="iconfont icon-fabu"></a>
-        </div>
+<!--		<div class="top-share">-->
+<!--        	<a href="<{:U('user/dianping/index',array('shop_id'=>$detail['shop_id']))}>" class="iconfont icon-fabu"></a>-->
+<!--        </div>-->
 	</header>
 
 <if condition="!empty($detail['panorama_url'])">
@@ -130,7 +130,7 @@
         <div class="list-link detail-link radius-none">
 			<div class="line border-bottom padding">
 				<div class="<if condition="$detail['service_weixin_qrcode']"> x4<else/>x6</if> border-right text-center">
-					<a class="button button-small bg-yellow margin-small-right" href="<{:U('shop/gps',array('shop_id'=>$detail['shop_id']))}>"><i class="iconfont icon-daohang"></i> 导航进店</a>
+					<a class="button button-small bg-yellow margin-small-right" href="<{:U('shop/gps',array('shop_id'=>$detail['shop_id']))}>"><i class="iconfont icon-daohang"></i> 导航进厂</a>
 				</div>
 <!--                <if condition="$detail['service_weixin_qrcode']"> -->
 <!--                    <div class="x4 border-right text-center">-->

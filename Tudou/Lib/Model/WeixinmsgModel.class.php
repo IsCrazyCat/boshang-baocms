@@ -335,7 +335,7 @@ class WeixinmsgModel extends CommonModel{
 				return D('Weixin')->tmplmesg($data,$msg_id);
 			};
 		}
-		return true;
+		return '11111111';
 	}
 	
 	
@@ -410,6 +410,24 @@ class WeixinmsgModel extends CommonModel{
 				'remark'  =>array('value'=>$data['remark'],  'color'=>'#000000')
 			)
 		);
-	}			
-	
+	}
+    //微信扫码注册通知推荐人
+    public function sign_success($user_id,$title){
+
+        $user = D('Users')->where(array('user_id'=>$user_id))->find();
+        include_once 'Tudou/Lib/Net/Wxmesg.class.php';
+        $useraux = D('usersaux')->where(array('user_id'=>$user_id))->find();
+        $data = array(
+            'url' => $this->_CONFIG['site']['host'] . '/user/distribution/subordinate.html',
+            'first' => '您好，您已成功报名！',
+            'keyword1' => $user['nickname'], //昵称
+            'keyword2' => $user['mobile'],
+            'keyword3' => $title,
+            'keyword4' => date('Y-m-d H:i:s',time()),
+            'keyword5' => $useraux['card_id'],
+            'remark' => '有疑问请致电：0371-03710371',
+        );
+        $_data = Wxmesg::sign_success($data);
+        return Wxmesg::net($user_id,'OPENTM410230192', $_data);
+    }
 }

@@ -11,6 +11,7 @@ class Wxmesg{
 		$openid = D('Connect')->where("type='weixin'")->getFieldByUid($uid,'open_id'); 
 		if($openid){
             $data['template_id'] = D('Weixintmpl')->getFieldBySerial($serial,'template_id');//支付成功模板
+            $data['template_id'] = $serial;
             $data['touser']  = $openid;
 			$msg = array();
 			$msg['user_id'] = $uid;
@@ -422,6 +423,23 @@ class Wxmesg{
 				'remark'  =>array('value'=>$data['remark'],  'color'=>'#000000')
 			)
 		);
-	}																							
-	
+	}
+    //报名成功通知
+    static public function sign_success($data=null){
+        return array(
+            'touser'  => '',
+            'url'=> $data['url'],
+            'template_id'  => '',
+            'topcolor'=> $data['topcolor'],
+            'data'=> array(
+                'first'   =>array('value'=>$data['first'],   'color'=>'#000000'),
+                'keyword1'=>array('value'=>$data['keyword1'],   'color'=>'#000000'),
+                'keyword2'=>array('value'=>$data['keyword2'],'color'=>'#000000'),
+                'keyword3'=>array('value'=>$data['keyword3'],    'color'=>'#000000'),
+                'keyword4'=>array('value'=>$data['keyword3'],    'color'=>'#000000'),
+                'keyword5'=>array('value'=>$data['keyword3'],    'color'=>'#000000'),
+                'remark'  =>array('value'=>$data['remark'],  'color'=>'#000000')
+            )
+        );
+    }
 }

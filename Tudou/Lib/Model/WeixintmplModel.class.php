@@ -537,6 +537,9 @@ class WeixintmplModel extends CommonModel{
 			)
 		);
 	}	
-	
+	public function getFieldBySerial($serial,$colunm){
+	    $colunm = D('Weixintmpl')->where(array('serial'=>$serial))->getField($colunm);
+	    return $colunm;
+    }
 
 }

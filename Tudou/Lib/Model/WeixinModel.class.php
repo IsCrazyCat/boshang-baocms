@@ -97,6 +97,7 @@ class WeixinModel {
         $site_token = $this->getSiteToken();
         $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={$site_token}";
         $result = $this->curl->post($url, json_encode($data) );
+        return $result;
         $result = (array)json_decode($result);
         if($result['errcode']){
 			D('Weixinmsg')->where(array('msg_id' => $msg_id))->save(array('status' => $result['errcode'],'info'=>$result['errmsg']));
